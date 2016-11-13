@@ -1,0 +1,9 @@
+# Created by .ignore support plugin (hsz.mobi)
+**/target
+**/logs
+*.log
+.idea
+*.iml
+**/rebel.xml
+**/gen.xml
+service/gen.xml

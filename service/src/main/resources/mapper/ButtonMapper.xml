@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fish.idle.mapper.ButtonMapper" >
+  <resultMap id="BaseResultMap" type="com.fish.idle.entity.Button" >
+    <id column="button_id" property="buttonId" jdbcType="INTEGER" />
+    <result column="menu_id" property="menuId" jdbcType="INTEGER" />
+    <result column="button_name" property="buttonName" jdbcType="VARCHAR" />
+    <result column="button_url" property="buttonUrl" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    button_id, menu_id, button_name, button_url, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_button
+    where button_id = #{buttonId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_button
+    where button_id = #{buttonId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fish.idle.entity.Button" >
+    insert into sys_button (button_id, menu_id, button_name, 
+      button_url, status)
+    values (#{buttonId,jdbcType=INTEGER}, #{menuId,jdbcType=INTEGER}, #{buttonName,jdbcType=VARCHAR}, 
+      #{buttonUrl,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fish.idle.entity.Button" >
+    insert into sys_button
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="buttonId != null" >
+        button_id,
+      </if>
+      <if test="menuId != null" >
+        menu_id,
+      </if>
+      <if test="buttonName != null" >
+        button_name,
+      </if>
+      <if test="buttonUrl != null" >
+        button_url,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="buttonId != null" >
+        #{buttonId,jdbcType=INTEGER},
+      </if>
+      <if test="menuId != null" >
+        #{menuId,jdbcType=INTEGER},
+      </if>
+      <if test="buttonName != null" >
+        #{buttonName,jdbcType=VARCHAR},
+      </if>
+      <if test="buttonUrl != null" >
+        #{buttonUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fish.idle.entity.Button" >
+    update sys_button
+    <set >
+      <if test="menuId != null" >
+        menu_id = #{menuId,jdbcType=INTEGER},
+      </if>
+      <if test="buttonName != null" >
+        button_name = #{buttonName,jdbcType=VARCHAR},
+      </if>
+      <if test="buttonUrl != null" >
+        button_url = #{buttonUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where button_id = #{buttonId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fish.idle.entity.Button" >
+    update sys_button
+    set menu_id = #{menuId,jdbcType=INTEGER},
+      button_name = #{buttonName,jdbcType=VARCHAR},
+      button_url = #{buttonUrl,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER}
+    where button_id = #{buttonId,jdbcType=INTEGER}
+  </update>
+</mapper>
