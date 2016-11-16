@@ -1,16 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<!-- Content Header (Page header) -->
 <section class="content-header">
     <ol class="breadcrumb">
         <li><a href="./"><i class="icon-home"></i> 主页</a></li>
         <li class="active">500 错误</li>
     </ol>
 </section>
-
-<!-- Main content -->
 <section class="content">
-
     <div class="error-page">
         <h2 class="headline text-red">500</h2>
         <div class="error-content" style="padding-top: 30px;">
@@ -22,7 +18,4 @@
             </p>
         </div>
     </div>
-    <!-- /.error-page -->
-
 </section>
-<!-- /.content -->

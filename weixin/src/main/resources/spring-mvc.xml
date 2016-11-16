@@ -51,7 +51,7 @@
         </mvc:interceptor>
 
     </mvc:interceptors>
-    <bean id="oauth2Interceptor" class="com.fish.idle.weixin.interceptor.OAuth2Interceptor"/>
+    <bean id="oauth2Interceptor" class="com.fish.idle.admin.weixin.interceptor.OAuth2Interceptor"/>
 
     <!-- 对模型视图添加前后缀,jsp -->
     <bean id="jspResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"

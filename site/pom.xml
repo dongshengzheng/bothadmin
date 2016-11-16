@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>pawn2</artifactId>
-        <groupId>com.xianyu.tec</groupId>
+         <groupId>com.fish.idle</groupId>
         <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -24,7 +24,7 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.xianyu.tec</groupId>
+             <groupId>com.fish.idle</groupId>
             <artifactId>service</artifactId>
             <version>1.0</version>
         </dependency>

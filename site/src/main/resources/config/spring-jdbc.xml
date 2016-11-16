@@ -18,36 +18,51 @@
 	<context:property-placeholder location="classpath:properties/override.properties" />
 
 	<!--定义一个jdbc数据源，创建一个驱动管理数据源的bean -->
-	<bean id="jdbcDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-		destroy-method="close">
-		<property name="driverClass" value="${jdbc.driver}" />
-		<property name="jdbcUrl" value="${jdbc.url}" />
-		<property name="user" value="${jdbc.user}" />
-		<property name="password" value="${jdbc.password}" />
-		<property name="acquireIncrement" value="5"></property>
-		<property name="initialPoolSize" value="10"></property>
-		<property name="minPoolSize" value="5"></property>
-		<property name="maxPoolSize" value="20"></property>
-	</bean>
 
-	<!--定义一个jdbc数据源，创建一个驱动管理数据源的bean -->
-	<bean id="jdbcDataSourceBak"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="${jdbc.driver}" />
-		<property name="url" value="${jdbc.url}" />
-		<property name="username" value="${jdbc.user}" />
-		<property name="password" value="${jdbc.password}" />
+	<!-- 阿里 druid数据库连接池 -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+		<!-- 数据库基本信息配置 -->
+		<property name="url" value="${url}"/>
+		<property name="username" value="${username}"/>
+		<property name="password" value="${password}"/>
+		<property name="driverClassName" value="${driverClassName}"/>
+		<property name="filters" value="${filters}"/>
+		<!-- 最大并发连接数 -->
+		<property name="maxActive" value="${maxActive}"/>
+		<!-- 初始化连接数量 -->
+		<property name="initialSize" value="${initialSize}"/>
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name="maxWait" value="${maxWait}"/>
+		<!-- 最小空闲连接数 -->
+		<property name="minIdle" value="${minIdle}"/>
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="${timeBetweenEvictionRunsMillis}"/>
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="${minEvictableIdleTimeMillis}"/>
+		<property name="validationQuery" value="${validationQuery}"/>
+		<property name="testWhileIdle" value="${testWhileIdle}"/>
+		<property name="testOnBorrow" value="${testOnBorrow}"/>
+		<property name="testOnReturn" value="${testOnReturn}"/>
+		<property name="maxOpenPreparedStatements" value="${maxOpenPreparedStatements}"/>
+		<!-- 打开removeAbandoned功能 -->
+		<property name="removeAbandoned" value="${removeAbandoned}"/>
+		<!-- 1800秒，也就是30分钟 -->
+		<property name="removeAbandonedTimeout" value="${removeAbandonedTimeout}"/>
+		<!-- 关闭abanded连接时输出错误日志 -->
+		<property name="logAbandoned" value="${logAbandoned}"/>
 	</bean>
 
 	<!--创建一个sql会话工厂bean，指定数据源 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<!-- 指定数据源 -->
-		<property name="dataSource" ref="jdbcDataSource" />
+		<property name="dataSource" ref="dataSource" />
 		<!--类型别名包，默认引入com.fish.idle.entity下的所有类 -->
-		<property name="typeAliasesPackage" value="com.fish.idle.entity"></property>
+		<property name="typeAliasesPackage" >
+			<value>com.fish.idle.service.entity</value>
+		</property>
 		<!--指定sql映射xml文件的路径 -->
 		<property name="mapperLocations"
-			value="classpath:mapper/*.xml"></property>
+			value="classpath:mybatis/*.xml"></property>
 	</bean>
 
 	<!--自动扫描映射接口 -->
@@ -55,7 +70,7 @@
 		<!-- 指定sql会话工厂，在上面配置过的 -->
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
 		<!-- 指定基础包，即自动扫描com.fish.idle..mapper这个包以及它的子包下的所有映射接口类 -->
-		<property name="basePackage" value="com.fish.idle..mapper"></property>
+		<property name="basePackage" value="com.fish.idle.service.mapper"></property>
 	</bean>
 
 	<!-- 创建一个sqlSession对象 -->
@@ -66,14 +81,14 @@
 
 	<!--声明式事务管理 -->
 	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-	    <property name="dataSource" ref="jdbcDataSource"></property>
+	    <property name="dataSource" ref="dataSource"></property>
 	</bean>
 	<!--声明支持使用注解管理事务 -->
 	<tx:annotation-driven transaction-manager="txManager"/>
 
 	<!--自动扫描组件 -->
-	<context:component-scan base-package="com.fish.idle">
-	    <context:exclude-filter type="aspectj" expression="com.fish.idle.mapper.*"/>
+	<context:component-scan base-package="com.fish.idle.service.">
+	    <context:exclude-filter type="aspectj" expression="com.fish.idle.service.mapper.*"/>
 	</context:component-scan>
 	<aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
 </beans>

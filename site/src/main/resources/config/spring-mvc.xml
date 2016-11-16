@@ -5,7 +5,9 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
-    <context:component-scan base-package="com.fish.idle"/>
+    <context:property-placeholder location="classpath:properties/override.properties" />
+    
+    <context:component-scan base-package="com.fish.idle.site"/>
 
 
     <!-- 配置Freemarker属性文件路径 -->
