@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.xianyu.tec</groupId>
+         <groupId>com.fish.idle</groupId>
         <artifactId>pawn2</artifactId>
         <version>1.0</version>
     </parent>
@@ -264,7 +264,12 @@
             <artifactId>spring-core</artifactId>
             <version>4.3.3.RELEASE</version>
         </dependency>
-
+        <!--log4j日志包 -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.6.1</version>
+        </dependency>
     </dependencies>
 
 </project>

@@ -1,27 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 						http://www.springframework.org/schema/beans/spring-beans.xsd
-						http://www.springframework.org/schema/aop 
-						http://www.springframework.org/schema/aop/spring-aop.xsd
-						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context
 						http://www.springframework.org/schema/context/spring-context.xsd
 						http://www.springframework.org/schema/tx 
-						http://www.springframework.org/schema/tx/spring-tx.xsd
-	">
-
-    <bean id="propertyConfigurer" class="com.xianyu.manage.projectname.spring.ConfigPropertyPlaceholderConfigurer">
-        <property name="locations">
-            <list>
-                <value>classpath:dbconfig.properties</value>
-                <value>classpath:application.properties</value>
-            </list>
-        </property>
-    </bean>
+						http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <!--属性占位文件引入，可以通过${属性名}获得属性文件中的内容 -->
+    <context:property-placeholder location="classpath:properties/override.properties" />
+    <context:property-placeholder location="classpath:properties/application.properties" />
 
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="cacheSeconds" value="5"/>
@@ -69,8 +59,8 @@
     <!-- 配置mybatis -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"></property>
-        <property name="mapperLocations" value="classpath:mybatis/*/*.xml"></property><!-- mapper扫描 -->
+        <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath:mybatis/*/*.xml"/><!-- mapper扫描 -->
     </bean>
 
     <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
@@ -78,7 +68,7 @@
     </bean>
 
     <bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"></property>
+        <property name="dataSource" ref="dataSource"/>
     </bean>
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
@@ -89,10 +79,10 @@
     </bean>
 
     <!--Realm -->
-    <bean id="ShiroRealm" class="com.xianyu.manage.base.interceptor.shiro.ShiroRealm"></bean>
+    <bean id="ShiroRealm" class="com.fish.idle.admin.base.interceptor.shiro.ShiroRealm"/>
 
     <!-- rights -->
-    <bean id="gvrts" class="com.xianyu.manage.base.filter.shiro.RightsFilter"></bean>
+    <bean id="gvrts" class="com.fish.idle.admin.base.filter.shiro.RightsFilter"/>
 
     <!-- Shiro Filter -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
@@ -120,10 +110,6 @@
         </property>
     </bean>
     <!-- ================ Shiro end ================ -->
-
-
-
-
     <!--4、配置扫描Dao接口包,动态实现DAO接口,注入到spring容器-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!--注入SqlSessionFactory-->

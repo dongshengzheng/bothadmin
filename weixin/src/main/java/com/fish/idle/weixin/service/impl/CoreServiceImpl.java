@@ -1,8 +1,8 @@
 package com.fish.idle.weixin.service.impl;
 
 import com.fish.idle.weixin.handler.MsgHandler;
-import com.fish.idle.weixin.handler.SubscribeHandler;
 import com.fish.idle.weixin.service.CoreService;
+import com.fish.idle.weixin.handler.SubscribeHandler;
 import com.fish.idle.weixin.handler.LogHandler;
 
 import me.chanjar.weixin.common.api.WxConsts;
