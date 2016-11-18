@@ -44,10 +44,6 @@
                         <th>姓名</th>
                         <th>邮箱</th>
                         <th>电话</th>
-                        <th>公司名称</th>
-                        <th>渠道名</th>
-                        <th>结算类型</th>
-                        <th>结算备注</th>
                         <th>最近登录</th>
                         <th>操作</th>
                     </tr>
@@ -86,14 +82,10 @@
                 {"data": "name"},
                 {"data": "email"},
                 {"data": "phone"},
-                {"data": "company"},
-                {"data": "channel_name"},
-                {"data": "settlement_type"},
-                {"data": "settlement_des"},
                 {"data": "lastLogin"}
             ],
             "columnDefs": [{
-                "targets": 10,
+                "targets": 6,
                 "render": function (data, type, row) {
                     return ""
                     <shiro:hasPermission name="right/editBtn">

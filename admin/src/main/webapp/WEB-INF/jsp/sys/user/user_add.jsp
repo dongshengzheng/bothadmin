@@ -54,35 +54,6 @@
             </div>
 
             <div class="form-group">
-                <label for="company" class="col-sm-2 control-label">公司名称</label>
-                <div class="col-sm-7">
-                    <input id="company" name="company" type="text" maxlength="32"
-                           class="form-control required" placeholder="请输入公司名称">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="channelName" class="col-sm-2 control-label">渠道名</label>
-                <div class="col-sm-7">
-                    <input id="channelName" name="channelName" type="text" maxlength="32"
-                           class="form-control required" placeholder="请输入渠道名">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="settlementType" class="col-sm-2 control-label">结算类型</label>
-                <div class="col-sm-7">
-                    <input id="settlementType" name="settlementType" type="text" maxlength="32"
-                           class="form-control required" placeholder="请输入结算类型">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="settlementDes" class="col-sm-2 control-label">结算备注</label>
-                <div class="col-sm-7">
-					<textarea id="settlementDes" name="settlementDes" class="form-control"
-                              rows="3"></textarea>
-                </div>
-            </div>
-            <div class="form-group">
                 <label for="description" class="col-sm-2 control-label">描述</label>
                 <div class="col-sm-7">
 					<textarea id="description" name="description" class="form-control"

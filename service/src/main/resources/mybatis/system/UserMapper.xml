@@ -34,19 +34,6 @@
         <result column="role_id" property="roleId"/>
         <result column="skin" property="skin"/>
     </resultMap>
-    <!--
-    判断用户名和密码
-    <select id="getUserInfo" parameterType="User" resultMap="userResultMap">
-        select * from sys_user
-        where 1=1
-        <if test="loginName!=null and password!=null">
-        and login_name = #{loginName} and password=#{password}
-        </if>
-        <if test="userId!=null and userId>0">
-        and user_id = #{userId}
-        </if>
-    </select> -->
-
     <!-- 判断用户名和密码 -->
     <select id="getUserInfo" parameterType="PageData" resultType="PageData" useCache="false">
         select
@@ -59,11 +46,7 @@
         status,
         skin,
         email,
-        phone,
-        company,
-        settlement_type,
-        settlement_des,
-        channel_name
+        phone
         from sys_user
         where 1=1
         <if test="loginName != null and password != null">
@@ -94,9 +77,7 @@
         <if test="keyword != null and keyword != ''">
             and CONCAT(IFNULL(u.login_name,''),IFNULL(u.name,'')) like #{keyword}
         </if>
-        <if test="createId != null and createId!= ''">
-            and create_id = #{createId}
-        </if>
+
     </select>
 
     <select id="list" parameterType="PageData" resultType="PageData">
@@ -110,18 +91,11 @@
         u.description,
         u.email,
         u.phone,
-        u.company,
-        u.settlement_type,
-        u.settlement_des,
-        u.channel_name,
         u.skin
         from sys_user u
         where u.status != -1
         <if test="keyword != null and keyword != ''">
             and CONCAT(IFNULL(u.login_name,''),IFNULL(u.name,'')) like #{keyword}
-        </if>
-        <if test="createId != null and createId!= ''">
-            and create_id = #{createId}
         </if>
         limit #{from},#{size}
     </select>
@@ -135,10 +109,6 @@
 			description,
 			email,
 			phone,
-			company,
-            settlement_type,
-            settlement_des,
-            channel_name,
             create_id
 		) values (
 			#{loginName},
@@ -147,12 +117,7 @@
 			#{status},
 			#{description},
 			#{email},
-			#{phone},
-			#{company},
-            #{settlementType},
-            #{settlementDes},
-            #{channelName},
-            #{createId}
+			#{phone}
 		)
 	</insert>
 
@@ -168,10 +133,6 @@
 			description,
 			email,
 			phone,
-			company,
-            settlement_type,
-            settlement_des,
-            channel_name,
 			skin
 		from sys_user 
 		where status != -1
@@ -196,10 +157,6 @@
         description = #{description},
         email = #{email},
         phone = #{phone},
-        company = #{company},
-        settlement_type = #{settlementType},
-        settlement_des = #{settlementDes},
-        channel_name = #{channelName}
         where
         user_id = #{userId}
     </update>

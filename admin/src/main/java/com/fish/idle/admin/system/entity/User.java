@@ -28,55 +28,6 @@ public class User implements Serializable {
     private List<Role> roles;
     private Page page; // 分页对象
 
-    private String company;         //公司名称
-
-    private String settlementType;  //结算类型
-    private String settlementDes;  //结算备注
-
-    private String channelName;         // 渠道名
-
-    private String createId;          // 商务Id  渠道在创建的时候，保存创建他的商务
-
-    public String getCreateId() {
-        return createId;
-    }
-
-    public void setCreateId(String createId) {
-        this.createId = createId;
-    }
-
-    public String getChannelName() {
-        return channelName;
-    }
-
-    public void setChannelName(String channelName) {
-        this.channelName = channelName;
-    }
-
-    public String getCompany() {
-        return company;
-    }
-
-    public void setCompany(String company) {
-        this.company = company;
-    }
-
-    public String getSettlementType() {
-        return settlementType;
-    }
-
-    public void setSettlementType(String settlementType) {
-        this.settlementType = settlementType;
-    }
-
-    public String getSettlementDes() {
-        return settlementDes;
-    }
-
-    public void setSettlementDes(String settlementDes) {
-        this.settlementDes = settlementDes;
-    }
-
     public Integer getUserId() {
         return userId;
     }
