@@ -6,8 +6,8 @@
 # https://github.com/sequelpro/sequelpro
 #
 # Host: 127.0.0.1 (MySQL 5.7.14)
-# Database: pawn2
-# Generation Time: 2016-11-15 12:47:43 +0000
+# Database: jsdd
+# Generation Time: 2016-11-18 15:43:30 +0000
 # ************************************************************
 
 
@@ -181,7 +181,7 @@ LOCK TABLES `sys_user` WRITE;
 
 INSERT INTO `sys_user` (`user_id`, `login_name`, `password`, `name`, `last_login`, `ip`, `status`, `description`, `email`, `phone`, `skin`)
 VALUES
-	(1,'admin','dd94709528bb1c83d08f3088d4043f4742891f4f','admin','2016-10-30 13:31:21','0:0:0:0:0:0:0:1','1','123','123','123',1),
+	(1,'admin','dd94709528bb1c83d08f3088d4043f4742891f4f','admin','2016-11-18 23:38:11','0:0:0:0:0:0:0:1','1','123','123','123',1),
 	(84,'sunhan','71431ddb024987660b7faedf7880fbf35eb9f1dc','孙汉',NULL,NULL,'1','1','1','1',1),
 	(85,'admin123','91868ceb2b0ef1ddaed59140471087722d60c872','123',NULL,NULL,'1','123','123123','123',1),
 	(86,'123123','5a8f70e725742ee64204353e700778b29f81b988','123',NULL,NULL,'-1','123','213','123',1),
