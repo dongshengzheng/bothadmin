@@ -25,6 +25,7 @@ public class User implements Serializable {
     private String email; // 邮箱
     private String phone; // 电话号码
     private Integer skin; // 皮肤
+    private Integer createId;
     private List<Role> roles;
     private Page page; // 分页对象
 
@@ -132,4 +133,11 @@ public class User implements Serializable {
         this.page = page;
     }
 
+    public Integer getCreateId() {
+        return createId;
+    }
+
+    public void setCreateId(Integer createId) {
+        this.createId = createId;
+    }
 }
