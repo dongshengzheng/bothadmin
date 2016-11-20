@@ -10,6 +10,7 @@
 
     <task:annotation-driven/>
     <context:component-scan base-package="com.fish.idle.admin"/>
+    <context:component-scan base-package="com.fish.idle.service"/>
 
     <mvc:default-servlet-handler/>
 
