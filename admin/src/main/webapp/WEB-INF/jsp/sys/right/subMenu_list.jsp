@@ -23,7 +23,7 @@
                         <div class="col-md-6">
                             <div class="btn-group">
                                 <shiro:hasPermission name="right/addMenu">
-                                    <button data-url="right/addMenu" data-model="dialog" class="btn btn-outline btn-circle btn-sm green"> 新增
+                                    <button data-url="right/addMenu?parentId=${pd.menuId}" data-model="dialog" class="btn btn-outline btn-circle btn-sm green"> 新增
                                         <i class="fa fa-plus"></i>
                                     </button>
                                 </shiro:hasPermission>

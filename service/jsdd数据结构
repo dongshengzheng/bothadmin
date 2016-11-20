@@ -1,0 +1,107 @@
+共有字段：
+create_date,update_date,create_by,update_by,del_flag
+
+sys_user:
+	identification 身份证
+	perfer(字典表) 偏好
+	public 是否公开
+	score
+	follow_count: 关注数量，冗余字段
+	type
+
+
+积分计算方式
+sys_score_calc:
+	id
+	name
+	value
+	description
+
+
+
+// 作为单独的tab存在，列表展示。详细页面，递归展示。
+诠释表： 递交给收藏者，等待同意
+dd_interpretation:
+	id
+	works_id
+	user_id 创建者
+	type
+	parent_id（诠释有递归）
+	score_demanded:（想要的分数） (选项 ：20 50 100 暂定)
+	status （是否递交成功）
+	deal_date
+	picture
+	follow_count: 关注数量，冗余字段
+
+
+评论表：
+dd_comments:
+	id
+	works_id
+	user_id 			创建者
+	type
+	parent_id（评论有递归）
+	follow_count: 		关注数量，冗余字段
+
+dd_works:
+	slide: 				是否轮播 字典表：是，否，随机 （作品轮播：）
+	slide_till:			截止日期（和slide联合判断）
+	browser_count :		浏览次数：（ip）
+	follow_count: 		关注数量，冗余字段
+	value:				价值
+	value_till			价值有效时间
+	certified:     		是否认证(如果认证了，则页面有大红章，才能在页面显示value)
+	working_status		作品状态字典表 完成、加工中
+
+
+作品加工状态
+dd_working_progress
+	id
+	works_id
+	description
+	picture
+	percent
+	user_id 		加工者
+
+价值报告
+dd_value_report
+	id
+	works_id
+	certified_by		出据方
+	description							
+	picture				
+
+浏览历史
+dd_browser_history:
+	id
+	user_id
+	target_id
+	type		(对应表名称字典表)
+
+关注历史
+dd_follow_history
+	id
+	user_id
+	target_id
+	type		(对应表名称字典表)
+
+积分历史记录
+dd_score_history:
+	id
+	from_user_id
+	to_user_id
+	value 加减积分
+	type(字典表)(如果是交易类型的，标注to,from)
+
+转让历史
+dd_transfer_history:
+	id
+	works_id
+	from_user_id
+	to_user_id			
+	relation			字典表：用户关系-待建
+	transfer_type		字典表：转让方式  卖/送
+	score
+	status				转让状态：发起、成交
+	reason				转让原因
+
