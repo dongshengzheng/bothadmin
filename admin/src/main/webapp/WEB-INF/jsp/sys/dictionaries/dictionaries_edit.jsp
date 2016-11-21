@@ -16,12 +16,21 @@
     <div class="modal-body">
         <div class="container-fluid">
             <div class="form-group">
-                <input type="hidden" name="roleId" value="${pd.id}"/> <label
-                    for="label" class="col-sm-2 control-label">角色标签</label>
+                <input type="hidden" name="id" value="${pd.id}"/>
+                <label for="label" class="col-sm-2 control-label">字典标签</label>
+                <div class="col-sm-7">
+                    <input id="type" name="type" value="${pd.type}"
+                           type="text" maxlength="32" minlength="2"
+                           class="form-control required" placeholder="请输入字典类型">
+                </div>
+            </div>
+            <div class="form-group">
+                <label
+                        for="label" class="col-sm-2 control-label">字典标签</label>
                 <div class="col-sm-7">
                     <input id="label" name="label" value="${pd.label}"
                            type="text" maxlength="32" minlength="2"
-                           class="form-control required" placeholder="请输入角色名称">
+                           class="form-control required" placeholder="请输入字典标签">
                 </div>
             </div>
             <div class="form-group">
@@ -35,7 +44,7 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <shiro:hasPermission name="role/edit">
+        <shiro:hasPermission name="dictionaries/edit">
             <button type="submit" class="btn btn-primary">保存</button>
         </shiro:hasPermission>
     </div>

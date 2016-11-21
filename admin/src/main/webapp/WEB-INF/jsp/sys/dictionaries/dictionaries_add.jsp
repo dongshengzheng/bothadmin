@@ -15,6 +15,13 @@
     <div class="modal-body">
         <div class="container-fluid">
             <div class="form-group">
+                <label for="type" class="col-sm-2 control-label">字典类型</label>
+                <div class="col-sm-7">
+                    <input id="type" name="type" value="${pd.type}"
+                           type="text" maxlength="32" minlength="2"
+                           class="form-control required" placeholder="请输入字典类型">
+                </div>
+            </div><div class="form-group">
                 <label for="label" class="col-sm-2 control-label">字典标签</label>
                 <div class="col-sm-7">
                     <input id="label" name="label" type="text" maxlength="32"
