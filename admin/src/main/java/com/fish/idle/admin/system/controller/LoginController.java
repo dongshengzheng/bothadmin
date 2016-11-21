@@ -8,14 +8,15 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import com.fish.idle.admin.base.entity.Page;
-import com.fish.idle.admin.base.util.AppUtil;
-import com.fish.idle.admin.base.util.DateUtil;
-import com.fish.idle.admin.base.util.PageData;
-import com.fish.idle.admin.system.entity.Menu;
-import com.fish.idle.admin.system.entity.User;
-import com.fish.idle.admin.system.service.UserService;
-import com.fish.idle.admin.system.entity.Button;
+import com.fish.idle.service.entity.Button;
+import com.fish.idle.service.entity.Menu;
+import com.fish.idle.service.entity.Page;
+import com.fish.idle.service.entity.User;
+import com.fish.idle.service.service.LoginService;
+import com.fish.idle.service.service.UserService;
+import com.fish.idle.service.util.AppUtil;
+import com.fish.idle.service.util.DateUtil;
+import com.fish.idle.service.util.PageData;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -30,10 +31,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fish.idle.admin.base.controller.BaseController;
-import com.fish.idle.admin.system.service.LoginService;
-import com.fish.idle.admin.base.util.Const;
-import com.fish.idle.admin.base.util.Tools;
+import com.fish.idle.service.controller.BaseController;
+import com.fish.idle.service.util.Const;
+import com.fish.idle.service.util.Tools;
 
 /**
  * @author Sun.Han

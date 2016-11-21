@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.fish.idle.service.service.RoleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -14,9 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fish.idle.admin.base.util.PageData;
-import com.fish.idle.admin.base.controller.BaseController;
-import com.fish.idle.admin.system.service.RoleService;
+import com.fish.idle.service.util.PageData;
+import com.fish.idle.service.controller.BaseController;
 
 /**
  * @author Sun.Han

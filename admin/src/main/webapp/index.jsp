@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*, com.fish.idle.admin.base.util.Const"
+<%@ page language="java" import="java.util.*, com.fish.idle.service.util.Const"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 

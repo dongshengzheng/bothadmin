@@ -5,10 +5,10 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import com.fish.idle.admin.system.entity.User;
-import com.fish.idle.admin.system.service.UserService;
-import com.fish.idle.admin.base.util.Const;
-import com.fish.idle.admin.base.util.PageData;
+import com.fish.idle.service.entity.User;
+import com.fish.idle.service.service.UserService;
+import com.fish.idle.service.util.Const;
+import com.fish.idle.service.util.PageData;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fish.idle.admin.base.controller.BaseController;
+import com.fish.idle.service.controller.BaseController;
 
 /**
  * @author Sun.Han

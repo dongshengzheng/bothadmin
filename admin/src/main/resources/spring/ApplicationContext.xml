@@ -115,6 +115,6 @@
         <!--注入SqlSessionFactory-->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <!-- 给出需要扫描的Dao接口-->
-        <property name="basePackage" value="com.xianyu.manage.record.mapper"/>
+        <property name="basePackage" value="com.fish.idle.service"/>
     </bean>
 </beans>
