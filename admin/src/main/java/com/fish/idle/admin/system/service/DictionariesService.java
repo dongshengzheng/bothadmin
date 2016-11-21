@@ -1,11 +1,12 @@
-package com.fh.service.system.dictionaries.impl;
+package com.fish.idle.admin.system.service;
 
-import com.fh.dao.DaoSupport;
-import com.fh.entity.Page;
-import com.fh.entity.system.Dictionaries;
-import com.fh.service.system.dictionaries.DictionariesManager;
-import com.fh.util.PageData;
+
+import com.fish.idle.admin.base.dao.BaseDao;
+import com.fish.idle.admin.base.util.Const;
+import com.fish.idle.admin.base.util.PageData;
+import com.fish.idle.admin.system.entity.Dictionaries;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -17,94 +18,76 @@ import java.util.List;
  * @version
  */
 @Service("dictionariesService")
-public class DictionariesService implements DictionariesManager{
+public class DictionariesService {
 
-	@Resource(name = "daoSupport")
-	private DaoSupport dao;
+	@Resource(name = "BaseDao")
+	private BaseDao dao;
 	
 	/**新增
 	 * @param pd
 	 * @throws Exception
 	 */
-	public void save(PageData pd)throws Exception{
+	@Transactional(rollbackFor = {Throwable.class}, readOnly = false)
+	public void add(PageData pd) throws Exception {
 		dao.save("DictionariesMapper.save", pd);
 	}
-	
-	/**删除
-	 * @param pd
+
+	/**通过id获取数据
+	 * @param id
 	 * @throws Exception
 	 */
-	public void delete(PageData pd)throws Exception{
-		dao.delete("DictionariesMapper.delete", pd);
+	public PageData getById(Integer id) throws Exception {
+		return (PageData) dao.findForObject("DictionariesMapper.getById", id);
 	}
-	
+
+
 	/**修改
 	 * @param pd
 	 * @throws Exception
 	 */
+	@Transactional(rollbackFor = {Throwable.class}, readOnly = false)
 	public void edit(PageData pd)throws Exception{
 		dao.update("DictionariesMapper.edit", pd);
 	}
-	
-	/**列表
-	 * @param page
+
+	/**删除
+	 * @param id
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
-	public List<PageData> list(Page page)throws Exception{
-		return (List<PageData>)dao.findForList("DictionariesMapper.datalistPage", page);
+	@Transactional(rollbackFor = {Throwable.class}, readOnly = false)
+	public int delete(Integer id)throws Exception{
+		return (int)dao.delete("DictionariesMapper.delete", id);
 	}
-	
-	/**通过id获取数据
-	 * @param pd
-	 * @throws Exception
-	 */
-	public PageData findById(PageData pd)throws Exception{
-		return (PageData)dao.findForObject("DictionariesMapper.findById", pd);
-	}
-	
-	/**通过编码获取数据
-	 * @param pd
-	 * @throws Exception
-	 */
-	public PageData findByBianma(PageData pd)throws Exception{
-		return (PageData)dao.findForObject("DictionariesMapper.findByBianma", pd);
-	}
-	
-	/**
-	 * 通过ID获取其子级列表
-	 * @param parentId
-	 * @return
-	 * @throws Exception
-	 */
-	@SuppressWarnings("unchecked")
-	public List<Dictionaries> listSubDictByParentId(String parentId) throws Exception {
-		return (List<Dictionaries>) dao.findForList("DictionariesMapper.listSubDictByParentId", parentId);
-	}
-	
-	/**
-	 * 获取所有数据并填充每条数据的子级列表(递归处理)
-	 * @param MENU_ID
-	 * @return
-	 * @throws Exception
-	 */
-	public List<Dictionaries> listAllDict(String parentId) throws Exception {
-		List<Dictionaries> dictList = this.listSubDictByParentId(parentId);
-		for(Dictionaries dict : dictList){
-			dict.setTreeurl("dictionaries/list.do?DICTIONARIES_ID="+dict.getDICTIONARIES_ID());
-			dict.setSubDict(this.listAllDict(dict.getDICTIONARIES_ID()));
-			dict.setTarget("treeFrame");
+
+	@Transactional(rollbackFor = {Throwable.class}, readOnly = false)
+	public Integer batchDelete(PageData pd) throws Exception {
+		List<Integer> idList = com.fish.idle.admin.base.util.StringUtils.split(pd.getString("ids"), Const.COMMA);
+		if (null != idList && idList.size() > 0) {
+			pd.put("idList", idList);
+			return (Integer) dao.delete("DictionariesMapper.batchDelete", pd);
 		}
-		return dictList;
+		return 0;
 	}
-	
-	/**排查表检查是否被占用
+
+	/**列表
 	 * @param pd
 	 * @throws Exception
 	 */
-	public PageData findFromTbs(PageData pd)throws Exception{
-		return (PageData)dao.findForObject("DictionariesMapper.findFromTbs", pd);
+	public PageData list(PageData pd) throws Exception{
+		PageData result = new PageData();
+		int totalNum = (int) dao.findForObject("DictionariesMapper.count", pd);
+		pd.put("from", pd.getInteger("start"));
+		pd.put("size", pd.getInteger("length"));
+		List<PageData> pds = dao.findForList("DictionariesMapper.list", pd);
+		result.put(Const.DRAW, pd.getString(Const.DRAW));
+		result.put(Const.RECORDSTOTAL, totalNum);
+		result.put(Const.RECORDSFILTERED, totalNum);
+		result.put(Const.NDATA, pds);
+		return result;
 	}
+
+
 	
+
 }
 

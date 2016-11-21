@@ -5,7 +5,7 @@
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
-<xianyu:navigater path="role"></xianyu:navigater>
+<xianyu:navigater path="dictionaries"></xianyu:navigater>
 
 <div class="row">
     <div class="col-md-12">
@@ -15,13 +15,13 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="btn-group">
-                                <shiro:hasPermission name="role/add">
-                                    <button data-url="role/add" data-model="dialog" class="btn btn-outline btn-circle btn-sm green"> 新增
+                                <shiro:hasPermission name="dictionaries/add">
+                                    <button data-url="dictionaries/add" data-model="dialog" class="btn btn-outline btn-circle btn-sm green"> 新增
                                         <i class="fa fa-plus"></i>
                                     </button>
                                 </shiro:hasPermission>
-                                <shiro:hasPermission name="role/batchDelete">
-                                    <button data-url="role/batchDelete" data-msg="确定批量删除吗？" data-model="ajaxToDo"
+                                <shiro:hasPermission name="dictionaries/batchDelete">
+                                    <button data-url="dictionaries/batchDelete" data-msg="确定批量删除吗？" data-model="ajaxToDo"
                                             class="btn btn-outline btn-circle btn-sm green"
                                             data-checkbox-name="chx_default" data-callback="refreshTable">批量删除
                                         <i class="fa fa-times"></i>
@@ -41,7 +41,8 @@
                             <input type='checkbox' name="chx_default"/>
                         </th>
 
-                        <th>角色名称</th>
+                        <th>类型</th>
+                        <th>字典标签</th>
                         <th>描述</th>
                         <th>操作</th>
                     </tr>
@@ -61,10 +62,10 @@
             "autoWidth": false,
             "serverSide": true,
             "ajax": {
-                "url": "role/list",
+                "url": "dictionaries/list",
                 "type": "post",
                 "data": function (data) {
-                    data.roleName = $("#roleName").val();
+//                    data.roleName = $("#roleName").val();
                     data.keyword = $("#keyword").val();
                 }
             },
@@ -72,34 +73,36 @@
                 "url": "<%=basePath%>assets/global/plugins/datatables/cn.txt"
             },
             "createdRow": function (row, data, index) {
-                $('td:eq(0)', row).html("<input type='checkbox' name='chx_default' value='" + data.roleId + "'/>");
+                $('td:eq(0)', row).html("<input type='checkbox' name='chx_default' value='" + data.id + "'/>");
             },
             "lengthMenu": [[5, 40, 60], [5, 40, 60]],
             "columns": [
-                {"data": "roleId"},
-                {"data": "roleName"},
-                {"data": "description"},
+                {"data": "id"},
+                {"data": "type"},
+                {"data": "label"},
+                {"data": "description"}
             ],
             "columnDefs": [{
-                "targets": 3,
+                "targets": 4,
                 "render": function (data, type, row) {
                     return ""
-                            <shiro:hasPermission name="role/editBtn">
-                            + '<a href="role/edit?roleId=' + row.roleId + '" class="btn btn-outline btn-circle btn-sm green" data-model="dialog"><i class="fa fa-edit"></i>编辑</a>'
+                            <shiro:hasPermission name="dictionaries/editBtn">
+                            + '<a href="dictionaries/edit?id=' + row.id + '" class="btn btn-outline btn-circle btn-sm green" data-model="dialog"><i class="fa fa-edit"></i>编辑</a>'
                             </shiro:hasPermission>
-                            <shiro:hasPermission name="role/deleteBtn">
-                            + '<a href="role/delete?roleId=' + row.roleId + '" data-msg="确定删除吗？"  data-model="ajaxToDo" data-callback="refreshTable" class="btn btn-outline btn-circle btn-sm green"><i class="fa fa-times"></i>删除</a>'
+                            <shiro:hasPermission name="dictionaries/deleteBtn">
+                            + '<a href="dictionaries/delete?id=' + row.id + '" data-msg="确定删除吗？"  data-model="ajaxToDo" data-callback="refreshTable" class="btn btn-outline btn-circle btn-sm green"><i class="fa fa-times"></i>删除</a>'
                             </shiro:hasPermission>
-                            <shiro:hasPermission name="role/editRight">
-                            + '<a href="role/editRight?roleId=' + row.roleId + '" class="btn btn-outline btn-circle btn-sm green" data-model="dialog"><i class="fa fa-user"></i>分配权限</a>'
-                            </shiro:hasPermission>;
+                            <%--<shiro:hasPermission name="dictionaries/editRight">--%>
+                            <%--+ '<a href="dictionaries/editRight?id=' + row.id + '" class="btn btn-outline btn-circle btn-sm green" data-model="dialog"><i class="fa fa-user"></i>分配权限</a>'--%>
+                            <%--</shiro:hasPermission>--%>
+                            ;
                 }
             }],
             "drawCallback": function (settings) {
                 drawICheck('defaultCheck', 'chx_default');
             },
             "initComplete": function () {
-                initSearchForm(null, "搜索角色名");
+                initSearchForm(null, "搜索字典类型");
             }
         });
     });
