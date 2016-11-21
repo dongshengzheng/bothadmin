@@ -33,22 +33,20 @@ public class LoginServiceImpl implements LoginService {
     private ButtonMapper buttonMapper;
 
     public List<String> getRightsRolesId(Integer userId) {
-        return null;
-//        return dao.findForList("RoleMapper.findRolesIdByUserId", userId);
+        return roleMapper.findRolesIdByUserId(userId.toString());
     }
 
     public List<Menu> getRightsParentMenus(Integer userId) {
-        return null;
-//        return dao.findForList("MenuMapper.findParentMenusByUserId", userId);
+        return menuMapper.findParentMenusByUserId(userId);
     }
 
     public List<Menu> getRightsSubMenus(Map<?, ?> parames) {
+//        TODO
+//        return menuMapper.findMenusByUserIdAndParent(parames).findForList("MenuMapper.findMenusByUserIdAndParent", parames);
         return null;
-//        return dao.findForList("MenuMapper.findMenusByUserIdAndParent", parames);
     }
 
     public List<Button> getRightsButtons(Integer userId) {
-        return null;
-//        return dao.findForList("ButtonMapper.findButtonsByUserId", userId);
+        return buttonMapper.findButtonsByUserId(userId);
     }
 }

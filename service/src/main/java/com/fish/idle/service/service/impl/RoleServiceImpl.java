@@ -1,9 +1,13 @@
 package com.fish.idle.service.service.impl;
 
+import com.fish.idle.service.mapper.MenuMapper;
+import com.fish.idle.service.mapper.RoleMapper;
 import com.fish.idle.service.service.RoleService;
+import com.fish.idle.service.util.AppUtil;
 import com.fish.idle.service.util.Const;
 import com.fish.idle.service.util.PageData;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,51 +24,60 @@ import java.util.List;
 @Transactional(readOnly = true)
 @Service
 public class RoleServiceImpl implements RoleService {
+    @Autowired
+    private RoleMapper roleMapper;
 
-    public PageData list(PageData pd)  {
+    @Autowired
+    private MenuMapper menuMapper;
+
+    public PageData list(PageData pd) {
         PageData result = new PageData();
         String search = pd.getString("keyword");
         if (StringUtils.isNotBlank(search)) {
             pd.put("keyword", "%" + search + "%");
         }
-//        int totalNum = (int) dao.findForObject("RoleMapper.count", pd);
+        int totalNum = roleMapper.count(pd);
 
         pd.put("from", pd.getInteger("start"));
         pd.put("size", pd.getInteger("length"));
-//        List<PageData> pds = dao.findForList("RoleMapper.list", pd);
-//        AppUtil.nullToEmpty(pds, new String[]{"roleName", "description"});
+        List<PageData> pds = roleMapper.list(pd);
+        AppUtil.nullToEmpty(pds, new String[]{"roleName", "description"});
 
         result.put(Const.DRAW, pd.getString(Const.DRAW));
-//        result.put(Const.RECORDSTOTAL, totalNum);
-//        result.put(Const.RECORDSFILTERED, totalNum);
-//        result.put(Const.NDATA, pds);
+        result.put(Const.RECORDSTOTAL, totalNum);
+        result.put(Const.RECORDSFILTERED, totalNum);
+        result.put(Const.NDATA, pds);
         return result;
     }
 
     public void add(PageData pd) {
-//        dao.save("RoleMapper.add", pd);
+        roleMapper.add(pd);
     }
 
     public PageData getById(Integer roleId) {
-//        return (PageData) dao.findForObject("RoleMapper.getById", roleId);
-        return null;
+        return roleMapper.getById(roleId);
     }
 
     public void edit(PageData pd) {
-//        dao.update("RoleMapper.edit", pd);
+        roleMapper.edit(pd);
     }
 
     public Integer delete(Integer roleId) {
-//        return (Integer) dao.delete("RoleMapper.delete", roleId);
-        return 0;
+        PageData pageData = roleMapper.getById(roleId);
+        if (pageData.isEmpty()) {
+            return 0;
+        }
+        roleMapper.delete(roleId);
+        return 1;
     }
 
     public Integer batchDelete(PageData pd) {
         List<Integer> idList = com.fish.idle.service.util.StringUtils.split(pd.getString("ids"), Const.COMMA);
         if (null != idList && idList.size() > 0) {
             pd.put("idList", idList);
-//            return (Integer) dao.delete("RoleMapper.batchDelete", pd);
-            return 0;
+            int count = roleMapper.count(pd);
+            roleMapper.batchDelete(pd);
+            return count;
         }
         return 0;
     }
@@ -74,51 +87,51 @@ public class RoleServiceImpl implements RoleService {
 
         PageData pd = new PageData();
         pd.put("menuType", 1);
-//        List<PageData> menuList = dao.findForList("MenuMapper.listBy", pd);
+        List<PageData> menuList = menuMapper.list(pd);
         pd.put("menuType", 2);
-//        for (PageData menu : menuList) {
-//            PageData p1 = new PageData();
-//            p1.put("id", menu.getString("menuId"));
-//            p1.put("pId", menu.getString("parentId"));
-//            p1.put("name", menu.getString("menuName"));
-//            p1.put("open", "true");
-//            p1.put("resFlag", menu.getString("menuId") + "_" + menu.getString("menuType"));
-//            result.add(p1);
-//
-//            pd.put("parentId", menu.getInteger("menuId"));
-//            List<PageData> subMenuList = dao.findForList("MenuMapper.listBy", pd);
-//            for (PageData subMenu : subMenuList) {
-//                PageData p2 = new PageData();
-//                p2.put("id", subMenu.getString("menuId"));
-//                p2.put("pId", subMenu.getString("parentId"));
-//                p2.put("name", subMenu.getString("menuName"));
-//                p2.put("open", "true");
-//                p2.put("resFlag", subMenu.getString("menuId") + "_" + subMenu.getString("menuType"));
-//                result.add(p2);
-//
-//                List<PageData> buttonList = dao.findForList("ButtonMapper.listByMenuId", subMenu.getInteger("menuId"));
-//                for (PageData button : buttonList) {
-//                    PageData p3 = new PageData();
-//                    p3.put("id", button.getString("menuId") + "_" + button.getString("buttonId"));
-//                    p3.put("pId", button.getString("menuId"));
-//                    p3.put("name", button.getString("buttonName"));
-//                    p3.put("open", "true");
-//                    p3.put("resFlag", button.getString("buttonId") + "_" + 3);
-//                    result.add(p3);
-//                }
-//            }
-//        }
+        for (PageData menu : menuList) {
+            PageData p1 = new PageData();
+            p1.put("id", menu.getString("menuId"));
+            p1.put("pId", menu.getString("parentId"));
+            p1.put("name", menu.getString("menuName"));
+            p1.put("open", "true");
+            p1.put("resFlag", menu.getString("menuId") + "_" + menu.getString("menuType"));
+            result.add(p1);
 
-//        List<PageData> roleResList = dao.findForList("RoleMapper.listResByRoleId", roleId);
-//        for (PageData roleRes : roleResList) {
-//            String resFlag = roleRes.getInteger("resourceId") + "_" + roleRes.getInteger("resourceType");
-//            for (PageData p : result) {
-//                if (resFlag.equals(p.getString("resFlag"))) {
-//                    p.put("checked", true);
-//                    break;
-//                }
-//            }
-//        }
+            pd.put("parentId", menu.getInteger("menuId"));
+            List<PageData> subMenuList = menuMapper.listBy(pd);
+            for (PageData subMenu : subMenuList) {
+                PageData p2 = new PageData();
+                p2.put("id", subMenu.getString("menuId"));
+                p2.put("pId", subMenu.getString("parentId"));
+                p2.put("name", subMenu.getString("menuName"));
+                p2.put("open", "true");
+                p2.put("resFlag", subMenu.getString("menuId") + "_" + subMenu.getString("menuType"));
+                result.add(p2);
+
+                List<PageData> buttonList = menuMapper.getById(subMenu.getInteger("menuId"));
+                for (PageData button : buttonList) {
+                    PageData p3 = new PageData();
+                    p3.put("id", button.getString("menuId") + "_" + button.getString("buttonId"));
+                    p3.put("pId", button.getString("menuId"));
+                    p3.put("name", button.getString("buttonName"));
+                    p3.put("open", "true");
+                    p3.put("resFlag", button.getString("buttonId") + "_" + 3);
+                    result.add(p3);
+                }
+            }
+        }
+
+        List<PageData> roleResList = roleMapper.listResByRoleId(roleId);
+        for (PageData roleRes : roleResList) {
+            String resFlag = roleRes.getInteger("resourceId") + "_" + roleRes.getInteger("resourceType");
+            for (PageData p : result) {
+                if (resFlag.equals(p.getString("resFlag"))) {
+                    p.put("checked", true);
+                    break;
+                }
+            }
+        }
 
         return result;
     }
@@ -137,8 +150,8 @@ public class RoleServiceImpl implements RoleService {
                 p.put("resourceType", Integer.valueOf(resArr[1]));
                 list.add(p);
             }
-//            dao.delete("RoleMapper.deleteResByRoleId", roleId);
-//            dao.batchSave("RoleMapper.saveRes", list);
+            roleMapper.deleteResByRoleId(roleId);
+            roleMapper.saveRes(list);
         }
     }
 

@@ -32,35 +32,34 @@ public class ButtonServiceImpl implements ButtonService {
         if (StringUtils.isNotBlank(search)) {
             pd.put("keyword", "%" + search + "%");
         }
-//        int totalNum = (int) dao.findForObject("ButtonMapper.count", pd);
+        int totalNum = buttonMapper.count(pd);
 
         pd.put("from", pd.getInteger("start"));
         pd.put("size", pd.getInteger("length"));
-//        List<PageData> pds = dao.findForList("ButtonMapper.list", pd);
-//        AppUtil.nullToEmpty(pds, new String[]{"buttonId", "menuId", "buttonName", "buttonUrl"});
-//
-//        result.put(Const.DRAW, pd.getString(Const.DRAW));
-//        result.put(Const.RECORDSTOTAL, totalNum);
-//        result.put(Const.RECORDSFILTERED, totalNum);
-//        result.put(Const.NDATA, pds);
+        List<PageData> pds = buttonMapper.list(pd);
+        AppUtil.nullToEmpty(pds, new String[]{"buttonId", "menuId", "buttonName", "buttonUrl"});
+
+        result.put(Const.DRAW, pd.getString(Const.DRAW));
+        result.put(Const.RECORDSTOTAL, totalNum);
+        result.put(Const.RECORDSFILTERED, totalNum);
+        result.put(Const.NDATA, pds);
         return result;
     }
 
     public void add(PageData pd) {
-//        dao.save("ButtonMapper.add", pd);
+        buttonMapper.add(pd);
     }
 
     public PageData getById(Integer buttonId) {
-//        return (PageData) dao.findForObject("ButtonMapper.getById", buttonId);
-        return null;
+        return buttonMapper.getById(buttonId);
     }
 
     public void edit(PageData pd)  {
-//        dao.update("ButtonMapper.edit", pd);
+        buttonMapper.edit(pd);
     }
 
     public void delete(Integer buttonId) {
-//        dao.delete("ButtonMapper.delete", buttonId);
+        buttonMapper.delete(buttonId);
     }
 
     public void batchDelete(String ids) {
@@ -71,7 +70,9 @@ public class ButtonServiceImpl implements ButtonService {
                 for (String idStr : idArr) {
                     idList.add(Integer.valueOf(idStr));
                 }
-//                dao.delete("ButtonMapper.batchDelete", idList);
+                for(int i = 0; i < idList.size(); i++) {
+                    buttonMapper.delete(idList.get(i));
+                }
             }
         }
     }

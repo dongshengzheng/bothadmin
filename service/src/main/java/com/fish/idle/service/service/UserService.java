@@ -32,7 +32,7 @@ public interface UserService {
 
     void editRole(PageData pd);
 
-    boolean isNameExsit(PageData pd);
+    boolean isNameExist(PageData pd);
     
     PageData editPassword(PageData pd);
 }

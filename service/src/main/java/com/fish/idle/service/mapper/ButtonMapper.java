@@ -1,17 +1,26 @@
 package com.fish.idle.service.mapper;
 
 import com.fish.idle.service.entity.Button;
+import com.fish.idle.service.util.PageData;
+
+import java.util.List;
 
 public interface ButtonMapper {
-    int deleteByPrimaryKey(Integer buttonId);
+    List<Button> findButtonsByUserId(Integer userId);
 
-    int insert(Button record);
+    int count(PageData pageData);
 
-    int insertSelective(Button record);
+    List<PageData> list(PageData pageData);
 
-    Button selectByPrimaryKey(Integer buttonId);
+    void add(PageData pageData);
 
-    int updateByPrimaryKeySelective(Button record);
+    PageData getById(int buttonId);
 
-    int updateByPrimaryKey(Button record);
+    PageData listByMenuId(int menuId);
+
+    void edit(PageData pageData);
+
+    void delete(int buttonId);
+
+    void batchDelete(List<PageData> list);
 }

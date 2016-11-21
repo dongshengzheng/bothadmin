@@ -27,7 +27,7 @@
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <select id="dictList" resultType="com.fish.idle.service.entity.Dict">
-    select * from dict limit 20;
+    select * from dict limit 20
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from sys_dict

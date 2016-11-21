@@ -1,17 +1,32 @@
 package com.fish.idle.service.mapper;
 
 import com.fish.idle.service.entity.Menu;
+import com.fish.idle.service.util.PageData;
+
+import java.util.List;
 
 public interface MenuMapper {
-    int deleteByPrimaryKey(Integer menuId);
+    List<Menu> findParentMenusByUserId(int userId);
 
-    int insert(Menu record);
+    List<Menu> findMenusByUserIdAndParent(int userId);
 
-    int insertSelective(Menu record);
+    int count(PageData pageData);
 
-    Menu selectByPrimaryKey(Integer menuId);
+    List<PageData> list(PageData pageData);
 
-    int updateByPrimaryKeySelective(Menu record);
+    List<PageData> listBy(PageData pageData);
 
-    int updateByPrimaryKey(Menu record);
+    void add(PageData pageData);
+
+    List<PageData> getById(int menuId);
+
+    Menu getMenuById(int menuId);
+
+    Menu getByPath(String url);
+
+    void edit(PageData pageData);
+
+    void delete(int menuId);
+
+    void batchDelete(List<PageData> list);
 }

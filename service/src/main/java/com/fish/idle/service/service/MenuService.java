@@ -10,7 +10,7 @@ import java.util.List;
 public interface MenuService {
     PageData list(PageData pd);
 
-    List<Menu> listMenu(PageData pd);
+    List<PageData> listMenu(PageData pd);
 
     void add(PageData pd);
 

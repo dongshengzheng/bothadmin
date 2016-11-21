@@ -1,6 +1,8 @@
 package com.fish.idle.service.service.impl;
 
 import com.fish.idle.service.entity.User;
+import com.fish.idle.service.mapper.RoleMapper;
+import com.fish.idle.service.mapper.UserMapper;
 import com.fish.idle.service.util.AppUtil;
 import com.fish.idle.service.util.Const;
 import com.fish.idle.service.util.PageData;
@@ -9,6 +11,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,22 +28,26 @@ import java.util.List;
 @Transactional(readOnly = true)
 @Service
 public class UserServiceImpl implements UserService {
+    @Autowired
+    private UserMapper userMapper;
+
+    @Autowired
+    private RoleMapper roleMapper;
 
     public void setSKIN(PageData pd)  {
-//        dao.update("UserXMapper.setSKIN", pd);
+        userMapper.setSKIN(pd);
     }
 
     public void saveIP(PageData pd) {
-//        dao.update("UserXMapper.saveIP", pd);
+        userMapper.saveIP(pd);
     }
 
     public PageData getUserByNameAndPwd(PageData pd) {
-//        return (PageData) dao.findForObject("UserMapper.getUserInfo", pd);
-        return null;
+        return userMapper.getUserInfo(pd);
     }
 
     public void updateLastLogin(PageData pd) {
-//        dao.update("UserXMapper.updateLastLogin", pd);
+        userMapper.updateLastLogin2(pd);
     }
 
     public PageData list(PageData pd) {
@@ -49,35 +56,34 @@ public class UserServiceImpl implements UserService {
         if (StringUtils.isNotBlank(search)) {
             pd.put("keyword", "%" + search + "%");
         }
-//        int totalNum = (int) dao.findForObject("UserMapper.count", pd);
+        int totalNum = userMapper.count(pd);
 
         pd.put("from", pd.getInteger("start"));
         pd.put("size", pd.getInteger("length"));
-//        List<PageData> pds = dao.findForList("UserMapper.list", pd);
-//        AppUtil.nullToEmpty(pds, new String[]{"loginName", "lastLogin", "email", "phone", "name"});
+        List<PageData> pds = userMapper.list(pd);
+        AppUtil.nullToEmpty(pds, new String[]{"loginName", "lastLogin", "email", "phone", "name"});
 
         result.put(Const.DRAW, pd.getString(Const.DRAW));
-//        result.put(Const.RECORDSTOTAL, totalNum);
-//        result.put(Const.RECORDSFILTERED, totalNum);
-//        result.put(Const.NDATA, pds);
+        result.put(Const.RECORDSTOTAL, totalNum);
+        result.put(Const.RECORDSFILTERED, totalNum);
+        result.put(Const.NDATA, pds);
         return result;
     }
 
     public void add(PageData pd) {
-//        dao.save("UserMapper.add", pd);
+        userMapper.add(pd);
     }
 
     public PageData getById(Integer userId) {
-//        return (PageData) dao.findForObject("UserMapper.getById", userId);
-        return null;
+        return userMapper.getById(userId);
     }
 
     public void edit(PageData pd) {
-//        dao.update("UserMapper.edit", pd);
+        userMapper.edit(pd);
     }
 
     public void delete(Integer userId) {
-//        dao.delete("UserMapper.delete", userId);
+        userMapper.delete(userId);
     }
 
     public void batchDelete(String ids) {
@@ -88,31 +94,31 @@ public class UserServiceImpl implements UserService {
                 for (String idStr : idArr) {
                     idList.add(Integer.valueOf(idStr));
                 }
-//                dao.delete("UserMapper.batchDelete", idList);
+                for(int i = 0; i < idList.size(); i++) {
+                    userMapper.delete(idList.get(i));
+                }
             }
         }
     }
 
     public List<PageData> getRoles(Integer userId) {
-//        List<PageData> roles = dao.findForList("RoleMapper.listAllRoles", null);
-//        List<PageData> userRoles = dao.findForList("UserMapper.listUserRoleByUserId", userId);
-//        for (PageData role : roles) {
-//            Integer roleId = role.getInteger("roleId");
-//            for (PageData userRole : userRoles) {
-//                if (roleId.equals(userRole.getInteger("roleId"))) {
-//                    role.put("checked", true);
-//                    break;
-//                }
-//            }
-//        }
-//        return roles;
-        return null;
+        List<PageData> roles = roleMapper.listAllRoles();
+        List<PageData> userRoles = userMapper.listUserRoleByUserId(userId);
+        for (PageData role : roles) {
+            Integer roleId = role.getInteger("roleId");
+            for (PageData userRole : userRoles) {
+                if (roleId.equals(userRole.getInteger("roleId"))) {
+                    role.put("checked", true);
+                    break;
+                }
+            }
+        }
+        return roles;
     }
 
     public List<PageData> getAllRoles() {
-//        List<PageData> roles = dao.findForList("RoleMapper.listAllRoles", null);
-//        return roles;
-        return null;
+        List<PageData> roles = roleMapper.listAllRoles();
+        return roles;
     }
 
     public void editRole(PageData pd) {
@@ -127,17 +133,16 @@ public class UserServiceImpl implements UserService {
                 p.put("roleId", Integer.valueOf(roleId));
                 list.add(p);
             }
-//            dao.delete("UserMapper.deleteUserRoleByUserId", userId);
-//            dao.batchSave("UserMapper.saveUserRoles", list);
+            userMapper.delete(userId);
+            userMapper.saveUserRoles(list);
         }
     }
 
-    public boolean isNameExsit(PageData pd) {
+    public boolean isNameExist(PageData pd) {
         String loginName = pd.getString("loginName").toLowerCase();
         pd.put("loginName", loginName);
-//        List<PageData> pds = dao.findForList("UserMapper.getByName", loginName);
-//        return pds.size() > 0 ? true : false;
-        return false;
+        List<PageData> pds = userMapper.getByName(loginName);
+        return pds.size() > 0 ? true : false;
     }
 
     public PageData editPassword(PageData pd) {
@@ -146,18 +151,18 @@ public class UserServiceImpl implements UserService {
         Subject subject = SecurityUtils.getSubject();
         User sessionUser = (User) subject.getSession().getAttribute(Const.SESSION_USER);
 
-//        PageData user = dao.findForObject("UserMapper.getById", sessionUser.getUserId());
-//        String loginName = user.getString("loginName");
-//        String encodePwd = new SimpleHash("SHA-1", loginName, pd.getString("oldpassword")).toString();
-//        if (user.getString("password").equals(encodePwd)) {
-//            pd.put("newEncodePwd", new SimpleHash("SHA-1", loginName, pd.getString("password")).toString());
-//            pd.put("userId", sessionUser.getUserId());
-//            dao.update("UserMapper.updatePassword", pd);
-//            result.put("status", 1);
-//        } else {
-//            result.put("status", 0);
-//            result.put("msg", "原密码错误");
-//        }
+        PageData user = userMapper.getById(sessionUser.getUserId());
+        String loginName = user.getString("loginName");
+        String encodePwd = new SimpleHash("SHA-1", loginName, pd.getString("oldpassword")).toString();
+        if (user.getString("password").equals(encodePwd)) {
+            pd.put("newEncodePwd", new SimpleHash("SHA-1", loginName, pd.getString("password")).toString());
+            pd.put("userId", sessionUser.getUserId());
+            userMapper.updatePassword(pd);
+            result.put("status", 1);
+        } else {
+            result.put("status", 0);
+            result.put("msg", "原密码错误");
+        }
         return result;
     }
 

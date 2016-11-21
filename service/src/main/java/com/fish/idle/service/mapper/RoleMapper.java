@@ -1,17 +1,31 @@
 package com.fish.idle.service.mapper;
 
-import com.fish.idle.service.entity.Role;
+import com.fish.idle.service.util.PageData;
+
+import java.util.List;
 
 public interface RoleMapper {
-    int deleteByPrimaryKey(Integer roleId);
+    List<String> findRolesIdByUserId(String userId);
 
-    int insert(Role record);
+    int count(PageData pageData);
 
-    int insertSelective(Role record);
+    List<PageData> list(PageData pageData);
 
-    Role selectByPrimaryKey(Integer roleId);
+    void add(PageData pageData);
 
-    int updateByPrimaryKeySelective(Role record);
+    PageData getById(int roleId);
 
-    int updateByPrimaryKey(Role record);
+    void edit(PageData pageData);
+
+    void delete(int roleId);
+
+    void batchDelete(PageData pageData);
+
+    List<PageData> listResByRoleId(int roleId);
+
+    List<PageData> listAllRoles();
+
+    void deleteResByRoleId(int roleId);
+
+    void saveRes(List<PageData> list);
 }
