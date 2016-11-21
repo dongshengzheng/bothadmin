@@ -12,10 +12,10 @@
 
     <typeAliases>
         <typeAlias type="com.fish.idle.service.entity.User" alias="User"/>
-        <typeAlias type="com.fish.idle.service.system.entity.Role" alias="Role"/>
-        <typeAlias type="com.fish.idle.service.system.entity.Menu" alias="Menu"/>
-        <typeAlias type="com.fish.idle.service.system.entity.Button" alias="Button"/>
-        <typeAlias type="com.fish.idle.service.system.entity.Dictionaries" alias="Dictionaries"/>
+        <typeAlias type="com.fish.idle.service.entity.Role" alias="Role"/>
+        <typeAlias type="com.fish.idle.service.entity.Menu" alias="Menu"/>
+        <typeAlias type="com.fish.idle.service.entity.Button" alias="Button"/>
+        <typeAlias type="com.fish.idle.service.entity.Dictionaries" alias="Dictionaries"/>
 
         <typeAlias type="com.fish.idle.service.util.PageData" alias="PageData"/>
         <!-- 分页 -->
