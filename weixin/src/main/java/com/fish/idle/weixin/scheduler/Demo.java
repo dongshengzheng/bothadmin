@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class Demo {
 
-    @Scheduled(fixedDelay = 1000)
-    void run() {
-        System.out.println("a");
-    }
+//    @Scheduled(fixedDelay = 1000)
+//    void run() {
+//        System.out.println("a");
+//    }
 }
