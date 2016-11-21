@@ -79,10 +79,10 @@
     </bean>
 
     <!--Realm -->
-    <bean id="ShiroRealm" class="com.fish.idle.admin.base.interceptor.shiro.ShiroRealm"/>
+    <bean id="ShiroRealm" class="com.fish.idle.service.base.interceptor.shiro.ShiroRealm"/>
 
     <!-- rights -->
-    <bean id="gvrts" class="com.fish.idle.admin.base.filter.shiro.RightsFilter"/>
+    <bean id="gvrts" class="com.fish.idle.service.base.filter.shiro.RightsFilter"/>
 
     <!-- Shiro Filter -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
