@@ -15,6 +15,7 @@
         <typeAlias type="com.fish.idle.admin.system.entity.Role" alias="Role"/>
         <typeAlias type="com.fish.idle.admin.system.entity.Menu" alias="Menu"/>
         <typeAlias type="com.fish.idle.admin.system.entity.Button" alias="Button"/>
+        <typeAlias type="com.fish.idle.admin.system.entity.Dictionaries" alias="Dictionaries"/>
 
         <typeAlias type="com.fish.idle.admin.base.util.PageData" alias="PageData"/>
         <!-- 分页 -->
