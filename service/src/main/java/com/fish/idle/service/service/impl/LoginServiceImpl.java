@@ -43,7 +43,8 @@ public class LoginServiceImpl implements LoginService {
     public List<Menu> getRightsSubMenus(Map<?, ?> parames) {
 //        TODO
 //        return menuMapper.findMenusByUserIdAndParent(parames).findForList("MenuMapper.findMenusByUserIdAndParent", parames);
-        return null;
+        return menuMapper.findMenusByUserIdAndParent(parames);
+//        return null;
     }
 
     public List<Button> getRightsButtons(Integer userId) {

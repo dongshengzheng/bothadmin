@@ -12,7 +12,7 @@ public class Dict extends BaseEntity{
     private String value;			//数据值
     private String label;			//标签名
     private String type;		//类型
-    private String parent_id;		//上级ID
+    private String parent_id;		//上级ID(保留字段)
     private String description;				//描述
     private String sort;			//排序
     private String remarks;         //备注信息
