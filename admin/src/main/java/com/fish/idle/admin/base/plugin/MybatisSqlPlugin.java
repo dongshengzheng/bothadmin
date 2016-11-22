@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
 
+import com.fish.idle.admin.util.Tools;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
@@ -23,7 +24,6 @@ import org.apache.ibatis.type.TypeHandlerRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.fish.idle.service.util.Tools;
 
 /**
  * @author Sun.Han

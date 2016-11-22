@@ -1,13 +1,17 @@
 package com.fish.idle.service.service;
 
+import com.fish.idle.service.entity.User;
 import com.fish.idle.service.util.PageData;
+
 import java.util.List;
 
 /**
  * Created by dongs on 2016/11/21.
  */
 public interface UserService {
+
     void setSKIN(PageData pd);
+
     void saveIP(PageData pd);
 
     PageData getUserByNameAndPwd(PageData pd);
@@ -21,7 +25,7 @@ public interface UserService {
     PageData getById(Integer userId);
 
     void edit(PageData pd);
-    
+
     void delete(Integer userId);
 
     void batchDelete(String ids);
@@ -33,6 +37,6 @@ public interface UserService {
     void editRole(PageData pd);
 
     boolean isNameExist(PageData pd);
-    
+
     PageData editPassword(PageData pd);
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.fish.idle.service.mapper.UserMapper" >
+
   <sql id="userColumns">login_name,name,password,rights,status,role_id</sql>
 
 
@@ -33,6 +34,9 @@
     <result column="role_id" property="roleId"/>
     <result column="skin" property="skin"/>
   </resultMap>
+
+
+
   <!-- 判断用户名和密码 -->
   <select id="getUserInfo" parameterType="PageData" resultType="PageData" useCache="false">
     select
@@ -48,15 +52,15 @@
     phone
     from sys_user
     where 1=1
-    <if test="loginName != null and password != null">
+    <if test="pd.loginName != null and pd.password != null">
       and (
-      (login_name = #{loginName} and password = #{password})
+      (login_name = #{pd.loginName} and password = #{pd.password})
       or
-      (email = #{loginName} and password = #{password})
+      (email = #{pd.loginName} and password = #{pd.password})
       ) and status != -1
     </if>
-    <if test="userId != null">
-      and user_id = #{userId}
+    <if test="pd.userId != null">
+      and user_id = #{pd.userId}
     </if>
   </select>
 

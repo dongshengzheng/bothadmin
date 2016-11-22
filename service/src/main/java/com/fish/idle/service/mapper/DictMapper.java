@@ -1,21 +1,25 @@
 package com.fish.idle.service.mapper;
 
 import com.fish.idle.service.entity.Dict;
+import com.fish.idle.service.util.PageData;
 
 import java.util.List;
 
 public interface DictMapper {
-    int deleteByPrimaryKey(String id);
+
+    int deleteByPrimaryKey(Integer id);
 
     int insert(Dict record);
 
     int insertSelective(Dict record);
 
-    Dict selectByPrimaryKey(String id);
+    Dict selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(Dict record);
 
     int updateByPrimaryKey(Dict record);
 
-    List<Dict> dictList();
+    List<Dict> dictList(PageData pd);
+
+    int getDictCount(PageData pd);
 }

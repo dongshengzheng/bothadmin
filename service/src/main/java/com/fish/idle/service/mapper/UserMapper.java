@@ -7,7 +7,8 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface UserMapper {
-    PageData getUserInfo(PageData pageData);
+
+    PageData getUserInfo(@Param("pd") PageData pageData);
 
     void updateLastLogin(User user);
 

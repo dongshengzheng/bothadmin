@@ -1,8 +1,9 @@
 package com.fish.idle.service.mapper;
 
 import com.fish.idle.service.entity.Button;
+import com.fish.idle.service.util.PageData;
+
 import java.util.List;
-import javax.servlet.jsp.tagext.PageData;
 
 public interface ButtonMapper {
     List<Button> findButtonsByUserId(Integer userId);

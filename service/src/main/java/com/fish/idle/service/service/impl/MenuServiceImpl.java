@@ -24,6 +24,7 @@ import java.util.List;
 @Transactional(readOnly = true)
 @Service
 public class MenuServiceImpl implements MenuService {
+
     @Autowired
     private MenuMapper menuMapper;
 
@@ -72,7 +73,7 @@ public class MenuServiceImpl implements MenuService {
     }
 
     public PageData getById(Integer menuId) {
-        return (PageData)menuMapper.getById(menuId);
+        return (PageData) menuMapper.getById(menuId);
     }
 
     public List<Menu> getHierarchyByPath(String url) {
@@ -115,7 +116,7 @@ public class MenuServiceImpl implements MenuService {
                 for (String idStr : idArr) {
                     idList.add(Integer.valueOf(idStr));
                 }
-                for(int i = 0; i < idList.size(); i++) {
+                for (int i = 0; i < idList.size(); i++) {
                     menuMapper.delete(idList.get(i));
                 }
                 return idList.size();
