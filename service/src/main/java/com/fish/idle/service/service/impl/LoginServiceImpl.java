@@ -6,6 +6,7 @@ import com.fish.idle.service.mapper.ButtonMapper;
 import com.fish.idle.service.mapper.MenuMapper;
 import com.fish.idle.service.mapper.RoleMapper;
 import com.fish.idle.service.service.LoginService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,18 +34,17 @@ public class LoginServiceImpl implements LoginService {
     private ButtonMapper buttonMapper;
 
     public List<String> getRightsRolesId(Integer userId) {
+
         return roleMapper.findRolesIdByUserId(userId.toString());
     }
 
     public List<Menu> getRightsParentMenus(Integer userId) {
+
         return menuMapper.findParentMenusByUserId(userId);
     }
 
     public List<Menu> getRightsSubMenus(Map<?, ?> parames) {
-//        TODO
-//        return menuMapper.findMenusByUserIdAndParent(parames).findForList("MenuMapper.findMenusByUserIdAndParent", parames);
         return menuMapper.findMenusByUserIdAndParent(parames);
-//        return null;
     }
 
     public List<Button> getRightsButtons(Integer userId) {

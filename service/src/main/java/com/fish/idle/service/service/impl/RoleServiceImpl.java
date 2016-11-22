@@ -1,5 +1,6 @@
 package com.fish.idle.service.service.impl;
 
+import com.fish.idle.service.mapper.ButtonMapper;
 import com.fish.idle.service.mapper.MenuMapper;
 import com.fish.idle.service.mapper.RoleMapper;
 import com.fish.idle.service.service.RoleService;
@@ -30,6 +31,9 @@ public class RoleServiceImpl implements RoleService {
 
     @Autowired
     private MenuMapper menuMapper;
+
+    @Autowired
+    private ButtonMapper buttonMapper;
 
     public PageData list(PageData pd) {
         PageData result = new PageData();
@@ -83,12 +87,12 @@ public class RoleServiceImpl implements RoleService {
         return 0;
     }
 
-    public List<PageData> listTreeData(Integer roleId) {
+    public List<PageData> listTreeData(Integer roleId) throws Exception {
         List<PageData> result = new ArrayList<PageData>();
 
         PageData pd = new PageData();
         pd.put("menuType", 1);
-        List<PageData> menuList = menuMapper.list(pd);
+        List<PageData> menuList = menuMapper.listBy(pd);
         pd.put("menuType", 2);
         for (PageData menu : menuList) {
             PageData p1 = new PageData();
@@ -110,7 +114,7 @@ public class RoleServiceImpl implements RoleService {
                 p2.put("resFlag", subMenu.getString("menuId") + "_" + subMenu.getString("menuType"));
                 result.add(p2);
 
-                List<PageData> buttonList = menuMapper.getById(subMenu.getInteger("menuId"));
+                List<PageData> buttonList = buttonMapper.listByMenuId(subMenu.getInteger("menuId"));
                 for (PageData button : buttonList) {
                     PageData p3 = new PageData();
                     p3.put("id", button.getString("menuId") + "_" + button.getString("buttonId"));

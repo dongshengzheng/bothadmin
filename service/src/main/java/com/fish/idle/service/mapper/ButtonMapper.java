@@ -16,7 +16,7 @@ public interface ButtonMapper {
 
     PageData getById(int buttonId);
 
-    PageData listByMenuId(int menuId);
+    List<PageData> listByMenuId(int menuId);
 
     void edit(PageData pageData);
 

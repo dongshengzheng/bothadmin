@@ -48,6 +48,7 @@ public class MenuServiceImpl implements MenuService {
         return result;
     }
 
+
 //	@SuppressWarnings("unchecked")
 //	public List<PageData> list(PageData pd) throws Exception {
 //		pd.put("menuType", 1);
@@ -73,7 +74,7 @@ public class MenuServiceImpl implements MenuService {
     }
 
     public PageData getById(Integer menuId) {
-        return (PageData) menuMapper.getById(menuId);
+        return  menuMapper.getById(menuId);
     }
 
     public List<Menu> getHierarchyByPath(String url) {
@@ -81,7 +82,7 @@ public class MenuServiceImpl implements MenuService {
         Menu menu = menuMapper.getByPath(url);
         if (menu != null) {
             if (menu.getParentId() != 0) {
-                Menu parent = (Menu) menuMapper.getById(menu.getParentId());
+                Menu parent = menuMapper.getMenuById(menu.getParentId());
                 lists.add(parent);
             }
             lists.add(menu);

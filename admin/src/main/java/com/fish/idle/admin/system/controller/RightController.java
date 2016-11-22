@@ -1,7 +1,6 @@
 package com.fish.idle.admin.system.controller;
 
-import javax.annotation.Resource;
-
+import com.fish.idle.admin.controller.BaseController;
 import com.fish.idle.service.service.ButtonService;
 import com.fish.idle.service.service.MenuService;
 import com.fish.idle.service.util.PageData;
@@ -10,13 +9,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.fish.idle.admin.controller.BaseController;
 
 /**
  * @author Sun.Han
@@ -28,34 +26,27 @@ import com.fish.idle.admin.controller.BaseController;
 @Controller
 @RequestMapping(value = "/right")
 public class RightController extends BaseController {
-
     private static Logger logger = LoggerFactory.getLogger(RightController.class);
-
     @Autowired
     private MenuService menuService;
-
     @Autowired
     private ButtonService buttonService;
 
     @RequestMapping
-    public ModelAndView menu() {
-        ModelAndView mv = super.getModelAndView();
-        mv.setViewName("sys/right/right_list");
-        return mv;
+    public String menu() {
+        return "sys/right/right_list";
     }
 
     @RequestMapping(value = "/subMenu")
-    public ModelAndView subMenu(@RequestParam Integer parentId) {
+    public String subMenu(ModelMap map, @RequestParam Integer parentId) {
         PageData pd = null;
         try {
             pd = menuService.getById(parentId);
         } catch (Exception e) {
             logger.error("subMenu error", e);
         }
-        ModelAndView mv = super.getModelAndView();
-        mv.addObject("pd", pd);
-        mv.setViewName("sys/right/subMenu_list");
-        return mv;
+        map.put("pd", pd);
+        return "sys/right/subMenu_list";
     }
 
     @RequestMapping(value = "/button")

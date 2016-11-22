@@ -10,7 +10,7 @@
     <context:property-placeholder location="classpath:wx.properties"/>
 
     <!-- 扫描controller（controller层注入） -->
-    <context:component-scan base-package="com.fish.idle"/>
+    <context:component-scan base-package="com.fish.idle.weixin"/>
 
     <task:executor id="executor" pool-size="5" />
     <task:scheduler id="scheduler" pool-size="10" />

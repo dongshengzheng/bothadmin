@@ -21,7 +21,7 @@ public interface RoleService {
 
     Integer batchDelete(PageData pd);
 
-    List<PageData> listTreeData(Integer roleId);
+    List<PageData> listTreeData(Integer roleId) throws Exception ;
 
     void editRight(PageData pd);
 }

@@ -10,7 +10,7 @@ import java.util.Map;
 public interface MenuMapper {
     List<Menu> findParentMenusByUserId(int userId);
 
-    List<Menu> findMenusByUserIdAndParent(@Param("params") Map<?,?> params);
+    List<Menu> findMenusByUserIdAndParent(Map<?,?> params);
 
     int count(PageData pageData);
 
@@ -20,7 +20,7 @@ public interface MenuMapper {
 
     void add(PageData pageData);
 
-    List<PageData> getById(int menuId);
+    PageData getById(int menuId);
 
     Menu getMenuById(int menuId);
 
@@ -31,4 +31,6 @@ public interface MenuMapper {
     void delete(int menuId);
 
     void batchDelete(List<PageData> list);
+
+
 }

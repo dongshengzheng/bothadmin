@@ -27,10 +27,6 @@
             <property name="dialect" value="mysql"/>
             <property name="pageSqlId" value=".*listPage.*"/>
         </plugin>
-
-        <plugin interceptor="com.fish.idle.admin.base.plugin.MybatisSqlPlugin">
-            <property name="showSql" value="true"/>
-        </plugin>
     </plugins>
 
     <!-- 映射map -->
