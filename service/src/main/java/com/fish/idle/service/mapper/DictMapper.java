@@ -19,7 +19,7 @@ public interface DictMapper {
 
     int updateByPrimaryKey(Dict record);
 
-    List<Dict> dictList(PageData pd);
+    List<Dict> getDicList(PageData pd);
 
     int getDictCount(PageData pd);
 }
