@@ -108,7 +108,7 @@
 		id = #{id}
 	</select>
 
-	<select id="list" parameterType="PageData" resultType="Dict">
+	<select id="getDicList" parameterType="PageData" resultType="Dict">
 		select * from sys_dict sd
 		<if test="keyword != null and keyword != ''">
 			WHERE sd.`type` LIKE #{keyword}
@@ -116,7 +116,7 @@
 		limit #{from},#{size}
 	</select>
 
-	<select id="count" parameterType="PageData" resultType="int">
+	<select id="getDictCount" parameterType="PageData" resultType="int">
 		select count(1) from sys_dict sd
 		<if test="keyword != null and keyword != ''">
 			WHERE sd.`type` LIKE #{keyword}

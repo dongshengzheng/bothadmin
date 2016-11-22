@@ -76,7 +76,7 @@ public class DictServiceImpl implements DictService {
         int totalNum = dictMapper.getDictCount(pd);
         pd.put("from", pd.getInteger("start"));
         pd.put("size", pd.getInteger("length"));
-        List<Dict> pds = dictMapper.dictList(pd);
+        List<Dict> pds = dictMapper.getDicList(pd);
         result.put(Const.DRAW, pd.getString(Const.DRAW));
         result.put(Const.RECORDSTOTAL, totalNum);
         result.put(Const.RECORDSFILTERED, totalNum);
