@@ -10,7 +10,7 @@ import java.util.Properties;
 
 import javax.xml.bind.PropertyException;
 
-import com.fish.idle.admin.base.util.ReflectHelper;
+import com.fish.idle.service.util.ReflectHelper;
 import org.apache.ibatis.executor.ErrorContext;
 import org.apache.ibatis.executor.ExecutorException;
 import org.apache.ibatis.executor.statement.BaseStatementHandler;
@@ -32,8 +32,8 @@ import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.type.TypeHandler;
 import org.apache.ibatis.type.TypeHandlerRegistry;
 
-import com.fish.idle.admin.base.entity.Page;
-import com.fish.idle.admin.base.util.Tools;
+import com.fish.idle.service.entity.Page;
+import com.fish.idle.service.util.Tools;
 
 /**
  * @author Sun.Han

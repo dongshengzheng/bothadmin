@@ -11,14 +11,15 @@
     </settings>
 
     <typeAliases>
-        <typeAlias type="com.fish.idle.admin.system.entity.User" alias="User"/>
-        <typeAlias type="com.fish.idle.admin.system.entity.Role" alias="Role"/>
-        <typeAlias type="com.fish.idle.admin.system.entity.Menu" alias="Menu"/>
-        <typeAlias type="com.fish.idle.admin.system.entity.Button" alias="Button"/>
+        <typeAlias type="com.fish.idle.service.entity.User" alias="User"/>
+        <typeAlias type="com.fish.idle.service.entity.Role" alias="Role"/>
+        <typeAlias type="com.fish.idle.service.entity.Menu" alias="Menu"/>
+        <typeAlias type="com.fish.idle.service.entity.Button" alias="Button"/>
+        <typeAlias type="com.fish.idle.service.entity.Dictionaries" alias="Dictionaries"/>
 
-        <typeAlias type="com.fish.idle.admin.base.util.PageData" alias="PageData"/>
+        <typeAlias type="com.fish.idle.service.util.PageData" alias="PageData"/>
         <!-- 分页 -->
-        <typeAlias type="com.fish.idle.admin.base.entity.Page" alias="Page"/>
+        <typeAlias type="com.fish.idle.service.entity.Page" alias="Page"/>
     </typeAliases>
 
     <plugins>

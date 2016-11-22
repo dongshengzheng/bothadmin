@@ -11,7 +11,7 @@ import org.apache.shiro.util.StringUtils;
 import org.apache.shiro.web.filter.AccessControlFilter;
 import org.apache.shiro.web.util.WebUtils;
 
-import com.fish.idle.admin.base.util.Const;
+import com.fish.idle.service.util.Const;
 
 
 /**

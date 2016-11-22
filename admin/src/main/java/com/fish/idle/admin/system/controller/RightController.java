@@ -2,9 +2,9 @@ package com.fish.idle.admin.system.controller;
 
 import javax.annotation.Resource;
 
-import com.fish.idle.admin.base.util.PageData;
-import com.fish.idle.admin.system.service.MenuService;
-import com.fish.idle.admin.system.service.ButtonService;
+import com.fish.idle.service.service.ButtonService;
+import com.fish.idle.service.service.MenuService;
+import com.fish.idle.service.util.PageData;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fish.idle.admin.base.controller.BaseController;
+import com.fish.idle.admin.controller.BaseController;
 
 /**
  * @author Sun.Han
