@@ -7,9 +7,9 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 
+import com.fish.idle.admin.util.BeanFactoryUtils;
 import com.fish.idle.service.entity.Menu;
 import com.fish.idle.service.service.MenuService;
-import com.fish.idle.service.util.BeanFactoryUtils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

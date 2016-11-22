@@ -1,23 +1,13 @@
 package com.fish.idle.admin.system.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
+import com.fish.idle.admin.controller.BaseController;
 import com.fish.idle.service.entity.Button;
 import com.fish.idle.service.entity.Menu;
 import com.fish.idle.service.entity.Page;
 import com.fish.idle.service.entity.User;
 import com.fish.idle.service.service.LoginService;
 import com.fish.idle.service.service.UserService;
-import com.fish.idle.service.util.AppUtil;
-import com.fish.idle.service.util.DateUtil;
-import com.fish.idle.service.util.PageData;
-
+import com.fish.idle.service.util.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -26,14 +16,18 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fish.idle.admin.controller.BaseController;
-import com.fish.idle.service.util.Const;
-import com.fish.idle.service.util.Tools;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Sun.Han
@@ -47,10 +41,11 @@ public class LoginController extends BaseController {
 
     private static Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-    @Resource(name = "userService")
+
+    @Autowired
     private UserService userService;
 
-    @Resource(name = "loginService")
+    @Autowired
     private LoginService loginService;
 
     /**
@@ -283,7 +278,7 @@ public class LoginController extends BaseController {
     /**
      * 用户注销
      *
-     * @param session
+     * @param
      * @return
      */
     @RequestMapping(value = "/logout")

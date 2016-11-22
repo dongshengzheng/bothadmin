@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fish.idle.service.mapper.DictMapper">
 
-	<resultMap type="Dictionaries" id="dictResultMap">
+	<resultMap type="Dict" id="dictResultMap">
 		<id column="id" property="DICTIONARIES_ID"/>
 		<result column="description" property="description"/>
 		<result column="PARENT_ID" property="PARENT_ID"/>
@@ -108,7 +108,7 @@
 		id = #{id}
 	</select>
 
-	<select id="list" parameterType="PageData" resultType="PageData">
+	<select id="list" parameterType="PageData" resultType="Dict">
 		select * from sys_dict sd
 		<if test="keyword != null and keyword != ''">
 			WHERE sd.`type` LIKE #{keyword}

@@ -2,13 +2,15 @@ package com.fish.idle.service.mapper;
 
 import com.fish.idle.service.entity.Menu;
 import com.fish.idle.service.util.PageData;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface MenuMapper {
     List<Menu> findParentMenusByUserId(int userId);
 
-    List<Menu> findMenusByUserIdAndParent(int userId);
+    List<Menu> findMenusByUserIdAndParent(@Param("params") Map<?,?> params);
 
     int count(PageData pageData);
 

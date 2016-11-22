@@ -13,9 +13,8 @@
  * Apr 17, 2015    Sun.Han         Create the class
  */
 
-package com.fish.idle.admin.util;
+package com.fish.idle.service.util;
 
-import com.fish.idle.service.util.PageData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

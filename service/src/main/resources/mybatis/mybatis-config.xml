@@ -15,7 +15,7 @@
         <typeAlias type="com.fish.idle.service.entity.Role" alias="Role"/>
         <typeAlias type="com.fish.idle.service.entity.Menu" alias="Menu"/>
         <typeAlias type="com.fish.idle.service.entity.Button" alias="Button"/>
-        <typeAlias type="com.fish.idle.service.entity.Dictionaries" alias="Dictionaries"/>
+        <typeAlias type="com.fish.idle.service.entity.Dict" alias="Dict"/>
 
         <typeAlias type="com.fish.idle.service.util.PageData" alias="PageData"/>
         <!-- 分页 -->
@@ -32,5 +32,10 @@
             <property name="showSql" value="true"/>
         </plugin>
     </plugins>
+
+    <!-- 映射map -->
+    <mappers>
+        <package name="com.fish.idle.service.mapper"/>
+    </mappers>
 
 </configuration>

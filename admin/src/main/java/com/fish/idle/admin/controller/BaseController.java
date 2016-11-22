@@ -1,8 +1,8 @@
 package com.fish.idle.admin.controller;
 
 import com.fish.idle.service.entity.User;
-import com.fish.idle.service.util.PageData;
 
+import com.fish.idle.service.util.PageData;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
