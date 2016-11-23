@@ -80,8 +80,8 @@
     </bean>
 
     <!-- 默认首页 -->
-    <!--<mvc:view-controller path="/" view-name="index"/>-->
-    <mvc:view-controller path="/" view-name="redirect:/modules/mobile/pawn/login"/>
+    <mvc:view-controller path="/" view-name="index"/>
+    <!--<mvc:view-controller path="/" view-name="redirect:/modules/mobile/pawn/login"/>-->
 
 
     <!-- 配置freeMarker模板加载地址 -->
