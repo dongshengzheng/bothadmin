@@ -38,13 +38,18 @@ public class PawnController {
      * @param session
      * @return
      */
-    @RequestMapping(value = "user", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     @OAuthRequired
     public String user(HttpSession session) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-//        return "index";
-        return "modules/mobile/pawn/Login";
+        return "index";
+//        return "modules/mobile/pawn/Login";
     }
+
+//    @RequestMapping
+//    public String getPawn() {
+//        return "modules/mobile/pawn/login";
+//    }
 
 //    @RequestMapping(value = "/f")
 //    @OAuthRequired
