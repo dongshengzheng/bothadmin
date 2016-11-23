@@ -27,7 +27,7 @@ import java.util.Date;
 public class DictController extends BaseController {
 
 
-    private static Logger logger = LoggerFactory.getLogger(RoleController.class);
+    private static Logger logger = LoggerFactory.getLogger(DictController.class);
 
     @Autowired
     private DictService dictService;
@@ -48,8 +48,7 @@ public class DictController extends BaseController {
             PageData pd = super.getPageData();
             result = dictService.list(pd);
         } catch (Exception e) {
-            e.printStackTrace();
-            //// TODO: 22/11/2016 logger error
+            logger.error("list dictionaries error", e);
             result = new PageData();
         }
         return result;
@@ -77,7 +76,6 @@ public class DictController extends BaseController {
             dictService.add(pd);
             result.put("status", 1);
         } catch (Exception e) {
-            e.printStackTrace();
             logger.error("add dictionaries error", e);
             result.put("status", 0);
             result.put("msg", "新增失败");
@@ -92,7 +90,6 @@ public class DictController extends BaseController {
             pd.put("id",id);
             pd = dictService.getById(pd);
         } catch (Exception e) {
-            e.printStackTrace();
             logger.error("get dictionaries error", e);
         }
         ModelAndView mv = super.getModelAndView();
@@ -112,7 +109,6 @@ public class DictController extends BaseController {
             dictService.updateDicById(pd);
             result.put("status", 1);
         } catch (Exception e) {
-            e.printStackTrace();
             logger.error("edit dictionaries error", e);
             result.put("status", 0);
             result.put("msg", "更新失败");
