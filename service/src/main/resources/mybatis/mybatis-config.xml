@@ -13,15 +13,9 @@
     <typeAliases>
         <typeAlias type="com.fish.idle.service.util.PageData" alias="PageData"/>
     </typeAliases>
-    <plugins>
-        <plugin interceptor="com.fish.idle.admin.base.plugin.PagePlugin">
-            <property name="dialect" value="mysql"/>
-            <property name="pageSqlId" value=".*listPage.*"/>
-        </plugin>
-    </plugins>
     <!-- 映射map -->
     <mappers>
-        <package name="com.fish.idle.service.mapper"/>
+        <package name="com.fish.idle.service.**.mapper"/>
     </mappers>
 
 </configuration>

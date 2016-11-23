@@ -13,17 +13,38 @@ public class CustomGenerator {
         cg.setDbPassword("root");
         cg.setDbUrl("jdbc:mysql://127.0.0.1:3306/jsdd?characterEncoding=utf8");
         // 配置包名
-        cg.setEntityPackage("com.fish.idle.service.entity");
-        cg.setMapperPackage("com.fish.idle.service.mapper");
-        cg.setServicePackage("com.fish.idle.service.service");
-        cg.setXmlPackage("com.fish.idle.service.mapper.xml");
-        cg.setServiceImplPackage("com.fish.idle.service.service.impl");
+        cg.setEntityPackage("com.fish.idle.service.modules.jsdd.entity");
+        cg.setMapperPackage("com.fish.idle.service.modules.jsdd.mapper");
+        cg.setServicePackage("com.fish.idle.service.modules.jsdd.service");
+        cg.setXmlPackage("com.fish.idle.service.modules.jsdd.mapper.xml");
+        cg.setServiceImplPackage("com.fish.idle.service.modules.jsdd.service.impl");
+        cg.setControllerPackage("com.fish.idle.service.modules.jsdd.controller");
+
+        String[] tables= {"dd_collect",
+                "dd_collect",
+                "dd_comments",
+                "dd_consumer",
+                "dd_follow_history",
+                "dd_interpretation",
+                "dd_message",
+                "dd_report",
+                "dd_score_calc",
+                "dd_score_history",
+                "dd_transfer_history",
+                "dd_value_report",
+                "dd_working_progress",
+                "dd_works",
+                "dd_works_level"
+        };
+        cg.setTableNames(tables);
+        cg.setDbPrefix(true);
+
 
         // 配置表主键策略
         cg.setIdType(IdType.AUTO);
 
         // 配置保存路径
-        cg.setSaveDir("/Users/sunhan/Workspace/project/jsdd/service/src");
+        cg.setSaveDir("/Users/sunhan/Workspace/project/jsdd/service/src/main/java");
         // 其他参数请根据上面的参数说明自行配置，当所有配置完善后，运行AutoGenerator.run()方法生成Code
         // 生成代码
         AutoGenerator.run(cg);

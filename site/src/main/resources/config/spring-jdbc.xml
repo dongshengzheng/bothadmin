@@ -58,7 +58,7 @@
 		<property name="dataSource" ref="dataSource" />
 		<!--类型别名包，默认引入com.fish.idle.entity下的所有类 -->
 		<property name="typeAliasesPackage" >
-			<value>com.fish.idle.service.entity</value>
+			<value>com.fish.idle.service.modules.sys.entity</value>
 		</property>
 		<!--指定sql映射xml文件的路径 -->
 		<property name="mapperLocations"
@@ -70,7 +70,7 @@
 		<!-- 指定sql会话工厂，在上面配置过的 -->
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
 		<!-- 指定基础包，即自动扫描com.fish.idle..mapper这个包以及它的子包下的所有映射接口类 -->
-		<property name="basePackage" value="com.fish.idle.service.mapper"></property>
+		<property name="basePackage" value="com.fish.idle.service.modules.sys.mapper"></property>
 	</bean>
 
 	<!-- 创建一个sqlSession对象 -->
@@ -88,7 +88,7 @@
 
 	<!--自动扫描组件 -->
 	<context:component-scan base-package="com.fish.idle.service.">
-	    <context:exclude-filter type="aspectj" expression="com.fish.idle.service.mapper.*"/>
+	    <context:exclude-filter type="aspectj" expression="com.fish.idle.service.modules.sys.mapper.*"/>
 	</context:component-scan>
 	<aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
 </beans>

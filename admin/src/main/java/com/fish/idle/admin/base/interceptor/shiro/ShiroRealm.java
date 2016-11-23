@@ -1,7 +1,7 @@
 package com.fish.idle.admin.base.interceptor.shiro;
 
 import com.fish.idle.admin.util.Const;
-import com.fish.idle.service.entity.User;
+import com.fish.idle.service.modules.sys.entity.User;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;

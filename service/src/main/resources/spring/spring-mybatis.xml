@@ -9,6 +9,8 @@
 						http://www.springframework.org/schema/context/spring-context.xsd
 						http://www.springframework.org/schema/tx
 						http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <context:property-placeholder location="classpath:properties/override.properties" />
+
 
     <!-- 阿里 druid数据库连接池 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
@@ -51,9 +53,9 @@
         <!-- 配置Mybatis配置文件 -->
         <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
         <!-- 配置别名包路径 -->
-        <property name="typeAliasesPackage" value="com.fish.idle.service.entity"/>
+        <property name="typeAliasesPackage" value="com.fish.idle.service.**.entity"/>
         <!-- 配置Mapper扫描路径（IDEA系列编辑器需要特别注意，因为IDEA的设置问题，src中的xml文件是不会被编译的，如果放在src中可能会报错，解决办法详见 常用问题-Invalid bound statement (not found) 错误如何解决?） -->
-        <property name="mapperLocations" value="classpath:mybatis/*/*.xml"/>
+        <property name="mapperLocations" value="classpath:com/fish/idle/service/modules/**/*.xml"/>
         <!-- 插件配置项  -->
         <property name="plugins">
             <array>
@@ -72,7 +74,7 @@
         <!--注入SqlSessionFactory-->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <!-- 给出需要扫描的Dao接口-->
-        <property name="basePackage" value="com.fish.idle.service.mapper"/>
+        <property name="basePackage" value="com.fish.idle.service.**.mapper"/>
     </bean>
 
 

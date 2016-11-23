@@ -1,6 +1,6 @@
 package com.fish.idle.admin.controller;
 
-import com.fish.idle.service.entity.User;
+import com.fish.idle.service.modules.sys.entity.User;
 
 import com.fish.idle.service.util.PageData;
 import org.apache.shiro.SecurityUtils;
