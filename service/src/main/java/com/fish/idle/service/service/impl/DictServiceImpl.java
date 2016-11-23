@@ -21,42 +21,50 @@ public class DictServiceImpl implements DictService {
     @Autowired
     private DictMapper dictMapper;
 
-//    /**新增
-//     * @param pd
-//     * @throws Exception
-//     */
-//    @Transactional(rollbackFor = {Throwable.class}, readOnly = false)
-//    public void add(PageData pd) throws Exception {
-//        dictMapper.save(pd);
-//    }
-//
-//    /**通过id获取数据
-//     * @param id
-//     * @throws Exception
-//     */
-//    public PageData getById(Integer id) throws Exception {
-//        return (PageData) dictMapper.selectByPrimaryKey(id);
-//    }
-//
-//
-//    /**修改
-//     * @param pd
-//     * @throws Exception
-//     */
-//    @Transactional(rollbackFor = {Throwable.class}, readOnly = false)
-//    public void edit(PageData pd)throws Exception{
-//        dictMapper.update(pd);
-//    }
-//
-//    /**删除
-//     * @param id
-//     * @throws Exception
-//     */
-//    @Transactional(rollbackFor = {Throwable.class}, readOnly = false)
-//    public int delete(Integer id)throws Exception{
-//        return (int)dictMapper.delete(id);
-//    }
-//
+    /**
+     * 新增
+     *
+     * @param pd
+     * @throws Exception
+     */
+    @Transactional(rollbackFor = {Throwable.class}, readOnly = false)
+    public int add(PageData pd) throws Exception {
+        return dictMapper.save(pd);
+    }
+
+    /**
+     * 通过id获取数据
+     *
+     * @param pd
+     * @throws Exception
+     */
+    public PageData getById(PageData pd) throws Exception {
+        return dictMapper.getById(pd);
+    }
+
+
+    /**
+     * 修改
+     *
+     * @param pd
+     * @throws Exception
+     */
+    @Transactional(rollbackFor = {Throwable.class}, readOnly = false)
+    public void updateDicById(PageData pd) throws Exception {
+        dictMapper.updateDicById(pd);
+    }
+
+    /**
+     * 删除
+     *
+     * @param id
+     * @throws Exception
+     */
+    @Transactional(rollbackFor = {Throwable.class}, readOnly = false)
+    public int deleteById(Integer id) throws Exception {
+        return dictMapper.deleteById(id);
+    }
+
 //    @Transactional(rollbackFor = {Throwable.class}, readOnly = false)
 //    public Integer batchDelete(PageData pd) throws Exception {
 //        List<Integer> idList = com.fish.idle.service.util.StringUtils.split(pd.getString("ids"), Const.COMMA);
@@ -67,11 +75,13 @@ public class DictServiceImpl implements DictService {
 //        return 0;
 //    }
 
-    /**列表
+    /**
+     * 列表
+     *
      * @param pd
      * @throws Exception
      */
-    public PageData list(PageData pd){
+    public PageData list(PageData pd) {
         PageData result = new PageData();
         int totalNum = dictMapper.getDictCount(pd);
         pd.put("from", pd.getInteger("start"));

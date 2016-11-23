@@ -74,7 +74,7 @@
 	</insert>
 
 	<!-- 删除-->
-	<update id="delete" parameterType="Integer">
+	<update id="deleteById" parameterType="Integer">
 		update
 		<include refid="tableName"></include>
 		set del_flag = 1
@@ -83,7 +83,7 @@
 	</update>
 
 	<!-- 修改 -->
-	<update id="edit" parameterType="PageData">
+	<update id="updateDicById" parameterType="PageData">
 		update
 		<include refid="tableName"></include>
 		set
@@ -94,6 +94,8 @@
 		sort = #{sort},
 		parent_id = #{parentId},
 		remarks = #{remarks},
+		update_by = #{updateBy},
+		update_date = #{updateDate}
 		where
 		id = #{id}
 	</update>
@@ -109,9 +111,10 @@
 	</select>
 
 	<select id="getDicList" parameterType="PageData" resultType="Dict">
-		select * from sys_dict sd
+		select <include refid="Field"></include>
+		from sys_dict sd
 		<if test="keyword != null and keyword != ''">
-			WHERE sd.`type` LIKE #{keyword}
+			WHERE sd.`type` LIKE #{keyword} and del_flag = 1
 		</if>
 		limit #{from},#{size}
 	</select>
@@ -119,7 +122,7 @@
 	<select id="getDictCount" parameterType="PageData" resultType="int">
 		select count(1) from sys_dict sd
 		<if test="keyword != null and keyword != ''">
-			WHERE sd.`type` LIKE #{keyword}
+			WHERE sd.`type` LIKE #{keyword} and del_flag = 1
 		</if>
 	</select>
 
