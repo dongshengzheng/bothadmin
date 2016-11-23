@@ -79,9 +79,9 @@
         <property name="maxInMemorySize" value="40960"/>
     </bean>
 
-    <!-- 默认首页 -->
-    <mvc:view-controller path="/" view-name="index"/>
-    <!--<mvc:view-controller path="/" view-name="redirect:/modules/mobile/pawn/login"/>-->
+    <!-- 默认首页 无Controller的url访问直接跳转至 -->
+    <!--<mvc:view-controller path="/" view-name="index"/>-->
+    <mvc:view-controller path="/" view-name="redirect:/pawn"/>
 
 
     <!-- 配置freeMarker模板加载地址 -->
@@ -125,6 +125,7 @@
     <!-- 定义视图文件解析 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>
-        <property name="suffix" value="*.jsp"/>
+        <property name="suffix" value=".jsp"/>
     </bean>
+
 </beans>

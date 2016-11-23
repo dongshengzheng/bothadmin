@@ -4,6 +4,7 @@ import com.fish.idle.weixin.interceptor.OAuthRequired;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -38,13 +39,20 @@ public class PawnController {
      * @param session
      * @return
      */
-    @RequestMapping(value = "user", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     @OAuthRequired
-    public String user(HttpSession session) {
+    public String user(HttpSession session, ModelMap map) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-//        return "index";
-        return "modules/mobile/pawn/Login";
+        map.put("wxMpUser",wxMpUser);
+
+        return "index";
+//        return "modules/mobile/pawn/Login";
     }
+
+//    @RequestMapping
+//    public String getPawn() {
+//        return "modules/mobile/pawn/login";
+//    }
 
 //    @RequestMapping(value = "/f")
 //    @OAuthRequired
