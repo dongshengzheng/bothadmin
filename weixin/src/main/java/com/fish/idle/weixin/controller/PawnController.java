@@ -22,6 +22,9 @@ import me.chanjar.weixin.mp.bean.result.WxMpUser;
 @Controller
 @RequestMapping(value = "/pawn")
 public class PawnController {
+//    @Autowired
+//    private UserServiceImpl userService;
+
     @Autowired
     private WxMpConfigStorage configStorage;
 
@@ -39,8 +42,23 @@ public class PawnController {
     @OAuthRequired
     public String user(HttpSession session) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        return "index";
+//        return "index";
+        return "modules/mobile/pawn/Login";
     }
+
+//    @RequestMapping(value = "/f")
+//    @OAuthRequired
+//    public String toLogin(HttpSession session) {
+//        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+//        String openId = wxMpUser.getOpenId();
+////        User user = userService.findByOpenid(openId);
+//        // 如果存在了，则直接跳转到金石列表
+////        if (user != null) {
+////            return "redirect:" + configStorage.getOauth2redirectUri() + "/f/pawn/mobile/works";
+////        }
+//        return "modules/mobile/pawn/Login";
+//    }
+
 
 }
 

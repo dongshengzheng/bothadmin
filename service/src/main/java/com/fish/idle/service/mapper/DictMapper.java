@@ -11,9 +11,17 @@ public interface DictMapper {
 
     int insert(Dict record);
 
+    int save(PageData pd);
+
+    int deleteById(Integer id);
+
+    PageData getById(PageData pd);
+
     int insertSelective(Dict record);
 
-    Dict selectByPrimaryKey(Integer id);
+    PageData selectByPrimaryKey(Integer id);
+
+    PageData updateDicById(PageData pd);
 
     int updateByPrimaryKeySelective(Dict record);
 

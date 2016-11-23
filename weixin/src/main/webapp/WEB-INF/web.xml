@@ -52,8 +52,8 @@
     </servlet-mapping>
 
     <!-- 首页 -->
-    <welcome-file-list>
-        <welcome-file>index</welcome-file>
-    </welcome-file-list>
+    <!--<welcome-file-list>-->
+        <!--<welcome-file>index</welcome-file>-->
+    <!--</welcome-file-list>-->
 
 </web-app>
