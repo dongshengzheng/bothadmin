@@ -174,29 +174,12 @@
             <version>1.0.18</version>
         </dependency>
         <!-- DB + DataSource end -->
-
-
-        <!-- myBatis + spring start -->
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-            <version>3.2.8</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-spring</artifactId>
-            <version>1.2.2</version>
-        </dependency>
         <dependency>
             <groupId>net.sf.ehcache</groupId>
             <artifactId>ehcache-core</artifactId>
             <version>2.6.10</version>
         </dependency>
-        <dependency>
-            <groupId>org.mybatis.caches</groupId>
-            <artifactId>mybatis-ehcache</artifactId>
-            <version>1.0.3</version>
-        </dependency>
+
         <!--myBatis + spring end-->
         <dependency>
             <groupId>com.alibaba</groupId>
