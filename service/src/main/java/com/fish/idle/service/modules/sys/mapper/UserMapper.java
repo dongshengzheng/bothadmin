@@ -41,4 +41,6 @@ public interface UserMapper {
     void saveIP(PageData pageData);
 
     void updateLastLogin2(PageData pageData);
+
+    PageData getByOpenId(String openId);
 }
