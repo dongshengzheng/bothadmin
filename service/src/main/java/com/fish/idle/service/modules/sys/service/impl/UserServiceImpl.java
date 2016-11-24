@@ -166,4 +166,9 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
+    @Override
+    public PageData findByOpenid(String openId) {
+        return userMapper.getByOpenId(openId);
+    }
+
 }

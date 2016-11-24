@@ -23,38 +23,53 @@
     <link rel="stylesheet" href="../assets/css/themes/default.css" id="style_color"/>
     <!--<link rel="stylesheet" href="../assets/css/themes/headers/default.css" id="style_color-header-1"/>-->
     <style type="text/css">
+        .index_nav_head {
+            width: 100%;
+            height: 50px;
+            background: #FEFFFF;
+            z-index: 9999;
+            top: 0px;
+            left: 0px;
+        }
+
         .index_nav_tab {
             margin-top: 9px;
 
         }
+
         .index_shouye {
             font-size: 19px;
-            color: red;
         }
+
         .index_zuoping {
             font-size: 19px;
-            color: red;
         }
+
         .index_search {
             padding-right: 0px;
             height: 40px;
             margin-bottom: 0px;
         }
+
         .index_search_zuopin {
-            background: red;
+            background: #D70016;
             margin-left: 0px;
             border: 0;
             height: 30px;
             padding: 0px;
             width: 57px;
+            color: white;
         }
+
         .index_search_yonghu {
-            background: darkorange;
+            background: #FB591D;
             margin-left: 3px;
             border: 0;
             height: 30px;
             width: 57px;
+            color: white;
         }
+
         .index_wx_login {
             background: darkorange;
             margin-left: 3px;
@@ -62,8 +77,9 @@
             height: 30px;
             width: 70px;
         }
+
         .index_search_input {
-            border: solid red 1px !important;
+            border: solid #D70016 1px !important;
             width: 255px !important;
             height: 30px !important;
         }
@@ -84,7 +100,7 @@
 <body>
 
 <!--=== Header ===-->
-<div style="width: 100%;height: 50px;background: #eee;z-index: 9999;top: 0px;left: 0px;">
+<div class="index_nav_head">
     <div class="container" style="margin-bottom: 0px !important;height: 50px;">
         <div class="col-md-2 index_nav_tab">
             <a href="index.html">
@@ -94,25 +110,25 @@
 
         <div class="col-md-1 text-center index_nav_tab">
             <div onclick="goIndex();">
-                <span class="index_shouye">啊啊</span>
+                <span class="index_shouye">首页</span>
             </div>
         </div>
 
         <div class="col-md-2 text-center index_nav_tab">
             <div onclick="goIndex();">
-                <span class="index_zuoping">啊啊啊啊</span>
+                <span class="index_zuoping">作品登记</span>
             </div>
         </div>
 
         <div class="col-md-5 input-append index_nav_tab index_search">
             <form>
-                <input type="text" class="index_search_input" style="" placeholder="啊啊啊啊啊啊啊"/>
-                <button class="index_search_zuopin">啊啊啊</button>
-                <button class="index_search_yonghu">啊啊啊</button>
+                <input type="text" class="index_search_input" style="" placeholder="输入要搜索的作品或用户"/>
+                <button class="index_search_zuopin">搜作品</button>
+                <button class="index_search_yonghu">搜用户</button>
             </form>
         </div>
         <div class="col-md-2 index_nav_tab">
-            <button class="index_wx_login">啊啊啊啊</button>
+            <button class="index_wx_login">微信登陆</button>
         </div>
     </div>
 </div>
@@ -146,8 +162,8 @@
 <!--轮播图 end-->
 <!--all works start-->
 <div class="container">
-    <div class="row text-center">
-        <h2>啊啊啊啊啊</h2>
+    <div class="row text-center" style="margin: 30px">
+        <h3>全部作品</h3>
     </div>
 </div>
 <!--all works start-->
@@ -252,11 +268,13 @@
     <div class="container">
         <div class="row-fluid">
             <div class="span8">
-                <p>Copyright &copy; 2014.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+                <p>Copyright &copy; 2016.Company name All rights reserved.<a
+                                                                             href="">典当后金</a>
+                </p>
             </div>
-            <div class="span4">
-                <a href="index.html"><img id="logo-footer" src="../assets/img/logo2-default.png" class="pull-right" alt="" /></a>
-            </div>
+            <!--<div class="span4">-->
+            <!--<a href="index.html"><img id="logo-footer" src="../assets/img/logo2-default.png" class="pull-right" alt="" /></a>-->
+            <!--</div>-->
         </div><!--/row-fluid-->
     </div><!--/container-->
 </div><!--/copyright-->
