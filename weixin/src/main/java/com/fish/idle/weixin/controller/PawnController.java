@@ -1,6 +1,5 @@
 package com.fish.idle.weixin.controller;
 
-import com.fish.idle.service.modules.sys.entity.User;
 import com.fish.idle.service.modules.sys.service.UserService;
 import com.fish.idle.service.util.PageData;
 import com.fish.idle.weixin.interceptor.OAuthRequired;

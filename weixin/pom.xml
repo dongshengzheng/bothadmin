@@ -50,7 +50,11 @@
     </build>
 
     <dependencies>
-
+        <dependency>
+            <groupId>com.fish.idle</groupId>
+            <artifactId>service</artifactId>
+            <version>1.0</version>
+        </dependency>
         <dependency>
             <groupId>com.github.binarywang</groupId>
             <artifactId>weixin-java-mp</artifactId>
@@ -232,11 +236,6 @@
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
             <version>2.6</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>4.3.3.RELEASE</version>
         </dependency>
         <!--log4j日志包 -->
         <dependency>
