@@ -38,4 +38,6 @@ public interface UserService {
     boolean isNameExist(PageData pd);
 
     PageData editPassword(PageData pd);
+
+    PageData findByOpenid(String openId);
 }

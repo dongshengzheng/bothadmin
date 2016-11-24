@@ -1,5 +1,8 @@
 package com.fish.idle.weixin.controller;
 
+import com.fish.idle.service.modules.sys.entity.User;
+import com.fish.idle.service.modules.sys.service.UserService;
+import com.fish.idle.service.util.PageData;
 import com.fish.idle.weixin.interceptor.OAuthRequired;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +26,8 @@ import me.chanjar.weixin.mp.bean.result.WxMpUser;
 @Controller
 @RequestMapping(value = "/pawn")
 public class PawnController {
-//    @Autowired
-//    private UserServiceImpl userService;
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private WxMpConfigStorage configStorage;
@@ -39,34 +42,30 @@ public class PawnController {
      * @param session
      * @return
      */
-    @RequestMapping(method = RequestMethod.GET)
-    @OAuthRequired
-    public String user(HttpSession session, ModelMap map) {
-        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        map.put("wxMpUser",wxMpUser);
-
-        return "index";
-//        return "modules/mobile/pawn/Login";
-    }
-
-//    @RequestMapping
-//    public String getPawn() {
+//    @RequestMapping(method = RequestMethod.GET)
+//    @OAuthRequired
+//    public String user(HttpSession session, ModelMap map) {
+//        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+//        map.put("wxMpUser",wxMpUser);
+//
 //        return "modules/mobile/pawn/login";
 //    }
 
-//    @RequestMapping(value = "/f")
-//    @OAuthRequired
-//    public String toLogin(HttpSession session) {
-//        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-//        String openId = wxMpUser.getOpenId();
-////        User user = userService.findByOpenid(openId);
-//        // 如果存在了，则直接跳转到金石列表
-////        if (user != null) {
-////            return "redirect:" + configStorage.getOauth2redirectUri() + "/f/pawn/mobile/works";
-////        }
-//        return "modules/mobile/pawn/Login";
-//    }
+    @RequestMapping(method = RequestMethod.GET)
+    @OAuthRequired
+    public String toLogin(HttpSession session, ModelMap map) {
+        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+        String openId = wxMpUser.getOpenId();
+        PageData user = userService.findByOpenid(openId);
+        if (user == null) {
+            // TODO create new user with openId, photo and nick and so on...
+            // TODO write user into DataBase
+            // TODO refer new user to user variable
+        }
 
-
+//        map.put("wxMpUser",wxMpUser);
+        map.put("user", user);
+        return "redirect:" + configStorage.getOauth2redirectUri() + "/modules/mobile/pawn/mobile/works";
+    }
 }
 

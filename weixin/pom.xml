@@ -251,6 +251,11 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+        <dependency>
+            <groupId>com.fish.idle</groupId>
+            <artifactId>service</artifactId>
+            <version>1.0</version>
+        </dependency>
 
     </dependencies>
 
