@@ -195,7 +195,7 @@
     from sys_user_role
     where user_id = #{userId}
   </select>
-    <select id="getByOpenId" resultType="PageData" parameterMap="String">
+    <select id="getByOpenId" resultType="PageData" parameterType="String">
         select
         *
         from sys_user

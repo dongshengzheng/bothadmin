@@ -3,6 +3,10 @@ package com.fish.idle.admin.modules.sys.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.fish.idle.service.modules.sys.entity.Office;
+import com.fish.idle.service.modules.sys.entity.Role;
 import com.fish.idle.service.modules.sys.service.RoleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,16 +46,10 @@ public class RoleController extends BaseController {
 
     @RequestMapping(value = "/list")
     @ResponseBody
-    public PageData list() {
-        PageData result = null;
-        try {
-            PageData pd = super.getPageData();
-            result = roleService.list(pd);
-        } catch (Exception e) {
-            logger.error("list role error", e);
-            result = new PageData();
-        }
-        return result;
+    public JSONObject listMenu(Office office) {
+        Page<Role> page = getPage();
+        return jsonPage(roleService.selectPage(page, null));
+
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
