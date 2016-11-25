@@ -6,6 +6,5 @@
 *.iml
 **/rebel.xml
 **/gen.xml
-service/gen.xml
-
+wx.properties
 **/.DS_Store
