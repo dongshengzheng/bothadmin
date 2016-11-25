@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private RoleMapper roleMapper;
 
-    public void setSKIN(PageData pd)  {
+    public void setSKIN(PageData pd) {
         userMapper.setSKIN(pd);
     }
 
@@ -46,6 +46,7 @@ public class UserServiceImpl implements UserService {
         return userMapper.getUserInfo(pd);
     }
 
+    @Transactional(readOnly = false)
     public void updateLastLogin(PageData pd) {
         userMapper.updateLastLogin2(pd);
     }
@@ -70,6 +71,7 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
+    @Transactional(readOnly = false)
     public void add(PageData pd) {
         userMapper.add(pd);
     }
@@ -94,7 +96,7 @@ public class UserServiceImpl implements UserService {
                 for (String idStr : idArr) {
                     idList.add(Integer.valueOf(idStr));
                 }
-                for(int i = 0; i < idList.size(); i++) {
+                for (int i = 0; i < idList.size(); i++) {
                     userMapper.delete(idList.get(i));
                 }
             }

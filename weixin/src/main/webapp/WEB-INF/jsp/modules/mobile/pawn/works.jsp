@@ -6,9 +6,9 @@
     <title>首页</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <link rel="stylesheet" href="${ctxStatic}/jquery-weui/lib/weui.css"/>
-    <link rel="stylesheet" href="${ctxStatic}/jquery-weui/css/jquery-weui.css"/>
-    <link rel="stylesheet" href="${ctxStatic}/modules/pawn/css/custom.css"/>
+    <link rel="stylesheet" href="${ctxStatic}/css/weui.min.css"/>
+    <link rel="stylesheet" href="${ctxStatic}/css/jquery-weui.min.css"/>
+    <link rel="stylesheet" href="${ctxStatic}/css/custom.css"/>
 </head>
 <style>
 

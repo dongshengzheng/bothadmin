@@ -16,6 +16,8 @@ import me.chanjar.weixin.mp.api.WxMpConfigStorage;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.result.WxMpUser;
 
+import java.util.Date;
+
 /**
  * @author Sun.Han
  * @version 1.0
@@ -23,8 +25,8 @@ import me.chanjar.weixin.mp.bean.result.WxMpUser;
  * @Date 2016年11月12日
  */
 @Controller
-@RequestMapping(value = "/pawn")
-public class PawnController {
+@RequestMapping(value = "/mobile")
+public class MobileController {
     @Autowired
     private UserService userService;
 
@@ -34,37 +36,31 @@ public class PawnController {
     @Autowired
     private WxMpService wxMpService;
 
-
-    /**
-     * 用户注册页面
-     *
-     * @param session
-     * @return
-     */
-//    @RequestMapping(method = RequestMethod.GET)
-//    @OAuthRequired
-//    public String user(HttpSession session, ModelMap map) {
-//        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-//        map.put("wxMpUser",wxMpUser);
-//
-//        return "modules/mobile/pawn/login";
-//    }
-
     @RequestMapping(method = RequestMethod.GET)
     @OAuthRequired
     public String toLogin(HttpSession session, ModelMap map) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
         PageData user = userService.findByOpenid(openId);
-        if (user == null) {
-            // TODO create new user with openId, photo and nick and so on...
-            // TODO write user into DataBase
-            // TODO refer new user to user variable
-        }
+        if (user == null || user.isEmpty()) {
+            user = new PageData();
+            user.put("loginName", wxMpUser.getNickname());
+            user.put("password", "iLoveMoney");
+            user.put("name", wxMpUser.getNickname());
+            user.put("status", "1");
+            user.put("description", "");
+            user.put("email", "");
+            user.put("phone", "");
+            user.put("openId", wxMpUser.getOpenId());
 
-//        map.put("wxMpUser",wxMpUser);
+            userService.add(user);
+        }
+        user.put("lastLogin", new Date().toString());
+        userService.updateLastLogin(user);
+
         map.put("user", user);
-        return "redirect:" + configStorage.getOauth2redirectUri() + "/modules/mobile/pawn/mobile/works";
+//        return "redirect:" + configStorage.getOauth2redirectUri() + "/modules/mobile/pawn/mobile/works";
+        return "/modules/mobile/pawn/works";
     }
 }
 

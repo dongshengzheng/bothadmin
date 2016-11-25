@@ -110,7 +110,8 @@
         status,
         description,
         email,
-        phone
+        phone,
+        open_id
         ) values (
         #{loginName},
         #{password},
@@ -118,7 +119,8 @@
         #{status},
         #{description},
         #{email},
-        #{phone}
+        #{phone},
+        #{openId}
         )
   </insert>
 
@@ -197,9 +199,18 @@
   </select>
     <select id="getByOpenId" resultType="PageData" parameterType="String">
         select
-        *
-        from sys_user
-        where open_id = #{openId}
+        user_id userId,
+        login_name loginName,
+        password,
+        name,
+        last_login lastLogin,
+        ip,
+        status,
+        skin,
+        email,
+        phone,
+        open_id openId
+        from sys_user where open_id = #{openId};
     </select>
 
     <delete id="deleteUserRoleByUserId" parameterType="Integer">
