@@ -10,7 +10,7 @@
 						http://www.springframework.org/schema/tx
 						http://www.springframework.org/schema/tx/spring-tx.xsd">
     <context:property-placeholder location="classpath:properties/override.properties" />
-    <context:component-scan base-package="com.fish.idle.service.modules.sys.service"/>
+    <context:component-scan base-package="com.fish.idle.service.modules.*.service"/>
 
 
     <!-- 阿里 druid数据库连接池 -->

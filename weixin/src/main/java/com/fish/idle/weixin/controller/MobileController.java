@@ -1,22 +1,32 @@
 package com.fish.idle.weixin.controller;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.fish.idle.service.config.Global;
+import com.fish.idle.service.modules.jsdd.entity.Works;
+import com.fish.idle.service.modules.jsdd.service.IWorksService;
 import com.fish.idle.service.modules.sys.service.UserService;
 import com.fish.idle.service.util.PageData;
 import com.fish.idle.weixin.interceptor.OAuthRequired;
 
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import me.chanjar.weixin.mp.api.WxMpConfigStorage;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.result.WxMpUser;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Sun.Han
@@ -29,6 +39,9 @@ import java.util.Date;
 public class MobileController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private IWorksService worksService;
 
     @Autowired
     private WxMpConfigStorage configStorage;
@@ -55,12 +68,36 @@ public class MobileController {
 
             userService.add(user);
         }
-        user.put("lastLogin", new Date().toString());
+        user.put("lastLogin", DateFormatUtils.format(new Date(), "yyyy-MM-dd"));
         userService.updateLastLogin(user);
 
-        map.put("user", user);
-//        return "redirect:" + configStorage.getOauth2redirectUri() + "/modules/mobile/pawn/mobile/works";
-        return "/modules/mobile/pawn/works";
+        return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/works";
     }
+
+    /**
+     * 作品列表
+     *
+     * @return
+     */
+    @RequestMapping(value = "works", method = RequestMethod.GET)
+    @OAuthRequired
+    public String works(HttpSession session,
+                        Works works,
+                        HttpServletRequest request,
+                        HttpServletResponse response,
+                        ModelMap map) {
+        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+        String openId = wxMpUser.getOpenId();
+        PageData user = userService.findByOpenid(openId);
+        if (user == null) {
+            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+        }
+        works.setStatus(Global.WORKS_STATUS_PASS);
+        Page<Works> page = new Page<>(1, 4);
+        page = worksService.selectPage(page, new EntityWrapper<>(works));
+        map.put("page", page);
+        return "modules/mobile/pawn/works";
+    }
+
 }
 
