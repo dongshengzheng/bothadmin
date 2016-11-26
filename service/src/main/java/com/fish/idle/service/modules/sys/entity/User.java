@@ -26,6 +26,7 @@ public class User implements Serializable {
     private Integer skin; // 皮肤
     private List<Role> roles;
     private Page page; // 分页对象
+    private String openId; // 微信openId
 
     public Integer getUserId() {
         return userId;
@@ -129,5 +130,13 @@ public class User implements Serializable {
 
     public void setPage(Page page) {
         this.page = page;
+    }
+
+    public String getOpenId() {
+        return openId;
+    }
+
+    public void setOpenId(String openId) {
+        this.openId = openId;
     }
 }

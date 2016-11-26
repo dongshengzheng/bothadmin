@@ -37,6 +37,9 @@ public class MainConfig {
     @Value("#{wxProperties.partener_key}")
     private String partenerKey;
 
+    @Value("#{wxProperties.redirect_url}")
+    private String url;
+
     @Bean
     public WxMpConfigStorage wxMpConfigStorage() {
         WxMpInMemoryConfigStorage configStorage = new WxMpInMemoryConfigStorage();
@@ -46,6 +49,7 @@ public class MainConfig {
         configStorage.setAesKey(this.aesKey);
         configStorage.setPartnerId(this.partenerId);
         configStorage.setPartnerKey(this.partenerKey);
+        configStorage.setOauth2redirectUri(this.url);
         return configStorage;
     }
 

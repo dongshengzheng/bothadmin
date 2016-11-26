@@ -1,8 +1,13 @@
 package com.fish.idle.service.modules.sys.service.impl;
 
+import com.baomidou.framework.service.impl.SuperServiceImpl;
+import com.fish.idle.service.modules.sys.entity.Office;
+import com.fish.idle.service.modules.sys.entity.Role;
 import com.fish.idle.service.modules.sys.mapper.ButtonMapper;
 import com.fish.idle.service.modules.sys.mapper.MenuMapper;
+import com.fish.idle.service.modules.sys.mapper.OfficeMapper;
 import com.fish.idle.service.modules.sys.mapper.RoleMapper;
+import com.fish.idle.service.modules.sys.service.IOfficeService;
 import com.fish.idle.service.modules.sys.service.RoleService;
 import com.fish.idle.service.util.AppUtil;
 import com.fish.idle.service.util.Const;
@@ -25,8 +30,9 @@ import java.util.List;
  */
 @Transactional(readOnly = true)
 @Service
-public class RoleServiceImpl implements RoleService {
-    @Autowired
+public class RoleServiceImpl  extends SuperServiceImpl<RoleMapper, Role>  implements RoleService {
+
+        @Autowired
     private RoleMapper roleMapper;
 
     @Autowired

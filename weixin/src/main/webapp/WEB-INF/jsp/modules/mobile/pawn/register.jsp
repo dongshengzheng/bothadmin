@@ -3,7 +3,7 @@
 
 <html lang="en">
 <head>
-    <title>登录</title>
+    <title>用户注册</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 
@@ -42,8 +42,6 @@
 </div>
 
 <div class="weui_panel_bd">
-
-
     <div class="weui_media_box weui_media_small_appmsg">
         <div class="weui_cells">
             <div class="weui_cell" href="javascript:;">
@@ -62,17 +60,24 @@
                 </div>
                 <span class="weui_cell_ft"></span>
             </div>
-
+            <div class="weui_cell" href="javascript:;">
+                <div class="weui_cell_hd"><img src="${ctxStatic}/modules/pawn/img/password.png" alt=""></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input id="confirmPassword" style="color:#333;" name="confirmPassword" class="weui_input"
+                           type="password" placeholder="请确认密码">
+                </div>
+                <span class="weui_cell_ft"></span>
+            </div>
         </div>
     </div>
 </div>
 <div style="padding:15px 10%;background-color: #F7F7F7;">
-    <a href="javascript:;" class="weui_btn weui_btn_warn" onclick="login()">登录</a>
-    <a href="${ctx}/pawn/mobile/register" style="float:right;font-size: 14px;color:#BF9A68;">返回注册</a>
+    <a href="javascript:;" class="weui_btn weui_btn_warn" onclick="register()">注册</a>
+    <a href="${ctx}/pawn/mobile/login" style="float:right;font-size: 14px;color:#BF9A68;">电脑端已注册过账号,点击登录</a>
 </div>
-<script>
 
-    function login() {
+<script type="text/javascript">
+    function register() {
 
         if ($("#name").val().length == "") {
             $.alert("用户名不能为空");
@@ -83,10 +88,13 @@
             return false;
         }
 
-
+        if ($("#password").val() != $("#confirmPassword").val()) {
+            $.alert("两次密码不一致");
+            return false;
+        }
         $.ajax({
             type: "POST",
-            url: "${ctx}/pawn/mobile/login",
+            url: "${ctx}/pawn/mobile/register",
             data: {
                 name: $("#name").val(),
                 password: $("#password").val()
@@ -94,7 +102,7 @@
 
             success: function (data) {
                 if (data.suc) {
-                    $.alert("登录成功", function () {
+                    $.alert("注册成功", function () {
                         window.location.href = "${ctx}/pawn/mobile/works";
                     });
                 } else {
@@ -104,7 +112,6 @@
         });
 
     }
-
 </script>
 </body>
 </html>
