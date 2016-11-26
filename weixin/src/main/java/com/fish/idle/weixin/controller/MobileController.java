@@ -2,10 +2,10 @@ package com.fish.idle.weixin.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.fish.idle.service.config.Global;
 import com.fish.idle.service.modules.jsdd.entity.Works;
 import com.fish.idle.service.modules.jsdd.service.IWorksService;
 import com.fish.idle.service.modules.sys.service.UserService;
+import com.fish.idle.service.util.Const;
 import com.fish.idle.service.util.PageData;
 import com.fish.idle.weixin.interceptor.OAuthRequired;
 
@@ -24,9 +24,7 @@ import me.chanjar.weixin.mp.api.WxMpConfigStorage;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.result.WxMpUser;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * @author Sun.Han
@@ -92,7 +90,7 @@ public class MobileController {
         if (user == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
-        works.setStatus(Global.WORKS_STATUS_PASS);
+        works.setStatus(Const.WORKS_STATUS_PASS);
         Page<Works> page = new Page<>(1, 4);
         page = worksService.selectPage(page, new EntityWrapper<>(works));
         map.put("page", page);
