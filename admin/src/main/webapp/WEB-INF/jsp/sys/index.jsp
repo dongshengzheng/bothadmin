@@ -6,6 +6,7 @@
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<c:set var="global" value="http://windyeel.oss-cn-shanghai.aliyuncs.com/global"/>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
@@ -23,28 +24,28 @@
           name="description"/>
     <meta content="" name="author"/>
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <link href="${ctx}/assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css"/>
-    <link href="${ctx}/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-    <link href="${ctx}/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet"
+    <link href="${global}/css/components.min.css" rel="stylesheet" id="style_components" type="text/css"/>
+    <link href="${global}/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="${global}/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet"
           type="text/css"/>
-    <link href="${ctx}/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    <link href="${ctx}/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet"
+    <link href="${global}/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="${global}/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet"
           type="text/css"/>
-    <link href="${ctx}/assets/global/plugins/bootstrap-dialog/bootstrap-dialog.min.css" rel="stylesheet"
+    <link href="${global}/plugins/bootstrap-dialog/bootstrap-dialog.min.css" rel="stylesheet"
           type="text/css"/>
-    <%--<link href="${ctx}/assets/global/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />--%>
-    <link href="${ctx}/assets/global/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <%--<link href="${global}/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />--%>
+    <link href="${global}/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
 
-    <link href="${ctx}/assets/global/plugins/icheck/skins/flat/blue.css" rel="stylesheet" type="text/css">
-    <link href="${ctx}/assets/global/plugins/icheck/skins/minimal/blue.css" rel="stylesheet" type="text/css">
-    <link href="${ctx}/assets/global/plugins/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet"type="text/css">
-    <link href="${ctx}/assets/global/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css">
-    <link href="${ctx}/assets/global/plugins/Editor-1.5.4/css/editor.dataTables.min.css" rel="stylesheet" type="text/css">
+    <link href="${global}/plugins/icheck/skins/flat/blue.css" rel="stylesheet" type="text/css">
+    <link href="${global}/plugins/icheck/skins/minimal/blue.css" rel="stylesheet" type="text/css">
+    <link href="${global}/plugins/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet"type="text/css">
+    <link href="${global}/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css">
+    <link href="${global}/plugins/Editor-1.5.4/css/editor.dataTables.min.css" rel="stylesheet" type="text/css">
 
     <!-- END GLOBAL MANDATORY STYLES -->
     <!-- BEGIN THEME GLOBAL STYLES -->
 
-    <link href="${ctx}/assets/global/css/plugins.min.css" rel="stylesheet" type="text/css"/>
+    <link href="${global}/css/plugins.min.css" rel="stylesheet" type="text/css"/>
     <!-- END THEME GLOBAL STYLES -->
     <!-- BEGIN THEME LAYOUT STYLES -->
     <link href="${ctx}/assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css"/>
@@ -81,29 +82,29 @@
         <i class="icon-arrow-up"></i>
     </div>
 </div>
-<script src="${ctx}/assets/global/plugins/respond.min.js"></script>
-<script src="${ctx}/assets/global/plugins/excanvas.min.js"></script>
-<script src="${ctx}/assets/global/plugins/ie8.fix.min.js"></script>
+<script src="${global}/plugins/respond.min.js"></script>
+<script src="${global}/plugins/excanvas.min.js"></script>
+<script src="${global}/plugins/ie8.fix.min.js"></script>
 <![endif]-->
 <!-- BEGIN CORE PLUGINS -->
-<script src="${ctx}/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-<script src="${ctx}/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="${ctx}/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
-<script src="${ctx}/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-<script src="${ctx}/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-<script src="${ctx}/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
-<script src="${ctx}/assets/global/plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
-<script src="${ctx}/assets/global/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
-<script src="${ctx}/assets/global/plugins/icheck/icheck.min.js"></script>
-<script src="${ctx}/assets/global/plugins/datetimepicker/bootstrap-datetimepicker.min.js"></script>
-<script src="${ctx}/assets/global/plugins/daterangepicker/moment.min.js"></script>
-<script src="${ctx}/assets/global/plugins/daterangepicker/daterangepicker.js"></script>
-<script src="${ctx}/assets/global/plugins/Editor-1.5.4/js/dataTables.editor.min.js"></script>
+<script src="${global}/plugins/jquery.min.js" type="text/javascript"></script>
+<script src="${global}/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="${global}/plugins/js.cookie.min.js" type="text/javascript"></script>
+<script src="${global}/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="${global}/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+<script src="${global}/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+<script src="${global}/plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="${global}/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+<script src="${global}/plugins/icheck/icheck.min.js"></script>
+<script src="${global}/plugins/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="${global}/plugins/daterangepicker/moment.min.js"></script>
+<script src="${global}/plugins/daterangepicker/daterangepicker.js"></script>
+<script src="${global}/plugins/Editor-1.5.4/js/dataTables.editor.min.js"></script>
 
-<script src="${ctx}/assets/global/plugins/bootstrap-dialog/bootstrap-dialog.min.js"></script>
+<script src="${global}/plugins/bootstrap-dialog/bootstrap-dialog.min.js"></script>
 <!-- END CORE PLUGINS -->
 <!-- BEGIN THEME GLOBAL SCRIPTS -->
-<script src="${ctx}/assets/global/scripts/app.min.js" type="text/javascript"></script>
+<script src="${global}/scripts/app.min.js" type="text/javascript"></script>
 <!-- END THEME GLOBAL SCRIPTS -->
 <!-- BEGIN THEME LAYOUT SCRIPTS -->
 <script src="${ctx}/assets/layouts/layout/scripts/layout.js" type="text/javascript"></script>

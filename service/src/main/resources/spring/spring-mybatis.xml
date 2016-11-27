@@ -86,4 +86,14 @@
     </bean>
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
+
+
+    <bean class="com.baomidou.mybatisplus.spring.MybatisMapperRefresh">
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
+        <constructor-arg name="mapperLocations" value="classpath:com/fish/idle/service/modules/**/*.xml"/>
+        <constructor-arg name="delaySeconds" value="10"/>
+        <constructor-arg name="sleepSeconds" value="20"/>
+        <constructor-arg name="enabled" value="true"/>
+    </bean>
+
 </beans>

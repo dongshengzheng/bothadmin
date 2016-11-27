@@ -22,7 +22,7 @@
   <select id="count" parameterType="PageData" resultType="int">
     select count(1)
     from sys_role r
-    where r.status != -1
+    where r.del_flag != -1
     <if test="keyword != null and keyword != ''">
       and r.role_name like #{keyword}
     </if>
@@ -34,9 +34,9 @@
     r.removable,
     r.allocatable,
     r.description,
-    r.status
+    r.del_flag
     from sys_role r
-    where r.status != -1
+    where r.del_flag != -1
     <if test="keyword != null and keyword != ''">
       and r.role_name like #{keyword}
     </if>
@@ -49,13 +49,13 @@
     removable,
     allocatable,
     description,
-    status
+    del_flag
     ) values (
     #{roleName},
     #{removable},
     #{allocatable},
     #{description},
-    #{status}
+    #{delFlag}
     )
   </insert>
 
@@ -66,9 +66,9 @@
     removable,
     allocatable,
     description,
-    status
+    del_flag
     from sys_role
-    where status != -1
+    where del_flag != -1
     and role_id = #{roleId}
   </select>
 
@@ -84,7 +84,7 @@
 
   <update id="delete" parameterType="Integer">
     update sys_role set
-    status	= -1
+    del_flag	= -1
     where 1=1
     and removable=1
     and role_id	= #{roleId}
@@ -92,7 +92,7 @@
 
   <update id="batchDelete" parameterType="PageData">
     update sys_role set
-    status = -1
+    del_flag = -1
     where 1=1
     and removable=1
     and role_id in
@@ -117,7 +117,7 @@
     role_name roleName,
     description
     from sys_role
-    where status != -1 and allocatable=1
+    where del_flag != -1 and allocatable=1
   </select>
 
   <delete id="deleteResByRoleId" parameterType="Integer">

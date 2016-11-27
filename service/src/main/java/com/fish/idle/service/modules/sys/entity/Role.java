@@ -1,6 +1,13 @@
 package com.fish.idle.service.modules.sys.entity;
 
+import java.io.Serializable;
 import java.util.List;
+import com.baomidou.mybatisplus.annotations.IdType;
+
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+import com.fish.idle.service.util.Const;
 
 /**
  * @author Sun.Han
@@ -9,71 +16,87 @@ import java.util.List;
  * @Description:
  * @Date 2015年4月29日
  */
-public class Role implements java.io.Serializable {
+@TableName("sys_role")
+public class Role implements Serializable {
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = -4016889140139787153L;
-    private Integer roleId;
-    private String roleName;
-    private Integer removable;
-    private Integer allocatable;
-    private String description;
-    private Integer status;
+	@TableField(exist = false)
+	private static final long serialVersionUID = 1L;
 
+	/**  */
+	@TableId(value = "role_id", type = IdType.AUTO)
+	private Integer roleId;
+
+	/** 角色名称 */
+	@TableField(value = "role_name")
+	private String roleName;
+
+	/** 可被删除 0=不行 1=可以 */
+	private Integer removable;
+
+	/** 可被分配 0=不行 1=可以 */
+	private Integer allocatable;
+
+	/**  */
+	private String description;
+
+	/** 是否删除 1：没删除 -1：删除 */
+	@TableField(value = "del_flag")
+	private Integer delFlag = Const.DEL_FLAG_NORMAL;
+
+	@TableField(exist = false)
     private List<Menu> menus;
+	@TableField(exist = false)
     private List<Button> buttons;
 
-    public Integer getRoleId() {
-        return roleId;
-    }
+	public Integer getRoleId() {
+		return this.roleId;
+	}
 
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
-    }
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
+	}
 
-    public String getRoleName() {
-        return roleName;
-    }
+	public String getRoleName() {
+		return this.roleName;
+	}
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
-    }
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
 
-    public Integer getRemovable() {
-        return removable;
-    }
+	public Integer getRemovable() {
+		return this.removable;
+	}
 
-    public void setRemovable(Integer removable) {
-        this.removable = removable;
-    }
+	public void setRemovable(Integer removable) {
+		this.removable = removable;
+	}
 
-    public Integer getAllocatable() {
-        return allocatable;
-    }
+	public Integer getAllocatable() {
+		return this.allocatable;
+	}
 
-    public void setAllocatable(Integer allocatable) {
-        this.allocatable = allocatable;
-    }
+	public void setAllocatable(Integer allocatable) {
+		this.allocatable = allocatable;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public String getDescription() {
+		return this.description;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public Integer getStatus() {
-        return status;
-    }
+	public Integer getDelFlag() {
+		return delFlag;
+	}
 
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
+	public void setDelFlag(Integer delFlag) {
+		this.delFlag = delFlag;
+	}
 
-    public List<Menu> getMenus() {
+	public List<Menu> getMenus() {
         return menus;
     }
 

@@ -2,7 +2,7 @@ package com.fish.idle.admin.modules.sys.controller;
 
 import com.fish.idle.admin.controller.BaseController;
 import com.fish.idle.admin.util.AppUtil;
-import com.fish.idle.admin.util.Const;
+import com.fish.idle.service.util.Const;
 import com.fish.idle.admin.util.Tools;
 import com.fish.idle.service.modules.sys.entity.User;
 import com.fish.idle.service.modules.sys.service.UserService;

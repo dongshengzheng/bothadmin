@@ -23,6 +23,11 @@
             <version>1.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.fish.idle</groupId>
+            <artifactId>commons</artifactId>
+            <version>1.0</version>
+        </dependency>
         <!--log4j日志包 -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -205,6 +210,16 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <warName>admin</warName>
+                    <warSourceExcludes>assets/global/**/*.*</warSourceExcludes>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
@@ -237,6 +252,40 @@
                 <version>9.2.17.v20160517</version>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/Java</directory>
+                <!-- 包含 -->
+                <includes>
+                    <include>**/*.vm</include>
+                    <include>**/*.properties</include>
+                </includes>
+                <!-- 排除  -->
+                <excludes>
+                    <exclude>**/*.log</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+                <excludes>
+                    <exclude>**/*.log</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/webapp</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+                <excludes>
+                    <exclude>assets/global/**/*.*</exclude>
+                </excludes>
+            </resource>
+        </resources>
     </build>
 
 

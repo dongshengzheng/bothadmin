@@ -92,6 +92,16 @@
             <groupId>org.mybatis.caches</groupId>
             <artifactId>mybatis-ehcache</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.fish.idle</groupId>
+            <artifactId>commons</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

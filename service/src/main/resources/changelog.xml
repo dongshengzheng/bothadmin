@@ -21,4 +21,11 @@
             <column name="office_id" remarks="部门Id" type="VARCHAR(30)"/>
         </addColumn>
     </changeSet>
+    <changeSet author="SunHan" id="15862614903-003">
+       <sql>
+           ALTER TABLE `sys_role`
+           CHANGE COLUMN `status` `del_flag` INT(3) NOT NULL DEFAULT '1' COMMENT '是否删除' ;
+       </sql>
+    </changeSet>
+
 </databaseChangeLog>

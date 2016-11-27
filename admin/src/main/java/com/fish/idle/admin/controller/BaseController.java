@@ -3,6 +3,7 @@ package com.fish.idle.admin.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.fish.idle.service.modules.sys.entity.User;
 
@@ -113,6 +114,12 @@ public class BaseController {
         return new Page<>(start / length + 1, length);
     }
 
+    protected <T> EntityWrapper<T>  getEntityWrapper(T t){
+        EntityWrapper<T> ew = new EntityWrapper<>();
+        ew.setEntity(t);
+        ew.where("del_flag={0}", Const.DEL_FLAG_NORMAL);
+        return ew;
+    }
 
     /**
      * 返回 JSON 格式对象

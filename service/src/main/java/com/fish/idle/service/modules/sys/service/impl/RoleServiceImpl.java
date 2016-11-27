@@ -41,26 +41,6 @@ public class RoleServiceImpl  extends SuperServiceImpl<RoleMapper, Role>  implem
     @Autowired
     private ButtonMapper buttonMapper;
 
-    public PageData list(PageData pd) {
-        PageData result = new PageData();
-        String search = pd.getString("keyword");
-        if (StringUtils.isNotBlank(search)) {
-            pd.put("keyword", "%" + search + "%");
-        }
-        int totalNum = roleMapper.count(pd);
-
-        pd.put("from", pd.getInteger("start"));
-        pd.put("size", pd.getInteger("length"));
-        List<PageData> pds = roleMapper.list(pd);
-        AppUtil.nullToEmpty(pds, new String[]{"roleName", "description"});
-
-        result.put(Const.DRAW, pd.getString(Const.DRAW));
-        result.put(Const.RECORDSTOTAL, totalNum);
-        result.put(Const.RECORDSFILTERED, totalNum);
-        result.put(Const.NDATA, pds);
-        return result;
-    }
-
     public void add(PageData pd) {
         roleMapper.add(pd);
     }

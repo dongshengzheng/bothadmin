@@ -64,8 +64,7 @@
                 "url": "role/list",
                 "type": "post",
                 "data": function (data) {
-                    data.roleName = $("#roleName").val();
-                    data.keyword = $("#keyword").val();
+                    data.roleName = $("#keyword").val();
                 }
             },
             "language": {

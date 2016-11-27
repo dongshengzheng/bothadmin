@@ -1,6 +1,6 @@
 package com.fish.idle.admin.base.interceptor.shiro;
 
-import com.fish.idle.admin.util.Const;
+import com.fish.idle.service.util.Const;
 import com.fish.idle.service.modules.sys.entity.User;
 
 import org.apache.shiro.SecurityUtils;

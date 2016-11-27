@@ -3,15 +3,18 @@ package com.fish.idle.admin.modules.sys.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.fish.idle.service.modules.sys.entity.Office;
 import com.fish.idle.service.modules.sys.entity.Role;
 import com.fish.idle.service.modules.sys.service.RoleService;
+import com.fish.idle.service.util.Const;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,92 +41,61 @@ public class RoleController extends BaseController {
     private RoleService roleService;
 
     @RequestMapping
-    public ModelAndView page() {
-        ModelAndView mv = super.getModelAndView();
-        mv.setViewName("sys/role/role_list");
-        return mv;
+    public String page() {
+        return "sys/role/role_list";
     }
 
     @RequestMapping(value = "/list")
     @ResponseBody
-    public JSONObject listMenu(Office office) {
-        Page<Role> page = getPage();
-        return jsonPage(roleService.selectPage(page, null));
-
+    public JSONObject listMenu(Role role) {
+        return jsonPage(roleService.selectPage(getPage(), getEntityWrapper(role)));
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public ModelAndView toAdd() {
-        ModelAndView mv = super.getModelAndView();
-        mv.setViewName("sys/role/role_add");
-        return mv;
+    public String toAdd() {
+        return "sys/role/role_add";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public PageData add() {
-        PageData result = new PageData();
-        try {
-            PageData pd = super.getPageData();
-            pd.put("status", 1);
-            roleService.add(pd);
-            result.put("status", 1);
-        } catch (Exception e) {
-            logger.error("add role error", e);
-            result.put("status", 0);
-            result.put("msg", "新增失败");
-        }
-        return result;
+    public JSONObject add(Role role) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("status", 1);
+        role.setDelFlag(Const.DEL_FLAG_NORMAL);
+        roleService.insert(role);
+        return jsonObject;
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public ModelAndView toEdit(@RequestParam Integer roleId) {
-        PageData pd = null;
-        try {
-            pd = roleService.getById(roleId);
-        } catch (Exception e) {
-            logger.error("get role error", e);
-        }
-        ModelAndView mv = super.getModelAndView();
-        mv.addObject("pd", pd);
-        mv.setViewName("sys/role/role_edit");
-        return mv;
+    public String toEdit(@RequestParam Integer roleId, ModelMap map) {
+        Role role = roleService.selectById(roleId);
+        map.put("role", role);
+
+        return "sys/role/role_edit";
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     @ResponseBody
-    public PageData edit() {
-        PageData result = new PageData();
-        try {
-            PageData pd = super.getPageData();
-            roleService.edit(pd);
-            result.put("status", 1);
-        } catch (Exception e) {
-            logger.error("edit role error", e);
-            result.put("status", 0);
-            result.put("msg", "更新失败");
-        }
-        return result;
+    public JSONObject edit(Role role) {
+        JSONObject jsonObject = new JSONObject();
+        roleService.updateById(role);
+        jsonObject.put("status", 1);
+        return jsonObject;
     }
 
     @RequestMapping(value = "/delete")
     @ResponseBody
-    public PageData delete(@RequestParam Integer roleId) {
-        PageData result = new PageData();
-        try {
-            Integer line = roleService.delete(roleId);
-            if (line > 0) {
-                result.put("status", 1);
-            } else {
-                result.put("status", 0);
-                result.put("msg", "删除失败或者为不可删除状态");
-            }
-        } catch (Exception e) {
-            logger.error("delete role error", e);
-            result.put("status", 0);
-            result.put("msg", "删除失败");
+    public JSONObject delete(@RequestParam Integer roleId) {
+        int effect = roleService.delete(roleId);
+        JSONObject jsonObject = new JSONObject();
+        if (effect == 1) {
+            jsonObject.put("status", 1);
+        } else {
+            jsonObject.put("status", 0);
+            jsonObject.put("msg", "删除失败或者为不可删除状态");
         }
-        return result;
+        return jsonObject;
+
     }
 
     @RequestMapping(value = "/batchDelete")

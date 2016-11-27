@@ -13,6 +13,7 @@
         <module>site</module>
         <module>service</module>
         <module>weixin</module>
+        <module>commons</module>
     </modules>
 
 
@@ -121,7 +122,7 @@
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus</artifactId>
-                <version>1.4.9</version>
+                <version>1.5</version>
             </dependency>
             <dependency>
                 <groupId>net.sf.ehcache</groupId>
@@ -156,6 +157,25 @@
                 <artifactId>mybatis-ehcache</artifactId>
                 <version>1.0.3</version>
             </dependency>
+            <!--时间解析-->
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>2.9.4</version>
+            </dependency>
+            <!--中文转拼音-->
+            <dependency>
+                <groupId>com.belerweb</groupId>
+                <artifactId>pinyin4j</artifactId>
+                <version>2.5.0</version>
+                <optional>true</optional>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.21</version>
+            </dependency>
+
 
         </dependencies>
     </dependencyManagement>
