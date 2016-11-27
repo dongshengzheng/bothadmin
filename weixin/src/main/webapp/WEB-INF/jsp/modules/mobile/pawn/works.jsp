@@ -6,9 +6,9 @@
     <title>首页</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <link rel="stylesheet" href="${ctxStatic}/jquery-weui/lib/weui.css"/>
-    <link rel="stylesheet" href="${ctxStatic}/jquery-weui/css/jquery-weui.css"/>
-    <link rel="stylesheet" href="${ctxStatic}/modules/pawn/css/custom.css"/>
+    <link rel="stylesheet" href="${ctxStatic}/css/weui.min.css"/>
+    <link rel="stylesheet" href="${ctxStatic}/css/jquery-weui.min.css"/>
+    <link rel="stylesheet" href="${ctxStatic}/css/custom.css"/>
 </head>
 <style>
 
@@ -61,7 +61,14 @@
     }
 </style>
 <body>
-<%@ include file="include/search.jsp" %>
+<%--<%@ include file="include/search.jsp" %>--%>
+<div class="swiper-container" data-space-between='10' data-pagination='.swiper-pagination' data-autoplay="1000" style="width:100%; height:40%">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="${ctxStaticImg}/swiper/swiper-1.jpg" alt=""></div>
+        <div class="swiper-slide"><img src="${ctxStaticImg}/swiper/swiper-2.jpg" alt=""></div>
+        <div class="swiper-slide"><img src="${ctxStaticImg}/swiper/swiper-3.jpg" alt=""></div>
+    </div>
+</div>
 
 <div class="weui_tab">
     <div class="weui_tab_bd">
@@ -70,32 +77,32 @@
         </div>
 
         <div class="weui-row items">
-            <c:forEach items="${page.list}" var="works">
-                <a class="weui-col-50 item" href="${ctx}/pawn/mobile/worksDetail/${works.id}">
+            <c:forEach items="${page.records}" var="works">
+                <a class="weui-col-50 item" href="${ctx}/mobile/worksDetail/${works.id}">
                     <div style="text-align: center; height: 200px;background-color: #E0E0E0">
-                        <img class="stone" src="${works.lastImage}" onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"  alt="">
+                        <img class="stone" src="${works.images}" onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"  alt="">
                     </div>
                     <div style="width: 100%;padding: 5px;">
                         <span style="color: #444;font-size: 0.9em;">${works.name}</span><br>
-                        <c:if test="${fns:getDictLabel(works.breed, 'dd_pinzhong', '') != ''}"><span style="padding: 3px;background-color: #9E4F4D;color: black;font-size: 0.8em;">${fns:getDictLabel(works.breed, 'dd_pinzhong', '')}</span></c:if> <br>
+                        <%--<c:if test="${fns:getDictLabel(works.breed, 'dd_pinzhong', '') != ''}"><span style="padding: 3px;background-color: #9E4F4D;color: black;font-size: 0.8em;">${fns:getDictLabel(works.breed, 'dd_pinzhong', '')}</span></c:if> <br>--%>
                         <span style="color: #444;font-size: 0.7em;"><fmt:formatDate value="${works.createDate}" pattern="yyyy-MM-dd"/></span><br>
                     </div>
                 </a>
             </c:forEach>
         </div>
-        <c:if test="${fn:length(page.list) == 0}">
+        <c:if test="${fn:length(page.records) == 0}">
             <div style="text-align:center;margin-top:35%">
                 <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="" style="width: 50%;">
                 <p style="color:#CCCCCC">尚无作品</p>
             </div>
         </c:if>
-        <c:if test="${!page.lastPage}">
+        <c:if test="${page.current < page.pages}">
             <div class="weui-infinite-scroll" id="scroll">
                 <div class="infinite-preloader"></div>
                 正在加载...
             </div>
         </c:if>
-        <input type="hidden" value="${page.pageNo}" id="pageNo">
+        <input type="hidden" value="${page.offsetCurrent}" id="pageNo">
     </div>
     <%@include file="include/tab-1.jsp"%>
 </div>
@@ -107,16 +114,21 @@
     </div>
     <img class="status" src="${ctxStatic}/modules/pawn/img/status-3.png" style="" alt="">
 </a>
-<script src="${ctxStatic}/jquery/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script src="${ctxStatic}/js/jquery-2.1.4.js" type="text/javascript"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.1.0.js" type="text/javascript"></script>
-<script src="${ctxStatic}/jquery-weui/js/jquery-weui.js" type="text/javascript"></script>
+<script src="${ctxStatic}/js/jquery-weui.js" type="text/javascript"></script>
+<script type='text/javascript' src='${ctxStatic}/js/swiper.js' charset='utf-8'></script>
 </body>
 <script type="text/javascript">
+    $(".swiper-container").swiper('.swiper-container', {
+        height: 100
+    });
+
     $('.weui_search_outer').on('submit', function(e){
         return false;
     });
 
-    <c:if test="${!page.lastPage}">
+    <c:if test="${page.current < page.pages}">
     var lastPage = false;
     var loading = false;
     $(".weui_tab_bd").infinite().on("infinite", function () {

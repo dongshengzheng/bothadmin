@@ -46,7 +46,7 @@
         <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>
         <mvc:interceptor>
             <!-- 对所有的请求拦截使用/** ,对某个模块下的请求拦截使用：/myPath/* -->
-            <mvc:mapping path="/pawn/**"/>
+            <mvc:mapping path="/mobile/**"/>
             <ref bean="oauth2Interceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
@@ -81,7 +81,7 @@
 
     <!-- 默认首页 无Controller的url访问直接跳转至 -->
     <!--<mvc:view-controller path="/" view-name="index"/>-->
-    <mvc:view-controller path="/" view-name="redirect:/pawn"/>
+    <mvc:view-controller path="/" view-name="redirect:/mobile"/>
 
 
     <!-- 配置freeMarker模板加载地址 -->

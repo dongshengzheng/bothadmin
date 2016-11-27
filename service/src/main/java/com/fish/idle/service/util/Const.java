@@ -76,4 +76,12 @@ public class Const {
     public static final int DEL_FLAG_NORMAL = 1;
     public static final int DEL_FLAG_DELETE = -1;
 
+    /**
+     * 作品状态
+     */
+    public static final String WORKS_STATUS_DRAFT ="0";    // 草稿
+    public static final String WORKS_STATUS_COMMIT ="1";    // 审核中
+    public static final String WORKS_STATUS_UNPASS ="2";    // 未通过
+    public static final String WORKS_STATUS_PASS ="3";      // 已通过
+
 }

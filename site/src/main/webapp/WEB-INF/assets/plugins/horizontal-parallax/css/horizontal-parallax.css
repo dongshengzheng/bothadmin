@@ -19,12 +19,22 @@ Sequence.js and its dependencies are (c) Ian Lunn Design 2012 unless otherwise s
 .sequence-inner,
 .sequence-inner h2,
 .sequence-inner .info p  {
-	background:none !important;
+	background: none;
 }
 /* End Inner Slider */
 
+.sequence-inner {
+  background: #fff;
+  border-bottom: solid 2px #e8e7e7; 
+  background: -webkit-gradient(linear, 0 0, 0 bottom, from(#fff), to(#defce7));
+  background: -webkit-linear-gradient(#fff, #defce7);
+  background: -moz-linear-gradient(#fff, #defce7);
+  background: -ms-linear-gradient(#fff, #defce7);
+  background: -o-linear-gradient(#fff, #defce7);
+  background: linear-gradient(#fff, #defce7)
+}
+
 #sequence-theme {
-  background: url(../images/bg-sky.png) repeat-x #65b7f1;
   color: #fff;
   font-family:'Open Sans', sans-serif;
   max-width: 2560px;
@@ -99,16 +109,20 @@ Sequence.js and its dependencies are (c) Ian Lunn Design 2012 unless otherwise s
   transition-duration: 4s;
 }
 #sequence-theme h2 {
-	color:#555;
+	color:#fff;
 	font-size: 2em;
 	line-height: 1.2em;
 	padding:5px 8px;
 	display:inline-block;
-	background:url(../images/bg-text.png) repeat;
+  box-shadow: none;
+  font-weight: 200;
+	background:rgba(114, 192, 44, 0.8);
 }
 #sequence-theme .info p {
+  color: #fff;
+  font-size: 20px;
 	padding:5px 10px;
-	background:url(../images/bg-text.png) repeat;
+  background:rgba(114, 192, 44, 0.8);
 }
 #sequence-theme .animate-in .info {
   right: 15%;

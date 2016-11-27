@@ -7,8 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 
-    <link rel="stylesheet" href="${ctxStatic}/css/weui.min.css"/>
-    <link rel="stylesheet" href="${ctxStatic}/css/jquery-weui.min.css"/>
+    <link rel="stylesheet" href="${ctxStatic}/jquery-weui/lib/weui.css"/>
+    <link rel="stylesheet" href="${ctxStatic}/jquery-weui/css/jquery-weui.css"/>
     <link rel="stylesheet" href="${ctxStatic}/modules/pawn/css/custom.css"/>
 </head>
 <style>
@@ -34,9 +34,9 @@
 </style>
 <body>
 
-<script src="${ctxStatic}/js/jquery-2.1.4.js" type="text/javascript"></script>
+<script src="${ctxStatic}/jquery/jquery-1.8.3.min.js" type="text/javascript"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.1.0.js" type="text/javascript"></script>
-<script src="${ctxStatic}/js/jquery-weui.min.js" type="text/javascript"></script>
+<script src="${ctxStatic}/jquery-weui/js/jquery-weui.js" type="text/javascript"></script>
 <div style="text-align:center;background-color: #F7F7F7;padding: 10%;">
     <img src="${ctxStatic}/modules/pawn/img/logo.png" alt="" style="width: 60%;">
 </div>

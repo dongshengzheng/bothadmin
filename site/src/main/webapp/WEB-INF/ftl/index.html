@@ -3,318 +3,285 @@
 <head>
     <meta charset="UTF-8">
     <title>首页</title>
-    <!--Global css-->
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="../assets/css/bootstrap-theme.min.css"/>
-    <link rel="stylesheet" href="../assets/plugins/bootstrap/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="../assets/css/style.css"/>
-    <link rel="stylesheet" href="../assets/css/headers/header1.css"/>
-    <link rel="stylesheet" href="../assets/plugins/bootstrap/css/bootstrap-responsive.min.css"/>
-    <link rel="stylesheet" href="../assets/css/style_responsive.css"/>
-    <link rel="shortcut icon" href="favicon.ico"/>
-    <link rel="stylesheet" href="../assets/plugins/revolution_slider/css/rs-style.css" media="screen"/>
-    <link rel="stylesheet" href="../assets/plugins/revolution_slider/rs-plugin/css/settings.css" media="screen"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../assets/img/favicon.ico.png">
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="../assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <!-- CSS Header and Footer -->
+    <link rel="stylesheet" href="../assets/css/headers/header-v5.css">
+    <link rel="stylesheet" href="../assets/css/footers/footer-v4.css">
+
     <!-- CSS Implementing Plugins -->
-    <link rel="stylesheet" href="../assets/plugins/font-awesome/css/font-awesome.css"/>
-    <link rel="stylesheet" href="../assets/plugins/flexslider/flexslider.css" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="../assets/plugins/parallax-slider/css/parallax-slider.css" type="text/css"/>
-
+    <link rel="stylesheet" href="../assets/plugins/animate.css">
+    <link rel="stylesheet" href="../assets/plugins/line-icons/line-icons.css">
+    <link rel="stylesheet" href="../assets/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" href="../assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="../assets/plugins/revolution-slider/rs-plugin/css/settings.css">
     <!-- CSS Theme -->
-    <link rel="stylesheet" href="../assets/css/themes/default.css" id="style_color"/>
-    <!--<link rel="stylesheet" href="../assets/css/themes/headers/default.css" id="style_color-header-1"/>-->
-    <style type="text/css">
-        .index_nav_head {
-            width: 100%;
-            height: 50px;
-            background: #FEFFFF;
-            z-index: 9999;
-            top: 0px;
-            left: 0px;
-        }
-
-        .index_nav_tab {
-            margin-top: 9px;
-
-        }
-
-        .index_shouye {
-            font-size: 19px;
-        }
-
-        .index_zuoping {
-            font-size: 19px;
-        }
-
-        .index_search {
-            padding-right: 0px;
-            height: 40px;
-            margin-bottom: 0px;
-        }
-
-        .index_search_zuopin {
-            background: #D70016;
-            margin-left: 0px;
-            border: 0;
-            height: 30px;
-            padding: 0px;
-            width: 57px;
-            color: white;
-        }
-
-        .index_search_yonghu {
-            background: #FB591D;
-            margin-left: 3px;
-            border: 0;
-            height: 30px;
-            width: 57px;
-            color: white;
-        }
-
-        .index_wx_login {
-            background: darkorange;
-            margin-left: 3px;
-            border: 0;
-            height: 30px;
-            width: 70px;
-        }
-
-        .index_search_input {
-            border: solid #D70016 1px !important;
-            width: 255px !important;
-            height: 30px !important;
-        }
-
-        .index_qbzp_image_top {
-            margin-top: 10px;
-        }
-
-        .index_qbzp_content {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            -o-text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-    </style>
+    <link rel="stylesheet" href="http://htmlstream.com/preview/unify-v1.9/Shop-UI/assets/css/theme-colors/teal.css"
+          id="style_color">
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="../assets/css/custom.css">
 </head>
+
+
 <body>
 
-<!--=== Header ===-->
-<div class="index_nav_head">
-    <div class="container" style="margin-bottom: 0px !important;height: 50px;">
-        <div class="col-md-2 index_nav_tab">
-            <a href="index.html">
-                <img id="logo-header" src="../assets/img/logo1-default.png" alt="Logo"/>
-            </a>
-        </div>
+<div class="wrapper"><!--body bg white-->
+    <!--head start-->
+    <div class="header-v5 header-static" style="height: 70px;">
+        <div class="container">
+            <div class="row" style="">
+                <!--log-->
+                <div class="col-md-3">
+                    <a class="" href="index.html">
+                        <img id="" style="margin: 12px 0px 6px 0px;display: block" src="../assets/img/index/logo.png"
+                             alt="Logo">
+                    </a>
+                </div>
+                <!--/log-->
 
-        <div class="col-md-1 text-center index_nav_tab">
-            <div onclick="goIndex();">
-                <span class="index_shouye">首页</span>
+                <!--shouye-->
+                <div class="col-md-1 text-center" style="height: 100%;">
+                    <div style="border-top: solid 1px red;">
+                        <a style="text-decoration:none; ">
+                            <h3 style="margin-top: 20px">首页</h3></a></div>
+                </div>
+                <!--/shouye-->
+
+                <!--zuopingdengji-->
+                <div class="col-md-2 text-center" style="height: 100%;">
+                    <div style="border-top: solid 1px red;width: 120px;">
+                        <a style="text-decoration:none;">
+                            <h3 style="margin-top: 20px">作品登记</h3></a>
+                    </div>
+                </div>
+                <!--/zuopingdengji-->
+
+                <!--search-->
+                <div class="col-md-4">
+                    <div class="input-group" style="margin-top: 18px">
+                        <input type="text" class="form-control" placeholder="输入要搜索的作品或用户">
+                        <span class="input-group-btn">
+							<button class="btn" type="button" style="color: white;background: #D70016">搜作品</button>
+							<button class="btn" type="button" style="color: white;background: #FB591D;margin-left: 3px">搜用户</button>
+						</span>
+                    </div>
+                </div>
+                <!--/search-->
+                <!---login-->
+
+
+                <!--/login-->
             </div>
-        </div>
-
-        <div class="col-md-2 text-center index_nav_tab">
-            <div onclick="goIndex();">
-                <span class="index_zuoping">作品登记</span>
-            </div>
-        </div>
-
-        <div class="col-md-5 input-append index_nav_tab index_search">
-            <form>
-                <input type="text" class="index_search_input" style="" placeholder="输入要搜索的作品或用户"/>
-                <button class="index_search_zuopin">搜作品</button>
-                <button class="index_search_yonghu">搜用户</button>
-            </form>
-        </div>
-        <div class="col-md-2 index_nav_tab">
-            <button class="index_wx_login">微信登陆</button>
         </div>
     </div>
-</div>
-<!--=== Header end===-->
+    <!--head end-->
+    <!--=== Slider ===-->
+    <div class="tp-banner-container">
+        <div class="tp-banner">
+            <ul>
+                <!-- SLIDE -->
+                <li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000" data-title="Slide 1">
+                    <!-- MAIN IMAGE -->
+                    <img src="../assets/img/index/1.jpg"  alt="darkblurbg"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+                </li>
+                <!-- END SLIDE -->
 
-<!--轮播图 start-->
-<div class="fullwidthbanner-container">
-    <div class="fullwidthabnner">
-        <ul>
-            <!--the first banner-->
-            <li>
-                <img src="../assets/img/sliders/revolution/bg1.jpg"/>
-            </li>
-            <!--the second banner-->
-            <li>
-                <img src="../assets/img/sliders/revolution/bg2.jpg"/>
-            </li>
-            <!--the third banner-->
-            <li>
-                <img src="../assets/img/sliders/revolution/bg3.jpg"/>
-            </li>
-            <!--the fourth banner-->
-            <li>
-                <img src="../assets/img/sliders/revolution/bg4.jpg"/>
+                <!-- SLIDE -->
+                <li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000" data-title="Slide 2">
+                    <!-- MAIN IMAGE -->
+                    <img src="../assets/img/index/5.jpg"  alt="darkblurbg"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+                </li>
+                <!-- END SLIDE -->
+
+                <!-- SLIDE -->
+                <li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000" data-title="Slide 3">
+                    <!-- MAIN IMAGE -->
+                    <img src="../assets/img/index/3.jpg"  alt="darkblurbg"  data-bgfit="cover" data-bgposition="right top" data-bgrepeat="no-repeat">
+                </li>
+                <!-- END SLIDE -->
+
+                <!-- SLIDE -->
+                <li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000" data-title="Slide 4">
+                    <!-- MAIN IMAGE -->
+                    <img src="../assets/img/index/2.jpg"  alt="darkblurbg"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+                </li>
+                <!-- END SLIDE -->
+
+                <!-- SLIDE -->
+                <li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000" data-title="Slide 5">
+                    <!-- MAIN IMAGE -->
+                    <img src="../assets/img/index/4.jpg"  alt="darkblurbg"  data-bgfit="cover" data-bgposition="right top" data-bgrepeat="no-repeat">
+                </li>
+                <!-- END SLIDE -->
+            </ul>
+            <div class="tp-bannertimer tp-bottom"></div>
+        </div>
+    </div>
+    <!--=== End Slider ===-->
+    <!--content start-->
+
+    <div class="container content-sm">
+        <div class="headline-center margin-bottom-60">
+            <h2>全部作品</h2>
+        </div>
+
+        <ul class="list-unstyled row portfolio-box">
+            <li class="col-sm-4 md-margin-bottom-50">
+                <a class="thumbnail fancybox" data-rel="gallery" title="Project One" href="../assets/img/main/img9.jpg">
+                    <img class="full-width img-responsive" src="../assets/img/main/img9.jpg" alt="">
+                    <span class="portfolio-box-in">
+                            <i class="rounded-x icon-magnifier-add"></i>
+                        </span>
+                </a>
+                <div class="headline-left margin-bottom-10"><h3 class="headline-brd">纯手工打造</h3></div>
+                <small class="project-tag"><i class="fa fa-tag"></i><a href="page_home10.html#">田黄鸡血石</a>, <a href="page_home10.html#">Business</a></small>
+                <p>鸡血石，星辰沙条带昆凌身价东方拉斯加可浪费</p>
             </li>
 
+            <li class="col-sm-4 md-margin-bottom-50">
+                <a class="thumbnail fancybox" data-rel="gallery" title="Project One" href="../assets/img/main/img9.jpg">
+                    <img class="full-width img-responsive" src="../assets/img/main/img9.jpg" alt="">
+                    <span class="portfolio-box-in">
+                            <i class="rounded-x icon-magnifier-add"></i>
+                        </span>
+                </a>
+                <div class="headline-left margin-bottom-10"><h3 class="headline-brd">纯手工打造</h3></div>
+                <small class="project-tag"><i class="fa fa-tag"></i><a href="page_home10.html#">田黄鸡血石</a>, <a href="page_home10.html#">Business</a></small>
+                <p>鸡血石，星辰沙条带昆凌身价东方拉斯加可浪费</p>
+            </li>
+
+            <li class="col-sm-4 md-margin-bottom-50">
+                <a class="thumbnail fancybox" data-rel="gallery" title="Project One" href="../assets/img/main/img9.jpg">
+                    <img class="full-width img-responsive" src="../assets/img/main/img9.jpg" alt="">
+                    <span class="portfolio-box-in">
+                            <i class="rounded-x icon-magnifier-add"></i>
+                        </span>
+                </a>
+                <div class="headline-left margin-bottom-10"><h3 class="headline-brd">纯手工打造</h3></div>
+                <small class="project-tag"><i class="fa fa-tag"></i><a href="page_home10.html#">田黄鸡血石</a>, <a href="page_home10.html#">Business</a></small>
+                <p>鸡血石，星辰沙条带昆凌身价东方拉斯加可浪费</p>
+            </li>
+
+            <li class="col-sm-4 md-margin-bottom-50">
+                <a class="thumbnail fancybox" data-rel="gallery" title="Project One" href="../assets/img/main/img9.jpg">
+                    <img class="full-width img-responsive" src="../assets/img/main/img9.jpg" alt="">
+                    <span class="portfolio-box-in">
+                            <i class="rounded-x icon-magnifier-add"></i>
+                        </span>
+                </a>
+                <div class="headline-left margin-bottom-10"><h3 class="headline-brd">纯手工打造</h3></div>
+                <small class="project-tag"><i class="fa fa-tag"></i><a href="page_home10.html#">田黄鸡血石</a>, <a href="page_home10.html#">Business</a></small>
+                <p>鸡血石，星辰沙条带昆凌身价东方拉斯加可浪费</p>
+            </li>
+
+            <li class="col-sm-4 md-margin-bottom-50">
+                <a class="thumbnail fancybox" data-rel="gallery" title="Project One" href="../assets/img/main/img9.jpg">
+                    <img class="full-width img-responsive" src="../assets/img/main/img9.jpg" alt="">
+                    <span class="portfolio-box-in">
+                            <i class="rounded-x icon-magnifier-add"></i>
+                        </span>
+                </a>
+                <div class="headline-left margin-bottom-10"><h3 class="headline-brd">纯手工打造</h3></div>
+                <small class="project-tag"><i class="fa fa-tag"></i><a href="page_home10.html#">田黄鸡血石</a>, <a href="page_home10.html#">Business</a></small>
+                <p>鸡血石，星辰沙条带昆凌身价东方拉斯加可浪费</p>
+            </li>
+
+            <li class="col-sm-4 md-margin-bottom-50">
+                <a class="thumbnail fancybox" data-rel="gallery" title="Project One" href="../assets/img/main/img9.jpg">
+                    <img class="full-width img-responsive" src="../assets/img/main/img9.jpg" alt="">
+                    <span class="portfolio-box-in">
+                            <i class="rounded-x icon-magnifier-add"></i>
+                        </span>
+                </a>
+                <div class="headline-left margin-bottom-10"><h3 class="headline-brd">纯手工打造</h3></div>
+                <small class="project-tag"><i class="fa fa-tag"></i><a href="page_home10.html#">田黄鸡血石</a>, <a href="page_home10.html#">Business</a></small>
+                <p>鸡血石，星辰沙条带昆凌身价东方拉斯加可浪费</p>
+            </li>
         </ul>
-        <div class="tp-bannertimer tp-bottom"></div>
     </div>
-</div>
-<!--轮播图 end-->
-<!--all works start-->
-<div class="container">
-    <div class="row text-center" style="margin: 30px">
-        <h3>全部作品</h3>
-    </div>
-</div>
-<!--all works start-->
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 index_qbzp_image_top">
-            <img src="../assets/img/new/img1.jpg" alt=""/>
-            <div>
-                <h3>啊啊啊啊啊啊啊啊啊啊啊啊啊</h3>
-                <p>啊啊啊啊啊</p>
-                <p class="index_qbzp_content">
-                    啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+    <!--paging start-->
+    <div class="container text-right" style="margin-top: -40px">
+        <div class="row">
+            <div  class="col-md-12">
+                    <ul class="pagination">
+                        <li><a href="shortcode_compo_pagination.html#">&laquo;</a></li>
+                        <li class="active"><a href="shortcode_compo_pagination.html#">1</a></li>
+                        <li><a href="shortcode_compo_pagination.html#">2</a></li>
+                        <li><a href="shortcode_compo_pagination.html#">3</a></li>
+                        <li><a href="shortcode_compo_pagination.html#">4</a></li>
+                        <li><a href="shortcode_compo_pagination.html#">&raquo;</a></li>
+                    </ul>
             </div>
-        </div>
-        <div class="col-md-4 index_qbzp_image_top">
-            <img src="../assets/img/new/img2.jpg" alt=""/>
-            <div>
-                <h3>啊啊啊啊啊啊啊啊啊啊啊啊啊</h3>
-                <p>啊啊啊啊啊</p>
-                <p class="index_qbzp_content">
-                    啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
-            </div>
-        </div>
-        <div class="col-md-4 index_qbzp_image_top">
-            <img src="../assets/img/new/img3.jpg" alt=""/>
-            <div>
-                <h3>啊啊啊啊啊</h3>
-                <p>啊啊啊啊啊</p>
-                <p class="index_qbzp_content">
-                    啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
-            </div>
-        </div>
-        <div class="col-md-4 index_qbzp_image_top">
-            <img src="../assets/img/new/img4.jpg" alt=""/>
-            <div>
-                <h3>啊啊啊啊啊</h3>
-                <p>啊啊啊啊啊</p>
-                <p class="index_qbzp_content">
-                    啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
-            </div>
-        </div>
-        <div class="col-md-4 index_qbzp_image_top">
-            <img src="../assets/img/new/img4.jpg" alt=""/>
-            <div>
-                <h3>啊啊啊啊啊</h3>
-                <p>啊啊啊啊啊</p>
-                <p class="index_qbzp_content">
-                    啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
-            </div>
-        </div>
-        <div class="col-md-4 index_qbzp_image_top">
-            <img src="../assets/img/new/img4.jpg" alt=""/>
-            <div>
-                <h3>啊啊啊啊啊</h3>
-                <p>啊啊啊啊啊</p>
-                <p class="index_qbzp_content">
-                    啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
-            </div>
-        </div>
-        <div class="col-md-4 index_qbzp_image_top">
-            <img src="../assets/img/new/img4.jpg" alt=""/>
-            <div>
-                <h3>啊啊啊啊啊</h3>
-                <p>啊啊啊啊啊</p>
-                <p class="index_qbzp_content">
-                    啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
-            </div>
-        </div>
-        <div class="col-md-4 index_qbzp_image_top">
-            <img src="../assets/img/new/img4.jpg" alt=""/>
-            <div>
-                <h3>啊啊啊啊啊</h3>
-                <p>啊啊啊啊啊</p>
-                <p class="index_qbzp_content">
-                    啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
-            </div>
-        </div>
-        <div class="col-md-4 index_qbzp_image_top">
-            <img src="../assets/img/new/img4.jpg" alt=""/>
-            <div>
-                <h3>啊啊啊啊啊</h3>
-                <p>啊啊啊啊啊</p>
-                <p class="index_qbzp_content">
-                    啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
-            </div>
-        </div>
-        <div class="col-md-4 index_qbzp_image_top">
-            <img src="../assets/img/new/img4.jpg" alt=""/>
-            <div>
-                <h3>啊啊啊啊啊</h3>
-                <p>啊啊啊啊啊</p>
-                <p class="index_qbzp_content">
-                    啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
-            </div>
+
         </div>
     </div>
-</div>
-
-<!--footer start-->
-<!--=== Copyright ===-->
-<div class="copyright">
-    <div class="container">
-        <div class="row-fluid">
-            <div class="span8">
-                <p>Copyright &copy; 2016.Company name All rights reserved.<a
-                                                                             href="">典当后金</a>
-                </p>
+    <!--content end-->
+    <!--footer-->
+    <div class="footer-v4">
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 ">
+                        <p>
+                            2016 &copy; 典当后金. ALL Rights Reserved.
+                            <!--<a target="_blank" href="">Htmlstream</a> | <a href="index.html#">Privacy Policy</a> | <a-->
+                                <!--href="index.html#">Terms of Service</a>-->
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-inline sponsors-icons pull-right">
+                            <!--<li><i class="fa fa-cc-paypal"></i></li>-->
+                            <!--<li><i class="fa fa-cc-visa"></i></li>-->
+                            <!--<li><i class="fa fa-cc-mastercard"></i></li>-->
+                            <!--<li><i class="fa fa-cc-discover"></i></li>-->
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <!--<div class="span4">-->
-            <!--<a href="index.html"><img id="logo-footer" src="../assets/img/logo2-default.png" class="pull-right" alt="" /></a>-->
-            <!--</div>-->
-        </div><!--/row-fluid-->
-    </div><!--/container-->
-</div><!--/copyright-->
+        </div>
+    </div><!--/copyright-->
+    <!--FOOTER END-->
 
 
-<!--footer end-->
+</div>
 
 <!-- JS Global Compulsory -->
-<script type="text/javascript" src="../assets/js/jquery-1.8.2.min.js"></script>
-<script type="text/javascript" src="../assets/js/modernizr.custom.js"></script>
-<script type="text/javascript" src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="../assets/plugins/jquery/jquery.min.js"></script>
+<script src="../assets/plugins/jquery/jquery-migrate.min.js"></script>
+<script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 <!-- JS Implementing Plugins -->
-<script type="text/javascript" src="../assets/plugins/flexslider/jquery.flexslider-min.js"></script>
-<script type="text/javascript" src="../assets/plugins/parallax-slider/js/modernizr.js"></script>
-<script type="text/javascript" src="../assets/plugins/parallax-slider/js/jquery.cslider.js"></script>
-<script type="text/javascript" src="../assets/plugins/back-to-top.js"></script>
-<script type="text/javascript"
-        src="../assets/plugins/revolution_slider/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
-<script type="text/javascript"
-        src="../assets/plugins/revolution_slider/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<script src="../assets/plugins/back-to-top.js"></script>
+<script src="../assets/plugins/smoothScroll.js"></script>
+<script src="../assets/plugins/jquery.parallax.js"></script>
+<script src="../assets/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
+<script src="../assets/plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="../assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+<script src="../assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<!-- JS Customization -->
+<script src="../assets/js/custom.js"></script>
 <!-- JS Page Level -->
-<script type="text/javascript" src="../assets/js/app.js"></script>
-<script type="text/javascript" src="../assets/js/pages/index.js"></script>
-<script type="text/javascript">
+<script src="../assets/js/shop.app.js"></script>
+<script src="../assets/js/plugins/owl-carousel.js"></script>
+<script src="../assets/js/plugins/revolution-slider.js"></script>
+<script src="../assets/js/plugins/style-switcher.js"></script>
 
-    function goIndex() {
-        alert("index");
-    }
-    ;
+<script>
 
-    jQuery(document).ready(function () {
+    jQuery(document).ready(function() {
         App.init();
-        App.initSliders();
-        Index.initParallaxSlider();
-        Index.initRevolutionSlider();
+        App.initScrollBar();
+        App.initParallaxBg();
+        OwlCarousel.initOwlCarousel();
+        RevolutionSlider.initRSfullWidth();
+        StyleSwitcher.initStyleSwitcher();
     });
 </script>
-<!--[if lt IE 9]>
-<script src="assets/js/respond.js"></script>
-<![endif]-->
 
 </body>
 </html>
