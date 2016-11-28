@@ -15,7 +15,7 @@
         where b.button_id = rs.resource_id
         and rs.role_id=ur.role_id
         and rs.resource_type=3
-        and b.status != -1
+        and b.del_flag != -1
         <if test="_parameter != 1"><!-- only for non-admin user -->
             and ur.user_id = #{userId}
         </if>
@@ -24,7 +24,7 @@
     <select id="count" parameterType="PageData" resultType="int">
         select count(1)
         from sys_button
-        where status != -1
+        where del_flag != -1
         <if test="menuId != null">
             and menu_id = #{menuId}
         </if>
@@ -38,9 +38,9 @@
         menu_id menuId,
         button_name buttonName,
         button_url buttonUrl,
-        status
+        del_flag
         from sys_button
-        where status != -1
+        where del_flag != -1
         <if test="menuId != null">
             and menu_id = #{menuId}
         </if>
@@ -55,12 +55,12 @@
     button_name,
     menu_id,
     button_url,
-    status
+    del_flag
     ) values (
     #{buttonName},
     #{menuId},
     #{buttonUrl},
-    #{status}
+    #{del_flag}
     )
   </insert>
 
@@ -70,9 +70,9 @@
     menu_id menuId,
     button_name buttonName,
     button_url buttonUrl,
-    status
+    del_flag
     from sys_button
-    where status != -1
+    where del_flag != -1
     and button_id = #{buttonId}
   </select>
 
@@ -82,9 +82,9 @@
         menu_id menuId,
         button_name buttonName,
         button_url buttonUrl,
-        status
+        del_flag
         from sys_button
-        where status != -1
+        where del_flag != -1
         <if test="_parameter != null">
             and menu_id = #{menuId}
         </if>
@@ -100,14 +100,14 @@
 
     <update id="delete" parameterType="Integer">
     update sys_button set
-    status	= -1
+    del_flag	= -1
     where
     button_id	= #{buttonId}
   </update>
 
     <update id="batchDelete" parameterType="java.util.List">
         update sys_button set
-        status = -1
+        del_flag = -1
         where
         button_id in
         <foreach collection="list" item="id" open="(" separator="," close=")">

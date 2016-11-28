@@ -92,13 +92,13 @@
     and role_id	= #{roleId}
   </update>
 
-  <update id="batchDelete" parameterType="Integer">
+  <update id="batchDelete" parameterType="List">
     update sys_role set
     del_flag = -1
     where 1=1
     and removable=1
     and role_id in
-    <foreach item="id" collection="idList" open="(" separator="," close=")">
+    <foreach item="id" collection="list" open="(" separator="," close=")">
       #{id}
     </foreach>
   </update>

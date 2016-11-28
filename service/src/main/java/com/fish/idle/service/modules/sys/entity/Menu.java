@@ -1,5 +1,11 @@
 package com.fish.idle.service.modules.sys.entity;
 
+import com.baomidou.mybatisplus.annotations.IdType;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -9,23 +15,68 @@ import java.util.List;
  * @Description:
  * @Date 2015年4月29日
  */
-public class Menu implements java.io.Serializable {
 
+@TableName("sys_menu")
+public class Menu implements Serializable {
 
-    private static final long serialVersionUID = 3545424220181410195L;
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
+
+    /**  */
+    @TableId(value = "menu_id", type = IdType.AUTO)
     private Integer menuId;
+
+    /**
+     * 菜单名称
+     */
+    @TableField(value = "menu_name")
     private String menuName;
+
+    /**
+     * 菜单URL
+     */
+    @TableField(value = "menu_url")
     private String menuUrl;
+
+    /**
+     * 父菜单ID
+     */
+    @TableField(value = "parent_id")
     private Integer parentId;
+
+    /**
+     * 菜单顺序
+     */
+    @TableField(value = "menu_order")
     private Integer menuOrder;
+
+    /**
+     * 菜单图标
+     */
+    @TableField(value = "menu_icon")
     private String menuIcon;
+
+    /**
+     * 菜单类型 资源类型：1-分类； 2-菜单
+     */
+    @TableField(value = "menu_type")
     private Integer menuType;
+
+    /**  */
     private Integer removable;
+
+    /**  */
     private String description;
+
+    /**  */
+    @TableField(value = "del_flag")
     private Integer delFlag;
 
+    @TableField(exist = false)
     private Menu parentMenu;
+    @TableField(exist = false)
     private List<Menu> subMenu;
+    @TableField(exist = false)
     private List<Button> buttons;
 
     public Integer getMenuId() {

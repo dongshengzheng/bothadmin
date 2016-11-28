@@ -49,7 +49,7 @@ public class RoleController extends BaseController {
     public JSONObject listMenu(Role role) {
         EntityWrapper<Role> ew = getEntityWrapper();
         if (!StringUtils.isEmpty(role.getRoleName()))
-            ew.addFilter("roleName",role.getRoleName());
+            ew.addFilter("role_name={0}",role.getRoleName());
         return jsonPage(roleService.selectPage(getPage(), getEntityWrapper()));
     }
 

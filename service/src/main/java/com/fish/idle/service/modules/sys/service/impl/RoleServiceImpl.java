@@ -116,7 +116,7 @@ public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implemen
 
 
         Map<String, Object> map = new HashMap<>();
-        map.put("roleId", roleId);
+        map.put("role_id", roleId);
         List<RoleResource> roleResList = roleResourceMapper.selectByMap(map);
         for (RoleResource roleRes : roleResList) {
             String resFlag = roleRes.getResourceId() + "_" + roleRes.getResourceType();
@@ -145,7 +145,7 @@ public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implemen
                 list.add(roleResource);
             }
             Map<String, Object> map = new HashMap<>();
-            map.put("roleId", roleId);
+            map.put("role_id", roleId);
             roleMapper.deleteByMap(map);
             roleResourceMapper.insertBatch(list);
         }

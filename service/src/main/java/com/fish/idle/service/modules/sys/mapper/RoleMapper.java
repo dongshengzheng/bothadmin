@@ -22,7 +22,7 @@ public interface RoleMapper extends AutoMapper<Role> {
 
     void delete(int roleId);
 
-    void batchDelete(List<Integer> idList);
+    void batchDelete(List<Integer> list);
 
     List<PageData> listResByRoleId(int roleId);
 
