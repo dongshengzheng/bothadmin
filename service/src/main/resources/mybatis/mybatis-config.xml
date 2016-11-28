@@ -12,6 +12,7 @@
 
     <typeAliases>
         <typeAlias type="com.fish.idle.service.util.PageData" alias="PageData"/>
+        <typeAlias type="com.fish.idle.service.modules.sys.Menu" alias="Menu"/>
     </typeAliases>
     <!-- 映射map -->
     <mappers>

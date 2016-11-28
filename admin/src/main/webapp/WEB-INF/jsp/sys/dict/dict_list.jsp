@@ -6,7 +6,6 @@
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
 <xianyu:navigater path="dict"></xianyu:navigater>
-
 <div class="row">
     <div class="col-md-12">
         <div class="portlet light bordered">
@@ -38,9 +37,8 @@
                     <thead>
                     <tr>
                         <th width="10px">
-                            <input type='checkbox' name="chx_default"/>
+                            <input type='checkbox' id ="defaultCheck"/>
                         </th>
-
                         <th>数据值</th>
                         <th>类型</th>
                         <th>字典标签</th>

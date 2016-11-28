@@ -2,36 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fish.idle.service.modules.sys.mapper.MenuMapper">
-
-    <resultMap type="Menu" id="menuResultMap">
-        <id column="menu_id" property="menuId"/>
-        <result column="menu_name" property="menuName"/>
-        <result column="menu_url" property="menuUrl"/>
-        <result column="parent_id" property="parentId"/>
-        <result column="menu_order" property="menuOrder"/>
-        <result column="menu_icon" property="menuIcon"/>
-        <result column="menu_type" property="menuType"/>
-    </resultMap>
-
-    <!-- ztree -->
-    <!-- <resultMap type="Menu" id="menuZtreeResultMap">
-        <id column="menu_id" property="menuId" />
-        <result column="menu_name" property="menuName" />
-        <result column="menu_url" property="menuUrl" />
-        <result column="parent_id" property="parentId" />
-        <result column="menu_order" property="menuOrder" />
-        <result column="menu_icon" property="menuIcon" />
-        <result column="menu_type" property="menuType" />
-        <result column="target" property="target"></result>
-    </resultMap> -->
-
-    <!-- <resultMap type="Button" id="buttonResultMap">
-        <id column="button_id" property="buttonId" />
-        <result column="button_name" property="buttonName" />
-        <result column="button_url" property="buttonUrl" />
-        <result column="status" property="status" />
-    </resultMap> -->
-
     <!-- yang -->
     <select id="findParentMenusByUserId" parameterType="Integer" resultType="Menu">
         select distinct m.*
@@ -39,7 +9,7 @@
         where ur.role_id= rs.role_id
         and rs.resource_id = m.menu_id
         and rs.resource_type = 1
-        and m.status != -1
+        and m.del_flag != -1
         <if test="_parameter != 1"><!--only for non-admin user -->
             and ur.user_id = #{userId}
         </if>
@@ -54,7 +24,7 @@
         and rs.resource_id = m.menu_id
         and rs.resource_type = 2<!-- 菜单资源 -->
         and m.parent_id = #{menuId}
-        and m.status != -1
+        and m.del_flag != -1
         <if test="userId != 1"><!-- only for non-admin user -->
             and ur.user_id = #{userId}
         </if>
@@ -64,7 +34,7 @@
     <select id="count" parameterType="PageData" resultType="int">
         select count(1)
         from sys_menu m
-        where m.status != -1
+        where m.del_flag != -1
         <if test="menuType != null">
             and m.menu_type = #{menuType}
         </if>
@@ -77,17 +47,17 @@
     </select>
 
     <select id="list" parameterType="PageData" resultType="PageData">
-        select m.menu_id menuId,
-        m.menu_name menuName,
-        m.menu_url menuUrl,
-        m.parent_id parentId,
-        m.menu_order menuOrder,
-        m.menu_type menuType,
+        select m.menu_id,
+        m.menu_name,
+        m.menu_url,
+        m.parent_id,
+        m.menu_order,
+        m.menu_type,
         m.removable,
         m.description,
-        m.status
+        m.del_flag
         from sys_menu m
-        where m.status != -1
+        where m.del_flag != -1
         <if test="menuType != null">
             and m.menu_type = #{menuType}
         </if>
@@ -100,18 +70,18 @@
         limit #{from},#{size}
     </select>
 
-    <select id="listBy" parameterType="PageData" resultType="PageData">
-        select m.menu_id menuId,
-        m.menu_name menuName,
-        m.menu_url menuUrl,
-        m.parent_id parentId,
-        m.menu_order menuOrder,
-        m.menu_type menuType,
+    <select id="listBy" parameterType="Menu" resultType="Menu">
+        select m.menu_id,
+        m.menu_name,
+        m.menu_url,
+        m.parent_id,
+        m.menu_order,
+        m.menu_type,
         m.removable,
         m.description,
-        m.status
+        m.del_flag
         from sys_menu m
-        where m.status != -1
+        where m.del_flag != -1
         <if test="menuType != null">
             and m.menu_type = #{menuType}
         </if>
@@ -129,7 +99,7 @@
         menu_type,
         removable,
         description,
-        status
+        del_flag
         ) values (
         #{menuName},
         #{menuUrl},
@@ -138,7 +108,7 @@
         #{menuType},
         #{removable},
         #{description},
-        #{status}
+        #{del_flag}
         )
     </insert>
 
@@ -152,21 +122,21 @@
         menu_type menuType,
         removable,
         description,
-        status
+        del_flag
         from sys_menu
-        where status != -1
+        where del_flag != -1
         and menu_id = #{menuId}
     </select>
 
     <select id="getMenuById" parameterType="Integer" resultType="Menu">
         select * from sys_menu
-        where status != -1
+        where del_flag != -1
         and menu_id = #{menuId}
     </select>
 
     <select id="getByPath" parameterType="String" resultType="Menu">
         select * from sys_menu
-        where status != -1
+        where del_flag != -1
         and menu_url = #{url}
     </select>
 
@@ -183,7 +153,7 @@
 
     <update id="delete" parameterType="Integer">
         update sys_menu set
-        status	= -1
+        del_flag	= -1
         where 1=1
         and removable=1
         and
@@ -192,7 +162,7 @@
 
     <update id="batchDelete" parameterType="java.util.List">
         update sys_menu set
-        status = -1
+        del_flag = -1
         where 1=1
         and removable=1
         and

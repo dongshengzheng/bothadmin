@@ -38,7 +38,7 @@
                     <thead>
                     <tr>
                         <th width="10px" >
-                            <input type='checkbox' name="chx_default"/>
+                            <input type='checkbox' id ="defaultCheck"/>
                         </th>
                         <th>用户名</th>
                         <th>姓名</th>

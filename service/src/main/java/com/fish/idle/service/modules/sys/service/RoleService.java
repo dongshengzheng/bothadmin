@@ -16,7 +16,7 @@ public interface RoleService  extends ISuperService<Role> {
 
     Integer delete(Integer roleId);
 
-    Integer batchDelete(PageData pd);
+    Integer batchDelete(String ids);
 
     List<PageData> listTreeData(Integer roleId) throws Exception ;
 

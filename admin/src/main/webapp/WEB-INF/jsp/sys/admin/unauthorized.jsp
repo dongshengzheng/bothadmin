@@ -16,9 +16,7 @@
                     <i class="fa fa-warning text-yellow"></i> 对不起! 你没有权限访问该页面。
                 </h3>
             </div>
-            <!-- /.error-content -->
         </div>
-        <!-- /.error-page -->
     </div>
 </div>
 <div class="modal-footer">

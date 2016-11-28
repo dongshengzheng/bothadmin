@@ -1,6 +1,11 @@
 package com.fish.idle.service.modules.sys.service.impl;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.framework.service.impl.SuperServiceImpl;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.fish.idle.service.modules.sys.entity.Button;
+import com.fish.idle.service.modules.sys.entity.Menu;
 import com.fish.idle.service.modules.sys.entity.Office;
 import com.fish.idle.service.modules.sys.entity.Role;
 import com.fish.idle.service.modules.sys.mapper.ButtonMapper;
@@ -19,7 +24,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Sun.Han
@@ -62,58 +69,60 @@ public class RoleServiceImpl  extends SuperServiceImpl<RoleMapper, Role>  implem
         return 1;
     }
 
-    public Integer batchDelete(PageData pd) {
-        List<Integer> idList = com.fish.idle.service.util.StringUtils.split(pd.getString("ids"), Const.COMMA);
+    public Integer batchDelete(String ids) {
+        List<Integer> idList = com.fish.idle.service.util.StringUtils.split(ids, Const.COMMA);
         if (null != idList && idList.size() > 0) {
-            pd.put("idList", idList);
-            int count = roleMapper.count(pd);
-            roleMapper.batchDelete(pd);
-            return count;
+            roleMapper.batchDelete(idList);
         }
         return 0;
     }
 
     public List<PageData> listTreeData(Integer roleId) throws Exception {
-        List<PageData> result = new ArrayList<PageData>();
+        JSONArray jsonArray = new JSONArray();
 
-        PageData pd = new PageData();
-        pd.put("menuType", 1);
-        List<PageData> menuList = menuMapper.listBy(pd);
-        pd.put("menuType", 2);
-        for (PageData menu : menuList) {
-            PageData p1 = new PageData();
-            p1.put("id", menu.getString("menuId"));
-            p1.put("pId", menu.getString("parentId"));
-            p1.put("name", menu.getString("menuName"));
+
+        EntityWrapper<Menu> ew1 = new EntityWrapper<>();
+        ew1.addFilter("del_flag != -1 AND menu_type={0}",1);
+        List<Menu> menuList = menuMapper.selectList(ew1);
+
+        for (Menu menu : menuList) {
+            JSONObject p1 = new JSONObject();
+            p1.put("id", menu.getMenuId());
+            p1.put("pId", menu.getParentId());
+            p1.put("name", menu.getMenuName());
             p1.put("open", "true");
-            p1.put("resFlag", menu.getString("menuId") + "_" + menu.getString("menuType"));
-            result.add(p1);
+            p1.put("resFlag", menu.getMenuId() + "_" + menu.getMenuType());
+            jsonArray.add(p1);
 
-            pd.put("parentId", menu.getInteger("menuId"));
-            List<PageData> subMenuList = menuMapper.listBy(pd);
-            for (PageData subMenu : subMenuList) {
-                PageData p2 = new PageData();
-                p2.put("id", subMenu.getString("menuId"));
-                p2.put("pId", subMenu.getString("parentId"));
-                p2.put("name", subMenu.getString("menuName"));
+
+            EntityWrapper<Menu> ew2 = new EntityWrapper<>();
+            ew2.addFilter("del_flag != -1 AND menu_type={0} AND parent_id={1}",2,menu.getMenuId());
+            List<Menu> subMenuList = menuMapper.selectList(ew2);
+            for (Menu subMenu : subMenuList) {
+                JSONObject p2 = new JSONObject();
+                p2.put("id", subMenu.getMenuId());
+                p2.put("pId", subMenu.getParentId());
+                p2.put("name", subMenu.getMenuName());
                 p2.put("open", "true");
-                p2.put("resFlag", subMenu.getString("menuId") + "_" + subMenu.getString("menuType"));
-                result.add(p2);
+                p2.put("resFlag", subMenu.getMenuId() + "_" + subMenu.getMenuType());
+                jsonArray.add(p2);
 
-                List<PageData> buttonList = buttonMapper.listByMenuId(subMenu.getInteger("menuId"));
-                for (PageData button : buttonList) {
-                    PageData p3 = new PageData();
-                    p3.put("id", button.getString("menuId") + "_" + button.getString("buttonId"));
-                    p3.put("pId", button.getString("menuId"));
-                    p3.put("name", button.getString("buttonName"));
+                EntityWrapper<Button> ew3 = new EntityWrapper<>();
+                ew3.addFilter("del_flag != -1 AND menu_id={0} ",subMenu.getMenuId());
+                List<Button> buttonList = buttonMapper.selectList(ew3);
+                for (Button button : buttonList) {
+                    JSONObject p3 = new JSONObject();
+                    p3.put("id",button.getMenuId() + "_" +button.getButtonId());
+                    p3.put("pId", button.getMenuId());
+                    p3.put("name",button.getButtonName());
                     p3.put("open", "true");
-                    p3.put("resFlag", button.getString("buttonId") + "_" + 3);
-                    result.add(p3);
+                    p3.put("resFlag", button.getButtonId() + "_" + 3);
+                    jsonArray.add(p3);
                 }
             }
         }
 
-        List<PageData> roleResList = roleMapper.listResByRoleId(roleId);
+        List<> roleResList = roleMapper.listResByRoleId(roleId);
         for (PageData roleRes : roleResList) {
             String resFlag = roleRes.getInteger("resourceId") + "_" + roleRes.getInteger("resourceType");
             for (PageData p : result) {
