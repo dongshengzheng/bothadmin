@@ -1,0 +1,66 @@
+/*img */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.zoom-box {
+    width: 400px;
+    height: 400px;
+    position: relative;
+}
+
+.small-box {
+    position: relative;
+    border: 1px solid #ccc;
+}
+
+.small-box img {
+    width: 100%;
+    height: 100%;
+}
+
+.img-list ul::after {
+    clear: both;
+    content: '';
+    display: table;
+}
+
+.img-list ul li {
+    float: left;
+    margin-top: 6px;
+    margin-left: 20px;
+    padding: 6px;
+}
+
+.img-list img {
+    width: 45px;
+    height: 45px;
+    border: 2px solid transparent;
+}
+
+
+.img-list img.active {
+    border: 2px solid red;
+}
+
+/**诠释图片列**/
+
+.img-list-quanshi ul::after {
+    clear: both;
+    content: '';
+    display: table;
+}
+
+.img-list-quanshi ul li {
+    float: left;
+    /*margin-top: 6px;*/
+    /*margin-left: 20px;*/
+    padding: 6px;
+}
+
+.img-list-quanshi img {
+    width: 45px;
+    height: 45px;
+    border: 2px solid transparent;
+}
