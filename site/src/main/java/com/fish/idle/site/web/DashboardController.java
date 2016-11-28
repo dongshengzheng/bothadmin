@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 首页
  */
 @Controller
-@RequestMapping("/main")
-public class MainController {
+@RequestMapping("/")
+public class DashboardController {
 
 
-    @RequestMapping("")
+    @RequestMapping(value = { "", "index" })
     public String index(){
+
         return "index";
     }
 

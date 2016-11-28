@@ -63,7 +63,7 @@
         <property name="freemarkerVariables">
             <map>
                 <entry key="xml_escape" value-ref="fmXmlEscape"/>
-                <entry key="staticPath" value="${static}"/>
+                <entry key="staticPath" value="${static_path}"/>
             </map>
         </property>
     </bean>
