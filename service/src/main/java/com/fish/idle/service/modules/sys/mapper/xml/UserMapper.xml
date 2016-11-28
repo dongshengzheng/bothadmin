@@ -3,39 +3,6 @@
 <mapper namespace="com.fish.idle.service.modules.sys.mapper.UserMapper">
 
     <sql id="userColumns">login_name,name,password,rights,status,role_id</sql>
-
-
-    <resultMap type="User" id="userAndRoleResultMap">
-        <id column="user_id" property="userId"/>
-        <result column="login_name" property="loginName"/>
-        <result column="password" property="password"/>
-        <result column="name" property="name"/>
-        <result column="last_login" property="lastLogin"/>
-        <result column="ip" property="ip"/>
-        <result column="status" property="status"/>
-        <result column="skin" property="skin"/>
-        <association property="role" column="roleId" javaType="Role">
-            <id column="role_id" property="roleId"/>
-            <result column="role_name" property="roleName"/>
-            <result column="menu_rights" property="menuRights"/>
-            <result column="button_rights" property="buttonRights"/>
-        </association>
-    </resultMap>
-
-    <resultMap type="User" id="userResultMap">
-        <id column="user_id" property="userId"/>
-        <result column="login_name" property="loginName"/>
-        <result column="password" property="password"/>
-        <result column="name" property="name"/>
-        <result column="rights" property="rights"/>
-        <result column="last_login" property="lastLogin"/>
-        <result column="ip" property="ip"/>
-        <result column="status" property="status"/>
-        <result column="role_id" property="roleId"/>
-        <result column="skin" property="skin"/>
-    </resultMap>
-
-
     <!-- 判断用户名和密码 -->
     <select id="getUserInfo" parameterType="PageData" resultType="PageData" useCache="false">
         select

@@ -22,7 +22,7 @@ public class Menu implements java.io.Serializable {
     private Integer menuType;
     private Integer removable;
     private String description;
-    private Integer status;
+    private Integer delFlag;
 
     private Menu parentMenu;
     private List<Menu> subMenu;
@@ -116,12 +116,12 @@ public class Menu implements java.io.Serializable {
         this.description = description;
     }
 
-    public Integer getStatus() {
-        return status;
+    public Integer getDelFlag() {
+        return delFlag;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setDelFlag(Integer delFlag) {
+        this.delFlag = delFlag;
     }
 
     public List<Button> getButtons() {

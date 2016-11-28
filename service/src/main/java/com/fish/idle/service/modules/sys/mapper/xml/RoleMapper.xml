@@ -3,6 +3,15 @@
 <mapper namespace="com.fish.idle.service.modules.sys.mapper.RoleMapper" >
 
 
+  <sql id="Base_Column_List">
+    role_id roleId,
+    role_name roleName,
+    removable,
+    allocatable,
+    description,
+    del_flag as delFlag
+  </sql>
+
   <!-- yang -->
   <select id="findRolesIdByUserId" resultType="String">
     select distinct r.role_id
