@@ -2,6 +2,7 @@
 
 <@htmlHead title="用户中心">
 <link rel="stylesheet" href="${staticPath}/assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css">
+<link rel="stylesheet" href="${staticPath}/assets/css/jsdd/user/usercenter.css">
 </@htmlHead>
 <@htmlBody>
 
@@ -20,20 +21,20 @@
         <div style="display: table;margin-left: auto ;margin-right: auto;margin-top: -25px;">
 
             <ul class="nav nav-pills nav-stacked margin-bottom-40" style="">
-                <li class="active text-center"><a href="shortcode_accordion_and_tabs.html#my-work"
+                <li class="active text-center"><a href="#my-work"
                                                   data-toggle="tab">我的作品</a></li>
-                <li class="text-center"><a href="shortcode_accordion_and_tabs.html#transfer-work"
+                <li class="text-center"><a href="#transfer-work"
                                            data-toggle="tab">转让作品</a>
                 </li>
-                <li class="text-center"><a href="shortcode_accordion_and_tabs.html#colercting-work"
+                <li class="text-center"><a href="#colercting-work"
                                            data-toggle="tab">收藏作品</a></li>
-                <li class="text-center"><a href="shortcode_accordion_and_tabs.html#see-user" data-toggle="tab">
+                <li class="text-center"><a href="#see-user" data-toggle="tab">
                     关注用户</a>
                 </li>
-                <li class="text-center"><a href="shortcode_accordion_and_tabs.html#integrel"
+                <li class="text-center"><a href="#integrel"
                                            data-toggle="tab">积分中心</a>
                 </li>
-                <li class="text-center"><a href="shortcode_accordion_and_tabs.html#user-info"
+                <li class="text-center"><a href="#user-info"
                                            data-toggle="tab">个人资料</a>
                 </li>
             </ul>
@@ -46,16 +47,16 @@
                 <div class="tab-v1" style="">
                     <ul class="nav nav-tabs">
                         <li class="active" style="">
-                            <a href="shortcode_accordion_and_tabs.html#check-success" data-toggle="tab">审核通过</a>
+                            <a href="#check-success" data-toggle="tab">审核通过</a>
                         </li>
                         <li>
-                            <a href="shortcode_accordion_and_tabs.html#check-fail" data-toggle="tab">审核失败</a>
+                            <a href="#check-fail" data-toggle="tab">审核失败</a>
                         </li>
                         <li>
-                            <a href="shortcode_accordion_and_tabs.html#checking" data-toggle="tab">审核中</a>
+                            <a href="#checking" data-toggle="tab">审核中</a>
                         </li>
                         <li>
-                            <a href="shortcode_accordion_and_tabs.html#trash" data-toggle="tab">草稿箱</a>
+                            <a href="#trash" data-toggle="tab">草稿箱</a>
                         </li>
                     </ul>
                     <div class="tab-content" style="background: rgb(254,255,255)">
@@ -145,6 +146,34 @@
                     <h2>积分明细</h2>
                 </div>
 
+                <div class="row table">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <ul class="">
+                            <li style="" class="jf_active user_jf_li" data-type="qb">
+                                <a href="#quanbu" data-toggle="tab">全部</a>
+                            </li>
+                            <li class="user_jf_li" data-type="cz">
+                                <a href="#chongzhi" data-toggle="tab">充值</a>
+                            </li>
+                            <li class="user_jf_li" data-type="tx">
+                                <a href="#tixian" data-toggle="tab">提现</a>
+                            </li>
+                            <li class="user_jf_li" data-type="qt">
+                                <a href="#qita" data-toggle="tab">其他</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3"></div>
+
+                </div>
+                <#--积分列表-->
+                <div id="jf_content">
+
+
+
+
+                </div>
             </div>
 
         <#--个人资料-->
@@ -221,14 +250,45 @@
 
 </@htmlBody>
 <@footerJS>
+
+<script id="qb_jf" type="mustache">
+    <div>
+        <p>2016-11-29<span>作品被浏览<span>+1</span></span></p>
+        <p>2016-11-29<span>作品被浏览<span>+1</span></span></p>
+        <p>2016-11-29<span>作品被浏览<span>+1</span></span></p>
+        <p>2016-11-29<span>作品被浏览<span>+1</span></span></p>
+        <p>2016-11-29<span>作品被浏览<span>+1</span></span></p>
+        <p>2016-11-29<span>作品被浏览<span>+1</span></span></p>
+    </div>
+
+
+</script>
 <!-- JS Customization -->
 <script type="text/javascript" src="${staticPath}/assets/js/custom.js"></script>
+
+
 <script>
 
     jQuery(document).ready(function () {
         $("#editAvatr").bind("click", function () {
             alert("上传图片")
         });
+
+        /*积分4个tab使用模板绑定*/
+        $(".user_jf_li").bind("click",function () {
+            $(".user_jf_li").removeClass("jf_active");
+            $(this).addClass("jf_active");
+            var type = $(this)[0].getAttribute("data-type");
+            /*ajax 根据 type 请求相应的积分列表*/
+
+            //4中type模板公用
+            var qbtpl = $("#qb_jf")[0].innerHTML;
+            var html = Mustache.render(qbtpl,{});
+            $("#jf_content")[0].innerHTML  = "";
+            $("#jf_content")[0].innerHTML  = html;
+        });
+//        页面加载时主动触发加载全部积分列表
+        $('.jf_active').trigger("click");
 
 
     });
