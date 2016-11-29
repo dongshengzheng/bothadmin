@@ -1,7 +1,10 @@
 package com.fish.idle.service.modules.sys.service.impl;
 
+import com.baomidou.framework.service.impl.SuperServiceImpl;
+import com.fish.idle.service.modules.sys.entity.RoleResource;
 import com.fish.idle.service.modules.sys.entity.User;
 import com.fish.idle.service.modules.sys.mapper.RoleMapper;
+import com.fish.idle.service.modules.sys.mapper.RoleResourceMapper;
 import com.fish.idle.service.modules.sys.mapper.UserMapper;
 import com.fish.idle.service.modules.sys.service.UserService;
 import com.fish.idle.service.util.AppUtil;
@@ -27,7 +30,7 @@ import java.util.List;
  */
 @Transactional(readOnly = true)
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends SuperServiceImpl<UserMapper, User>  implements UserService {
     @Autowired
     private UserMapper userMapper;
 
@@ -38,15 +41,15 @@ public class UserServiceImpl implements UserService {
         userMapper.setSKIN(pd);
     }
 
-    public void saveIP(PageData pd) {
-        userMapper.saveIP(pd);
+    public void saveIP(User user) {
+        userMapper.saveIP(user);
     }
 
     public PageData getUserByNameAndPwd(PageData pd) {
         return userMapper.getUserInfo(pd);
     }
 
-    @Transactional(readOnly = false)
+    @Transactional
     public void updateLastLogin(PageData pd) {
         userMapper.updateLastLogin2(pd);
     }

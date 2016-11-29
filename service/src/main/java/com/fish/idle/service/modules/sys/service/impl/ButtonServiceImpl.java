@@ -1,6 +1,10 @@
 package com.fish.idle.service.modules.sys.service.impl;
 
+import com.baomidou.framework.service.impl.SuperServiceImpl;
+import com.fish.idle.service.modules.sys.entity.Button;
+import com.fish.idle.service.modules.sys.entity.Office;
 import com.fish.idle.service.modules.sys.mapper.ButtonMapper;
+import com.fish.idle.service.modules.sys.mapper.OfficeMapper;
 import com.fish.idle.service.modules.sys.service.ButtonService;
 import com.fish.idle.service.util.AppUtil;
 import com.fish.idle.service.util.Const;
@@ -22,7 +26,7 @@ import java.util.List;
  */
 @Transactional(readOnly = true)
 @Service
-public class ButtonServiceImpl implements ButtonService {
+public class ButtonServiceImpl extends SuperServiceImpl<ButtonMapper, Button> implements ButtonService {
     @Autowired
     private ButtonMapper buttonMapper;
 

@@ -50,7 +50,7 @@ public class RoleController extends BaseController {
         EntityWrapper<Role> ew = getEntityWrapper();
         if (!StringUtils.isEmpty(role.getRoleName()))
             ew.addFilter("role_name={0}",role.getRoleName());
-        return jsonPage(roleService.selectPage(getPage(), getEntityWrapper()));
+        return jsonPage(roleService.selectPage(getPage(), ew));
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)

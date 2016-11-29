@@ -12,7 +12,7 @@
 	</update>
 
     <!-- 存入IP -->
-    <update id="saveIP" parameterType="PageData" flushCache="false">
+    <update id="saveIP" parameterType="User" flushCache="false">
 		update sys_user 
 			set 
 				ip = #{ip}

@@ -1,5 +1,10 @@
 package com.fish.idle.service.modules.sys.entity;
 
+import com.baomidou.mybatisplus.annotations.IdType;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -11,12 +16,16 @@ import java.util.List;
  * @Description:
  * @Date 2015年4月30日
  */
+@TableName("sys_user")
 public class User implements Serializable {
 
+    @TableId(value = "user_id", type = IdType.AUTO)
     private Integer userId; // 用户id
+    @TableField(value = "login_name")
     private String loginName; // 用户名
     private String password; // 密码
     private String name; // 姓名
+    @TableField(value = "last_login")
     private String lastLogin; // 最后登录时间
     private String ip; // 用户登录ip地址
     private Integer status; // 状态
@@ -24,9 +33,13 @@ public class User implements Serializable {
     private String email; // 邮箱
     private String phone; // 电话号码
     private Integer skin; // 皮肤
-    private List<Role> roles;
-    private Page page; // 分页对象
+
+    @TableField(value = "open_id")
     private String openId; // 微信openId
+    @TableField(exist = false)
+    private List<Role> roles;
+
+
 
     public Integer getUserId() {
         return userId;
@@ -122,14 +135,6 @@ public class User implements Serializable {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
-    }
-
-    public Page getPage() {
-        return page;
-    }
-
-    public void setPage(Page page) {
-        this.page = page;
     }
 
     public String getOpenId() {

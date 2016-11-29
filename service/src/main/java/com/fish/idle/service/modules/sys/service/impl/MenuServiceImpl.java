@@ -1,6 +1,9 @@
 package com.fish.idle.service.modules.sys.service.impl;
 
+import com.baomidou.framework.service.impl.SuperServiceImpl;
+import com.fish.idle.service.modules.sys.entity.Button;
 import com.fish.idle.service.modules.sys.entity.Menu;
+import com.fish.idle.service.modules.sys.mapper.ButtonMapper;
 import com.fish.idle.service.modules.sys.mapper.MenuMapper;
 import com.fish.idle.service.modules.sys.service.MenuService;
 import com.fish.idle.service.util.AppUtil;
@@ -23,7 +26,7 @@ import java.util.List;
  */
 @Transactional(readOnly = true)
 @Service
-public class MenuServiceImpl implements MenuService {
+public class MenuServiceImpl extends SuperServiceImpl<MenuMapper, Menu> implements MenuService {
 
     @Autowired
     private MenuMapper menuMapper;

@@ -1,5 +1,6 @@
 package com.fish.idle.admin.modules.sys.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.fish.idle.admin.controller.BaseController;
 import com.fish.idle.service.modules.sys.entity.Button;
 import com.fish.idle.service.modules.sys.entity.Menu;
@@ -53,7 +54,6 @@ public class LoginController extends BaseController {
      * @throws Exception
      */
     public void getRemoteIP(String loginName) throws Exception {
-        PageData pd = new PageData();
         HttpServletRequest request = this.getRequest();
         String ip = "";
         if (request.getHeader("x-forwarded-for") == null) {
@@ -61,9 +61,10 @@ public class LoginController extends BaseController {
         } else {
             ip = request.getHeader("x-forwarded-for");
         }
-        pd.put("loginName", loginName);
-        pd.put("ip", ip);
-        userService.saveIP(pd);
+        User user = new User();
+        user.setLoginName(loginName);
+        user.setIp(ip);
+        userService.saveIP(user);
     }
 
     /**
@@ -72,14 +73,11 @@ public class LoginController extends BaseController {
      * @return
      */
     @RequestMapping(value = "/login_toLogin")
-    public ModelAndView toLogin() throws Exception {
-        ModelAndView mv = this.getModelAndView();
-        PageData pd = new PageData();
-        pd = this.getPageData();
-        pd.put("sysname", Tools.readTxtFile(Const.SYSNAME)); // 读取系统名称
-        mv.setViewName("sys/admin/login");
-        mv.addObject("pd", pd);
-        return mv;
+    public String toLogin() throws Exception {
+        JSONObject jsonObject = new JSONObject();
+        // TODO: 29/11/2016 改成读取properties 此处系统中似乎没有用的上
+        jsonObject.put("sysname", Tools.readTxtFile(Const.SYSNAME));
+        return "sys/admin/login";
     }
 
     /**
@@ -87,50 +85,43 @@ public class LoginController extends BaseController {
      */
     @RequestMapping(value = "/login_login")
     @ResponseBody
-    public Object login() throws Exception {
-        Map<String, String> map = new HashMap<String, String>();
-        PageData pd = this.getPageData();
+    public Object login(String keyData) throws Exception {
+        Map<String, String> map = new HashMap<>();
         String errInfo = "";
-        String keyData = pd.getString("keyData");
         keyData = keyData.replaceAll("ksbadmtn1f2izwqy", "");
         keyData = keyData.replaceAll("ipvb5cxat0zn9eg7", "");
         String keyDatas[] = keyData.split(",00,");
-
         if (null != keyDatas && keyDatas.length == 3) {
             // shiro管理的session
             Subject currentUser = SecurityUtils.getSubject();
             Session session = currentUser.getSession();
             String sessionCode = (String) session.getAttribute(Const.SESSION_SECURITY_CODE); // 获取session中的验证码
-
+            // TODO: 29/11/2016 此处明显有问题，后续进行逻辑修复：登录超过三次才显示验证码
             String code = keyDatas[2];
-            boolean useValiCode = true;// 关闭验证码
+            // 关闭验证码
+            boolean useValiCode = true;
             if (useValiCode && (null == code || "".equals(code))) {
-                errInfo = "nullcode"; // 验证码为空
+                // 验证码为空
+                errInfo = "nullcode";
             } else {
                 String loginName = keyDatas[0];
                 String password = keyDatas[1];
-                pd.put("loginName", loginName);
                 if (!useValiCode || (Tools.notEmpty(sessionCode) && sessionCode.equalsIgnoreCase(code))) {
                     String passwd = new SimpleHash("SHA-1", loginName, password).toString(); // 密码加密
-                    pd.put("password", passwd);
-                    pd = userService.getUserByNameAndPwd(pd);// TODO
+                    User user = new User();
+                    user.setLoginName(loginName);
+                    user.setPassword(passwd);
+                    user = userService.selectOne(user);
                     // 用于验证用户名和密码，改方法名需要改良
-                    if (pd != null) {
-                        pd.put("lastLogin", DateUtil.getTime().toString());
-                        userService.updateLastLogin(pd);
-                        User user = new User();// TODO
-                        // 改成直接从mybatis中返回的user,不需要下面逐行注入
-                        user.setUserId(pd.getInteger("userId"));
-                        user.setLoginName(pd.getString("loginName"));
-                        user.setPassword(pd.getString("password"));
-                        user.setName(pd.getString("name"));
-                        user.setLastLogin(pd.getString("lastLogin"));
-                        user.setIp(pd.getString("ip"));
-                        user.setStatus(pd.getInteger("status"));
-                        session.setAttribute(Const.SESSION_USER, user);// TODO ?
-                        session.removeAttribute(Const.SESSION_SECURITY_CODE); // TODO
-                        // ?
-
+                    if (user != null) {
+                        User u = new User();
+                        u.setUserId(user.getUserId());
+                        u.setLastLogin(DateUtil.getTime());
+                        user.setUserId(user.getUserId());
+                        // TODO: 29/11/2016 研究update机制
+                        userService.updateSelectiveById(u);
+                        session.setAttribute(Const.SESSION_USER, user);
+                        session.removeAttribute(Const.SESSION_SECURITY_CODE);
                         // shiro加入身份验证
                         Subject subject = SecurityUtils.getSubject();
                         UsernamePasswordToken token = new UsernamePasswordToken(loginName, password);
@@ -139,7 +130,6 @@ public class LoginController extends BaseController {
                         } catch (AuthenticationException e) {
                             errInfo = "身份验证失败！";
                         }
-
                     } else {
                         errInfo = "usererror"; // 用户名或密码有误
                     }
