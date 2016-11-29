@@ -112,16 +112,190 @@
                     ullamcorper.</p>
             </div>
             <div class="tab-pane fade in" id="see-user">
-                <img alt="" class="pull-left lft-img-margin img-width-200"
-                     src="${staticPath}/assets/img/main/img10.jpg">
-                <h4>see-user</h4>
-                <p>Vivamus imperdiet condimentum diam, eget placerat felis consectetur id. Donec eget orci metus, ac
-                    adipiscing nunc. Pellentesque fermentum, ante ac interdum ullamcorper. Donec eget orci metus,
-                    <strong>ac adipiscing nunc.</strong> Vivamus imperdiet condimentum diam, eget placerat felis
-                    consectetur id. Donec eget orci metus, ac adipiscing nunc. Pellentesque fermentum, ante ac
-                    interdum id. Donec eget orci metus, ac adipiscing nunc. Pellentesque fermentum, ante ac interdum
-                    ullamcorper. Donec eget orci metus, ac adipiscing nunc. Pellentesque fermentum, ante ac <strong>interdum
-                        ullamcorper.</strong></p>
+                <div class="row">
+                    <div class="col-md-9 " style="margin-top: 20px">
+                        <div class="media">
+                            <div class="pull-left">
+                                <div style="height: 60px;width: 60px;border-radius: 50px;overflow:hidden">
+                                    <img class="" src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
+                                </div>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">M小路痴M_7132</h4>
+                                <p>作品
+                                    <span style="margin-left: 10px;color: #FB591D">1509</span>
+                                    <span style="margin-left: 10px">|</span>
+                                    <span style="margin-left: 10px;">粉丝</span>
+                                    <span style="color: #FB591D;margin-left: 10px">126</span>
+                                    <span style="float:  right;"><button class="btn btn-default">
+                                <i class="glyphicon glyphicon-ok" style="margin-right: 3px"></i>已经关注</button></span>
+                                </p>
+                                <p>地址
+                                    <span style="margin-left: 5px;">江苏</span>
+                                    <span style="margin-left: 5px">连云港</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="media">
+                            <div class="pull-left">
+                                <div style="height: 60px;width: 60px;border-radius: 50px;overflow:hidden">
+                                    <img class="" src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
+                                </div>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">M小路痴M_7132</h4>
+                                <p>作品
+                                    <span style="margin-left: 10px;color: #FB591D">1509</span>
+                                    <span style="margin-left: 10px">|</span>
+                                    <span style="margin-left: 10px;">粉丝</span>
+                                    <span style="color: #FB591D;margin-left: 10px">126</span>
+                                    <span style="float:  right;"><button class="btn btn-default">
+                                <i class="glyphicon glyphicon-plus" style="margin-right: 3px"></i>添加关注</button>
+                            </span>
+                                </p>
+                                <p>地址
+                                    <span style="margin-left: 5px;">江苏</span>
+                                    <span style="margin-left: 5px">连云港</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="media">
+                            <div class="pull-left">
+                                <div style="height: 60px;width: 60px;border-radius: 50px;overflow:hidden">
+                                    <img class="" src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
+                                </div>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">M小路痴M_7132</h4>
+                                <p>作品
+                                    <span style="margin-left: 10px;color: #FB591D">1509</span>
+                                    <span style="margin-left: 10px">|</span>
+                                    <span style="margin-left: 10px;">粉丝</span>
+                                    <span style="color: #FB591D;margin-left: 10px">126</span>
+                                    <span style="float:  right;"><button class="btn btn-default">
+                                <i class="glyphicon glyphicon-plus" style="margin-right: 3px"></i>添加关注</button>
+                            </span>
+                                </p>
+                                <p>地址
+                                    <span style="margin-left: 5px;">江苏</span>
+                                    <span style="margin-left: 5px">连云港</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="media">
+                            <div class="pull-left">
+                                <div style="height: 60px;width: 60px;border-radius: 50px;overflow:hidden">
+                                    <img class="" src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
+                                </div>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">M小路痴M_7132</h4>
+                                <p>作品
+                                    <span style="margin-left: 10px;color: #FB591D">1509</span>
+                                    <span style="margin-left: 10px">|</span>
+                                    <span style="margin-left: 10px;">粉丝</span>
+                                    <span style="color: #FB591D;margin-left: 10px">126</span>
+                                    <span style="float:  right;"><button class="btn btn-default">
+                                <i class="glyphicon glyphicon-plus" style="margin-right: 3px"></i>添加关注</button>
+                            </span>
+                                </p>
+                                <p>地址
+                                    <span style="margin-left: 5px;">江苏</span>
+                                    <span style="margin-left: 5px">连云港</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="media">
+                            <div class="pull-left">
+                                <div style="height: 60px;width: 60px;border-radius: 50px;overflow:hidden">
+                                    <img class="" src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
+                                </div>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">M小路痴M_7132</h4>
+                                <p>作品
+                                    <span style="margin-left: 10px;color: #FB591D">1509</span>
+                                    <span style="margin-left: 10px">|</span>
+                                    <span style="margin-left: 10px;">粉丝</span>
+                                    <span style="color: #FB591D;margin-left: 10px">126</span>
+                                    <span style="float:  right;"><button class="btn btn-default">
+                                <i class="glyphicon glyphicon-plus" style="margin-right: 3px"></i>添加关注</button>
+                            </span>
+                                </p>
+                                <p>地址
+                                    <span style="margin-left: 5px;">江苏</span>
+                                    <span style="margin-left: 5px">连云港</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="media">
+                            <div class="pull-left">
+                                <div style="height: 60px;width: 60px;border-radius: 50px;overflow:hidden">
+                                    <img class="" src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
+                                </div>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">M小路痴M_7132</h4>
+                                <p>作品
+                                    <span style="margin-left: 10px;color: #FB591D">1509</span>
+                                    <span style="margin-left: 10px">|</span>
+                                    <span style="margin-left: 10px;">粉丝</span>
+                                    <span style="color: #FB591D;margin-left: 10px">126</span>
+                                    <span style="float:  right;"><button class="btn btn-default">
+                                <i class="glyphicon glyphicon-plus" style="margin-right: 3px"></i>添加关注</button>
+                            </span>
+                                </p>
+                                <p>地址
+                                    <span style="margin-left: 5px;">江苏</span>
+                                    <span style="margin-left: 5px">连云港</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="media">
+                            <div class="pull-left">
+                                <div style="height: 60px;width: 60px;border-radius: 50px;overflow:hidden">
+                                    <img class="" src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
+                                </div>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">M小路痴M_7132</h4>
+                                <p>作品
+                                    <span style="margin-left: 10px;color: #FB591D">1509</span>
+                                    <span style="margin-left: 10px">|</span>
+                                    <span style="margin-left: 10px;">粉丝</span>
+                                    <span style="color: #FB591D;margin-left: 10px">126</span>
+                                    <span style="float:  right;"><button class="btn btn-default">
+                                <i class="glyphicon glyphicon-plus" style="margin-right: 3px"></i>添加关注</button>
+                            </span>
+                                </p>
+                                <p>地址
+                                    <span style="margin-left: 5px;">江苏</span>
+                                    <span style="margin-left: 5px">连云港</span>
+                                </p>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+
             </div>
 
         <#--积分中心-->
