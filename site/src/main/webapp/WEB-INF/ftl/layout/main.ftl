@@ -1,6 +1,5 @@
 <!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Transitional//EN” “http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd“>
 <!-- TODO在生产环境时改成CDN配置 -->
-<#--<#assign staticPath = "http://localhost:8080${rc.contextPath}"/>-->
 <#import "/spring.ftl" as spring />
 
 <#setting url_escaping_charset='utf-8'>
@@ -54,9 +53,6 @@ description="金石典当"
           id="style_color">
     <!-- CSS Customization -->
     <link rel="stylesheet" href="${staticPath}/assets/css/custom.css">
-
-
-
     <#nested/>
 
     <#--<script type="text/javascript">-->
