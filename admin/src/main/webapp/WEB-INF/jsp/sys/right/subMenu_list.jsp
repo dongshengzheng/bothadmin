@@ -10,7 +10,7 @@
         <li><a href="./"><i class="icon-home"></i> 主页</a></li>
         <li class="active">系统管理</li>
         <li><a href="right" data-target="navTab">菜单信息</a></li>
-        <li><a href="right/subMenu?parentId=${pd.menuId}" data-target="navTab">子菜单信息</a></li>
+        <li><a href="right/subMenu?parentId=${menu.menuId}" data-target="navTab">子菜单信息</a></li>
     </ol>
 </section>
 
@@ -23,7 +23,7 @@
                         <div class="col-md-6">
                             <div class="btn-group">
                                 <shiro:hasPermission name="right/addMenu">
-                                    <button data-url="right/addMenu?parentId=${pd.menuId}" data-model="dialog" class="btn btn-outline btn-circle btn-sm green"> 新增
+                                    <button data-url="right/addMenu?parentId=${menu.menuId}" data-model="dialog" class="btn btn-outline btn-circle btn-sm green"> 新增
                                         <i class="fa fa-plus"></i>
                                     </button>
                                 </shiro:hasPermission>
@@ -73,7 +73,7 @@
                 "type": "post",
                 "data": function (data) {
                     data.menuType = "2";
-                    data.parentId = ${pd.menuId};
+                    data.parentId = ${menu.menuId};
                     data.keyword = $("#keyword").val();
                 }
             },

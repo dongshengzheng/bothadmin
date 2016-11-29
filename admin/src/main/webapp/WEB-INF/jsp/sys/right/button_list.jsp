@@ -10,8 +10,8 @@
         <li><a href="./"><i class="icon-home"></i> 主页</a></li>
         <li class="active">系统管理</li>
         <li><a href="right" data-target="navTab">菜单信息</a></li>
-        <li><a href="right/subMenu?parentId=${pd.parentId}" data-target="navTab">子菜单信息</a></li>
-        <li><a href="right/button?menuId=${pd.menuId}" data-target="navTab">权限信息</a></li>
+        <li><a href="right/subMenu?parentId=${menu.parentId}" data-target="navTab">子菜单信息</a></li>
+        <li><a href="right/button?menuId=${menu.menuId}" data-target="navTab">权限信息</a></li>
     </ol>
 </div>
 
@@ -24,7 +24,7 @@
                         <div class="col-md-6">
                             <div class="btn-group">
                                 <shiro:hasPermission name="right/addBtn">
-                                    <button data-url="right/addBtn?menuId=${pd.menuId}" data-model="dialog" class="btn btn-outline btn-circle btn-sm green"> 新增
+                                    <button data-url="right/addBtn?menuId=${menu.menuId}" data-model="dialog" class="btn btn-outline btn-circle btn-sm green"> 新增
                                         <i class="fa fa-plus"></i>
                                     </button>
                                 </shiro:hasPermission>
@@ -71,8 +71,8 @@
                 "type": "post",
                 "data": function (data) {
                     data.buttonName = $("#buttonName").val();
-                    data.menuId = ${pd.menuId};
-                    data.keyword = $("#keyword").val();
+                    data.menuId = ${menu.menuId};
+                    data.menuName = $("#keyword").val();
                 }
             },
             "language": {

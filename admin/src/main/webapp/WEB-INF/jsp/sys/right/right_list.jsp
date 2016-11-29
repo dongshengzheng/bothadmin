@@ -72,7 +72,7 @@
                 "type": "post",
                 "data": function (data) {
                     data.menuType = "1";
-                    data.keyword = $("#keyword").val();
+                    data.menuName = $("#keyword").val();
                 }
             },
             "language": {

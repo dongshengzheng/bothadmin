@@ -19,7 +19,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -85,8 +87,8 @@ public class LoginController extends BaseController {
      */
     @RequestMapping(value = "/login_login")
     @ResponseBody
-    public Object login(String keyData) throws Exception {
-        Map<String, String> map = new HashMap<>();
+    public JSONObject login(String keyData) throws Exception {
+        JSONObject jsonObject = new JSONObject();
         String errInfo = "";
         keyData = keyData.replaceAll("ksbadmtn1f2izwqy", "");
         keyData = keyData.replaceAll("ipvb5cxat0zn9eg7", "");
@@ -143,51 +145,36 @@ public class LoginController extends BaseController {
         } else {
             errInfo = "error"; // 缺少参数
         }
-        map.put("result", errInfo);
-        Object obj = AppUtil.returnObject(new PageData(), map);
-        return obj;
+        jsonObject.put("result", errInfo);
+        return jsonObject;
     }
 
     /**
      * 访问系统首页
      */
     @RequestMapping(value = "/sys/index")
-    public ModelAndView login_index(Page page) {
-        ModelAndView mv = this.getModelAndView();
-
-        PageData pd = new PageData();
-        pd = this.getPageData();
-        pd.put("changeMenu", "yes");// 加载所有菜单
+    public String login_index(ModelMap map) {
+        // 加载所有菜单
+        map.put("changeMenu", "yes"); // TODO: 29/11/2016 ??
+        map.put("sysname", Tools.readTxtFile(Const.SYSNAME)); // 读取系统名称
         try {
-
             // shiro管理的session
             Subject currentUser = SecurityUtils.getSubject();
             Session session = currentUser.getSession();
-
             User user = (User) session.getAttribute(Const.SESSION_USER);
             if (user != null) {
-
                 initRights(user, session);
-
                 session.setAttribute(Const.SESSION_USERNAME, user.getLoginName()); // 放入用户名
-
-                List<Button> allButtonList = new ArrayList<Button>();
-
-                mv.setViewName("sys/index");
-                mv.addObject("user", user);
-                mv.addObject("menuList", session.getAttribute(Const.SESSION_ALLMENULIST));
-                mv.addObject("buttonList", allButtonList);
-            } else {
-                mv.setViewName("sys/admin/login");// session失效后跳转登录页面
+                map.put("user", user);
+                map.put("menuList", session.getAttribute(Const.SESSION_ALLMENULIST));
+                return "sys/index";
             }
 
         } catch (Exception e) {
-            mv.setViewName("sys/admin/login");
             logger.error(e.getMessage(), e);
+            return "sys/admin/login";
         }
-        pd.put("sysname", Tools.readTxtFile(Const.SYSNAME)); // 读取系统名称
-        mv.addObject("pd", pd);
-        return mv;
+        return "sys/admin/login";
     }
 
     /**
@@ -271,22 +258,12 @@ public class LoginController extends BaseController {
      * @return
      */
     @RequestMapping(value = "/logout")
-    public ModelAndView logout() {
-        ModelAndView mv = this.getModelAndView();
-        PageData pd = new PageData();
-
+    public String logout(ModelMap map) {
         // shiro销毁登录，logout的时候shiro会删掉所有session
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
-
-        pd = this.getPageData();
-        String msg = pd.getString("msg");
-        pd.put("msg", msg);
-
-        pd.put("sysname", Tools.readTxtFile(Const.SYSNAME)); // 读取系统名称
-        mv.setViewName("sys/admin/login");
-        mv.addObject("pd", pd);
-        return mv;
+        map.put("sysname", Tools.readTxtFile(Const.SYSNAME)); // 读取系统名称 TODO:更改读取方式
+        return "sys/admin/login";
     }
 
 }

@@ -1,8 +1,15 @@
 package com.fish.idle.admin.modules.sys.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.fish.idle.admin.controller.BaseController;
+import com.fish.idle.admin.util.StringUtils;
+import com.fish.idle.service.modules.sys.entity.Button;
+import com.fish.idle.service.modules.sys.entity.Menu;
+import com.fish.idle.service.modules.sys.entity.Role;
 import com.fish.idle.service.modules.sys.service.ButtonService;
 import com.fish.idle.service.modules.sys.service.MenuService;
+import com.fish.idle.service.util.Const;
 import com.fish.idle.service.util.PageData;
 
 import org.slf4j.Logger;
@@ -39,246 +46,163 @@ public class RightController extends BaseController {
 
     @RequestMapping(value = "/subMenu")
     public String subMenu(ModelMap map, @RequestParam Integer parentId) {
-        PageData pd = null;
-        try {
-            pd = menuService.getById(parentId);
-        } catch (Exception e) {
-            logger.error("subMenu error", e);
-        }
-        map.put("pd", pd);
+        EntityWrapper<Menu> ew = getEntityWrapper();
+        ew.addFilter("menu_id={0}", parentId);
+        menuService.selectOne(ew);
+        map.put("menu", menuService.selectOne(ew));
         return "sys/right/subMenu_list";
     }
 
     @RequestMapping(value = "/button")
-    public ModelAndView button(@RequestParam Integer menuId) {
-        PageData pd = null;
-        try {
-            pd = menuService.getById(menuId);
-        } catch (Exception e) {
-            logger.error("button error", e);
-        }
-        ModelAndView mv = super.getModelAndView();
-        mv.addObject("pd", pd);
-        mv.setViewName("sys/right/button_list");
-        return mv;
+    public String button(ModelMap map, @RequestParam Integer menuId) {
+        EntityWrapper<Menu> ew = getEntityWrapper();
+        ew.addFilter("menu_id={0}", menuId);
+        menuService.selectOne(ew);
+        map.put("menu", menuService.selectOne(ew));
+        return "sys/right/button_list";
     }
 
     @RequestMapping(value = "/list")
     @ResponseBody
-    public PageData listMenu() {
-        PageData result = null;
-        try {
-            PageData pd = super.getPageData();
-            result = menuService.list(pd);
-        } catch (Exception e) {
-            logger.error("list menu error", e);
-            result = new PageData();
-        }
-        return result;
+    public JSONObject listMenu(Menu menu) {
+        EntityWrapper<Menu> ew = getEntityWrapper();
+        if (menu.getMenuType() != null)
+            ew.addFilter("menu_type={0}", menu.getMenuType());
+        if (menu.getParentId() != null)
+            ew.addFilter("parent_id={0}", menu.getParentId());
+        if (!StringUtils.isEmpty(menu.getMenuName()))
+            ew.addFilter("CONCAT(IFNULL(menu_name,''),IFNULL(menu_url,'')) like {0}", "%" + menu.getMenuName() + "%");
+        return jsonPage(menuService.selectPage(getPage(), ew));
+
     }
 
     @RequestMapping(value = "/addMenu", method = RequestMethod.GET)
-    public ModelAndView toAddMenu(Integer parentId) {
-        ModelAndView mv = super.getModelAndView();
+    public String toAddMenu(Integer parentId, ModelMap map) {
         if (parentId == null) {
-            mv.addObject("parentId", 0);
-            mv.addObject("menuType", 1);
+            map.put("parentId", 0);
+            map.put("menuType", 1);
         } else {
-            mv.addObject("parentId", parentId);
-            mv.addObject("menuType", 2);
+            map.put("parentId", parentId);
+            map.put("menuType", 2);
         }
-        mv.setViewName("sys/right/menu_add");
-        return mv;
+        return "sys/right/menu_add";
     }
 
     @RequestMapping(value = "/addMenu", method = RequestMethod.POST)
     @ResponseBody
-    public PageData addMenu() {
-        PageData result = new PageData();
-        try {
-            PageData pd = super.getPageData();
-            pd.put("status", 1);
-            menuService.add(pd);
-            result.put("status", 1);
-        } catch (Exception e) {
-            logger.error("add menu error", e);
-            result.put("status", 0);
-            result.put("msg", "新增失败");
-        }
-        return result;
+    public JSONObject addMenu(Menu menu) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("status", 1);
+        menu.setDelFlag(Const.DEL_FLAG_NORMAL);
+        menuService.insert(menu);
+        return jsonObject;
+
     }
 
     @RequestMapping(value = "/editMenu", method = RequestMethod.GET)
-    public ModelAndView toEditMenu(@RequestParam Integer menuId) {
-        PageData pd = null;
-        try {
-            pd = menuService.getById(menuId);
-        } catch (Exception e) {
-            logger.error("get menu error", e);
-        }
-        ModelAndView mv = super.getModelAndView();
-        mv.addObject("pd", pd);
-        mv.setViewName("sys/right/menu_edit");
-        return mv;
+    public String toEditMenu(@RequestParam Integer menuId, ModelMap map) {
+        Menu menu = menuService.selectById(menuId);
+        map.put("menu", menu);
+        return "sys/right/menu_edit";
+
     }
 
     @RequestMapping(value = "/editMenu", method = RequestMethod.POST)
     @ResponseBody
-    public PageData editMenu() {
-        PageData result = new PageData();
-        try {
-            PageData pd = super.getPageData();
-            menuService.edit(pd);
-            result.put("status", 1);
-        } catch (Exception e) {
-            logger.error("edit menu error", e);
-            result.put("status", 0);
-            result.put("msg", "更新失败");
-        }
-        return result;
+    public JSONObject editMenu(Menu menu) {
+        JSONObject jsonObject = new JSONObject();
+        menuService.updateById(menu);
+        jsonObject.put("status", 1);
+        return jsonObject;
     }
 
     @RequestMapping(value = "/deleteMenu")
     @ResponseBody
-    public PageData deleteMenu(@RequestParam Integer menuId) {
-        PageData result = new PageData();
-        try {
-            Integer line = menuService.delete(menuId);
-            if (line > 0) {
-                result.put("status", 1);
-            } else {
-                result.put("status", 0);
-                result.put("msg", "删除失败或者为不可删除状态");
-            }
-
-        } catch (Exception e) {
-            logger.error("delete menu error", e);
-            result.put("status", 0);
-            result.put("msg", "删除失败");
+    public JSONObject deleteMenu(@RequestParam Integer menuId) {
+        int effect = menuService.delete(menuId);
+        JSONObject jsonObject = new JSONObject();
+        if (effect == 1) {
+            jsonObject.put("status", 1);
+        } else {
+            jsonObject.put("status", 0);
+            jsonObject.put("msg", "删除失败或者为不可删除状态");
         }
-        return result;
+        return jsonObject;
     }
 
     @RequestMapping(value = "/batchDeleteMenu")
     @ResponseBody
-    public PageData batchDeleteMenu(@RequestParam String ids) {
-        PageData result = new PageData();
-        try {
-            int length = ids.split(",").length;
-            Integer line = menuService.batchDelete(ids);
-            if (line < length) {
-                result.put("status", 0);
-                result.put("msg", "成功【" + line + "】条,失败【" + (length - line) + "】条");
-            } else {
-                result.put("status", 1);
-            }
-        } catch (Exception e) {
-            logger.error("batch delete menu error", e);
-            result.put("status", 0);
-            result.put("msg", "批量删除失败");
-        }
-        return result;
+    public JSONObject batchDeleteMenu(@RequestParam String ids) {
+        JSONObject jsonObject = new JSONObject();
+        menuService.batchDelete(ids);
+        jsonObject.put("status", 1);
+        return jsonObject;
+
+
     }
 
     /************************Button*****************************/
 
     @RequestMapping(value = "/listBtn")
     @ResponseBody
-    public PageData listBtn(@RequestParam Integer menuId) {
-        PageData result = null;
-        try {
-            PageData pd = super.getPageData();
-            result = buttonService.list(pd);
-        } catch (Exception e) {
-            logger.error("list button error", e);
-            result = new PageData();
-        }
-        return result;
+    public JSONObject listBtn(@RequestParam Integer menuId, String keyword) {
+        EntityWrapper<Button> ew = new EntityWrapper<>();
+        ew.where("del_flag={0}", Const.DEL_FLAG_NORMAL);
+        ew.addFilter("menu_id={0}", menuId);
+        if (!StringUtils.isEmpty(keyword))
+            ew.addFilter(" CONCAT(IFNULL(button_name,''),IFNULL(button_url,'')) like {0}", "%" + keyword + "%");
+        return jsonPage(buttonService.selectPage(getPage(), ew));
+
     }
 
     @RequestMapping(value = "/addBtn", method = RequestMethod.GET)
-    public ModelAndView toAddBtn(@RequestParam Integer menuId) {
-        ModelAndView mv = super.getModelAndView();
-        mv.addObject("menuId", menuId);
-        mv.setViewName("sys/right/button_add");
-        return mv;
+    public String toAddBtn(@RequestParam Integer menuId, ModelMap map) {
+        map.put("menuId", menuId);
+        return "sys/right/button_add";
     }
 
     @RequestMapping(value = "/addBtn", method = RequestMethod.POST)
     @ResponseBody
-    public PageData addBtn() {
-        PageData result = new PageData();
-        try {
-            PageData pd = super.getPageData();
-            pd.put("status", 1);
-            buttonService.add(pd);
-            result.put("status", 1);
-        } catch (Exception e) {
-            logger.error("add button error", e);
-            result.put("status", 0);
-            result.put("msg", "新增失败");
-        }
-        return result;
+    public JSONObject addBtn(Button button) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("status", 1);
+        button.setDelFlag(Const.DEL_FLAG_NORMAL);
+        buttonService.insert(button);
+        return jsonObject;
     }
 
     @RequestMapping(value = "/editBtn", method = RequestMethod.GET)
-    public ModelAndView toEditBtn(@RequestParam Integer buttonId) {
-        PageData pd = null;
-        try {
-            pd = buttonService.getById(buttonId);
-        } catch (Exception e) {
-            logger.error("get button error", e);
-        }
-        ModelAndView mv = super.getModelAndView();
-        mv.addObject("pd", pd);
-        mv.setViewName("sys/right/button_edit");
-        return mv;
+    public String toEditBtn(@RequestParam Integer buttonId, ModelMap map) {
+        Button button = buttonService.selectById(buttonId);
+        map.put("button", button);
+        return "sys/right/button_edit";
     }
 
     @RequestMapping(value = "/editBtn", method = RequestMethod.POST)
     @ResponseBody
-    public PageData editBtn() {
-        PageData result = new PageData();
-        try {
-            PageData pd = super.getPageData();
-            buttonService.edit(pd);
-            result.put("status", 1);
-        } catch (Exception e) {
-            logger.error("edit button error", e);
-            result.put("status", 0);
-            result.put("msg", "更新失败");
-        }
-        return result;
+    public JSONObject editBtn(Button button) {
+        JSONObject jsonObject = new JSONObject();
+        buttonService.updateById(button);
+        jsonObject.put("status", 1);
+        return jsonObject;
     }
 
     @RequestMapping(value = "/deleteBtn")
     @ResponseBody
-    public PageData deleteBtn(@RequestParam Integer buttonId) {
-        PageData result = new PageData();
-        try {
-            buttonService.delete(buttonId);
-            result.put("status", 1);
-        } catch (Exception e) {
-            logger.error("delete button error", e);
-            result.put("status", 0);
-            result.put("msg", "删除失败");
-        }
-        return result;
+    public JSONObject deleteBtn(@RequestParam Integer buttonId) {
+        buttonService.delete(buttonId);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("status", 1);
+        return jsonObject;
     }
 
     @RequestMapping(value = "/batchDeleteBtn")
     @ResponseBody
-    public PageData batchDeleteBtn(@RequestParam String ids) {
-        PageData result = new PageData();
-        try {
-            buttonService.batchDelete(ids);
-            result.put("status", 1);
-        } catch (Exception e) {
-            logger.error("batch delete button error", e);
-            result.put("status", 0);
-            result.put("msg", "批量删除失败");
-        }
-        return result;
+    public JSONObject batchDeleteBtn(@RequestParam String ids) {
+        JSONObject jsonObject = new JSONObject();
+        buttonService.batchDelete(ids);
+        jsonObject.put("status", 1);
+        return jsonObject;
     }
 
 }
