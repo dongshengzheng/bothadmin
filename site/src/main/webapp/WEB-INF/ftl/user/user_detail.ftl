@@ -1,4 +1,4 @@
-<#include "layout/main.ftl"/>
+<#include "../layout/main.ftl"/>
 
 <@htmlHead title="用户详情">
 </@htmlHead>

@@ -1,6 +1,10 @@
-<#include "layout/main.ftl"/>
+<#include "../layout/main.ftl"/>
 
 <@htmlHead title="作品详情">
+    <link rel="stylesheet" href="${staticPath}/assets/css/jsdd/work/work_detail.css">
+    <!-- CSS Page Style -->
+    <link rel="stylesheet" href="${staticPath}/assets/css/pages/profile.css">
+    <link rel="stylesheet" href="${staticPath}/assets/css/pages/shortcode_timeline2.css">
 </@htmlHead>
 <@htmlBody>
 <hr style="margin: 0px;padding: 0px"/>
@@ -268,7 +272,8 @@
                                         <div class="col-md-1" style="">
                                             <div style="margin-top: 5px;margin-bottom: 5px; margin-left: 15px;">
                                                 <img style="height: 50px;width: 50px;-webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px;overflow:hidden"
-                                                     class="" src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
+                                                     class="" src="${staticPath}/assets/img/testimonials/img5.jpg"
+                                                     alt=""/>
                                             </div>
                                         </div>
                                         <!--文本-->
@@ -282,7 +287,8 @@
                                                 </label>
                                                 <span>
                                         <button class="btn btn-sm btn-info"><i class="glyphicon glyphicon-picture"></i>上传图片</button>
-                                        <span style="float: right;"><button class="btn btn-sm btn-u btn-u-red" type="submit">确认诠释</button></span>
+                                        <span style="float: right;"><button class="btn btn-sm btn-u btn-u-red"
+                                                                            type="submit">确认诠释</button></span>
                                     </span>
                                                 <div style="border: solid 1px gainsboro;height: 50px;margin: 10px 0px"></div>
                                             </form>
@@ -296,7 +302,8 @@
                                         <div class="col-md-1" style="margin-top: 15px">
                                             <div style="margin-top: 5px;margin-bottom: 5px; margin-left: 15px;">
                                                 <img style="height: 50px;width: 50px;-webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px;overflow:hidden"
-                                                     class="" src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
+                                                     class="" src="${staticPath}/assets/img/testimonials/img5.jpg"
+                                                     alt=""/>
                                             </div>
                                         </div>
                                         <!--文本-->
@@ -309,11 +316,17 @@
                                                 啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
                                             <div class="img-list-quanshi"><!-- 图片列表-->
                                                 <ul style="margin-top: -15px">
-                                                    <li style="padding-left: 0px"><img class="" src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/></li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/></li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/></li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/></li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/></li>
+                                                    <li style="padding-left: 0px"><img class=""
+                                                                                       src="${staticPath}/assets/img/team/img2-sm.jpg"
+                                                                                       alt=""/></li>
+                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
+                                                    </li>
+                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
+                                                    </li>
+                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
+                                                    </li>
+                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -324,7 +337,8 @@
                                         <div class="col-md-1" style="margin-top: 15px">
                                             <div style="margin-top: 5px;margin-bottom: 5px; margin-left: 15px;">
                                                 <img style="height: 50px;width: 50px;-webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px;overflow:hidden"
-                                                     class="" src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
+                                                     class="" src="${staticPath}/assets/img/testimonials/img5.jpg"
+                                                     alt=""/>
                                             </div>
                                         </div>
                                         <!--文本-->
@@ -337,11 +351,17 @@
                                                 啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
                                             <div class="img-list-quanshi"><!-- 图片列表-->
                                                 <ul style="margin-top: -15px">
-                                                    <li style="padding-left: 0px"><img class="" src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/></li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/></li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/></li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/></li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/></li>
+                                                    <li style="padding-left: 0px"><img class=""
+                                                                                       src="${staticPath}/assets/img/team/img2-sm.jpg"
+                                                                                       alt=""/></li>
+                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
+                                                    </li>
+                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
+                                                    </li>
+                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
+                                                    </li>
+                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -353,7 +373,8 @@
                                         <div class="col-md-1" style="margin-top: 15px">
                                             <div style="margin-top: 5px;margin-bottom: 5px; margin-left: 15px;">
                                                 <img style="height: 50px;width: 50px;-webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px;overflow:hidden"
-                                                     class="" src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
+                                                     class="" src="${staticPath}/assets/img/testimonials/img5.jpg"
+                                                     alt=""/>
                                             </div>
                                         </div>
                                         <!--文本-->
@@ -366,11 +387,17 @@
                                                 啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
                                             <div class="img-list-quanshi"><!-- 图片列表-->
                                                 <ul style="margin-top: -15px">
-                                                    <li style="padding-left: 0px"><img class="" src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/></li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/></li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/></li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/></li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/></li>
+                                                    <li style="padding-left: 0px"><img class=""
+                                                                                       src="${staticPath}/assets/img/team/img2-sm.jpg"
+                                                                                       alt=""/></li>
+                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
+                                                    </li>
+                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
+                                                    </li>
+                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
+                                                    </li>
+                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -381,7 +408,8 @@
                                         <div class="col-md-1" style="margin-top: 15px">
                                             <div style="margin-top: 5px;margin-bottom: 5px; margin-left: 15px;">
                                                 <img style="height: 50px;width: 50px;-webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px;overflow:hidden"
-                                                     class="" src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
+                                                     class="" src="${staticPath}/assets/img/testimonials/img5.jpg"
+                                                     alt=""/>
                                             </div>
                                         </div>
                                         <!--文本-->
@@ -394,11 +422,17 @@
                                                 啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
                                             <div class="img-list-quanshi"><!-- 图片列表-->
                                                 <ul style="margin-top: -15px">
-                                                    <li style="padding-left: 0px"><img class="" src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/></li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/></li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/></li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/></li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/></li>
+                                                    <li style="padding-left: 0px"><img class=""
+                                                                                       src="${staticPath}/assets/img/team/img2-sm.jpg"
+                                                                                       alt=""/></li>
+                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
+                                                    </li>
+                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
+                                                    </li>
+                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
+                                                    </li>
+                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -412,7 +446,8 @@
                                         <!--Timeline-->
                                         <ul class="timeline-v2">
                                             <li>
-                                                <time class="cbp_tmtime" datetime=""><span>12:16:06</span> <span>2016-05-26</span></time>
+                                                <time class="cbp_tmtime" datetime=""><span>12:16:06</span> <span>2016-05-26</span>
+                                                </time>
                                                 <i class="cbp_tmicon rounded-x hidden-xs"></i>
                                                 <div class="cbp_tmlabel">
 
@@ -423,7 +458,8 @@
                                             </li>
 
                                             <li>
-                                                <time class="cbp_tmtime" datetime=""><span>12:16:06</span> <span>2016-05-26</span></time>
+                                                <time class="cbp_tmtime" datetime=""><span>12:16:06</span> <span>2016-05-26</span>
+                                                </time>
                                                 <i class="cbp_tmicon rounded-x hidden-xs"></i>
                                                 <div class="cbp_tmlabel">
 
@@ -434,7 +470,8 @@
                                             </li>
 
                                             <li>
-                                                <time class="cbp_tmtime" datetime=""><span>12:16:06</span> <span>2016-05-26</span></time>
+                                                <time class="cbp_tmtime" datetime=""><span>12:16:06</span> <span>2016-05-26</span>
+                                                </time>
                                                 <i class="cbp_tmicon rounded-x hidden-xs"></i>
                                                 <div class="cbp_tmlabel">
 
@@ -465,31 +502,38 @@
 
             <div class="row">
                 <div class="col-md-4" style="padding-right: 0px;width: 75px">
-                    <img class="" style="margin: 10px 0px 10px 10px;height: 50px;width: 50px" src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
+                    <img class="" style="margin: 10px 0px 10px 10px;height: 50px;width: 50px"
+                         src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
                 </div>
 
                 <div class="col-md-4" style="padding-right: 0px;width: 75px">
-                    <img class="" style="margin: 10px 0px 10px 10px;height: 50px;width: 50px" src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
+                    <img class="" style="margin: 10px 0px 10px 10px;height: 50px;width: 50px"
+                         src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
                 </div>
 
                 <div class="col-md-4" style="padding-right: 0px;width: 75px">
-                    <img class="" style="margin: 10px 0px 10px 10px;height: 50px;width: 50px" src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
+                    <img class="" style="margin: 10px 0px 10px 10px;height: 50px;width: 50px"
+                         src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
                 </div>
 
                 <div class="col-md-4" style="padding-right: 0px;width: 75px">
-                    <img class="" style="margin: 10px 0px 10px 10px;height: 50px;width: 50px" src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
+                    <img class="" style="margin: 10px 0px 10px 10px;height: 50px;width: 50px"
+                         src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
                 </div>
 
                 <div class="col-md-4" style="padding-right: 0px;width: 75px">
-                    <img class="" style="margin: 10px 0px 10px 10px;height: 50px;width: 50px" src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
+                    <img class="" style="margin: 10px 0px 10px 10px;height: 50px;width: 50px"
+                         src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
                 </div>
 
                 <div class="col-md-4" style="padding-right: 0px;width: 75px">
-                    <img class="" style="margin: 10px 0px 10px 10px;height: 50px;width: 50px" src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
+                    <img class="" style="margin: 10px 0px 10px 10px;height: 50px;width: 50px"
+                         src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
                 </div>
 
                 <div class="col-md-4" style="padding-right: 0px;width: 75px">
-                    <img class="" style="margin: 10px 0px 10px 10px;height: 50px;width: 50px" src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
+                    <img class="" style="margin: 10px 0px 10px 10px;height: 50px;width: 50px"
+                         src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
                 </div>
 
 
@@ -507,7 +551,9 @@
                         </div>
                     </div>
                     <div class="media-body">
-                        <h6 class="media-heading" style="margin-top: 5px">M小路痴M_7132<span style="float:right;margin-top: 8px"><button class="btn btn-default btn-sm" style="font-size: 8px">
+                        <h6 class="media-heading" style="margin-top: 5px">M小路痴M_7132<span
+                                style="float:right;margin-top: 8px"><button class="btn btn-default btn-sm"
+                                                                            style="font-size: 8px">
                             <i class="glyphicon glyphicon-plus" style="margin-right: 3px"></i>关注</button>
                         </span></h6>
                         <p style="font-size: 10px">2016-1-5 12:15:50
@@ -522,7 +568,9 @@
                         </div>
                     </div>
                     <div class="media-body">
-                        <h6 class="media-heading" style="margin-top: 5px">M小路痴M_7132<span style="float:right;margin-top: 8px"><button class="btn btn-default btn-sm" style="font-size: 8px">
+                        <h6 class="media-heading" style="margin-top: 5px">M小路痴M_7132<span
+                                style="float:right;margin-top: 8px"><button class="btn btn-default btn-sm"
+                                                                            style="font-size: 8px">
                             <i class="glyphicon glyphicon-plus" style="margin-right: 3px"></i>关注</button>
                         </span></h6>
                         <p style="font-size: 10px">2016-1-5 12:15:50
@@ -538,7 +586,9 @@
                         </div>
                     </div>
                     <div class="media-body">
-                        <h6 class="media-heading" style="margin-top: 5px">M小路痴M_7132<span style="float:right;margin-top: 8px"><button class="btn btn-default btn-sm" style="font-size: 8px">
+                        <h6 class="media-heading" style="margin-top: 5px">M小路痴M_7132<span
+                                style="float:right;margin-top: 8px"><button class="btn btn-default btn-sm"
+                                                                            style="font-size: 8px">
                             <i class="glyphicon glyphicon-plus" style="margin-right: 3px"></i>关注</button>
                         </span></h6>
                         <p style="font-size: 10px">2016-1-5 12:15:50
@@ -553,7 +603,9 @@
                         </div>
                     </div>
                     <div class="media-body">
-                        <h6 class="media-heading" style="margin-top: 5px">M小路痴M_7132<span style="float:right;margin-top: 8px"><button class="btn btn-default btn-sm" style="font-size: 8px">
+                        <h6 class="media-heading" style="margin-top: 5px">M小路痴M_7132<span
+                                style="float:right;margin-top: 8px"><button class="btn btn-default btn-sm"
+                                                                            style="font-size: 8px">
                             <i class="glyphicon glyphicon-plus" style="margin-right: 3px"></i>关注</button>
                         </span></h6>
                         <p style="font-size: 10px">2016-1-5 12:15:50
@@ -568,7 +620,6 @@
     </div>
 </div>
 <!---作品详情 作品诠释 转让历史-->
-
 
 
 <!---作品详情 作品诠释 转让历史-->

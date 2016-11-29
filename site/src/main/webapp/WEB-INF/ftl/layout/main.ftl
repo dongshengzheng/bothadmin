@@ -25,8 +25,8 @@ description="金石典当"
     <meta http-equiv="Content-Language" content="zh-CN">
     <meta name="keywords" content="${keywords}">
     <meta name="description" content="${description}">
-    <meta name="author" content="苏融贷(www.srdlc.com)">
-    <meta name="Owner" content="哈撒韦财富(www.srdlc.com)">
+    <meta name="author" content="金石典当">
+    <meta name="Owner" content="金石典当">
     <meta name="renderer" content="webkit">
     <meta name="360-site-verification" content="31d01ce20ae90f9c2b20f572bdb494d0"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

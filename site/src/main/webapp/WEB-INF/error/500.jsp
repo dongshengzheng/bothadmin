@@ -90,20 +90,6 @@
 
     <h1 class="title">页面不能访问，请稍后再试</h1>
 
-    <nav style="margin-top: 20px;">
-        <ul>
-            <li><a href="http://www.srdlc.com">苏融贷主页</a></li>
-            <li class="divider">|</li>
-            <li><a href="http://www.srdlc.com/aboutUs.html">关于我们</a></li>
-            <li class="divider">|</li>
-            <li><a href="http://www.srdlc.com/invest/list.html">我要投资</a></li>
-            <li class="divider">|</li>
-            <li><a href="http://www.srdlc.com/borrow/view.html">我要借款</a></li>
-            <li class="divider">|</li>
-            <li><a href="http://www.srdlc.com/newGuide.html">新手帮助</a></li>
-        </ul>
-    </nav>
-
 
 </div>
 </body>
