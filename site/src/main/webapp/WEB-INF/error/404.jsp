@@ -43,7 +43,7 @@
 <!--=== Sticky Footer ===-->
 <div class="container sticky-footer">
     <p class="copyright-space">
-        2016 &copy; 典当后金. ALL Rights Reserved.
+        2016 &copy; 金石典当. ALL Rights Reserved.
     </p>
 </div>
 <!--=== End Sticky-Footer ===-->

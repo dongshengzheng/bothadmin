@@ -1,12 +1,12 @@
 <!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Transitional//EN” “http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd“>
 <!-- TODO在生产环境时改成CDN配置 -->
-<#--<#assign staticPath = "http://localhost:8080${rc.contextPath}"/>-->
 <#import "/spring.ftl" as spring />
+
 <#setting url_escaping_charset='utf-8'>
 <#macro htmlHead
-title="典当后金"
-keywords="典当后金"
-description="典当后金"
+title="金石典当"
+keywords="金石典当"
+description="金石典当"
 >
 <!--[if IE 7]> <html class="ie ie7"> <![endif]-->
 <!--[if IE 8]> <html class="ie ie8"> <![endif]-->
@@ -25,8 +25,8 @@ description="典当后金"
     <meta http-equiv="Content-Language" content="zh-CN">
     <meta name="keywords" content="${keywords}">
     <meta name="description" content="${description}">
-    <meta name="author" content="苏融贷(www.srdlc.com)">
-    <meta name="Owner" content="哈撒韦财富(www.srdlc.com)">
+    <meta name="author" content="金石典当">
+    <meta name="Owner" content="金石典当">
     <meta name="renderer" content="webkit">
     <meta name="360-site-verification" content="31d01ce20ae90f9c2b20f572bdb494d0"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,9 +53,6 @@ description="典当后金"
           id="style_color">
     <!-- CSS Customization -->
     <link rel="stylesheet" href="${staticPath}/assets/css/custom.css">
-
-
-
     <#nested/>
 
     <#--<script type="text/javascript">-->
@@ -157,7 +154,7 @@ description="典当后金"
                 <div class="row">
                     <div class="col-md-6 ">
                         <p>
-                            2016 &copy; 典当后金. ALL Rights Reserved.
+                            2016 &copy; 金石典当. ALL Rights Reserved.
                             <!--<a target="_blank" href="">Htmlstream</a> | <a href="index1.html#">Privacy Policy</a> | <a-->
                             <!--href="index1.html#">Terms of Service</a>-->
                         </p>
@@ -197,6 +194,8 @@ description="典当后金"
 <script src="${staticPath}/assets/js/plugins/owl-carousel.js"></script>
 <script src="${staticPath}/assets/js/plugins/revolution-slider.js"></script>
 <script src="${staticPath}/assets/js/plugins/style-switcher.js"></script>
+<#--模板-->
+<script src="${staticPath}/assets/js/mustache.js"></script>
 <!-- 全局JS结束 -->
     <#nested/>
 </body>
