@@ -36,7 +36,7 @@ public class Role implements Serializable {
 	/** 可被分配 0=不行 1=可以 */
 	private Integer allocatable;
 
-	/**  */
+	/** 描述 */
 	private String description;
 
 	/** 是否删除 1：没删除 -1：删除 */

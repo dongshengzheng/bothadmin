@@ -1,5 +1,10 @@
 package com.fish.idle.service.modules.sys.entity;
 
+import com.baomidou.mybatisplus.annotations.IdType;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+
 /**
  * @author Sun.Han
  * @version 1.0
@@ -7,15 +12,25 @@ package com.fish.idle.service.modules.sys.entity;
  * @Description:
  * @Date 2015年4月29日
  */
+@TableName("sys_button")
 public class Button implements java.io.Serializable {
 
+    @TableField(exist = false)
     private static final long serialVersionUID = 8552758267353482774L;
-    private Integer buttonId;
-    private Integer menuId;
-    private String buttonName;
-    private String buttonUrl;
-    private Integer status;
 
+    @TableId(value = "button_id",type = IdType.AUTO)
+    private Integer buttonId;
+    @TableField(value = "menu_id")
+    private Integer menuId;
+    @TableField(value = "button_name")
+    private String buttonName;
+    @TableField(value = "button_url")
+    private String buttonUrl;
+
+    @TableField(value = "del_flag")
+    private Integer delFlag;
+
+    @TableField(exist = false)
     private boolean hasButton = false;
 
     public Integer getButtonId() {
@@ -58,12 +73,11 @@ public class Button implements java.io.Serializable {
         this.hasButton = hasButton;
     }
 
-    public Integer getStatus() {
-        return status;
+    public Integer getDelFlag() {
+        return delFlag;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setDelFlag(Integer delFlag) {
+        this.delFlag = delFlag;
     }
-
 }

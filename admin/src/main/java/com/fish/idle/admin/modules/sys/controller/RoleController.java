@@ -3,11 +3,11 @@ package com.fish.idle.admin.modules.sys.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.baomidou.mybatisplus.plugins.Page;
-import com.fish.idle.service.modules.sys.entity.Office;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.fish.idle.admin.util.StringUtils;
 import com.fish.idle.service.modules.sys.entity.Role;
+import com.fish.idle.service.modules.sys.entity.RoleTree;
 import com.fish.idle.service.modules.sys.service.RoleService;
 import com.fish.idle.service.util.Const;
 import org.slf4j.Logger;
@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fish.idle.service.util.PageData;
 import com.fish.idle.admin.controller.BaseController;
 
 /**
@@ -48,7 +47,10 @@ public class RoleController extends BaseController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public JSONObject listMenu(Role role) {
-        return jsonPage(roleService.selectPage(getPage(), getEntityWrapper(role)));
+        EntityWrapper<Role> ew = getEntityWrapper();
+        if (!StringUtils.isEmpty(role.getRoleName()))
+            ew.addFilter("role_name={0}",role.getRoleName());
+        return jsonPage(roleService.selectPage(getPage(), getEntityWrapper()));
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
@@ -100,67 +102,36 @@ public class RoleController extends BaseController {
 
     @RequestMapping(value = "/batchDelete")
     @ResponseBody
-    public PageData batchDelete() {
-        PageData result = new PageData();
-        try {
-            PageData pd = super.getPageData();
-            int length = pd.getString("ids").split(",").length;
-            Integer line = roleService.batchDelete(pd);
-            if (line < length) {
-                result.put("status", 0);
-                result.put("msg", "成功【" + line + "】条,失败【" + (length - line) + "】条");
-            } else {
-                result.put("status", 1);
-            }
-        } catch (Exception e) {
-            logger.error("batch delete role error", e);
-            result.put("status", 0);
-            result.put("msg", "批量删除失败");
-        }
-        return result;
+    public JSONObject batchDelete(String ids) {
+        JSONObject jsonObject = new JSONObject();
+
+        roleService.batchDelete(ids);
+        jsonObject.put("status", 1);
+        return jsonObject;
+
     }
 
     @RequestMapping(value = "/editRight", method = RequestMethod.GET)
-    public ModelAndView toEditRight(@RequestParam Integer roleId) {
-        PageData pd = null;
-        try {
-            pd = roleService.getById(roleId);
-        } catch (Exception e) {
-            logger.error("to edit right error", e);
-        }
-        ModelAndView mv = super.getModelAndView();
-        mv.addObject("pd", pd);
-        mv.setViewName("sys/role/role_right_edit");
-        return mv;
+    public String toEditRight(@RequestParam Integer roleId, ModelMap map) {
+        map.put("role", roleService.selectById(roleId));
+        return "sys/role/role_right_edit";
     }
 
     @RequestMapping(value = "/resNodes")
     @ResponseBody
-    public List<PageData> resNodes(@RequestParam Integer roleId) {
-        List<PageData> treeData = null;
-        try {
-            treeData = roleService.listTreeData(roleId);
-        } catch (Exception e) {
-            logger.error("get res nodes error", e);
-            treeData = new ArrayList<PageData>();
-        }
-        return treeData;
+    public List<RoleTree> resNodes(@RequestParam Integer roleId) {
+        return roleService.listTreeData(roleId);
     }
 
     @RequestMapping(value = "/editRight", method = RequestMethod.POST)
     @ResponseBody
-    public PageData editRight() {
-        PageData result = new PageData();
-        try {
-            PageData pd = super.getPageData();
-            roleService.editRight(pd);
-            result.put("status", 1);
-        } catch (Exception e) {
-            logger.error("edit right error", e);
-            result.put("status", 0);
-            result.put("msg", "编辑权限失败");
-        }
-        return result;
+    public JSONObject editRight(String selRes, Integer roleId) {
+
+        JSONObject jsonObject = new JSONObject();
+        roleService.editRight(selRes, roleId);
+
+        jsonObject.put("status", 1);
+        return jsonObject;
     }
 
 }

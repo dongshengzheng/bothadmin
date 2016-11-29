@@ -13,28 +13,14 @@ public class CustomGenerator {
         cg.setDbPassword("root");
         cg.setDbUrl("jdbc:mysql://127.0.0.1:3306/jsdd?characterEncoding=utf8");
         // 配置包名
-        cg.setEntityPackage("com.fish.idle.service.modules.jsdd.entity");
-        cg.setMapperPackage("com.fish.idle.service.modules.jsdd.mapper");
-        cg.setServicePackage("com.fish.idle.service.modules.jsdd.service");
-        cg.setXmlPackage("com.fish.idle.service.modules.jsdd.mapper.xml");
-        cg.setServiceImplPackage("com.fish.idle.service.modules.jsdd.service.impl");
-        cg.setControllerPackage("com.fish.idle.service.modules.jsdd.controller");
+        cg.setEntityPackage("com.fish.idle.service.modules.sys.entity");
+        cg.setMapperPackage("com.fish.idle.service.modules.sys.mapper");
+        cg.setServicePackage("com.fish.idle.service.modules.sys.service");
+        cg.setXmlPackage("com.fish.idle.service.modules.sys.mapper.xml");
+        cg.setServiceImplPackage("com.fish.idle.service.modules.sys.service.impl");
+        cg.setControllerPackage("com.fish.idle.service.modules.sys.controller");
 
-        String[] tables= {"dd_collect",
-                "dd_collect",
-                "dd_comments",
-                "dd_consumer",
-                "dd_follow_history",
-                "dd_interpretation",
-                "dd_message",
-                "dd_report",
-                "dd_score_calc",
-                "dd_score_history",
-                "dd_transfer_history",
-                "dd_value_report",
-                "dd_working_progress",
-                "dd_works",
-                "dd_works_level"
+        String[] tables= {"sys_button",
         };
         cg.setTableNames(tables);
         cg.setDbPrefix(true);

@@ -38,7 +38,7 @@
                     <thead>
                     <tr>
                         <th width="10px">
-                            <input type='checkbox' name="chx_default"/>
+                            <input type='checkbox' id ="defaultCheck"/>
                         </th>
 
                         <th>角色名称</th>
@@ -104,7 +104,6 @@
     });
 
     function refreshTable(toFirst) {
-        //defaultTable.ajax.reload();
         if (toFirst) {//表格重绘，并跳转到第一页
             defTable.draw();
         } else {//表格重绘，保持在当前页

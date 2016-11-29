@@ -34,5 +34,19 @@
             </column>
         </addColumn>
     </changeSet>
+    <changeSet author="SunHan" id="15862614903-004">
+        <sql>
+            ALTER TABLE `sys_menu` CHANGE COLUMN `status` `del_flag` int(3) NOT NULL DEFAULT 1;
+        </sql>
+    </changeSet>
+
+    <changeSet author="SunHan" id="15862614903-005">
+        <sql>
+            ALTER TABLE `sys_button` CHANGE COLUMN `status` `del_flag` int(3) NOT NULL DEFAULT 1;
+        </sql>
+    </changeSet>
+
+
+
 
 </databaseChangeLog>

@@ -45,7 +45,7 @@
                     <thead>
                     <tr>
                         <th width="10px" >
-                            <input type='checkbox' name="chx_default"/>
+                            <input type='checkbox' id ="defaultCheck"/>
                         </th>
                         <th>名称</th>
                         <th>路径</th>

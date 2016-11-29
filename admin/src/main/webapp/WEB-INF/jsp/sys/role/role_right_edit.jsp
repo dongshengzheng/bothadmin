@@ -66,7 +66,7 @@
             }
         };
 
-        $.post("role/resNodes?roleId=${pd.roleId}", function (zNodes) {
+        $.post("role/resNodes?roleId=${role.roleId}", function (zNodes) {
             console.log(zNodes);
             $.fn.zTree.init($("#tree_res"), setting, zNodes);
         }, "json");
@@ -84,7 +84,7 @@
             $.ajax({
                 url: "role/editRight",
                 type: "post",
-                data: {'roleId': ${pd.roleId}, 'selRes': selRes},
+                data: {'roleId': ${role.roleId}, 'selRes': selRes},
                 dataType: "json",
                 success: function (data) {
                     if (data.status) {

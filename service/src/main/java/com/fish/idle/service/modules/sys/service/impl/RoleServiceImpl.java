@@ -1,25 +1,24 @@
 package com.fish.idle.service.modules.sys.service.impl;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.framework.service.impl.SuperServiceImpl;
-import com.fish.idle.service.modules.sys.entity.Office;
-import com.fish.idle.service.modules.sys.entity.Role;
-import com.fish.idle.service.modules.sys.mapper.ButtonMapper;
-import com.fish.idle.service.modules.sys.mapper.MenuMapper;
-import com.fish.idle.service.modules.sys.mapper.OfficeMapper;
-import com.fish.idle.service.modules.sys.mapper.RoleMapper;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.fish.idle.service.modules.sys.entity.*;
+import com.fish.idle.service.modules.sys.mapper.*;
 import com.fish.idle.service.modules.sys.service.IOfficeService;
 import com.fish.idle.service.modules.sys.service.RoleService;
 import com.fish.idle.service.util.AppUtil;
 import com.fish.idle.service.util.Const;
 import com.fish.idle.service.util.PageData;
+import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author Sun.Han
@@ -30,13 +29,16 @@ import java.util.List;
  */
 @Transactional(readOnly = true)
 @Service
-public class RoleServiceImpl  extends SuperServiceImpl<RoleMapper, Role>  implements RoleService {
+public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implements RoleService {
 
-        @Autowired
+    @Autowired
     private RoleMapper roleMapper;
 
     @Autowired
     private MenuMapper menuMapper;
+
+    @Autowired
+    private RoleResourceMapper roleResourceMapper;
 
     @Autowired
     private ButtonMapper buttonMapper;
@@ -62,87 +64,90 @@ public class RoleServiceImpl  extends SuperServiceImpl<RoleMapper, Role>  implem
         return 1;
     }
 
-    public Integer batchDelete(PageData pd) {
-        List<Integer> idList = com.fish.idle.service.util.StringUtils.split(pd.getString("ids"), Const.COMMA);
+    public Integer batchDelete(String ids) {
+        List<Integer> idList = com.fish.idle.service.util.StringUtils.split(ids, Const.COMMA);
         if (null != idList && idList.size() > 0) {
-            pd.put("idList", idList);
-            int count = roleMapper.count(pd);
-            roleMapper.batchDelete(pd);
-            return count;
+            roleMapper.batchDelete(idList);
         }
         return 0;
     }
 
-    public List<PageData> listTreeData(Integer roleId) throws Exception {
-        List<PageData> result = new ArrayList<PageData>();
+    public List<RoleTree> listTreeData(Integer roleId) {
+        List<RoleTree> roleTrees = new ArrayList<>();
+        EntityWrapper<Menu> ew1 = new EntityWrapper<>();
+        ew1.addFilter("del_flag != -1 AND menu_type={0}", 1);
+        List<Menu> menuList = menuMapper.selectList(ew1);
 
-        PageData pd = new PageData();
-        pd.put("menuType", 1);
-        List<PageData> menuList = menuMapper.listBy(pd);
-        pd.put("menuType", 2);
-        for (PageData menu : menuList) {
-            PageData p1 = new PageData();
-            p1.put("id", menu.getString("menuId"));
-            p1.put("pId", menu.getString("parentId"));
-            p1.put("name", menu.getString("menuName"));
-            p1.put("open", "true");
-            p1.put("resFlag", menu.getString("menuId") + "_" + menu.getString("menuType"));
-            result.add(p1);
+        for (Menu menu : menuList) {
+            RoleTree roleTree = new RoleTree();
+            roleTree.setId(menu.getMenuId().toString());
+            roleTree.setpId(menu.getParentId());
+            roleTree.setName(menu.getMenuName());
+            roleTree.setOpen("true");
+            roleTree.setResFlag(menu.getMenuId() + "_" + menu.getMenuType());
+            roleTrees.add(roleTree);
 
-            pd.put("parentId", menu.getInteger("menuId"));
-            List<PageData> subMenuList = menuMapper.listBy(pd);
-            for (PageData subMenu : subMenuList) {
-                PageData p2 = new PageData();
-                p2.put("id", subMenu.getString("menuId"));
-                p2.put("pId", subMenu.getString("parentId"));
-                p2.put("name", subMenu.getString("menuName"));
-                p2.put("open", "true");
-                p2.put("resFlag", subMenu.getString("menuId") + "_" + subMenu.getString("menuType"));
-                result.add(p2);
 
-                List<PageData> buttonList = buttonMapper.listByMenuId(subMenu.getInteger("menuId"));
-                for (PageData button : buttonList) {
-                    PageData p3 = new PageData();
-                    p3.put("id", button.getString("menuId") + "_" + button.getString("buttonId"));
-                    p3.put("pId", button.getString("menuId"));
-                    p3.put("name", button.getString("buttonName"));
-                    p3.put("open", "true");
-                    p3.put("resFlag", button.getString("buttonId") + "_" + 3);
-                    result.add(p3);
+            EntityWrapper<Menu> ew2 = new EntityWrapper<>();
+            ew2.addFilter("del_flag != -1 AND menu_type={0} AND parent_id={1}", 2, menu.getMenuId());
+            List<Menu> subMenuList = menuMapper.selectList(ew2);
+            for (Menu subMenu : subMenuList) {
+                RoleTree subTree = new RoleTree();
+                subTree.setId(subMenu.getMenuId().toString());
+                subTree.setpId(subMenu.getParentId());
+                subTree.setName(subMenu.getMenuName());
+                subTree.setOpen("true");
+                subTree.setResFlag(subMenu.getMenuId() + "_" + subMenu.getMenuType());
+                roleTrees.add(subTree);
+                EntityWrapper<Button> ew3 = new EntityWrapper<>();
+                ew3.addFilter("del_flag != -1 AND menu_id={0} ", subMenu.getMenuId());
+                List<Button> buttonList = buttonMapper.selectList(ew3);
+                for (Button button : buttonList) {
+                    RoleTree butttonTree = new RoleTree();
+                    butttonTree.setId(button.getMenuId() + "_" + button.getButtonId());
+                    butttonTree.setpId(button.getMenuId());
+                    butttonTree.setName(button.getButtonName());
+                    butttonTree.setOpen("true");
+                    butttonTree.setResFlag(button.getButtonId() + "_" + 3);
+                    roleTrees.add(butttonTree);
                 }
             }
         }
 
-        List<PageData> roleResList = roleMapper.listResByRoleId(roleId);
-        for (PageData roleRes : roleResList) {
-            String resFlag = roleRes.getInteger("resourceId") + "_" + roleRes.getInteger("resourceType");
-            for (PageData p : result) {
-                if (resFlag.equals(p.getString("resFlag"))) {
-                    p.put("checked", true);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("role_id", roleId);
+        List<RoleResource> roleResList = roleResourceMapper.selectByMap(map);
+        for (RoleResource roleRes : roleResList) {
+            String resFlag = roleRes.getResourceId() + "_" + roleRes.getResourceType();
+            for (RoleTree tree : roleTrees) {
+                if (resFlag.equals(tree.getResFlag())) {
+                    tree.setChecked(true);
                     break;
                 }
             }
         }
-
-        return result;
+        return roleTrees;
     }
 
-    public void editRight(PageData pd) {
-        String selRes = pd.getString("selRes");
+
+    public void editRight(String selRes, Integer roleId) {
         if (StringUtils.isNotBlank(selRes)) {
-            List<PageData> list = new ArrayList<PageData>();
-            Integer roleId = pd.getInteger("roleId");
+            List<RoleResource> list = new ArrayList<>();
             String[] resFlags = selRes.split(",");
+
             for (String resFlag : resFlags) {
                 String[] resArr = resFlag.split("_");
-                PageData p = new PageData();
-                p.put("roleId", roleId);
-                p.put("resourceId", Integer.valueOf(resArr[0]));
-                p.put("resourceType", Integer.valueOf(resArr[1]));
-                list.add(p);
+                RoleResource roleResource = new RoleResource();
+                roleResource.setRoleId(roleId);
+                roleResource.setResourceId(Integer.valueOf(resArr[0]));
+                roleResource.setResourceType(Integer.valueOf(resArr[1]));
+                list.add(roleResource);
             }
-            roleMapper.deleteResByRoleId(roleId);
-            roleMapper.saveRes(list);
+            Map<String, Object> map = new HashMap<>();
+            map.put("role_id", roleId);
+            roleMapper.deleteByMap(map);
+            roleResourceMapper.insertBatch(list);
         }
     }
 
