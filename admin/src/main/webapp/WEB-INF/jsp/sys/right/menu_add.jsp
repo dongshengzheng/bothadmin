@@ -72,5 +72,16 @@
     </div>
 </form>
 <script type="text/javascript">
-    $("#defForm").validate();
+    $("#defForm").validate({
+        rules:{
+            menuOrder:{
+                number:true
+            }
+        },
+        message:{
+            menuOrder:{
+                number:"请输入数字"
+            }
+        }
+    });
 </script>

@@ -17,10 +17,10 @@
     <div class="modal-body">
         <div class="container-fluid">
             <div class="form-group">
-                <input type="hidden" name="userId" value="${pd.userId}"/> <label
+                <input type="hidden" name="userId" value="${user.userId}"/> <label
                     for="loginName" class="col-sm-2 control-label">用户名</label>
                 <div class="col-sm-7">
-                    <input id="loginName" value="${pd.loginName}" type="text"
+                    <input id="loginName" value="${user.loginName}" type="text"
                            maxlength="32" class="form-control" readonly="readonly">
                 </div>
             </div>
@@ -34,21 +34,21 @@
             <div class="form-group">
                 <label for="name" class="col-sm-2 control-label">姓名</label>
                 <div class="col-sm-7">
-                    <input id="name" name="name" value="${pd.name}" type="text"
+                    <input id="name" name="name" value="${user.name}" type="text"
                            maxlength="32" class="form-control required" placeholder="请输入姓名">
                 </div>
             </div>
             <div class="form-group">
                 <label for="email" class="col-sm-2 control-label">邮箱</label>
                 <div class="col-sm-7">
-                    <input id="email" name="email" value="${pd.email}" type="text"
+                    <input id="email" name="email" value="${user.email}" type="text"
                            maxlength="32" class="form-control required" placeholder="请输入邮箱">
                 </div>
             </div>
             <div class="form-group">
                 <label for="phone" class="col-sm-2 control-label">电话</label>
                 <div class="col-sm-7">
-                    <input id="phone" name="phone" value="${pd.phone}" type="text"
+                    <input id="phone" name="phone" value="${user.phone}" type="text"
                            maxlength="32" class="form-control required" placeholder="请输入电话">
                 </div>
             </div>
@@ -56,7 +56,7 @@
                 <label for="description" class="col-sm-2 control-label">描述</label>
                 <div class="col-sm-7">
 					<textarea id="description" name="description" class="form-control"
-                              rows="3">${pd.description}</textarea>
+                              rows="3">${user.description}</textarea>
                 </div>
             </div>
             <shiro:hasPermission name="user/editRole">
@@ -64,8 +64,8 @@
                 <label for="description" class="col-sm-2 control-label">角色</label>
                 <div class="col-sm-7">
                     <c:choose>
-                        <c:when test="${pd.roles != null && fn:length(pd.roles) > 0}">
-                            <c:forEach items="${pd.roles}" var="role" varStatus="vs">
+                        <c:when test="${user.roles != null && fn:length(user.roles) > 0}">
+                            <c:forEach items="${user.roles}" var="role" varStatus="vs">
                                 <input type="checkbox" name="roleIds" value="${role.roleId}" ${role.checked ? "checked" : ""}>${role.roleName}
                             </c:forEach>
                         </c:when>

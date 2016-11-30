@@ -6,11 +6,9 @@ import com.fish.idle.admin.controller.BaseController;
 import com.fish.idle.admin.util.StringUtils;
 import com.fish.idle.service.modules.sys.entity.Button;
 import com.fish.idle.service.modules.sys.entity.Menu;
-import com.fish.idle.service.modules.sys.entity.Role;
 import com.fish.idle.service.modules.sys.service.ButtonService;
 import com.fish.idle.service.modules.sys.service.MenuService;
 import com.fish.idle.service.util.Const;
-import com.fish.idle.service.util.PageData;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author Sun.Han
@@ -111,7 +108,7 @@ public class RightController extends BaseController {
     @ResponseBody
     public JSONObject editMenu(Menu menu) {
         JSONObject jsonObject = new JSONObject();
-        menuService.updateById(menu);
+        menuService.updateSelectiveById(menu);
         jsonObject.put("status", 1);
         return jsonObject;
     }
@@ -182,7 +179,7 @@ public class RightController extends BaseController {
     @ResponseBody
     public JSONObject editBtn(Button button) {
         JSONObject jsonObject = new JSONObject();
-        buttonService.updateById(button);
+        buttonService.updateSelectiveById(button);
         jsonObject.put("status", 1);
         return jsonObject;
     }

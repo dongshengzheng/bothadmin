@@ -17,7 +17,7 @@
             <div class="form-group">
                 <label for="password" class="col-sm-2 control-label">原密码</label>
                 <div class="col-sm-7">
-                    <input id="oldpassword" name="oldpassword" type="password" maxlength="32" minlength="2"
+                    <input id="oldPassword" name="oldPassword" type="password" maxlength="32" minlength="2"
                            class="form-control required" placeholder="请输入原密码">
                 </div>
             </div>

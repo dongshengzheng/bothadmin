@@ -73,8 +73,8 @@ public class Const {
     public static final String CHANNEL_ROLE = "3";
 
 
-    public static final int DEL_FLAG_NORMAL = 1;
-    public static final int DEL_FLAG_DELETE = -1;
+    public static final int DEL_FLAG_NORMAL = 1; //正常
+    public static final int DEL_FLAG_DELETE = -1; // 删除
 
     /**
      * 作品状态
