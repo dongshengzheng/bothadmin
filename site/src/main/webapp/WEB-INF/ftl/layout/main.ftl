@@ -156,8 +156,8 @@ description="金石典当"
                     <div class="col-md-6 ">
                         <p>
                             2016 &copy; 金石典当. ALL Rights Reserved.
-                            <!--<a target="_blank" href="">Htmlstream</a> | <a href="index1.html#">Privacy Policy</a> | <a-->
-                            <!--href="index1.html#">Terms of Service</a>-->
+                            <!--<a target="_blank" href="">Htmlstream</a> | <a href="register_work.html#">Privacy Policy</a> | <a-->
+                            <!--href="register_work.html#">Terms of Service</a>-->
                         </p>
                     </div>
                     <div class="col-md-6">
