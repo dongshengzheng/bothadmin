@@ -1,11 +1,14 @@
 package com.fish.idle.service.modules.sys.service.impl;
 
 import com.baomidou.framework.service.impl.SuperServiceImpl;
+import com.fish.idle.service.modules.sys.entity.Role;
 import com.fish.idle.service.modules.sys.entity.RoleResource;
 import com.fish.idle.service.modules.sys.entity.User;
+import com.fish.idle.service.modules.sys.entity.UserRole;
 import com.fish.idle.service.modules.sys.mapper.RoleMapper;
 import com.fish.idle.service.modules.sys.mapper.RoleResourceMapper;
 import com.fish.idle.service.modules.sys.mapper.UserMapper;
+import com.fish.idle.service.modules.sys.mapper.UserRoleMapper;
 import com.fish.idle.service.modules.sys.service.UserService;
 import com.fish.idle.service.util.AppUtil;
 import com.fish.idle.service.util.Const;
@@ -19,7 +22,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Sun.Han
@@ -30,12 +35,15 @@ import java.util.List;
  */
 @Transactional(readOnly = true)
 @Service
-public class UserServiceImpl extends SuperServiceImpl<UserMapper, User>  implements UserService {
+public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implements UserService {
     @Autowired
     private UserMapper userMapper;
 
     @Autowired
     private RoleMapper roleMapper;
+
+    @Autowired
+    private UserRoleMapper userRoleMapper;
 
     public void setSKIN(PageData pd) {
         userMapper.setSKIN(pd);
@@ -106,14 +114,18 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User>  impleme
         }
     }
 
-    public List<PageData> getRoles(Integer userId) {
-        List<PageData> roles = roleMapper.listAllRoles();
-        List<PageData> userRoles = userMapper.listUserRoleByUserId(userId);
-        for (PageData role : roles) {
-            Integer roleId = role.getInteger("roleId");
-            for (PageData userRole : userRoles) {
-                if (roleId.equals(userRole.getInteger("roleId"))) {
-                    role.put("checked", true);
+    public List<Role> getRoles(Integer userId) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("del_flag", 1);
+        map.put("allocatable", 1);
+        List<Role> roles = roleMapper.selectByMap(map);
+        map = new HashMap<>();
+        map.put("user_id", userId);
+        List<UserRole> userRoles = userRoleMapper.selectByMap(map);
+        for (Role role : roles) {
+            for (UserRole userRole : userRoles) {
+                if (role.getRoleId().equals(userRole.getRoleId())) {
+                    role.setChecked(true);
                     break;
                 }
             }
@@ -122,32 +134,32 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User>  impleme
     }
 
     public List<PageData> getAllRoles() {
-        List<PageData> roles = roleMapper.listAllRoles();
-        return roles;
+        return roleMapper.listAllRoles();
     }
 
-    public void editRole(PageData pd) {
-        String roleIds = pd.getString("roleIds");
+    public void editRole(User user) {
+        String roleIds = user.getRoleIds();
         if (StringUtils.isNotBlank(roleIds)) {
-            List<PageData> list = new ArrayList<PageData>();
-            Integer userId = pd.getInteger("userId");
+            List<UserRole> list = new ArrayList<>();
+            Integer userId = user.getUserId();
             String[] roleIdArr = roleIds.split(",");
             for (String roleId : roleIdArr) {
-                PageData p = new PageData();
-                p.put("userId", userId);
-                p.put("roleId", Integer.valueOf(roleId));
-                list.add(p);
+                UserRole userRole = new UserRole();
+                userRole.setUserId(userId);
+                userRole.setRoleId(Integer.valueOf(roleId));
+                list.add(userRole);
             }
-            userMapper.delete(userId);
-            userMapper.saveUserRoles(list);
+            userMapper.deleteById(userId);
+            userRoleMapper.insertBatch(list);
         }
     }
 
-    public boolean isNameExist(PageData pd) {
-        String loginName = pd.getString("loginName").toLowerCase();
-        pd.put("loginName", loginName);
-        List<PageData> pds = userMapper.getByName(loginName);
-        return pds.size() > 0 ? true : false;
+    public boolean isNameExist(String loginName) {
+        User user = new User();
+        user.setLoginName(loginName);
+        user.setDelFlag(1);
+        int count = userMapper.selectCount(user);
+        return count > 0;
     }
 
     public PageData editPassword(PageData pd) {

@@ -1,8 +1,13 @@
 package com.fish.idle.admin.modules.sys.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.fish.idle.service.modules.sys.entity.Role;
 import com.fish.idle.service.modules.sys.entity.User;
 import com.fish.idle.service.modules.sys.service.UserService;
 import com.fish.idle.service.util.Const;
@@ -15,6 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,10 +46,8 @@ public class UserController extends BaseController {
     private UserService userService;
 
     @RequestMapping(value = "/editPwd", method = RequestMethod.GET)
-    public ModelAndView editPwd() {
-        ModelAndView mv = super.getModelAndView();
-        mv.setViewName("sys/admin/editPassword");
-        return mv;
+    public String editPwd() {
+        return "sys/admin/editPassword";
     }
 
     @RequestMapping(value = "/editPwd", method = RequestMethod.POST)
@@ -78,19 +82,11 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "/list")
     @ResponseBody
-    public PageData list() {
-        PageData result = null;
-        try {
-            PageData pd = super.getPageData();
-            Subject subject = SecurityUtils.getSubject();
-            if(!subject.hasRole(Const.ADMIN_ROLE))
-                pd.put("createId",((User)subject.getPrincipal()).getUserId());
-            result = userService.list(pd);
-        } catch (Exception e) {
-            logger.error("list user error", e);
-            result = new PageData();
-        }
-        return result;
+    public JSONObject list(String keywords) {
+        EntityWrapper<User> ew = getEntityWrapper();
+        if (!StringUtils.isEmpty(keywords))
+            ew.addFilter("CONCAT(IFNULL(login_name,''),IFNULL(name,'')) like {0}", "%" + keywords + "%");
+        return jsonPage(userService.selectPage(getPage(), ew));
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
@@ -110,44 +106,29 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public PageData add() {
-        PageData result = new PageData();
-        try {
-            PageData pd = super.getPageData();
-            String loginName = pd.getString("loginName").toLowerCase();
-            pd.put("loginName", loginName);// 登录名统一转换成小写
-            if (userService.isNameExist(pd)) {
-                result.put("status", 0);
-                result.put("msg", "用户名重复，请修改");
-            } else {
-                String password = pd.getString("password");
-                password = new SimpleHash("SHA-1", loginName, password).toString();
-                pd.put("password", password);
-                pd.put("status", 1);
-                Subject subject = SecurityUtils.getSubject();
-                pd.put("createId",((User)subject.getPrincipal()).getUserId());
-                userService.add(pd);
-                // 如果是admin用户,有编辑用户权限，否则，添加的用户都是渠道
-                if(!subject.hasRole(Const.ADMIN_ROLE))
-                    pd.put("roleIds",Const.CHANNEL_ROLE);
-                userService.editRole(pd);
-                result.put("status", 1);
-            }
-        } catch (Exception e) {
-            logger.error("add user error", e);
-            result.put("status", 0);
-            result.put("msg", "新增失败");
+    public JSONObject add(User user) {
+        JSONObject jsonObject = new JSONObject();
+        // 登录名统一转换成小写
+        user.setLoginName(user.getLoginName().toLowerCase());
+        if (userService.isNameExist(user.getLoginName())) {
+            jsonObject.put("status", 0);
+            jsonObject.put("msg", "用户名重复，请修改");
+        } else {
+            String password = new SimpleHash("SHA-1", user.getLoginName(), user.getPassword()).toString();
+            user.setPassword(password);
+            user.setDelFlag(Const.DEL_FLAG_NORMAL);
+            userService.insert(user);
+            jsonObject.put("status", 1);
         }
-        return result;
+        return jsonObject;
     }
 
     @RequestMapping(value = "/checkName", method = RequestMethod.POST)
     @ResponseBody
-    public int checkName() {
+    public int checkName(String loginName) {
         int result = 0;
         try {
-            PageData pd = super.getPageData();
-            if (userService.isNameExist(pd)) {
+            if (userService.isNameExist(loginName)) {
                 result = 1;
             }
         } catch (Exception e) {
@@ -157,109 +138,67 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public ModelAndView toEdit(@RequestParam Integer userId) {
-        PageData pd = null;
-        try {
-            pd = userService.getById(userId);
-            pd.put("roles",userService.getRoles(userId));
-        } catch (Exception e) {
-            logger.error("get user error", e);
-        }
-        ModelAndView mv = super.getModelAndView();
-        mv.addObject("pd", pd);
+    public String toEdit(@RequestParam Integer userId, ModelMap map) {
+        User user = userService.selectById(userId);
+        user.setRoles(userService.getRoles(userId));
 
-        mv.setViewName("sys/user/user_edit");
-        return mv;
+        map.put("user", user);
+        return "sys/user/user_edit";
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     @ResponseBody
-    public PageData edit() {
-        PageData result = new PageData();
-        try {
-            PageData pd = super.getPageData();
-            String password = pd.getString("password");
-            if (StringUtils.isNotBlank(password)) {
-                Integer userId = pd.getInteger("userId");
-                PageData user = userService.getById(userId);
-                String loginName = user.getString("loginName");
-                password = new SimpleHash("SHA-1", loginName, password).toString();
-                pd.put("password", password);
-            } else {
-                pd.remove("password");
-            }
-
-            userService.edit(pd);
-            Subject subject = SecurityUtils.getSubject();
-            if(subject.hasRole(Const.ADMIN_ROLE)) userService.editRole(pd);
-            result.put("status", 1);
-        } catch (Exception e) {
-            logger.error("edit user error", e);
-            result.put("status", 0);
-            result.put("msg", "更新失败");
+    public JSONObject edit(User user) {
+        JSONObject result = new JSONObject();
+        if (StringUtils.isNotBlank(user.getPassword())) {
+            User u = userService.selectById(user.getUserId());
+            String loginName = u.getLoginName();
+            String password = new SimpleHash("SHA-1", loginName, user.getPassword()).toString();
+            user.setPassword(password);
+        } else {
+            user.setPassword(null);
         }
+        userService.updateSelectiveById(user);
+        Subject subject = SecurityUtils.getSubject();
+        if (subject.hasRole(Const.ADMIN_ROLE)) userService.editRole(user);
+        result.put("status", 1);
+
         return result;
     }
 
     @RequestMapping(value = "/delete")
     @ResponseBody
-    public PageData delete(@RequestParam Integer userId) {
-        PageData result = new PageData();
-        try {
-            userService.delete(userId);
-            result.put("status", 1);
-        } catch (Exception e) {
-            logger.error("delete user error", e);
-            result.put("status", 0);
-            result.put("msg", "删除失败");
-        }
+    public JSONObject delete(@RequestParam Integer userId) {
+        JSONObject result = new JSONObject();
+        userService.deleteById(userId);
+        result.put("status", 1);
         return result;
     }
 
     @RequestMapping(value = "/batchDelete")
     @ResponseBody
-    public PageData batchDelete(@RequestParam String ids) {
-        PageData result = new PageData();
-        try {
-            userService.batchDelete(ids);
-            result.put("status", 1);
-        } catch (Exception e) {
-            logger.error("batch delete user error", e);
-            result.put("status", 0);
-            result.put("msg", "批量删除失败");
-        }
+    public JSONObject batchDelete(@RequestParam String ids) {
+        JSONObject result = new JSONObject();
+        if (StringUtils.isEmpty(ids))
+            userService.deleteBatchIds(Arrays.asList(ids.split(",")));
+        result.put("status", 1);
         return result;
     }
 
     @RequestMapping(value = "/editRole", method = RequestMethod.GET)
-    public ModelAndView toEditRole(@RequestParam Integer userId) {
-        List<PageData> roles = null;
-        try {
-            roles = userService.getRoles(userId);
-        } catch (Exception e) {
-            logger.error("to edit role error", e);
-            roles = new ArrayList<PageData>();
-        }
-        ModelAndView mv = super.getModelAndView();
-        mv.addObject("userId", userId);
-        mv.addObject("roles", roles);
-        mv.setViewName("sys/user/user_role_edit");
-        return mv;
+    public String toEditRole(@RequestParam Integer userId, ModelMap map) {
+        List<Role> roles = userService.getRoles(userId);
+        map.put("userId", userId);
+        map.put("roles", roles);
+        return "sys/user/user_role_edit";
     }
 
     @RequestMapping(value = "/editRole", method = RequestMethod.POST)
     @ResponseBody
-    public PageData editRole() {
-        PageData result = new PageData();
-        try {
-            PageData pd = super.getPageData();
-            userService.editRole(pd);
-            result.put("status", 1);
-        } catch (Exception e) {
-            logger.error("edit role error", e);
-            result.put("status", 0);
-            result.put("msg", "授权失败");
-        }
+    public JSONObject editRole(User user) {
+        JSONObject result = new JSONObject();
+        userService.editRole(user);
+        result.put("status", 1);
         return result;
     }
 

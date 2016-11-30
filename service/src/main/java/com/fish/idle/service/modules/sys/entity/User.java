@@ -28,7 +28,7 @@ public class User implements Serializable {
     @TableField(value = "last_login")
     private String lastLogin; // 最后登录时间
     private String ip; // 用户登录ip地址
-    private Integer status; // 状态
+    private Integer delFlag; // 状态
     private String description; // 描述
     private String email; // 邮箱
     private String phone; // 电话号码
@@ -39,7 +39,24 @@ public class User implements Serializable {
     @TableField(exist = false)
     private List<Role> roles;
 
+    @TableField(exist = false)
+    private String roleIds;
 
+    public String getRoleIds() {
+        return roleIds;
+    }
+
+    public void setRoleIds(String roleIds) {
+        this.roleIds = roleIds;
+    }
+
+    public Integer getDelFlag() {
+        return delFlag;
+    }
+
+    public void setDelFlag(Integer delFlag) {
+        this.delFlag = delFlag;
+    }
 
     public Integer getUserId() {
         return userId;
@@ -87,14 +104,6 @@ public class User implements Serializable {
 
     public void setIp(String ip) {
         this.ip = ip;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 
     public String getDescription() {

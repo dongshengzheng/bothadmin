@@ -32,13 +32,13 @@ public interface UserService extends ISuperService<User>  {
 
     void batchDelete(String ids);
 
-    List<PageData> getRoles(Integer userId);
+    List<Role> getRoles(Integer userId);
 
     List<PageData> getAllRoles();
 
-    void editRole(PageData pd);
+    void editRole(User user);
 
-    boolean isNameExist(PageData pd);
+    boolean isNameExist(String loginName);
 
     PageData editPassword(PageData pd);
 

@@ -44,9 +44,20 @@ public class Role implements Serializable {
 	private Integer delFlag = Const.DEL_FLAG_NORMAL;
 
 	@TableField(exist = false)
+	private Boolean checked;
+	@TableField(exist = false)
     private List<Menu> menus;
 	@TableField(exist = false)
     private List<Button> buttons;
+
+
+	public Boolean getChecked() {
+		return checked;
+	}
+
+	public void setChecked(Boolean checked) {
+		this.checked = checked;
+	}
 
 	public Integer getRoleId() {
 		return this.roleId;

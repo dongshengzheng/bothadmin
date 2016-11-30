@@ -74,7 +74,7 @@
                 "data": function (data) {
                     data.menuType = "2";
                     data.parentId = ${menu.menuId};
-                    data.keyword = $("#keyword").val();
+                    data.menuName = $("#keyword").val();
                 }
             },
             "language": {

@@ -10,16 +10,16 @@
                  style='display: block;'>
                 <button class='close' data-dismiss='modal' aria-label='Close'>×</button>
             </div>
-            <div class='bootstrap-dialog-title'>修改${pd.menuType == 1 ? '菜单' : '子菜单'}</div>
+            <div class='bootstrap-dialog-title'>修改${menu.menuType == 1 ? '菜单' : '子菜单'}</div>
         </div>
     </div>
     <div class="modal-body">
         <div class="container-fluid">
             <div class="form-group">
-                <input type="hidden" name="menuId" value="${pd.menuId}"/> <label
+                <input type="hidden" name="menuId" value="${menu.menuId}"/> <label
                     for="menuName" class="col-sm-2 control-label">名称</label>
                 <div class="col-sm-7">
-                    <input id="menuName" name="menuName" value="${pd.menuName}"
+                    <input id="menuName" name="menuName" value="${menu.menuName}"
                            type="text" maxlength="32" minlength="2"
                            class="form-control required" placeholder="请输入名称">
                 </div>
@@ -28,12 +28,12 @@
                 <label for="menuUrl" class="col-sm-2 control-label">路径</label>
                 <div class="col-sm-7">
                     <c:choose>
-                        <c:when test="${pd.menuType == 1}">
+                        <c:when test="${menu.menuType == 1}">
                             <input id="menuUrl" name="menuUrl" value="#" type="text"
                                    maxlength="32" class="form-control" readonly="readonly">
                         </c:when>
                         <c:otherwise>
-                            <input id="menuUrl" name="menuUrl" value="${pd.menuUrl}"
+                            <input id="menuUrl" name="menuUrl" value="${menu.menuUrl}"
                                    type="text" maxlength="32" class="form-control required"
                                    placeholder="请输入路径">
                         </c:otherwise>
@@ -43,7 +43,7 @@
             <div class="form-group">
                 <label for="menuOrder" class="col-sm-2 control-label">排序</label>
                 <div class="col-sm-7">
-                    <input id="menuOrder" name="menuOrder" value="${pd.menuOrder}"
+                    <input id="menuOrder" name="menuOrder" value="${menu.menuOrder}"
                            type="text" maxlength="32" class="form-control required"
                            placeholder="请输入数值">
                 </div>
@@ -53,10 +53,10 @@
                 <div class="col-sm-7">
                     <select class="form-control" id="removable" name="removable">
                         <option value="1"
-                                <c:if test="${pd.removable == 1}">selected</c:if>>是
+                                <c:if test="${menu.removable == 1}">selected</c:if>>是
                         </option>
                         <option value="0"
-                                <c:if test="${pd.removable == 0}">selected</c:if>>否
+                                <c:if test="${menu.removable == 0}">selected</c:if>>否
                         </option>
                     </select>
                 </div>
@@ -65,7 +65,7 @@
                 <label for="description" class="col-sm-2 control-label">描述</label>
                 <div class="col-sm-7">
 					<textarea id="description" name="description" class="form-control"
-                              rows="3">${pd.description}</textarea>
+                              rows="3">${menu.description}</textarea>
                 </div>
             </div>
         </div>
@@ -78,5 +78,16 @@
     </div>
 </form>
 <script type="text/javascript">
-    $("#defForm").validate();
+    $("#defForm").validate({
+        rules:{
+            menuOrder:{
+                number:true
+            }
+        },
+        message:{
+            menuOrder:{
+                number:"请输入数字"
+            }
+        }
+    });
 </script>
