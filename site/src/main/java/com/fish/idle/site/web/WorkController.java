@@ -18,4 +18,9 @@ public class WorkController {
     }
 
 
+    @RequestMapping(value = "/register",method = RequestMethod.GET)
+    public String register(){
+        return "works/work_register";
+    }
+
 }

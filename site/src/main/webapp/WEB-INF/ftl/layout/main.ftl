@@ -53,6 +53,7 @@ description="金石典当"
           id="style_color">
     <!-- CSS Customization -->
     <link rel="stylesheet" href="${staticPath}/assets/css/custom.css">
+    <link rel="stylesheet" href="${staticPath}/assets/css/jsdd/main.css">
     <#nested/>
 
     <#--<script type="text/javascript">-->
@@ -105,17 +106,17 @@ description="金石典当"
 
                 <!--shouye-->
                 <div class="col-md-1 text-center" style="height: 100%;">
-                    <div style="border-top: solid 1px red;">
-                        <a style="text-decoration:none; ">
-                            <h3 style="margin-top: 20px">首页</h3></a></div>
+                    <div  style="" class="header_tab_active index_head_tab">
+                        <a style="text-decoration:none " href="${staticPath}">
+                            <h3 id="sy" style="margin-top: 20px">首页</h3></a></div>
                 </div>
                 <!--/shouye-->
 
                 <!--zuopingdengji-->
-                <div class="col-md-2 text-center" style="height: 100%;">
-                    <div style="border-top: solid 1px red;width: 120px;">
-                        <a style="text-decoration:none;">
-                            <h3 style="margin-top: 20px">作品登记</h3></a>
+                <div  class="col-md-2 text-center index_head_tab" style="height: 100%;">
+                    <div style="width: 120px;">
+                        <a style="text-decoration:none;" href="${staticPath}/works/register">
+                            <h3 id="zpdj" style="margin-top: 20px">作品登记</h3></a>
                     </div>
                 </div>
                 <!--/zuopingdengji-->
@@ -207,6 +208,16 @@ description="金石典当"
         OwlCarousel.initOwlCarousel();
         RevolutionSlider.initRSfullWidth();
         StyleSwitcher.initStyleSwitcher();
+
+//        $("#sy").bind("click",function (e) {
+//            $("#zpdj").removeClass("header_tab_active");
+//            $(this).addClass("header_tab_active");
+//        });
+//
+//        $("#zpdj").bind("click",function (e) {
+//            $("#sy").removeClass("header_tab_active");
+//            $(this).addClass("header_tab_active");
+//        });
     });
 </script>
 </html>
