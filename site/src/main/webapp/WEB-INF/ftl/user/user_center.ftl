@@ -444,6 +444,8 @@
 <script>
 
     jQuery(document).ready(function () {
+
+
         $("#editAvatr").bind("click", function () {
             alert("上传图片")
         });
