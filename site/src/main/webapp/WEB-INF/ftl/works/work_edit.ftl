@@ -23,7 +23,7 @@
                             <a href="#zpxx" data-toggle="tab">作品信息</a>
                         </li>
                         <li>
-                            <a href="#zpdj" data-toggle="tab">作品等级</a>
+                            <a href="#zpdjj" data-toggle="tab">作品等级</a>
                         </li>
                         <li>
                             <a href="#pgbg" data-toggle="tab">评估报告</a>
@@ -218,7 +218,7 @@
                             </div>
 
                         </div>
-                        <div class="tab-pane fade in" id="zpdj">
+                        <div class="tab-pane fade in" id="zpdjj">
                             <!--作品等级-->
                             <div class="row">
                                 <form action="#" method="get" class="form-horizontal">
