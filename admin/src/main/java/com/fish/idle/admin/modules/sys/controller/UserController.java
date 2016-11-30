@@ -1,17 +1,14 @@
 package com.fish.idle.admin.modules.sys.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.plugins.Page;
 import com.fish.idle.service.modules.sys.entity.Role;
 import com.fish.idle.service.modules.sys.entity.User;
+import com.fish.idle.service.modules.sys.service.RoleService;
 import com.fish.idle.service.modules.sys.service.UserService;
 import com.fish.idle.service.util.Const;
-import com.fish.idle.service.util.PageData;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
@@ -25,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.fish.idle.admin.controller.BaseController;
 
@@ -45,6 +41,9 @@ public class UserController extends BaseController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private RoleService roleService;
+
     @RequestMapping(value = "/editPwd", method = RequestMethod.GET)
     public String editPwd() {
         return "sys/admin/editPassword";
@@ -52,56 +51,36 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "/editPwd", method = RequestMethod.POST)
     @ResponseBody
-    public PageData doEditPwd() {
-        PageData result = null;
-        try {
-            PageData pd = super.getPageData();
-            result = userService.editPassword(pd);
-        } catch (Exception e) {
-            logger.error("edit password error", e);
-            result = new PageData();
-            result.put("status", 0);
-            result.put("msg", "系统发生异常");
-        }
-        return result;
+    public JSONObject doEditPwd(String password, String oldPassword) {
+        return userService.editPassword(password, oldPassword);
     }
 
     @RequestMapping(value = "/unauthorized")
-    public ModelAndView unauthorized() {
-        ModelAndView mv = super.getModelAndView();
-        mv.setViewName("sys/admin/unauthorized");
-        return mv;
+    public String unauthorized() {
+        return "sys/admin/unauthorized";
     }
 
     @RequestMapping
-    public ModelAndView page() {
-        ModelAndView mv = super.getModelAndView();
-        mv.setViewName("sys/user/user_list");
-        return mv;
+    public String page() {
+        return "sys/user/user_list";
     }
 
     @RequestMapping(value = "/list")
     @ResponseBody
-    public JSONObject list(String keywords) {
+    public JSONObject list(String keyword) {
         EntityWrapper<User> ew = getEntityWrapper();
-        if (!StringUtils.isEmpty(keywords))
-            ew.addFilter("CONCAT(IFNULL(login_name,''),IFNULL(name,'')) like {0}", "%" + keywords + "%");
+        if (!StringUtils.isEmpty(keyword))
+            ew.addFilter("CONCAT(IFNULL(login_name,''),IFNULL(name,'')) like {0}", "%" + keyword + "%");
         return jsonPage(userService.selectPage(getPage(), ew));
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public ModelAndView toAdd() {
-        ModelAndView mv = super.getModelAndView();
-        List<PageData> roles = null;
-        try {
-            roles = userService.getAllRoles();
-        } catch (Exception e) {
-            logger.error("to edit role error", e);
-            roles = new ArrayList<PageData>();
-        }
-        mv.addObject("roles", roles);
-        mv.setViewName("sys/user/user_add");
-        return mv;
+    public String toAdd(ModelMap map) {
+        map.put("del_flag", 1);
+        map.put("allocatable", 1);
+        List<Role> roles = roleService.selectByMap(map);
+        map.put("roles", roles);
+        return "sys/user/user_add";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -117,6 +96,7 @@ public class UserController extends BaseController {
             String password = new SimpleHash("SHA-1", user.getLoginName(), user.getPassword()).toString();
             user.setPassword(password);
             user.setDelFlag(Const.DEL_FLAG_NORMAL);
+            user.setSkin(1);
             userService.insert(user);
             jsonObject.put("status", 1);
         }
@@ -179,7 +159,7 @@ public class UserController extends BaseController {
     @ResponseBody
     public JSONObject batchDelete(@RequestParam String ids) {
         JSONObject result = new JSONObject();
-        if (StringUtils.isEmpty(ids))
+        if (!StringUtils.isEmpty(ids))
             userService.deleteBatchIds(Arrays.asList(ids.split(",")));
         result.put("status", 1);
         return result;

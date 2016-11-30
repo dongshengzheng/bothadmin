@@ -1,12 +1,11 @@
 package com.fish.idle.service.modules.sys.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.framework.service.impl.SuperServiceImpl;
 import com.fish.idle.service.modules.sys.entity.Role;
-import com.fish.idle.service.modules.sys.entity.RoleResource;
 import com.fish.idle.service.modules.sys.entity.User;
 import com.fish.idle.service.modules.sys.entity.UserRole;
 import com.fish.idle.service.modules.sys.mapper.RoleMapper;
-import com.fish.idle.service.modules.sys.mapper.RoleResourceMapper;
 import com.fish.idle.service.modules.sys.mapper.UserMapper;
 import com.fish.idle.service.modules.sys.mapper.UserRoleMapper;
 import com.fish.idle.service.modules.sys.service.UserService;
@@ -149,7 +148,9 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
                 userRole.setRoleId(Integer.valueOf(roleId));
                 list.add(userRole);
             }
-            userMapper.deleteById(userId);
+            Map<String, Object> map = new HashMap<>();
+            map.put("user_id", userId);
+            userRoleMapper.deleteByMap(map);
             userRoleMapper.insertBatch(list);
         }
     }
@@ -162,19 +163,19 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
         return count > 0;
     }
 
-    public PageData editPassword(PageData pd) {
-        PageData result = new PageData();
-
+    public JSONObject editPassword(String password, String oldPassword) {
+        JSONObject result = new JSONObject();
         Subject subject = SecurityUtils.getSubject();
         User sessionUser = (User) subject.getSession().getAttribute(Const.SESSION_USER);
 
-        PageData user = userMapper.getById(sessionUser.getUserId());
-        String loginName = user.getString("loginName");
-        String encodePwd = new SimpleHash("SHA-1", loginName, pd.getString("oldpassword")).toString();
-        if (user.getString("password").equals(encodePwd)) {
-            pd.put("newEncodePwd", new SimpleHash("SHA-1", loginName, pd.getString("password")).toString());
-            pd.put("userId", sessionUser.getUserId());
-            userMapper.updatePassword(pd);
+        User user = userMapper.selectById(sessionUser.getUserId());
+        String loginName = user.getLoginName();
+        String encodePwd = new SimpleHash("SHA-1", loginName, oldPassword).toString();
+        if (user.getPassword().equals(encodePwd)) {
+            User newer = new User();
+            newer.setPassword(new SimpleHash("SHA-1", loginName, password).toString());
+            newer.setUserId(sessionUser.getUserId());
+            userMapper.updateSelectiveById(newer);
             result.put("status", 1);
         } else {
             result.put("status", 0);

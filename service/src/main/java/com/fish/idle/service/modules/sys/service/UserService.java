@@ -1,5 +1,6 @@
 package com.fish.idle.service.modules.sys.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.framework.service.ISuperService;
 import com.fish.idle.service.modules.sys.entity.Role;
 import com.fish.idle.service.modules.sys.entity.User;
@@ -40,7 +41,7 @@ public interface UserService extends ISuperService<User>  {
 
     boolean isNameExist(String loginName);
 
-    PageData editPassword(PageData pd);
+    JSONObject editPassword(String password, String oldPassword);
 
     PageData findByOpenid(String openId);
 }

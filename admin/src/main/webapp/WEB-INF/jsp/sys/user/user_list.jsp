@@ -104,26 +104,9 @@
                 drawICheck('defaultCheck', 'chx_default');
             },
             "initComplete": function () {
-                var others = '<div class="input-group input-group-sm input-adjust">'
-                        + '<div class="input-group-addon">'
-                        + '<label for="startTime" style="margin-bottom: 0px;"><i class="fa fa-calendar"></i></label>'
-                        + '</div>'
-                        + '<input id="startTime" readonly name="startTime" type="text" class="form-control" placeholder="请输入开始时间" />'
-                        + '</div>';
-                initSearchForm(others, "搜索用户名和姓名");
-                $("#startTime").datetimepicker({
-                    format: 'yyyy-mm-dd hh:ii',
-                    language: 'zh',
-                    weekStart: 1,
-                    todayBtn: 1,
-                    autoclose: 1,
-                    todayHighlight: 1,
-                    startView: 2,
-                    minView:'month',
-                    forceParse: 0,
-                    showMeridian: 0,
-                    pickerPosition: "bottom-left"
-                });
+
+                initSearchForm("", "搜索用户名和姓名");
+
             }
         });
     });
