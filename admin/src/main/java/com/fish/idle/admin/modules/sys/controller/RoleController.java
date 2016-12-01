@@ -1,11 +1,11 @@
 package com.fish.idle.admin.modules.sys.controller;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.fish.idle.admin.util.StringUtils;
+import org.springframework.util.StringUtils;
 import com.fish.idle.service.modules.sys.entity.Role;
 import com.fish.idle.service.modules.sys.entity.RoleTree;
 import com.fish.idle.service.modules.sys.service.RoleService;
@@ -87,24 +87,17 @@ public class RoleController extends BaseController {
     @RequestMapping(value = "/delete")
     @ResponseBody
     public JSONObject delete(@RequestParam Integer roleId) {
-        int effect = roleService.delete(roleId);
+        roleService.deleteById(roleId);
         JSONObject jsonObject = new JSONObject();
-        if (effect == 1) {
-            jsonObject.put("status", 1);
-        } else {
-            jsonObject.put("status", 0);
-            jsonObject.put("msg", "删除失败或者为不可删除状态");
-        }
+        jsonObject.put("status", 1);
         return jsonObject;
-
     }
 
     @RequestMapping(value = "/batchDelete")
     @ResponseBody
     public JSONObject batchDelete(String ids) {
         JSONObject jsonObject = new JSONObject();
-
-        roleService.batchDelete(ids);
+        roleService.deleteBatchIds(Arrays.asList(ids.split(",")));
         jsonObject.put("status", 1);
         return jsonObject;
 

@@ -8,7 +8,6 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.fish.idle.service.modules.sys.entity.User;
 
 import com.fish.idle.service.util.Const;
-import com.fish.idle.service.util.PageData;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -25,7 +23,6 @@ import java.util.Date;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -46,15 +43,6 @@ public class BaseController {
 
     @Autowired
     protected ServletContext application;
-
-    public PageData getPageData() {
-        return new PageData(this.getRequest());
-    }
-
-    public ModelAndView getModelAndView() {
-        return new ModelAndView();
-    }
-
     public HttpServletRequest getRequest() {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         return request;

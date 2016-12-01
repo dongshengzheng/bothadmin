@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 
@@ -26,7 +27,7 @@ public class User implements Serializable {
     private String password; // 密码
     private String name; // 姓名
     @TableField(value = "last_login")
-    private String lastLogin; // 最后登录时间
+    private Date lastLogin; // 最后登录时间
     private String ip; // 用户登录ip地址
     private Integer delFlag; // 状态
     private String description; // 描述
@@ -90,11 +91,11 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    public String getLastLogin() {
+    public Date getLastLogin() {
         return lastLogin;
     }
 
-    public void setLastLogin(String lastLogin) {
+    public void setLastLogin(Date lastLogin) {
         this.lastLogin = lastLogin;
     }
 

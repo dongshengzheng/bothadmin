@@ -3,7 +3,7 @@ package com.fish.idle.admin.modules.sys.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.fish.idle.admin.controller.BaseController;
-import com.fish.idle.admin.util.StringUtils;
+
 import com.fish.idle.service.modules.sys.entity.Button;
 import com.fish.idle.service.modules.sys.entity.Menu;
 import com.fish.idle.service.modules.sys.service.ButtonService;
@@ -15,10 +15,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Arrays;
 
 /**
  * @author Sun.Han
@@ -116,14 +119,9 @@ public class RightController extends BaseController {
     @RequestMapping(value = "/deleteMenu")
     @ResponseBody
     public JSONObject deleteMenu(@RequestParam Integer menuId) {
-        int effect = menuService.delete(menuId);
+        menuService.deleteById(menuId);
         JSONObject jsonObject = new JSONObject();
-        if (effect == 1) {
-            jsonObject.put("status", 1);
-        } else {
-            jsonObject.put("status", 0);
-            jsonObject.put("msg", "删除失败或者为不可删除状态");
-        }
+        jsonObject.put("status", 1);
         return jsonObject;
     }
 
@@ -131,7 +129,7 @@ public class RightController extends BaseController {
     @ResponseBody
     public JSONObject batchDeleteMenu(@RequestParam String ids) {
         JSONObject jsonObject = new JSONObject();
-        menuService.batchDelete(ids);
+        menuService.deleteBatchIds(Arrays.asList(ids.split(",")));
         jsonObject.put("status", 1);
         return jsonObject;
 
@@ -187,7 +185,7 @@ public class RightController extends BaseController {
     @RequestMapping(value = "/deleteBtn")
     @ResponseBody
     public JSONObject deleteBtn(@RequestParam Integer buttonId) {
-        buttonService.delete(buttonId);
+        buttonService.deleteById(buttonId);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("status", 1);
         return jsonObject;
@@ -197,7 +195,7 @@ public class RightController extends BaseController {
     @ResponseBody
     public JSONObject batchDeleteBtn(@RequestParam String ids) {
         JSONObject jsonObject = new JSONObject();
-        buttonService.batchDelete(ids);
+        buttonService.deleteBatchIds(Arrays.asList(ids.split(",")));
         jsonObject.put("status", 1);
         return jsonObject;
     }

@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.fish.idle.admin.controller.BaseController;
 import com.fish.idle.service.modules.sys.entity.Button;
 import com.fish.idle.service.modules.sys.entity.Menu;
-import com.fish.idle.service.modules.sys.entity.Page;
 import com.fish.idle.service.modules.sys.entity.User;
 import com.fish.idle.service.modules.sys.service.LoginService;
 import com.fish.idle.service.modules.sys.service.UserService;
@@ -21,15 +20,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Sun.Han
@@ -49,25 +42,6 @@ public class LoginController extends BaseController {
 
     @Autowired
     private LoginService loginService;
-
-    /**
-     * 获取登录用户的IP
-     *
-     * @throws Exception
-     */
-    public void getRemoteIP(String loginName) throws Exception {
-        HttpServletRequest request = this.getRequest();
-        String ip = "";
-        if (request.getHeader("x-forwarded-for") == null) {
-            ip = request.getRemoteAddr();
-        } else {
-            ip = request.getHeader("x-forwarded-for");
-        }
-        User user = new User();
-        user.setLoginName(loginName);
-        user.setIp(ip);
-        userService.saveIP(user);
-    }
 
     /**
      * 访问登录页
@@ -118,7 +92,7 @@ public class LoginController extends BaseController {
                     if (user != null) {
                         User u = new User();
                         u.setUserId(user.getUserId());
-                        u.setLastLogin(DateUtil.getTime());
+                        u.setLastLogin(new Date());
                         user.setUserId(user.getUserId());
                         // TODO: 29/11/2016 研究update机制
                         userService.updateSelectiveById(u);

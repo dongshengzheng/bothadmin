@@ -1,84 +1,175 @@
 package com.fish.idle.service.modules.sys.entity;
 
+import java.io.Serializable;
+import java.util.Date;
+import java.math.BigDecimal;
+
+import com.baomidou.mybatisplus.annotations.IdType;
+
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+
 /**
- * Created by szy on 21/11/2016.
  *
- * 字典实体
+ * 字典表
+ *
  */
+@TableName("sys_dict")
+public class Dict implements Serializable {
 
-public class Dict extends BaseEntity{
+	@TableField(exist = false)
+	private static final long serialVersionUID = 1L;
 
-    private Integer id;			//主键
-    private String value;			//数据值
-    private String label;			//标签名
-    private String type;		//类型
-    private String parent_id;		//上级ID(保留字段)
-    private String description;				//描述
-    private String sort;			//排序
-    private String remarks;         //备注信息
+	/** 编号 */
+	@TableId(type = IdType.AUTO)
+	private String id;
 
-    public Integer getId() {
-        return id;
-    }
+	/** 数据值 */
+	private String value;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	/** 标签名 */
+	private String label;
 
-    public String getValue() {
-        return value;
-    }
+	/** 类型 */
+	private String type;
 
-    public void setValue(String value) {
-        this.value = value;
-    }
+	/** 描述 */
+	private String description;
 
-    public String getLabel() {
-        return label;
-    }
+	/** 排序（升序） */
+	private BigDecimal sort;
 
-    public void setLabel(String label) {
-        this.label = label;
-    }
+	/** 父级编号 */
+	@TableField(value = "parent_id")
+	private String parentId;
 
-    public String getType() {
-        return type;
-    }
+	/** 创建者 */
+	@TableField(value = "create_by")
+	private String createBy;
 
-    public void setType(String type) {
-        this.type = type;
-    }
+	/** 创建时间 */
+	@TableField(value = "create_date")
+	private Date createDate;
 
-    public String getParent_id() {
-        return parent_id;
-    }
+	/** 更新者 */
+	@TableField(value = "update_by")
+	private String updateBy;
 
-    public void setParent_id(String parent_id) {
-        this.parent_id = parent_id;
-    }
+	/** 更新时间 */
+	@TableField(value = "update_date")
+	private Date updateDate;
 
-    public String getDescription() {
-        return description;
-    }
+	/** 备注信息 */
+	private String remarks;
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	/** 删除标记 */
+	@TableField(value = "del_flag")
+	private Integer delFlag;
 
-    public String getSort() {
-        return sort;
-    }
 
-    public void setSort(String sort) {
-        this.sort = sort;
-    }
+	public String getId() {
+		return this.id;
+	}
 
-    public String getRemarks() {
-        return remarks;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public void setRemarks(String remarks) {
-        this.remarks = remarks;
-    }
+	public String getValue() {
+		return this.value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
+
+	public String getLabel() {
+		return this.label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+	public String getType() {
+		return this.type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getDescription() {
+		return this.description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public BigDecimal getSort() {
+		return this.sort;
+	}
+
+	public void setSort(BigDecimal sort) {
+		this.sort = sort;
+	}
+
+	public String getParentId() {
+		return this.parentId;
+	}
+
+	public void setParentId(String parentId) {
+		this.parentId = parentId;
+	}
+
+	public String getCreateBy() {
+		return this.createBy;
+	}
+
+	public void setCreateBy(String createBy) {
+		this.createBy = createBy;
+	}
+
+	public Date getCreateDate() {
+		return this.createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	public String getUpdateBy() {
+		return this.updateBy;
+	}
+
+	public void setUpdateBy(String updateBy) {
+		this.updateBy = updateBy;
+	}
+
+	public Date getUpdateDate() {
+		return this.updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
+	public String getRemarks() {
+		return this.remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
+
+	public Integer getDelFlag() {
+		return this.delFlag;
+	}
+
+	public void setDelFlag(Integer delFlag) {
+		this.delFlag = delFlag;
+	}
 
 }

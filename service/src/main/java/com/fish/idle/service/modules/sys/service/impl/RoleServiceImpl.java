@@ -1,17 +1,10 @@
 package com.fish.idle.service.modules.sys.service.impl;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.baomidou.framework.service.impl.SuperServiceImpl;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.fish.idle.service.modules.sys.entity.*;
 import com.fish.idle.service.modules.sys.mapper.*;
-import com.fish.idle.service.modules.sys.service.IOfficeService;
 import com.fish.idle.service.modules.sys.service.RoleService;
-import com.fish.idle.service.util.AppUtil;
-import com.fish.idle.service.util.Const;
-import com.fish.idle.service.util.PageData;
-import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,35 +35,6 @@ public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implemen
 
     @Autowired
     private ButtonMapper buttonMapper;
-
-    public void add(PageData pd) {
-        roleMapper.add(pd);
-    }
-
-    public PageData getById(Integer roleId) {
-        return roleMapper.getById(roleId);
-    }
-
-    public void edit(PageData pd) {
-        roleMapper.edit(pd);
-    }
-
-    public Integer delete(Integer roleId) {
-        PageData pageData = roleMapper.getById(roleId);
-        if (pageData.isEmpty()) {
-            return 0;
-        }
-        roleMapper.delete(roleId);
-        return 1;
-    }
-
-    public Integer batchDelete(String ids) {
-        List<Integer> idList = com.fish.idle.service.util.StringUtils.split(ids, Const.COMMA);
-        if (null != idList && idList.size() > 0) {
-            roleMapper.batchDelete(idList);
-        }
-        return 0;
-    }
 
     public List<RoleTree> listTreeData(Integer roleId) {
         List<RoleTree> roleTrees = new ArrayList<>();
