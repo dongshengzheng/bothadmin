@@ -1,6 +1,7 @@
 package com.fish.idle.site.web;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -16,6 +17,21 @@ public class WorkController {
     public String detail(){
         return "works/work_detail";
     }
+
+
+    @RequestMapping(value = "/register",method = RequestMethod.GET)
+    public String register(ModelMap map){
+        map.put("step",2);
+        return "works/work_register";
+    }
+
+    @RequestMapping(value = "/edit",method = RequestMethod.GET)
+    public String edit(ModelMap map){
+        map.put("step",2);
+        return "works/work_edit";
+    }
+
+
 
 
 }

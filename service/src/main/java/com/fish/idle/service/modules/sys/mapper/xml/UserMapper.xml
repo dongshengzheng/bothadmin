@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.fish.idle.service.modules.sys.mapper.UserMapper">
 
-    <sql id="userColumns">login_name,name,password,rights,status,role_id</sql>
+    <sql id="userColumns">login_name,name,password,rights,del_flag,role_id</sql>
     <!-- 判断用户名和密码 -->
     <select id="getUserInfo" parameterType="PageData" resultType="PageData" useCache="false">
         select
@@ -12,7 +12,7 @@
         name,
         last_login lastLogin,
         ip,
-        status,
+        del_flag,
         skin,
         email,
         phone
@@ -23,7 +23,7 @@
             (login_name = #{pd.loginName} and password = #{pd.password})
             or
             (email = #{pd.loginName} and password = #{pd.password})
-            ) and status != -1
+            ) and del_flag != -1
         </if>
         <if test="pd.userId != null">
             and user_id = #{pd.userId}
@@ -39,7 +39,7 @@
     <select id="count" parameterType="PageData" resultType="int">
         select count(1)
         from sys_user u
-        where u.status != -1
+        where u.del_flag != -1
         <if test="keyword != null and keyword != ''">
             and CONCAT(IFNULL(u.login_name,''),IFNULL(u.name,'')) like #{keyword}
         </if>
@@ -56,13 +56,13 @@
         u.name,
         u.last_login lastLogin,
         u.ip,
-        u.status,
+        u.del_flag,
         u.description,
         u.email,
         u.phone,
         u.skin
         from sys_user u
-        where u.status != -1
+        where u.del_flag != -1
         <if test="keyword != null and keyword != ''">
             and CONCAT(IFNULL(u.login_name,''),IFNULL(u.name,'')) like #{keyword}
         </if>
@@ -74,7 +74,7 @@
         login_name,
         password,
         name,
-        status,
+        del_flag,
         description,
         email,
         phone,
@@ -83,7 +83,7 @@
         #{loginName},
         #{password},
         #{name},
-        #{status},
+        #{delFlag},
         #{description},
         #{email},
         #{phone},
@@ -99,13 +99,13 @@
     name,
     last_login lastLogin,
     ip,
-    status,
+    del_flag,
     description,
     email,
     phone,
     skin
     from sys_user
-    where status != -1
+    where del_flag != -1
     and user_id = #{userId}
   </select>
 
@@ -114,7 +114,7 @@
     user_id
     from
     sys_user
-    where status != -1
+    where del_flag != -1
     and	login_name = #{login_name}
   </select>
 
@@ -140,14 +140,14 @@
 
     <update id="delete" parameterType="Integer">
     update sys_user set
-    status	= -1
+    del_flag	= -1
     where
     user_id	= #{userId}
   </update>
 
     <update id="batchDelete" parameterType="java.util.List">
         update sys_user set
-        status = -1
+        del_flag = -1
         where
 
         user_id in
@@ -156,11 +156,11 @@
         </foreach>
     </update>
 
-    <select id="listUserRoleByUserId" parameterType="Integer" resultType="PageData">
+    <select id="listUserRoleByUserId" parameterType="Integer" resultType="UserRole">
     select
     id,
-    user_id userId,
-    role_id roleId
+    user_id,
+    role_id
     from sys_user_role
     where user_id = #{userId}
   </select>
@@ -172,7 +172,7 @@
         name,
         last_login lastLogin,
         ip,
-        status,
+        del_flag,
         skin,
         email,
         phone,

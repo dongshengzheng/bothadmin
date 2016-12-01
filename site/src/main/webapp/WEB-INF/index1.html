@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作品编辑</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/img/favicon.ico.png">
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- CSS Header and Footer -->
+    <link rel="stylesheet" href="assets/css/headers/header-v5.css">
+    <link rel="stylesheet" href="assets/css/footers/footer-v4.css">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="assets/plugins/animate.css">
+    <link rel="stylesheet" href="assets/plugins/line-icons/line-icons.css">
+    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" href="assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="assets/plugins/revolution-slider/rs-plugin/css/settings.css">
+    <!-- CSS Theme -->
+    <link rel="stylesheet" href="http://htmlstream.com/preview/unify-v1.9/Shop-UI/assets/css/theme-colors/teal.css"
+          id="style_color">
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+
+
+<body>
+
+<div class="wrapper"><!--body bg white-->
+    <!--head start-->
+    <div class="header-v5 header-static" style="height: 70px;">
+        <div class="container">
+            <div class="row" style="">
+                <!--log-->
+                <div class="col-md-3">
+                    <a class="" href="index1.html">
+                        <img id="" style="margin: 12px 0px 6px 0px;display: block" src="assets/img/index/logo.png"
+                             alt="Logo">
+                    </a>
+                </div>
+                <!--/log-->
+
+                <!--shouye-->
+                <div class="col-md-1 text-center" style="height: 100%;">
+                    <div style="border-top: solid 1px red;">
+                        <a style="text-decoration:none; ">
+                            <h3 style="margin-top: 20px">首页</h3></a></div>
+                </div>
+                <!--/shouye-->
+
+                <!--zuopingdengji-->
+                <div class="col-md-2 text-center" style="height: 100%;">
+                    <div style="border-top: solid 1px red;width: 120px;">
+                        <a style="text-decoration:none;">
+                            <h3 style="margin-top: 20px">作品登记</h3></a>
+                    </div>
+                </div>
+                <!--/zuopingdengji-->
+
+                <!--search-->
+                <div class="col-md-4">
+                    <div class="input-group" style="margin-top: 18px">
+                        <input type="text" class="form-control" placeholder="输入要搜索的作品或用户">
+                        <span class="input-group-btn">
+							<button class="btn" type="button" style="color: white;background: #D70016">搜作品</button>
+							<button class="btn" type="button" style="color: white;background: #FB591D;margin-left: 3px">搜用户</button>
+						</span>
+                    </div>
+                </div>
+                <!--/search-->
+                <!---login-->
+
+
+                <!--/login-->
+            </div>
+        </div>
+    </div>
+    <!--head end-->
+    <!--=== Slider ===-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+
+                <div class="tab-v2 margin-bottom-100" style="margin-top: 30px">
+                    <ul class="nav nav-tabs">
+                        <li class="active" style="">
+                            <a href="#wpxx" data-toggle="tab">物品信息</a>
+                        </li>
+                        <li>
+                            <a href="#zpxx" data-toggle="tab">作品信息</a>
+                        </li>
+                        <li>
+                            <a href="#zpdj" data-toggle="tab">作品等级</a>
+                        </li>
+                        <li>
+                            <a href="#pgbg" data-toggle="tab">评估报告</a>
+                        </li>
+                        <li>
+                            <a href="#sczbg" data-toggle="tab">收藏者报告</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content margin-bottom-30" style="background: rgb(254,255,255)">
+
+                        <div class="tab-pane fade in active" id="wpxx">
+                            <!--物品信息-->
+                            <div class="row">
+                                <form action="#" method="get" class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">作品名称</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" name="name" id="name" type="text"
+                                                   placeholder="请输入作品名称"/>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">提供者</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" name="provider" id="provider" type="text"
+                                                   placeholder="请输入提供者"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">身份证</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" name="cardNo" id="cardNo" type="text"
+                                                   placeholder="请输入身份证"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">联系地址</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" name="address" id="address" type="text"
+                                                   placeholder="请输入联系地址"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">联系方式</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" name="contact" id="contact" type="text"
+                                                   placeholder="请输入联系方式"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">登记时间</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" name="time" id="time" type="text"
+                                                   placeholder="请选择登记时间"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">作品描述</label>
+                                        <div class="col-sm-10">
+        <textarea class="form-control" style="resize: none;height: 150px" name="description"
+                  id="description" type="text" placeholder="请输入作品描述"></textarea>
+                                        </div>
+                                    </div>
+                                    <!--上传图片-->
+                                    <div class="col-sm-2">
+                                        <button class="btn btn-u btn-u-red">下一步</button>
+                                    </div>
+
+                                    <div class="col-sm-10">
+                                        <button class="btn btn-u btn-u-default" style="margin-left: 20px">存为草稿</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade in" id="zpxx">
+                            <!--作品信息-->
+                            <div class="row">
+                                <form action="#" method="get" class="form-horizontal">
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">作品名称</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" name="name" id="name" type="text"
+                                                   disabled="disabled"/>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">品种</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="">
+                                                <option value="0">请选择品种</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">作品类型</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="">
+                                                <option value="0">请选择作品类型</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">尺寸(cm)</label>
+                                        <div class="col-sm-10">
+                                            <div class="row">
+                                                <div class="col-sm-4"><input class="form-control" name="" type="text"
+                                                                             placeholder="长"/></div>
+                                                <div class="col-sm-4"><input class="form-control" name="" type="text"
+                                                                             placeholder="宽"/></div>
+                                                <div class="col-sm-4"><input class="form-control" name="" type="text"
+                                                                             placeholder="高"/></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">重量(g)</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" name="" type="text" placeholder="请输入重量"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">工艺制作</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="">
+                                                <option value="0">请选择工艺制作</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">篆刻级别</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="">
+                                                <option value="0">请选择篆刻级别</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">矿区地域</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="">
+                                                <option value="0">请选择矿区地域</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">制作人</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" placeholder="请输入制作人">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">制作时间</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" placeholder="请输入制作时间">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">作品诠释</label>
+                                        <div class="col-sm-10">
+                                <textarea class="form-control" style="resize: none;height: 150px" name="description"
+                                          id="description" type="text" placeholder="请输入作品诠释"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button class="btn btn-u btn-u-red">下一步</button>
+                                    </div>
+
+                                    <div class="col-sm-10">
+                                        <button class="btn btn-u btn-u-default" style="margin-left: 20px">存为草稿</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade in" id="zpdj">
+                            <!--作品等级-->
+                            <div class="row">
+                                <form action="#" method="get" class="form-horizontal">
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">作品名称</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" name="name" id="name" type="text"
+                                                   disabled="disabled"/>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">质地一</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="">
+                                                <option value="0">请选择</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">质地二</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="">
+                                                <option value="0">请选择</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">感官</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="">
+                                                <option value="0">请选择</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">磨氏度</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="">
+                                                <option value="0">请选择</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">血量</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="">
+                                                <option value="0">请选择</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">血色</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="">
+                                                <option value="0">请选择</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">血形</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="">
+                                                <option value="0">请选择</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">浓艳度</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="">
+                                                <option value="0">请选择</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">纯净度</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="">
+                                                <option value="0">请选择</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">地色</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="">
+                                                <option value="0">请选择</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">活筋</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="">
+                                                <option value="0">请选择</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">裂</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="">
+                                                <option value="0">请选择</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">印章</label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="">
+                                                <option value="0">请选择</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-2">
+                                        <button class="btn btn-u btn-u-red">下一步</button>
+                                    </div>
+
+                                    <div class="col-sm-10">
+                                        <button class="btn btn-u btn-u-default" style="margin-left: 20px">存为草稿</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+
+                        <div class="tab-pane fade in" id="pgbg">
+
+                            <!--评估报告-->
+                            <div class="row">
+                                <form action="#" method="get" class="form-horizontal">
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">作品名称</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" name="name" id="name" type="text"
+                                                   disabled="disabled"/>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-control" style="height: 100px ;border: solid red 1px">
+                                        <input type="file" class="form-control" placeholder="请上传评估报告">
+                                    </div>
+
+                                    <div class="form-control" style="height: 100px ;border: solid red 1px">
+                                        <input type="file" class="form-control" placeholder="请上传价值认证报告">
+                                    </div>
+
+                                    <div class="form-control" style="height: 100px ;border: solid red 1px">
+                                        <input type="text" class="form-control" placeholder="请选择价值有效时间">
+                                    </div>
+
+
+                                    <div class="col-sm-2">
+                                        <button class="btn btn-u btn-u-red">下一步</button>
+                                    </div>
+
+                                    <div class="col-sm-10">
+                                        <button class="btn btn-u btn-u-default" style="margin-left: 20px">存为草稿</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+
+                        <div class="tab-pane fade in" id="sczbg">
+                            <!--收藏者信息-->
+                            <div class="row">
+                                <form action="#" method="get" class="form-horizontal">
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">作品名称</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" name="name" id="name" type="text"
+                                                   disabled="disabled"/>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">收藏者</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" name="name" id="name" type="text"
+                                                   placeholder="请输入提供者姓名"/>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">身份证</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" name="name" id="name" type="text"
+                                                   placeholder="请输入身份证(可不输)"/>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">联系地址</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" name="name" id="name" type="text"
+                                                   placeholder="请输入联系地址"/>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">联系方式</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" name="name" id="name" type="text"
+                                                   placeholder="请输入联系方式"/>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="name">收藏时间</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" name="name" id="name" type="text"
+                                                   placeholder="请输入收藏时间"/>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">是否公开：</label>
+                                        <div class="col-sm-4 radio">
+                                            <label><input name="isPublic" type="radio">是</label>
+                                            <label><input name="isPublic" type="radio">否</label>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-sm-2">
+                                        <button class="btn btn-u btn-u-red">下一步</button>
+                                    </div>
+
+                                    <div class="col-sm-10">
+                                        <button class="btn btn-u btn-u-default" style="margin-left: 20px">存为草稿</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-2"></div>
+
+
+        </div>
+    </div>
+
+
+    <!--=== End Slider ===-->
+    <!--content start-->
+
+
+    <!--paging start-->
+    <!--content end-->
+    <!--footer-->
+    <div class="footer-v4">
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 ">
+                        <p>
+                            2016 &copy; 金石典当. ALL Rights Reserved.
+                            <!--<a target="_blank" href="">Htmlstream</a> | <a href="index1.html#">Privacy Policy</a> | <a-->
+                            <!--href="index1.html#">Terms of Service</a>-->
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-inline sponsors-icons pull-right">
+                            <!--<li><i class="fa fa-cc-paypal"></i></li>-->
+                            <!--<li><i class="fa fa-cc-visa"></i></li>-->
+                            <!--<li><i class="fa fa-cc-mastercard"></i></li>-->
+                            <!--<li><i class="fa fa-cc-discover"></i></li>-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/copyright-->
+    <!--FOOTER END-->
+
+
+</div>
+
+<!-- JS Global Compulsory -->
+<script src="assets/plugins/jquery/jquery.min.js"></script>
+<script src="assets/plugins/jquery/jquery-migrate.min.js"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- JS Implementing Plugins -->
+<script src="assets/plugins/back-to-top.js"></script>
+<script src="assets/plugins/smoothScroll.js"></script>
+<script src="assets/plugins/jquery.parallax.js"></script>
+<script src="assets/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
+<script src="assets/plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+<script src="assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<!-- JS Customization -->
+<script src="assets/js/custom.js"></script>
+<!-- JS Page Level -->
+<script src="assets/js/shop.app.js"></script>
+<script src="assets/js/plugins/owl-carousel.js"></script>
+<script src="assets/js/plugins/revolution-slider.js"></script>
+<script src="assets/js/plugins/style-switcher.js"></script>
+
+<script>
+
+    jQuery(document).ready(function () {
+        App.init();
+        App.initScrollBar();
+        App.initParallaxBg();
+        OwlCarousel.initOwlCarousel();
+        RevolutionSlider.initRSfullWidth();
+        StyleSwitcher.initStyleSwitcher();
+    });
+</script>
+
+</body>
+</html>

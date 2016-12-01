@@ -39,17 +39,17 @@
                 <div class="tab-v1" style="margin-top: 30px">
                     <ul class="nav nav-tabs">
                         <li class="active" style="margin-left: 250px">
-                            <a href="shortcode_accordion_and_tabs.html#home" data-toggle="tab">个人资料</a>
+                            <a href="#grzl" data-toggle="tab">个人资料</a>
                         </li>
                         <li>
-                            <a href="shortcode_accordion_and_tabs.html#profile" data-toggle="tab">Ta的作品</a>
+                            <a href="#tdzp" data-toggle="tab">Ta的作品</a>
                         </li>
                         <li>
-                            <a href="shortcode_accordion_and_tabs.html#messages" data-toggle="tab">Ta的粉丝</a>
+                            <a href="#tdfs" data-toggle="tab">Ta的粉丝</a>
                         </li>
                     </ul>
                     <div class="tab-content" style="background: rgb(254,255,255)">
-                        <div class="tab-pane fade in active" id="home">
+                        <div class="tab-pane fade in active" id="grzl">
                             <div class="row">
                                 <div class="col-md-9" style="margin-top: 10px;margin-left: 20px;">
                                     <p style="color: rgb(186,187,188);">姓名：<span style="color: black">缘梦溪缘梦溪</span></p>
@@ -61,7 +61,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade in" id="profile">
+                        <div class="tab-pane fade in" id="tdzp">
                             <ul class="list-unstyled row portfolio-box" style="margin-top: 10px;">
                                 <li class="col-sm-4 md-margin-bottom-50">
                                     <a class="thumbnail fancybox" data-rel="gallery" title="Project One" href="../assets/img/main/img9.jpg">
@@ -136,7 +136,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="tab-pane fade in" id="messages">
+                        <div class="tab-pane fade in" id="tdfs">
                             <div class="media" style="margin-top: 10px;">
                                 <div class="pull-left">
                                     <div style="height: 80px;width: 80px;border-radius: 50px;overflow:hidden">

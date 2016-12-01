@@ -45,6 +45,11 @@
             ALTER TABLE `sys_button` CHANGE COLUMN `status` `del_flag` int(3) NOT NULL DEFAULT 1;
         </sql>
     </changeSet>
+    <changeSet author="SunHan" id="15862614903-006">
+        <sql>
+            ALTER TABLE `sys_user` DROP COLUMN `del_flag`, CHANGE COLUMN `status` `del_flag` varchar(32) DEFAULT NULL COMMENT '状态';
+        </sql>
+    </changeSet>
 
 
 

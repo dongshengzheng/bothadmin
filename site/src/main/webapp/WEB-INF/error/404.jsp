@@ -33,7 +33,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="error-v3">
                 <h2>404</h2>
-                <p>无法访问网页，您可以尝试重新输入网址后刷新 <a href="http://localhost:8080/main">返回首页</a></p>
+                <p>无法访问网页，您可以尝试重新输入网址后刷新 <a href="http://localhost:8080">返回首页</a></p>
             </div>
         </div>
     </div>

@@ -18,7 +18,4 @@ public class DashboardController {
         return "index";
     }
 
-
-
-
 }
