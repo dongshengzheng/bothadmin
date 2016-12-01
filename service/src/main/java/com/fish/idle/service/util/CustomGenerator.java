@@ -20,7 +20,7 @@ public class CustomGenerator {
         cg.setServiceImplPackage("com.fish.idle.service.modules.sys.service.impl");
         cg.setControllerPackage("com.fish.idle.service.modules.sys.controller");
 
-        String[] tables= {"sys_user_role",
+        String[] tables= {"sys_dict",
         };
         cg.setTableNames(tables);
         cg.setDbPrefix(true);

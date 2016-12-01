@@ -16,10 +16,10 @@
     <div class="modal-body">
         <div class="container-fluid">
             <div class="form-group">
-                <input type="hidden" name="id" value="${pd.id}"/>
+                <input type="hidden" name="id" value="${dict.id}"/>
                 <label for="label" class="col-sm-2 control-label">字典类型</label>
                 <div class="col-sm-7">
-                    <input id="type" name="type" value="${pd.type}"
+                    <input id="type" name="type" value="${dict.type}"
                            type="text" maxlength="32" minlength="2"
                            class="form-control required" placeholder="请输入字典类型">
                 </div>
@@ -27,7 +27,7 @@
             <div class="form-group">
                 <label for="value" class="col-sm-2 control-label">数据值</label>
                 <div class="col-sm-7">
-                    <input id="value" name="value" value="${pd.value}"
+                    <input id="value" name="value" value="${dict.value}"
                            type="text" maxlength="32" minlength="2"
                            class="form-control required" placeholder="请输入数据值">
                 </div>
@@ -36,7 +36,7 @@
                 <label
                         for="label" class="col-sm-2 control-label">字典标签</label>
                 <div class="col-sm-7">
-                    <input id="label" name="label" value="${pd.label}"
+                    <input id="label" name="label" value="${dict.label}"
                            type="text" maxlength="32" minlength="2"
                            class="form-control required" placeholder="请输入字典标签">
                 </div>
@@ -45,7 +45,7 @@
                 <label for="description" class="col-sm-2 control-label">描述</label>
                 <div class="col-sm-7">
 					<textarea id="description" name="description" class="form-control"
-                              rows="3">${pd.description}</textarea>
+                              rows="3">${dict.description}</textarea>
                 </div>
             </div>
         </div>

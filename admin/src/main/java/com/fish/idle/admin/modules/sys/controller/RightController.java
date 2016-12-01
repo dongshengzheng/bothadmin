@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Arrays;
+
 /**
  * @author Sun.Han
  * @version 1.0
@@ -116,14 +118,9 @@ public class RightController extends BaseController {
     @RequestMapping(value = "/deleteMenu")
     @ResponseBody
     public JSONObject deleteMenu(@RequestParam Integer menuId) {
-        int effect = menuService.delete(menuId);
+        menuService.deleteById(menuId);
         JSONObject jsonObject = new JSONObject();
-        if (effect == 1) {
-            jsonObject.put("status", 1);
-        } else {
-            jsonObject.put("status", 0);
-            jsonObject.put("msg", "删除失败或者为不可删除状态");
-        }
+        jsonObject.put("status", 1);
         return jsonObject;
     }
 
@@ -131,7 +128,7 @@ public class RightController extends BaseController {
     @ResponseBody
     public JSONObject batchDeleteMenu(@RequestParam String ids) {
         JSONObject jsonObject = new JSONObject();
-        menuService.batchDelete(ids);
+        menuService.deleteBatchIds(Arrays.asList(ids.split(",")));
         jsonObject.put("status", 1);
         return jsonObject;
 
@@ -187,7 +184,7 @@ public class RightController extends BaseController {
     @RequestMapping(value = "/deleteBtn")
     @ResponseBody
     public JSONObject deleteBtn(@RequestParam Integer buttonId) {
-        buttonService.delete(buttonId);
+        buttonService.deleteById(buttonId);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("status", 1);
         return jsonObject;
@@ -197,7 +194,7 @@ public class RightController extends BaseController {
     @ResponseBody
     public JSONObject batchDeleteBtn(@RequestParam String ids) {
         JSONObject jsonObject = new JSONObject();
-        buttonService.batchDelete(ids);
+        buttonService.deleteBatchIds(Arrays.asList(ids.split(",")));
         jsonObject.put("status", 1);
         return jsonObject;
     }

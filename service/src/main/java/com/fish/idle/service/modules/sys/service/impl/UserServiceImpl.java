@@ -9,9 +9,7 @@ import com.fish.idle.service.modules.sys.mapper.RoleMapper;
 import com.fish.idle.service.modules.sys.mapper.UserMapper;
 import com.fish.idle.service.modules.sys.mapper.UserRoleMapper;
 import com.fish.idle.service.modules.sys.service.UserService;
-import com.fish.idle.service.util.AppUtil;
 import com.fish.idle.service.util.Const;
-import com.fish.idle.service.util.PageData;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
@@ -37,81 +35,10 @@ import java.util.Map;
 public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implements UserService {
     @Autowired
     private UserMapper userMapper;
-
     @Autowired
     private RoleMapper roleMapper;
-
     @Autowired
     private UserRoleMapper userRoleMapper;
-
-    public void setSKIN(PageData pd) {
-        userMapper.setSKIN(pd);
-    }
-
-    public void saveIP(User user) {
-        userMapper.saveIP(user);
-    }
-
-    public PageData getUserByNameAndPwd(PageData pd) {
-        return userMapper.getUserInfo(pd);
-    }
-
-    @Transactional
-    public void updateLastLogin(PageData pd) {
-        userMapper.updateLastLogin2(pd);
-    }
-
-    public PageData list(PageData pd) {
-        PageData result = new PageData();
-        String search = pd.getString("keyword");
-        if (StringUtils.isNotBlank(search)) {
-            pd.put("keyword", "%" + search + "%");
-        }
-        int totalNum = userMapper.count(pd);
-
-        pd.put("from", pd.getInteger("start"));
-        pd.put("size", pd.getInteger("length"));
-        List<PageData> pds = userMapper.list(pd);
-        AppUtil.nullToEmpty(pds, new String[]{"loginName", "lastLogin", "email", "phone", "name"});
-
-        result.put(Const.DRAW, pd.getString(Const.DRAW));
-        result.put(Const.RECORDSTOTAL, totalNum);
-        result.put(Const.RECORDSFILTERED, totalNum);
-        result.put(Const.NDATA, pds);
-        return result;
-    }
-
-    @Transactional(readOnly = false)
-    public void add(PageData pd) {
-        userMapper.add(pd);
-    }
-
-    public PageData getById(Integer userId) {
-        return userMapper.getById(userId);
-    }
-
-    public void edit(PageData pd) {
-        userMapper.edit(pd);
-    }
-
-    public void delete(Integer userId) {
-        userMapper.delete(userId);
-    }
-
-    public void batchDelete(String ids) {
-        if (StringUtils.isNotBlank(ids)) {
-            String[] idArr = ids.split(",");
-            if (idArr.length > 0) {
-                List<Integer> idList = new ArrayList<Integer>();
-                for (String idStr : idArr) {
-                    idList.add(Integer.valueOf(idStr));
-                }
-                for (int i = 0; i < idList.size(); i++) {
-                    userMapper.delete(idList.get(i));
-                }
-            }
-        }
-    }
 
     public List<Role> getRoles(Integer userId) {
         Map<String, Object> map = new HashMap<>();
@@ -130,10 +57,6 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
             }
         }
         return roles;
-    }
-
-    public List<PageData> getAllRoles() {
-        return roleMapper.listAllRoles();
     }
 
     public void editRole(User user) {
@@ -183,10 +106,4 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
         }
         return result;
     }
-
-    @Override
-    public PageData findByOpenid(String openId) {
-        return userMapper.getByOpenId(openId);
-    }
-
 }

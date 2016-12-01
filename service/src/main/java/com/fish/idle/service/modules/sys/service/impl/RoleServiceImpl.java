@@ -43,35 +43,6 @@ public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implemen
     @Autowired
     private ButtonMapper buttonMapper;
 
-    public void add(PageData pd) {
-        roleMapper.add(pd);
-    }
-
-    public PageData getById(Integer roleId) {
-        return roleMapper.getById(roleId);
-    }
-
-    public void edit(PageData pd) {
-        roleMapper.edit(pd);
-    }
-
-    public Integer delete(Integer roleId) {
-        PageData pageData = roleMapper.getById(roleId);
-        if (pageData.isEmpty()) {
-            return 0;
-        }
-        roleMapper.delete(roleId);
-        return 1;
-    }
-
-    public Integer batchDelete(String ids) {
-        List<Integer> idList = com.fish.idle.service.util.StringUtils.split(ids, Const.COMMA);
-        if (null != idList && idList.size() > 0) {
-            roleMapper.batchDelete(idList);
-        }
-        return 0;
-    }
-
     public List<RoleTree> listTreeData(Integer roleId) {
         List<RoleTree> roleTrees = new ArrayList<>();
         EntityWrapper<Menu> ew1 = new EntityWrapper<>();

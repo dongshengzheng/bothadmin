@@ -50,7 +50,12 @@
             ALTER TABLE `sys_user` DROP COLUMN `del_flag`, CHANGE COLUMN `status` `del_flag` varchar(32) DEFAULT NULL COMMENT '状态';
         </sql>
     </changeSet>
-
+    <changeSet author="SunHan" id="15862614903-007">
+        <sql>
+            ALTER TABLE `sys_dict` CHANGE COLUMN `del_flag` `del_flag` int(3) NOT NULL DEFAULT '0' COMMENT '删除标记';
+            ALTER TABLE `sys_user` CHANGE COLUMN `last_login` `last_login` datetime DEFAULT NULL COMMENT '上次登录时间';
+        </sql>
+    </changeSet>
 
 
 

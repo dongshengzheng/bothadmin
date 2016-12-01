@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.fish.idle.service.modules.jsdd.entity.Works;
 import com.fish.idle.service.modules.jsdd.service.IWorksService;
+import com.fish.idle.service.modules.sys.entity.User;
 import com.fish.idle.service.modules.sys.service.UserService;
 import com.fish.idle.service.util.Const;
 import com.fish.idle.service.util.PageData;
@@ -52,23 +53,22 @@ public class MobileController {
     public String toLogin(HttpSession session, ModelMap map) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        PageData user = userService.findByOpenid(openId);
-        if (user == null || user.isEmpty()) {
-            user = new PageData();
-            user.put("loginName", wxMpUser.getNickname());
-            user.put("password", "iLoveMoney");
-            user.put("name", wxMpUser.getNickname());
-            user.put("status", "1");
-            user.put("description", "");
-            user.put("email", "");
-            user.put("phone", "");
-            user.put("openId", wxMpUser.getOpenId());
-
-            userService.add(user);
+        User u = new User();
+        u.setOpenId(openId);
+        User user = userService.selectOne(u);
+        if (user == null) {
+            user = new User();
+            user.setLoginName(wxMpUser.getNickname());
+            user.setPassword("iLoveMoney");
+            user.setName(wxMpUser.getNickname());
+            user.setDelFlag(Const.DEL_FLAG_NORMAL);
+            user.setOpenId(wxMpUser.getOpenId());
+            user.setLastLogin(new Date());
+            userService.insert(user);
+        }else{
+            user.setLastLogin(new Date());
+            userService.updateSelectiveById(user);
         }
-        user.put("lastLogin", DateFormatUtils.format(new Date(), "yyyy-MM-dd"));
-        userService.updateLastLogin(user);
-
         return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/works";
     }
 
@@ -86,7 +86,9 @@ public class MobileController {
                         ModelMap map) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        PageData user = userService.findByOpenid(openId);
+        User u = new User();
+        u.setOpenId(openId);
+        User user = userService.selectOne(u);
         if (user == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
