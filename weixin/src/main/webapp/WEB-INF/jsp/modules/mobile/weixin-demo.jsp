@@ -125,10 +125,10 @@
 <script src="${ctxStatic}/common/wx-sdk.js" type="text/javascript"></script>
 <script>
     $.ajax({
-        url: "http://james.s1.natapp.cc/ticket",
+        url: "http://steins00gate.s1.natapp.cc /ticket",
         success: function (data) {
             var time=new Date().getTime();
-            $.get("http://james.s1.natapp.cc/sign",
+            $.get("http://steins00gate.s1.natapp.cc /sign",
                     {
                         noncestr:"Wm3WZYTPz0wzccnW",
                         jsapi_ticket:data,//获取的jsapi_ticket

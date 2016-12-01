@@ -25,4 +25,13 @@ public class WorkController {
         return "works/work_register";
     }
 
+    @RequestMapping(value = "/edit",method = RequestMethod.GET)
+    public String edit(ModelMap map){
+        map.put("step",2);
+        return "works/work_edit";
+    }
+
+
+
+
 }
