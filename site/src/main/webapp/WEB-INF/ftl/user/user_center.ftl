@@ -41,7 +41,7 @@
         </div>
     </div>
     <div class="col-sm-9 margin-top-20">
-        <div class="tab-content">
+        <div class="tab-content margin-bottom-40">
             <!--START  我的作品-->
             <div class="tab-pane fade in active" id="my-work">
                 <div class="tab-v1" style="">
@@ -300,11 +300,6 @@
 
         <#--积分中心-->
             <div class="tab-pane fade in" id="integrel">
-            <#--<div class="row text-center">-->
-            <#--<div class="col-md-3"></div>-->
-            <#--<div class="col-md-6"><h3 style="margin: 0px">可用积分</h3><h3 style="margin: 0px;color: orangered;">0</h3></div>-->
-            <#--<div class="col-md-3"></div>-->
-            <#--</div>-->
                 <div class="heading">
                     <h2 style="margin-bottom: 0px;padding-bottom: 0px">可用积分</h2>
                     <h3 style="color: orangered">0</h3>
@@ -449,17 +444,127 @@
 <@footerJS>
 
 <script id="qb_jf" type="mustache">
-    <div>
-        <p>2016-11-29<span>作品被浏览<span>+1</span></span></p>
-        <p>2016-11-29<span>作品被浏览<span>+1</span></span></p>
-        <p>2016-11-29<span>作品被浏览<span>+1</span></span></p>
-        <p>2016-11-29<span>作品被浏览<span>+1</span></span></p>
-        <p>2016-11-29<span>作品被浏览<span>+1</span></span></p>
-        <p>2016-11-29<span>作品被浏览<span>+1</span></span></p>
-    </div>
+    <div class="container" style="margin-top: 50px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">作品被浏览</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
+                        <div class="container" style="margin-top: 30px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">作品被浏览</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
+                        <div class="container" style="margin-top: 30px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">作品被浏览</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
+                        <div class="container" style="margin-top: 30px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">作品被浏览</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
+                        <div class="container" style="margin-top: 30px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">作品被浏览</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
+</script>
 
+<script id="cz_jf" type="mustache">
+    <div class="container" style="margin-top: 50px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">充值送积分</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
+                        <div class="container" style="margin-top: 30px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">充值送积分</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
+                        <div class="container" style="margin-top: 30px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">充值送积分</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
+                        <div class="container" style="margin-top: 30px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">充值送积分</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
+                        <div class="container" style="margin-top: 30px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">充值送积分</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
+</script>
 
+<script id="tx_jf" type="mustache">
+    <div class="container" style="margin-top: 50px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">提现送积分</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
+                        <div class="container" style="margin-top: 30px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">提现送积分</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
+</script>
 
+<script id="qt_jf" type="mustache">
+    <div class="container" style="margin-top: 50px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">其他送积分</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
+                        <div class="container" style="margin-top: 30px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">其他送积分</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
 </script>
 <!-- JS Customization -->
 <script type="text/javascript" src="${staticPath}/assets/js/custom.js"></script>
@@ -480,12 +585,33 @@
             $(this).addClass("jf_active");
             var type = $(this)[0].getAttribute("data-type");
             /*ajax 根据 type 请求相应的积分列表*/
-
             //4中type模板公用
-            var qbtpl = $("#qb_jf")[0].innerHTML;
-            var html = Mustache.render(qbtpl, {});
-            $("#jf_content")[0].innerHTML = "";
-            $("#jf_content")[0].innerHTML = html;
+            if(type == "qb"){
+                var qbtpl = $("#qb_jf")[0].innerHTML;
+                var html = Mustache.render(qbtpl, {});
+                $("#jf_content")[0].innerHTML = "";
+                $("#jf_content")[0].innerHTML = html;
+            }
+            if(type == "cz"){
+                var cztpl = $("#cz_jf")[0].innerHTML;
+                var html = Mustache.render(cztpl, {});
+                $("#jf_content")[0].innerHTML = "";
+                $("#jf_content")[0].innerHTML = html;
+            }
+            if(type == "tx"){
+                var txtpl = $("#tx_jf")[0].innerHTML;
+                var html = Mustache.render(txtpl, {});
+                $("#jf_content")[0].innerHTML = "";
+                $("#jf_content")[0].innerHTML = html;
+            }
+
+            if(type == "qt"){
+                var qttpl = $("#qt_jf")[0].innerHTML;
+                var html = Mustache.render(qttpl, {});
+                $("#jf_content")[0].innerHTML = "";
+                $("#jf_content")[0].innerHTML = html;
+            }
+
         });
 //        页面加载时主动触发加载全部积分列表
         $('.jf_active').trigger("click");
@@ -502,6 +628,8 @@
                 }
             }, "json");
         });
+
+        //积分提现
 
 
     });
