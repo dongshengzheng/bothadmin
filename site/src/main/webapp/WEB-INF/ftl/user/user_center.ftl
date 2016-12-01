@@ -300,20 +300,22 @@
 
         <#--积分中心-->
             <div class="tab-pane fade in" id="integrel">
-                <#--<div class="row text-center">-->
-                    <#--<div class="col-md-3"></div>-->
-                    <#--<div class="col-md-6"><h3 style="margin: 0px">可用积分</h3><h3 style="margin: 0px;color: orangered;">0</h3></div>-->
-                    <#--<div class="col-md-3"></div>-->
-                <#--</div>-->
+            <#--<div class="row text-center">-->
+            <#--<div class="col-md-3"></div>-->
+            <#--<div class="col-md-6"><h3 style="margin: 0px">可用积分</h3><h3 style="margin: 0px;color: orangered;">0</h3></div>-->
+            <#--<div class="col-md-3"></div>-->
+            <#--</div>-->
                 <div class="heading">
                     <h2 style="margin-bottom: 0px;padding-bottom: 0px">可用积分</h2>
                     <h3 style="color: orangered">0</h3>
                 </div>
 
                 <div class="row text-center">
-                    <div class="col-md-5"><p style="float: right;font-size: 15px;width: 100px ;background: gray">提现</p></div>
+                    <div class="col-md-5"><p style="float: right;font-size: 15px;width: 100px ;background: gray">提现</p>
+                    </div>
                     <div class="col-md-2"></div>
-                    <div class="col-md-5"><p style="float:left;font-size: 15px;width: 100px ;background: red">充值</p></div>
+                    <div class="col-md-5"><p style="float:left;font-size: 15px;width: 100px ;background: red">充值</p>
+                    </div>
                 </div>
 
                 <div class="heading heading-v1 margin-bottom-20">
@@ -341,10 +343,8 @@
                     <div class="col-md-3"></div>
 
                 </div>
-                <#--积分列表-->
+            <#--积分列表-->
                 <div id="jf_content">
-
-
 
 
                 </div>
@@ -362,9 +362,32 @@
 
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="city">所在城市：</label>
+                        <label class="col-sm-2 control-label">所在城市：</label>
                         <div class="col-sm-4">
-                            <input class="form-control" name="city" id="city" type="text" placeholder="请输入所在城市"/>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <select data-placeholder="省份" data-rel="chosen" id="provinceId" name="province"
+                                            class="form-control" name="">
+                                        <option value="0">请选择</option>
+                                        <#if provinceList?? && (provinceList?size >0)>
+
+                                            <#list provinceList as item>
+                                                <option value="${item.provinceid}">${item.province}</option>
+                                            </#list>
+
+
+                                        </#if>
+                                    </select>
+
+                                </div>
+                                <div class="col-sm-6">
+                                    <select data-placeholder="城市" data-rel="chosen" name="city" id="cityId"
+                                            class="form-control" name="">
+                                        <option value="0">请选择</option>
+                                    </select>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <div class="form-group">
@@ -436,6 +459,7 @@
     </div>
 
 
+
 </script>
 <!-- JS Customization -->
 <script type="text/javascript" src="${staticPath}/assets/js/custom.js"></script>
@@ -451,7 +475,7 @@
         });
 
         /*积分4个tab使用模板绑定*/
-        $(".user_jf_li").bind("click",function () {
+        $(".user_jf_li").bind("click", function () {
             $(".user_jf_li").removeClass("jf_active");
             $(this).addClass("jf_active");
             var type = $(this)[0].getAttribute("data-type");
@@ -459,12 +483,25 @@
 
             //4中type模板公用
             var qbtpl = $("#qb_jf")[0].innerHTML;
-            var html = Mustache.render(qbtpl,{});
-            $("#jf_content")[0].innerHTML  = "";
-            $("#jf_content")[0].innerHTML  = html;
+            var html = Mustache.render(qbtpl, {});
+            $("#jf_content")[0].innerHTML = "";
+            $("#jf_content")[0].innerHTML = html;
         });
 //        页面加载时主动触发加载全部积分列表
         $('.jf_active').trigger("click");
+
+        $("#provinceId").change(function () {
+            $.get("getCityByProvinceId/" + $("#provinceId").val(), function (data) {
+                if (data.status) {
+                    var result = "<option>选择城市</option>";
+                    $.each(data.cityList, function (n, value) {
+                        result += "<option value='" + value.cityid + "'>" + value.city + "</option>";
+                    });
+                    $("#cityId").html('');
+                    $("#cityId").append(result);
+                }
+            }, "json");
+        });
 
 
     });

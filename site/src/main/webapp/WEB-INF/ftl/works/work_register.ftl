@@ -91,6 +91,7 @@
         </div>
 
     </#if >
+
     <#if step ==2>
         <!--作品信息-->
         <div class="container margin-bottom-40">
@@ -211,6 +212,7 @@
             </div>
         </div>
     </#if >
+
     <#if step ==3>
         <!--作品等级-->
         <div class="container margin-bottom-40">
@@ -358,6 +360,7 @@
             </div>
         </div>
     </#if>
+
     <#if step ==4>
         <!--评估报告-->
         <div class="container margin-bottom-40">
