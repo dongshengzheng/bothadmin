@@ -1,12 +1,11 @@
 package com.fish.idle.admin.modules.sys.controller;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.fish.idle.admin.util.StringUtils;
+import org.springframework.util.StringUtils;
 import com.fish.idle.service.modules.sys.entity.Role;
 import com.fish.idle.service.modules.sys.entity.RoleTree;
 import com.fish.idle.service.modules.sys.service.RoleService;

@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.fish.idle.admin.controller.BaseController;
 import com.fish.idle.service.modules.sys.entity.Button;
 import com.fish.idle.service.modules.sys.entity.Menu;
-import com.fish.idle.service.modules.sys.entity.Page;
 import com.fish.idle.service.modules.sys.entity.User;
 import com.fish.idle.service.modules.sys.service.LoginService;
 import com.fish.idle.service.modules.sys.service.UserService;
@@ -21,11 +20,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 /**

@@ -13,7 +13,6 @@
         <module>site</module>
         <module>service</module>
         <module>weixin</module>
-        <module>commons</module>
     </modules>
 
 

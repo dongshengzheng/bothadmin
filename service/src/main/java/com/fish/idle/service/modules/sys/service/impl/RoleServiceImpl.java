@@ -1,17 +1,10 @@
 package com.fish.idle.service.modules.sys.service.impl;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.baomidou.framework.service.impl.SuperServiceImpl;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.fish.idle.service.modules.sys.entity.*;
 import com.fish.idle.service.modules.sys.mapper.*;
-import com.fish.idle.service.modules.sys.service.IOfficeService;
 import com.fish.idle.service.modules.sys.service.RoleService;
-import com.fish.idle.service.util.AppUtil;
-import com.fish.idle.service.util.Const;
-import com.fish.idle.service.util.PageData;
-import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

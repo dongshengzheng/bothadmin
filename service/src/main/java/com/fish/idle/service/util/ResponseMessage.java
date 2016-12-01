@@ -82,7 +82,7 @@ public class ResponseMessage {
 
     @Override
     public String toString() {
-        return JSON.toJSONStringWithDateFormat(this, DateTimeUtils.YEAR_MONTH_DAY_HOUR_MINUTE_SECOND);
+        return JSON.toJSONStringWithDateFormat(this, "yyyy-MM-dd HH:mm:ss");
     }
 
     public int getCode() {
