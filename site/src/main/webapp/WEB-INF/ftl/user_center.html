@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户中心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../assets/img/favicon.ico.png">
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="../assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <!-- CSS Header and Footer -->
+    <link rel="stylesheet" href="../assets/css/headers/header-v5.css">
+    <link rel="stylesheet" href="../assets/css/footers/footer-v4.css">
+    <link rel="stylesheet" href="../assets/css/jsdd/user/usercenter.css">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="../assets/plugins/animate.css">
+    <link rel="stylesheet" href="../assets/plugins/line-icons/line-icons.css">
+    <link rel="stylesheet" href="../assets/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" href="../assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="../assets/plugins/revolution-slider/rs-plugin/css/settings.css">
+    <!-- CSS Theme -->
+    <link rel="stylesheet" href="http://htmlstream.com/preview/unify-v1.9/Shop-UI/assets/css/theme-colors/teal.css"
+          id="style_color">
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="../assets/css/custom.css">
+
+</head>
+
+
+<body>
+
+<div class="wrapper"><!--body bg white-->
+    <!--head start-->
+    <div class="header-v5 header-static" style="height: 70px;">
+        <div class="container">
+            <div class="row" style="">
+                <!--log-->
+                <div class="col-md-3">
+                    <a class="" href="html/index1.html">
+                        <img id="" style="margin: 12px 0px 6px 0px;display: block" src="../assets/img/index/logo.png"
+                             alt="Logo">
+                    </a>
+                </div>
+                <!--/log-->
+
+                <!--shouye-->
+                <div class="col-md-1 text-center" style="height: 100%;">
+                    <div style="border-top: solid 1px red;">
+                        <a style="text-decoration:none; ">
+                            <h3 style="margin-top: 20px">首页</h3></a></div>
+                </div>
+                <!--/shouye-->
+
+                <!--zuopingdengji-->
+                <div class="col-md-2 text-center" style="height: 100%;">
+                    <div style="border-top: solid 1px red;width: 120px;">
+                        <a style="text-decoration:none;">
+                            <h3 style="margin-top: 20px">作品登记</h3></a>
+                    </div>
+                </div>
+                <!--/zuopingdengji-->
+
+                <!--search-->
+                <div class="col-md-4">
+                    <div class="input-group" style="margin-top: 18px">
+                        <input type="text" class="form-control" placeholder="输入要搜索的作品或用户">
+                        <span class="input-group-btn">
+							<button class="btn" type="button" style="color: white;background: #D70016">搜作品</button>
+							<button class="btn" type="button" style="color: white;background: #FB591D;margin-left: 3px">搜用户</button>
+						</span>
+                    </div>
+                </div>
+                <!--/search-->
+                <!---login-->
+
+
+                <!--/login-->
+            </div>
+        </div>
+    </div>
+    <!--head end-->
+    <hr/>
+    <!--content start-->
+    <div class="row tab-v3">
+        <div class="col-sm-3">
+            <div class="margin-bottom-40 margin-top-20"
+                 style="text-align:center;display: table;width: auto;margin-left: auto;margin-right: auto;">
+                <img style="height: 140px ;width: 140px;" src="../assets/img/main/img10.jpg">
+                <p id="editAvatr"
+                   style=" background:rgba(0,0,0,.5); position:relative; top:-19px; color:whitesmoke; font-size:12px;">
+                    点击修头像</p>
+            </div>
+            <div style="display: table;margin-left: auto ;margin-right: auto;margin-top: -25px;">
+
+                <ul class="nav nav-pills nav-stacked margin-bottom-40" style="">
+                    <li class="active text-center"><a href="shortcode_accordion_and_tabs.html#my-work"
+                                                      data-toggle="tab">我的作品</a></li>
+                    <li class="text-center"><a href="shortcode_accordion_and_tabs.html#transfer-work" data-toggle="tab">转让作品</a>
+                    </li>
+                    <li class="text-center"><a href="shortcode_accordion_and_tabs.html#colercting-work"
+                                               data-toggle="tab">收藏作品</a></li>
+                    <li class="text-center"><a href="shortcode_accordion_and_tabs.html#see-user" data-toggle="tab">
+                        关注用户</a>
+                    </li>
+                    <li class="text-center"><a href="shortcode_accordion_and_tabs.html#integrel"
+                                               data-toggle="tab">积分中心</a>
+                    </li>
+                    <li class="text-center"><a href="shortcode_accordion_and_tabs.html#user-info"
+                                               data-toggle="tab">个人资料</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-9 margin-top-20">
+            <div class="tab-content margin-bottom-40">
+                <!--START  我的作品-->
+                <div class="tab-pane fade in active" id="my-work">
+                    <div class="tab-v1" style="">
+                        <ul class="nav nav-tabs">
+                            <li class="active" style="">
+                                <a href="shortcode_accordion_and_tabs.html#check-success" data-toggle="tab">审核通过</a>
+                            </li>
+                            <li>
+                                <a href="shortcode_accordion_and_tabs.html#check-fail" data-toggle="tab">审核失败</a>
+                            </li>
+                            <li>
+                                <a href="shortcode_accordion_and_tabs.html#checking" data-toggle="tab">审核中</a>
+                            </li>
+                            <li>
+                                <a href="shortcode_accordion_and_tabs.html#trash" data-toggle="tab">草稿箱</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" style="background: rgb(254,255,255)">
+                            <!--审核通过-->
+                            <div class="tab-pane fade in active" id="check-success">
+                                <div class="row">
+
+                                </div>
+                            </div>
+                            <!--审核通过-->
+                            <!--审核失败-->
+                            <div class="tab-pane fade in" id="check-fail">
+
+                            </div>
+                            <!--审核失败-->
+                            <!--审核中-->
+                            <div class="tab-pane fade in" id="checking">
+
+                            </div>
+                            <!--审核中-->
+                            <!--草稿箱-->
+                            <div class="tab-pane fade in" id="trash">
+
+                            </div>
+                            <!--草稿箱-->
+                        </div>
+                    </div>
+
+                </div>
+                <!--END  我的作品-->
+                <div class="tab-pane fade in" id="transfer-work">
+                    <img alt="" class="pull-left lft-img-margin img-width-200" src="../assets/img/main/img22.jpg">
+                    <h4>transfer-work</h4>
+                    <p>Vivamus imperdiet condimentum diam, eget placerat felis consectetur id. Donec eget orci metus, ac
+                        adipiscing nunc. Pellentesque fermentum, ante ac interdum ullamcorper. Donec eget orci metus,
+                        <strong>ac adipiscing nunc.</strong> Vivamus imperdiet condimentum diam, eget placerat felis
+                        consectetur id. Donec eget orci metus, ac adipiscing nunc. Pellentesque fermentum, ante ac
+                        interdum id. Donec eget orci metus, ac adipiscing nunc. Pellentesque fermentum, ante ac interdum
+                        ullamcorper. Donec eget orci metus, ac adipiscing nunc. Pellentesque fermentum, ante ac <strong>interdum
+                            ullamcorper.</strong></p>
+                </div>
+
+
+
+                <div class="tab-pane fade in" id="colercting-work">
+                    <h4>收藏作品</h4>
+                    <hr style="padding: 0px;margin-top: 5px"/>
+                    <ul class="list-unstyled row portfolio-box">
+                        <li class="col-sm-4 md-margin-bottom-50">
+                            <a class="thumbnail fancybox" data-rel="gallery" title="Project One"
+                               href="http://localhost:8080/assets/img/main/img9.jpg">
+                                <img class="full-width " src="http://localhost:8080/assets/img/main/img9.jpg" alt="">
+                                <span class="portfolio-box-in">
+                            <i class="rounded-x icon-magnifier-add"></i>
+                        </span>
+                            </a>
+                            <div class="headline-left margin-bottom-10"><h3 class="headline-brd">纯手工打造</h3></div>
+                            <small class="project-tag"><i class="fa fa-tag"></i><a href="page_home10.html#">田黄鸡血石</a>, <a
+                                    href="page_home10.html#">Business</a></small>
+                            <p>鸡血石，星辰沙条带昆凌身价东方拉斯加可浪费</p>
+                        </li>
+
+                        <li class="col-sm-4 md-margin-bottom-50">
+                            <a class="thumbnail fancybox" data-rel="gallery" title="Project One"
+                               href="http://localhost:8080/assets/img/main/img9.jpg">
+                                <img class="full-width " src="http://localhost:8080/assets/img/main/img9.jpg" alt="">
+                                <span class="portfolio-box-in">
+                            <i class="rounded-x icon-magnifier-add"></i>
+                        </span>
+                            </a>
+                            <div class="headline-left margin-bottom-10"><h3 class="headline-brd">纯手工打造</h3></div>
+                            <small class="project-tag"><i class="fa fa-tag"></i><a href="page_home10.html#">田黄鸡血石</a>, <a
+                                    href="page_home10.html#">Business</a></small>
+                            <p>鸡血石，星辰沙条带昆凌身价东方拉斯加可浪费</p>
+                        </li>
+
+                        <li class="col-sm-4 md-margin-bottom-50">
+                            <a class="thumbnail fancybox" data-rel="gallery" title="Project One"
+                               href="http://localhost:8080/assets/img/main/img9.jpg">
+                                <img class="full-width " src="http://localhost:8080/assets/img/main/img9.jpg" alt="">
+                                <span class="portfolio-box-in">
+                            <i class="rounded-x icon-magnifier-add"></i>
+                        </span>
+                            </a>
+                            <div class="headline-left margin-bottom-10"><h3 class="headline-brd">纯手工打造</h3></div>
+                            <small class="project-tag"><i class="fa fa-tag"></i><a href="page_home10.html#">田黄鸡血石</a>, <a
+                                    href="page_home10.html#">Business</a></small>
+                            <p>鸡血石，星辰沙条带昆凌身价东方拉斯加可浪费</p>
+                        </li>
+
+                        <li class="col-sm-4 md-margin-bottom-50">
+                            <a class="thumbnail fancybox" data-rel="gallery" title="Project One"
+                               href="http://localhost:8080/assets/img/main/img9.jpg">
+                                <img class="full-width " src="http://localhost:8080/assets/img/main/img9.jpg" alt="">
+                                <span class="portfolio-box-in">
+                            <i class="rounded-x icon-magnifier-add"></i>
+                        </span>
+                            </a>
+                            <div class="headline-left margin-bottom-10"><h3 class="headline-brd">纯手工打造</h3></div>
+                            <small class="project-tag"><i class="fa fa-tag"></i><a href="page_home10.html#">田黄鸡血石</a>, <a
+                                    href="page_home10.html#">Business</a></small>
+                            <p>鸡血石，星辰沙条带昆凌身价东方拉斯加可浪费</p>
+                        </li>
+
+                        <li class="col-sm-4 md-margin-bottom-50">
+                            <a class="thumbnail fancybox" data-rel="gallery" title="Project One"
+                               href="http://localhost:8080/assets/img/main/img9.jpg">
+                                <img class="full-width " src="http://localhost:8080/assets/img/main/img9.jpg" alt="">
+                                <span class="portfolio-box-in">
+                            <i class="rounded-x icon-magnifier-add"></i>
+                        </span>
+                            </a>
+                            <div class="headline-left margin-bottom-10"><h3 class="headline-brd">纯手工打造</h3></div>
+                            <small class="project-tag"><i class="fa fa-tag"></i><a href="page_home10.html#">田黄鸡血石</a>, <a
+                                    href="page_home10.html#">Business</a></small>
+                            <p>鸡血石，星辰沙条带昆凌身价东方拉斯加可浪费</p>
+                        </li>
+
+                        <li class="col-sm-4 md-margin-bottom-50 text-center">
+                            <!--<a class="thumbnail fancybox" data-rel="gallery" title="Project One"-->
+                               <!--href="http://localhost:8080/assets/img/main/img9.jpg">-->
+                                <img class="full-width " src="http://localhost:8080/assets/img/main/img9.jpg" alt="">
+                                <!--<span class="portfolio-box-in">-->
+                            <p id=""
+                               style=" background:rgba(0,0,0,.5); position:relative; top:-19px; color:whitesmoke; font-size:12px;">
+                                取消收藏</p>
+                            <div class="headline-left margin-bottom-10 ">
+                                <h3 class="headline-brd">纯手工打造</h3></div>
+                            <small class="project-tag text-left"><i class="fa fa-tag"></i><a href="page_home10.html#">田黄鸡血石</a>, <a
+                                    href="page_home10.html#">Business</a></small>
+                            <p>鸡血石，星辰沙条带昆凌身价东方拉斯加可浪费</p>
+                        </li>
+                    </ul>
+                </div>
+
+
+
+
+
+                <div class="tab-pane fade in" id="see-user">
+                    <img alt="" class="pull-left lft-img-margin img-width-200" src="../assets/img/main/img10.jpg">
+                    <h4>see-user</h4>
+                    <p>Vivamus imperdiet condimentum diam, eget placerat felis consectetur id. Donec eget orci metus, ac
+                        adipiscing nunc. Pellentesque fermentum, ante ac interdum ullamcorper. Donec eget orci metus,
+                        <strong>ac adipiscing nunc.</strong> Vivamus imperdiet condimentum diam, eget placerat felis
+                        consectetur id. Donec eget orci metus, ac adipiscing nunc. Pellentesque fermentum, ante ac
+                        interdum id. Donec eget orci metus, ac adipiscing nunc. Pellentesque fermentum, ante ac interdum
+                        ullamcorper. Donec eget orci metus, ac adipiscing nunc. Pellentesque fermentum, ante ac <strong>interdum
+                            ullamcorper.</strong></p>
+                </div>
+
+                <div class="tab-pane fade in margin-bottom-40" id="integrel" >
+
+                    <div class="heading">
+                        <h2 style="margin-bottom: 0px;padding-bottom: 0px">可用积分</h2>
+                        <h3 style="color: orangered">0</h3>
+                    </div>
+
+                    <div class="row text-center margin-bottom-35">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <div class="col-md-5">
+                                <button class="btn btn-u btn-u-default" data-toggle="modal" data-target=".withdrawModel" style="width: 150px;">提现</button>
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-5">
+                                <button class="btn btn-u btn-u-default" data-toggle="modal" data-target=".rechargeModel" style="width: 150px;">充值</button>
+                            </div>
+                        </div>
+                        <div class="col-md-2"></div>
+
+                    </div>
+
+                    <!--<div class="heading heading-v1 margin-bottom-20">-->
+                    <!--<h2>积分明细</h2>-->
+                    <!--</div>-->
+
+                    <div class="row table">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <ul class="">
+                                <li style="" class="jf_active user_jf_li" data-type="qb">
+                                    <a href="#quanbu" data-toggle="tab">全部</a>
+                                </li>
+                                <li class="user_jf_li" data-type="cz">
+                                    <a href="#chongzhi" data-toggle="tab">充值</a>
+                                </li>
+                                <li class="user_jf_li" data-type="tx">
+                                    <a href="#tixian" data-toggle="tab">提现</a>
+                                </li>
+                                <li class="user_jf_li" data-type="qt">
+                                    <a href="#qita" data-toggle="tab">其他</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3"></div>
+
+                    </div>
+                    <div id="jf_content">
+
+                        <div class="container" style="margin-top: 50px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">作品被浏览</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
+                        <div class="container" style="margin-top: 30px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">作品被浏览</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
+                        <div class="container" style="margin-top: 30px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">作品被浏览</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
+                        <div class="container" style="margin-top: 30px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">作品被浏览</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
+                        <div class="container" style="margin-top: 30px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">作品被浏览</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Tab v3 -->
+
+    <!--content end-->
+
+    <!--提现积分model-->
+    <div class="modal fade withdrawModel" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                    <h4 id="myLargeModalLabel2" class="modal-title">积分充值</h4>
+                </div>
+                <div class="modal-body margin-top-20 margin-bottom-50">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div style="border: solid red 1px;height: 50px">
+                                    <div class="row">
+                                        <div class="col-md-6">5积分</div>
+                                        <div class="col-md-6">5积分</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div style="border: solid red 1px;height: 50px">
+                                    <div class="row">
+                                        <div class="col-md-6">15积分</div>
+                                        <div class="col-md-6">15积分</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Large modal -->
+
+
+    <!--footer-->
+    <div class="footer-v4">
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 ">
+                        <p>
+                            2016 &copy; 金石典当. ALL Rights Reserved.
+                            <!--<a target="_blank" href="">Htmlstream</a> | <a href="index1.html#">Privacy Policy</a> | <a-->
+                            <!--href="index1.html#">Terms of Service</a>-->
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-inline sponsors-icons pull-right">
+                            <!--<li><i class="fa fa-cc-paypal"></i></li>-->
+                            <!--<li><i class="fa fa-cc-visa"></i></li>-->
+                            <!--<li><i class="fa fa-cc-mastercard"></i></li>-->
+                            <!--<li><i class="fa fa-cc-discover"></i></li>-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/copyright-->
+    <!--FOOTER END-->
+
+
+</div>
+<script id="qb_jf" type="mustache">
+
+
+</script>
+
+<!-- JS Global Compulsory -->
+<script src="../assets/plugins/jquery/jquery.min.js"></script>
+<script src="../assets/plugins/jquery/jquery-migrate.min.js"></script>
+<script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- JS Implementing Plugins -->
+<script src="../assets/plugins/back-to-top.js"></script>
+<script src="../assets/plugins/smoothScroll.js"></script>
+<script src="../assets/plugins/jquery.parallax.js"></script>
+<script src="../assets/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
+<script src="../assets/plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="../assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+<script src="../assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<!-- JS Customization -->
+<script src="../assets/js/custom.js"></script>
+<!-- JS Page Level -->
+<script src="../assets/js/shop.app.js"></script>
+<script src="../assets/js/plugins/owl-carousel.js"></script>
+<script src="../assets/js/plugins/revolution-slider.js"></script>
+<script src="../assets/js/plugins/style-switcher.js"></script>
+<script src="../assets/mustache.js"></script>
+
+<script>
+
+    jQuery(document).ready(function () {
+        App.init();
+        App.initScrollBar();
+        App.initParallaxBg();
+        OwlCarousel.initOwlCarousel();
+        RevolutionSlider.initRSfullWidth();
+        StyleSwitcher.initStyleSwitcher();
+
+        $("#editAvatr").bind("click", function () {
+            alert("上传图片")
+        });
+
+        /*积分4个tab使用模板绑定*/
+//        $(".user_jf_li").bind("click", function () {
+//            $(".user_jf_li").removeClass("jf_active");
+//            $(this).addClass("jf_active");
+//            var type = $(this)[0].getAttribute("data-type");
+//            /*ajax 根据 type 请求相应的积分列表*/
+//
+//            //4中type模板公用
+//            var qbtpl = $("#qb_jf")[0].innerHTML;
+//            var html = Mustache.render(qbtpl, {});
+//            $("#jf_content")[0].innerHTML = "";
+//            $("#jf_content")[0].innerHTML = html;
+//        });
+//        页面加载时主动触发加载全部积分列表
+//        $('.jf_active').trigger("click");
+        
+        $("#close").bind("click",function () {
+            alert("tixian");
+        })
+
+
+
+
+    });
+</script>
+
+</body>
+</html>

@@ -41,7 +41,7 @@
         </div>
     </div>
     <div class="col-sm-9 margin-top-20">
-        <div class="tab-content">
+        <div class="tab-content margin-bottom-40">
             <!--START  我的作品-->
             <div class="tab-pane fade in active" id="my-work">
                 <div class="tab-v1" style="">
@@ -99,17 +99,68 @@
                     ullamcorper. Donec eget orci metus, ac adipiscing nunc. Pellentesque fermentum, ante ac <strong>interdum
                         ullamcorper.</strong></p>
             </div>
+        <#--收藏作品 collect_work_title_top-->
             <div class="tab-pane fade in" id="colercting-work">
-                <h4>colercting-work</h4>
-                <p><img alt="" class="pull-right rgt-img-margin img-width-200"
-                        src="${staticPath}/assets/img/main/img13.jpg">
-                    <strong>Vivamus imperdiet condimentum diam, eget placerat felis consectetur id.</strong> Donec
-                    eget orci metus, Vivamus imperdiet condimentum diam, eget placerat felis consectetur id. Donec
-                    eget orci metus, ac adipiscing nunc. Pellentesque fermentum, ante ac interdum ullamcorper. Donec
-                    eget orci metus, ac adipiscing nunc. Pellentesque fermentum, consectetur id. Donec eget orci
-                    metus, ac adipiscing nunc. <strong>Pellentesque fermentum</strong>, ante ac interdum
-                    ullamcorper. Donec eget orci metus, ac adipiscing nunc. Pellentesque fermentum, ante ac interdum
-                    ullamcorper.</p>
+                <h4>收藏作品</h4>
+                <hr style="padding: 0px;margin-top: 5px"/>
+                <ul class="list-unstyled row portfolio-box">
+                    <li class="col-sm-4 md-margin-bottom-50 text-center">
+                        <img class="full-width " src="http://localhost:8080/assets/img/main/img9.jpg" alt="">
+                        <p id="" style=" background:rgba(0,0,0,.5); position:relative; top:-19px; color:whitesmoke; font-size:12px;">
+                            取消收藏
+                        </p>
+                        <div class="headline-left margin-bottom-10 text-left ">
+                            <h3 class="headline-brd collect_work_title_top">纯手工打造
+                        </h3></div>
+                        <small class="project-tag text-left"><i class="fa fa-tag"></i><a href="page_home10.html#">田黄鸡血石</a>, <a
+                                href="page_home10.html#">Business</a></small>
+                        <p>鸡血石，星辰沙条带昆凌身价东方拉斯加可浪费</p>
+                    </li>
+
+                    <li class="col-sm-4 md-margin-bottom-50 text-center">
+                        <img class="full-width " src="http://localhost:8080/assets/img/main/img9.jpg" alt="">
+                        <p id="" style=" background:rgba(0,0,0,.5); position:relative; top:-19px; color:whitesmoke; font-size:12px;">
+                            取消收藏
+                        </p>
+                        <div class="headline-left margin-bottom-10 text-left ">
+                            <h3 class="headline-brd collect_work_title_top">纯手工打造
+                            </h3></div>
+                        <small class="project-tag text-left"><i class="fa fa-tag"></i><a href="page_home10.html#">田黄鸡血石</a>, <a
+                                href="page_home10.html#">Business</a></small>
+                        <p>鸡血石，星辰沙条带昆凌身价东方拉斯加可浪费</p>
+                    </li>
+
+
+                    <li class="col-sm-4 md-margin-bottom-50 text-center">
+                        <img class="full-width " src="http://localhost:8080/assets/img/main/img9.jpg" alt="">
+                        <p id="" style=" background:rgba(0,0,0,.5); position:relative; top:-19px; color:whitesmoke; font-size:12px;">
+                            取消收藏
+                        </p>
+                        <div class="headline-left margin-bottom-10 text-left ">
+                            <h3 class="headline-brd collect_work_title_top">纯手工打造
+                            </h3></div>
+                        <small class="project-tag text-left"><i class="fa fa-tag"></i><a href="page_home10.html#">田黄鸡血石</a>, <a
+                                href="page_home10.html#">Business</a></small>
+                        <p>鸡血石，星辰沙条带昆凌身价东方拉斯加可浪费</p>
+                    </li>
+
+
+                    <li class="col-sm-4 md-margin-bottom-50 text-center">
+                        <img class="full-width " src="http://localhost:8080/assets/img/main/img9.jpg" alt="">
+                        <p id="" style=" background:rgba(0,0,0,.5); position:relative; top:-19px; color:whitesmoke; font-size:12px;">
+                            取消收藏
+                        </p>
+                        <div class="headline-left margin-bottom-10 text-left ">
+                            <h3 class="headline-brd collect_work_title_top">纯手工打造
+                            </h3></div>
+                        <small class="project-tag text-left"><i class="fa fa-tag"></i><a href="page_home10.html#">田黄鸡血石</a>, <a
+                                href="page_home10.html#">Business</a></small>
+                        <p>鸡血石，星辰沙条带昆凌身价东方拉斯加可浪费</p>
+                    </li>
+
+                </ul>
+
+
             </div>
             <div class="tab-pane fade in" id="see-user">
                 <div class="row">
@@ -300,24 +351,31 @@
 
         <#--积分中心-->
             <div class="tab-pane fade in" id="integrel">
-                <#--<div class="row text-center">-->
-                    <#--<div class="col-md-3"></div>-->
-                    <#--<div class="col-md-6"><h3 style="margin: 0px">可用积分</h3><h3 style="margin: 0px;color: orangered;">0</h3></div>-->
-                    <#--<div class="col-md-3"></div>-->
-                <#--</div>-->
                 <div class="heading">
                     <h2 style="margin-bottom: 0px;padding-bottom: 0px">可用积分</h2>
                     <h3 style="color: orangered">0</h3>
                 </div>
 
-                <div class="row text-center">
-                    <div class="col-md-5"><p style="float: right;font-size: 15px;width: 100px ;background: gray">提现</p></div>
+                <div class="row text-center margin-bottom-40">
                     <div class="col-md-2"></div>
-                    <div class="col-md-5"><p style="float:left;font-size: 15px;width: 100px ;background: red">充值</p></div>
+                    <div class="col-md-8">
+                        <div class="col-md-5">
+                            <button class="btn btn-u btn-u-default" data-toggle="modal" data-target=".withdrawModel"
+                                    style="width: 150px;">提现
+                            </button>
+                        </div>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-5">
+                            <button class="btn btn-u btn-u-default" data-toggle="modal" data-target=".chargeModel"
+                                    style="width: 150px;">充值
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
                 </div>
 
                 <div class="heading heading-v1 margin-bottom-20">
-                    <h2>积分明细</h2>
+                    <h4 style="color:  #bbb;">积分明细</h4>
                 </div>
 
                 <div class="row table">
@@ -341,10 +399,8 @@
                     <div class="col-md-3"></div>
 
                 </div>
-                <#--积分列表-->
+            <#--积分列表-->
                 <div id="jf_content">
-
-
 
 
                 </div>
@@ -362,9 +418,32 @@
 
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="city">所在城市：</label>
+                        <label class="col-sm-2 control-label">所在城市：</label>
                         <div class="col-sm-4">
-                            <input class="form-control" name="city" id="city" type="text" placeholder="请输入所在城市"/>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <select data-placeholder="省份" data-rel="chosen" id="provinceId" name="province"
+                                            class="form-control" name="">
+                                        <option value="0">请选择</option>
+                                        <#if provinceList?? && (provinceList?size >0)>
+
+                                            <#list provinceList as item>
+                                                <option value="${item.provinceid}">${item.province}</option>
+                                            </#list>
+
+
+                                        </#if>
+                                    </select>
+
+                                </div>
+                                <div class="col-sm-6">
+                                    <select data-placeholder="城市" data-rel="chosen" name="city" id="cityId"
+                                            class="form-control" name="">
+                                        <option value="0">请选择</option>
+                                    </select>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <div class="form-group">
@@ -426,18 +505,197 @@
 <@footerJS>
 
 <script id="qb_jf" type="mustache">
-    <div>
-        <p>2016-11-29<span>作品被浏览<span>+1</span></span></p>
-        <p>2016-11-29<span>作品被浏览<span>+1</span></span></p>
-        <p>2016-11-29<span>作品被浏览<span>+1</span></span></p>
-        <p>2016-11-29<span>作品被浏览<span>+1</span></span></p>
-        <p>2016-11-29<span>作品被浏览<span>+1</span></span></p>
-        <p>2016-11-29<span>作品被浏览<span>+1</span></span></p>
-    </div>
+    <div class="container" style="margin-top: 50px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">作品被浏览</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
+                        <div class="container" style="margin-top: 30px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">作品被浏览</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
+                        <div class="container" style="margin-top: 30px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">作品被浏览</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
+                        <div class="container" style="margin-top: 30px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">作品被浏览</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
+                        <div class="container" style="margin-top: 30px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">作品被浏览</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
 
+</script>
+
+<script id="cz_jf" type="mustache">
+    <div class="container" style="margin-top: 50px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">充值送积分</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
+                        <div class="container" style="margin-top: 30px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">充值送积分</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
+                        <div class="container" style="margin-top: 30px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">充值送积分</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
+                        <div class="container" style="margin-top: 30px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">充值送积分</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
+                        <div class="container" style="margin-top: 30px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">充值送积分</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
+
+</script>
+
+<script id="tx_jf" type="mustache">
+    <div class="container" style="margin-top: 50px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">提现送积分</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
+                        <div class="container" style="margin-top: 30px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">提现送积分</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
+
+</script>
+
+<script id="qt_jf" type="mustache">
+    <div class="container" style="margin-top: 50px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">其他送积分</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
+                        <div class="container" style="margin-top: 30px">
+                            <div class="row margin-bottom-10">
+                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-md-5">其他送积分</div>
+                                <div class="col-md-2" style="color: orangered">+1</div>
+                            </div>
+                            <hr style="height: 0px ;margin: 0px;"/>
+                        </div>
 
 </script>
 <!-- JS Customization -->
+
+<!--提现积分model-->
+<div class="modal fade withdrawModel" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <h4 id="myLargeModalLabel2" class="modal-title">积分提现</h4>
+            </div>
+            <div class="modal-body margin-top-20 margin-bottom-50">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-2 text-right">
+                            <p>请输入提现积分：</p>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" id="jifen" class="form-control">
+                            <p style="margin-bottom: 0px">预计一个工作日内以红包的形式发放到你的微信账户</p>
+                            <p style="color: darkred">请输入0~280提现积分</p>
+                            <button class="btn btn-lg form-control" id="withdraw_qr" type="button"
+                                    style="color: white;background: darkred;padding: 0px">确认提现
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--充值model-->
+<div class="modal fade chargeModel" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <h4 id="myLargeModalLabel2" class="modal-title">积分充值</h4>
+            </div>
+            <div class="modal-body margin-top-20 margin-bottom-50">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-2 text-right">
+                            <p>请输入提现积分：</p>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" id="jifen" class="form-control">
+                            <p style="margin-bottom: 0px">预计一个工作日内以红包的形式发放到你的微信账户</p>
+                            <p style="color: darkred">请输入0~280提现积分</p>
+                            <button class="btn btn-lg" id="recharge_qr" type="button"
+                                    style="color: white;background: darkred">确认提现
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript" src="${staticPath}/assets/js/custom.js"></script>
 
 
@@ -451,21 +709,66 @@
         });
 
         /*积分4个tab使用模板绑定*/
-        $(".user_jf_li").bind("click",function () {
+        $(".user_jf_li").bind("click", function () {
             $(".user_jf_li").removeClass("jf_active");
             $(this).addClass("jf_active");
             var type = $(this)[0].getAttribute("data-type");
             /*ajax 根据 type 请求相应的积分列表*/
-
             //4中type模板公用
-            var qbtpl = $("#qb_jf")[0].innerHTML;
-            var html = Mustache.render(qbtpl,{});
-            $("#jf_content")[0].innerHTML  = "";
-            $("#jf_content")[0].innerHTML  = html;
+            if (type == "qb") {
+                var qbtpl = $("#qb_jf")[0].innerHTML;
+                var html = Mustache.render(qbtpl, {});
+                $("#jf_content")[0].innerHTML = "";
+                $("#jf_content")[0].innerHTML = html;
+            }
+            if (type == "cz") {
+                var cztpl = $("#cz_jf")[0].innerHTML;
+                var html = Mustache.render(cztpl, {});
+                $("#jf_content")[0].innerHTML = "";
+                $("#jf_content")[0].innerHTML = html;
+            }
+            if (type == "tx") {
+                var txtpl = $("#tx_jf")[0].innerHTML;
+                var html = Mustache.render(txtpl, {});
+                $("#jf_content")[0].innerHTML = "";
+                $("#jf_content")[0].innerHTML = html;
+            }
+
+            if (type == "qt") {
+                var qttpl = $("#qt_jf")[0].innerHTML;
+                var html = Mustache.render(qttpl, {});
+                $("#jf_content")[0].innerHTML = "";
+                $("#jf_content")[0].innerHTML = html;
+            }
+
         });
 //        页面加载时主动触发加载全部积分列表
         $('.jf_active').trigger("click");
 
+        $("#provinceId").change(function () {
+            $.get("getCityByProvinceId/" + $("#provinceId").val(), function (data) {
+                if (data.status) {
+                    var result = "<option>选择城市</option>";
+                    $.each(data.cityList, function (n, value) {
+                        result += "<option value='" + value.cityid + "'>" + value.city + "</option>";
+                    });
+                    $("#cityId").html('');
+                    $("#cityId").append(result);
+                }
+            }, "json");
+        });
+
+        //积分提现
+        $("#withdraw_qr").bind("click", function () {
+            alert("提现成功");
+            $('.withdrawModel').modal("hide");
+        });
+
+        //积分充值
+        $("#recharge_qr").bind("click", function () {
+            alert("充值成功");
+
+        });
 
     });
 </script>
