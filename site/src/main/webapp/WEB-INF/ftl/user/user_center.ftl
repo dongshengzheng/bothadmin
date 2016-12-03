@@ -593,7 +593,7 @@
                             <input type="text" id="jifen" class="form-control">
                             <p style="margin-bottom: 0px">预计一个工作日内以红包的形式发放到你的微信账户</p>
                             <p style="color: darkred">请输入0~280提现积分</p>
-                            <button class="btn btn-lg" id="withdraw_qr" onclick="aler()" type="button" style="color: white;background: darkred">确认提现</button>
+                            <button class="btn btn-lg form-control" id="withdraw_qr" type="button" style="color: white;background: darkred;padding: 0px">确认提现</button>
                         </div>
                     </div>
                 </div>
@@ -622,7 +622,7 @@
                             <input type="text" id="jifen" class="form-control">
                             <p style="margin-bottom: 0px">预计一个工作日内以红包的形式发放到你的微信账户</p>
                             <p style="color: darkred">请输入0~280提现积分</p>
-                            <button class="btn btn-lg" id="recharge_qr" onclick="aler()" type="button" style="color: white;background: darkred">确认提现</button>
+                            <button class="btn btn-lg" id="recharge_qr" type="button" style="color: white;background: darkred">确认提现</button>
                         </div>
                     </div>
                 </div>
@@ -697,11 +697,13 @@
         //积分提现
         $("#withdraw_qr").bind("click",function () {
             alert("提现成功");
+            $('.withdrawModel').modal("hide");
         });
 
         //积分充值
         $("#recharge_qr").bind("click",function () {
             alert("充值成功");
+
         });
 
     });
