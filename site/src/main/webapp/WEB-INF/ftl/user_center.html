@@ -204,11 +204,15 @@
                     </div>
 
                     <div class="row text-center">
-                        <div class="col-md-5"><p style="float: right;font-size: 15px;width: 100px ;background: gray">
-                            提现</p>
+                        <div class="col-md-5">
+                            <!--<p id="withdrawBtn" style="float: right;font-size: 15px;width: 100px ;background: gray">-->
+                            <!--</p>-->
+
+                            <button class="btn btn-u btn-u-default" data-toggle="modal" data-target=".withdrawModel">提现</button>
                         </div>
                         <div class="col-md-2"></div>
-                        <div class="col-md-5"><p style="float:left;font-size: 15px;width: 100px ;background: red">充值</p>
+                        <div class="col-md-5">
+                            <p id="chargeBtn" style="float:left;font-size: 15px;width: 100px ;background: red">充值</p>
                         </div>
                     </div>
 
@@ -293,6 +297,43 @@
 
     <!--content end-->
 
+    <!--提现积分model-->
+    <div class="modal fade withdrawModel" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                    <h4 id="myLargeModalLabel2" class="modal-title">积分充值</h4>
+                </div>
+                <div class="modal-body margin-top-20 margin-bottom-50">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div style="border: solid red 1px;height: 50px">
+                                    <div class="row">
+                                        <div class="col-md-6">5积分</div>
+                                        <div class="col-md-6">5积分</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div style="border: solid red 1px;height: 50px">
+                                    <div class="row">
+                                        <div class="col-md-6">15积分</div>
+                                        <div class="col-md-6">15积分</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Large modal -->
+
+
     <!--footer-->
     <div class="footer-v4">
         <div class="copyright">
@@ -376,6 +417,12 @@
 //        });
 //        页面加载时主动触发加载全部积分列表
 //        $('.jf_active').trigger("click");
+        
+        $("#close").bind("click",function () {
+            alert("tixian");
+        })
+
+
 
 
     });

@@ -306,15 +306,22 @@
                 </div>
 
                 <div class="row text-center">
-                    <div class="col-md-5"><p style="float: right;font-size: 15px;width: 100px ;background: gray">提现</p>
+                    <div class="col-md-5">
+                        <div class="col-md-5">
+                            <!--<p id="withdrawBtn" style="float: right;font-size: 15px;width: 100px ;background: gray">-->
+                            <!--</p>-->
+                            <button class="btn btn-u btn-u-default" data-toggle="modal" data-target=".withdrawModel">提现</button>
+                        </div>
                     </div>
                     <div class="col-md-2"></div>
-                    <div class="col-md-5"><p style="float:left;font-size: 15px;width: 100px ;background: red">充值</p>
+                    <div class="col-md-5">
+                        <#--<p style="float:left;font-size: 15px;width: 100px ;background: red">充值</p>-->
+                            <button class="btn btn-u btn-u-default" data-toggle="modal" data-target=".chargeModel">充值</button>
                     </div>
                 </div>
 
                 <div class="heading heading-v1 margin-bottom-20">
-                    <h2>积分明细</h2>
+                    <h4 style="color:  #bbb;">积分明细</h4>
                 </div>
 
                 <div class="row table">
@@ -338,7 +345,7 @@
                     <div class="col-md-3"></div>
 
                 </div>
-            <#--积分列表-->
+                <#--积分列表-->
                 <div id="jf_content">
 
 
@@ -567,6 +574,65 @@
                         </div>
 </script>
 <!-- JS Customization -->
+
+<!--提现积分model-->
+<div class="modal fade withdrawModel" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <h4 id="myLargeModalLabel2" class="modal-title">积分提现</h4>
+            </div>
+            <div class="modal-body margin-top-20 margin-bottom-50">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-2 text-right">
+                            <p>请输入提现积分：</p>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" id="jifen" class="form-control">
+                            <p style="margin-bottom: 0px">预计一个工作日内以红包的形式发放到你的微信账户</p>
+                            <p style="color: darkred">请输入0~280提现积分</p>
+                            <button class="btn btn-lg" id="withdraw_qr" onclick="aler()" type="button" style="color: white;background: darkred">确认提现</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--充值model-->
+<div class="modal fade chargeModel" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <h4 id="myLargeModalLabel2" class="modal-title">积分充值</h4>
+            </div>
+            <div class="modal-body margin-top-20 margin-bottom-50">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-2 text-right">
+                            <p>请输入提现积分：</p>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" id="jifen" class="form-control">
+                            <p style="margin-bottom: 0px">预计一个工作日内以红包的形式发放到你的微信账户</p>
+                            <p style="color: darkred">请输入0~280提现积分</p>
+                            <button class="btn btn-lg" id="recharge_qr" onclick="aler()" type="button" style="color: white;background: darkred">确认提现</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript" src="${staticPath}/assets/js/custom.js"></script>
 
 
@@ -630,7 +696,14 @@
         });
 
         //积分提现
+        $("#withdraw_qr").bind("click",function () {
+            alert("提现成功");
+        });
 
+        //积分充值
+        $("#recharge_qr").bind("click",function () {
+            alert("充值成功");
+        });
 
     });
 </script>

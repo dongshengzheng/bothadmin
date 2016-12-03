@@ -18,3 +18,57 @@
 
     background: orangered;
 }
+
+
+.heading {
+    text-align: center;
+}
+
+.heading h4 {
+    padding: 0 12px;
+    position: relative;
+    display: inline-block;
+    line-height: 34px !important; /*For Tagline Boxes*/
+}
+
+.heading h4:before,
+.heading h4:after {
+    content: ' ';
+    width: 400px;
+    position: absolute;
+    border-width: 1px;
+    border-color: #bbb;
+}
+
+.heading h4:before {
+    right: 100%;
+}
+
+.heading h4:after {
+    left: 100%;
+}
+
+@media (max-width: 1200px) {
+    .heading h4:before,
+    .heading h4:after {
+        width: 700px;
+    }
+}
+
+@media (max-width: 768px) {
+    .heading h4:before,
+    .heading h4:after {
+        width: 200px;
+    }
+}
+
+
+
+/*Headline v1*/
+.heading-v1 h4:before,
+.heading-v1 h4:after {
+    top: 10px;
+    height: 6px;
+    /*border-top-style: solid;*/
+    border-bottom-style: solid;
+}
