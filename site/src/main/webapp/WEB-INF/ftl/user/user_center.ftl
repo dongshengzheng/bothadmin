@@ -99,17 +99,68 @@
                     ullamcorper. Donec eget orci metus, ac adipiscing nunc. Pellentesque fermentum, ante ac <strong>interdum
                         ullamcorper.</strong></p>
             </div>
+        <#--收藏作品 collect_work_title_top-->
             <div class="tab-pane fade in" id="colercting-work">
-                <h4>colercting-work</h4>
-                <p><img alt="" class="pull-right rgt-img-margin img-width-200"
-                        src="${staticPath}/assets/img/main/img13.jpg">
-                    <strong>Vivamus imperdiet condimentum diam, eget placerat felis consectetur id.</strong> Donec
-                    eget orci metus, Vivamus imperdiet condimentum diam, eget placerat felis consectetur id. Donec
-                    eget orci metus, ac adipiscing nunc. Pellentesque fermentum, ante ac interdum ullamcorper. Donec
-                    eget orci metus, ac adipiscing nunc. Pellentesque fermentum, consectetur id. Donec eget orci
-                    metus, ac adipiscing nunc. <strong>Pellentesque fermentum</strong>, ante ac interdum
-                    ullamcorper. Donec eget orci metus, ac adipiscing nunc. Pellentesque fermentum, ante ac interdum
-                    ullamcorper.</p>
+                <h4>收藏作品</h4>
+                <hr style="padding: 0px;margin-top: 5px"/>
+                <ul class="list-unstyled row portfolio-box">
+                    <li class="col-sm-4 md-margin-bottom-50 text-center">
+                        <img class="full-width " src="http://localhost:8080/assets/img/main/img9.jpg" alt="">
+                        <p id="" style=" background:rgba(0,0,0,.5); position:relative; top:-19px; color:whitesmoke; font-size:12px;">
+                            取消收藏
+                        </p>
+                        <div class="headline-left margin-bottom-10 text-left ">
+                            <h3 class="headline-brd collect_work_title_top">纯手工打造
+                        </h3></div>
+                        <small class="project-tag text-left"><i class="fa fa-tag"></i><a href="page_home10.html#">田黄鸡血石</a>, <a
+                                href="page_home10.html#">Business</a></small>
+                        <p>鸡血石，星辰沙条带昆凌身价东方拉斯加可浪费</p>
+                    </li>
+
+                    <li class="col-sm-4 md-margin-bottom-50 text-center">
+                        <img class="full-width " src="http://localhost:8080/assets/img/main/img9.jpg" alt="">
+                        <p id="" style=" background:rgba(0,0,0,.5); position:relative; top:-19px; color:whitesmoke; font-size:12px;">
+                            取消收藏
+                        </p>
+                        <div class="headline-left margin-bottom-10 text-left ">
+                            <h3 class="headline-brd collect_work_title_top">纯手工打造
+                            </h3></div>
+                        <small class="project-tag text-left"><i class="fa fa-tag"></i><a href="page_home10.html#">田黄鸡血石</a>, <a
+                                href="page_home10.html#">Business</a></small>
+                        <p>鸡血石，星辰沙条带昆凌身价东方拉斯加可浪费</p>
+                    </li>
+
+
+                    <li class="col-sm-4 md-margin-bottom-50 text-center">
+                        <img class="full-width " src="http://localhost:8080/assets/img/main/img9.jpg" alt="">
+                        <p id="" style=" background:rgba(0,0,0,.5); position:relative; top:-19px; color:whitesmoke; font-size:12px;">
+                            取消收藏
+                        </p>
+                        <div class="headline-left margin-bottom-10 text-left ">
+                            <h3 class="headline-brd collect_work_title_top">纯手工打造
+                            </h3></div>
+                        <small class="project-tag text-left"><i class="fa fa-tag"></i><a href="page_home10.html#">田黄鸡血石</a>, <a
+                                href="page_home10.html#">Business</a></small>
+                        <p>鸡血石，星辰沙条带昆凌身价东方拉斯加可浪费</p>
+                    </li>
+
+
+                    <li class="col-sm-4 md-margin-bottom-50 text-center">
+                        <img class="full-width " src="http://localhost:8080/assets/img/main/img9.jpg" alt="">
+                        <p id="" style=" background:rgba(0,0,0,.5); position:relative; top:-19px; color:whitesmoke; font-size:12px;">
+                            取消收藏
+                        </p>
+                        <div class="headline-left margin-bottom-10 text-left ">
+                            <h3 class="headline-brd collect_work_title_top">纯手工打造
+                            </h3></div>
+                        <small class="project-tag text-left"><i class="fa fa-tag"></i><a href="page_home10.html#">田黄鸡血石</a>, <a
+                                href="page_home10.html#">Business</a></small>
+                        <p>鸡血石，星辰沙条带昆凌身价东方拉斯加可浪费</p>
+                    </li>
+
+                </ul>
+
+
             </div>
             <div class="tab-pane fade in" id="see-user">
                 <div class="row">
@@ -309,11 +360,15 @@
                     <div class="col-md-2"></div>
                     <div class="col-md-8">
                         <div class="col-md-5">
-                            <button class="btn btn-u btn-u-default" data-toggle="modal" data-target=".withdrawModel" style="width: 150px;">提现</button>
+                            <button class="btn btn-u btn-u-default" data-toggle="modal" data-target=".withdrawModel"
+                                    style="width: 150px;">提现
+                            </button>
                         </div>
                         <div class="col-md-2"></div>
                         <div class="col-md-5">
-                            <button class="btn btn-u btn-u-default" data-toggle="modal" data-target=".chargeModel" style="width: 150px;">充值</button>
+                            <button class="btn btn-u btn-u-default" data-toggle="modal" data-target=".chargeModel"
+                                    style="width: 150px;">充值
+                            </button>
                         </div>
                     </div>
                     <div class="col-md-2"></div>
@@ -344,7 +399,7 @@
                     <div class="col-md-3"></div>
 
                 </div>
-                <#--积分列表-->
+            <#--积分列表-->
                 <div id="jf_content">
 
 
@@ -490,6 +545,7 @@
                             </div>
                             <hr style="height: 0px ;margin: 0px;"/>
                         </div>
+
 </script>
 
 <script id="cz_jf" type="mustache">
@@ -533,6 +589,7 @@
                             </div>
                             <hr style="height: 0px ;margin: 0px;"/>
                         </div>
+
 </script>
 
 <script id="tx_jf" type="mustache">
@@ -552,6 +609,7 @@
                             </div>
                             <hr style="height: 0px ;margin: 0px;"/>
                         </div>
+
 </script>
 
 <script id="qt_jf" type="mustache">
@@ -571,11 +629,13 @@
                             </div>
                             <hr style="height: 0px ;margin: 0px;"/>
                         </div>
+
 </script>
 <!-- JS Customization -->
 
 <!--提现积分model-->
-<div class="modal fade withdrawModel" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade withdrawModel" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -593,7 +653,9 @@
                             <input type="text" id="jifen" class="form-control">
                             <p style="margin-bottom: 0px">预计一个工作日内以红包的形式发放到你的微信账户</p>
                             <p style="color: darkred">请输入0~280提现积分</p>
-                            <button class="btn btn-lg form-control" id="withdraw_qr" type="button" style="color: white;background: darkred;padding: 0px">确认提现</button>
+                            <button class="btn btn-lg form-control" id="withdraw_qr" type="button"
+                                    style="color: white;background: darkred;padding: 0px">确认提现
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -622,7 +684,9 @@
                             <input type="text" id="jifen" class="form-control">
                             <p style="margin-bottom: 0px">预计一个工作日内以红包的形式发放到你的微信账户</p>
                             <p style="color: darkred">请输入0~280提现积分</p>
-                            <button class="btn btn-lg" id="recharge_qr" type="button" style="color: white;background: darkred">确认提现</button>
+                            <button class="btn btn-lg" id="recharge_qr" type="button"
+                                    style="color: white;background: darkred">确认提现
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -651,26 +715,26 @@
             var type = $(this)[0].getAttribute("data-type");
             /*ajax 根据 type 请求相应的积分列表*/
             //4中type模板公用
-            if(type == "qb"){
+            if (type == "qb") {
                 var qbtpl = $("#qb_jf")[0].innerHTML;
                 var html = Mustache.render(qbtpl, {});
                 $("#jf_content")[0].innerHTML = "";
                 $("#jf_content")[0].innerHTML = html;
             }
-            if(type == "cz"){
+            if (type == "cz") {
                 var cztpl = $("#cz_jf")[0].innerHTML;
                 var html = Mustache.render(cztpl, {});
                 $("#jf_content")[0].innerHTML = "";
                 $("#jf_content")[0].innerHTML = html;
             }
-            if(type == "tx"){
+            if (type == "tx") {
                 var txtpl = $("#tx_jf")[0].innerHTML;
                 var html = Mustache.render(txtpl, {});
                 $("#jf_content")[0].innerHTML = "";
                 $("#jf_content")[0].innerHTML = html;
             }
 
-            if(type == "qt"){
+            if (type == "qt") {
                 var qttpl = $("#qt_jf")[0].innerHTML;
                 var html = Mustache.render(qttpl, {});
                 $("#jf_content")[0].innerHTML = "";
@@ -695,13 +759,13 @@
         });
 
         //积分提现
-        $("#withdraw_qr").bind("click",function () {
+        $("#withdraw_qr").bind("click", function () {
             alert("提现成功");
             $('.withdrawModel').modal("hide");
         });
 
         //积分充值
-        $("#recharge_qr").bind("click",function () {
+        $("#recharge_qr").bind("click", function () {
             alert("充值成功");
 
         });

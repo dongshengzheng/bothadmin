@@ -72,3 +72,8 @@
     /*border-top-style: solid;*/
     border-bottom-style: solid;
 }
+
+
+.collect_work_title_top{
+    margin-top: -25px;
+}
