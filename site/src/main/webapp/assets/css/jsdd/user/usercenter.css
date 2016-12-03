@@ -34,7 +34,7 @@
 .heading h4:before,
 .heading h4:after {
     content: ' ';
-    width: 400px;
+    width: 370px;
     position: absolute;
     border-width: 1px;
     border-color: #bbb;
@@ -47,6 +47,8 @@
 .heading h4:after {
     left: 100%;
 }
+
+
 
 @media (max-width: 1200px) {
     .heading h4:before,
@@ -61,6 +63,7 @@
         width: 200px;
     }
 }
+
 
 
 

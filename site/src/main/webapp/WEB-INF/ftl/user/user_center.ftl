@@ -660,13 +660,13 @@
                     <div class="col-md-8">
                         <div class="col-md-5">
                             <button class="btn btn-u btn-u-default" data-toggle="modal" data-target=".withdrawModel"
-                                    style="width: 150px;background: #AFAFB0">提现
+                                    style="width: 150px;background: #AFAFB0;color: whitesmoke">提现
                             </button>
                         </div>
                         <div class="col-md-2"></div>
                         <div class="col-md-5">
                             <button class="btn btn-u btn-u-default" data-toggle="modal" data-target=".chargeModel"
-                                    style="width: 150px;background: #D70016">充值
+                                    style="width: 150px;background: #D70016;color: whitesmoke">充值
                             </button>
                         </div>
                     </div>
@@ -707,6 +707,8 @@
 
         <#--个人资料-->
             <div class="tab-pane fade in" id="user-info">
+                <h4>个人资料</h4>
+                <hr style="padding: 0px;margin-top: 5px"/>
 
                 <form action="" method="post" class="form-horizontal" role="form">
                     <div class="form-group">
@@ -942,8 +944,14 @@
                 <h4 id="myLargeModalLabel2" class="modal-title">积分提现</h4>
             </div>
             <div class="modal-body margin-top-20 margin-bottom-50">
+                <div class="heading heading-v1 margin-bottom-20">
+                    <h4 style="">可用积分：280</h4>
+                </div>
+
                 <div class="container">
+
                     <div class="row">
+
                         <div class="col-md-1"></div>
                         <div class="col-md-2 text-right">
                             <p>请输入提现积分：</p>
@@ -963,29 +971,68 @@
         </div>
     </div>
 </div>
-
-<!--充值model-->
-<div class="modal fade chargeModel" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<!--积分充值model-->
+<div class="modal fade chargeModel" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                <h4 id="myLargeModalLabel2" class="modal-title">积分充值</h4>
+                <h4 id="myLargeModalLabel2" class="modal-title">积分提现</h4>
             </div>
             <div class="modal-body margin-top-20 margin-bottom-50">
+                <div class="heading heading-v1 margin-bottom-20">
+                    <h4 style="">当前积分：280</h4>
+                </div>
                 <div class="container">
-                    <div class="row">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-2 text-right">
-                            <p>请输入提现积分：</p>
+                    <div class="row margin-bottom-20">
+                        <div class="col-md-4">
+                            <div style="border: solid #E6E7E8 1px;height: 100px">
+                                <div class="row">
+                                    <label style="color:#51C041;text-align: center;border-right: solid #E6E7E8 1px;width: 50%;margin-top: 20px"><span style="font-size: 35px">5</span>积分</label><label style="color: #FB1E25;text-align: center;width: 50%;margin-top: 20px;"><span style="font-size: 35px">5</span></span>元</label>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md-4">
-                            <input type="text" id="jifen" class="form-control">
-                            <p style="margin-bottom: 0px">预计一个工作日内以红包的形式发放到你的微信账户</p>
-                            <p style="color: darkred">请输入0~280提现积分</p>
-                            <button class="btn btn-lg" id="recharge_qr" type="button"
-                                    style="color: white;background: darkred">确认提现
-                            </button>
+                            <div style="border: solid #E6E7E8 1px;height: 100px">
+                                <div class="row">
+                                    <label style="color:#51C041;text-align: center;border-right: solid #E6E7E8 1px;width: 50%;margin-top: 20px"><span style="font-size: 35px">10</span>积分</label><label style="color: #FB1E25;text-align: center;width: 50%;margin-top: 20px;"><span style="font-size: 35px">10</span></span>元</label>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row margin-bottom-20">
+                        <div class="col-md-4">
+                            <div style="border: solid #E6E7E8 1px;height: 100px">
+                                <div class="row">
+                                    <label style="color:#51C041;text-align: center;border-right: solid #E6E7E8 1px;width: 50%;margin-top: 20px"><span style="font-size: 35px">20</span>积分</label><label style="color: #FB1E25;text-align: center;width: 50%;margin-top: 20px;"><span style="font-size: 35px">20</span></span>元</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div style="border: solid #E6E7E8 1px;height: 100px">
+                                <div class="row">
+                                    <label style="color:#51C041;text-align: center;border-right: solid #E6E7E8 1px;width: 50%;margin-top: 20px"><span style="font-size: 35px">50</span>积分</label><label style="color: #FB1E25;text-align: center;width: 50%;margin-top: 20px;"><span style="font-size: 35px">49</span></span>元</label>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row margin-bottom-20">
+                        <div class="col-md-4">
+                            <div style="border: solid #E6E7E8 1px;height: 100px">
+                                <div class="row">
+                                    <label style="color:#51C041;text-align: center;border-right: solid #E6E7E8 1px;width: 50%;margin-top: 20px"><span style="font-size: 35px">100</span>积分&nbsp;&nbsp;<s style="color:#E6E7E8 ">100元</s></label><label style="color: #FB1E25;text-align: center;width: 50%;margin-top: 20px;"><span style="font-size: 35px">95</span></span>元&nbsp;&nbsp;优惠5%</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div style="border: solid #E6E7E8 1px;height: 100px">
+                                <div class="row">
+                                    <label style="color:#51C041;text-align: center;border-right: solid #E6E7E8 1px;width: 50%;margin-top: 20px"><span style="font-size: 35px">200</span>积分&nbsp;&nbsp;<s style="color:#E6E7E8 ">200元</s></label><label style="color: #FB1E25;text-align: center;width: 50%;margin-top: 20px;"><span style="font-size: 35px">180</span></span>元&nbsp;&nbsp;优惠10%</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -994,6 +1041,37 @@
         </div>
     </div>
 </div>
+
+<#--<!--充值model&ndash;&gt;-->
+<#--<div class="modal fade chargeModel" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">-->
+    <#--<div class="modal-dialog modal-lg">-->
+        <#--<div class="modal-content">-->
+            <#--<div class="modal-header">-->
+                <#--<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>-->
+                <#--<h4 id="myLargeModalLabel2" class="modal-title">积分充值</h4>-->
+            <#--</div>-->
+            <#--<div class="modal-body margin-top-20 margin-bottom-50">-->
+                <#--<div class="container">-->
+                    <#--<div class="row">-->
+                        <#--<div class="col-md-1"></div>-->
+                        <#--<div class="col-md-2 text-right">-->
+                            <#--<p>请输入提现积分：</p>-->
+                        <#--</div>-->
+                        <#--<div class="col-md-4">-->
+                            <#--<input type="text" id="jifen" class="form-control">-->
+                            <#--<p style="margin-bottom: 0px">预计一个工作日内以红包的形式发放到你的微信账户</p>-->
+                            <#--<p style="color: darkred">请输入0~280提现积分</p>-->
+                            <#--<button class="btn btn-lg" id="recharge_qr" type="button"-->
+                                    <#--style="color: white;background: darkred">确认提现-->
+                            <#--</button>-->
+                        <#--</div>-->
+                    <#--</div>-->
+                <#--</div>-->
+
+            <#--</div>-->
+        <#--</div>-->
+    <#--</div>-->
+<#--</div>-->
 
 <script type="text/javascript" src="${staticPath}/assets/js/custom.js"></script>
 
