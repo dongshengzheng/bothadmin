@@ -62,23 +62,81 @@
                     <div class="tab-content" style="background: rgb(254,255,255)">
                         <!--审核通过-->
                         <div class="tab-pane fade in active" id="check-success">
-                            <div class="row">
+                            <ul class="list-unstyled row portfolio-box">
+                                <li class="col-sm-4 md-margin-bottom-50">
+                                    <img class="full-width " src="http://localhost:8080/assets/img/main/img9.jpg" style="margin-bottom: 0px" alt="">
+                                    <div class="" style="background:rgba(0,0,0,.5);height: 20px;margin-top: -20px;position:relative;z-index: 999">
+                                        <label style="text-align: center;color:whitesmoke;width: 50%">作品编辑</label><label  style="text-align: center;color:whitesmoke;background: #FB0007;width: 50%">作品转让</label>
+                                    </div>
 
-                            </div>
+                                    <div class="headline-left margin-bottom-10 text-left ">
+                                        <h3 class="headline-brd">纯手工打造
+                                        </h3></div>
+                                    <small class="project-tag text-left"><i class="fa fa-tag"></i><a href="page_home10.html#">田黄鸡血石</a>, <a
+                                            href="page_home10.html#">Business</a></small>
+                                    <p class="text-left">鸡血石，星辰沙辰条带昆凌身斯加可浪费</p>
+                                </li>
+                            </ul>
                         </div>
                         <!--审核通过-->
                         <!--审核失败-->
                         <div class="tab-pane fade in" id="check-fail">
+
+                            <ul class="list-unstyled row portfolio-box">
+                                <li class="col-sm-4 md-margin-bottom-50">
+                                    <img class="full-width " src="http://localhost:8080/assets/img/main/img9.jpg" style="margin-bottom: 0px" alt="">
+                                    <div class="" style="background:rgba(0,0,0,.5);height: 20px;margin-top: -20px;position:relative;z-index: 999">
+                                        <label style="text-align: center;color:whitesmoke;width: 100%">作品编辑</label>
+                                    </div>
+
+                                    <div class="headline-left margin-bottom-10 text-left ">
+                                        <h3 class="headline-brd">纯手工打造
+                                        </h3></div>
+                                    <small class="project-tag text-left"><i class="fa fa-tag"></i><a href="page_home10.html#">田黄鸡血石</a>, <a
+                                            href="page_home10.html#">Business</a></small>
+                                    <p class="text-left">鸡血石，星辰沙辰条带昆凌身斯加可浪费</p>
+                                </li>
+                            </ul>
 
                         </div>
                         <!--审核失败-->
                         <!--审核中-->
                         <div class="tab-pane fade in" id="checking">
 
+                            <ul class="list-unstyled row portfolio-box">
+                                <li class="col-sm-4 md-margin-bottom-50">
+                                    <img class="full-width " src="http://localhost:8080/assets/img/main/img9.jpg" style="margin-bottom: 0px" alt="">
+                                    <div class="headline-left margin-bottom-10 text-left ">
+                                        <h3 class="headline-brd">纯手工打造
+                                        </h3></div>
+                                    <small class="project-tag text-left"><i class="fa fa-tag"></i><a href="page_home10.html#">田黄鸡血石</a>, <a
+                                            href="page_home10.html#">Business</a></small>
+                                    <p class="text-left">鸡血石，星辰沙辰条带昆凌身斯加可浪费</p>
+                                </li>
+                            </ul>
+
+
+
                         </div>
                         <!--审核中-->
                         <!--草稿箱-->
                         <div class="tab-pane fade in" id="trash">
+
+                            <ul class="list-unstyled row portfolio-box">
+                                <li class="col-sm-4 md-margin-bottom-50">
+                                    <img class="full-width " src="http://localhost:8080/assets/img/main/img9.jpg" style="margin-bottom: 0px" alt="">
+                                    <div class="" style="background:rgba(0,0,0,.5);height: 20px;margin-top: -20px;position:relative;z-index: 999">
+                                        <label style="text-align: center;color:whitesmoke;width: 100%">作品编辑</label>
+                                    </div>
+
+                                    <div class="headline-left margin-bottom-10 text-left ">
+                                        <h3 class="headline-brd">纯手工打造
+                                        </h3></div>
+                                    <small class="project-tag text-left"><i class="fa fa-tag"></i><a href="page_home10.html#">田黄鸡血石</a>, <a
+                                            href="page_home10.html#">Business</a></small>
+                                    <p class="text-left">鸡血石，星辰沙辰条带昆凌身斯加可浪费</p>
+                                </li>
+                            </ul>
 
                         </div>
                         <!--草稿箱-->
@@ -602,13 +660,13 @@
                     <div class="col-md-8">
                         <div class="col-md-5">
                             <button class="btn btn-u btn-u-default" data-toggle="modal" data-target=".withdrawModel"
-                                    style="width: 150px;">提现
+                                    style="width: 150px;background: #AFAFB0">提现
                             </button>
                         </div>
                         <div class="col-md-2"></div>
                         <div class="col-md-5">
                             <button class="btn btn-u btn-u-default" data-toggle="modal" data-target=".chargeModel"
-                                    style="width: 150px;">充值
+                                    style="width: 150px;background: #D70016">充值
                             </button>
                         </div>
                     </div>

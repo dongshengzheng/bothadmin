@@ -16,7 +16,7 @@
 
 .jf_active {
 
-    background: orangered;
+    background: #FB591D;
 }
 
 
@@ -76,4 +76,8 @@
 
 .collect_work_title_top{
     margin-top: -25px;
+}
+
+ul .jf_active a {
+    color: white;
 }
