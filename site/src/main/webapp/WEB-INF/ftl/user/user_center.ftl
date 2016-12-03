@@ -118,7 +118,7 @@
                                         </h3></div>
                                     <small class="project-tag text-left"><i class="fa fa-tag"></i><a href="page_home10.html#">田黄鸡血石</a>, <a
                                             href="page_home10.html#">Business</a></small>
-                                    <p>鸡血石，星辰沙条带昆凌身价东方拉斯加可浪费</p>
+                                    <p >鸡血石，星辰沙条带昆凌身价东斯加可浪费费</p>
                                 </li>
 
                                 <li class="col-sm-4 md-margin-bottom-50 text-center">
@@ -260,25 +260,64 @@
                         </div>
                         <!--待确认-->
                         <div class="tab-pane fade in" id="transfer-confirm">
-
                             <ul class="list-unstyled row portfolio-box">
-                                <li class="col-sm-4 md-margin-bottom-50 text-center">
-                                    <img class="full-width " src="http://localhost:8080/assets/img/main/img9.jpg" alt="">
-                                    <p id="" style=" background:rgba(0,0,0,.5); position:relative; top:-30px; color:whitesmoke; font-size:12px;">
-                                        取消收藏
-                                    </p>
+                                <li class="col-sm-4 md-margin-bottom-50">
+                                    <img class="full-width " src="http://localhost:8080/assets/img/main/img9.jpg" style="margin-bottom: 0px" alt="">
+                                    <div class="" style="background:rgba(0,0,0,.5);height: 20px;margin-top: -20px;position:relative;z-index: 999">
+                                        <label style="text-align: center;color:whitesmoke;width: 50%">确认转入</label><label  style="text-align: center;color:whitesmoke;background: #FB0007;width: 50%">拒绝转入</label>
+                                    </div>
 
                                     <div class="headline-left margin-bottom-10 text-left ">
-                                        <h3 class="headline-brd collect_work_title_top">纯手工打造
+                                        <h3 class="headline-brd">纯手工打造
                                         </h3></div>
                                     <small class="project-tag text-left"><i class="fa fa-tag"></i><a href="page_home10.html#">田黄鸡血石</a>, <a
                                             href="page_home10.html#">Business</a></small>
-                                    <p>鸡血石，星辰沙条带昆凌身价东方拉斯加可浪费</p>
+                                    <p class="text-left">鸡血石，星辰沙辰条带昆凌身斯加可浪费</p>
                                 </li>
 
+                                <li class="col-sm-4 md-margin-bottom-50">
+                                    <img class="full-width " src="http://localhost:8080/assets/img/main/img9.jpg" style="margin-bottom: 0px" alt="">
+                                    <div class="" style="background:rgba(0,0,0,.5);height: 20px;margin-top: -20px;position:relative;z-index: 999">
+                                        <label style="text-align: center;color:whitesmoke;width: 50%">确认转入</label><label  style="text-align: center;color:whitesmoke;background: #FB0007;width: 50%">拒绝转入</label>
+                                    </div>
+
+                                    <div class="headline-left margin-bottom-10 text-left ">
+                                        <h3 class="headline-brd">纯手工打造
+                                        </h3></div>
+                                    <small class="project-tag text-left"><i class="fa fa-tag"></i><a href="page_home10.html#">田黄鸡血石</a>, <a
+                                            href="page_home10.html#">Business</a></small>
+                                    <p class="text-left">鸡血石，星辰沙辰条带昆凌身斯加可浪费</p>
+                                </li>
+
+                                <li class="col-sm-4 md-margin-bottom-50">
+                                    <img class="full-width " src="http://localhost:8080/assets/img/main/img9.jpg" style="margin-bottom: 0px" alt="">
+                                    <div class="" style="background:rgba(0,0,0,.5);height: 20px;margin-top: -20px;position:relative;z-index: 999">
+                                        <label style="text-align: center;color:whitesmoke;width: 50%">确认转入</label><label  style="text-align: center;color:whitesmoke;background: #FB0007;width: 50%">拒绝转入</label>
+                                    </div>
+
+                                    <div class="headline-left margin-bottom-10 text-left ">
+                                        <h3 class="headline-brd">纯手工打造
+                                        </h3></div>
+                                    <small class="project-tag text-left"><i class="fa fa-tag"></i><a href="page_home10.html#">田黄鸡血石</a>, <a
+                                            href="page_home10.html#">Business</a></small>
+                                    <p class="text-left">鸡血石，星辰沙辰条带昆凌身斯加可浪费</p>
+                                </li>
+
+                                <li class="col-sm-4 md-margin-bottom-50">
+                                    <img class="full-width " src="http://localhost:8080/assets/img/main/img9.jpg" style="margin-bottom: 0px" alt="">
+                                    <div class="" style="background:rgba(0,0,0,.5);height: 20px;margin-top: -20px;position:relative;z-index: 999">
+                                        <label style="text-align: center;color:whitesmoke;width: 50%">确认转入</label><label  style="text-align: center;color:whitesmoke;background: #FB0007;width: 50%">拒绝转入</label>
+                                    </div>
+
+                                    <div class="headline-left margin-bottom-10 text-left ">
+                                        <h3 class="headline-brd">纯手工打造
+                                        </h3></div>
+                                    <small class="project-tag text-left"><i class="fa fa-tag"></i><a href="page_home10.html#">田黄鸡血石</a>, <a
+                                            href="page_home10.html#">Business</a></small>
+                                    <p class="text-left">鸡血石，星辰沙辰条带昆凌身斯加可浪费</p>
+                                </li>
 
                             </ul>
-
                         </div>
 
                     </div>
