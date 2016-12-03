@@ -96,7 +96,6 @@ public class UserController extends BaseController {
             String password = new SimpleHash("SHA-1", user.getLoginName(), user.getPassword()).toString();
             user.setPassword(password);
             user.setDelFlag(Const.DEL_FLAG_NORMAL);
-            user.setSkin(1);
             userService.insert(user);
             jsonObject.put("status", 1);
         }

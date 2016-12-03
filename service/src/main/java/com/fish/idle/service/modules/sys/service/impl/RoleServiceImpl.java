@@ -110,7 +110,7 @@ public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implemen
             }
             Map<String, Object> map = new HashMap<>();
             map.put("role_id", roleId);
-            roleMapper.deleteByMap(map);
+            roleResourceMapper.deleteByMap(map);
             roleResourceMapper.insertBatch(list);
         }
     }

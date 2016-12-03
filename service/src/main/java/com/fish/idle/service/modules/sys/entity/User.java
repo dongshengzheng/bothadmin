@@ -33,7 +33,6 @@ public class User implements Serializable {
     private String description; // 描述
     private String email; // 邮箱
     private String phone; // 电话号码
-    private Integer skin; // 皮肤
 
     @TableField(value = "open_id")
     private String openId; // 微信openId
@@ -130,15 +129,6 @@ public class User implements Serializable {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
-    public Integer getSkin() {
-        return skin;
-    }
-
-    public void setSkin(Integer skin) {
-        this.skin = skin;
-    }
-
     public List<Role> getRoles() {
         return roles;
     }
