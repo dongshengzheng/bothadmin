@@ -42,6 +42,7 @@
                         <th>数据值</th>
                         <th>类型</th>
                         <th>字典标签</th>
+                        <th>排序值</th>
                         <th>描述</th>
                         <th>操作</th>
                     </tr>
@@ -64,7 +65,6 @@
                 "url": "dict/list",
                 "type": "post",
                 "data": function (data) {
-//                    data.roleName = $("#roleName").val();
                     data.keyword = $("#keyword").val();
                 }
             },
@@ -80,10 +80,11 @@
                 {"data": "value"},
                 {"data": "type"},
                 {"data": "label"},
+                {"data": "sort"},
                 {"data": "description"}
             ],
             "columnDefs": [{
-                "targets": 5,
+                "targets": 6,
                 "render": function (data, type, row) {
                     return ""
                             <shiro:hasPermission name="dict/editBtn">
