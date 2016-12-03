@@ -305,19 +305,18 @@
                     <h3 style="color: orangered">0</h3>
                 </div>
 
-                <div class="row text-center">
-                    <div class="col-md-5">
+                <div class="row text-center margin-bottom-40">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
                         <div class="col-md-5">
-                            <!--<p id="withdrawBtn" style="float: right;font-size: 15px;width: 100px ;background: gray">-->
-                            <!--</p>-->
-                            <button class="btn btn-u btn-u-default" data-toggle="modal" data-target=".withdrawModel">提现</button>
+                            <button class="btn btn-u btn-u-default" data-toggle="modal" data-target=".withdrawModel" style="width: 150px;">提现</button>
+                        </div>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-5">
+                            <button class="btn btn-u btn-u-default" data-toggle="modal" data-target=".chargeModel" style="width: 150px;">充值</button>
                         </div>
                     </div>
                     <div class="col-md-2"></div>
-                    <div class="col-md-5">
-                        <#--<p style="float:left;font-size: 15px;width: 100px ;background: red">充值</p>-->
-                            <button class="btn btn-u btn-u-default" data-toggle="modal" data-target=".chargeModel">充值</button>
-                    </div>
                 </div>
 
                 <div class="heading heading-v1 margin-bottom-20">
