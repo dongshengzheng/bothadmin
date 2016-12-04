@@ -33,9 +33,9 @@ function send_request(domain) {
     }
 }
 
-function get_signature( domain) {
+function get_signature(domain) {
     //可以判断当前expire是否超过了当前时间,如果超过了当前时间,就重新取一下.3s 做为缓冲
-    body = send_request( domain);
+    body = send_request(domain);
     var obj = eval("(" + body + ")");
     host = obj['host'];
     policyBase64 = obj['policy'];
@@ -74,7 +74,7 @@ function calculate_object_name(filename) {
 
 function set_upload_param(up, filename, ret, domain) {
     if (ret == false) {
-        ret = get_signature( domain)
+        ret = get_signature(domain)
     }
     g_object_name = key;
     if (filename != '') {
@@ -95,10 +95,11 @@ function set_upload_param(up, filename, ret, domain) {
     up.start();
 }
 
-function initUploaders(buttonId,bucket, domain) {
+
+function initUploaders(buttonId, bucket, domain) {
     var uploader = new plupload.Uploader({
         runtimes: 'html5,flash,silverlight,html4',
-        browse_button:buttonId,
+        browse_button: buttonId,
         flash_swf_url: domain + 'assets/js/plugins/plupload-2.1.2/js/Moxie.swf',
         silverlight_xap_url: domain + 'assets/js/plugins/plupload-2.1.2/js/Moxie.xap',
         url: 'http://oss.aliyuncs.com',
@@ -112,16 +113,15 @@ function initUploaders(buttonId,bucket, domain) {
         },
         init: {
             FilesAdded: function (up) {
-                set_upload_param(up, '', false,domain);
+                set_upload_param(up, '', false, domain);
             },
             BeforeUpload: function (up, file) {
                 set_upload_param(up, file.name, true, domain);
             },
             FileUploaded: function () {
-                $("#" + buttonId).before('<a class="bus-img" href="javascript:;" onclick=""  style="float:left;position:relative;">' +
-                    '<i class="glyphicon glyphicon-remove" onclick="" style="background: rgba(0,0,0,.5);color:white;position:absolute;top:0px;right:0px;"></i>' +
-                       '<img src="http://' + bucket + '.img-cn-shanghai.aliyuncs.com/' + g_object_name + '?x-oss-process=image/resize,m_fill,h_100,w_100" style="max-height: 100px;margin-right:5px;" onclick="" class="min-img">' +
-                    '<input type="hidden" value="http://' + bucket + '.img-cn-shanghai.aliyuncs.com/' + g_object_name+'/>'+'</a>');
+                $("#" + buttonId).before('<div class="" onclick=""  style="margin-left: 14px;float:left;position:relative;padding: 0px"><input type="hidden" value="http://' + bucket + '.img-cn-shanghai.aliyuncs.com/' + g_object_name + '" >' +
+                    '<span onclick="javascript:this.parentNode.remove();" class="glyphicon glyphicon-remove" style="background: rgba(0,0,0,.5);color:white;position:absolute;top:0px;right:5px;z-index: 999;"></span>' +
+                    '<img src="http://' + bucket + '.img-cn-shanghai.aliyuncs.com/' + g_object_name + '?x-oss-process=image/resize,m_fill,h_100,w_100" style="max-height: 100px;margin-right:5px;" onclick="" class="min-img">' + '</div>');
             }
         }
     });

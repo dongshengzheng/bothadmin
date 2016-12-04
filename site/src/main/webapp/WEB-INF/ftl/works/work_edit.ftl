@@ -1,10 +1,11 @@
 <#include "../layout/main.ftl"/>
 
 <@htmlHead title="作品详情">
-    <link rel="stylesheet" href="${staticPath}/assets/css/jsdd/work/work_detail.css">
-    <!-- CSS Page Style -->
-    <link rel="stylesheet" href="${staticPath}/assets/css/pages/profile.css">
-    <link rel="stylesheet" href="${staticPath}/assets/css/pages/shortcode_timeline2.css">
+<link rel="stylesheet" href="${staticPath}/assets/css/jsdd/work/work_detail.css">
+<!-- CSS Page Style -->
+<link rel="stylesheet" href="${staticPath}/assets/css/pages/profile.css">
+<link rel="stylesheet" href="${staticPath}/assets/css/pages/shortcode_timeline2.css">
+<link rel="stylesheet" href="${staticPath}/assets/css/style_img.css">
 </@htmlHead>
 <@htmlBody>
 
@@ -90,15 +91,20 @@
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label" for="name">作品描述</label>
                                         <div class="col-sm-10">
-                                            <textarea class="form-control" style="resize: none;height: 150px" name="description" id="description" type="text" placeholder="请输入作品描述"></textarea>
+                                            <textarea class="form-control" style="resize: none;height: 150px"
+                                                      name="description" id="description" type="text"
+                                                      placeholder="请输入作品描述"></textarea>
                                         </div>
                                     </div>
                                     <!--上传图片-->
                                     <div class="form-group">
                                         <label class="col-sm-2" for=""></label>
                                         <div class="col-sm-10">
-                                            <div id="upload_works_info" class="" style="border: dotted 1px red;height: 100px;width: 100px;overflow: hidden">
+                                            <div class="row">
+                                                <div style="height: 100px;width:100px;border:1px dotted #bbb;margin-left: 14px;padding: 0px" id="selectfiles" href="" class='btn_img'>
 
+
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -384,11 +390,12 @@
                                     </div>
 
                                     <div class="form-control" style="height: 100px ;border: solid red 1px">
-                                        <a id="upload_pgbg"  class="form-control" placeholder="请上传评估报告"></a>
+                                        <a id="upload_pgbg" class="form-control" placeholder="请上传评估报告"></a>
                                     </div>
 
                                     <div class="form-control" style="height: 100px ;border: solid red 1px">
-                                        <a id="upload_rzbg" type="file" class="form-control" placeholder="请上传价值认证报告"></a>
+                                        <a id="upload_rzbg" type="file" class="form-control"
+                                           placeholder="请上传价值认证报告"></a>
                                     </div>
 
                                     <div class="form-control" style="height: 100px ;border: solid red 1px">
@@ -509,8 +516,12 @@
 
 <script>
     $(document).ready(function () {
-        initUploaders("upload_pgbg","windyeel","http://hv64l.free.natapp.cc/");
-        initUploaders("upload_rzbg","windyeel","http://hv64l.free.natapp.cc/");
-        initUploaders("upload_works_info","windyeel","http://hv64l.free.natapp.cc/");
+        initUploaders("upload_pgbg", "windyeel", "http://hv64l.free.natapp.cc/");
+        initUploaders("upload_rzbg", "windyeel", "http://hv64l.free.natapp.cc/");
+        initUploaders("selectfiles", "windyeel", "http://hv64l.free.natapp.cc/");
+
+
+
+
     });
 </script>
