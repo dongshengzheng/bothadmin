@@ -269,7 +269,6 @@
         <center>
             <hr>
             <span>&nbsp;&nbsp;到底啦&nbsp;&nbsp;</span></center>
-
     </div>
 
 </div>
@@ -282,20 +281,30 @@
             $("#searchbox").toggle();
             $("#searchbox").focus();
         })
-    })
 
-    $(function () {
         $("#searchbox").blur(function () {
             $("#searchparam").toggle();
             $("#searchbox").toggle();
         })
+
+        $("#searchbox").keyup(function () {
+            if (event.keyCode == 13) {
+                location.href = "searchperson.html";
+            }
+        })
+
+        $(".search-results-one-img").click(function () {
+            location.href="userInfo.html";
+
+
+        })
+
+
     })
 
-    $("#searchbox").keyup(function () {
-        if (event.keyCode == 13) {
-            location.href = "searchperson.html";
-        }
-    })
+
+
+
 
 
 </script>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="generator"
+          content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39"/>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0"/>
+    <title>物品信息</title>
+    <link rel="stylesheet" href="css/weui.css"/>
+    <link rel="stylesheet" href="css/jquery-weui.css"/>
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <style>
+        .title {
+            margin-top: 10%;
+            text-align: center;
+        }
+
+        .title hr {
+            width: 80%;
+            border-bottom: 1px solid red;
+            color: red;
+        }
+
+        .title span {
+            position: relative;
+            top: -15px;
+            background-color: white;
+            color: red;
+        }
+
+        #footer p {
+            font-size: 10px;
+            padding-left: 30%;
+        }
+
+        #footer a {
+            color: #A2D2EF;
+        }
+
+        #save {
+            height: 30px;
+            float: left;
+            margin-left: 10%;
+            border: none;
+            color: #636363;
+            background-color: white;
+        }
+
+        #next {
+            height: 30px;
+            float: right;
+            margin-right: 10%;
+            border: none;
+            color: #0DBB0B;
+            background-color: white;
+        }
+
+    </style>
+</head>
+<body>
+<div class="title">
+    <center>
+        <hr>
+        <span>&nbsp;◇&nbsp;JS-A20161205001A&nbsp;◇&nbsp;</span></center>
+</div>
+<div>
+    <form action="worksRegister2.html" enctype="multipart/form-data">
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
+                <div class="weui-cell__bd weui-cell_primary">
+                    <input class="weui-input" type="tel" placeholder="请输入作品名称">
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">提供者</label></div>
+                <div class="weui-cell__bd weui-cell_primary">
+                    <input class="weui-input" type="tel" placeholder="请输入姓名">
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">身份证</label></div>
+                <div class="weui-cell__bd weui-cell_primary">
+                    <input class="weui-input" type="tel" placeholder="可不填写">
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">联系地址</label></div>
+                <div class="weui-cell__bd weui-cell_primary">
+                    <input class="weui-input" type="tel" placeholder="请输入详细地址">
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">联系方式</label></div>
+                <div class="weui-cell__bd weui-cell_primary">
+                    <input class="weui-input" type="tel" placeholder="请输入联系方式">
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">登记时间</label></div>
+                <div class="weui-cell__bd weui-cell_primary">
+                    <input class="weui-input" type="tel" placeholder="请选择时间">
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__bd weui-cell_primary">
+                    <textarea class="weui-textarea" placeholder="我的作品描述" rows="3"></textarea>
+                    <!--<div class="weui-textarea-counter">-->
+                    <!--<span>0</span>/200-->
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__bd weui-cell_primary">
+                <div class="weui-uploader">
+                    <!--<div class="weui-uploader__hd weui-cell">-->
+                    <!--<div class="weui-cell__bd weui-cell_primary">图片上传</div>-->
+                    <!--<div class="weui-cell__ft">3/5</div>-->
+                    <!--</div>-->
+                    <div class="weui-uploader__bd">
+                        <ul class="weui-uploader__files">
+                            <li class="weui-uploader__file"
+                                style="background-image:url(img/headImg/1.jpg)"></li>
+                            <li class="weui-uploader__file"
+                                style="background-image:url(img/headImg/2.jpg)"></li>
+                            <li class="weui-uploader__file"
+                                style="background-image:url(img/headImg/3.jpg)"></li>
+                            <li class="weui-uploader__file weui-uploader__status"
+                                style="background-image:url(img/headImg/4.jpg)">
+                                <div class="weui-uploader__status_content">
+                                    <i class="weui-icon_warn"></i>
+                                </div>
+                            </li>
+                            <li class="weui-uploader__file weui-uploader__status"
+                                style="background-image:url(http://shp.qpic.cn/weixinsrc_pic/pScBR7sbqjOBJomcuvVJ6iacVrbMJaoJZkFUIq4nzQZUIqzTKziam7ibg/)">
+                                <div class="weui-uploader__status_content">50%</div>
+                            </li>
+                        </ul>
+                        <div class="weui-uploader__input-box">
+                            <input class="weui-uploader__input" type="file"
+                                   accept="image/jpg,image/jpeg,image/png,image/gif"
+                                   multiple="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <p>下一步即表示同意<a href="#">《金石典当登记申请记录》</a></p>
+            <hr>
+            <input type="button" value="存为草稿" id="save">
+            <input type="submit" value="下一步" id="next">
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

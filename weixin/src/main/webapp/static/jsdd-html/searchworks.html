@@ -36,7 +36,7 @@
         }
 
         #sort-btn-outer{
-            margin-left: 10%;
+            margin-left: 6%;
             /*height: 25px;*/
             display: inline-block;
             /*border-left: 1px solid gray;*/
@@ -158,7 +158,7 @@
 </div>
 
 <div id="sort">
-    <span id="defalut" class="sort-li-selected">默认排序</span>
+    <span id="default" class="sort-li-selected">默认排序</span>
     <span id="new" class="sort-li">最新上架</span>
     <span id="distance" class="sort-li">离我最近</span>
     <div id="sort-btn-outer">
@@ -242,19 +242,37 @@
             $("#searchbox").toggle();
             $("#searchbox").focus();
         })
-    })
 
-    $(function () {
         $("#searchbox").blur(function () {
             $("#searchparam").toggle();
             $("#searchbox").toggle();
         })
+
+        $("#searchbox").keyup(function () {
+            if (event.keyCode == 13) {
+                location.href = "searchperson.html";
+            }
+        })
+
+        $("#default").click(function () {
+            $("#default").attr("class","sort-li-selected");
+            $("#new").attr("class","sort-li");
+            $("#distance").attr("class","sort-li");
+        })
+        $("#new").click(function () {
+            $("#new").attr("class","sort-li-selected");
+            $("#default").attr("class","sort-li");
+            $("#distance").attr("class","sort-li");
+        })
+        $("#distance").click(function () {
+            $("#distance").attr("class","sort-li-selected");
+            $("#new").attr("class","sort-li");
+            $("#default").attr("class","sort-li");
+        })
+
     })
 
-    $("#searchbox").keyup(function () {
-        if (event.keyCode == 13) {
-            location.href = "searchperson.html";
-        }
-    })
+
+
 </script>
 </html>
