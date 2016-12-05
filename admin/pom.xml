@@ -22,11 +22,7 @@
             <version>1.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.fish.idle</groupId>
-            <artifactId>commons</artifactId>
-            <version>1.0</version>
-        </dependency>
+
         <!--log4j日志包 -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -212,7 +208,6 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.0.0</version>
                 <configuration>
-                    <warName>admin</warName>
                     <warSourceExcludes>assets/global/**/*.*</warSourceExcludes>
                 </configuration>
             </plugin>
