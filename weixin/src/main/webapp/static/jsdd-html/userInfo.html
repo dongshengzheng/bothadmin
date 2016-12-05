@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="generator"
+          content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39"/>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0"/>
+    <title>谁与论春秋</title>
+    <link rel="stylesheet" href="css/weui.css"/>
+    <link rel="stylesheet" href="css/jquery-weui.css"/>
+    <link rel="stylesheet" href="css/swiper.min.css">
+
+    <style type="text/css">
+        .header {
+            margin: 5%;
+            margin-bottom: 1%;
+        }
+
+        .header-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin-right: 5%;
+        }
+
+        .header-info {
+            margin: 10px;
+            display: inline-block;
+            position: relative;
+            top: -20px;
+        }
+
+        .search-results-one-info-name {
+            font-size: 18px;
+        }
+
+        .header-info-location {
+            background-image: url(img/cut/位置icon.png);
+            background-size: 20px 20px;
+            background-repeat: no-repeat;
+            padding-left: 25px;
+            font-size: 15px;
+            color: gray;
+        }
+
+        .header-info-total {
+            color: gray;
+        }
+
+        .header-info-care {
+            color: white;
+            background-color: #169AD8;
+            border-radius: 3px;
+            border: none;
+            position: relative;
+            top: -30px;
+            right: -20px;
+        }
+
+        .detail-title {
+
+            text-align: center;
+        }
+
+        .detail-title-li {
+            color: #A5A5A5;
+            margin-left: 4%;
+            width: 27%;
+            display: inline-block;
+        }
+
+        .detail-title-li-selected {
+            color: blue;
+            border-bottom: 1px solid blue;
+            margin-left: 6%;
+            width: 25%;
+            display: inline-block;
+        }
+
+        .weui-cells {
+            color: gray;
+        }
+
+        .all-outer {
+            width: 46.5%;
+            margin: 1%;
+            display: inline-block;
+        }
+
+        .works-all {
+            text-align: center;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .works-img-all {
+            width: 100%;
+            height: 100%;
+        }
+
+        .works-intro-all {
+            width: 100%;
+            position: absolute;
+            border: white;
+            color: white;
+            background-color: black;
+            opacity: 0.6;
+            left: 0px;
+            bottom: 7px;
+            resize: none;
+            font-size: 15px;
+        }
+
+        .works-floor {
+            border-left: 10px solid white;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .works-floor-name-all {
+            float: left;
+            display: inline-block;
+            font-size: 6px;
+        }
+
+        .works-floor-btn-all {
+            display: inline-block;
+            border: 1px solid gray;
+            font-size: 6px;
+            color: gray;
+            background-color: lightgray;
+            float: right;
+        }
+
+        .works-floor-img-all {
+            float: left;
+            display: inline-block;
+            font-size: 6px;
+            background-image: url(img/cut/标签.png);
+            background-size: 12px 12px;
+            background-repeat: no-repeat;
+            border: none;
+        }
+
+        .works-floor-date-all {
+            display: inline-block;
+            font-size: 6px;
+            float: right;
+        }
+
+        .footer {
+            width: 100%;
+            height: 10%;
+            position: fixed;
+            bottom: 0;
+            background-color: white;
+        }
+
+        .footer-div {
+            text-align: center;
+            margin-left: 12%;
+            width: 13%;
+            display: inline-block;
+        }
+
+        .footer-div img {
+            width: 70%;
+        }
+
+        .footer-div p {
+            font-size: 1px;
+        }
+
+        .bottom-blank {
+            background-color: white;
+            width: 100%;
+            height: 70px;
+        }
+
+        .detail-content-appear {
+            display: block;
+
+        }
+
+        .detail-content-disappear {
+            display: none;
+
+        }
+
+        .search-results {
+            margin: 5%;
+        }
+
+        .search-results-one {
+            margin-bottom: 5%;
+        }
+
+        .search-results-one-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 5%;
+        }
+
+        .search-results-one-info {
+            display: inline-block;
+        }
+
+        .earch-results-one-info-name {
+            font-size: 20px;
+        }
+
+        .search-results-one-info-location {
+            background-image: url(img/cut/位置icon.png);
+            background-size: 20px 20px;
+            background-repeat: no-repeat;
+            padding-left: 25px;
+            font-size: 15px;
+            color: gray;
+        }
+
+        .search-results-one-info-total {
+            color: gray;
+        }
+
+        .search-results-one-care {
+            text-align: center;
+            display: inline-block;
+            float: right;
+            margin-top: 2%;
+        }
+
+        .search-results-one-care-img {
+            width: 80%;
+            height: 80%;
+        }
+
+        .search-results-one-care-text-not {
+            font-size: 15px;
+            color: #4DD2C9;
+        }
+
+        .search-results-one-care-text-have {
+            font-size: 15px;
+            color: #939393;
+        }
+
+        .search-results-end {
+            margin-top: 10%;
+            text-align: center;
+        }
+
+        .search-results-end hr {
+            width: 80%;
+        }
+
+        .search-results-end span {
+            position: relative;
+            top: -15px;
+            background-color: white;
+            color: gray;
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="header">
+    <img src="img/swiper/swiper-2.jpg" class="header-img"/>
+    <div class="header-info">
+        <p class="search-results-one-info-name">
+            老特拉福德永恒
+        </p>
+        <!--<p class="header-info-location">
+            长沙
+        </p>-->
+        <p class="header-info-total">
+            作品:36 &nbsp;粉丝:6
+        </p>
+    </div>
+    <input type="button" value=" + 关注 " class="header-info-care"/>
+</div>
+
+<hr/>
+<br/>
+
+<div class="detail">
+    <div class="detail-title">
+				<span id="detail-title-info" class="detail-title-li-selected">
+					个人资料
+				</span>
+        <span id="detail-title-works" class="detail-title-li">
+					Ta的作品
+				</span>
+        <span id="detail-title-fans" class="detail-title-li">
+					Ta的粉丝
+				</span>
+    </div>
+
+
+</div>
+
+<div id="info" class="detail-content-appear">
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell_bd weui-cell_primary">
+                <p>姓名:</p>
+            </div>
+            <div class="weui-cell_ft">
+                我是谁
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell_bd weui-cell_primary">
+                <p>住址:</p>
+            </div>
+            <div class="weui-cell_ft">
+                无锡滨湖区xxxx街道xxxx小区
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell_bd weui-cell_primary">
+                <p>身份证:</p>
+            </div>
+            <div class="weui-cell_ft">
+                320503201612221992
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell_bd weui-cell_primary">
+                <p>手机号:</p>
+            </div>
+            <div class="weui-cell_ft">
+                15151999000
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell_bd weui-cell_primary">
+                <p>Email:</p>
+            </div>
+            <div class="weui-cell_ft">
+                111@qq.com
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell_bd weui-cell_primary">
+                <p>收藏偏好:</p>
+            </div>
+            <div class="weui-cell_ft">
+                玉器
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="works" class="detail-content-disappear">
+    <div class="all-outer">
+        <div class="works-all">
+            <img src="img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
+            <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
+        </div>
+        <div class="works-floor-all">
+            <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
+            <!--<input type="button" value="  + 收藏     " class="works-floor-btn-all"/>-->
+            <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
+            <!--<input type="text" value="    田黄鸡血石" class="works-floor-img-all"/>-->
+            <span class="works-floor-img-all">&nbsp;田黄鸡血石</span>
+            <span class="works-floor-date-all">2016-12-4</span>
+        </div>
+    </div>
+    <div class="all-outer">
+        <div class="works-all">
+            <img src="img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
+            <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
+        </div>
+        <div class="works-floor-all">
+            <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
+            <!--<input type="button" value="  + 收藏     " class="works-floor-btn-all"/>-->
+            <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
+            <!--<input type="text" value="    田黄鸡血石" class="works-floor-img-all"/>-->
+            <span class="works-floor-img-all">&nbsp;田黄鸡血石</span>
+            <span class="works-floor-date-all">2016-12-4</span>
+        </div>
+    </div>
+    <div class="all-outer">
+        <div class="works-all">
+            <img src="img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
+            <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
+        </div>
+        <div class="works-floor-all">
+            <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
+            <!--<input type="button" value="  + 收藏     " class="works-floor-btn-all"/>-->
+            <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
+            <!--<input type="text" value="    田黄鸡血石" class="works-floor-img-all"/>-->
+            <span class="works-floor-img-all">&nbsp;田黄鸡血石</span>
+            <span class="works-floor-date-all">2016-12-4</span>
+        </div>
+    </div>
+    <div class="all-outer">
+        <div class="works-all">
+            <img src="img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
+            <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
+        </div>
+        <div class="works-floor-all">
+            <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
+            <!--<input type="button" value="  + 收藏     " class="works-floor-btn-all"/>-->
+            <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
+            <!--<input type="text" value="    田黄鸡血石" class="works-floor-img-all"/>-->
+            <span class="works-floor-img-all">&nbsp;田黄鸡血石</span>
+            <span class="works-floor-date-all">2016-12-4</span>
+        </div>
+    </div>
+</div>
+
+<div id="fans" class="detail-content-disappear">
+    <div class="search-results">
+        <div class="search-results-one">
+            <img src="img/swiper/swiper-1.jpg" class="search-results-one-img"/>
+            <div class="search-results-one-info">
+                <p class="earch-results-one-info-name">
+                    缘溪寻梦
+                </p>
+                <p class="search-results-one-info-location">
+                    长沙
+                </p>
+                <p class="search-results-one-info-total">
+                    作品:36 &nbsp;粉丝:6
+                </p>
+            </div>
+            <div class="search-results-one-care">
+                <img src="img/cut/加关注.png" class="search-results-one-care-img"/>
+                <p class="search-results-one-care-text-not">
+                    加关注
+                </p>
+            </div>
+        </div>
+
+        <div class="search-results-one">
+            <img src="img/swiper/swiper-2.jpg" class="search-results-one-img"/>
+            <div class="search-results-one-info">
+                <p class="earch-results-one-info-name">
+                    老特拉福德永恒
+                </p>
+                <p class="search-results-one-info-location">
+                    长沙
+                </p>
+                <p class="search-results-one-info-total">
+                    作品:36 &nbsp;粉丝:6
+                </p>
+            </div>
+            <div class="search-results-one-care">
+                <img src="img/cut/关注用户_已关注.png" search-results-one-care-img " />
+                <p class="search-results-one-care-text-have ">
+                    已关注
+                </p>
+            </div>
+        </div>
+
+        <div class="search-results-one ">
+            <img src="img/swiper/swiper-3.jpg " class="search-results-one-img "/>
+            <div class="search-results-one-info ">
+                <p class="earch-results-one-info-name ">
+                    情非得已
+                </p>
+                <p class="search-results-one-info-location ">
+                    长沙
+                </p>
+                <p class="search-results-one-info-total ">
+                    作品:36 &nbsp;粉丝:6
+                </p>
+            </div>
+            <div class="search-results-one-care ">
+                <img src="img/cut/关注用户_已关注.png " search-results-one-care-img " />
+                <p class="search-results-one-care-text-have ">
+                    已关注
+                </p>
+            </div>
+        </div>
+
+        <div class="search-results-one">
+            <img src="img/logo.png" class="search-results-one-img"/>
+            <div class="search-results-one-info">
+                <p class="earch-results-one-info-name">
+                    致明天的信
+                </p>
+                <p class="search-results-one-info-location">
+                    长沙
+                </p>
+                <p class="search-results-one-info-total">
+                    作品:36 &nbsp;粉丝:6
+                </p>
+            </div>
+            <div class="search-results-one-care">
+                <img src="img/cut/加关注.png" class="search-results-one-care-img"/>
+                <p class="search-results-one-care-text-not">
+                    加关注
+                </p>
+            </div>
+        </div>
+
+        <div class="search-results-one">
+            <img src="img/cut/个人中心_敬请期待.png" class="search-results-one-img"/>
+            <div class="search-results-one-info">
+                <p class="earch-results-one-info-name">
+                    遇见
+                </p>
+                <p class="search-results-one-info-location">
+                    长沙
+                </p>
+                <p class="search-results-one-info-total">
+                    作品:36 &nbsp;粉丝:6
+                </p>
+            </div>
+            <div class="search-results-one-care">
+                <img src="img/cut/加关注.png" class="search-results-one-care-img"/>
+                <p class="search-results-one-care-text-not">
+                    加关注
+                </p>
+            </div>
+        </div>
+
+        <div class="search-results-one">
+            <img src="img/cut/个人中心_收藏作品.png" class="search-results-one-img"/>
+            <div class="search-results-one-info">
+                <p class="earch-results-one-info-name">
+                    大卫-贝克汉姆
+                </p>
+                <p class="search-results-one-info-location">
+                    长沙
+                </p>
+                <p class="search-results-one-info-total">
+                    作品:36 &nbsp;粉丝:6
+                </p>
+            </div>
+            <div class="search-results-one-care">
+                <img src="img/cut/加关注.png" class="search-results-one-care-img"/>
+                <p class="search-results-one-care-text-not">
+                    加关注
+                </p>
+            </div>
+        </div>
+
+        <div class="search-results-one">
+            <img src="img/cut/时间选择_icon.png" class="search-results-one-img"/>
+            <div class="search-results-one-info">
+                <p class="earch-results-one-info-name">
+                    客服专员
+                </p>
+                <p class="search-results-one-info-location">
+                    长沙
+                </p>
+                <p class="search-results-one-info-total">
+                    作品:36 &nbsp;粉丝:6
+                </p>
+            </div>
+            <div class="search-results-one-care">
+                <img src="img/cut/加关注.png" class="search-results-one-care-img"/>
+                <p class="search-results-one-care-text-not">
+                    加关注
+                </p>
+            </div>
+        </div>
+
+        <div class="search-results-end ">
+            <center>
+                <hr>
+                <span>&nbsp;&nbsp;到底啦&nbsp;&nbsp;</span></center>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<div class="footer">
+    <hr/>
+    <div class="footer-div">
+        <img src="img/cut/首页_10.png"/>
+        <p>首页</p>
+    </div>
+    <div class="footer-div">
+        <img src="img/cut/登记申请.png"/>
+        <p>登记申请</p>
+    </div>
+    <div class="footer-div">
+        <img src="img/cut/我的.png"/>
+        <p>我的</p>
+    </div>
+</div>
+
+<div class="bottom-blank">
+
+</div>
+</body>
+<script src="js/jquery-2.1.4.js"></script>
+<script>
+    $(function () {
+        $("#detail-title-info").click(function () {
+            $("#detail-title-info").attr("class", "detail-title-li-selected");
+            $("#detail-title-works").attr("class", "detail-title-li");
+            $("#detail-title-fans").attr("class", "detail-title-li");
+            $("#info").attr("class", "detail-content-appear");
+            $("#works").attr("class", "detail-content-disappear");
+            $("#fans").attr("class", "detail-content-disappear");
+        })
+    })
+    $(function () {
+        $("#detail-title-works").click(function () {
+            $("#detail-title-works").attr("class", "detail-title-li-selected");
+            $("#detail-title-info").attr("class", "detail-title-li");
+            $("#detail-title-fans").attr("class", "detail-title-li");
+            $("#works").attr("class", "detail-content-appear");
+            $("#info").attr("class", "detail-content-disappear");
+            $("#fans").attr("class", "detail-content-disappear");
+        })
+    })
+    $(function () {
+        $("#detail-title-fans").click(function () {
+            $("#detail-title-fans").attr("class", "detail-title-li-selected");
+            $("#detail-title-works").attr("class", "detail-title-li");
+            $("#detail-title-info").attr("class", "detail-title-li");
+            $("#fans").attr("class", "detail-content-appear");
+            $("#works").attr("class", "detail-content-disappear");
+            $("#info").attr("class", "detail-content-disappear");
+        })
+    })
+
+</script>
+
+</html>

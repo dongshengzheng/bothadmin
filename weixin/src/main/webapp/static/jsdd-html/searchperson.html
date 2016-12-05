@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="generator"
+          content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39"/>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0"/>
+    <title>搜索用户</title>
+    <link rel="stylesheet" href="css/weui.css"/>
+    <link rel="stylesheet" href="css/jquery-weui.css"/>
+    <link rel="stylesheet" href="css/swiper.min.css">
+</head>
+<style type="text/css">
+    .header {
+        text-align: center;
+        margin-top: 3%;
+        margin-bottom: 3%;
+        height: 20px;
+    }
+
+    #searchparam {
+        margin: auto;
+        background-image: url(img/cut/搜索作品_搜索icon.png);
+        background-size: 18px 18px;
+        background-repeat: no-repeat;
+        padding-left: 25px;
+        font-size: 18px;
+        color: gray;
+    }
+
+    #searchbox {
+        width: 50%;
+        margin: auto;
+    }
+
+    .search-results {
+        margin: 5%;
+    }
+
+    .search-results-one {
+        margin-bottom: 5%;
+    }
+
+    .search-results-one-img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 5%;
+    }
+
+    .search-results-one-info {
+        display: inline-block;
+    }
+
+    .earch-results-one-info-name {
+        font-size: 20px;
+    }
+
+    .search-results-one-info-location {
+        background-image: url(img/cut/位置icon.png);
+        background-size: 20px 20px;
+        background-repeat: no-repeat;
+        padding-left: 25px;
+        font-size: 15px;
+        color: gray;
+    }
+
+    .search-results-one-info-total {
+        color: gray;
+    }
+
+    .search-results-one-care {
+        text-align: center;
+        display: inline-block;
+        float: right;
+        margin-top: 2%;
+    }
+
+    .search-results-one-care-img {
+        width: 80%;
+        height: 80%;
+    }
+
+    .search-results-one-care-text-not {
+        font-size: 15px;
+        color: #4DD2C9;
+    }
+
+    .search-results-one-care-text-have {
+        font-size: 15px;
+        color: #939393;
+    }
+
+    .search-results-end {
+        margin-top: 10%;
+        text-align: center;
+    }
+
+    .search-results-end hr {
+        width: 80%;
+    }
+
+    .search-results-end span {
+        position: relative;
+        top: -15px;
+        background-color: white;
+        color: gray;
+    }
+</style>
+
+<body>
+<div class="header">
+    <span id="searchparam">葑溪寻梦</span>
+    <input type="text" id="searchbox" style="display: none">
+</div>
+
+
+<hr style="border-top:1px solid lightgray;"/>
+<div class="search-results">
+    <div class="search-results-one">
+        <img src="img/swiper/swiper-1.jpg" class="search-results-one-img"/>
+        <div class="search-results-one-info">
+            <p class="earch-results-one-info-name">
+                缘溪寻梦
+            </p>
+            <p class="search-results-one-info-location">
+                长沙
+            </p>
+            <p class="search-results-one-info-total">
+                作品:36 &nbsp;粉丝:6
+            </p>
+        </div>
+        <div class="search-results-one-care">
+            <img src="img/cut/加关注.png" class="search-results-one-care-img"/>
+            <p class="search-results-one-care-text-not">
+                加关注
+            </p>
+        </div>
+    </div>
+
+    <div class="search-results-one">
+        <img src="img/swiper/swiper-2.jpg" class="search-results-one-img"/>
+        <div class="search-results-one-info">
+            <p class="earch-results-one-info-name">
+                老特拉福德永恒
+            </p>
+            <p class="search-results-one-info-location">
+                长沙
+            </p>
+            <p class="search-results-one-info-total">
+                作品:36 &nbsp;粉丝:6
+            </p>
+        </div>
+        <div class="search-results-one-care">
+            <img src="img/cut/关注用户_已关注.png" class="search-results-one-care-img"/>
+            <p class="search-results-one-care-text-have ">
+                已关注
+            </p>
+        </div>
+    </div>
+
+    <div class="search-results-one ">
+        <img src="img/swiper/swiper-3.jpg " class="search-results-one-img "/>
+        <div class="search-results-one-info ">
+            <p class="earch-results-one-info-name ">
+                情非得已
+            </p>
+            <p class="search-results-one-info-location ">
+                长沙
+            </p>
+            <p class="search-results-one-info-total ">
+                作品:36 &nbsp;粉丝:6
+            </p>
+        </div>
+        <div class="search-results-one-care ">
+            <img src="img/cut/关注用户_已关注.png " class="search-results-one-care-img"/>
+            <p class="search-results-one-care-text-have ">
+                已关注
+            </p>
+        </div>
+    </div>
+
+    <div class="search-results-one">
+        <img src="img/logo.png" class="search-results-one-img"/>
+        <div class="search-results-one-info">
+            <p class="earch-results-one-info-name">
+                致明天的信
+            </p>
+            <p class="search-results-one-info-location">
+                长沙
+            </p>
+            <p class="search-results-one-info-total">
+                作品:36 &nbsp;粉丝:6
+            </p>
+        </div>
+        <div class="search-results-one-care">
+            <img src="img/cut/加关注.png" class="search-results-one-care-img"/>
+            <p class="search-results-one-care-text-not">
+                加关注
+            </p>
+        </div>
+    </div>
+
+    <div class="search-results-one">
+        <img src="img/cut/个人中心_敬请期待.png" class="search-results-one-img"/>
+        <div class="search-results-one-info">
+            <p class="earch-results-one-info-name">
+                遇见
+            </p>
+            <p class="search-results-one-info-location">
+                长沙
+            </p>
+            <p class="search-results-one-info-total">
+                作品:36 &nbsp;粉丝:6
+            </p>
+        </div>
+        <div class="search-results-one-care">
+            <img src="img/cut/加关注.png" class="search-results-one-care-img"/>
+            <p class="search-results-one-care-text-not">
+                加关注
+            </p>
+        </div>
+    </div>
+
+    <div class="search-results-one">
+        <img src="img/cut/个人中心_收藏作品.png" class="search-results-one-img"/>
+        <div class="search-results-one-info">
+            <p class="earch-results-one-info-name">
+                大卫-贝克汉姆
+            </p>
+            <p class="search-results-one-info-location">
+                长沙
+            </p>
+            <p class="search-results-one-info-total">
+                作品:36 &nbsp;粉丝:6
+            </p>
+        </div>
+        <div class="search-results-one-care">
+            <img src="img/cut/加关注.png" class="search-results-one-care-img"/>
+            <p class="search-results-one-care-text-not">
+                加关注
+            </p>
+        </div>
+    </div>
+
+    <div class="search-results-one">
+        <img src="img/cut/时间选择_icon.png" class="search-results-one-img"/>
+        <div class="search-results-one-info">
+            <p class="earch-results-one-info-name">
+                客服专员
+            </p>
+            <p class="search-results-one-info-location">
+                长沙
+            </p>
+            <p class="search-results-one-info-total">
+                作品:36 &nbsp;粉丝:6
+            </p>
+        </div>
+        <div class="search-results-one-care">
+            <img src="img/cut/加关注.png" class="search-results-one-care-img"/>
+            <p class="search-results-one-care-text-not">
+                加关注
+            </p>
+        </div>
+    </div>
+
+    <div class="search-results-end ">
+        <center>
+            <hr>
+            <span>&nbsp;&nbsp;到底啦&nbsp;&nbsp;</span></center>
+
+    </div>
+
+</div>
+
+<script src="js/jquery-2.1.4.js"></script>
+<script>
+    $(function () {
+        $("#searchparam").click(function () {
+            $("#searchparam").toggle();
+            $("#searchbox").toggle();
+            $("#searchbox").focus();
+        })
+    })
+
+    $(function () {
+        $("#searchbox").blur(function () {
+            $("#searchparam").toggle();
+            $("#searchbox").toggle();
+        })
+    })
+
+    $("#searchbox").keyup(function () {
+        if (event.keyCode == 13) {
+            location.href = "searchperson.html";
+        }
+    })
+
+
+</script>
+
+</body>
+
+</html>

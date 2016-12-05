@@ -1,38 +1,134 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 	<head>
-		<meta charset="UTF-8">
+		<meta name="generator" content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0" />
 		<title>搜索</title>
 		<link rel="stylesheet" href="css/weui.css" />
 		<link rel="stylesheet" href="css/jquery-weui.css" />
+		<link rel="stylesheet" href="css/swiper.min.css">
 	</head>
+
+	<script src="js/jquery-2.1.4.js"></script>
 
 	<style>
 		.header-searchbox {
 			margin-left: 5%;
-			width: 950%;
-		}
-		.header-searchbox span{
-			color: #FE8D84;
+			margin-top: 5%;
+			margin-bottom: 5%;
+			width: 95%;
 		}
 		
+		.header-searchbox select,
+		input {
+			font-size: 15px;
+			border: none;
+		}
+		
+		.header-searchbox-cancel {
+			color: #FE8D84;
+			font-size: 15px;
+			float: right;
+			margin-right: 5%;
+		}
+		
+		.history-serach {
+			margin: 5%;
+			width: 90%;
+		}
+		
+		.history-serach span {
+			display: inline-block;
+		}
+		
+		.history-serach-delete {
+			width: 5%;
+			margin-left: 90%;
+		}
+		
+		.history-serach-value {
+			margin-left: 5%;
+			border: none;
+			font-size: 15px;
+		}
+		
+		.history-search-value-work {}
+		
+		.history-search-value-person {
+			background-image: url(img/cut/搜索_用户.png);
+			background-size: 15px 15px;
+			background-repeat: no-repeat;
+			padding-left: 18px;
+		}
+		
+		#confirm {
+			display: none;
+		}
 	</style>
 
-	<body>
+	<script>
+		$(function() {
+			$(".history-serach-delete").click(function() {
+				$("#confirm").toggle();
 
+				//				if(confirm("确认删除历史搜寻记录?")) {
+				//					$("span.history-serach-value").remove();
+				//				}
+				$("#yes").click(function() {
+					$("span.history-serach-value").remove();
+					$("#confirm").toggle();
+				})
+				
+				$("#no").click(function() {
+					$("#confirm").toggle();
+				})
+			})
+
+			$(".header-searchbox-gotosearch").keyup(function() {
+				if(event.keyCode == 13) {
+					location.href = "searchperson.html";
+				}
+			})
+
+		});
+	</script>
+
+	<body>
 		<div class="header">
 			<div class="header-searchbox">
 				<select name="searchobj">
 					<option value="">作品</option>
 					<option value="">用户</option>
 				</select>
-				<input type="text" placeholder="输入你正在找的用户" value="" />
-				<span>
+				<input type="text" placeholder="输入你正在找的用户/作品" class="header-searchbox-gotosearch" value="" />
+				<span class="header-searchbox-cancel" onclick="location.href='index.html'">
 					取消
 				</span>
 			</div>
 			<div class="header-cancel">
+			</div>
+		</div>
+		<div class="history-serach">
+			<img src="img/cut/搜索_删除.png" class="history-serach-delete" />
+			<span class="history-serach-value history-search-value-work">田黄鸡血石</span>
+			<span class="history-serach-value history-search-value-person">测试用户ABCDEFG</span>
+			<span class="history-serach-value history-search-value-person">用户A</span>
+			<span class="history-serach-value history-search-value-work">田黄鸡血石</span>
+			<span class="history-serach-value history-search-value-work">田黄鸡血石</span>
+			<span class="history-serach-value history-search-value-person">用户ABCD</span>
+			<span class="history-serach-value history-search-value-work">田黄鸡血石</span>
+		</div>
+
+		<div class="weui-dialog_confirm" id="confirm">
+			<div class="weui-mask"></div>
+			<div class="weui-dialog">
+				<div class="weui-dialog_bd">确认删除历史搜寻记录?</div>
+				<div class="weui-dialog_ft">
+					<a href="#" class="weui-btn_dialog default" id="no">取消</a>
+					<a href="#" class="weui-btn_dialog primary" id="yes">确定</a>
+				</div>
 			</div>
 		</div>
 

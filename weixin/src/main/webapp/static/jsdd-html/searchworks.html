@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="generator"
+          content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39"/>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0"/>
+    <title>金石典当</title>
+    <link rel="stylesheet" href="css/weui.css"/>
+    <link rel="stylesheet" href="css/jquery-weui.css"/>
+    <link rel="stylesheet" href="css/swiper.min.css">
+
+    <style>
+        .header {
+            text-align: center;
+            margin-top: 3%;
+            margin-bottom: 3%;
+            height: 20px;
+        }
+
+        #sort{
+            border-top: 1px solid gray;
+            border-bottom: 1px solid gray;
+            margin-bottom: 3%;
+            height:30px;
+            line-height: 30px;
+        }
+
+        .sort-li{
+            margin-left: 10%;
+        }
+
+        .sort-li-selected{
+            color:blue;
+            margin-left: 10%;
+        }
+
+        #sort-btn-outer{
+            margin-left: 10%;
+            /*height: 25px;*/
+            display: inline-block;
+            /*border-left: 1px solid gray;*/
+            /*vertical-align: middle;*/
+        }
+
+        #sort-btn{
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+
+
+
+        #searchparam {
+            margin: auto;
+            background-image: url(img/cut/搜索作品_搜索icon.png);
+            background-size: 18px 18px;
+            background-repeat: no-repeat;
+            padding-left: 25px;
+            font-size: 18px;
+            color: gray;
+        }
+
+        #searchbox {
+            width: 50%;
+            margin: auto;
+        }
+
+        .all-outer {
+            width: 46.5%;
+            margin: 1%;
+            display: inline-block;
+        }
+
+        .works-all {
+            text-align: center;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .works-img-all {
+            width: 100%;
+            height: 100%;
+        }
+
+        .works-intro-all {
+            width: 100%;
+            position: absolute;
+            border: white;
+            color: white;
+            background-color: black;
+            opacity: 0.6;
+            left: 0px;
+            bottom: 7px;
+            resize: none;
+            font-size: 15px;
+        }
+
+        .works-floor {
+            border-left: 10px solid white;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .works-floor-name-all {
+            float: left;
+            display: inline-block;
+            font-size: 6px;
+        }
+
+        .works-floor-btn-all {
+            display: inline-block;
+            border: 1px solid gray;
+            font-size: 6px;
+            color: gray;
+            float: right;
+        }
+
+        .works-floor-img-all {
+            float: left;
+            display: inline-block;
+            font-size: 6px;
+            background-image: url(img/cut/标签.png);
+            background-size: 12px 12px;
+            background-repeat: no-repeat;
+            border: none;
+        }
+
+        .works-floor-date-all {
+            display: inline-block;
+            font-size: 6px;
+            float: right;
+        }
+
+        .search-results-end {
+            margin-top: 10%;
+            text-align: center;
+        }
+
+        .search-results-end hr {
+            width: 80%;
+        }
+
+        .search-results-end span {
+            position: relative;
+            top: -15px;
+            background-color: white;
+            color: gray;
+        }
+
+    </style>
+</head>
+<body>
+<div class="header">
+    <span id="searchparam">田黄鸡血石</span>
+    <input type="text" id="searchbox" style="display: none">
+</div>
+
+<div id="sort">
+    <span id="defalut" class="sort-li-selected">默认排序</span>
+    <span id="new" class="sort-li">最新上架</span>
+    <span id="distance" class="sort-li">离我最近</span>
+    <div id="sort-btn-outer">
+    <img src="img/cut/搜索作品_筛选2.png" id="sort-btn"/>
+    </div>
+</div>
+
+<div class="all">
+
+    <div class="all-outer">
+        <div class="works-all">
+            <img src="img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
+            <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
+        </div>
+        <div class="works-floor-all">
+            <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
+            <!--<input type="button" value="  + 收藏     " class="works-floor-btn-all"/>-->
+            <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
+            <!--<input type="text" value="    田黄鸡血石" class="works-floor-img-all"/>-->
+            <span class="works-floor-img-all">&nbsp;田黄鸡血石</span>
+            <span class="works-floor-date-all">2016-12-4</span>
+        </div>
+    </div>
+    <div class="all-outer">
+        <div class="works-all">
+            <img src="img/swiper/swiper-2.jpg" alt="" class="works-img-all"/>
+            <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
+        </div>
+        <div class="works-floor-all">
+            <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
+            <!--<input type="button" value="  + 收藏     " class="works-floor-btn-all"/>-->
+            <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
+            <!--<input type="text" value="    田黄鸡血石" class="works-floor-img-all"/>-->
+            <span class="works-floor-img-all">&nbsp;田黄鸡血石</span>
+            <span class="works-floor-date-all">2016-12-4</span>
+        </div>
+    </div>
+    <div class="all-outer">
+        <div class="works-all">
+            <img src="img/swiper/swiper-3.jpg" alt="" class="works-img-all"/>
+            <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
+        </div>
+        <div class="works-floor-all">
+            <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
+            <!--<input type="button" value="  + 收藏     " class="works-floor-btn-all"/>-->
+            <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
+            <!--<input type="text" value="    田黄鸡血石" class="works-floor-img-all"/>-->
+            <span class="works-floor-img-all">&nbsp;田黄鸡血石</span>
+            <span class="works-floor-date-all">2016-12-4</span>
+        </div>
+    </div>
+    <div class="all-outer">
+        <div class="works-all">
+            <img src="img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
+            <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
+        </div>
+        <div class="works-floor-all">
+            <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
+            <!--<input type="button" value="  + 收藏     " class="works-floor-btn-all"/>-->
+            <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
+            <!--<input type="text" value="    田黄鸡血石" class="works-floor-img-all"/>-->
+            <span class="works-floor-img-all">&nbsp;田黄鸡血石</span>
+            <span class="works-floor-date-all">2016-12-4</span>
+        </div>
+    </div>
+
+
+    <div class="search-results-end ">
+        <center>
+            <hr>
+            <span>&nbsp;&nbsp;到底啦&nbsp;&nbsp;</span></center>
+
+    </div>
+</div>
+</body>
+<script src="js/jquery-2.1.4.js"></script>
+<script>
+    $(function () {
+        $("#searchparam").click(function () {
+            $("#searchparam").toggle();
+            $("#searchbox").toggle();
+            $("#searchbox").focus();
+        })
+    })
+
+    $(function () {
+        $("#searchbox").blur(function () {
+            $("#searchparam").toggle();
+            $("#searchbox").toggle();
+        })
+    })
+
+    $("#searchbox").keyup(function () {
+        if (event.keyCode == 13) {
+            location.href = "searchperson.html";
+        }
+    })
+</script>
+</html>
