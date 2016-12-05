@@ -16,7 +16,7 @@
     </properties>
 
     <build>
-        <finalName>wechatService</finalName>
+        <finalName>weixin</finalName>
         <plugins>
             <!-- Maven插件 配置 -->
             <plugin>

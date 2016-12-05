@@ -185,6 +185,7 @@
         </dependencies>
     </dependencyManagement>
     <build>
+        <finalName>jsdd</finalName>
         <plugins>
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>

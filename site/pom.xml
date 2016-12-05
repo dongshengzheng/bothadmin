@@ -149,6 +149,7 @@
 
     </dependencies>
     <build>
+        <finalName>site</finalName>
         <plugins>
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
