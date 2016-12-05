@@ -56,6 +56,18 @@
             ALTER TABLE `sys_user` CHANGE COLUMN `last_login` `last_login` datetime DEFAULT NULL COMMENT '上次登录时间';
         </sql>
     </changeSet>
+    <changeSet author="SunHan" id="15862614903-008">
+        <sql>
+            ALTER TABLE `yyst`.`sys_dict` CHANGE COLUMN `id` `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '编号';
+        </sql>
+    </changeSet>
+    <changeSet author="SunHan" id="15862614903-006">
+        <sql>
+            ALTER TABLE `sys_user` DROP COLUMN `skin`
+        </sql>
+    </changeSet>
+
+
 
 
 

@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Arrays;
+
 /**
  * Created by szy on 21/11/2016.
  */
@@ -82,5 +85,16 @@ public class DictController extends BaseController {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("status", 1);
         return jsonObject;
+    }
+
+
+    @RequestMapping(value = "/batchDelete")
+    @ResponseBody
+    public JSONObject batchDelete(String ids) {
+        JSONObject jsonObject = new JSONObject();
+        dictService.deleteBatchIds(Arrays.asList(ids.split(",")));
+        jsonObject.put("status", 1);
+        return jsonObject;
+
     }
 }

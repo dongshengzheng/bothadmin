@@ -16,27 +16,27 @@
     </#if>
     <#if !(interval?seq_contains(1))>
         <#if 1=p>
-        <li class="active "><a class="pageRefreshBtn" href="#">1</a></li>  <#t>
+        <li class="active "><a class="pageRefreshBtn" href="javascript:;">1</a></li>  <#t>
         <#else>
-        <li><a class="pageRefreshBtn" href="#">1</a></li> <#t>
+        <li><a class="pageRefreshBtn" href="javascript:;">1</a></li> <#t>
         </#if>
 
-    <li><a href="#" onclick="javascript: return false">...</a></li>
+    <li><a href="javascript:;" onclick="javascript: return false">...</a></li>
     </#if>
     <#list interval as page>
         <#if page=p>
-        <li class="active"><a class="pageRefreshBtn" href="#">${page}</a></li>  <#t>
+        <li class="active"><a class="pageRefreshBtn" href="javascript:;">${page}</a></li>  <#t>
         <#else>
-        <li><a class="pageRefreshBtn" href="#">${page}</a></li> <#t>
+        <li><a class="pageRefreshBtn" href="javascript:;">${page}</a></li> <#t>
 
         </#if>
     </#list>
     <#if !(interval?seq_contains(size))>
-    <li><a href="#" onclick="javascript: return false">...</a></li>
+    <li><a href="javascript:;" onclick="javascript: return false">...</a></li>
         <#if size=p>
-        <li class="active"><a  class="pageRefreshBtn" href="#">${size}</a></li>  <#t>
+        <li class="active"><a  class="pageRefreshBtn" href="javascript:;">${size}</a></li>  <#t>
         <#else>
-        <li><a class="pageRefreshBtn" href="#">${size}</a></li> <#t>
+        <li><a class="pageRefreshBtn" href="javascript:;">${size}</a></li> <#t>
         </#if>
 
         <#lt>

@@ -115,7 +115,7 @@ description="金石典当"
                 <!--zuopingdengji-->
                 <div  class="col-md-2 text-center index_head_tab" style="height: 100%;">
                     <div style="width: 120px;">
-                        <a style="text-decoration:none;" href="${staticPath}/works/register">
+                        <a style="text-decoration:none;" href="${staticPath}/works/add">
                             <h3 id="zpdj" style="margin-top: 20px">作品登记</h3></a>
                     </div>
                 </div>

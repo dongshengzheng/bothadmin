@@ -37,6 +37,13 @@
                            minlength="2" class="form-control required" placeholder="请输入字典标签">
                 </div>
             </div>
+            <div class="form-group">
+                <label for="sort" class="col-sm-2 control-label">排序值</label>
+                <div class="col-sm-7">
+                    <input id="sort" name="sort" type="text" maxlength="32"
+                           minlength="2" class="form-control required" placeholder="请输入排序值">
+                </div>
+            </div>
 
             <div class="form-group">
                 <label for="description" class="col-sm-2 control-label">描述</label>
