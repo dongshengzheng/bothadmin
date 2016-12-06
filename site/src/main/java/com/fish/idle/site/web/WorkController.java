@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping(value = "/works")
-public class WorkController {
+public class WorkController extends BaseController{
 
     @RequestMapping(value = "detail",method = RequestMethod.GET)
     public String detail(){
@@ -34,12 +34,7 @@ public class WorkController {
     }
 
 
-    @RequestMapping(value = "getPaging")
-    @ResponseBody
-    public JSONObject getPaging(){
 
-        return null;
-    }
 
 
 
