@@ -1,6 +1,6 @@
 #!/usr/bin/env bash#!/usr/bin/env bash
 # 关闭tomcat
-ps -ef |grep tomcat-9.0-jsdd |grep -v grep |awk '{print $2}'|xargs kill 9
+ps -ef |grep tomcat |grep -v grep |awk '{print $2}'|xargs kill 9
 # 删除代码
 rm -rf /opt/tomcat-9.0-jsdd/webapps/site/ROOT
 rm -rf /opt/tomcat-9.0-jsdd/webapps/admin/ROOT
