@@ -195,6 +195,7 @@ description="金石典当"
 <script src="${staticPath}/assets/js/plugins/owl-carousel.js"></script>
 <script src="${staticPath}/assets/js/plugins/revolution-slider.js"></script>
 <script src="${staticPath}/assets/js/plugins/style-switcher.js"></script>
+<script src="//cdn.bootcss.com/jquery-validate/1.15.1/jquery.validate.min.js"></script>
 <#--模板-->
 <script src="${staticPath}/assets/js/mustache.js"></script>
 <!-- 全局JS结束 -->
