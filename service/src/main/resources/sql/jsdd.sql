@@ -1,20 +1,20 @@
 /*
- Navicat Premium Backup
+ Navicat Premium Data Transfer
 
  Source Server         : localhost
  Source Server Type    : MySQL
- Source Server Version : 50625
+ Source Server Version : 50714
  Source Host           : localhost
  Source Database       : jsdd
 
  Target Server Type    : MySQL
- Target Server Version : 50625
+ Target Server Version : 50714
  File Encoding         : utf-8
 
- Date: 11/20/2016 20:28:18 PM
+ Date: 12/05/2016 23:53:28 PM
 */
 
-SET NAMES utf8;
+SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
@@ -39,6 +39,13 @@ CREATE TABLE `DATABASECHANGELOG` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+--  Records of `DATABASECHANGELOG`
+-- ----------------------------
+BEGIN;
+INSERT INTO `DATABASECHANGELOG` VALUES ('15862614903-001', 'SunHan', 'src/main/resources/changelog.xml', '2016-11-29 00:22:13', '1', 'EXECUTED', '7:85828a0d96ba799dd33667b8134ebfc0', 'createTable tableName=sys_office', '', null, '3.5.3', null, null, '0350133697'), ('15862614903-002', 'SunHan', 'src/main/resources/changelog.xml', '2016-11-29 00:22:13', '2', 'EXECUTED', '7:14e3e6ef96d6d103979ad7df3f7f6219', 'addColumn tableName=sys_user', '', null, '3.5.3', null, null, '0350133697'), ('15862614903-003', 'SunHan', 'src/main/resources/changelog.xml', '2016-11-29 00:22:13', '3', 'EXECUTED', '7:cf81f7cfd67266dbaf8d75bf8511af41', 'sql', '', null, '3.5.3', null, null, '0350133697'), ('James', '18964317375-001', 'src/main/resources/changelog.xml', '2016-11-29 00:22:13', '4', 'EXECUTED', '7:d756fe3930d06b9736e192ffcb6e5861', 'addColumn tableName=sys_user', '', null, '3.5.3', null, null, '0350133697'), ('15862614903-004', 'SunHan', 'src/main/resources/changelog.xml', '2016-11-29 00:22:13', '5', 'EXECUTED', '7:d8bdff6f35d2d1df7f0941358d6afc04', 'sql', '', null, '3.5.3', null, null, '0350133697'), ('15862614903-005', 'SunHan', 'src/main/resources/changelog.xml', '2016-11-29 00:22:13', '6', 'EXECUTED', '7:41963d1082a28a28864888d5a7cd7250', 'sql', '', null, '3.5.3', null, null, '0350133697'), ('15862614903-006', 'SunHan', 'src/main/resources/changelog.xml', '2016-11-30 23:43:18', '7', 'EXECUTED', '7:0a3d6b95802dca6ee766febec1daaf47', 'sql', '', null, '3.5.3', null, null, '0520598575'), ('15862614903-007', 'SunHan', 'src/main/resources/changelog.xml', '2016-12-01 22:47:03', '8', 'EXECUTED', '7:8c43f4e02508fda824f3f9d515eb4028', 'sql', '', null, '3.5.3', null, null, '0603623443'), ('15862614903-008', 'SunHan', 'src/main/resources/changelog.xml', '2016-12-02 00:28:38', '9', 'EXECUTED', '7:ba7b4b5393a2f23d73f6119ad482df5a', 'sql', '', null, '3.5.3', null, null, '0609718531');
+COMMIT;
+
+-- ----------------------------
 --  Table structure for `DATABASECHANGELOGLOCK`
 -- ----------------------------
 DROP TABLE IF EXISTS `DATABASECHANGELOGLOCK`;
@@ -51,6 +58,13 @@ CREATE TABLE `DATABASECHANGELOGLOCK` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+--  Records of `DATABASECHANGELOGLOCK`
+-- ----------------------------
+BEGIN;
+INSERT INTO `DATABASECHANGELOGLOCK` VALUES ('1', b'0', null, null);
+COMMIT;
+
+-- ----------------------------
 --  Table structure for `dd_browser_history`
 -- ----------------------------
 DROP TABLE IF EXISTS `dd_browser_history`;
@@ -59,7 +73,7 @@ CREATE TABLE `dd_browser_history` (
   `user_id` int(11) DEFAULT NULL,
   `target_id` int(11) DEFAULT NULL,
   `type` mediumint(8) DEFAULT NULL,
-  `create_date` datetime DEFAULT NULL  COMMENT '创建时间',
+  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   `update_date` datetime DEFAULT NULL COMMENT '更新时间',
   `create_by` int(11) DEFAULT NULL COMMENT '创建者',
   `update_by` int(11) DEFAULT NULL COMMENT '更新者',
@@ -97,7 +111,7 @@ CREATE TABLE `dd_comments` (
   `type` mediumint(8) DEFAULT NULL,
   `parent_id` int(11) DEFAULT NULL COMMENT '评论有递归',
   `follow_count` int(11) DEFAULT NULL COMMENT '关注数量，冗余字段',
-  `create_date` datetime DEFAULT NULL  COMMENT '创建时间',
+  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   `update_date` datetime DEFAULT NULL COMMENT '更新时间',
   `create_by` int(11) DEFAULT NULL COMMENT '创建者',
   `update_by` int(11) DEFAULT NULL COMMENT '更新者',
@@ -145,7 +159,7 @@ CREATE TABLE `dd_follow_history` (
   `user_id` int(11) DEFAULT NULL,
   `target_id` int(11) DEFAULT NULL,
   `type` mediumint(8) DEFAULT NULL,
-  `create_date` datetime DEFAULT NULL  COMMENT '创建时间',
+  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   `update_date` datetime DEFAULT NULL COMMENT '更新时间',
   `create_by` int(11) DEFAULT NULL COMMENT '创建者',
   `update_by` int(11) DEFAULT NULL COMMENT '更新者',
@@ -168,7 +182,7 @@ CREATE TABLE `dd_interpretation` (
   `deal_date` datetime DEFAULT NULL,
   `picture` varchar(64) DEFAULT NULL,
   `follow_count` int(11) DEFAULT NULL,
-  `create_date` datetime DEFAULT NULL  COMMENT '创建时间',
+  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   `update_date` datetime DEFAULT NULL COMMENT '更新时间',
   `create_by` int(11) DEFAULT NULL COMMENT '创建者',
   `update_by` int(11) DEFAULT NULL COMMENT '更新者',
@@ -219,6 +233,23 @@ INSERT INTO `dd_report` VALUES ('06a580b0d65a4e8d994d851f5b06ad27', 'f87d838e3d5
 COMMIT;
 
 -- ----------------------------
+--  Table structure for `dd_score_calc`
+-- ----------------------------
+DROP TABLE IF EXISTS `dd_score_calc`;
+CREATE TABLE `dd_score_calc` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) DEFAULT NULL,
+  `value` decimal(11,2) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_date` datetime DEFAULT NULL COMMENT '更新时间',
+  `create_by` int(11) DEFAULT NULL COMMENT '创建者',
+  `update_by` int(11) DEFAULT NULL COMMENT '更新者',
+  `del_flag` mediumint(8) DEFAULT NULL COMMENT '逻辑删除标记（0：显示；1：隐藏）',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='积分计算方式';
+
+-- ----------------------------
 --  Table structure for `dd_score_history`
 -- ----------------------------
 DROP TABLE IF EXISTS `dd_score_history`;
@@ -228,7 +259,7 @@ CREATE TABLE `dd_score_history` (
   `to_user_id` int(11) DEFAULT NULL,
   `value` decimal(11,2) DEFAULT NULL COMMENT '加减积分',
   `type` mediumint(8) DEFAULT NULL COMMENT '(字典表)(如果是交易类型的，标注to,from)',
-  `create_date` datetime DEFAULT NULL  COMMENT '创建时间',
+  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   `update_date` datetime DEFAULT NULL COMMENT '更新时间',
   `create_by` int(11) DEFAULT NULL COMMENT '创建者',
   `update_by` int(11) DEFAULT NULL COMMENT '更新者',
@@ -250,7 +281,7 @@ CREATE TABLE `dd_transfer_history` (
   `score` decimal(11,2) DEFAULT NULL,
   `status` mediumint(8) DEFAULT NULL,
   `reason` varchar(255) DEFAULT NULL,
-  `create_date` datetime DEFAULT NULL  COMMENT '创建时间',
+  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   `update_date` datetime DEFAULT NULL COMMENT '更新时间',
   `create_by` int(11) DEFAULT NULL COMMENT '创建者',
   `update_by` int(11) DEFAULT NULL COMMENT '更新者',
@@ -268,7 +299,7 @@ CREATE TABLE `dd_value_report` (
   `certified_by` varchar(64) DEFAULT NULL COMMENT '出据方',
   `description` varchar(255) DEFAULT NULL,
   `picture` varchar(64) DEFAULT NULL,
-  `create_date` datetime DEFAULT NULL  COMMENT '创建时间',
+  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   `update_date` datetime DEFAULT NULL COMMENT '更新时间',
   `create_by` int(11) DEFAULT NULL COMMENT '创建者',
   `update_by` int(11) DEFAULT NULL COMMENT '更新者',
@@ -287,7 +318,7 @@ CREATE TABLE `dd_working_progress` (
   `picture` varchar(64) DEFAULT NULL,
   `percent` varchar(64) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL COMMENT '加工者',
-  `create_date` datetime DEFAULT NULL  COMMENT '创建时间',
+  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   `update_date` datetime DEFAULT NULL COMMENT '更新时间',
   `create_by` int(11) DEFAULT NULL COMMENT '创建者',
   `update_by` int(11) DEFAULT NULL COMMENT '更新者',
@@ -391,15 +422,15 @@ CREATE TABLE `sys_button` (
   `menu_id` int(11) NOT NULL COMMENT '子菜单名称',
   `button_name` varchar(64) NOT NULL COMMENT '按钮名称',
   `button_url` varchar(255) NOT NULL COMMENT '按钮路径',
-  `status` int(3) NOT NULL DEFAULT '1',
+  `del_flag` int(3) NOT NULL DEFAULT '1',
   PRIMARY KEY (`button_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Records of `sys_button`
 -- ----------------------------
 BEGIN;
-INSERT INTO `sys_button` VALUES ('1', '2', '新增菜单/子菜单', 'right/addMenu', '1'), ('2', '2', '修改菜单/子菜单', 'right/editMenu', '1'), ('3', '2', '删除菜单/子菜单', 'right/deleteMenu', '1'), ('4', '2', '批量删除菜单/子菜单', 'right/batchDeleteMenu', '1'), ('5', '2', '子菜单信息', 'right/subMenu', '1'), ('6', '2', '权限信息', 'right/button', '1'), ('7', '2', '新增权限', 'right/addBtn', '1'), ('8', '2', '修改权限', 'right/editBtn', '1'), ('9', '2', '删除权限', 'right/deleteBtn', '1'), ('10', '2', '批量删除权限', 'right/batchDeleteBtn', '1'), ('11', '3', '新增', 'user/add', '1'), ('12', '3', '修改', 'user/edit', '1'), ('13', '3', '删除', 'user/delete', '1'), ('14', '3', '批量删除', 'user/batchDelete', '1'), ('15', '3', '授权', 'user/editRole', '1'), ('16', '4', '新增', 'role/add', '1'), ('17', '4', '修改', 'role/edit', '1'), ('18', '4', '删除', 'role/delete', '1'), ('19', '4', '批量删除', 'role/batchDelete', '1'), ('20', '4', '编辑权限', 'role/editRight', '1');
+INSERT INTO `sys_button` VALUES ('1', '2', '新增菜单/子菜单', 'right/addMenu', '1'), ('2', '2', '修改菜单/子菜单', 'right/editMenu', '1'), ('3', '2', '删除菜单/子菜单', 'right/deleteMenu', '1'), ('4', '2', '批量删除菜单/子菜单', 'right/batchDeleteMenu', '1'), ('5', '2', '子菜单信息', 'right/subMenu', '1'), ('6', '2', '权限信息', 'right/button', '1'), ('7', '2', '新增权限', 'right/addBtn', '1'), ('8', '2', '修改权限', 'right/editBtn', '1'), ('9', '2', '删除权限', 'right/deleteBtn', '1'), ('10', '2', '批量删除权限', 'right/batchDeleteBtn', '1'), ('11', '3', '新增', 'user/add', '1'), ('12', '3', '修改', 'user/edit', '1'), ('13', '3', '删除', 'user/delete', '1'), ('14', '3', '批量删除', 'user/batchDelete', '1'), ('15', '3', '授权', 'user/editRole', '1'), ('16', '4', '新增', 'role/add', '1'), ('17', '4', '修改', 'role/edit', '1'), ('18', '4', '删除', 'role/delete', '1'), ('19', '4', '批量删除', 'role/batchDelete', '1'), ('20', '4', '编辑权限', 'role/editRight', '1'), ('21', '4', '123', '123', '-1'), ('22', '4', '1234', '234', '-1'), ('23', '4', '123qwe', '123qwe', '-1'), ('24', '97', '新增', 'dict/add', '1'), ('25', '97', '修改', 'dict/edit', '1'), ('26', '97', '删除', 'dict/delete', '1'), ('27', '97', '批量删除', 'dict/batchDelete', '1');
 COMMIT;
 
 -- ----------------------------
@@ -419,7 +450,7 @@ CREATE TABLE `sys_dict` (
   `update_by` varchar(64) NOT NULL COMMENT '更新者',
   `update_date` datetime NOT NULL COMMENT '更新时间',
   `remarks` varchar(255) DEFAULT NULL COMMENT '备注信息',
-  `del_flag` char(1) NOT NULL DEFAULT '0' COMMENT '删除标记',
+  `del_flag` int(3) NOT NULL DEFAULT '0' COMMENT '删除标记',
   PRIMARY KEY (`id`),
   KEY `sys_dict_value` (`value`),
   KEY `sys_dict_label` (`label`),
@@ -447,16 +478,27 @@ CREATE TABLE `sys_menu` (
   `menu_type` int(11) DEFAULT NULL COMMENT '菜单类型 资源类型：1-分类； 2-菜单',
   `removable` int(11) NOT NULL DEFAULT '1',
   `description` varchar(255) DEFAULT NULL,
-  `status` int(3) NOT NULL DEFAULT '1',
+  `del_flag` int(3) NOT NULL DEFAULT '1',
   PRIMARY KEY (`menu_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Records of `sys_menu`
 -- ----------------------------
 BEGIN;
-INSERT INTO `sys_menu` VALUES ('1', '系统管理', '#', '0', '1', '', '1', '0', '系统管理11耳朵\n', '1'), ('2', '权限管理', 'right', '1', '2', '', '2', '1', '权限管理12', '1'), ('3', '用户管理', 'user', '1', '3', '', '2', '1', '用户管理', '1'), ('4', '角色管理', 'role', '1', '4', '', '2', '1', '角色管理2', '1'), ('93', '系统工具', '#', '0', '10', null, '1', '1', '', '1'), ('94', '123123', '#', '0', '123', null, '1', '1', '123', '1');
+INSERT INTO `sys_menu` VALUES ('1', '系统管理', '#', '0', '2', '', '1', '0', '系统管理11耳朵\n', '1'), ('2', '权限管理', 'right', '1', '2', '', '2', '1', '权限管理', '1'), ('3', '用户管理', 'user', '1', '3', '', '2', '1', '用户管理', '1'), ('4', '角色管理', 'role', '1', '4', '', '2', '1', '角色管理', '1'), ('93', '系统工具', '#', '0', '10', null, '1', '1', '', '1'), ('94', '123123', '#', '0', '123', null, '1', '1', '123', '-1'), ('95', '123123', '#', '0', '12', null, '1', '1', '123', '-1'), ('96', '123', '123qwe', '1', '12', null, '2', '1', '123', '-1'), ('97', '字典表管理', 'dict', '1', '123', null, '2', '1', '字典表管理', '1');
 COMMIT;
+
+-- ----------------------------
+--  Table structure for `sys_office`
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_office`;
+CREATE TABLE `sys_office` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) NOT NULL COMMENT '部门名称',
+  `parent_id` char(32) NOT NULL COMMENT '父部门',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Table structure for `sys_role`
@@ -468,15 +510,15 @@ CREATE TABLE `sys_role` (
   `removable` int(3) NOT NULL DEFAULT '0' COMMENT '可被删除 0=不行 1=可以',
   `allocatable` int(3) DEFAULT '1' COMMENT '可被分配 0=不行 1=可以',
   `description` varchar(255) DEFAULT NULL,
-  `status` int(3) NOT NULL DEFAULT '1',
+  `del_flag` int(3) NOT NULL DEFAULT '1' COMMENT '是否删除',
   PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Records of `sys_role`
 -- ----------------------------
 BEGIN;
-INSERT INTO `sys_role` VALUES ('1', '系统管理员', '0', '1', '系统管理员', '1'), ('2', '服务器管理员', '1', '1', '', '1'), ('3', 'test', '1', '1', '123', '-1');
+INSERT INTO `sys_role` VALUES ('3', 'test', '1', '1', '123', '-1'), ('4', '123', '1', '1', '123', '-1'), ('5', '测试人员', '1', '1', '123123', '1');
 COMMIT;
 
 -- ----------------------------
@@ -491,13 +533,13 @@ CREATE TABLE `sys_role_resource` (
   PRIMARY KEY (`id`),
   KEY `role_id_idx` (`role_id`),
   KEY `resource_id_idx` (`resource_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=359 DEFAULT CHARSET=utf8 COMMENT='权限和资源（菜单+按钮）';
+) ENGINE=InnoDB AUTO_INCREMENT=366 DEFAULT CHARSET=utf8 COMMENT='权限和资源（菜单+按钮）';
 
 -- ----------------------------
 --  Records of `sys_role_resource`
 -- ----------------------------
 BEGIN;
-INSERT INTO `sys_role_resource` VALUES ('354', '1', '1', '1'), ('355', '1', '2', '2'), ('356', '1', '3', '2'), ('357', '1', '4', '2'), ('358', '1', '93', '1');
+INSERT INTO `sys_role_resource` VALUES ('354', '1', '1', '1'), ('355', '1', '2', '2'), ('356', '1', '3', '2'), ('357', '1', '4', '2'), ('358', '1', '93', '1'), ('359', '2', '1', '1'), ('360', '1', '1', '1'), ('361', '1', '2', '2'), ('362', '1', '3', '2'), ('363', '1', '4', '2'), ('364', '1', '97', '2'), ('365', '1', '93', '1');
 COMMIT;
 
 -- ----------------------------
@@ -509,13 +551,13 @@ CREATE TABLE `sys_score_calc` (
   `name` varchar(64) DEFAULT NULL,
   `value` decimal(11,2) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
-  `create_date` datetime DEFAULT NULL  COMMENT '创建时间',
+  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   `update_date` datetime DEFAULT NULL COMMENT '更新时间',
   `create_by` int(11) DEFAULT NULL COMMENT '创建者',
   `update_by` int(11) DEFAULT NULL COMMENT '更新者',
   `del_flag` mediumint(8) DEFAULT NULL COMMENT '逻辑删除标记（0：显示；1：隐藏）',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '积分计算方式';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='积分计算方式';
 
 -- ----------------------------
 --  Table structure for `sys_user`
@@ -526,9 +568,9 @@ CREATE TABLE `sys_user` (
   `login_name` varchar(64) NOT NULL COMMENT '登录名',
   `password` varchar(64) NOT NULL COMMENT '密码',
   `name` varchar(64) DEFAULT NULL COMMENT '姓名',
-  `last_login` varchar(255) DEFAULT NULL COMMENT '上次登录时间',
+  `last_login` datetime DEFAULT NULL COMMENT '上次登录时间',
   `ip` varchar(32) DEFAULT NULL COMMENT 'IP',
-  `status` varchar(32) DEFAULT NULL COMMENT '状态',
+  `del_flag` varchar(32) DEFAULT NULL COMMENT '状态',
   `description` varchar(255) DEFAULT NULL,
   `email` varchar(32) DEFAULT NULL COMMENT '邮箱',
   `phone` varchar(32) DEFAULT NULL,
@@ -539,19 +581,20 @@ CREATE TABLE `sys_user` (
   `score` varchar(64) DEFAULT NULL,
   `follow_count` int(11) DEFAULT NULL COMMENT '关注数量，冗余字段',
   `type` varchar(64) DEFAULT NULL,
-  `create_date` datetime DEFAULT NULL  COMMENT '创建时间',
+  `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   `update_date` datetime DEFAULT NULL COMMENT '更新时间',
   `create_by` int(11) DEFAULT NULL COMMENT '创建者',
   `update_by` int(11) DEFAULT NULL COMMENT '更新者',
-  `del_flag` mediumint(8) DEFAULT NULL COMMENT '逻辑删除标记（0：显示；1：隐藏）',
+  `office_id` varchar(30) DEFAULT NULL COMMENT '部门Id',
+  `open_id` varchar(200) DEFAULT NULL COMMENT 'openId',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 --  Records of `sys_user`
 -- ----------------------------
 BEGIN;
-INSERT INTO `sys_user` VALUES ('1', 'admin', 'dd94709528bb1c83d08f3088d4043f4742891f4f', 'admin', '2016-11-20 19:53:26', '0:0:0:0:0:0:0:1', '1', '123', '123', '123', '1', null, null, null, null, null, null, null, null, null, null, null), ('84', 'sunhan', '71431ddb024987660b7faedf7880fbf35eb9f1dc', '孙汉', null, null, '1', '1', '1', '1', '1', null, null, null, null, null, null, null, null, null, null, null), ('85', 'admin123', '91868ceb2b0ef1ddaed59140471087722d60c872', '123', null, null, '1', '123', '123123', '123', '1', null, null, null, null, null, null, null, null, null, null, null), ('86', '123123', '5a8f70e725742ee64204353e700778b29f81b988', '123', null, null, '-1', '123', '213', '123', '1', null, null, null, null, null, null, null, null, null, null, null), ('87', 'test', '07df646fbca858e0b4284e4547595ae3b8cb0605', '123', null, null, '-1', '1231', '123', '123', '1', null, null, null, null, null, null, null, null, null, null, null), ('88', '123', '88ea39439e74fa27c09a4fc0bc8ebe6d00978392', '123', null, null, '-1', '123', '123', '123', '1', null, null, null, null, null, null, null, null, null, null, null), ('89', '11test', '915cf224878eb7fae09529feb502ca429093e85c', '1123', null, null, '-1', '123', '123', '123', '1', null, null, null, null, null, null, null, null, null, null, null), ('90', '测试数据', '89ebd531abb18239d93e461c2e7b2932bc392906', '123123', null, null, '1', '123', '123123', '1231', '1', null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `sys_user` VALUES ('1', 'admin', 'dd94709528bb1c83d08f3088d4043f4742891f4f', 'admin', '2016-12-01 23:29:21', '0:0:0:0:0:0:0:1', '1', '123', '123', '123', '1', null, null, null, null, null, null, null, null, null, null, null, null), ('86', '123123', '5a8f70e725742ee64204353e700778b29f81b988', '123', null, null, '-1', '123', '213', '123', '1', null, null, null, null, null, null, null, null, null, null, null, null), ('87', 'test', '07df646fbca858e0b4284e4547595ae3b8cb0605', '123', null, null, '-1', '1231', '123', '123', '1', null, null, null, null, null, null, null, null, null, null, null, null), ('88', '123', '88ea39439e74fa27c09a4fc0bc8ebe6d00978392', '123', null, null, '-1', '123', '123', '123', '1', null, null, null, null, null, null, null, null, null, null, null, null), ('89', '11test', '915cf224878eb7fae09529feb502ca429093e85c', '1123', null, null, '-1', '123', '123', '123', '1', null, null, null, null, null, null, null, null, null, null, null, null), ('95', '123', '8dff9be21d11c8714f905da71e08985cc975967b', '32', null, null, '1', '132', '123', '13', '1', null, null, null, null, null, null, null, null, null, null, null, null);
 COMMIT;
 
 -- ----------------------------
@@ -563,13 +606,13 @@ CREATE TABLE `sys_user_role` (
   `user_id` int(11) NOT NULL DEFAULT '0',
   `role_id` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8 COMMENT='用户和角色';
+) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8 COMMENT='用户和角色';
 
 -- ----------------------------
 --  Records of `sys_user_role`
 -- ----------------------------
 BEGIN;
-INSERT INTO `sys_user_role` VALUES ('1', '1', '1'), ('74', '89', '1');
+INSERT INTO `sys_user_role` VALUES ('1', '1', '1'), ('74', '89', '1'), ('75', '91', '1'), ('76', '92', '1'), ('77', '92', '5'), ('78', '90', '1'), ('79', '85', '1'), ('82', '84', '1'), ('83', '84', '5'), ('86', '95', '1');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
