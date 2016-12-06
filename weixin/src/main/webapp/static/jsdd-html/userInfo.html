@@ -10,42 +10,16 @@
     <link rel="stylesheet" href="css/weui.css"/>
     <link rel="stylesheet" href="css/jquery-weui.css"/>
     <link rel="stylesheet" href="css/swiper.min.css">
-
+    <script src="js/jquery-2.1.4.js"></script>
+    <script src="js/jquery-weui.js"></script>
     <style type="text/css">
-        .header {
-            margin: 5%;
-            margin-bottom: 1%;
-        }
 
-        .header-img {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            margin-right: 5%;
-        }
-
-        .header-info {
-            margin: 10px;
-            display: inline-block;
-            position: relative;
-            top: -20px;
-        }
-
-        .search-results-one-info-name {
-            font-size: 18px;
-        }
 
         .header-info-location {
             background-image: url(img/cut/位置icon.png);
             background-size: 20px 20px;
             background-repeat: no-repeat;
             padding-left: 25px;
-            font-size: 15px;
-            color: gray;
-        }
-
-        .header-info-total {
-            color: gray;
         }
 
         .header-info-care {
@@ -54,28 +28,6 @@
             border-radius: 3px;
             border: none;
             position: relative;
-            top: -30px;
-            right: -20px;
-        }
-
-        .detail-title {
-
-            text-align: center;
-        }
-
-        .detail-title-li {
-            color: #A5A5A5;
-            margin-left: 4%;
-            width: 27%;
-            display: inline-block;
-        }
-
-        .detail-title-li-selected {
-            color: blue;
-            border-bottom: 1px solid blue;
-            margin-left: 6%;
-            width: 25%;
-            display: inline-block;
         }
 
         .weui-cells {
@@ -190,7 +142,7 @@
         }
 
         .search-results {
-            margin: 5%;
+            margin: 1%;
         }
 
         .search-results-one {
@@ -208,9 +160,6 @@
             display: inline-block;
         }
 
-        .earch-results-one-info-name {
-            font-size: 20px;
-        }
 
         .search-results-one-info-location {
             background-image: url(img/cut/位置icon.png);
@@ -221,20 +170,17 @@
             color: gray;
         }
 
-        .search-results-one-info-total {
-            color: gray;
-        }
 
         .search-results-one-care {
+            position: absolute;
             text-align: center;
-            display: inline-block;
-            float: right;
-            margin-top: 2%;
+            top: 20px;
+            right: 15px;
         }
 
         .search-results-one-care-img {
-            width: 80%;
-            height: 80%;
+            width: 30px;
+            height: 30px;
         }
 
         .search-results-one-care-text-not {
@@ -263,43 +209,50 @@
             color: gray;
         }
 
+        .weui-media-box__thumb {
+            border-radius: 50%;
+        }
+
     </style>
 </head>
 
 <body>
-<div class="header">
-    <img src="img/swiper/swiper-2.jpg" class="header-img"/>
-    <div class="header-info">
-        <p class="search-results-one-info-name">
-            老特拉福德永恒
-        </p>
-        <!--<p class="header-info-location">
-            长沙
-        </p>-->
-        <p class="header-info-total">
-            作品:36 &nbsp;粉丝:6
-        </p>
+<div class="weui-panel weui-panel_access">
+    <div class="weui-panel__bd">
+        <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+            <div class="weui-media-box__hd">
+                <img class="weui-media-box__thumb"
+                     src="img/headImg/3.jpg"
+                     alt="">
+            </div>
+            <div class="weui-media-box__bd">
+                <h4 class="weui-media-box__title">老特福德永恒</h4>
+                <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
+                <input type="button" value=" + 关注 " class="header-info-care"/>
+            </div>
+        </a>
     </div>
-    <input type="button" value=" + 关注 " class="header-info-care"/>
 </div>
 
 <hr/>
-<br/>
 
 <div class="detail">
-    <div class="detail-title">
-				<span id="detail-title-info" class="detail-title-li-selected">
-					个人资料
-				</span>
-        <span id="detail-title-works" class="detail-title-li">
-					Ta的作品
-				</span>
-        <span id="detail-title-fans" class="detail-title-li">
-					Ta的粉丝
-				</span>
+    <div class="weui-tab">
+        <div class="weui-navbar">
+            <div class="weui-navbar__item weui-bar__item_on" id="detail-title-info">
+                个人资料
+            </div>
+            <div class="weui-navbar__item" id="detail-title-works">
+                Ta的作品
+            </div>
+            <div class="weui-navbar__item" id="detail-title-fans">
+                Ta的粉丝
+            </div>
+        </div>
+        <div class="weui-tab__panel">
+
+        </div>
     </div>
-
-
 </div>
 
 <div id="info" class="detail-content-appear">
@@ -363,9 +316,7 @@
         </div>
         <div class="works-floor-all">
             <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <!--<input type="button" value="  + 收藏     " class="works-floor-btn-all"/>-->
             <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
-            <!--<input type="text" value="    田黄鸡血石" class="works-floor-img-all"/>-->
             <span class="works-floor-img-all">&nbsp;田黄鸡血石</span>
             <span class="works-floor-date-all">2016-12-4</span>
         </div>
@@ -377,9 +328,7 @@
         </div>
         <div class="works-floor-all">
             <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <!--<input type="button" value="  + 收藏     " class="works-floor-btn-all"/>-->
             <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
-            <!--<input type="text" value="    田黄鸡血石" class="works-floor-img-all"/>-->
             <span class="works-floor-img-all">&nbsp;田黄鸡血石</span>
             <span class="works-floor-date-all">2016-12-4</span>
         </div>
@@ -391,9 +340,7 @@
         </div>
         <div class="works-floor-all">
             <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <!--<input type="button" value="  + 收藏     " class="works-floor-btn-all"/>-->
             <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
-            <!--<input type="text" value="    田黄鸡血石" class="works-floor-img-all"/>-->
             <span class="works-floor-img-all">&nbsp;田黄鸡血石</span>
             <span class="works-floor-date-all">2016-12-4</span>
         </div>
@@ -405,9 +352,7 @@
         </div>
         <div class="works-floor-all">
             <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <!--<input type="button" value="  + 收藏     " class="works-floor-btn-all"/>-->
             <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
-            <!--<input type="text" value="    田黄鸡血石" class="works-floor-img-all"/>-->
             <span class="works-floor-img-all">&nbsp;田黄鸡血石</span>
             <span class="works-floor-date-all">2016-12-4</span>
         </div>
@@ -416,150 +361,138 @@
 
 <div id="fans" class="detail-content-disappear">
     <div class="search-results">
-        <div class="search-results-one">
-            <img src="img/swiper/swiper-1.jpg" class="search-results-one-img"/>
-            <div class="search-results-one-info">
-                <p class="earch-results-one-info-name">
-                    缘溪寻梦
-                </p>
-                <p class="search-results-one-info-location">
-                    长沙
-                </p>
-                <p class="search-results-one-info-total">
-                    作品:36 &nbsp;粉丝:6
-                </p>
-            </div>
-            <div class="search-results-one-care">
-                <img src="img/cut/加关注.png" class="search-results-one-care-img"/>
-                <p class="search-results-one-care-text-not">
-                    加关注
-                </p>
-            </div>
-        </div>
-
-        <div class="search-results-one">
-            <img src="img/swiper/swiper-2.jpg" class="search-results-one-img"/>
-            <div class="search-results-one-info">
-                <p class="earch-results-one-info-name">
-                    老特拉福德永恒
-                </p>
-                <p class="search-results-one-info-location">
-                    长沙
-                </p>
-                <p class="search-results-one-info-total">
-                    作品:36 &nbsp;粉丝:6
-                </p>
-            </div>
-            <div class="search-results-one-care">
-                <img src="img/cut/关注用户_已关注.png" search-results-one-care-img " />
-                <p class="search-results-one-care-text-have ">
-                    已关注
-                </p>
+        <div class="weui-panel weui-panel_access">
+            <div class="weui-panel__bd">
+                <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img class="weui-media-box__thumb"
+                             src="img/headImg/3.jpg"
+                             alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">老特福德永恒</h4>
+                        <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
+                        <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
+                        <div class="search-results-one-care ">
+                            <img src="img/cut/关注用户_已关注.png" class="search-results-one-care-img"/>
+                            <p class="search-results-one-care-text-have ">
+                                已关注
+                            </p>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
 
-        <div class="search-results-one ">
-            <img src="img/swiper/swiper-3.jpg " class="search-results-one-img "/>
-            <div class="search-results-one-info ">
-                <p class="earch-results-one-info-name ">
-                    情非得已
-                </p>
-                <p class="search-results-one-info-location ">
-                    长沙
-                </p>
-                <p class="search-results-one-info-total ">
-                    作品:36 &nbsp;粉丝:6
-                </p>
-            </div>
-            <div class="search-results-one-care ">
-                <img src="img/cut/关注用户_已关注.png " search-results-one-care-img " />
-                <p class="search-results-one-care-text-have ">
-                    已关注
-                </p>
+
+        <div class="weui-panel weui-panel_access">
+            <div class="weui-panel__bd">
+                <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img class="weui-media-box__thumb"
+                             src="img/headImg/3.jpg"
+                             alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">老特福德永恒</h4>
+                        <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
+                        <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
+                        <div class="search-results-one-care ">
+                            <img src="img/cut/关注用户_已关注.png" class="search-results-one-care-img"/>
+                            <p class="search-results-one-care-text-have ">
+                                已关注
+                            </p>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
-
-        <div class="search-results-one">
-            <img src="img/logo.png" class="search-results-one-img"/>
-            <div class="search-results-one-info">
-                <p class="earch-results-one-info-name">
-                    致明天的信
-                </p>
-                <p class="search-results-one-info-location">
-                    长沙
-                </p>
-                <p class="search-results-one-info-total">
-                    作品:36 &nbsp;粉丝:6
-                </p>
-            </div>
-            <div class="search-results-one-care">
-                <img src="img/cut/加关注.png" class="search-results-one-care-img"/>
-                <p class="search-results-one-care-text-not">
-                    加关注
-                </p>
-            </div>
-        </div>
-
-        <div class="search-results-one">
-            <img src="img/cut/个人中心_敬请期待.png" class="search-results-one-img"/>
-            <div class="search-results-one-info">
-                <p class="earch-results-one-info-name">
-                    遇见
-                </p>
-                <p class="search-results-one-info-location">
-                    长沙
-                </p>
-                <p class="search-results-one-info-total">
-                    作品:36 &nbsp;粉丝:6
-                </p>
-            </div>
-            <div class="search-results-one-care">
-                <img src="img/cut/加关注.png" class="search-results-one-care-img"/>
-                <p class="search-results-one-care-text-not">
-                    加关注
-                </p>
+        <div class="weui-panel weui-panel_access">
+            <div class="weui-panel__bd">
+                <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img class="weui-media-box__thumb"
+                             src="img/headImg/3.jpg"
+                             alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">老特福德永恒</h4>
+                        <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
+                        <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
+                        <div class="search-results-one-care ">
+                            <img src="img/cut/关注用户_已关注.png" class="search-results-one-care-img"/>
+                            <p class="search-results-one-care-text-have ">
+                                已关注
+                            </p>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
-
-        <div class="search-results-one">
-            <img src="img/cut/个人中心_收藏作品.png" class="search-results-one-img"/>
-            <div class="search-results-one-info">
-                <p class="earch-results-one-info-name">
-                    大卫-贝克汉姆
-                </p>
-                <p class="search-results-one-info-location">
-                    长沙
-                </p>
-                <p class="search-results-one-info-total">
-                    作品:36 &nbsp;粉丝:6
-                </p>
-            </div>
-            <div class="search-results-one-care">
-                <img src="img/cut/加关注.png" class="search-results-one-care-img"/>
-                <p class="search-results-one-care-text-not">
-                    加关注
-                </p>
+        <div class="weui-panel weui-panel_access">
+            <div class="weui-panel__bd">
+                <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img class="weui-media-box__thumb"
+                             src="img/headImg/3.jpg"
+                             alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">老特福德永恒</h4>
+                        <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
+                        <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
+                        <div class="search-results-one-care ">
+                            <img src="img/cut/关注用户_已关注.png" class="search-results-one-care-img"/>
+                            <p class="search-results-one-care-text-have ">
+                                已关注
+                            </p>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
-
-        <div class="search-results-one">
-            <img src="img/cut/时间选择_icon.png" class="search-results-one-img"/>
-            <div class="search-results-one-info">
-                <p class="earch-results-one-info-name">
-                    客服专员
-                </p>
-                <p class="search-results-one-info-location">
-                    长沙
-                </p>
-                <p class="search-results-one-info-total">
-                    作品:36 &nbsp;粉丝:6
-                </p>
+        <div class="weui-panel weui-panel_access">
+            <div class="weui-panel__bd">
+                <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img class="weui-media-box__thumb"
+                             src="img/headImg/3.jpg"
+                             alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">老特福德永恒</h4>
+                        <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
+                        <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
+                        <div class="search-results-one-care ">
+                            <img src="img/cut/关注用户_已关注.png" class="search-results-one-care-img"/>
+                            <p class="search-results-one-care-text-have ">
+                                已关注
+                            </p>
+                        </div>
+                    </div>
+                </a>
             </div>
-            <div class="search-results-one-care">
-                <img src="img/cut/加关注.png" class="search-results-one-care-img"/>
-                <p class="search-results-one-care-text-not">
-                    加关注
-                </p>
+        </div>
+        <div class="weui-panel weui-panel_access">
+            <div class="weui-panel__bd">
+                <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img class="weui-media-box__thumb"
+                             src="img/headImg/3.jpg"
+                             alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">老特福德永恒</h4>
+                        <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
+                        <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
+                        <div class="search-results-one-care ">
+                            <img src="img/cut/关注用户_已关注.png" class="search-results-one-care-img"/>
+                            <p class="search-results-one-care-text-have ">
+                                已关注
+                            </p>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
 
@@ -567,17 +500,12 @@
             <center>
                 <hr>
                 <span>&nbsp;&nbsp;到底啦&nbsp;&nbsp;</span></center>
-
         </div>
-
     </div>
-
-
 </div>
 
 
 <div class="footer">
-    <hr/>
     <div class="weui-tabbar">
         <a href="javascript:;" class="weui-tabbar__item weui-bar__item_on">
             <div class="weui-tabbar__icon">
@@ -608,9 +536,6 @@
 <script>
     $(function () {
         $("#detail-title-info").click(function () {
-            $("#detail-title-info").attr("class", "detail-title-li-selected");
-            $("#detail-title-works").attr("class", "detail-title-li");
-            $("#detail-title-fans").attr("class", "detail-title-li");
             $("#info").attr("class", "detail-content-appear");
             $("#works").attr("class", "detail-content-disappear");
             $("#fans").attr("class", "detail-content-disappear");
@@ -618,9 +543,6 @@
     })
     $(function () {
         $("#detail-title-works").click(function () {
-            $("#detail-title-works").attr("class", "detail-title-li-selected");
-            $("#detail-title-info").attr("class", "detail-title-li");
-            $("#detail-title-fans").attr("class", "detail-title-li");
             $("#works").attr("class", "detail-content-appear");
             $("#info").attr("class", "detail-content-disappear");
             $("#fans").attr("class", "detail-content-disappear");
@@ -628,14 +550,23 @@
     })
     $(function () {
         $("#detail-title-fans").click(function () {
-            $("#detail-title-fans").attr("class", "detail-title-li-selected");
-            $("#detail-title-works").attr("class", "detail-title-li");
-            $("#detail-title-info").attr("class", "detail-title-li");
             $("#fans").attr("class", "detail-content-appear");
             $("#works").attr("class", "detail-content-disappear");
             $("#info").attr("class", "detail-content-disappear");
         })
     })
+
+    $(function () {
+        $('.weui-tabbar__item').on('click', function () {
+            $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
+        });
+    });
+
+    $(function () {
+        $('.weui-navbar__item').on('click', function () {
+            $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
+        });
+    });
 
 </script>
 
