@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta name="generator"
           content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39"/>
@@ -9,106 +8,17 @@
     <title>test</title>
     <link rel="stylesheet" href="css/weui.css"/>
     <link rel="stylesheet" href="css/jquery-weui.css"/>
+    <link rel="stylesheet" href="css/swiper.min.css">
     <script src="js/jquery-2.1.4.js"></script>
     <script src="js/jquery-weui.js"></script>
     <style>
-        .a-upload {
-            padding: 4px 10px;
-            height: 20px;
-            line-height: 20px;
-            position: relative;
-            cursor: pointer;
-            color: #888;
-            background: #fafafa;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            overflow: hidden;
-            display: inline-block;
-            *display: inline;
-            *zoom: 1
-        }
 
-        .a-upload input {
-            position: absolute;
-            font-size: 100px;
-            right: 0;
-            top: 0;
-            opacity: 0;
-            filter: alpha(opacity=0);
-            cursor: pointer
-        }
-
-        .a-upload:hover {
-            color: #444;
-            background: #eee;
-            border-color: #ccc;
-            text-decoration: none
-        }
     </style>
+
+
 </head>
-
 <body>
-<div class="weui-cells weui-cells_form">
-    <div class="weui-cell">
-        <div class="weui-cell__bd">
-            <div class="weui-uploader">
-                <div class="weui-uploader__hd">
-                    <p class="weui-uploader__title">图片上传</p>
-                    <div class="weui-uploader__info">0/2</div>
-                </div>
-                <div class="weui-uploader__bd">
-                    <ul class="weui-uploader__files" id="uploaderFiles">
-                        <li class="weui-uploader__file" style="background-image:url(img/headImg/2.jpg)"></li>
-                        <li class="weui-uploader__file weui-uploader__file_status"
-                            style="background-image:url(img/headImg/2.jpg)">
-                            <div class="weui-uploader__file-content">
-                                <i class="weui-icon-warn"></i>
-                            </div>
-                        </li>
-                        <li class="weui-uploader__file weui-uploader__file_status"
-                            style="background-image:url(img/headImg/2.jpg)">
-                            <div class="weui-uploader__file-content">50%</div>
-                        </li>
-                    </ul>
-                    <div class="weui-uploader__input-box">
-                        <input id="uploaderInput" class="weui-uploader__input" type="file" accept="image/*" multiple/>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<script type="text/javascript">
-    $(function () {
-        var tmpl = '<li class="weui-uploader__file" style="background-image:url(#url#)"></li>',
-                $gallery = $("#gallery"), $galleryImg = $("#galleryImg"),
-                $uploaderInput = $("#uploaderInput"),
-                $uploaderFiles = $("#uploaderFiles")
-                ;
 
-        $uploaderInput.on("change", function (e) {
-            var src, url = window.URL || window.webkitURL || window.mozURL, files = e.target.files;
-            for (var i = 0, len = files.length; i < len; ++i) {
-                var file = files[i];
-
-                if (url) {
-                    src = url.createObjectURL(file);
-                } else {
-                    src = e.target.result;
-                }
-
-                $uploaderFiles.append($(tmpl.replace('#url#', src)));
-            }
-        });
-        $uploaderFiles.on("click", "li", function () {
-            $galleryImg.attr("style", this.getAttribute("style"));
-            $gallery.fadeIn(100);
-        });
-        $gallery.on("click", function () {
-            $gallery.fadeOut(100);
-        });
-    });
-</script>
 
 </body>
 </html>

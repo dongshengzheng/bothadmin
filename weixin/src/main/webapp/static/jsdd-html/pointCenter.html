@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="generator"
+          content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39"/>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0"/>
+    <title>积分中心</title>
+    <link rel="stylesheet" href="css/weui.css"/>
+    <link rel="stylesheet" href="css/jquery-weui.css"/>
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <script src="js/jquery-2.1.4.js"></script>
+    <script src="js/jquery-weui.js"></script>
+    <title>积分中心</title>
+    <style>
+        #point-total {
+            width: 30%;
+            margin-top: 5%;
+            margin-left: 35%;
+            margin-right: 35%;
+            height: 100px;
+            background-image: url("img/cut/积分中心_积分.png");
+            background-repeat: no-repeat;
+            background-size: 100px 100px;
+            background-position: center center;
+            text-align: center;
+            color: white;
+        }
+
+        #point-total h3 {
+            line-height: 60px;
+        }
+
+        #point-total h2 {
+            line-height: 10px;
+        }
+
+        .point-btn {
+            background-size: 20px 20px;
+            background-repeat: no-repeat;
+            background-position: 10px 4px;
+            padding-left: 25px;
+            font-size: 15px;
+            color: gray;
+        }
+
+        #point-rule {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 35px;
+            width: 75px;
+            border: none;
+            background-image: url(img/cut/积分中心_积分规则.png);
+            position: absolute;
+            top: 0px;
+            right: 0px;
+        }
+
+        #point-save {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 35px;
+            border: 1px solid lightgray;
+            border-radius: 3px;
+            width: 75px;
+            background-image: url(img/cut/积分中心_充值.png);
+            position: absolute;
+            left: 20px;
+
+        }
+
+        #point-withdraw {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 35px;
+            border: 1px solid lightgray;
+            border-radius: 3px;
+            width: 75px;
+            background-image: url(img/cut/积分中心_提现.png);
+            position: absolute;
+            right: 20px;
+        }
+
+        .hr-text {
+            margin-top: 20%;
+            text-align: center;
+        }
+
+        .hr-text hr {
+            width: 80%;
+        }
+
+        .hr-text span {
+            position: relative;
+            top: -15px;
+            background-color: white;
+            color: gray;
+            font-size: 10px;
+        }
+
+        .weui-navbar__item {
+            font-size: 10px;
+        }
+
+        .weui-navbar__item.weui-bar__item_on {
+            background-color: #F76301;
+            color: white;
+        }
+
+        .point-one {
+            width: 100%;
+        }
+
+        .point-one table {
+            font-size: 10px;
+            width: 80%;
+            margin: auto;
+        }
+
+        .point-one-time {
+            color: gray;
+        }
+
+        .point-one-detail {
+            color: #F76301;
+            text-align: right;
+        }
+
+        .div-hide {
+            display: none;
+        }
+
+        .div-on {
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+<div id="header">
+    <div id="point-total">
+        <h3>积分</h3>
+        <h2>178</h2>
+    </div>
+    <input id="point-rule" class="point-btn" value="积分规则"/>
+    <input id="point-save" class="point-btn" value="积分充值"/>
+    <input id="point-withdraw" class="point-btn" value="积分提现"/>
+</div>
+
+<div class="hr-text ">
+    <center>
+        <hr>
+        <span>&nbsp;&nbsp;积分明细&nbsp;&nbsp;</span></center>
+</div>
+
+<div class="weui-tab">
+    <div class="weui-navbar">
+        <div class="weui-navbar__item weui-bar__item_on" id="tab-all">
+            全部
+        </div>
+        <div class="weui-navbar__item" id="tab-save">
+            充值
+        </div>
+        <div class="weui-navbar__item" id="tab-withdraw">
+            提现
+        </div>
+        <div class="weui-navbar__item" id="tab-other">
+            其他
+        </div>
+    </div>
+</div>
+<br><br>
+<div id="div-hide-all" class="div-hide div-on">
+    <div class="point-one">
+        <table>
+            <tr>
+                <td>作品被浏览</td>
+                <td rowspan="2" class="point-one-detail"> + 1</td>
+            </tr>
+            <tr>
+                <td class="point-one-time">2016-12-07 11:50:01</td>
+            </tr>
+        </table>
+    </div>
+    <div class="point-one">
+        <table>
+            <tr>
+                <td>作品被浏览</td>
+                <td rowspan="2" class="point-one-detail"> + 1</td>
+            </tr>
+            <tr>
+                <td class="point-one-time">2016-12-07 11:50:01</td>
+            </tr>
+        </table>
+    </div>
+    <div class="point-one">
+        <table>
+            <tr>
+                <td>新增粉丝</td>
+                <td rowspan="2" class="point-one-detail"> + 6</td>
+            </tr>
+            <tr>
+                <td class="point-one-time">2016-12-07 11:52:01</td>
+            </tr>
+        </table>
+    </div>
+    <div class="point-one">
+        <table>
+            <tr>
+                <td>作品被分享</td>
+                <td rowspan="2" class="point-one-detail"> + 2</td>
+            </tr>
+            <tr>
+                <td class="point-one-time">2016-12-07 11:55:01</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div id="div-hide-save" class="div-hide">
+    <div class="point-one">
+        <table>
+            <tr>
+                <td>充值</td>
+                <td rowspan="2" class="point-one-detail"> + 100</td>
+            </tr>
+            <tr>
+                <td class="point-one-time">2016-12-07 11:50:01</td>
+            </tr>
+        </table>
+    </div>
+    <div class="point-one">
+        <table>
+            <tr>
+                <td>充值</td>
+                <td rowspan="2" class="point-one-detail"> + 100</td>
+            </tr>
+            <tr>
+                <td class="point-one-time">2016-12-07 11:50:01</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div id="div-hide-withdraw" class="div-hide">
+    <div class="point-one">
+        <table>
+            <tr>
+                <td>提现</td>
+                <td rowspan="2" class="point-one-detail"> - 50</td>
+            </tr>
+            <tr>
+                <td class="point-one-time">2016-12-07 11:50:01</td>
+            </tr>
+        </table>
+    </div>
+    <div class="point-one">
+        <table>
+            <tr>
+                <td>提现</td>
+                <td rowspan="2" class="point-one-detail"> - 100</td>
+            </tr>
+            <tr>
+                <td class="point-one-time">2016-12-07 11:50:01</td>
+            </tr>
+        </table>
+    </div>
+    <div class="point-one">
+        <table>
+            <tr>
+                <td>提现</td>
+                <td rowspan="2" class="point-one-detail"> - 100</td>
+            </tr>
+            <tr>
+                <td class="point-one-time">2016-12-07 11:52:01</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div id="div-hide-other" class="div-hide">
+    <div class="point-one">
+        <table>
+            <tr>
+                <td>其他...</td>
+                <td rowspan="2" class="point-one-detail"> + 1</td>
+            </tr>
+            <tr>
+                <td class="point-one-time">2016-12-07 11:50:01</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.weui-navbar__item').on('click', function () {
+            $(this).addClass('weui-bar__item_on').siblings('.weui-navbar__item').removeClass('weui-bar__item_on');
+        });
+        $('#tab-all').on('click', function () {
+            $('#div-hide-all').addClass('div-on').siblings('.div-hide').removeClass('div-on');
+        });
+        $('#tab-withdraw').on('click', function () {
+            $('#div-hide-withdraw').addClass('div-on').siblings('.div-hide').removeClass('div-on');
+        });
+        $('#tab-save').on('click', function () {
+            $('#div-hide-save').addClass('div-on').siblings('.div-hide').removeClass('div-on');
+        });
+        $('#tab-other').on('click', function () {
+            $('#div-hide-other').addClass('div-on').siblings('.div-hide').removeClass('div-on');
+        });
+    });
+
+
+</script>
+</body>
+</html>
