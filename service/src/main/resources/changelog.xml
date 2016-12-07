@@ -61,7 +61,7 @@
             ALTER TABLE `yyst`.`sys_dict` CHANGE COLUMN `id` `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '编号';
         </sql>
     </changeSet>
-    <changeSet author="SunHan" id="15862614903-006">
+    <changeSet author="SunHan" id="15862614903-009">
         <sql>
             ALTER TABLE `sys_user` DROP COLUMN `skin`
         </sql>
