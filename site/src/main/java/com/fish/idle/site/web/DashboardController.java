@@ -26,7 +26,6 @@ public class DashboardController extends BaseController{
     public String index(ModelMap map){
 
         //首页轮播图
-
         //首页全部作品(pageSize=6)
         EntityWrapper<Works> ew = getEntityWrapper();
         Page<Works> page = worksService.selectPage(this.<Works>getPage(),ew);

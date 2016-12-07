@@ -41,28 +41,48 @@ public class WorksInfo implements Serializable {
     @TableField(value = "del_flag")
     private int delFlag = 0;
 
-    /** 作品名称 */
-    private String name;
+    /** 物品id */
+    @TableField(value = "goods_id")
+    private Integer goodsId;
 
-    /** 提供者 */
-    @TableField(value = "provide_by")
-    private String provideBy;
+    /** 作品类型 */
+    private String type;
 
-    /** 联系地址 */
-    private String address;
+    /** 长度 */
+    private String length;
 
-    /** 联系方式 */
-    private String contact;
+    /** 宽度 */
+    private String width;
+
+    /** 高度 */
+    private String height;
+
+    /** 重量 */
+    private String weight;
+
+    /** 工艺制作 */
+    @TableField(value = "production_process")
+    private String productionProcess;
+
+    /** 篆刻级别 */
+    @TableField(value = "seal_cutting_level")
+    private String sealCuttingLevel;
+
+
+    /** 矿区地域 */
+    @TableField(value = "mine_area")
+    private String mineArea;
+
+    private String producer;
+
 
     /** 登记时间 */
-    @TableField(value = "register_time")
-    private String registerTime;
+    @TableField(value = "produce_time")
+    private String produceTime;
 
-    /** 登记描述*/
-    private String description;
-
-    /** 图片链接 */
-    private String imgs;
+    /** 作品诠释*/
+    @TableField(value = "works_explanation")
+    private String worksExplanation;
 
     /** 是否是草稿 */
     private int isDraft = 0; //1 是  0 否
@@ -107,60 +127,108 @@ public class WorksInfo implements Serializable {
         this.updateDate = updateDate;
     }
 
-    public String getName() {
-        return name;
+    public int getDelFlag() {
+        return delFlag;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDelFlag(int delFlag) {
+        this.delFlag = delFlag;
     }
 
-    public String getProvideBy() {
-        return provideBy;
+    public Integer getGoodsId() {
+        return goodsId;
     }
 
-    public void setProvideBy(String provideBy) {
-        this.provideBy = provideBy;
+    public void setGoodsId(Integer goodsId) {
+        this.goodsId = goodsId;
     }
 
-    public String getAddress() {
-        return address;
+    public String getType() {
+        return type;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public String getContact() {
-        return contact;
+    public String getLength() {
+        return length;
     }
 
-    public void setContact(String contact) {
-        this.contact = contact;
+    public void setLength(String length) {
+        this.length = length;
     }
 
-    public String getRegisterTime() {
-        return registerTime;
+    public String getWidth() {
+        return width;
     }
 
-    public void setRegisterTime(String registerTime) {
-        this.registerTime = registerTime;
+    public void setWidth(String width) {
+        this.width = width;
     }
 
-    public String getDescription() {
-        return description;
+    public String getHeght() {
+        return height;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setHeght(String heght) {
+        this.height = heght;
     }
 
-    public String getImgs() {
-        return imgs;
+    public String getWeight() {
+        return weight;
     }
 
-    public void setImgs(String imgs) {
-        this.imgs = imgs;
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public String getProductionProcess() {
+        return productionProcess;
+    }
+
+    public void setProductionProcess(String productionProcess) {
+        this.productionProcess = productionProcess;
+    }
+
+    public String getSealCuttingLevel() {
+        return sealCuttingLevel;
+    }
+
+    public void setSealCuttingLevel(String sealCuttingLevel) {
+        this.sealCuttingLevel = sealCuttingLevel;
+    }
+
+    public String getMineArea() {
+        return mineArea;
+    }
+
+    public void setMineArea(String mineArea) {
+        this.mineArea = mineArea;
+    }
+
+    public String getProducer() {
+        return producer;
+    }
+
+    public void setProducer(String producer) {
+        this.producer = producer;
+    }
+
+    public String getProduceTime() {
+        return produceTime;
+    }
+
+    public void setProduceTime(String produceTime) {
+        this.produceTime = produceTime;
+    }
+
+    public String getWorksExplanation() {
+        return worksExplanation;
+    }
+
+    public void setWorksExplanation(String worksExplanation) {
+        this.worksExplanation = worksExplanation;
     }
 
     public int getIsDraft() {
@@ -169,13 +237,5 @@ public class WorksInfo implements Serializable {
 
     public void setIsDraft(int isDraft) {
         this.isDraft = isDraft;
-    }
-
-    public int getDelFlag() {
-        return delFlag;
-    }
-
-    public void setDelFlag(int delFlag) {
-        this.delFlag = delFlag;
     }
 }
