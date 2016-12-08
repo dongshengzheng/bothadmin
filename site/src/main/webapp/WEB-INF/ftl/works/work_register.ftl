@@ -16,26 +16,24 @@
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <div class="row">
-                        <form action="#" method="get" class="form-horizontal">
+                        <form id="works_info" action="${staticPath}/works/addGoodsInfo/0" method="post" class="form-horizontal">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="name">作品名称</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="name" id="name" type="text"
                                            placeholder="请输入作品名称"/>
                                 </div>
-
                             </div>
-
                             <div class="form-group">
-                                <label class="col-sm-2 control-label" for="name">提供者</label>
+                                <label class="col-sm-2 control-label" for="provideBy">提供者</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" name="provider" id="provider" type="text"
+                                    <input class="form-control" name="provideBy" id="provideBy" type="text"
                                            placeholder="请输入提供者"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label" for="name">身份证</label>
+                                <label class="col-sm-2 control-label" for="cardNo">身份证</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="cardNo" id="cardNo" type="text"
                                            placeholder="请输入身份证"/>
@@ -43,7 +41,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label" for="name">联系地址</label>
+                                <label class="col-sm-2 control-label" for="address">联系地址</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="address" id="address" type="text"
                                            placeholder="请输入联系地址"/>
@@ -51,7 +49,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label" for="name">联系方式</label>
+                                <label class="col-sm-2 control-label" for="contact">联系方式</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="contact" id="contact" type="text"
                                            placeholder="请输入联系方式"/>
@@ -59,27 +57,36 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label" for="name">登记时间</label>
+                                <label class="col-sm-2 control-label" for="registerTime">登记时间</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" name="time" id="time" type="text"
+                                    <input class="form-control" name="registerTime" id="registerTime" type="text"
                                            placeholder="请选择登记时间"/>
                                 </div>
+
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label" for="name">作品描述</label>
+                                <label class="col-sm-2 control-label" for="description">作品描述</label>
                                 <div class="col-sm-10">
-        <textarea class="form-control" style="resize: none;height: 150px" name="description"
-                  id="description" type="text" placeholder="请输入作品描述"></textarea>
+                                    <textarea class="form-control" style="resize: none;height: 150px" name="description"
+                                        id="description" type="text" placeholder="请输入作品描述"></textarea>
                                 </div>
                             </div>
                             <!--上传图片-->
+                            <div class="form-group">
+                                <label class="col-sm-2" for=""></label>
+                                <div class="col-sm-10">
+                                    <div id="upload_works_info" class="" style="border: dotted 1px #bbb;height: 100px;width: 100px;overflow: hidden">
+
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-sm-2">
-                                <button class="btn btn-u btn-u-red">下一步</button>
+                                <button data-type="0" type="submit" class="btn btn-u btn-u-red info_btn">下一步</button>
                             </div>
 
                             <div class="col-sm-10">
-                                <button class="btn btn-u btn-u-default" style="margin-left: 20px">存为草稿</button>
+                                <button data-type="1" type="submit" class="btn btn-u btn-u-default info_btn" style="margin-left: 20px">存为草稿</button>
                             </div>
                         </form>
                     </div>
@@ -89,7 +96,6 @@
                 <div class="col-md-3"></div>
             </div>
         </div>
-
     </#if >
 
     <#if step ==2>
@@ -99,14 +105,15 @@
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <div class="row">
-                        <form action="#" method="get" class="form-horizontal">
+                        <form action="${staticPath}/works/add/addWorksInfo/0" method="post" class="form-horizontal">
+
+                            <input type="hidden" value="${goodsId}">
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="name">作品名称</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" name="name" id="name" type="text" disabled="disabled"/>
+                                    <input class="form-control" name="name" id="name" type="text" value="${goodsName}" disabled="disabled"/>
                                 </div>
-
                             </div>
 
                             <div class="form-group">
@@ -502,10 +509,82 @@
 
 </@htmlBody>
 <@footerJS>
+<script src="${staticPath}/assets/js/upload/upload.js"></script>
+<script src="${staticPath}/assets/js/plugins/plupload-2.1.2/js/moxie.js"></script>
+<script src="${staticPath}/assets/js/plugins/plupload-2.1.2/js/plupload.dev.js"></script>
 </@footerJS>
 
 <script>
     $(document).ready(function () {
 
+        initUploaders("upload_works_info","windyeel","http://young2016.s1.natapp.cc/");
+
+
+        var $form = $("#works_info");
+
+        //存为草稿info_btn
+        $(".info_btn").bind("click",function () {
+            var type = $(this).attr("data-type");
+            if(type == 1){
+                $form.attr("action","${staticPath}/works/addGoodsInfo/1");
+            }
+            $form.submit();
+        });
+
+
+        $form.validate({
+            rules: {
+                name: {
+                    required: true,
+                    maxlength: 30
+                },
+                provideBy: {
+                    required: true,
+                    maxlength: 30
+                },
+
+                cardNo: {
+                    required: true,
+                    maxlength: 30
+                },
+                address: {
+                    required: true,
+                    maxlength: 30
+                },
+
+                contact: {
+                    required: true,
+                    maxlength: 30
+                },
+
+                registerTime: {
+                    required: true,
+                    maxlength: 30
+                },
+                description: {
+                    required: true,
+                    maxlength: 256
+                }
+            }
+//            ,
+            <#--submitHandler: function () {-->
+                <#--var successUrl = "${staticPath}/works/add";-->
+                <#--$.ajax({-->
+                    <#--url: $form.attr("action"),-->
+                    <#--type: "post",-->
+                    <#--data: $form.serialize()+"&isDraft=0",-->
+                    <#--contentType : "application/x-www-form-urlencoded; charset=utf-8",-->
+                    <#--dataType: "JSON",-->
+                    <#--success: function (data) {-->
+                        <#--if (data.success) {-->
+                            <#--alert("success");-->
+                            <#--location.href = successUrl;-->
+                        <#--} else {-->
+                            <#--alert(data.msg)-->
+                        <#--}-->
+                    <#--}-->
+                <#--});-->
+            <#--}-->
+        })
     });
 </script>

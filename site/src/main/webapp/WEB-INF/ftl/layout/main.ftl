@@ -48,6 +48,7 @@ description="金石典当"
     <link rel="stylesheet" href="${staticPath}/assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css">
     <link rel="stylesheet" href="${staticPath}/assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
     <link rel="stylesheet" href="${staticPath}/assets/plugins/revolution-slider/rs-plugin/css/settings.css">
+    <link rel="stylesheet" href="${staticPath}/assets/js/plugins/datetimepicker/bootstrap-datetimepicker.min.css">
     <!-- CSS Theme -->
     <link rel="stylesheet" href="http://htmlstream.com/preview/unify-v1.9/Shop-UI/assets/css/theme-colors/teal.css"
           id="style_color">
@@ -180,6 +181,7 @@ description="金石典当"
 <script src="${staticPath}/assets/plugins/jquery/jquery.min.js"></script>
 <script src="${staticPath}/assets/plugins/jquery/jquery-migrate.min.js"></script>
 <script src="${staticPath}/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="${staticPath}/assets/js/plugins/datetimepicker/bootstrap-datetimepicker.min.js"></script>
 <!-- JS Implementing Plugins -->
 <script src="${staticPath}/assets/plugins/back-to-top.js"></script>
 <script src="${staticPath}/assets/plugins/smoothScroll.js"></script>
@@ -195,6 +197,7 @@ description="金石典当"
 <script src="${staticPath}/assets/js/plugins/owl-carousel.js"></script>
 <script src="${staticPath}/assets/js/plugins/revolution-slider.js"></script>
 <script src="${staticPath}/assets/js/plugins/style-switcher.js"></script>
+<script src="//cdn.bootcss.com/jquery-validate/1.15.1/jquery.validate.min.js"></script>
 <#--模板-->
 <script src="${staticPath}/assets/js/mustache.js"></script>
 <!-- 全局JS结束 -->
