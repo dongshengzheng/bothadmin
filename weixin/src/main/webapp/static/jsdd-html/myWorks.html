@@ -9,23 +9,10 @@
     <link rel="stylesheet" href="css/weui.css"/>
     <link rel="stylesheet" href="css/jquery-weui.css"/>
     <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/custom.css"/>
     <script src="js/jquery-2.1.4.js"></script>
     <script src="js/jquery-weui.js"></script>
     <style>
-        .footer {
-            width: 100%;
-            height: 10%;
-            position: fixed;
-            bottom: 0;
-            background-color: white;
-        }
-
-        .bottom-blank {
-            background-color: white;
-            width: 100%;
-            height: 70px;
-        }
-
         .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {
             color: #9F504D;
         }
@@ -34,97 +21,6 @@
             color: #74B8E7;
             background-color: white;
             border-bottom: 3px solid #74B8E7;
-        }
-
-        .all-outer {
-            width: 46.5%;
-            margin: 1%;
-            display: inline-block;
-        }
-
-        .works-all {
-            text-align: center;
-            display: block;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .works-img-all {
-            width: 100%;
-            height: 100%;
-        }
-
-        .works-intro-all {
-            width: 100%;
-            position: absolute;
-            border: white;
-            color: white;
-            background-color: black;
-            opacity: 0.6;
-            left: 0px;
-            bottom: 7px;
-            resize: none;
-            font-size: 15px;
-        }
-
-        .works-floor {
-            border-left: 10px solid white;
-            width: 100%;
-            margin-bottom: 10px;
-        }
-
-        .works-floor-name-all {
-            float: left;
-            display: inline-block;
-            font-size: 6px;
-        }
-
-        .works-floor-btn-all {
-            display: inline-block;
-            border: 1px dashed gray;
-            font-size: 6px;
-            color: gray;
-            float: right;
-        }
-
-        .works-floor-img-all {
-            float: left;
-            display: inline-block;
-            font-size: 6px;
-            background-image: url(img/cut/标签.png);
-            background-size: 12px 12px;
-            background-repeat: no-repeat;
-            border: none;
-        }
-
-        .works-floor-date-all {
-            display: inline-block;
-            font-size: 6px;
-            float: right;
-        }
-
-        .hr-text {
-            margin-top: 10%;
-            text-align: center;
-        }
-
-        .hr-text hr {
-            width: 80%;
-        }
-
-        .hr-text span {
-            position: relative;
-            top: -15px;
-            background-color: white;
-            color: gray;
-        }
-
-        .div-hide {
-            display: none;
-        }
-
-        .div-on {
-            display: block;
         }
 
         .relation-btn {
@@ -147,7 +43,9 @@
 
         }
 
-
+        .works-floor-btn-all {
+            border: 1px dashed;
+        }
     </style>
 
 
@@ -176,58 +74,50 @@
 
 
 <div id="check-success-works" class="div-hide div-on">
-    <div class="all-outer">
+    <div class="works-all-outer">
         <div class="works-all">
             <img src="img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
             <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
         </div>
         <div class="works-floor-all">
             <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <!--<input type="button" value="  + 收藏     " class="works-floor-btn-all"/>-->
             <span class="works-floor-btn-all">&nbsp;操作&nbsp;</span>
-            <!--<input type="text" value="    田黄鸡血石" class="works-floor-img-all"/>-->
             <span class="works-floor-img-all">&nbsp;田黄鸡血石</span>
             <span class="works-floor-date-all">2016-12-4</span>
         </div>
     </div>
-    <div class="all-outer">
+    <div class="works-all-outer">
         <div class="works-all">
             <img src="img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
             <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
         </div>
         <div class="works-floor-all">
             <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <!--<input type="button" value="  + 收藏     " class="works-floor-btn-all"/>-->
             <span class="works-floor-btn-all">&nbsp;操作&nbsp;</span>
-            <!--<input type="text" value="    田黄鸡血石" class="works-floor-img-all"/>-->
             <span class="works-floor-img-all">&nbsp;田黄鸡血石</span>
             <span class="works-floor-date-all">2016-12-4</span>
         </div>
     </div>
-    <div class="all-outer">
+    <div class="works-all-outer">
         <div class="works-all">
             <img src="img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
             <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
         </div>
         <div class="works-floor-all">
             <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <!--<input type="button" value="  + 收藏     " class="works-floor-btn-all"/>-->
             <span class="works-floor-btn-all">&nbsp;操作&nbsp;</span>
-            <!--<input type="text" value="    田黄鸡血石" class="works-floor-img-all"/>-->
             <span class="works-floor-img-all">&nbsp;田黄鸡血石</span>
             <span class="works-floor-date-all">2016-12-4</span>
         </div>
     </div>
-    <div class="all-outer">
+    <div class="works-all-outer">
         <div class="works-all">
             <img src="img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
             <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
         </div>
         <div class="works-floor-all">
             <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <!--<input type="button" value="  + 收藏     " class="works-floor-btn-all"/>-->
             <span class="works-floor-btn-all">&nbsp;操作&nbsp;</span>
-            <!--<input type="text" value="    田黄鸡血石" class="works-floor-img-all"/>-->
             <span class="works-floor-img-all">&nbsp;田黄鸡血石</span>
             <span class="works-floor-date-all">2016-12-4</span>
         </div>
@@ -240,58 +130,50 @@
 </div>
 
 <div id="check-now-works" class="div-hide">
-    <div class="all-outer">
+    <div class="works-all-outer">
         <div class="works-all">
             <img src="img/swiper/swiper-2.jpg" alt="" class="works-img-all"/>
             <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
         </div>
         <div class="works-floor-all">
             <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <!--<input type="button" value="  + 收藏     " class="works-floor-btn-all"/>-->
             <span class="works-floor-btn-all">&nbsp;操作&nbsp;</span>
-            <!--<input type="text" value="    田黄鸡血石" class="works-floor-img-all"/>-->
             <span class="works-floor-img-all">&nbsp;田黄鸡血石</span>
             <span class="works-floor-date-all">2016-12-4</span>
         </div>
     </div>
-    <div class="all-outer">
+    <div class="works-all-outer">
         <div class="works-all">
             <img src="img/swiper/swiper-2.jpg" alt="" class="works-img-all"/>
             <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
         </div>
         <div class="works-floor-all">
             <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <!--<input type="button" value="  + 收藏     " class="works-floor-btn-all"/>-->
             <span class="works-floor-btn-all">&nbsp;操作&nbsp;</span>
-            <!--<input type="text" value="    田黄鸡血石" class="works-floor-img-all"/>-->
             <span class="works-floor-img-all">&nbsp;田黄鸡血石</span>
             <span class="works-floor-date-all">2016-12-4</span>
         </div>
     </div>
-    <div class="all-outer">
+    <div class="works-all-outer">
         <div class="works-all">
             <img src="img/swiper/swiper-2.jpg" alt="" class="works-img-all"/>
             <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
         </div>
         <div class="works-floor-all">
             <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <!--<input type="button" value="  + 收藏     " class="works-floor-btn-all"/>-->
             <span class="works-floor-btn-all">&nbsp;操作&nbsp;</span>
-            <!--<input type="text" value="    田黄鸡血石" class="works-floor-img-all"/>-->
             <span class="works-floor-img-all">&nbsp;田黄鸡血石</span>
             <span class="works-floor-date-all">2016-12-4</span>
         </div>
     </div>
-    <div class="all-outer">
+    <div class="works-all-outer">
         <div class="works-all">
             <img src="img/swiper/swiper-2.jpg" alt="" class="works-img-all"/>
             <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
         </div>
         <div class="works-floor-all">
             <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <!--<input type="button" value="  + 收藏     " class="works-floor-btn-all"/>-->
             <span class="works-floor-btn-all">&nbsp;操作&nbsp;</span>
-            <!--<input type="text" value="    田黄鸡血石" class="works-floor-img-all"/>-->
             <span class="works-floor-img-all">&nbsp;田黄鸡血石</span>
             <span class="works-floor-date-all">2016-12-4</span>
         </div>
@@ -304,58 +186,50 @@
 </div>
 
 <div id="check-failure-works" class="div-hide">
-    <div class="all-outer">
+    <div class="works-all-outer">
         <div class="works-all">
             <img src="img/swiper/swiper-3.jpg" alt="" class="works-img-all"/>
             <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
         </div>
         <div class="works-floor-all">
             <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <!--<input type="button" value="  + 收藏     " class="works-floor-btn-all"/>-->
             <span class="works-floor-btn-all">&nbsp;操作&nbsp;</span>
-            <!--<input type="text" value="    田黄鸡血石" class="works-floor-img-all"/>-->
             <span class="works-floor-img-all">&nbsp;田黄鸡血石</span>
             <span class="works-floor-date-all">2016-12-4</span>
         </div>
     </div>
-    <div class="all-outer">
+    <div class="works-all-outer">
         <div class="works-all">
             <img src="img/swiper/swiper-3.jpg" alt="" class="works-img-all"/>
             <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
         </div>
         <div class="works-floor-all">
             <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <!--<input type="button" value="  + 收藏     " class="works-floor-btn-all"/>-->
             <span class="works-floor-btn-all">&nbsp;操作&nbsp;</span>
-            <!--<input type="text" value="    田黄鸡血石" class="works-floor-img-all"/>-->
             <span class="works-floor-img-all">&nbsp;田黄鸡血石</span>
             <span class="works-floor-date-all">2016-12-4</span>
         </div>
     </div>
-    <div class="all-outer">
+    <div class="works-all-outer">
         <div class="works-all">
             <img src="img/swiper/swiper-3.jpg" alt="" class="works-img-all"/>
             <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
         </div>
         <div class="works-floor-all">
             <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <!--<input type="button" value="  + 收藏     " class="works-floor-btn-all"/>-->
             <span class="works-floor-btn-all">&nbsp;操作&nbsp;</span>
-            <!--<input type="text" value="    田黄鸡血石" class="works-floor-img-all"/>-->
             <span class="works-floor-img-all">&nbsp;田黄鸡血石</span>
             <span class="works-floor-date-all">2016-12-4</span>
         </div>
     </div>
-    <div class="all-outer">
+    <div class="works-all-outer">
         <div class="works-all">
             <img src="img/swiper/swiper-2.jpg" alt="" class="works-img-all"/>
             <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
         </div>
         <div class="works-floor-all">
             <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <!--<input type="button" value="  + 收藏     " class="works-floor-btn-all"/>-->
             <span class="works-floor-btn-all">&nbsp;操作&nbsp;</span>
-            <!--<input type="text" value="    田黄鸡血石" class="works-floor-img-all"/>-->
             <span class="works-floor-img-all">&nbsp;田黄鸡血石</span>
             <span class="works-floor-date-all">2016-12-4</span>
         </div>
@@ -368,58 +242,50 @@
 </div>
 
 <div id="check-draft-works" class="div-hide">
-    <div class="all-outer">
+    <div class="works-all-outer">
         <div class="works-all">
             <img src="img/cut/index-all.png" alt="" class="works-img-all"/>
             <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
         </div>
         <div class="works-floor-all">
             <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <!--<input type="button" value="  + 收藏     " class="works-floor-btn-all"/>-->
             <span class="works-floor-btn-all">&nbsp;操作&nbsp;</span>
-            <!--<input type="text" value="    田黄鸡血石" class="works-floor-img-all"/>-->
             <span class="works-floor-img-all">&nbsp;田黄鸡血石</span>
             <span class="works-floor-date-all">2016-12-4</span>
         </div>
     </div>
-    <div class="all-outer">
+    <div class="works-all-outer">
         <div class="works-all">
             <img src="img/headImg/10.jpg" alt="" class="works-img-all"/>
             <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
         </div>
         <div class="works-floor-all">
             <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <!--<input type="button" value="  + 收藏     " class="works-floor-btn-all"/>-->
             <span class="works-floor-btn-all">&nbsp;操作&nbsp;</span>
-            <!--<input type="text" value="    田黄鸡血石" class="works-floor-img-all"/>-->
             <span class="works-floor-img-all">&nbsp;田黄鸡血石</span>
             <span class="works-floor-date-all">2016-12-4</span>
         </div>
     </div>
-    <div class="all-outer">
+    <div class="works-all-outer">
         <div class="works-all">
             <img src="img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
             <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
         </div>
         <div class="works-floor-all">
             <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <!--<input type="button" value="  + 收藏     " class="works-floor-btn-all"/>-->
             <span class="works-floor-btn-all">&nbsp;操作&nbsp;</span>
-            <!--<input type="text" value="    田黄鸡血石" class="works-floor-img-all"/>-->
             <span class="works-floor-img-all">&nbsp;田黄鸡血石</span>
             <span class="works-floor-date-all">2016-12-4</span>
         </div>
     </div>
-    <div class="all-outer">
+    <div class="works-all-outer">
         <div class="works-all">
             <img src="img/headImg/11.jpg" alt="" class="works-img-all"/>
             <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
         </div>
         <div class="works-floor-all">
             <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <!--<input type="button" value="  + 收藏     " class="works-floor-btn-all"/>-->
             <span class="works-floor-btn-all">&nbsp;操作&nbsp;</span>
-            <!--<input type="text" value="    田黄鸡血石" class="works-floor-img-all"/>-->
             <span class="works-floor-img-all">&nbsp;田黄鸡血石</span>
             <span class="works-floor-date-all">2016-12-4</span>
         </div>
@@ -431,7 +297,7 @@
     </div>
 </div>
 
-<div class="footer">
+<div class="fixed-footer">
     <div class="weui-tabbar">
         <a href="javascript:;" class="weui-tabbar__item">
             <div class="weui-tabbar__icon">
@@ -453,7 +319,7 @@
         </a>
     </div>
 </div>
-<div class="bottom-blank">
+<div class="fixed-footer-blank">
 </div>
 
 <div>
