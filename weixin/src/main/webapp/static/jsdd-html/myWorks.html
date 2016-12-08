@@ -13,14 +13,22 @@
     <script src="js/jquery-2.1.4.js"></script>
     <script src="js/jquery-weui.js"></script>
     <style>
-        .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {
-            color: #9F504D;
+        .weui-navbar {
+            width: 96%;
+            margin: 1%;
+            border: 1px solid #2698DE;
+            border-radius: 5px;
         }
 
         .weui-navbar__item.weui-bar__item_on {
-            color: #74B8E7;
+            background-color: #2698DE;
+            color: white;
+        }
+
+        .weui-navbar__item {
+            border: 1px solid #2698DE;
             background-color: white;
-            border-bottom: 3px solid #74B8E7;
+            color: #2698DE;
         }
 
         .relation-btn {
@@ -67,13 +75,12 @@
         </div>
     </div>
 </div>
-
-<div class="bottom-blank">
+<div class="fixed-footer-blank">
 
 </div>
 
 
-<div id="check-success-works" class="div-hide div-on">
+<div id="check-success-works" class="div-hide div-on div-outer">
     <div class="works-all-outer">
         <div class="works-all">
             <img src="img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
@@ -129,7 +136,7 @@
     </div>
 </div>
 
-<div id="check-now-works" class="div-hide">
+<div id="check-now-works" class="div-hide div-outer">
     <div class="works-all-outer">
         <div class="works-all">
             <img src="img/swiper/swiper-2.jpg" alt="" class="works-img-all"/>
@@ -185,7 +192,7 @@
     </div>
 </div>
 
-<div id="check-failure-works" class="div-hide">
+<div id="check-failure-works" class="div-hide div-outer">
     <div class="works-all-outer">
         <div class="works-all">
             <img src="img/swiper/swiper-3.jpg" alt="" class="works-img-all"/>
@@ -241,7 +248,7 @@
     </div>
 </div>
 
-<div id="check-draft-works" class="div-hide">
+<div id="check-draft-works" class="div-hide div-outer">
     <div class="works-all-outer">
         <div class="works-all">
             <img src="img/cut/index-all.png" alt="" class="works-img-all"/>

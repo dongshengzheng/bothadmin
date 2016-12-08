@@ -21,6 +21,10 @@
         display: inline-block;
     }
 
+    #searchwhich {
+        border: lightgray;
+    }
+
     #history-serach-delete {
         width: 5%;
         margin-left: 90%;
@@ -168,9 +172,9 @@
                 .on('keyup', function () {
                     if (event.keyCode == 13) {
                         if ($("#searchwhich").val() == "searchperson") {
-                            location.href = "searchperson.html";
+                            location.href = "searchPerson.html";
                         } else {
-                            location.href = "searchworks.html";
+                            location.href = "searchWorks.html";
                         }
                     }
                 });

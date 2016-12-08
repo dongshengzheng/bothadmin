@@ -13,6 +13,10 @@
     <script src="js/jquery-2.1.4.js"></script>
     <script src="js/jquery-weui.js"></script>
     <style type="text/css">
+        .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {
+            color: #9F504D;
+        }
+
         .header-info-care {
             color: white;
             background-color: #169AD8;
@@ -52,274 +56,263 @@
 
 <hr/>
 
-<div class="detail">
-    <div class="weui-tab">
-        <div class="weui-navbar">
-            <div class="weui-navbar__item weui-bar__item_on" id="detail-title-info">
-                个人资料
-            </div>
-            <div class="weui-navbar__item" id="detail-title-works">
-                Ta的作品
-            </div>
-            <div class="weui-navbar__item" id="detail-title-fans">
-                Ta的粉丝
-            </div>
+<div class="weui-tab">
+    <div class="weui-navbar">
+        <div class="weui-navbar__item weui-bar__item_on" id="detail-title-info">
+            个人资料
         </div>
-        <div class="weui-tab__panel">
-
+        <div class="weui-navbar__item" id="detail-title-works">
+            Ta的作品
+        </div>
+        <div class="weui-navbar__item" id="detail-title-fans">
+            Ta的粉丝
         </div>
     </div>
 </div>
 
-<div id="info" class="div-on">
-    <div class="weui-cells">
-        <div class="weui-cell">
-            <div class="weui-cell_bd weui-cell_primary">
-                <p>姓名:</p>
+<div class="div-outer">
+    <div id="info" class="div-on">
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell_bd weui-cell_primary">
+                    <p>姓名:</p>
+                </div>
+                <div class="weui-cell_ft">
+                    我是谁
+                </div>
             </div>
-            <div class="weui-cell_ft">
-                我是谁
+            <div class="weui-cell">
+                <div class="weui-cell_bd weui-cell_primary">
+                    <p>住址:</p>
+                </div>
+                <div class="weui-cell_ft">
+                    无锡滨湖区xxxx街道xxxx小区
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell_bd weui-cell_primary">
+                    <p>身份证:</p>
+                </div>
+                <div class="weui-cell_ft">
+                    320503201612221992
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell_bd weui-cell_primary">
+                    <p>手机号:</p>
+                </div>
+                <div class="weui-cell_ft">
+                    15151999000
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell_bd weui-cell_primary">
+                    <p>Email:</p>
+                </div>
+                <div class="weui-cell_ft">
+                    111@qq.com
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell_bd weui-cell_primary">
+                    <p>收藏偏好:</p>
+                </div>
+                <div class="weui-cell_ft">
+                    玉器
+                </div>
             </div>
         </div>
-        <div class="weui-cell">
-            <div class="weui-cell_bd weui-cell_primary">
-                <p>住址:</p>
+    </div>
+
+    <div id="works" class="div-hide ">
+        <div class="fixed-footer-blank">
+
+        </div>
+        <div class="works-all-outer">
+            <div class="works-all">
+                <img src="img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
+                <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
             </div>
-            <div class="weui-cell_ft">
-                无锡滨湖区xxxx街道xxxx小区
+            <div class="works-floor-all">
+                <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
+                <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
+                <span class="works-floor-img-all">田黄鸡血石</span>
+                <span class="works-floor-date-all">2016-12-4</span>
             </div>
         </div>
-        <div class="weui-cell">
-            <div class="weui-cell_bd weui-cell_primary">
-                <p>身份证:</p>
+        <div class="works-all-outer">
+            <div class="works-all">
+                <img src="img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
+                <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
             </div>
-            <div class="weui-cell_ft">
-                320503201612221992
-            </div>
-        </div>
-        <div class="weui-cell">
-            <div class="weui-cell_bd weui-cell_primary">
-                <p>手机号:</p>
-            </div>
-            <div class="weui-cell_ft">
-                15151999000
+            <div class="works-floor-all">
+                <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
+                <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
+                <span class="works-floor-img-all">田黄鸡血石</span>
+                <span class="works-floor-date-all">2016-12-4</span>
             </div>
         </div>
-        <div class="weui-cell">
-            <div class="weui-cell_bd weui-cell_primary">
-                <p>Email:</p>
+        <div class="works-all-outer">
+            <div class="works-all">
+                <img src="img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
+                <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
             </div>
-            <div class="weui-cell_ft">
-                111@qq.com
+            <div class="works-floor-all">
+                <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
+                <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
+                <span class="works-floor-img-all">田黄鸡血石</span>
+                <span class="works-floor-date-all">2016-12-4</span>
             </div>
         </div>
-        <div class="weui-cell">
-            <div class="weui-cell_bd weui-cell_primary">
-                <p>收藏偏好:</p>
+        <div class="works-all-outer">
+            <div class="works-all">
+                <img src="img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
+                <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
             </div>
-            <div class="weui-cell_ft">
-                玉器
+            <div class="works-floor-all">
+                <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
+                <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
+                <span class="works-floor-img-all">田黄鸡血石</span>
+                <span class="works-floor-date-all">2016-12-4</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="fans" class="div-hide">
+        <div class="fixed-footer-blank">
+
+        </div>
+        <div class="search-results">
+            <div class="weui-panel__bd">
+                <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img class="weui-media-box__thumb"
+                             src="img/headImg/3.jpg"
+                             alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">老特福德永恒</h4>
+                        <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
+                        <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
+                        <div class="search-results-one-care ">
+                            <img src="img/cut/关注用户_已关注.png" class="search-results-one-care-img"/>
+                            <p class="search-results-one-care-text-have ">
+                                已关注
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="weui-panel__bd">
+                <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img class="weui-media-box__thumb"
+                             src="img/headImg/3.jpg"
+                             alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">老特福德永恒</h4>
+                        <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
+                        <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
+                        <div class="search-results-one-care ">
+                            <img src="img/cut/关注用户_已关注.png" class="search-results-one-care-img"/>
+                            <p class="search-results-one-care-text-have ">
+                                已关注
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="weui-panel__bd">
+                <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img class="weui-media-box__thumb"
+                             src="img/headImg/3.jpg"
+                             alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">老特福德永恒</h4>
+                        <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
+                        <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
+                        <div class="search-results-one-care ">
+                            <img src="img/cut/关注用户_已关注.png" class="search-results-one-care-img"/>
+                            <p class="search-results-one-care-text-have ">
+                                已关注
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="weui-panel__bd">
+                <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img class="weui-media-box__thumb"
+                             src="img/headImg/3.jpg"
+                             alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">老特福德永恒</h4>
+                        <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
+                        <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
+                        <div class="search-results-one-care ">
+                            <img src="img/cut/关注用户_已关注.png" class="search-results-one-care-img"/>
+                            <p class="search-results-one-care-text-have ">
+                                已关注
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="weui-panel__bd">
+                <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img class="weui-media-box__thumb"
+                             src="img/headImg/3.jpg"
+                             alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">老特福德永恒</h4>
+                        <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
+                        <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
+                        <div class="search-results-one-care ">
+                            <img src="img/cut/关注用户_已关注.png" class="search-results-one-care-img"/>
+                            <p class="search-results-one-care-text-have ">
+                                已关注
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="weui-panel__bd">
+                <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img class="weui-media-box__thumb"
+                             src="img/headImg/3.jpg"
+                             alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">老特福德永恒</h4>
+                        <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
+                        <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
+                        <div class="search-results-one-care ">
+                            <img src="img/cut/关注用户_已关注.png" class="search-results-one-care-img"/>
+                            <p class="search-results-one-care-text-have ">
+                                已关注
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="hr-text">
+                <center>
+                    <hr>
+                    <span>&nbsp;&nbsp;到底啦&nbsp;&nbsp;</span></center>
             </div>
         </div>
     </div>
 </div>
-
-<div id="works" class="div-hide">
-    <div class="works-all-outer">
-        <div class="works-all">
-            <img src="img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
-            <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
-        </div>
-        <div class="works-floor-all">
-            <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
-            <span class="works-floor-img-all">田黄鸡血石</span>
-            <span class="works-floor-date-all">2016-12-4</span>
-        </div>
-    </div>
-    <div class="works-all-outer">
-        <div class="works-all">
-            <img src="img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
-            <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
-        </div>
-        <div class="works-floor-all">
-            <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
-            <span class="works-floor-img-all">田黄鸡血石</span>
-            <span class="works-floor-date-all">2016-12-4</span>
-        </div>
-    </div>
-    <div class="works-all-outer">
-        <div class="works-all">
-            <img src="img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
-            <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
-        </div>
-        <div class="works-floor-all">
-            <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
-            <span class="works-floor-img-all">田黄鸡血石</span>
-            <span class="works-floor-date-all">2016-12-4</span>
-        </div>
-    </div>
-    <div class="works-all-outer">
-        <div class="works-all">
-            <img src="img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
-            <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
-        </div>
-        <div class="works-floor-all">
-            <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
-            <span class="works-floor-img-all">田黄鸡血石</span>
-            <span class="works-floor-date-all">2016-12-4</span>
-        </div>
-    </div>
-</div>
-
-<div id="fans" class="div-hide">
-    <div class="search-results">
-        <div class="weui-panel weui-panel_access">
-            <div class="weui-panel__bd">
-                <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
-                    <div class="weui-media-box__hd">
-                        <img class="weui-media-box__thumb"
-                             src="img/headImg/3.jpg"
-                             alt="">
-                    </div>
-                    <div class="weui-media-box__bd">
-                        <h4 class="weui-media-box__title">老特福德永恒</h4>
-                        <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
-                        <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
-                        <div class="search-results-one-care ">
-                            <img src="img/cut/关注用户_已关注.png" class="search-results-one-care-img"/>
-                            <p class="search-results-one-care-text-have ">
-                                已关注
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-
-        <div class="weui-panel weui-panel_access">
-            <div class="weui-panel__bd">
-                <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
-                    <div class="weui-media-box__hd">
-                        <img class="weui-media-box__thumb"
-                             src="img/headImg/3.jpg"
-                             alt="">
-                    </div>
-                    <div class="weui-media-box__bd">
-                        <h4 class="weui-media-box__title">老特福德永恒</h4>
-                        <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
-                        <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
-                        <div class="search-results-one-care ">
-                            <img src="img/cut/关注用户_已关注.png" class="search-results-one-care-img"/>
-                            <p class="search-results-one-care-text-have ">
-                                已关注
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="weui-panel weui-panel_access">
-            <div class="weui-panel__bd">
-                <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
-                    <div class="weui-media-box__hd">
-                        <img class="weui-media-box__thumb"
-                             src="img/headImg/3.jpg"
-                             alt="">
-                    </div>
-                    <div class="weui-media-box__bd">
-                        <h4 class="weui-media-box__title">老特福德永恒</h4>
-                        <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
-                        <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
-                        <div class="search-results-one-care ">
-                            <img src="img/cut/关注用户_已关注.png" class="search-results-one-care-img"/>
-                            <p class="search-results-one-care-text-have ">
-                                已关注
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="weui-panel weui-panel_access">
-            <div class="weui-panel__bd">
-                <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
-                    <div class="weui-media-box__hd">
-                        <img class="weui-media-box__thumb"
-                             src="img/headImg/3.jpg"
-                             alt="">
-                    </div>
-                    <div class="weui-media-box__bd">
-                        <h4 class="weui-media-box__title">老特福德永恒</h4>
-                        <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
-                        <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
-                        <div class="search-results-one-care ">
-                            <img src="img/cut/关注用户_已关注.png" class="search-results-one-care-img"/>
-                            <p class="search-results-one-care-text-have ">
-                                已关注
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="weui-panel weui-panel_access">
-            <div class="weui-panel__bd">
-                <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
-                    <div class="weui-media-box__hd">
-                        <img class="weui-media-box__thumb"
-                             src="img/headImg/3.jpg"
-                             alt="">
-                    </div>
-                    <div class="weui-media-box__bd">
-                        <h4 class="weui-media-box__title">老特福德永恒</h4>
-                        <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
-                        <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
-                        <div class="search-results-one-care ">
-                            <img src="img/cut/关注用户_已关注.png" class="search-results-one-care-img"/>
-                            <p class="search-results-one-care-text-have ">
-                                已关注
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="weui-panel weui-panel_access">
-            <div class="weui-panel__bd">
-                <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
-                    <div class="weui-media-box__hd">
-                        <img class="weui-media-box__thumb"
-                             src="img/headImg/3.jpg"
-                             alt="">
-                    </div>
-                    <div class="weui-media-box__bd">
-                        <h4 class="weui-media-box__title">老特福德永恒</h4>
-                        <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
-                        <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
-                        <div class="search-results-one-care ">
-                            <img src="img/cut/关注用户_已关注.png" class="search-results-one-care-img"/>
-                            <p class="search-results-one-care-text-have ">
-                                已关注
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <div class="hr-text">
-            <center>
-                <hr>
-                <span>&nbsp;&nbsp;到底啦&nbsp;&nbsp;</span></center>
-        </div>
-    </div>
-</div>
-
 
 <div class="fixed-footer">
     <div class="weui-tabbar">

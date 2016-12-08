@@ -5,7 +5,7 @@
           content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39"/>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0"/>
-    <title>作品信息</title>
+    <title>作品编辑</title>
     <link rel="stylesheet" href="css/weui.css"/>
     <link rel="stylesheet" href="css/jquery-weui.css"/>
     <link rel="stylesheet" href="css/custom.css"/>
@@ -14,6 +14,24 @@
     <style>
         body {
             background-color: white;
+        }
+
+        .weui-navbar {
+            width: 97%;
+            margin: 1%;
+            border: 1px solid #2698DE;
+            border-radius: 5px;
+        }
+
+        .weui-navbar__item.weui-bar__item_on {
+            background-color: #2698DE;
+            color: white;
+        }
+
+        .weui-navbar__item {
+            border: 1px solid #2698DE;
+            background-color: white;
+            color: #2698DE;
         }
 
         .title {
@@ -46,6 +64,28 @@
     </style>
 </head>
 <body>
+<div class="weui-tab">
+    <div class="weui-navbar">
+        <div class="weui-navbar__item " id="check-title-success">
+            物品信息
+        </div>
+        <div class="weui-navbar__item " id="check-title-now">
+            作品信息
+        </div>
+        <div class="weui-navbar__item weui-bar__item_on" id="check-title-failure">
+            作品等级
+        </div>
+        <div class="weui-navbar__item" id="check-title-draft">
+            评估报告
+        </div>
+        <div class="weui-navbar__item" id="check-title-">
+            收藏信息
+        </div>
+    </div>
+</div>
+<div class="fixed-footer-blank">
+
+</div>
 <div class="title">
     <center>
         <hr>
@@ -150,9 +190,9 @@
             <!--<p>下一步即表示同意<a href="#">《金石典当登记申请记录》</a></p>-->
             <hr>
             <div class="weui-form-preview__ft">
-                <a class="weui-form-preview__btn weui-form-preview__btn_default" href="javascript:">存为草稿</a>
+                <a class="weui-form-preview__btn weui-form-preview__btn_default" href="javascript:">放弃编辑</a>
                 <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">
-                    下一步
+                    提交审核
                 </button>
             </div>
         </div>
@@ -161,6 +201,7 @@
         </div>
     </form>
 </div>
+
 
 <div>
     <div class="weui-mask" id="iosMask" style="display: none"></div>

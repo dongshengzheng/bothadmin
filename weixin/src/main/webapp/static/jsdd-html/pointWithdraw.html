@@ -14,8 +14,9 @@
     <script src="js/jquery-weui.js"></script>
     <style>
         #header {
-            margin-top: 10%;
+            height: 60px;
             text-align: center;
+            padding-top: 30px;
         }
 
         #header-p1 {
@@ -51,7 +52,7 @@
     </style>
 </head>
 <body>
-<div id="header">
+<div id="header" class="div-outer">
     <p id="header-p1">可用积分</p>
     <p id="header-p2">3600</p>
 </div>
@@ -77,8 +78,6 @@
             </div>
         </a>
     </div>
-</div>
-<div class="weui-panel weui-panel_access">
     <div class="weui-panel__bd">
         <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
             <div class="weui-media-box__hd">
@@ -100,11 +99,14 @@
             </div>
         </a>
     </div>
+
+    <p id="cost-point">需要 0 积分</p>
+    <br>
+    <br>
+    <a href="javascript:;" class="weui-btn weui-btn_primary" id="go-to-withdraw">提现</a>
+    <br>
 </div>
-<p id="cost-point">需要 0 积分</p>
-<br>
-<br>
-<a href="javascript:;" class="weui-btn weui-btn_primary" id="go-to-withdraw">提现</a>
+
 
 <div class="js_dialog" id="androidDialog2" style="display: none;">
     <div class="weui-mask"></div>
