@@ -8,7 +8,7 @@
     <title>个人中心</title>
     <link rel="stylesheet" href="css/weui.css"/>
     <link rel="stylesheet" href="css/jquery-weui.css"/>
-    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/custom.css"/>
     <script src="js/jquery-2.1.4.js"></script>
     <script src="js/jquery-weui.js"></script>
 
@@ -34,20 +34,6 @@
             transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
         }
 
-        .footer {
-            width: 100%;
-            height: 10%;
-            position: fixed;
-            bottom: 0;
-            background-color: white;
-        }
-
-        .bottom-blank {
-            background-color: white;
-            width: 100%;
-            height: 70px;
-        }
-
         .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {
             color: #9F504D;
         }
@@ -55,11 +41,16 @@
         .first-row {
             width: 25%;
         }
+
+        #title {
+            padding-top: 10px;
+        }
+
+
     </style>
 </head>
 <body>
-
-<div class="weui-panel weui-panel_access">
+<div class="weui-panel weui-panel_access div-outer">
     <div class="weui-panel__bd">
         <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
             <div class="weui-media-box__hd">
@@ -75,9 +66,9 @@
         </a>
     </div>
 </div>
-&nbsp;我的作品
-<div class="weui-grids">
 
+<div class="weui-grids div-outer">
+    <center id="title">我的作品</center>
     <a href="javascript:;" class="weui-grid first-row">
         <div class="weui-grid__icon">
             <img src="img/cut/个人中心_审核通过.png" alt="">
@@ -102,6 +93,8 @@
         </div>
         <p class="weui-grid__label">草稿箱</p>
     </a>
+</div>
+<div class="weui-grids div-outer">
     <a href="javascript:;" class="weui-grid">
         <div class="weui-grid__icon">
             <img src="img/cut/个人中心_转让作品.png" alt="">
@@ -133,11 +126,9 @@
         </div>
         <p class="weui-grid__label" style="color: gray">敬请期待</p>
     </a>
-
 </div>
 
-<div class="footer">
-
+<div class="fixed-footer">
     <div class="weui-tabbar">
         <a href="javascript:;" class="weui-tabbar__item">
             <div class="weui-tabbar__icon">
@@ -158,11 +149,11 @@
             <p class="weui-tabbar__label">我的</p>
         </a>
     </div>
-
 </div>
 
-<div class="bottom-blank">
+<div class="fixed-footer-blank">
 </div>
+
 <script>
     $(function () {
         $("#go-to-set").on("click", function () {
