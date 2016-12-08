@@ -72,11 +72,6 @@
             <version>${spring.version}</version>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>org.freemarker</groupId>-->
-            <!--<artifactId>freemarker</artifactId>-->
-            <!--<version>${freemarker.version}</version>-->
-        <!--</dependency>-->
         <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>

@@ -19,7 +19,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.locales>zh_CN</project.build.locales>
         <project.build.jdk>1.8</project.build.jdk>
-        <freemarker.version>2.3.20</freemarker.version>
+        <freemarker.version>2.3.25-incubating</freemarker.version>
         <spring.version>4.3.4.RELEASE</spring.version>
         <!-- plugin versions -->
         <plugin.maven-compiler>3.1</plugin.maven-compiler>
@@ -232,7 +232,11 @@
                 <artifactId>jxl</artifactId>
                 <version>2.6.12</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>${freemarker.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <build>
@@ -242,9 +246,7 @@
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>9.3.6.v20151106</version>
-
             </plugin>
-
             <!-- Maven插件 配置 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

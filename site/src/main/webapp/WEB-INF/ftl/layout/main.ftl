@@ -48,10 +48,10 @@ description="金石典当"
     <link rel="stylesheet" href="${staticPath}/assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css">
     <link rel="stylesheet" href="${staticPath}/assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
     <link rel="stylesheet" href="${staticPath}/assets/plugins/revolution-slider/rs-plugin/css/settings.css">
-    <link rel="stylesheet" href="${staticPath}/assets/js/plugins/datetimepicker/bootstrap-datetimepicker.min.css">
+    <#--<link rel="stylesheet" href="${staticPath}/assets/js/plugins/datetimepicker/bootstrap-datetimepicker.min.css">-->
     <!-- CSS Theme -->
-    <link rel="stylesheet" href="http://htmlstream.com/preview/unify-v1.9/Shop-UI/assets/css/theme-colors/teal.css"
-          id="style_color">
+    <#--<link rel="stylesheet" href="http://htmlstream.com/preview/unify-v1.9/Shop-UI/assets/css/theme-colors/teal.css"-->
+          <#--id="style_color">-->
     <!-- CSS Customization -->
     <link rel="stylesheet" href="${staticPath}/assets/css/custom.css">
     <link rel="stylesheet" href="${staticPath}/assets/css/jsdd/main.css">
@@ -181,7 +181,7 @@ description="金石典当"
 <script src="${staticPath}/assets/plugins/jquery/jquery.min.js"></script>
 <script src="${staticPath}/assets/plugins/jquery/jquery-migrate.min.js"></script>
 <script src="${staticPath}/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-<script src="${staticPath}/assets/js/plugins/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<#--<script src="${staticPath}/assets/js/plugins/datetimepicker/bootstrap-datetimepicker.min.js"></script>-->
 <!-- JS Implementing Plugins -->
 <script src="${staticPath}/assets/plugins/back-to-top.js"></script>
 <script src="${staticPath}/assets/plugins/smoothScroll.js"></script>
