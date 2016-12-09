@@ -63,13 +63,13 @@
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">品种</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input name="works-pinzhong" class="weui-input select-able" type="tel" placeholder="请选择品种">
+                    <input id="works-pinzhong" class="weui-input " type="tel" placeholder="请选择品种">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">作品类型</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input name="works-zuopinleixing" class="weui-input select-able" type="tel" placeholder="请选择作品类型">
+                    <input id="works-zuopinleixing" class="weui-input " type="tel" placeholder="请选择作品类型">
                 </div>
             </div>
             <div class="weui-cell">
@@ -105,36 +105,36 @@
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">工艺制作</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input name="works-gongyizhizuo" class="weui-input  select-able" type="tel" placeholder="请选择工艺制作">
+                    <input id="works-gongyizhizuo" class="weui-input  " type="tel" placeholder="请选择工艺制作">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">篆刻级别</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input name="works-zhuankejibie" class="weui-input  select-able" type="tel" placeholder="请选择篆刻级别">
+                    <input id="works-zhuankejibie" class="weui-input  " type="tel" placeholder="请选择篆刻级别">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">矿区地域</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input name="works-kuangqudiyu" class="weui-input  select-able" type="tel" placeholder="请选择矿区地域">
+                    <input id="works-kuangqudiyu" class="weui-input  " type="tel" placeholder="请选择矿区地域">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">制作人</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input class="weui-input" type="tel" placeholder="请输入制作人">
+                    <input id="works-zhizuoren" class="weui-input" type="tel" placeholder="请输入制作人">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">制作时间</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input class="weui-input" type="tel" placeholder="请选择制作时间">
+                    <input id="works-zhizuoshijian" class="weui-input" type="tel" placeholder="请选择制作时间">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__bd weui-cell_primary">
-                    <textarea class="weui-textarea" placeholder="作品诠释..." rows="3"></textarea>
+                    <textarea id="works-zuopinquanshi" class="weui-textarea" placeholder="作品诠释..." rows="3"></textarea>
                     <!--<div class="weui-textarea-counter">-->
                     <!--<span>0</span>/200-->
                     <!--</div>-->
@@ -158,66 +158,93 @@
     </form>
 </div>
 
-<div>
-    <div class="weui-mask" id="iosMask" style="display: none"></div>
-    <div class="weui-actionsheet" id="iosActionsheet">
-        <div id="works-pinzhong-menu" class="weui-actionsheet__menu div-hide">
-            <div class="weui-actionsheet__cell">品种一</div>
-            <div class="weui-actionsheet__cell">品种二</div>
-        </div>
-        <div id="works-zuopinleixing-menu" class="weui-actionsheet__menu div-hide">
-            <div class="weui-actionsheet__cell">作品类型一</div>
-            <div class="weui-actionsheet__cell">作品类型二</div>
-        </div>
-        <div id="works-gongyizhizuo-menu" class="weui-actionsheet__menu div-hide">
-            <div class="weui-actionsheet__cell">工艺制作一</div>
-            <div class="weui-actionsheet__cell">工艺制作二</div>
-        </div>
-        <div id="works-zhuankejibie-menu" class="weui-actionsheet__menu div-hide">
-            <div class="weui-actionsheet__cell">篆刻级别一</div>
-            <div class="weui-actionsheet__cell">篆刻级别二</div>
-        </div>
-        <div id="works-kuangqudiyu-menu" class="weui-actionsheet__menu div-hide">
-            <div class="weui-actionsheet__cell">矿区地域一</div>
-            <div class="weui-actionsheet__cell">矿区地域二</div>
-        </div>
-        <div class="weui-actionsheet__action">
-            <div class="weui-actionsheet__cell" id="iosActionsheetCancel">取消</div>
-        </div>
-    </div>
-</div>
-
 
 </body>
 
 <script>
     $(function () {
-        var $iosActionsheet = $('#iosActionsheet');
-        var $iosMask = $('#iosMask');
-
-        function hideActionSheet() {
-            $iosActionsheet.removeClass('weui-actionsheet_toggle');
-            $iosMask.fadeOut(200);
-        }
-
-        $iosMask.on('click', hideActionSheet);
-        $('#iosActionsheetCancel').on('click', hideActionSheet);
-        $(".select-able").on("click", function () {
-            $iosActionsheet.addClass('weui-actionsheet_toggle');
-            $("#" + $(this).attr("name") + "-menu").addClass("div-on").siblings(".weui-actionsheet__menu").removeClass("div-on");
-            $iosMask.fadeIn(200);
+        $('#works-pinzhong').picker({
+            title: "请选择品种",
+            cols: [
+                {
+                    textAlign: 'center',
+                    values: ['品种一', '品种二']
+                }
+            ]
         });
 
-        $(".weui-actionsheet__cell").on("click", function () {
-            var str = $(this).parent().attr("id");
-            var inputId = str.substr(0, str.length - 5);
-            $("input[name=" + inputId + "]").val($(this).text());
-            hideActionSheet();
-        })
+        $('#works-pinzhong').picker({
+            title: "请选择品种",
+            cols: [
+                {
+                    textAlign: 'center',
+                    values: ['品种一', '品种二']
+                }
+            ]
+        });
 
+        $('#works-pinzhong').picker({
+            title: "请选择品种",
+            cols: [
+                {
+                    textAlign: 'center',
+                    values: ['品种一', '品种二']
+                }
+            ]
+        });
+
+        $('#works-pinzhong').picker({
+            title: "请选择品种",
+            cols: [
+                {
+                    textAlign: 'center',
+                    values: ['品种一', '品种二']
+                }
+            ]
+        });
+
+        $('#works-zuopinleixing').picker({
+            title: "请选择作品类型",
+            cols: [
+                {
+                    textAlign: 'center',
+                    values: ['作品类型一', '作品类型二']
+                }
+            ]
+        });
+
+        $('#works-gongyizhizuo').picker({
+            title: "请选择工艺制作",
+            cols: [
+                {
+                    textAlign: 'center',
+                    values: ['工艺制作一', '工艺制作二']
+                }
+            ]
+        });
+
+        $('#works-zhuankejibie').picker({
+            title: "请选择篆刻级别",
+            cols: [
+                {
+                    textAlign: 'center',
+                    values: ['篆刻级别一', '篆刻级别二']
+                }
+            ]
+        });
+
+        $('#works-kuangqudiyu').picker({
+            title: "请选择矿区地域",
+            cols: [
+                {
+                    textAlign: 'center',
+                    values: ['矿区地域一', '矿区地域二']
+                }
+            ]
+        });
+
+        $('#works-zhizuoshijian').datetimePicker();
     })
-
-
 </script>
 
 </html>

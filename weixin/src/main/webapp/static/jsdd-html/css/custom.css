@@ -47,6 +47,7 @@
     font-size: 15px;
 }
 
+
 .works-floor-name-all {
     float: left;
     display: inline-block;
@@ -154,7 +155,7 @@
 
 body {
     /*这是最终颜色*/
-    /*background-color: #F0EFF5;*/
+    background-color: #F0EFF5;
     /*先使用灰色 较显眼*/
-    background-color: lightgray;
+    /*background-color: lightgray;*/
 }

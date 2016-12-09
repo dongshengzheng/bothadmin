@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/custom.css"/>
     <script src="js/jquery-2.1.4.js"></script>
     <script src="js/jquery-weui.js"></script>
+    <script src="js/swiper.js"></script>
 </head>
 <style>
     .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {
@@ -25,7 +26,6 @@
     }
 
     .works {
-        text-align: center;
         align-content: center;
         display: block;
         width: 100%;
@@ -34,13 +34,14 @@
     }
 
     .works-search {
+        left: 10%;
+        right: 10%;
+        width: 80%;
         position: absolute;
         border-radius: 8px;
         top: 10px;
-        text-align: center;
-        background-color: white;
-        left: 10%;
         color: gray;
+        background-color: white;
     }
 
     .works-intro {
@@ -95,7 +96,6 @@
         color: white;
         background-repeat: no-repeat;
         border: none;
-
         padding-left: 17px;
     }
 
@@ -156,7 +156,8 @@
         <div class="swiper-slide">
             <div class="header">
                 <div class="works">
-                    <a href="search.html" class="works-search">&nbsp;&nbsp;&nbsp;输入你正在找的作品/用户&nbsp;&nbsp;&nbsp;</a>
+                    <a href="search.html" class="works-search">
+                        输入你正在找的作品/用户</a>
                     <img src="img/swiper/swiper-1.jpg" alt="" class="works-img"/>
                     <textarea disabled class="works-intro">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
                 </div>
@@ -172,7 +173,7 @@
         <div class="swiper-slide">
             <div class="header">
                 <div class="works">
-                    <a href="search.html" class="works-search">&nbsp;&nbsp;&nbsp;输入你正在找的作品/用户&nbsp;&nbsp;&nbsp;</a>
+                    <a href="search.html" class="works-search">输入你正在找的作品/用户</a>
                     <img src="img/swiper/swiper-2.jpg" alt="" class="works-img"/>
                     <textarea disabled class="works-intro">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
                 </div>
@@ -187,7 +188,7 @@
         <div class="swiper-slide">
             <div class="header">
                 <div class="works">
-                    <a href="search.html" class="works-search">&nbsp;&nbsp;&nbsp;输入你正在找的作品/用户&nbsp;&nbsp;&nbsp;</a>
+                    <a href="search.html" class="works-search">输入你正在找的作品/用户</a>
                     <img src="img/swiper/swiper-3.jpg" alt="" class="works-img"/>
                     <textarea disabled class="works-intro">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
                 </div>
@@ -260,19 +261,19 @@
 
 <div class="fixed-footer">
     <div class="weui-tabbar">
-        <a href="javascript:;" class="weui-tabbar__item weui-bar__item_on">
+        <a href="index.html" class="weui-tabbar__item weui-bar__item_on">
             <div class="weui-tabbar__icon">
                 <img src="img/cut/首页_10.png" alt="">
             </div>
             <p class="weui-tabbar__label">首页</p>
         </a>
-        <a href="javascript:;" class="weui-tabbar__item">
+        <a href="worksRegister1.html" class="weui-tabbar__item">
             <div class="weui-tabbar__icon">
                 <img src="img/cut/登记申请.png" alt="">
             </div>
             <p class="weui-tabbar__label">登记申请</p>
         </a>
-        <a href="javascript:;" class="weui-tabbar__item">
+        <a href="my.html" class="weui-tabbar__item">
             <div class="weui-tabbar__icon">
                 <img src="img/cut/我的.png" alt="">
             </div>
@@ -284,7 +285,17 @@
 <div class="fixed-footer-blank">
 </div>
 
-<script src="js/swiper.min.js"></script>
+<div id="dialogs">
+    <div class="js_dialog" id="iosDialog2" style="display: none;">
+        <div class="weui-mask"></div>
+        <div class="weui-dialog">
+            <div class="weui-dialog__bd">收藏成功!</div>
+            <div class="weui-dialog__ft">
+                <a href="index.html" class="weui-dialog__btn weui-dialog__btn_primary">我知道了</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
     var swiper = new Swiper('.swiper-container', {
@@ -295,7 +306,23 @@
         $('.weui-tabbar__item').on('click', function () {
             $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
         });
+
+        $('.works-img,.works-img-all').on('click', function () {
+            location.href = 'worksDetail.html';
+        })
+
+        $('.works-floor-btn-all,.works-floor-btn').on('click', function () {
+            $('#iosDialog2').fadeIn(200);
+        })
+
+        $('#dialogs').on('click', '.weui-dialog__btn', function () {
+            $(this).parents('.js_dialog').fadeOut(200);
+        });
+
+
     });
+
+
 </script>
 </body>
 
