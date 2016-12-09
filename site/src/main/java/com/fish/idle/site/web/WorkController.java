@@ -4,7 +4,6 @@ import com.fish.idle.service.modules.jsdd.entity.GoodsInfo;
 import com.fish.idle.service.modules.jsdd.entity.WorksInfo;
 import com.fish.idle.service.modules.jsdd.service.IGoodsInfoService;
 import com.fish.idle.service.modules.jsdd.service.IWorksInfoService;
-import com.fish.idle.service.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
