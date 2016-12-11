@@ -7,4 +7,8 @@
 		id, create_by AS createBy, create_date AS createDate, update_by AS updateBy, update_date AS updateDate, name, del_flag AS delFlag, `no`, public_flag AS publicFlag, collect_by AS collectBy, provide_by AS provideBy, `name`, breed, `type`, `size`, gy_type AS gyType, level_zk AS levelZk, works_meanning AS worksMeanning, `status`, images, recommend, reason, kqdy, maker, make_time AS makeTime, slide, slide_till AS slideTill, browser_count AS browserCount, follow_count AS followCount, `value`, value_till AS valueTill, certified, working_status AS workingStatus
 	</sql>
 
+
+	<select id="getWorksInfoByGoodsId" parameterType="java.lang.Integer" resultType="WorksInfo" >
+		select * from dd_works_info WHERE  goods_id = #{id};
+	</select>
 </mapper>

@@ -45,6 +45,9 @@ public class WorksInfo implements Serializable {
     @TableField(value = "goods_id")
     private Integer goodsId;
 
+    /** 作品品种 */
+    private String breed;
+
     /** 作品类型 */
     private String type;
 
@@ -86,6 +89,22 @@ public class WorksInfo implements Serializable {
 
     /** 是否是草稿 */
     private int isDraft = 0; //1 是  0 否
+
+    public String getBreed() {
+        return breed;
+    }
+
+    public void setBreed(String breed) {
+        this.breed = breed;
+    }
+
+    public String getHeight() {
+        return height;
+    }
+
+    public void setHeight(String height) {
+        this.height = height;
+    }
 
     public String getId() {
         return id;
@@ -165,14 +184,6 @@ public class WorksInfo implements Serializable {
 
     public void setWidth(String width) {
         this.width = width;
-    }
-
-    public String getHeght() {
-        return height;
-    }
-
-    public void setHeght(String heght) {
-        this.height = heght;
     }
 
     public String getWeight() {

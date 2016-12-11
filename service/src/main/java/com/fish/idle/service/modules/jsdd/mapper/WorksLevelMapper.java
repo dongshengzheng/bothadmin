@@ -10,5 +10,6 @@ import com.baomidou.mybatisplus.mapper.AutoMapper;
  */
 public interface WorksLevelMapper extends AutoMapper<WorksLevel> {
 
+    WorksLevel getWorksLevelByGoodsId(Integer id);
 
 }

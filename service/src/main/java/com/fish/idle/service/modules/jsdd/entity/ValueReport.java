@@ -10,7 +10,7 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 
 /**
- *
+ *评估报告
  * 
  *
  */
@@ -23,120 +23,129 @@ public class ValueReport implements Serializable {
 	/** 价值报告id */
 	@TableId(type = IdType.AUTO)
 	private Integer id;
-
 	/**  */
-	@TableField(value = "works_id")
-	private Integer worksId;
+	@TableField(value = "goods_id")
+	private Integer goodsId;
 
-	/** 出据方 */
-	@TableField(value = "certified_by")
-	private String certifiedBy;
+	/** 作品详细评估报告图片 */
+	@TableField(value = "zpxx_imge")
+	private String zpxxImge;
 
-	/**  */
-	private String description;
+	/** 作品价值认证图片 */
+	@TableField(value = "jzrz_imge")
+	private String jzrzImge;
 
-	/**  */
-	private String picture;
+	/** 作品有效时间 */
+	private Date jzyxsj;
+
+	/** 创建者 */
+	@TableField(value = "create_by")
+	private String createBy;
 
 	/** 创建时间 */
 	@TableField(value = "create_date")
 	private Date createDate;
 
+	/** 更新者 */
+	@TableField(value = "update_by")
+	private String updateBy;
+
 	/** 更新时间 */
 	@TableField(value = "update_date")
 	private Date updateDate;
-
-	/** 创建者 */
-	@TableField(value = "create_by")
-	private Integer createBy;
-
-	/** 更新者 */
-	@TableField(value = "update_by")
-	private Integer updateBy;
 
 	/** 逻辑删除标记（0：显示；1：隐藏） */
 	@TableField(value = "del_flag")
 	private Integer delFlag;
 
+	/** 是否是草稿 */
+	private int isDraft = 0; //1 是  0 否
+
+	public int getIsDraft() {
+		return isDraft;
+	}
+
+	public void setIsDraft(int isDraft) {
+		this.isDraft = isDraft;
+	}
 
 	public Integer getId() {
-		return this.id;
+		return id;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public Integer getWorksId() {
-		return this.worksId;
+	public Integer getGoodsId() {
+		return goodsId;
 	}
 
-	public void setWorksId(Integer worksId) {
-		this.worksId = worksId;
+	public void setGoodsId(Integer goodsId) {
+		this.goodsId = goodsId;
 	}
 
-	public String getCertifiedBy() {
-		return this.certifiedBy;
+	public String getZpxxImge() {
+		return zpxxImge;
 	}
 
-	public void setCertifiedBy(String certifiedBy) {
-		this.certifiedBy = certifiedBy;
+	public void setZpxxImge(String zpxxImge) {
+		this.zpxxImge = zpxxImge;
 	}
 
-	public String getDescription() {
-		return this.description;
+	public String getJzrzImge() {
+		return jzrzImge;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setJzrzImge(String jzrzImge) {
+		this.jzrzImge = jzrzImge;
 	}
 
-	public String getPicture() {
-		return this.picture;
+	public Date getJzyxsj() {
+		return jzyxsj;
 	}
 
-	public void setPicture(String picture) {
-		this.picture = picture;
+	public void setJzyxsj(Date jzyxsj) {
+		this.jzyxsj = jzyxsj;
+	}
+
+	public String getCreateBy() {
+		return createBy;
+	}
+
+	public void setCreateBy(String createBy) {
+		this.createBy = createBy;
 	}
 
 	public Date getCreateDate() {
-		return this.createDate;
+		return createDate;
 	}
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
 
+	public String getUpdateBy() {
+		return updateBy;
+	}
+
+	public void setUpdateBy(String updateBy) {
+		this.updateBy = updateBy;
+	}
+
 	public Date getUpdateDate() {
-		return this.updateDate;
+		return updateDate;
 	}
 
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
 	}
 
-	public Integer getCreateBy() {
-		return this.createBy;
-	}
-
-	public void setCreateBy(Integer createBy) {
-		this.createBy = createBy;
-	}
-
-	public Integer getUpdateBy() {
-		return this.updateBy;
-	}
-
-	public void setUpdateBy(Integer updateBy) {
-		this.updateBy = updateBy;
-	}
-
 	public Integer getDelFlag() {
-		return this.delFlag;
+		return delFlag;
 	}
 
 	public void setDelFlag(Integer delFlag) {
 		this.delFlag = delFlag;
 	}
-
 }

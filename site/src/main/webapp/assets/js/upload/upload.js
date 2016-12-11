@@ -128,4 +128,36 @@ function initUploaders(buttonId, bucket, domain) {
     uploader.init();
 }
 
+function initUploaders_inner(buttonId, bucket, domain,container,inputName) {
+    var uploader = new plupload.Uploader({
+        runtimes: 'html5,flash,silverlight,html4',
+        browse_button: buttonId,
+        flash_swf_url: domain + 'assets/js/plugins/plupload-2.1.2/js/Moxie.swf',
+        silverlight_xap_url: domain + 'assets/js/plugins/plupload-2.1.2/js/Moxie.xap',
+        url: 'http://oss.aliyuncs.com',
+        filters: {
+            mime_types: [ //只允许上传图片和zip,rar文件
+                {title: "Image files", extensions: "jpg,gif,png,bmp,jpeg"},
+                {title: "Zip files", extensions: "zip,rar"}
+            ],
+            max_file_size: '10mb', //最大只能上传10mb的文件
+            prevent_duplicates: true //不允许选取重复文件
+        },
+        init: {
+            FilesAdded: function (up) {
+                set_upload_param(up, '', false, domain);
+            },
+            BeforeUpload: function (up, file) {
+                set_upload_param(up, file.name, true, domain);
+            },
+            FileUploaded: function () {
+                $("#" + container).html('<div id="imgContainer"><input name="'+inputName+'" type="hidden" value="'+ g_object_name +'" >' +
+                    '<span onclick="javascript:this.parentNode.remove();" class="glyphicon glyphicon-remove" style="background: rgba(0,0,0,.5);color:white;position:absolute;top:6px;right:371px;z-index: 999;"></span>' +
+                    '<img src="http://' + bucket + '.img-cn-shanghai.aliyuncs.com/' + g_object_name + '?x-oss-process=image/resize,m_fill,h_200,w_200" style="max-height: 200px;margin-right:5px;" onclick="" class="min-img">'+'</div>');
+            }
+        }
+    });
+    uploader.init();
+}
+
 

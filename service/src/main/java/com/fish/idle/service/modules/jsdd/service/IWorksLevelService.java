@@ -10,5 +10,7 @@ import com.baomidou.framework.service.ISuperService;
  */
 public interface IWorksLevelService extends ISuperService<WorksLevel> {
 
+    WorksLevel getWorksLevelByGoodsId(Integer id);
+
 
 }

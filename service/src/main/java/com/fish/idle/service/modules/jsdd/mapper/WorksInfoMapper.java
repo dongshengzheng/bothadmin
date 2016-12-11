@@ -11,5 +11,7 @@ import com.fish.idle.service.modules.jsdd.entity.WorksInfo;
  */
 public interface WorksInfoMapper extends AutoMapper<WorksInfo> {
 
+    WorksInfo getWorksInfoByGoodsId(Integer id);
+
 
 }

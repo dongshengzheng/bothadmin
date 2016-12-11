@@ -45,7 +45,7 @@ public class Consumer implements Serializable {
 
 	/** 逻辑删除标记（0：显示；1：隐藏） */
 	@TableField(value = "del_flag")
-	private String delFlag;
+	private Integer delFlag;
 
 	/** 用户类型 */
 	private String type;
@@ -74,6 +74,49 @@ public class Consumer implements Serializable {
 	/** 是否公开 */
 	private String pub;
 
+	@TableField(value = "goods_id")
+	private Integer goodsId;
+
+	@TableField(value = "is_draft")
+	private Integer isDraft;
+
+	/**
+	 * 身份证号码
+	 */
+	@TableField(value = "collect_card_no")
+	private Integer collectCardNo;
+
+	public Integer getDelFlag() {
+		return delFlag;
+	}
+
+	public void setDelFlag(Integer delFlag) {
+		this.delFlag = delFlag;
+	}
+
+	public Integer getCollectCardNo() {
+		return collectCardNo;
+	}
+
+	public void setCollectCardNo(Integer collectCardNo) {
+		this.collectCardNo = collectCardNo;
+	}
+
+	public Integer getIsDraft() {
+		return isDraft;
+	}
+
+	public void setIsDraft(Integer isDraft) {
+		this.isDraft = isDraft;
+	}
+
+	public Integer getGoodsId() {
+		return goodsId;
+	}
+
+	public void setGoodsId(Integer goodsId) {
+		this.goodsId = goodsId;
+	}
 
 	public String getId() {
 		return this.id;
@@ -123,13 +166,7 @@ public class Consumer implements Serializable {
 		this.remarks = remarks;
 	}
 
-	public String getDelFlag() {
-		return this.delFlag;
-	}
 
-	public void setDelFlag(String delFlag) {
-		this.delFlag = delFlag;
-	}
 
 	public String getType() {
 		return this.type;

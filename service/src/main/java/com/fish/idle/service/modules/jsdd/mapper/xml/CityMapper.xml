@@ -10,7 +10,7 @@
 	</resultMap>
 
 	<select id="getCityByProvinceId" resultMap="BaseResultMap" parameterType="java.lang.String">
-		select * from hat_city where father = #{id,jdbcType=VARCHAR}
+		select * from sys_city where father = #{id,jdbcType=VARCHAR}
 	</select>
 
 </mapper>

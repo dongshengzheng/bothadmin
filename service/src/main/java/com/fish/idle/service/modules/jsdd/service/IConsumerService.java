@@ -10,5 +10,7 @@ import com.baomidou.framework.service.ISuperService;
  */
 public interface IConsumerService extends ISuperService<Consumer> {
 
+    Consumer getConsumerByGoodsId(Integer id);
+
 
 }

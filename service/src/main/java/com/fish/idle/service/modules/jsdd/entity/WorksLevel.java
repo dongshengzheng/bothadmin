@@ -45,11 +45,14 @@ public class WorksLevel implements Serializable {
 
 	/** 逻辑删除标记（0：显示；1：隐藏） */
 	@TableField(value = "del_flag")
-	private String delFlag;
+	private int delFlag = 0;
+
+	/** 是否是草稿 */
+	private int isDraft = 0; //1 是  0 否
 
 	/** 作品Id */
-	@TableField(value = "works_id")
-	private String worksId;
+	@TableField(value = "goods_id")
+	private Integer goodsId;
 
 	/** 质地 */
 	private String zhidi;
@@ -82,13 +85,13 @@ public class WorksLevel implements Serializable {
 	private String dise;
 
 	/** 绺 */
-	private String liu;
+	private String liu;//活筋
 
 	/** 裂 */
 	private String lie;
 
-	/** 原石含血量 */
-	private String inithanxueliang;
+	/** 含血量原石 */
+	private String inithanxueliang;//印章
 
 	/** 印章含血面 */
 	private String hanxuemian;
@@ -99,6 +102,21 @@ public class WorksLevel implements Serializable {
 	/**  */
 	private String hanxuefangshi;
 
+	public int getIsDraft() {
+		return isDraft;
+	}
+
+	public void setIsDraft(int isDraft) {
+		this.isDraft = isDraft;
+	}
+
+	public int getDelFlag() {
+		return delFlag;
+	}
+
+	public void setDelFlag(int delFlag) {
+		this.delFlag = delFlag;
+	}
 
 	public String getId() {
 		return this.id;
@@ -148,20 +166,12 @@ public class WorksLevel implements Serializable {
 		this.remarks = remarks;
 	}
 
-	public String getDelFlag() {
-		return this.delFlag;
+	public Integer getGoodsId() {
+		return goodsId;
 	}
 
-	public void setDelFlag(String delFlag) {
-		this.delFlag = delFlag;
-	}
-
-	public String getWorksId() {
-		return this.worksId;
-	}
-
-	public void setWorksId(String worksId) {
-		this.worksId = worksId;
+	public void setGoodsId(Integer goodsId) {
+		this.goodsId = goodsId;
 	}
 
 	public String getZhidi() {

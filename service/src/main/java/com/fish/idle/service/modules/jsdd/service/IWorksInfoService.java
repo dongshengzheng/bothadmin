@@ -11,5 +11,6 @@ import com.fish.idle.service.modules.jsdd.entity.WorksInfo;
  */
 public interface IWorksInfoService extends ISuperService<WorksInfo> {
 
+    WorksInfo getWorksInfoByGoodsId(Integer id);
 
 }
