@@ -2,7 +2,8 @@ package com.fish.idle.site.web;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.fish.idle.service.modules.jsdd.entity.Works;
+import com.fish.idle.service.modules.jsdd.entity.GoodsInfo;
+import com.fish.idle.service.modules.jsdd.service.IGoodsInfoService;
 import com.fish.idle.service.modules.jsdd.service.IWorksService;
 import com.fish.idle.site.entity.Paging;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +22,17 @@ public class DashboardController extends BaseController{
     @Autowired
     private IWorksService worksService;
 
+    @Autowired
+    private IGoodsInfoService goodsInfoService;
+
 
     @RequestMapping(value = { "", "index" })
     public String index(ModelMap map){
 
         //首页轮播图
         //首页全部作品(pageSize=6)
-        EntityWrapper<Works> ew = getEntityWrapper();
-        Page<Works> page = worksService.selectPage(this.<Works>getPage(),ew);
+        EntityWrapper<GoodsInfo> ew = getEntityWrapper();
+        Page<GoodsInfo> page = goodsInfoService.selectPage(this.<GoodsInfo>getPage(),ew);
         Paging paging = new Paging();
         paging.setData(page.getRecords());
         paging.setTotals(page.getTotal());

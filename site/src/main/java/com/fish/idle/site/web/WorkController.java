@@ -82,7 +82,6 @@ public class WorkController extends BaseController {
             return "works/work_detail";
         }
         return "index";
-
     }
 
 

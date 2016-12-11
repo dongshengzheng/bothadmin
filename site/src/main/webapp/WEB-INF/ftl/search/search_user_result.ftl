@@ -11,12 +11,13 @@
         <!--</div>-->
         <div class="row">
             <div class="col-md-9 col-md-offset-1 text-left"
-                 style="background: rgb(237,238,239);margin-top: 20px;margin-bottom: 20px;padding-top: 5px;padding-bottom: 5px">
+                 style="background: rgb(237,238,239);margin-top: 20px;padding-top: 10px;padding-bottom: 10px;border:1px solid #E9EAEB">
                 搜索用户结果
             </div>
-            <div class="col-md-9 col-md-offset-1">
-
-                <div class="media">
+            <div class="col-md-9 col-md-offset-1" style="border-right: 1px solid #E9EAEB;
+                    border-left: 1px solid #E9EAEB;
+                    border-bottom: 1px solid #E9EAEB">
+                <div class="media" style="margin-top: 40px">
                     <div class="pull-left">
                         <div style="height: 80px;width: 80px;border-radius: 50px;overflow:hidden">
                             <img class="" src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
