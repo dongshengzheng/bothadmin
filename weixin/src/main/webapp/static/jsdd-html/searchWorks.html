@@ -13,6 +13,28 @@
     <script src="js/jquery-weui.js"></script>
 
     <style>
+        .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {
+            color: #9F504D;
+        }
+
+        .weui-navbar {
+            width: 96%;
+            margin: 1%;
+            border: 1px solid #2698DE;
+            border-radius: 5px;
+        }
+
+        .weui-navbar__item.weui-bar__item_on {
+            background-color: #2698DE;
+            color: white;
+        }
+
+        .weui-navbar__item {
+            border: 1px solid #2698DE;
+            background-color: white;
+            color: #2698DE;
+        }
+
         #sort {
             height: 30px;
             line-height: 30px;
@@ -45,30 +67,47 @@
     </style>
 </head>
 <body>
-<div class="weui-search-bar class=" div-outer
-"" id="searchBar">
-<form class="weui-search-bar__form">
-    <div class="weui-search-bar__box">
-        <i class="weui-icon-search"></i>
-        <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required/>
-        <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
-    </div>
-    <label class="weui-search-bar__label" id="searchText">
-        <i class="weui-icon-search"></i>
-        <span>搜索</span>
-    </label>
-</form>
-<a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+<div class="weui-search-bar div-outer" id="searchBar">
+    <form class="weui-search-bar__form">
+        <div class="weui-search-bar__box">
+            <i class="weui-icon-search"></i>
+            <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required/>
+            <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+        </div>
+        <label class="weui-search-bar__label" id="searchText">
+            <i class="weui-icon-search"></i>
+            <span>搜索</span>
+        </label>
+    </form>
+    <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
 </div>
 
-<div id="sort" class="div-outer">
-    <span id="default" class="sort-li-selected">默认排序</span>
-    <span id="new" class="sort-li">最新上架</span>
-    <span id="distance" class="sort-li">离我最近</span>
-    <div id="sort-btn-outer">
-        <img src="img/cut/搜索作品_筛选2.png" id="sort-btn"/>
+<div class="weui-tab">
+    <div class="weui-navbar">
+        <div class="weui-navbar__item weui-bar__item_on" id="check-title-success">
+            默认排序
+        </div>
+        <div class="weui-navbar__item" id="check-title-now">
+            最新上架
+        </div>
+        <div class="weui-navbar__item" id="check-title-failure">
+            离我最近
+        </div>
     </div>
 </div>
+<div class="fixed-footer-blank">
+
+</div>
+
+
+<!--<div id="sort" class="div-outer">-->
+<!--<span id="default" class="sort-li-selected">默认排序</span>-->
+<!--<span id="new" class="sort-li">最新上架</span>-->
+<!--<span id="distance" class="sort-li">离我最近</span>-->
+<!--<div id="sort-btn-outer">-->
+<!--<img src="img/cut/搜索作品_筛选2.png" id="sort-btn"/>-->
+<!--</div>-->
+<!--</div>-->
 
 <div class="all div-outer">
     <div class="works-all-outer">
@@ -193,6 +232,17 @@
         $searchCancel.on('click', function () {
             cancelSearch();
             $searchInput.blur();
+        });
+
+
+        $(function () {
+            $('.weui-tabbar__item').on('click', function () {
+                $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
+            });
+
+            $('.weui-navbar__item').on('click', function () {
+                $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
+            });
         });
     });
 

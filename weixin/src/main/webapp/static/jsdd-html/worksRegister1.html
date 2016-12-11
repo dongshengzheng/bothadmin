@@ -132,7 +132,7 @@
             </div>
         </div>
         <div class="fixed-footer">
-            <p>下一步即表示同意<a href="#">《金石典当登记申请记录》</a></p>
+            <p>下一步即表示同意<a href="javascript:;" id="register-rule">《金石典当登记申请记录》</a></p>
             <hr>
             <div class="weui-form-preview__ft">
                 <a class="weui-form-preview__btn weui-form-preview__btn_default" href="javascript:">存为草稿</a>
@@ -142,10 +142,21 @@
             </div>
         </div>
         <div class="fixed-footer-blank">
-
         </div>
     </form>
 </div>
+
+<div class="js_dialog" style="display: none;">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog">
+        <div class="weui-dialog__hd"><strong class="weui-dialog__title">登记申请须知</strong></div>
+        <div class="weui-dialog__bd">登记申请须知.....</div>
+        <div class="weui-dialog__ft">
+            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">我知道了</a>
+        </div>
+    </div>
+</div>
+
 <script>
     $(function () {
         var tmpl = '<li class="weui-uploader__file" style="background-image:url(#url#)"></li>',
@@ -176,18 +187,14 @@
             $gallery.fadeOut(100);
         });
 
-//        $('#showDatePicker').on('click', function () {
-//            weui.datePicker({
-//                start: 1990,
-//                end: new Date().getFullYear(),
-//                onChange: function (result) {
-//                    console.log(result);
-//                },
-//                onConfirm: function (result) {
-//                    console.log(result);
-//                }
-//            });
-//        });
+        $('#register-rule').on('click', function () {
+            $(".js_dialog").fadeIn(200);
+        })
+        $('.weui-dialog__btn_primary').on('click', function () {
+            $(".js_dialog").fadeOut(200);
+        })
+
+        $("#showDatePicker").datetimePicker();
 
     });
 

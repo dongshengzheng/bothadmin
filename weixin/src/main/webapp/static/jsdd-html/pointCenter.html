@@ -55,8 +55,8 @@
         #point-rule {
             padding-top: 5px;
             padding-bottom: 5px;
-            padding-left: 35px;
-            width: 75px;
+            padding-left: 25px;
+            width: 100px;
             border: none;
             background-image: url(img/cut/积分中心_积分规则.png);
             position: absolute;
@@ -125,9 +125,9 @@
         <h3>积分</h3>
         <h2>178</h2>
     </div>
-    <input id="point-rule" class="point-btn" value="积分规则"/>
-    <input id="point-save" class="point-btn" value="积分充值"/>
-    <input id="point-withdraw" class="point-btn" value="积分提现"/>
+    <input type="button" id="point-rule" class="point-btn" value="积分规则"/>
+    <a id="point-save" class="point-btn" href="pointSave.html">积分充值</a>
+    <a id="point-withdraw" class="point-btn" href="pointWithdraw.html">积分提现</a>
 </div>
 
 <div class="hr-text">
@@ -275,6 +275,19 @@
     </div>
 </div>
 
+
+<div class="js_dialog" style="display: none;">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog">
+        <div class="weui-dialog__hd"><strong class="weui-dialog__title">积分规则</strong></div>
+        <div class="weui-dialog__bd">积分规则.....</div>
+        <div class="weui-dialog__ft">
+            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">确定</a>
+        </div>
+    </div>
+</div>
+
+
 <script>
     $(function () {
         $('.weui-navbar__item').on('click', function () {
@@ -292,6 +305,16 @@
         $('#tab-other').on('click', function () {
             $('#div-hide-other').addClass('div-on').siblings('.div-hide').removeClass('div-on');
         });
+
+
+        $('#point-rule').on('click', function () {
+            $(".js_dialog").fadeIn(200);
+        })
+        $('.weui-dialog__btn_primary').on('click', function () {
+            $(".js_dialog").fadeOut(200);
+        })
+
+
     });
 
 

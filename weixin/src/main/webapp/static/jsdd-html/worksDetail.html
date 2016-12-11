@@ -289,6 +289,18 @@
         .weui-grid {
             padding: 3px 3px;
         }
+
+        .weui-grids:before, .weui-grids:after, .weui-grid:after, .weui-grid:before {
+            border: none;
+        }
+
+        .explains-one-text:after {
+            content: '全文';
+            color: blue;
+
+        }
+
+
     </style>
 
 </head>
@@ -638,7 +650,14 @@
     </div>
 
 </div>
+<script>
+    $(function () {
+        $('.explains-one-text').on('click', function () {
+            location.href = "#";
+        })
+    })
 
+</script>
 
 </body>
 </html>

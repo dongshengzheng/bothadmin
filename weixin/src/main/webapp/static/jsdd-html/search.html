@@ -17,8 +17,8 @@
 <script src="js/jquery-2.1.4.js"></script>
 
 <style>
-    .history-serach span {
-        display: inline-block;
+    #first-text {
+        padding-left: 5%;
     }
 
     #searchwhich {
@@ -27,13 +27,17 @@
 
     #history-serach-delete {
         width: 5%;
-        margin-left: 90%;
+        margin-left: 65%;
     }
 
     .history-serach-value {
         margin-left: 5%;
         border: none;
         font-size: 15px;
+        display: inline-block;
+        background-color: white;
+        padding-left: 5px;
+        padding-right: 5px;
     }
 
     .history-search-value-work {
@@ -53,7 +57,7 @@
 
 
 <body>
-<div class="weui-search-bar" id="searchBar">
+<div class="weui-search-bar div-outer" id="searchBar">
     <select id="searchwhich">
         <option value="searchworks">作品</option>
         <option value="searchperson">用户</option>
@@ -96,6 +100,7 @@
 
 
 <div class="history-serach">
+    <span id="first-text">历史搜索</span>
     <img src="img/cut/搜索_删除.png" id="history-serach-delete"/>
     <span class="history-serach-value history-search-value-work">田黄鸡血石</span>
     <span class="history-serach-value history-search-value-person">测试用户ABCDEFG</span>
