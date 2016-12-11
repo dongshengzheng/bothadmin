@@ -68,9 +68,17 @@ public class WorkController extends BaseController {
 
             //作品信息图片列表
             map.put("goodsInfoImages",goodsInfoImages);
+            //评估报告图片
+            map.put("pgbgImg",imgOssPath + valueReport.getJzrzImge());
             //todo 转让历史列表
 
             //todo 诠释列表
+
+
+            //todo 收藏者列表
+
+            //todo 最近浏览的人
+
             return "works/work_detail";
         }
         return "index";

@@ -18,30 +18,21 @@
                 <div class="col-md-6" style="margin-left: -15px">
                     <div class="zoom-box"><!-- 容器-->
                         <div class="small-box"><!-- 小图片容器-->
-                            <img src="${staticPath}/assets/img/team/img3-md.jpg" alt=""/>
+                            <img src="${goodsInfoImages[0]}" alt=""/>
                         </div>
                         <div class="img-list"><!-- 图片列表-->
                             <ul>
-                                <li><img class="active" src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""
-                                         data-big="${staticPath}/assets/img/team/img3-md.jpg"/></li>
-
-                                <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""
-                                         data-big="${staticPath}/assets/img/team/img4-md.jpg"/></li>
-
-                                <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""
-                                         data-big="${staticPath}/assets/img/team/img3-md.jpg"/></li>
-
-                                <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""
-                                         data-big="${staticPath}/assets/img/team/img4-md.jpg"/></li>
-                                <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""
-                                         data-big="${staticPath}/assets/img/team/img4-md.jpg"/></li>
+                                <#list goodsInfoImages as imgs>
+                                    <li><img class="active" src="${imgs}" alt=""
+                                             data-big="${imgs}"/></li>
+                                </#list>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6" style="margin-left: -10px">
-                    <h4>相石缘 罕见满天红 天然广西桂林鸡血石貔貅迪吊坠</h4>
-                    <p>天然广西桂林鸡血石貔貅迪吊坠天然广西桂林鸡血石貔貅迪吊坠天然广西桂林鸡血石貔貅迪吊坠天然广西桂林鸡血石貔貅迪吊坠!</p>
+                    <h4>${goodsInfo.name}</h4>
+                    <p>${goodsInfo.description}</p>
                     <div style="background: rgb(244,244,244);width: 100%">
                         <div class="row">
                             <div class="col-md-4 col-md-offset-1" style="margin-top: 15px">
@@ -65,7 +56,7 @@
                                 尺寸
                             </div>
                             <div class="col-md-6" style="margin-top: 10px">
-                                19*23*38
+                                ${worksInfo.length}*${worksInfo.width}*${worksInfo.height}
                             </div>
                         </div>
 
@@ -74,19 +65,9 @@
                                 品种
                             </div>
                             <div class="col-md-6" style="margin-top: 10px">
-                                广西桂林石
+                                ${worksInfo.type}
                             </div>
                         </div>
-
-                        <div class="row">
-                            <div class="col-md-4 col-md-offset-1" style="margin-top: 10px">
-                                品种
-                            </div>
-                            <div class="col-md-6" style="margin-top: 10px">
-                                广西桂林石
-                            </div>
-                        </div>
-
                         <div class="row">
                             <div class="col-md-4 col-md-offset-1" style="margin-top: 10px">
                                 浏览次数
@@ -98,10 +79,10 @@
 
                         <div class="row">
                             <div class="col-md-4 col-md-offset-1" style="margin-top: 10px">
-                                等级时间
+                                登记时间
                             </div>
                             <div class="col-md-6" style="margin-top: 10px;margin-bottom: 10px">
-                                2015-2-18 19:22:00
+                                ${goodsInfo.registerTime}
                             </div>
                         </div>
                     </div>
@@ -116,7 +97,7 @@
                                 <div class="media-body">
                                     <p style="margin-top: 25px">说就看电视
                                         <span style="float:  right;">
-                                                <button class="btn btn-default btn-sm" style="margin-right: 6px">
+                                                <button id="addFocus" class="btn btn-default btn-sm" style="margin-right: 6px">
                                                     <i class="glyphicon glyphicon-plus"
                                                        style="margin-right: 3px"></i>
                                                     关注
@@ -129,7 +110,7 @@
                     </div>
 
                     <div class="margin-top-20 text-center">
-                        <button class="btn btn-lg btn-u btn-u-red">
+                        <button id="addCollect" class="btn btn-lg btn-u btn-u-red">
                             <i class="glyphicon glyphicon-star-empty"></i>添加收藏
                         </button>
                     </div>
@@ -160,12 +141,12 @@
                                     <table class="table table-bordered">
                                         <tbody>
                                         <tr>
-                                            <td>姓名：张三</td>
-                                            <td>联系方式：15606137056</td>
-                                            <td>地址：江苏无锡达到科教产业园2号楼106室</td>
+                                            <td>姓名：${goodsInfo.provideBy}</td>
+                                            <td>联系方式：${goodsInfo.contact}</td>
+                                            <td>地址：${goodsInfo.address}</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3">身份证：3216161111111155647</td>
+                                            <td colspan="3">身份证：${goodsInfo.cardNo}</td>
                                         </tr>
 
                                         </tbody>
@@ -178,19 +159,19 @@
                                     <table class="table table-bordered">
                                         <tbody>
                                         <tr>
-                                            <td>品种：广西鸡血石</td>
-                                            <td>作品类型：印章</td>
-                                            <td>尺寸：17cm*23cm*36cm</td>
+                                            <td>品种：${worksInfo.breed}</td>
+                                            <td>作品类型：${worksInfo.type}</td>
+                                            <td>尺寸：${worksInfo.length}cm*${worksInfo.width}cm*${worksInfo.height}cm</td>
                                         </tr>
                                         <tr>
-                                            <td>重量：106g</td>
-                                            <td>工艺制作：一级</td>
-                                            <td>篆刻级别：三级</td>
+                                            <td>重量：${worksInfo.weight}g</td>
+                                            <td>工艺制作：${worksInfo.productionProcess}</td>
+                                            <td>篆刻级别：${worksInfo.sealCuttingLevel}</td>
                                         </tr>
                                         <tr>
-                                            <td>矿区地域：核桃岭</td>
-                                            <td>制作人：赵四</td>
-                                            <td>制作时间：2016-5-26 13:56:23</td>
+                                            <td>矿区地域：${worksInfo.mineArea}</td>
+                                            <td>制作人：${worksInfo.producer}</td>
+                                            <td>制作时间：${worksInfo.produceTime}</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -202,61 +183,61 @@
                                     <table class="table table-bordered">
                                         <tbody>
                                         <tr>
-                                            <td>质地一：冻</td>
-                                            <td>质地二：软地</td>
-                                            <td>感官：透、细腻、温润</td>
+                                            <td>质地一：${worksLevel.zhidi}</td>
+                                            <td>质地二：${worksLevel.zhidi2}</td>
+                                            <td>感官：${worksLevel.ganguan}</td>
                                         </tr>
                                         <tr>
-                                            <td>磨氏度：2-2.5</td>
-                                            <td>血量：>50%</td>
-                                            <td>血色：鲜红</td>
+                                            <td>磨氏度：${worksLevel.moshidu}</td>
+                                            <td>血量：${worksLevel.xueliang}</td>
+                                            <td>血色：${worksLevel.xuese}</td>
                                         </tr>
                                         <tr>
-                                            <td>血形：团块状</td>
-                                            <td>浓艳度：浓艳</td>
-                                            <td>纯净度：略净</td>
+                                            <td>血形：${worksLevel.xuexing}</td>
+                                            <td>浓艳度：${worksLevel.nongyandu}</td>
+                                            <td>纯净度：${worksLevel.jingdu}</td>
                                         </tr>
                                         <tr>
-                                            <td>地色：黄</td>
-                                            <td>活筋：复位粘结</td>
-                                            <td>裂：裂缝（裂缝注胶）</td>
+                                            <td>地色：${worksLevel.dise}</td>
+                                            <td>活筋：${worksLevel.liu}</td>
+                                            <td>裂：${worksLevel.lie}</td>
                                         </tr>
                                         <tr>
-                                            <td>印章：5面</td>
-                                            <td colspan="2">含血方式：表面及内在含血</td>
+                                            <td>印章：${worksLevel.inithanxueliang}</td>
+                                            <td colspan="2">含血方式：TODO</td>
                                         </tr>
                                         </tbody>
                                     </table>
                                     <!--End Table Bordered-->
                                     <!--作品等级-->
-                                    <div class="headline"><h2>作品等级</h2></div>
+                                    <div class="headline"><h2>评估报告</h2></div>
 
-                                    <p>评估过程：清洗珠宝首饰，啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-                                        啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-                                        啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-                                        啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-                                        啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-                                        啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-                                        啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-                                        啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-                                        啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
+                                    <p>评估过程：TODO
                                     </p>
                                     <!--收藏者信息-->
                                     <div>
-                                        <img src="${staticPath}/assets/img/team/img3-md.jpg" alt="评估证书">
+                                        <img style="width: 300px;height: 300px" src="${pgbgImg}" alt="评估证书">
                                     </div>
                                     <div class="headline"><h2>收藏者信息</h2></div>
                                     <!--Table Bordered-->
                                     <table class="table table-bordered">
                                         <tbody>
                                         <tr>
-                                            <td>姓名：张三</td>
-                                            <td>联系方式：15606137056</td>
-                                            <td>地址：江苏无锡达到科教产业园2号楼106室</td>
+                                            <td>姓名：${consumer.name}</td>
+                                            <td>联系方式：${consumer.phone}</td>
+                                            <td>地址：${consumer.address}</td>
                                         </tr>
                                         <tr>
-                                            <td>身份证：3216161111111155647</td>
-                                            <td colspan="2">收藏时间：2016-1-26 15:50:56</td>
+                                            <td>身份证：
+                                                <#if (consumer.collectCardNo)??>
+                                                ${consumer.collectCardNo}
+                                                </#if>
+                                            </td>
+                                            <td colspan="2">收藏时间：
+                                                <#if (consumer.datetime)??>
+                                                    ${consumer.datetime}
+                                                </#if>
+                                            </td>
                                         </tr>
 
                                         </tbody>
@@ -654,6 +635,16 @@
         function $all(name) {
             return document.querySelectorAll(name);
         }
+    });
+
+    //关注
+    $("#addFocus").bind("click",function () {
+        alert("关注成功");
+    });
+
+    //关注
+    $("#addCollect").bind("click",function () {
+        alert("收藏成功");
     });
 </script>
 
