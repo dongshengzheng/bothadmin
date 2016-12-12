@@ -7,6 +7,7 @@ import com.fish.idle.service.modules.jsdd.mapper.GoodsInfoMapper;
 import com.fish.idle.service.modules.jsdd.mapper.WorksInfoMapper;
 import com.fish.idle.service.modules.jsdd.service.IGoodsInfoService;
 import com.fish.idle.service.modules.jsdd.service.IWorksInfoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,5 +18,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class WorksInfoServiceImpl extends SuperServiceImpl<WorksInfoMapper, WorksInfo> implements IWorksInfoService {
 
+    @Autowired
+    private WorksInfoMapper worksInfoMapper;
 
+    @Override
+    public WorksInfo getWorksInfoByGoodsId(Integer id) {
+        return worksInfoMapper.getWorksInfoByGoodsId(id);
+    }
 }

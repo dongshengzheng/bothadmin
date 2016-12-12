@@ -7,4 +7,6 @@
 		id, works_id AS worksId, user_id AS userId, `type`, parent_id AS parentId, follow_count AS followCount, create_date AS createDate, update_date AS updateDate, create_by AS createBy, update_by AS updateBy, del_flag AS delFlag
 	</sql>
 
+
+
 </mapper>

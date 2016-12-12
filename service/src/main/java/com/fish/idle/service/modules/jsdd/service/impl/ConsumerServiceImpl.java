@@ -1,5 +1,6 @@
 package com.fish.idle.service.modules.jsdd.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fish.idle.service.modules.jsdd.mapper.ConsumerMapper;
@@ -15,5 +16,11 @@ import com.baomidou.framework.service.impl.SuperServiceImpl;
 @Service
 public class ConsumerServiceImpl extends SuperServiceImpl<ConsumerMapper, Consumer> implements IConsumerService {
 
+    @Autowired
+    private ConsumerMapper consumerMapper;
 
+    @Override
+    public Consumer getConsumerByGoodsId(Integer id) {
+        return consumerMapper.getConsumerByGoodsId(id);
+    }
 }

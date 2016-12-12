@@ -10,5 +10,7 @@ import com.baomidou.framework.service.ISuperService;
  */
 public interface IValueReportService extends ISuperService<ValueReport> {
 
+    ValueReport getValueReportByGoodsId(Integer id);
+
 
 }

@@ -10,5 +10,7 @@ import com.baomidou.mybatisplus.mapper.AutoMapper;
  */
 public interface ValueReportMapper extends AutoMapper<ValueReport> {
 
+    ValueReport getValueReportByGoodsId(Integer id);
+
 
 }

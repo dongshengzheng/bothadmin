@@ -7,4 +7,9 @@
 		id, create_by AS createBy, create_date AS createDate, update_by AS updateBy, update_date AS updateDate, remarks, del_flag AS delFlag, works_id AS worksId, zhidi, zhidi2, ganguan, moshidu, xueliang, xuese, xuexing, nongyandu, jingdu, dise, liu, lie, inithanxueliang, hanxuemian, hanxueliang, hanxuefangshi
 	</sql>
 
+	
+	<select id="getWorksLevelByGoodsId" parameterType="java.lang.Integer" resultType="WorksLevel">
+		select * from dd_works_level WHERE goods_id = #{id};
+	</select>
+
 </mapper>

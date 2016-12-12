@@ -10,5 +10,7 @@ import com.baomidou.mybatisplus.mapper.AutoMapper;
  */
 public interface ConsumerMapper extends AutoMapper<Consumer> {
 
+    Consumer getConsumerByGoodsId(Integer id);
+
 
 }

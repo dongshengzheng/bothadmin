@@ -18,6 +18,9 @@
         <typeAlias type="com.fish.idle.service.modules.jsdd.entity.Area" alias="Area"/>
         <typeAlias type="com.fish.idle.service.modules.jsdd.entity.GoodsInfo" alias="GoodsInfo"/>
         <typeAlias type="com.fish.idle.service.modules.jsdd.entity.WorksInfo" alias="WorksInfo"/>
+        <typeAlias type="com.fish.idle.service.modules.jsdd.entity.WorksLevel" alias="WorksLevel"/>
+        <typeAlias type="com.fish.idle.service.modules.jsdd.entity.Consumer" alias="Consumer"/>
+        <typeAlias type="com.fish.idle.service.modules.jsdd.entity.ValueReport" alias="ValueReport"/>
     </typeAliases>
     <!-- 映射map -->
     <mappers>

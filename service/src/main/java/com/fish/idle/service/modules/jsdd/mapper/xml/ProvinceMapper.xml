@@ -9,7 +9,7 @@
 	</resultMap>
 
 	<select id="getAllProvince" resultMap="BaseResultMap">
-		select * from hat_province
+		select * from sys_province
 	</select>
 
 </mapper>
