@@ -58,7 +58,9 @@
     </changeSet>
     <changeSet author="SunHan" id="15862614903-008">
         <sql>
-            ALTER TABLE `yyst`.`sys_dict` CHANGE COLUMN `id` `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '编号';
+            ALTER TABLE `sys_dict` DROP COLUMN `id`,drop PRIMARY KEY;
+
+            ALTER TABLE `sys_dict` ADD COLUMN `id` int(11) NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (`id`);
         </sql>
     </changeSet>
     <changeSet author="SunHan" id="15862614903-009">
