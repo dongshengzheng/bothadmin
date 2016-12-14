@@ -44,32 +44,32 @@ public class WorkController extends BaseController {
 
 
     @RequestMapping(value = "detail/{goodsId}", method = RequestMethod.GET)
-    public String detail(@PathVariable Integer goodsId,ModelMap map) {
-        if(StringUtils.isNotEmpty(goodsId.toString())){
+    public String detail(@PathVariable Integer goodsId, ModelMap map) {
+        if (StringUtils.isNotEmpty(goodsId.toString())) {
 
-            GoodsInfo goodsInfo  = goodsInfoService.selectById(goodsId);
+            GoodsInfo goodsInfo = goodsInfoService.selectById(goodsId);
             String imgStr = goodsInfo.getImgs();
             String[] imgArr = imgStr.split(",");
             List<String> goodsInfoImages = new ArrayList<>();
 
-            for (String s : imgArr){
-                goodsInfoImages.add(imgOssPath+s);
+            for (String s : imgArr) {
+                goodsInfoImages.add(imgOssPath + s);
             }
             WorksInfo worksInfo = worksInfoService.getWorksInfoByGoodsId(goodsId);
             WorksLevel worksLevel = worksLevelService.getWorksLevelByGoodsId(goodsId);
             ValueReport valueReport = valueReportService.getValueReportByGoodsId(goodsId);
             Consumer consumer = consumerService.getConsumerByGoodsId(goodsId);
 
-            map.put("goodsInfo",goodsInfo);
-            map.put("worksInfo",worksInfo);
-            map.put("worksLevel",worksLevel);
-            map.put("valueReport",valueReport);
-            map.put("consumer",consumer);
+            map.put("goodsInfo", goodsInfo);
+            map.put("worksInfo", worksInfo);
+            map.put("worksLevel", worksLevel);
+            map.put("valueReport", valueReport);
+            map.put("consumer", consumer);
 
             //作品信息图片列表
-            map.put("goodsInfoImages",goodsInfoImages);
+            map.put("goodsInfoImages", goodsInfoImages);
             //评估报告图片
-            map.put("pgbgImg",imgOssPath + valueReport.getJzrzImge());
+            map.put("pgbgImg", imgOssPath + valueReport.getJzrzImge());
             //todo 转让历史列表
 
             //todo 诠释列表
@@ -87,7 +87,7 @@ public class WorkController extends BaseController {
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String register(ModelMap map) {
-        map.put("step",1);
+        map.put("step", 1);
         return "works/work_register";
     }
 
@@ -152,7 +152,7 @@ public class WorkController extends BaseController {
 
             if (result) {
                 map.put("goodsName", goodsInfo.getName());
-                map.put("goodsId",goodsInfo.getId());
+                map.put("goodsId", goodsInfo.getId());
                 map.put("step", 3);
             } else {
                 map.put("success", false);
@@ -172,10 +172,10 @@ public class WorkController extends BaseController {
     @RequestMapping(value = "/addWorksLevel/{type}", method = RequestMethod.POST)
     public String addWorksLevel(@ModelAttribute WorksLevel worksLevel, ModelMap map, @PathVariable Integer type) {
         //判断goodsId
-        if (null == worksLevel.getGoodsId()) {
+        if (null == worksLevel.getWorksId()) {
             map.put("step", 1);
         } else {
-            GoodsInfo goodsInfo = goodsInfoService.selectById(worksLevel.getGoodsId());
+            GoodsInfo goodsInfo = goodsInfoService.selectById(worksLevel.getWorksId());
             if (type == 1) {
                 //存为草稿
                 worksLevel.setIsDraft(1);
@@ -190,7 +190,7 @@ public class WorkController extends BaseController {
 
             if (result) {
                 map.put("goodsName", goodsInfo.getName());
-                map.put("goodsId",goodsInfo.getId());
+                map.put("goodsId", goodsInfo.getId());
                 map.put("step", 4);
             } else {
                 map.put("success", false);
@@ -227,11 +227,11 @@ public class WorkController extends BaseController {
             boolean result = valueReportService.insert(valueReport);
             if (result) {
                 map.put("goodsName", goodsInfo.getName());
-                map.put("goodsId",goodsInfo.getId());
+                map.put("goodsId", goodsInfo.getId());
                 map.put("step", 5);
             } else {
                 map.put("goodsName", goodsInfo.getName());
-                map.put("goodsId",goodsInfo.getId());
+                map.put("goodsId", goodsInfo.getId());
                 map.put("success", false);
                 map.put("msg", "添加失败");
                 map.put("step", 4);
@@ -267,11 +267,11 @@ public class WorkController extends BaseController {
             boolean result = consumerService.insert(consumer);
             if (result) {
                 map.put("goodsName", goodsInfo.getName());
-                map.put("goodsId",goodsInfo.getId());
+                map.put("goodsId", goodsInfo.getId());
                 map.put("step", 1);
             } else {
                 map.put("goodsName", goodsInfo.getName());
-                map.put("goodsId",goodsInfo.getId());
+                map.put("goodsId", goodsInfo.getId());
                 map.put("success", false);
                 map.put("msg", "添加失败");
                 map.put("step", 5);
@@ -287,10 +287,7 @@ public class WorkController extends BaseController {
     }
 
 
-
-
-
-    private GoodsInfo getGoodsInfoById(Integer id){
+    private GoodsInfo getGoodsInfoById(Integer id) {
         return goodsInfoService.selectById(id);
     }
 

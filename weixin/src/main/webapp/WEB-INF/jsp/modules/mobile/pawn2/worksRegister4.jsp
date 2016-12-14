@@ -102,7 +102,7 @@
         <span>&nbsp;◇&nbsp;JS-A20161205001A&nbsp;◇&nbsp;</span></center>
     <center><span>田黄鸡血石精品吊坠</span></center>
 </div>
-<form action="worksRegister5.jsp" enctype="multipart/form-data">
+<form action="worksRegister5.jsp" enctype="multipart/form-data" method="post">
     <div class="div-outer">
 
         <p class="report">昌化鸡血石鉴定评估报告</p>

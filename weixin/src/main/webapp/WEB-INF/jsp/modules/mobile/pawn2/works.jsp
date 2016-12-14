@@ -214,6 +214,7 @@
 
     <c:forEach items="${page.records}" var="works">
         <div class="works-all-outer">
+            <input class="worksId" style="display:none" value="${works.id}">
             <div class="works-all">
                 <img class="works-img-all" src="${works.images}"
                      onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
@@ -264,6 +265,7 @@
 
 
 <div id="tmp" class="works-all-outer div-hide">
+    <input class="worksId" style="display:none" value="value">
     <div class="works-all">
         <img class="works-img-all" src="${works.images}"
              onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
@@ -290,17 +292,29 @@
             $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
         });
 
-        $('.works-img,.works-img-all').on('click', function () {
-            location.href = '${ctx}/mobile/worksDetail';
-        })
-
         $('.works-floor-btn-all,.works-floor-btn').on('click', function () {
-            $('#iosDialog2').fadeIn(200);
+            var worksid = $(this).parent().siblings('.worksId').val();
+            $.ajax({
+                type: "POST",
+                url: "${ctx}/mobile/collectWorks",
+                data: {
+                    worksId: worksid
+                },
+                success: function (data) {
+                    $('#iosDialog2 .weui-dialog__bd').html(data);
+                    $('#iosDialog2').fadeIn(200);
+                }
+            })
         })
 
         $('#dialogs').on('click', '.weui-dialog__btn', function () {
             $(this).parents('.js_dialog').fadeOut(200);
         });
+
+        $('.works-img,.works-img-all').on('click', function () {
+            var worksid = $(this).parent().siblings('.worksId').val();
+            location.href = '${ctx}/mobile/worksDetail?id=' + worksid;
+        })
 
 
         <c:if test="${page.current < page.pages}">
@@ -325,6 +339,8 @@
 
                     for (var i = 0; i < data.records.length; i++) {
                         $tmp = $("#tmp").clone();
+                        $tmp.removeAttr('id');
+                        $tmp.find(".worksId").val(data.records[i].id);
                         $tmp.find(".works-floor-name-all").html(data.records[i].name);
                         $tmp.find(".works-floor-img-all").html(data.records[i].type);
                         $tmp.find(".works-floor-date-all").html(data.records[i].createDate);
@@ -342,6 +358,8 @@
             })
         });
         </c:if>
+
+
     });
 
 

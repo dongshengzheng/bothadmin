@@ -22,10 +22,10 @@
         </addColumn>
     </changeSet>
     <changeSet author="SunHan" id="15862614903-003">
-       <sql>
-           ALTER TABLE `sys_role`
-           CHANGE COLUMN `status` `del_flag` INT(3) NOT NULL DEFAULT '1' COMMENT '是否删除' ;
-       </sql>
+        <sql>
+            ALTER TABLE `sys_role`
+            CHANGE COLUMN `status` `del_flag` INT(3) NOT NULL DEFAULT '1' COMMENT '是否删除' ;
+        </sql>
     </changeSet>
 
     <changeSet id="James" author="18964317375-001">
@@ -47,7 +47,8 @@
     </changeSet>
     <changeSet author="SunHan" id="15862614903-006">
         <sql>
-            ALTER TABLE `sys_user` DROP COLUMN `del_flag`, CHANGE COLUMN `status` `del_flag` varchar(32) DEFAULT NULL COMMENT '状态';
+            ALTER TABLE `sys_user` DROP COLUMN `del_flag`, CHANGE COLUMN `status` `del_flag` varchar(32) DEFAULT NULL
+            COMMENT '状态';
         </sql>
     </changeSet>
     <changeSet author="SunHan" id="15862614903-007">
@@ -71,10 +72,14 @@
 
     <changeSet author="SunHan" id="15862614903-010">
         <sql dbms="mysql">
-            ALTER TABLE `sys_user` CHANGE COLUMN `user_id` `id` int(11) NOT NULL AUTO_INCREMENT, DROP PRIMARY KEY, ADD PRIMARY KEY (`id`);
-            ALTER TABLE `sys_button` CHANGE COLUMN `button_id` `id` int(11) NOT NULL AUTO_INCREMENT, DROP PRIMARY KEY, ADD PRIMARY KEY (`id`);
-            ALTER TABLE `sys_menu` CHANGE COLUMN `menu_id` `id` int(11) NOT NULL AUTO_INCREMENT, DROP PRIMARY KEY, ADD PRIMARY KEY (`id`);
-            ALTER TABLE `sys_role` CHANGE COLUMN `role_id` `id` int(11) NOT NULL AUTO_INCREMENT, DROP PRIMARY KEY, ADD PRIMARY KEY (`id`);
+            ALTER TABLE `sys_user` CHANGE COLUMN `user_id` `id` int(11) NOT NULL AUTO_INCREMENT, DROP PRIMARY KEY, ADD
+            PRIMARY KEY (`id`);
+            ALTER TABLE `sys_button` CHANGE COLUMN `button_id` `id` int(11) NOT NULL AUTO_INCREMENT, DROP PRIMARY KEY,
+            ADD PRIMARY KEY (`id`);
+            ALTER TABLE `sys_menu` CHANGE COLUMN `menu_id` `id` int(11) NOT NULL AUTO_INCREMENT, DROP PRIMARY KEY, ADD
+            PRIMARY KEY (`id`);
+            ALTER TABLE `sys_role` CHANGE COLUMN `role_id` `id` int(11) NOT NULL AUTO_INCREMENT, DROP PRIMARY KEY, ADD
+            PRIMARY KEY (`id`);
         </sql>
     </changeSet>
     <changeSet author="SunHan" id="15862614903-011">
@@ -90,6 +95,17 @@
             ALTER TABLE `dd_works` ADD COLUMN `id` int(11) NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (`id`);
             ALTER TABLE `dd_works_level` DROP COLUMN `id`,drop PRIMARY KEY;
             ALTER TABLE `dd_works_level` ADD COLUMN `id` int(11) NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (`id`);
+        </sql>
+    </changeSet>
+    <changeSet author="WangShun" id="15950097942-012">
+        <sql>
+            ALTER TABLE `dd_works_level` ADD COLUMN `is_draft` int(2) NOT NULL DEFAULT 0;
+        </sql>
+    </changeSet>
+    <changeSet author="WangShun" id="15950097942-013">
+        <sql>
+            ALTER TABLE `dd_works_level` DROP COLUMN `jingdu`;
+            ALTER TABLE `dd_works_level` ADD COLUMN `chunjingdu` varchar(64) DEFAULT NULL COMMENT '纯净度';
         </sql>
     </changeSet>
 

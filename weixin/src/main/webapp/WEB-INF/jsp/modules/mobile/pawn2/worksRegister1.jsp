@@ -60,7 +60,7 @@
         <span>&nbsp;◇&nbsp;JS-A20161205001A&nbsp;◇&nbsp;</span></center>
 </div>
 <div>
-    <form action="${ctx}/mobile/worksRegister2" enctype="multipart/form-data">
+    <form action="${ctx}/mobile/worksRegister2" enctype="multipart/form-data" method="post">
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
             <div class="weui-cell__bd weui-cell_primary">

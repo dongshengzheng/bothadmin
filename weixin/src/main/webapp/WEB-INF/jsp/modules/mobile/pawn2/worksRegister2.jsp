@@ -55,7 +55,7 @@
         <span>&nbsp;◇&nbsp;JS-A20161205001A&nbsp;◇&nbsp;</span></center>
 </div>
 <div>
-    <form action="${ctx}/mobile/worksRegister3">
+    <form action="${ctx}/mobile/worksRegister3" method="post">
         <div class="weui-cells weui-cells_form">
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
@@ -132,7 +132,7 @@
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">制作时间</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input name="makeTime" id="works-zhizuoshijian" class="weui-input" type="tel" placeholder="请选择制作时间">
+                    <input name="makeTime" id="works-zhizuoshijian" class="weui-input" placeholder="请选择制作时间">
                 </div>
             </div>
             <div class="weui-cell">
