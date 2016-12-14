@@ -17,7 +17,7 @@
             <div class="form-group">
                 <label for="type" class="col-sm-2 control-label">字典类型</label>
                 <div class="col-sm-7">
-                    <input id="type" name="type" value="${pd.type}"
+                    <input id="type" name="type" value="${dict.type}"
                            type="text" maxlength="32" minlength="2"
                            class="form-control required" placeholder="请输入字典类型">
                 </div>
@@ -25,8 +25,8 @@
             <div class="form-group">
                 <label for="value" class="col-sm-2 control-label">数据值</label>
                 <div class="col-sm-7">
-                    <input id="value" name="value" value="${pd.value}"
-                           type="text" maxlength="32" minlength="2"
+                    <input id="value" name="value" value="${dict.value}"
+                           type="text" maxlength="32"
                            class="form-control required" placeholder="请输入数据值">
                 </div>
             </div>

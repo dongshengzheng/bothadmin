@@ -5,7 +5,7 @@
     <select id="findButtonsByUserId" parameterType="Integer" resultType="Button">
         select distinct b.*
         from sys_button b, sys_role_resource rs, sys_user_role ur
-        where b.button_id = rs.resource_id
+        where b.id = rs.resource_id
         and rs.role_id=ur.role_id
         and rs.resource_type=3
         and b.del_flag != -1

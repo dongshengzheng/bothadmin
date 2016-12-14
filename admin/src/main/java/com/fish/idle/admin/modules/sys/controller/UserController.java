@@ -1,9 +1,8 @@
 package com.fish.idle.admin.modules.sys.controller;
 
-import java.util.*;
-
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.fish.idle.admin.controller.BaseController;
 import com.fish.idle.service.modules.sys.entity.Role;
 import com.fish.idle.service.modules.sys.entity.User;
 import com.fish.idle.service.modules.sys.service.RoleService;
@@ -23,7 +22,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fish.idle.admin.controller.BaseController;
+import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author Sun.Han
@@ -67,7 +68,7 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "/list")
     @ResponseBody
-    public JSONObject list(String keyword) {
+    public JSONObject list(@RequestParam(required = false) String keyword) {
         EntityWrapper<User> ew = getEntityWrapper();
         if (!StringUtils.isEmpty(keyword))
             ew.addFilter("CONCAT(IFNULL(login_name,''),IFNULL(name,'')) like {0}", "%" + keyword + "%");
@@ -117,9 +118,9 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public String toEdit(@RequestParam Integer userId, ModelMap map) {
-        User user = userService.selectById(userId);
-        user.setRoles(userService.getRoles(userId));
+    public String toEdit(@RequestParam Integer id, ModelMap map) {
+        User user = userService.selectById(id);
+        user.setRoles(userService.getRoles(id));
 
         map.put("user", user);
         return "sys/user/user_edit";
@@ -130,7 +131,7 @@ public class UserController extends BaseController {
     public JSONObject edit(User user) {
         JSONObject result = new JSONObject();
         if (StringUtils.isNotBlank(user.getPassword())) {
-            User u = userService.selectById(user.getUserId());
+            User u = userService.selectById(user.getId());
             String loginName = u.getLoginName();
             String password = new SimpleHash("SHA-1", loginName, user.getPassword()).toString();
             user.setPassword(password);
@@ -141,15 +142,14 @@ public class UserController extends BaseController {
         Subject subject = SecurityUtils.getSubject();
         if (subject.hasRole(Const.ADMIN_ROLE)) userService.editRole(user);
         result.put("status", 1);
-
         return result;
     }
 
     @RequestMapping(value = "/delete")
     @ResponseBody
-    public JSONObject delete(@RequestParam Integer userId) {
+    public JSONObject delete(@RequestParam Integer id) {
         JSONObject result = new JSONObject();
-        userService.deleteById(userId);
+        userService.deleteById(id);
         result.put("status", 1);
         return result;
     }
@@ -165,9 +165,9 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping(value = "/editRole", method = RequestMethod.GET)
-    public String toEditRole(@RequestParam Integer userId, ModelMap map) {
-        List<Role> roles = userService.getRoles(userId);
-        map.put("userId", userId);
+    public String toEditRole(@RequestParam Integer id, ModelMap map) {
+        List<Role> roles = userService.getRoles(id);
+        map.put("userId", id);
         map.put("roles", roles);
         return "sys/user/user_role_edit";
     }

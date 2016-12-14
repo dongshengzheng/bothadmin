@@ -16,7 +16,7 @@
     <div class="modal-body">
         <div class="container-fluid">
             <div class="form-group">
-                <input type="hidden" name="roleId" value="${role.roleId}"/> <label
+                <input type="hidden" name="id" value="${role.id}"/> <label
                     for="roleName" class="col-sm-2 control-label">角色名称</label>
                 <div class="col-sm-7">
                     <input id="roleName" name="roleName" value="${role.roleName}"
@@ -53,7 +53,8 @@
             <div class="form-group">
                 <label for="description" class="col-sm-2 control-label">描述</label>
                 <div class="col-sm-7">
-					<textarea id="description" name="description" class="form-control" rows="3">${role.description}</textarea>
+					<textarea id="description" name="description" class="form-control"
+                              rows="3">${role.description}</textarea>
                 </div>
             </div>
         </div>

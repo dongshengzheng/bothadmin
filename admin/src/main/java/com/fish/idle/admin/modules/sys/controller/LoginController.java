@@ -7,7 +7,8 @@ import com.fish.idle.service.modules.sys.entity.Menu;
 import com.fish.idle.service.modules.sys.entity.User;
 import com.fish.idle.service.modules.sys.service.LoginService;
 import com.fish.idle.service.modules.sys.service.UserService;
-import com.fish.idle.service.util.*;
+import com.fish.idle.service.util.Const;
+import com.fish.idle.service.util.Tools;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -91,9 +92,9 @@ public class LoginController extends BaseController {
                     // 用于验证用户名和密码，改方法名需要改良
                     if (user != null) {
                         User u = new User();
-                        u.setUserId(user.getUserId());
+                        u.setId(user.getId());
                         u.setLastLogin(new Date());
-                        user.setUserId(user.getUserId());
+                        user.setId(user.getId());
                         // TODO: 29/11/2016 研究update机制
                         userService.updateSelectiveById(u);
                         session.setAttribute(Const.SESSION_USER, user);
@@ -172,19 +173,19 @@ public class LoginController extends BaseController {
 
             List<String> allRightsUrls = new ArrayList<>();
 
-            List<String> roles = loginService.getRightsRolesId(sysUser.getUserId());
+            List<String> roles = loginService.getRightsRolesId(sysUser.getId());
             session.setAttribute(Const.SESSION_ROLES_NAME, roles);
             // info.addRoles(roles);// TODO change to roleCode
 
             // 添加菜单权限信息（含分类菜单）
-            List<Menu> menus = loginService.getRightsParentMenus(sysUser.getUserId());
+            List<Menu> menus = loginService.getRightsParentMenus(sysUser.getId());
             // menuList.addAll(menus);
             for (Menu menu : menus) {
                 allRightsUrls.add(menu.getMenuUrl());
 
                 Map<String, Integer> params = new HashMap<>();
-                params.put("userId", sysUser.getUserId());
-                params.put("menuId", menu.getMenuId());
+                params.put("userId", sysUser.getId());
+                params.put("menuId", menu.getId());
 
                 List<Menu> subMenus = loginService.getRightsSubMenus(params);
                 menu.setSubMenu(subMenus);
@@ -196,7 +197,7 @@ public class LoginController extends BaseController {
             }
 
             // 添加按钮权限信息
-            List<Button> buttons = loginService.getRightsButtons(sysUser.getUserId());
+            List<Button> buttons = loginService.getRightsButtons(sysUser.getId());
             buttonList.addAll(buttons);
             for (Button button : buttons) {
                 allRightsUrls.add(button.getButtonUrl());

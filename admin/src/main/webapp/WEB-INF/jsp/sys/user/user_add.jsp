@@ -68,7 +68,7 @@
                         <c:when test="${roles != null && fn:length(roles) > 0}">
                             <c:forEach items="${roles}" var="role" varStatus="vs">
                                 <input type="checkbox" name="roleIds"
-                                       value="${role.roleId}" ${role.checked ? "checked" : ""}>${role.roleName}
+                                       value="${role.id}" ${role.checked ? "checked" : ""}>${role.roleName}
                             </c:forEach>
                         </c:when>
                         <c:otherwise>

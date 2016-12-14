@@ -3,13 +3,11 @@ package com.fish.idle.admin.modules.sys.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.fish.idle.admin.controller.BaseController;
-
 import com.fish.idle.service.modules.sys.entity.Button;
 import com.fish.idle.service.modules.sys.entity.Menu;
 import com.fish.idle.service.modules.sys.service.ButtonService;
 import com.fish.idle.service.modules.sys.service.MenuService;
 import com.fish.idle.service.util.Const;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,18 +45,14 @@ public class RightController extends BaseController {
     @RequestMapping(value = "/subMenu")
     public String subMenu(ModelMap map, @RequestParam Integer parentId) {
         EntityWrapper<Menu> ew = getEntityWrapper();
-        ew.addFilter("menu_id={0}", parentId);
-        menuService.selectOne(ew);
+        ew.addFilter("id={0}", parentId);
         map.put("menu", menuService.selectOne(ew));
         return "sys/right/subMenu_list";
     }
 
     @RequestMapping(value = "/button")
-    public String button(ModelMap map, @RequestParam Integer menuId) {
-        EntityWrapper<Menu> ew = getEntityWrapper();
-        ew.addFilter("menu_id={0}", menuId);
-        menuService.selectOne(ew);
-        map.put("menu", menuService.selectOne(ew));
+    public String button(ModelMap map, @RequestParam Integer id) {
+        map.put("menu", menuService.selectById(id));
         return "sys/right/button_list";
     }
 
@@ -100,8 +94,8 @@ public class RightController extends BaseController {
     }
 
     @RequestMapping(value = "/editMenu", method = RequestMethod.GET)
-    public String toEditMenu(@RequestParam Integer menuId, ModelMap map) {
-        Menu menu = menuService.selectById(menuId);
+    public String toEditMenu(@RequestParam Integer id, ModelMap map) {
+        Menu menu = menuService.selectById(id);
         map.put("menu", menu);
         return "sys/right/menu_edit";
 
@@ -118,8 +112,8 @@ public class RightController extends BaseController {
 
     @RequestMapping(value = "/deleteMenu")
     @ResponseBody
-    public JSONObject deleteMenu(@RequestParam Integer menuId) {
-        menuService.deleteById(menuId);
+    public JSONObject deleteMenu(@RequestParam Integer id) {
+        menuService.deleteById(id);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("status", 1);
         return jsonObject;
@@ -167,8 +161,8 @@ public class RightController extends BaseController {
     }
 
     @RequestMapping(value = "/editBtn", method = RequestMethod.GET)
-    public String toEditBtn(@RequestParam Integer buttonId, ModelMap map) {
-        Button button = buttonService.selectById(buttonId);
+    public String toEditBtn(@RequestParam Integer id, ModelMap map) {
+        Button button = buttonService.selectById(id);
         map.put("button", button);
         return "sys/right/button_edit";
     }
@@ -184,8 +178,8 @@ public class RightController extends BaseController {
 
     @RequestMapping(value = "/deleteBtn")
     @ResponseBody
-    public JSONObject deleteBtn(@RequestParam Integer buttonId) {
-        buttonService.deleteById(buttonId);
+    public JSONObject deleteBtn(@RequestParam Integer id) {
+        buttonService.deleteById(id);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("status", 1);
         return jsonObject;

@@ -20,8 +20,8 @@ import java.util.List;
 @TableName("sys_user")
 public class User implements Serializable {
 
-    @TableId(value = "user_id", type = IdType.AUTO)
-    private Integer userId; // 用户id
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id; // 用户id
     @TableField(value = "login_name")
     private String loginName; // 用户名
     private String password; // 密码
@@ -58,12 +58,12 @@ public class User implements Serializable {
         this.delFlag = delFlag;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getLoginName() {

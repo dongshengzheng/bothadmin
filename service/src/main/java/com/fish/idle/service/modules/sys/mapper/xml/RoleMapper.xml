@@ -4,7 +4,7 @@
 
 
   <sql id="Base_Column_List">
-    role_id roleId,
+    id,
     role_name roleName,
     removable,
     allocatable,
@@ -12,13 +12,12 @@
     del_flag as delFlag
   </sql>
 
-  <!-- yang -->
   <select id="findRolesIdByUserId" resultType="String">
-    select distinct r.role_id
+    select distinct r.id
     from sys_role r, sys_user_role ur, sys_user u
-    where r.role_id = ur.role_id
-    and ur.user_id = u.user_id
-    and u.user_id=#{userId}
+    where r.id = ur.role_id
+    and ur.user_id = u.id
+    and u.id=#{userId}
   </select>
 
 </mapper>
