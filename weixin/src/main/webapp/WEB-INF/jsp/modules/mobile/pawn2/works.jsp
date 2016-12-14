@@ -292,7 +292,7 @@
             $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
         });
 
-        $('.works-floor-btn-all,.works-floor-btn').on('click', function () {
+        $('.works-floor-btn-all,.works-floor-btn').click(function () {
             var worksid = $(this).parent().siblings('.worksId').val();
             $.ajax({
                 type: "POST",
@@ -307,11 +307,11 @@
             })
         })
 
-        $('#dialogs').on('click', '.weui-dialog__btn', function () {
+        $('#dialogs .weui-dialog__btn').click(function () {
             $(this).parents('.js_dialog').fadeOut(200);
         });
 
-        $('.works-img,.works-img-all').on('click', function () {
+        $('.works-img,.works-img-all').click(function () {
             var worksid = $(this).parent().siblings('.worksId').val();
             location.href = '${ctx}/mobile/worksDetail?id=' + worksid;
         })
