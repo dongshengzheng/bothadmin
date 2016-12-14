@@ -658,7 +658,7 @@
 <script>
     $(function () {
         $('.explains-one-text').on('click', function () {
-            location.href = "#";
+            location.href = "${ctx}/mobile/worksExplainDetail";
         })
     })
 

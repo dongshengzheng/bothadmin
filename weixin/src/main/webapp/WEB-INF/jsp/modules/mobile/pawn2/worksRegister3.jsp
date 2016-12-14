@@ -60,91 +60,92 @@
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input class="weui-input" type="tel" placeholder="田黄鸡血石精品吊坠">
+                    <input name="name" class="weui-input" type="tel" placeholder="田黄鸡血石精品吊坠">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">质地一</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input id="works-zhidiyi" class="weui-input " type="tel" placeholder="请选择质地一">
+                    <input name="zhidi" id="works-zhidiyi" class="weui-input " type="tel" placeholder="请选择质地一">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">质地二</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input id="works-zhidier" class="weui-input " type="tel" placeholder="请选择质地二">
+                    <input name="zhidi2" id="works-zhidier" class="weui-input " type="tel" placeholder="请选择质地二">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">感观</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input id="works-ganguan" class="weui-input " type="tel" placeholder="请选择感观">
+                    <input name="ganguan" id="works-ganguan" class="weui-input " type="tel" placeholder="请选择感观">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">磨氏度</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input id="works-moshidu" class="weui-input " type="tel" placeholder="请选择磨氏度">
+                    <input name="moshidu" id="works-moshidu" class="weui-input " type="tel" placeholder="请选择磨氏度">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">血量</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input id="works-xueliang" class="weui-input " type="tel" placeholder="请选择血量">
+                    <input name="xueliang" id="works-xueliang" class="weui-input " type="tel" placeholder="请选择血量">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">血色</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input id="works-xuese" class="weui-input " type="tel" placeholder="请选择血色">
+                    <input name="xuese" id="works-xuese" class="weui-input " type="tel" placeholder="请选择血色">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">血形</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input id="works-xuexing" class="weui-input " type="tel" placeholder="请选择血形">
+                    <input name="xuexing" id="works-xuexing" class="weui-input " type="tel" placeholder="请选择血形">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">浓艳度</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input id="works-nongyandu" class="weui-input " type="tel" placeholder="请选择浓艳度">
+                    <input name="nongyandu" id="works-nongyandu" class="weui-input " type="tel" placeholder="请选择浓艳度">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">纯净度</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input id="works-chunjingdu" class="weui-input " type="tel" placeholder="请选择纯净度">
+                    <input name="chunjingdu" id="works-chunjingdu" class="weui-input " type="tel" placeholder="请选择纯净度">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">地色</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input id="works-dise" class="weui-input " type="tel" placeholder="请选择地色">
+                    <input name="dise" id="works-dise" class="weui-input " type="tel" placeholder="请选择地色">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">活筋</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input id="works-huojin" class="weui-input " type="tel" placeholder="请选择活筋">
+                    <input name="liu" id="works-huojin" class="weui-input " type="tel" placeholder="请选择活筋">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">裂</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input id="works-lie" class="weui-input " type="tel" placeholder="请选择裂">
+                    <input name="lie" id="works-lie" class="weui-input " type="tel" placeholder="请选择裂">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">印章</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input id="works-yinzhang" class="weui-input " type="tel" placeholder="请选择印章">
+                    <input name="hanxuemian" id="works-yinzhang" class="weui-input " type="tel" placeholder="请选择印章">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">含血方式</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input id="works-hanxuefangshi" class="weui-input " type="tel" placeholder="请选择含血方式">
+                    <input name="hanxuefangshi" id="works-hanxuefangshi" class="weui-input " type="tel"
+                           placeholder="请选择含血方式">
                 </div>
             </div>
         </div>
@@ -173,7 +174,7 @@
             cols: [
                 {
                     textAlign: 'center',
-                    values: ['质地一(1)', '质地一(2)']
+                    values: ['冻', '软', '刚', '硬']
                 }
             ]
         });
@@ -182,7 +183,7 @@
             cols: [
                 {
                     textAlign: 'center',
-                    values: ['质地二(1)', '质地二(2)']
+                    values: ['冻地', '冻软地', '软地', '冻软刚地', '冻软硬地', '灰刚板地', '活刚板地', '刚硬地', '硬地']
                 }
             ]
         });
@@ -192,7 +193,7 @@
             cols: [
                 {
                     textAlign: 'center',
-                    values: ['感观一', '感观二']
+                    values: ['透、细腻、温润', '微透、细腻、温润', '透、细腻、干', '不透、细腻、温润', '不透、细腻、干', '不透、粗糙、干']
                 }
             ]
         });
@@ -202,7 +203,7 @@
             cols: [
                 {
                     textAlign: 'center',
-                    values: ['磨氏度一', '磨氏度二']
+                    values: ['2-2.5', '2-4', '2-6', '4-5', '4-6', '5-6']
                 }
             ]
         });
@@ -212,7 +213,7 @@
             cols: [
                 {
                     textAlign: 'center',
-                    values: ['血量一', '血量二']
+                    values: ['>50%', '>30%', '>15%', '>5%', '>0%']
                 }
             ]
         });
@@ -222,7 +223,7 @@
             cols: [
                 {
                     textAlign: 'center',
-                    values: ['血色一', '血色二']
+                    values: ['鲜红', '红', '淡红', '暗红']
                 }
             ]
         });
@@ -232,7 +233,7 @@
             cols: [
                 {
                     textAlign: 'center',
-                    values: ['血形一', '血形二']
+                    values: ['团块状', '片状', '条状', '云雾状', '网脉状', '细脉状', '星点状', '其他']
                 }
             ]
         });
@@ -242,7 +243,7 @@
             cols: [
                 {
                     textAlign: 'center',
-                    values: ['浓艳度一', '浓艳度二']
+                    values: ['浓艳', '艳', '淡', '稀']
                 }
             ]
         });
@@ -252,7 +253,7 @@
             cols: [
                 {
                     textAlign: 'center',
-                    values: ['纯净度一', '纯净度二']
+                    values: ['净', '略净', '花', '杂']
                 }
             ]
         });
@@ -262,7 +263,7 @@
             cols: [
                 {
                     textAlign: 'center',
-                    values: ['地色一', '地色二']
+                    values: ['黄', '白', '黑', '灰', '褐', '青', '混合', '其他']
                 }
             ]
         });
@@ -272,7 +273,7 @@
             cols: [
                 {
                     textAlign: 'center',
-                    values: ['活筋一', '活筋二']
+                    values: ['无', '绺', '绺、裂', '绺、格、裂', '绺、格、裂、复位粘结']
                 }
             ]
         });
@@ -282,7 +283,7 @@
             cols: [
                 {
                     textAlign: 'center',
-                    values: ['裂一', '裂二']
+                    values: ['无', '微裂', '裂', '裂缝（裂隙注胶）', '复位粘结']
                 }
             ]
         });
@@ -292,7 +293,7 @@
             cols: [
                 {
                     textAlign: 'center',
-                    values: ['印章一', '印章二']
+                    values: ['6面', '5面', '4面', '3面', '2面', '1面']
                 }
             ]
         });
@@ -302,7 +303,7 @@
             cols: [
                 {
                     textAlign: 'center',
-                    values: ['含血方式一', '含血方式二']
+                    values: ['表面含血', '内在含血', '表面及内在含血']
                 }
             ]
         });

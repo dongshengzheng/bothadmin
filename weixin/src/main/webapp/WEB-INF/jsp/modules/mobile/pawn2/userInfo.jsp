@@ -181,11 +181,11 @@
     </div>
 
     <div id="fans" class="div-hide">
-        <div class="fixed-footer-blank">
+        <div class="fixed-footer-blank" style="height: 45px">
 
         </div>
-        <div class="search-results">
-            <div id="not-care-people" class="div-outer">
+        <div class="search-results div-outer">
+            <div id="have-care-people" class="div-outer">
                 <div class="weui-panel__bd" id="test1">
                     <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
                         <div class="weui-media-box__hd">
@@ -197,13 +197,13 @@
                             <h4 class="weui-media-box__title">老特福德永恒</h4>
                             <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
                             <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
-                            <div class="search-results-one-care not-care div-hide div-on">
+                            <div class="search-results-one-care not-care div-hide">
                                 <img src="${ctxStatic}/img/cut/to-focus.png" class="search-results-one-care-img "/>
                                 <p class="search-results-one-care-text-not ">
                                     加关注
                                 </p>
                             </div>
-                            <div class="search-results-one-care have-care div-hide">
+                            <div class="search-results-one-care have-care div-hide div-on">
                                 <img src="${ctxStatic}/img/cut/have-focus.png" class="search-results-one-care-img "/>
                                 <p class="search-results-one-care-text-have ">
                                     已关注
@@ -213,7 +213,7 @@
                     </a>
                 </div>
             </div>
-            <div id="have-care-people" class="div-outer">
+            <div id="not-care-people">
                 <div class="weui-panel__bd" id="test2">
                     <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
                         <div class="weui-media-box__hd">
@@ -225,13 +225,13 @@
                             <h4 class="weui-media-box__title">致明日的信</h4>
                             <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
                             <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
-                            <div class="search-results-one-care have-care div-hide div-on">
+                            <div class="search-results-one-care have-care div-hide">
                                 <img src="${ctxStatic}/img/cut/have-focus.png" class="search-results-one-care-img "/>
                                 <p class="search-results-one-care-text-have ">
                                     已关注
                                 </p>
                             </div>
-                            <div class="search-results-one-care not-care div-hide">
+                            <div class="search-results-one-care not-care div-hide div-on">
                                 <img src="${ctxStatic}/img/cut/to-focus.png" class="search-results-one-care-img "/>
                                 <p class="search-results-one-care-text-not ">
                                     加关注
@@ -251,13 +251,13 @@
                             <h4 class="weui-media-box__title">我心永恒</h4>
                             <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
                             <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
-                            <div class="search-results-one-care have-care div-hide div-on">
+                            <div class="search-results-one-care have-care div-hide">
                                 <img src="${ctxStatic}/img/cut/have-focus.png" class="search-results-one-care-img "/>
                                 <p class="search-results-one-care-text-have ">
                                     已关注
                                 </p>
                             </div>
-                            <div class="search-results-one-care not-care div-hide">
+                            <div class="search-results-one-care not-care div-hide div-on">
                                 <img src="${ctxStatic}/img/cut/to-focus.png" class="search-results-one-care-img "/>
                                 <p class="search-results-one-care-text-not ">
                                     加关注
@@ -277,13 +277,13 @@
                             <h4 class="weui-media-box__title">遇见</h4>
                             <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
                             <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
-                            <div class="search-results-one-care have-care div-hide div-on">
+                            <div class="search-results-one-care have-care div-hide">
                                 <img src="${ctxStatic}/img/cut/have-focus.png" class="search-results-one-care-img "/>
                                 <p class="search-results-one-care-text-have ">
                                     已关注
                                 </p>
                             </div>
-                            <div class="search-results-one-care not-care div-hide">
+                            <div class="search-results-one-care not-care div-hide div-on">
                                 <img src="${ctxStatic}/img/cut/to-focus.png" class="search-results-one-care-img "/>
                                 <p class="search-results-one-care-text-not ">
                                     加关注
@@ -303,13 +303,13 @@
                             <h4 class="weui-media-box__title">我怀念的</h4>
                             <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
                             <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
-                            <div class="search-results-one-care have-care div-hide div-on">
+                            <div class="search-results-one-care have-care div-hide">
                                 <img src="${ctxStatic}/img/cut/have-focus.png" class="search-results-one-care-img "/>
                                 <p class="search-results-one-care-text-have ">
                                     已关注
                                 </p>
                             </div>
-                            <div class="search-results-one-care not-care div-hide">
+                            <div class="search-results-one-care not-care div-hide div-on">
                                 <img src="${ctxStatic}/img/cut/to-focus.png" class="search-results-one-care-img "/>
                                 <p class="search-results-one-care-text-not ">
                                     加关注
@@ -329,13 +329,13 @@
                             <h4 class="weui-media-box__title">小禁区之王</h4>
                             <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
                             <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
-                            <div class="search-results-one-care have-care div-hide div-on">
+                            <div class="search-results-one-care have-care div-hide">
                                 <img src="${ctxStatic}/img/cut/have-focus.png" class="search-results-one-care-img "/>
                                 <p class="search-results-one-care-text-have ">
                                     已关注
                                 </p>
                             </div>
-                            <div class="search-results-one-care not-care div-hide">
+                            <div class="search-results-one-care not-care div-hide div-on">
                                 <img src="${ctxStatic}/img/cut/to-focus.png" class="search-results-one-care-img "/>
                                 <p class="search-results-one-care-text-not ">
                                     加关注
@@ -344,11 +344,11 @@
                         </div>
                     </a>
                 </div>
-                <div class="hr-text ">
-                    <center>
-                        <hr>
-                        <span>&nbsp;&nbsp;到底啦&nbsp;&nbsp;</span></center>
-                </div>
+            </div>
+            <div class="hr-text div-outer">
+                <center>
+                    <hr>
+                    <span>&nbsp;&nbsp;到底啦&nbsp;&nbsp;</span></center>
             </div>
         </div>
     </div>
@@ -379,7 +379,6 @@
 </div>
 
 </body>
-<script src="js/jquery-2.1.4.js"></script>
 <script>
     $(function () {
         $("#detail-title-info").click(function () {
@@ -414,31 +413,73 @@
             $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
         });
     });
+    $(function () {
+
+        //    关注与取消关注
+        var $haveCareDialog = $('#haveCareDialog');
+        var $notCareDialog = $('#notCareDialog');
+        $('#dialogs').on('click', '.weui-dialog__btn', function () {
+            $(this).parents('.js_dialog').fadeOut(200);
+        });
+        $('.have-care').on('click', function () {
+            $haveCareDialog.fadeIn(200);
+            $haveCareDialog.attr('data-id', $(this).parent().parent().parent().attr('id'));
+        });
+        $('.not-care').on('click', function () {
+            $notCareDialog.fadeIn(200);
+            $(this).removeClass('div-on').siblings('.search-results-one-care').addClass('div-on');
+        });
+        $('.weui-dialog__btn').on('click', function () {
+            $('.js_dialog').fadeOut(200);
+        })
+        $('#haveCareDialog .weui-dialog__btn_primary').on('click', function () {
+            $('#' + ($('#haveCareDialog').attr('data-id')) + ' .have-care').removeClass('div-on').siblings('.search-results-one-care').addClass('div-on');
+        })
 
 
-    //    关注与取消关注
-    var $haveCareDialog = $('#haveCareDialog');
-    var $notCareDialog = $('#notCareDialog');
-    $('#dialogs').on('click', '.weui-dialog__btn', function () {
-        $(this).parents('.js_dialog').fadeOut(200);
+        //        关注与取消关注
+        var $haveCareDialog = $('#haveCareDialog');
+        var $notCareDialog = $('#notCareDialog');
+        $('#dialogs').on('click', '.weui-dialog__btn', function () {
+            $(this).parents('.js_dialog').fadeOut(200);
+        });
+
+        $('.have-care').on('click', function () {
+            $haveCareDialog.fadeIn(200);
+            $haveCareDialog.attr('data-id', $(this).parent().parent().parent().attr('id'));
+        });
+
+        $('.not-care').on('click', function () {
+            $notCareDialog.fadeIn(200);
+            $(this).removeClass('div-on').siblings('.search-results-one-care').addClass('div-on');
+            var outer = $(this).parent().parent().parent();
+            var notCareOuter = outer.parent();
+            var haveCareOuter = notCareOuter.siblings('#have-care-people');
+            haveCareOuter.append(outer);
+
+        });
+
+        $('.weui-dialog__btn').on('click', function () {
+            $('.js_dialog').fadeOut(200);
+        })
+
+        $('#haveCareDialog .weui-dialog__btn_primary').on('click', function () {
+            var thisOne = $('#' + ($('#haveCareDialog').attr('data-id')) + ' .have-care');
+            thisOne.removeClass('div-on').siblings('.search-results-one-care').addClass('div-on');
+            $(thisOne).removeClass('div-on').siblings('.search-results-one-care').addClass('div-on');
+            var outer = $(thisOne).parent().parent().parent();
+            var haveCareOuter = outer.parent();
+            var notCareOuter = haveCareOuter.siblings('#not-care-people');
+            notCareOuter.append(outer);
+
+        })
+
+
+        $('.weui-media-box__thumb').on('click', function () {
+            location.href = '${ctx}/mobile/userInfo';
+        })
+
     });
-    $('.have-care').on('click', function () {
-        $haveCareDialog.fadeIn(200);
-        $haveCareDialog.attr('data-id', $(this).parent().parent().parent().attr('id'));
-    });
-    $('.not-care').on('click', function () {
-        $notCareDialog.fadeIn(200);
-        $(this).removeClass('div-on').siblings('.search-results-one-care').addClass('div-on');
-    });
-    $('.weui-dialog__btn').on('click', function () {
-        $('.js_dialog').fadeOut(200);
-    })
-    $('#haveCareDialog .weui-dialog__btn_primary').on('click', function () {
-        $('#' + ($('#haveCareDialog').attr('data-id')) + ' .have-care').removeClass('div-on').siblings('.search-results-one-care').addClass('div-on');
-    })
-    $('.weui-media-box__thumb').on('click', function () {
-        location.href = 'userInfo.jsp';
-    })
 
 </script>
 

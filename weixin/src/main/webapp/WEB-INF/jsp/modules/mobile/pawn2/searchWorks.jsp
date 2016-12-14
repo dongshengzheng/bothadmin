@@ -113,54 +113,23 @@
 <!--</div>-->
 
 <div class="all div-outer">
-    <div class="works-all-outer">
-        <div class="works-all">
-            <img src="${ctxStatic}/img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
-            <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
+    <c:forEach items="${page.records}" var="works">
+        <div class="works-all-outer">
+            <div class="works-all">
+                <img class="works-img-all" src="${works.images}"
+                     onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
+                     alt="">
+                <textarea disabled class="works-intro-all">${works.remarks}</textarea>
+            </div>
+            <div class="works-floor-all">
+                <span class="works-floor-name-all">${works.name}</span>
+                <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
+                <span class="works-floor-img-all">${works.type}</span>
+                <span class="works-floor-date-all"><fmt:formatDate value="${works.createDate}"
+                                                                   pattern="yyyy-MM-dd"/></span>
+            </div>
         </div>
-        <div class="works-floor-all">
-            <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
-            <span class="works-floor-img-all">田黄鸡血石</span>
-            <span class="works-floor-date-all">2016-12-4</span>
-        </div>
-    </div>
-    <div class="works-all-outer">
-        <div class="works-all">
-            <img src="${ctxStatic}/img/swiper/swiper-2.jpg" alt="" class="works-img-all"/>
-            <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
-        </div>
-        <div class="works-floor-all">
-            <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
-            <span class="works-floor-img-all">田黄鸡血石</span>
-            <span class="works-floor-date-all">2016-12-4</span>
-        </div>
-    </div>
-    <div class="works-all-outer">
-        <div class="works-all">
-            <img src="${ctxStatic}/img/swiper/swiper-3.jpg" alt="" class="works-img-all"/>
-            <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
-        </div>
-        <div class="works-floor-all">
-            <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
-            <span class="works-floor-img-all">田黄鸡血石</span>
-            <span class="works-floor-date-all">2016-12-4</span>
-        </div>
-    </div>
-    <div class="works-all-outer">
-        <div class="works-all">
-            <img src="${ctxStatic}/img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
-            <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
-        </div>
-        <div class="works-floor-all">
-            <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
-            <span class="works-floor-img-all">田黄鸡血石</span>
-            <span class="works-floor-date-all">2016-12-4</span>
-        </div>
-    </div>
+    </c:forEach>
 
     <div class="hr-text ">
         <center>

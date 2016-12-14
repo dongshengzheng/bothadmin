@@ -69,7 +69,8 @@
     <form class="weui-search-bar__form">
         <div class="weui-search-bar__box">
             <i class="weui-icon-search"></i>
-            <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required/>
+            <input name="name" type="search" class="weui-search-bar__input" id="searchInput"
+                   placeholder="搜索" required/>
             <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
         </div>
         <label class="weui-search-bar__label" id="searchText">
@@ -181,9 +182,11 @@
                 .on('keyup', function () {
                     if (event.keyCode == 13) {
                         if ($("#searchwhich").val() == "searchperson") {
-                            location.href = "${ctx}/mobile/searchPerson";
+                            location.href = "${ctx}/mobile/searchPerson?name=" + $('#searchInput').val();
+                            <%--location.href = "${ctx}/mobile/searchPerson";--%>
                         } else {
-                            location.href = "${ctx}/mobile/searchWorks";
+                            location.href = "${ctx}/mobile/searchWorks?name=" + $('#searchInput').val();
+                            <%--location.href = "${ctx}/mobile/searchWorks";--%>
                         }
                     }
                 });

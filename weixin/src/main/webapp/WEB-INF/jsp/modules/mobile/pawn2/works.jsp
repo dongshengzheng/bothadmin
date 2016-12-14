@@ -215,7 +215,6 @@
     <c:forEach items="${page.records}" var="works">
         <div class="works-all-outer">
             <div class="works-all">
-                    <%--<img src="${ctxStatic}/img/swiper/swiper-2.jpg" alt="" class="works-img-all"/>--%>
                 <img class="works-img-all" src="${works.images}"
                      onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
                      alt="">
@@ -230,20 +229,24 @@
             </div>
         </div>
     </c:forEach>
+
+
     <c:if test="${fn:length(page.records) == 0}">
         <div style="text-align:center;margin-top:35%">
             <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="" style="width: 50%;">
             <p style="color:#CCCCCC">尚无作品</p>
         </div>
     </c:if>
-    <c:if test="${page.current < page.pages}">
-        <div class="weui-infinite-scroll" id="scroll">
-            <div class="infinite-preloader"></div>
-            正在加载...
-        </div>
-    </c:if>
-    <input type="hidden" value="${page.offsetCurrent}" id="pageNo">
+
 </div>
+
+<c:if test="${page.current < page.pages}">
+    <div class="weui-infinite-scroll" id="scroll">
+        <div class="infinite-preloader"></div>
+        正在加载...
+    </div>
+</c:if>
+<input type="hidden" value="${page.current}" id="pageNo">
 
 <%@include file="include/tab-1.jsp" %>
 
@@ -259,14 +262,23 @@
     </div>
 </div>
 
-<a class="weui-col-50 item" id="tmp" style="display: none;">
-    <img class="stone" src="${ctxStatic}/modules/pawn/img/name.png"
-         onerror="this.src='${ctxStatic}/modules/pawn/img/default.png'" style="" alt="">
-    <div style="width: 100%;text-align: center;">
-        <span class="name">鸡血石</span>
+
+<div id="tmp" class="works-all-outer div-hide">
+    <div class="works-all">
+        <img class="works-img-all" src="${works.images}"
+             onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
+             alt="">
+        <textarea disabled class="works-intro-all">${works.remarks}</textarea>
     </div>
-    <img class="status" src="${ctxStatic}/modules/pawn/img/status-3.png" style="" alt="">
-</a>
+    <div class="works-floor-all">
+        <span class="works-floor-name-all">${works.name}</span>
+        <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
+        <span class="works-floor-img-all">${works.type}</span>
+        <span class="works-floor-date-all"><fmt:formatDate value="${works.createDate}"
+                                                           pattern="yyyy-MM-dd"/></span>
+    </div>
+</div>
+
 
 <script>
     var swiper = new Swiper('.swiper-container', {
@@ -292,45 +304,42 @@
 
 
         <c:if test="${page.current < page.pages}">
+        $(document.body).infinite(100);
         var lastPage = false;
         var loading = false;
-        $(".all").infinite().on("infinite", function () {
+        $(document.body).infinite().on("infinite", function () {
             if (loading) return;
             if (lastPage) return;
             loading = true;
             $.ajax({
                 type: "GET",
-                url: "${ctx}/pawn/mobile/worksPage",
+                url: "${ctx}/mobile/worksPage",
                 data: {
                     pageNo: Number($("#pageNo").val()) + 1,
-                    name: '${param.name}'
                 },
                 success: function (data) {
                     loading = false;
-                    if (data.list.length == 0) {
+                    if (data.records.length == 0) {
                         return;
                     }
-                    for (var i = 0; i < data.list.length; i++) {
+
+                    for (var i = 0; i < data.records.length; i++) {
                         $tmp = $("#tmp").clone();
-                        $tmp.css('display', "block");
-                        $tmp.find(".name").html(data.list[i].name);
-                        $tmp.find(".breed").html(data.list[i].breedStr);
-                        if (typeof data.list[i].breedStr == 'undefined' || data.list[i].breedStr == '') {
-                            $tmp.find(".breed").css("display", "none");
-                        }
-                        $tmp.find(".createDate").html(data.list[i].createDateStr);
-                        $tmp.find(".stone").attr("src", data.lastImage)
-                        $(".items").append($tmp);
+                        $tmp.find(".works-floor-name-all").html(data.records[i].name);
+                        $tmp.find(".works-floor-img-all").html(data.records[i].type);
+                        $tmp.find(".works-floor-date-all").html(data.records[i].createDate);
+                        $tmp.removeClass('div-hide');
+                        $(".all").append($tmp);
                     }
-                    if (data.pageNo * data.pageSize >= data.count) {
+
+                    if (data.current >= data.pages) {
                         $("#scroll").css("display", "none");
                         lastPage = true;
                     } else {
-
                         $("#pageNo").val(Number($("#pageNo").val()) + 1);
                     }
                 }
-            });
+            })
         });
         </c:if>
     });

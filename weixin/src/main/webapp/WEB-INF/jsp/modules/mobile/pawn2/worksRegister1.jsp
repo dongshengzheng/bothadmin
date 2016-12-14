@@ -64,37 +64,37 @@
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input class="weui-input" type="tel" placeholder="请输入作品名称">
+                <input name="name" class="weui-input" type="tel" placeholder="请输入作品名称">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">提供者</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input class="weui-input" type="tel" placeholder="请输入姓名">
+                <input name="provideBy" class="weui-input" type="tel" placeholder="请输入姓名">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">身份证</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input class="weui-input" type="tel" placeholder="可不填写">
+                <input name="collectCardNo" class="weui-input" type="tel" placeholder="可不填写">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">联系地址</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input class="weui-input" type="tel" placeholder="请输入详细地址">
+                <input name="address" class="weui-input" type="tel" placeholder="请输入详细地址">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">联系方式</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input class="weui-input" type="tel" placeholder="请输入联系方式">
+                <input name="phone" class="weui-input" type="tel" placeholder="请输入联系方式">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">登记时间</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input class="weui-input" id="showDatePicker" type="tel" placeholder="请选择时间">
+                <input name="createDate" class="weui-input" id="showDatePicker" type="tel" placeholder="请选择时间">
             </div>
         </div>
         <div class="weui-cell">

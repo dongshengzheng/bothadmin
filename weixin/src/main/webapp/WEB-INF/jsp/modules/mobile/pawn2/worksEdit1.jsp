@@ -105,37 +105,37 @@
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input class="weui-input" type="tel" placeholder="请输入作品名称">
+                <input name="name" class="weui-input" type="tel" placeholder="请输入作品名称">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">提供者</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input class="weui-input" type="tel" placeholder="请输入姓名">
+                <input name="provideBy" class="weui-input" type="tel" placeholder="请输入姓名">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">身份证</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input class="weui-input" type="tel" placeholder="可不填写">
+                <input name="collectCardNo" class="weui-input" type="tel" placeholder="可不填写">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">联系地址</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input class="weui-input" type="tel" placeholder="请输入详细地址">
+                <input name="address" class="weui-input" type="tel" placeholder="请输入详细地址">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">联系方式</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input class="weui-input" type="tel" placeholder="请输入联系方式">
+                <input name="phone" class="weui-input" type="tel" placeholder="请输入联系方式">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">登记时间</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input class="weui-input" id="showDatePicker" type="tel" placeholder="请选择时间">
+                <input name="datatime" class="weui-input" id="showDatePicker" type="tel" placeholder="请选择时间">
             </div>
         </div>
         <div class="weui-cell">
@@ -189,35 +189,35 @@
         </div>
     </form>
 </div>
-<script>``
-$(function () {
-    var tmpl = '<li class="weui-uploader__file" style="background-image:url(#url#)"></li>',
-            $gallery = $("#gallery"), $galleryImg = $("#galleryImg"),
-            $uploaderInput = $("#uploaderInput"),
-            $uploaderFiles = $("#uploaderFiles")
-            ;
+<script>
+    $(function () {
+        var tmpl = '<li class="weui-uploader__file" style="background-image:url(#url#)"></li>',
+                $gallery = $("#gallery"), $galleryImg = $("#galleryImg"),
+                $uploaderInput = $("#uploaderInput"),
+                $uploaderFiles = $("#uploaderFiles")
+                ;
 
-    $uploaderInput.on("change", function (e) {
-        var src, url = window.URL || window.webkitURL || window.mozURL, files = e.target.files;
-        for (var i = 0, len = files.length; i < len; ++i) {
-            var file = files[i];
+        $uploaderInput.on("change", function (e) {
+            var src, url = window.URL || window.webkitURL || window.mozURL, files = e.target.files;
+            for (var i = 0, len = files.length; i < len; ++i) {
+                var file = files[i];
 
-            if (url) {
-                src = url.createObjectURL(file);
-            } else {
-                src = e.target.result;
+                if (url) {
+                    src = url.createObjectURL(file);
+                } else {
+                    src = e.target.result;
+                }
+
+                $uploaderFiles.append($(tmpl.replace('#url#', src)));
             }
-
-            $uploaderFiles.append($(tmpl.replace('#url#', src)));
-        }
-    });
-    $uploaderFiles.on("click", "li", function () {
-        $galleryImg.attr("style", this.getAttribute("style"));
-        $gallery.fadeIn(100);
-    });
-    $gallery.on("click", function () {
-        $gallery.fadeOut(100);
-    });
+        });
+        $uploaderFiles.on("click", "li", function () {
+            $galleryImg.attr("style", this.getAttribute("style"));
+            $gallery.fadeIn(100);
+        });
+        $gallery.on("click", function () {
+            $gallery.fadeOut(100);
+        });
 
 //        $('#showDatePicker').on('click', function () {
 //            weui.datePicker({
@@ -232,12 +232,12 @@ $(function () {
 //            });
 //        });
 
-    $(function () {
-        $('.weui-navbar__item').on('click', function () {
-            $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
+        $(function () {
+            $('.weui-navbar__item').on('click', function () {
+                $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
+            });
         });
     });
-});
 
 </script>
 </body>

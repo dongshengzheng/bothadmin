@@ -60,37 +60,37 @@
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input class="weui-input" type="tel" placeholder="田黄鸡血石精品吊坠">
+                    <input name="name" class="weui-input" type="tel" placeholder="田黄鸡血石精品吊坠">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">品种</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input id="works-pinzhong" class="weui-input " type="tel" placeholder="请选择品种">
+                    <input name="breed" id="works-pinzhong" class="weui-input " type="tel" placeholder="请选择品种">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">作品类型</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input id="works-zuopinleixing" class="weui-input " type="tel" placeholder="请选择作品类型">
+                    <input name="type" id="works-zuopinleixing" class="weui-input " type="tel" placeholder="请选择作品类型">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">尺寸</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input class="weui-input" type="tel" placeholder="长">
+                    <input name="length" class="weui-input" type="tel" placeholder="长">
                 </div>
                 <div class="weui-cell__bd weui-cell_primary">
                     <input class="weui-input" type="tel" value="cm" disabled>
                 </div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input class="weui-input" type="tel" placeholder="宽">
+                    <input name="width" class="weui-input" type="tel" placeholder="宽">
                 </div>
                 <div class="weui-cell__bd weui-cell_primary">
                     <input class="weui-input" type="tel" value="cm" disabled>
                 </div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input class="weui-input" type="tel" placeholder="高">
+                    <input name="height" class="weui-input" type="tel" placeholder="高">
                 </div>
                 <div class="weui-cell__bd weui-cell_primary">
                     <input class="weui-input" type="tel" value="cm" disabled>
@@ -99,7 +99,7 @@
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">重量</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input class="weui-input" type="tel" placeholder="请输入重量">
+                    <input name="weight" class="weui-input" type="tel" placeholder="请输入重量">
                 </div>
                 <div class="weui-cell__bd weui-cell_primary">
                     <input class="weui-input" type="tel" value="g" disabled>
@@ -108,36 +108,37 @@
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">工艺制作</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input id="works-gongyizhizuo" class="weui-input  " type="tel" placeholder="请选择工艺制作">
+                    <input name="gyType" id="works-gongyizhizuo" class="weui-input  " type="tel" placeholder="请选择工艺制作">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">篆刻级别</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input id="works-zhuankejibie" class="weui-input  " type="tel" placeholder="请选择篆刻级别">
+                    <input name="levelZk" id="works-zhuankejibie" class="weui-input  " type="tel" placeholder="请选择篆刻级别">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">矿区地域</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input id="works-kuangqudiyu" class="weui-input  " type="tel" placeholder="请选择矿区地域">
+                    <input name="kqdy" id="works-kuangqudiyu" class="weui-input  " type="tel" placeholder="请选择矿区地域">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">制作人</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input id="works-zhizuoren" class="weui-input" type="tel" placeholder="请输入制作人">
+                    <input name="maker" id="works-zhizuoren" class="weui-input" type="tel" placeholder="请输入制作人">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">制作时间</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input id="works-zhizuoshijian" class="weui-input" type="tel" placeholder="请选择制作时间">
+                    <input name="makeTime" id="works-zhizuoshijian" class="weui-input" type="tel" placeholder="请选择制作时间">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__bd weui-cell_primary">
-                    <textarea id="works-zuopinquanshi" class="weui-textarea" placeholder="作品诠释..." rows="3"></textarea>
+                    <textarea name="worksMeanning" id="works-zuopinquanshi" class="weui-textarea" placeholder="作品诠释..."
+                              rows="3"></textarea>
                     <!--<div class="weui-textarea-counter">-->
                     <!--<span>0</span>/200-->
                     <!--</div>-->
@@ -171,47 +172,18 @@
             cols: [
                 {
                     textAlign: 'center',
-                    values: ['品种一', '品种二']
+                    values: ['昌化田黄鸡血石', '昌化田黄石', '昌化鸡血石', '昌化冻石', '昌化彩石', '昌化奇石']
                 }
             ]
         });
 
-        $('#works-pinzhong').picker({
-            title: "请选择品种",
-            cols: [
-                {
-                    textAlign: 'center',
-                    values: ['品种一', '品种二']
-                }
-            ]
-        });
-
-        $('#works-pinzhong').picker({
-            title: "请选择品种",
-            cols: [
-                {
-                    textAlign: 'center',
-                    values: ['品种一', '品种二']
-                }
-            ]
-        });
-
-        $('#works-pinzhong').picker({
-            title: "请选择品种",
-            cols: [
-                {
-                    textAlign: 'center',
-                    values: ['品种一', '品种二']
-                }
-            ]
-        });
 
         $('#works-zuopinleixing').picker({
             title: "请选择作品类型",
             cols: [
                 {
                     textAlign: 'center',
-                    values: ['作品类型一', '作品类型二']
+                    values: ['原石', '印章', '雕件', '小玩件', '组合套件', '其他']
                 }
             ]
         });
@@ -221,7 +193,7 @@
             cols: [
                 {
                     textAlign: 'center',
-                    values: ['工艺制作一', '工艺制作二']
+                    values: ['一级', '二级', '三级', '四级']
                 }
             ]
         });
@@ -231,7 +203,7 @@
             cols: [
                 {
                     textAlign: 'center',
-                    values: ['篆刻级别一', '篆刻级别二']
+                    values: ['一级', '二级', '三级', '四级']
                 }
             ]
         });
@@ -241,7 +213,8 @@
             cols: [
                 {
                     textAlign: 'center',
-                    values: ['矿区地域一', '矿区地域二']
+                    values: ['纤岭', '核桃岭', '粗糠坞', '老鹰岩', '红硐岩', '红硐湾',
+                        '康山岭', '冷水湾', '仰天荡', '蚱蜢脚盘', '笔架石', '灰石岭', '鸡冠岩']
                 }
             ]
         });

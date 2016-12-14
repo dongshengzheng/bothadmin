@@ -1,3 +1,4 @@
+<%@ taglib prefix="for" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="include/taglib.jsp" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -42,8 +43,8 @@
 </div>
 
 
-<div class="search-results">
-    <div id="not-care-people" class="div-outer">
+<div class="search-results div-outer">
+    <div id="have-care-people" class="div-outer">
         <div class="weui-panel__bd" id="test1">
             <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
                 <div class="weui-media-box__hd">
@@ -55,13 +56,13 @@
                     <h4 class="weui-media-box__title">老特福德永恒</h4>
                     <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
                     <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
-                    <div class="search-results-one-care not-care div-hide div-on">
+                    <div class="search-results-one-care not-care div-hide">
                         <img src="${ctxStatic}/img/cut/to-focus.png" class="search-results-one-care-img "/>
                         <p class="search-results-one-care-text-not ">
                             加关注
                         </p>
                     </div>
-                    <div class="search-results-one-care have-care div-hide">
+                    <div class="search-results-one-care have-care div-hide div-on">
                         <img src="${ctxStatic}/img/cut/have-focus.png" class="search-results-one-care-img "/>
                         <p class="search-results-one-care-text-have ">
                             已关注
@@ -71,142 +72,45 @@
             </a>
         </div>
     </div>
-    <div id="have-care-people" class="div-outer">
-        <div class="weui-panel__bd" id="test2">
-            <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
-                <div class="weui-media-box__hd">
-                    <img class="weui-media-box__thumb"
-                         src="${ctxStatic}/img/headImg/4.jpg"
-                         alt="">
-                </div>
-                <div class="weui-media-box__bd">
-                    <h4 class="weui-media-box__title">致明日的信</h4>
-                    <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
-                    <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
-                    <div class="search-results-one-care have-care div-hide div-on">
-                        <img src="${ctxStatic}/img/cut/have-focus.png" class="search-results-one-care-img "/>
-                        <p class="search-results-one-care-text-have ">
-                            已关注
-                        </p>
+
+    <div id="not-care-people">
+
+        <for:forEach items="${page.records}" var="person">
+            <div class="weui-panel__bd" id="${person.userId}">
+                <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img class="weui-media-box__thumb"
+                             src="${ctxStatic}/img/headImg/4.jpg"
+                             alt="">
                     </div>
-                    <div class="search-results-one-care not-care div-hide">
-                        <img src="${ctxStatic}/img/cut/to-focus.png" class="search-results-one-care-img "/>
-                        <p class="search-results-one-care-text-not ">
-                            加关注
-                        </p>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">${person.name}</h4>
+                        <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
+                        <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
+                        <div class="search-results-one-care have-care div-hide">
+                            <img src="${ctxStatic}/img/cut/have-focus.png" class="search-results-one-care-img "/>
+                            <p class="search-results-one-care-text-have ">
+                                已关注
+                            </p>
+                        </div>
+                        <div class="search-results-one-care not-care div-hide div-on">
+                            <img src="${ctxStatic}/img/cut/to-focus.png" class="search-results-one-care-img "/>
+                            <p class="search-results-one-care-text-not ">
+                                加关注
+                            </p>
+                        </div>
                     </div>
-                </div>
-            </a>
-        </div>
-        <div class="weui-panel__bd" id="test3">
-            <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
-                <div class="weui-media-box__hd">
-                    <img class="weui-media-box__thumb"
-                         src="${ctxStatic}/img/headImg/5.jpg"
-                         alt="">
-                </div>
-                <div class="weui-media-box__bd">
-                    <h4 class="weui-media-box__title">我心永恒</h4>
-                    <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
-                    <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
-                    <div class="search-results-one-care have-care div-hide div-on">
-                        <img src="${ctxStatic}/img/cut/have-focus.png" class="search-results-one-care-img "/>
-                        <p class="search-results-one-care-text-have ">
-                            已关注
-                        </p>
-                    </div>
-                    <div class="search-results-one-care not-care div-hide">
-                        <img src="${ctxStatic}/img/cut/to-focus.png" class="search-results-one-care-img "/>
-                        <p class="search-results-one-care-text-not ">
-                            加关注
-                        </p>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="weui-panel__bd" id="test4">
-            <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
-                <div class="weui-media-box__hd">
-                    <img class="weui-media-box__thumb"
-                         src="${ctxStatic}/img/headImg/15.jpg"
-                         alt="">
-                </div>
-                <div class="weui-media-box__bd">
-                    <h4 class="weui-media-box__title">遇见</h4>
-                    <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
-                    <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
-                    <div class="search-results-one-care have-care div-hide div-on">
-                        <img src="${ctxStatic}/img/cut/have-focus.png" class="search-results-one-care-img "/>
-                        <p class="search-results-one-care-text-have ">
-                            已关注
-                        </p>
-                    </div>
-                    <div class="search-results-one-care not-care div-hide">
-                        <img src="${ctxStatic}/img/cut/to-focus.png" class="search-results-one-care-img "/>
-                        <p class="search-results-one-care-text-not ">
-                            加关注
-                        </p>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="weui-panel__bd" id="test5">
-            <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
-                <div class="weui-media-box__hd">
-                    <img class="weui-media-box__thumb"
-                         src="${ctxStatic}/img/headImg/11.jpg"
-                         alt="">
-                </div>
-                <div class="weui-media-box__bd">
-                    <h4 class="weui-media-box__title">我怀念的</h4>
-                    <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
-                    <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
-                    <div class="search-results-one-care have-care div-hide div-on">
-                        <img src="${ctxStatic}/img/cut/have-focus.png" class="search-results-one-care-img "/>
-                        <p class="search-results-one-care-text-have ">
-                            已关注
-                        </p>
-                    </div>
-                    <div class="search-results-one-care not-care div-hide">
-                        <img src="${ctxStatic}/img/cut/to-focus.png" class="search-results-one-care-img "/>
-                        <p class="search-results-one-care-text-not ">
-                            加关注
-                        </p>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="weui-panel__bd" id="test6">
-            <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
-                <div class="weui-media-box__hd">
-                    <img class="weui-media-box__thumb"
-                         src="${ctxStatic}/img/headImg/18.jpg"
-                         alt="">
-                </div>
-                <div class="weui-media-box__bd">
-                    <h4 class="weui-media-box__title">小禁区之王</h4>
-                    <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
-                    <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
-                    <div class="search-results-one-care have-care div-hide div-on">
-                        <img src="${ctxStatic}/img/cut/have-focus.png" class="search-results-one-care-img "/>
-                        <p class="search-results-one-care-text-have ">
-                            已关注
-                        </p>
-                    </div>
-                    <div class="search-results-one-care not-care div-hide">
-                        <img src="${ctxStatic}/img/cut/to-focus.png" class="search-results-one-care-img "/>
-                        <p class="search-results-one-care-text-not ">
-                            加关注
-                        </p>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="hr-text ">
-            <center>
-                <hr>
-                <span>&nbsp;&nbsp;到底啦&nbsp;&nbsp;</span></center>
-        </div>
+                </a>
+            </div>
+        </for:forEach>
+
+    </div>
+
+
+    <div class="hr-text div-outer">
+        <center>
+            <hr>
+            <span>&nbsp;&nbsp;到底啦&nbsp;&nbsp;</span></center>
     </div>
 </div>
 
@@ -299,6 +203,11 @@
         $('.not-care').on('click', function () {
             $notCareDialog.fadeIn(200);
             $(this).removeClass('div-on').siblings('.search-results-one-care').addClass('div-on');
+            var outer = $(this).parent().parent().parent();
+            var notCareOuter = outer.parent();
+            var haveCareOuter = notCareOuter.siblings('#have-care-people');
+            haveCareOuter.append(outer);
+
         });
 
         $('.weui-dialog__btn').on('click', function () {
@@ -306,8 +215,16 @@
         })
 
         $('#haveCareDialog .weui-dialog__btn_primary').on('click', function () {
-            $('#' + ($('#haveCareDialog').attr('data-id')) + ' .have-care').removeClass('div-on').siblings('.search-results-one-care').addClass('div-on');
+            var thisOne = $('#' + ($('#haveCareDialog').attr('data-id')) + ' .have-care');
+            thisOne.removeClass('div-on').siblings('.search-results-one-care').addClass('div-on');
+            $(thisOne).removeClass('div-on').siblings('.search-results-one-care').addClass('div-on');
+            var outer = $(thisOne).parent().parent().parent();
+            var haveCareOuter = outer.parent();
+            var notCareOuter = haveCareOuter.siblings('#not-care-people');
+            notCareOuter.append(outer);
+
         })
+
 
         $('.weui-media-box__thumb').on('click', function () {
             location.href = '${ctx}/mobile/userInfo';
