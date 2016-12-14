@@ -16,7 +16,7 @@
     <div class="modal-body">
         <div class="container-fluid">
             <div class="form-group">
-                <input type="hidden" name="menuId" value="${menu.menuId}"/> <label
+                <input type="hidden" name="id" value="${menu.id}"/> <label
                     for="menuName" class="col-sm-2 control-label">名称</label>
                 <div class="col-sm-7">
                     <input id="menuName" name="menuName" value="${menu.menuName}"
@@ -78,16 +78,5 @@
     </div>
 </form>
 <script type="text/javascript">
-    $("#defForm").validate({
-        rules:{
-            menuOrder:{
-                number:true
-            }
-        },
-        message:{
-            menuOrder:{
-                number:"请输入数字"
-            }
-        }
-    });
+    $("#defForm").validate();
 </script>

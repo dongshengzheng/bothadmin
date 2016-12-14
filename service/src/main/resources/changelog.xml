@@ -69,8 +69,29 @@
         </sql>
     </changeSet>
 
-
-
+    <changeSet author="SunHan" id="15862614903-010">
+        <sql dbms="mysql">
+            ALTER TABLE `sys_user` CHANGE COLUMN `user_id` `id` int(11) NOT NULL AUTO_INCREMENT, DROP PRIMARY KEY, ADD PRIMARY KEY (`id`);
+            ALTER TABLE `sys_button` CHANGE COLUMN `button_id` `id` int(11) NOT NULL AUTO_INCREMENT, DROP PRIMARY KEY, ADD PRIMARY KEY (`id`);
+            ALTER TABLE `sys_menu` CHANGE COLUMN `menu_id` `id` int(11) NOT NULL AUTO_INCREMENT, DROP PRIMARY KEY, ADD PRIMARY KEY (`id`);
+            ALTER TABLE `sys_role` CHANGE COLUMN `role_id` `id` int(11) NOT NULL AUTO_INCREMENT, DROP PRIMARY KEY, ADD PRIMARY KEY (`id`);
+        </sql>
+    </changeSet>
+    <changeSet author="SunHan" id="15862614903-011">
+        <sql>
+            drop table dd_collect;
+            ALTER TABLE `dd_consumer` DROP COLUMN `id`,drop PRIMARY KEY;
+            ALTER TABLE `dd_consumer` ADD COLUMN `id` int(11) NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (`id`);
+            ALTER TABLE `dd_message` DROP COLUMN `id`,drop PRIMARY KEY;
+            ALTER TABLE `dd_message` ADD COLUMN `id` int(11) NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (`id`);
+            ALTER TABLE `dd_report` DROP COLUMN `id`,drop PRIMARY KEY;
+            ALTER TABLE `dd_report` ADD COLUMN `id` int(11) NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (`id`);
+            ALTER TABLE `dd_works` DROP COLUMN `id`,drop PRIMARY KEY;
+            ALTER TABLE `dd_works` ADD COLUMN `id` int(11) NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (`id`);
+            ALTER TABLE `dd_works_level` DROP COLUMN `id`,drop PRIMARY KEY;
+            ALTER TABLE `dd_works_level` ADD COLUMN `id` int(11) NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (`id`);
+        </sql>
+    </changeSet>
 
 
 </databaseChangeLog>

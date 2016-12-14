@@ -18,8 +18,8 @@ public class Button implements java.io.Serializable {
     @TableField(exist = false)
     private static final long serialVersionUID = 8552758267353482774L;
 
-    @TableId(value = "button_id",type = IdType.AUTO)
-    private Integer buttonId;
+    @TableId(value = "id",type = IdType.AUTO)
+    private Integer id;
     @TableField(value = "menu_id")
     private Integer menuId;
     @TableField(value = "button_name")
@@ -33,12 +33,12 @@ public class Button implements java.io.Serializable {
     @TableField(exist = false)
     private boolean hasButton = false;
 
-    public Integer getButtonId() {
-        return buttonId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setButtonId(Integer buttonId) {
-        this.buttonId = buttonId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getMenuId() {

@@ -5,15 +5,13 @@
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
-<!-- Content Header (Page header) -->
-<div class="content-header">
-    <ol class="breadcrumb">
+<div class="page-bar">
+    <ul class="page-breadcrumb">
         <li><a href="./"><i class="icon-home"></i> 主页</a></li>
-        <li class="active">系统管理</li>
-        <li><a href="right" data-target="navTab">菜单信息</a></li>
-    </ol>
+        <li><i class='fa fa-circle'></i>系统管理</li>
+        <li><i class='fa fa-circle'></i><a href="right" data-target="navTab">菜单信息</a></li>
+    </ul>
 </div>
-
 <div class="row">
     <div class="col-md-12">
         <div class="portlet light bordered">
@@ -44,7 +42,7 @@
                     <thead>
                     <tr>
                         <th width="10px" >
-                            <input type='checkbox' id ="defaultCheck"/>
+                           <input type='checkbox' id="defaultCheck"/>
                         </th>
                         <th>名称</th>
                         <th>路径</th>
@@ -72,17 +70,17 @@
                 "type": "post",
                 "data": function (data) {
                     data.menuType = "1";
-                    data.menuName = $("#keyword").val();
+                    data.keyword = $("#keyword").val();
                 }
             },
             "language": {
                 "url": "<%=basePath%>assets/global/plugins/datatables/cn.txt"
             },
             "createdRow": function (row, data, index) {
-                $('td:eq(0)', row).html("<input type='checkbox' name='chx_default' value='" + data.menuId + "'/>");
+                $('td:eq(0)', row).html("<input type='checkbox' name='chx_default' value='" + data.id + "'/>");
             },
             "columns": [
-                {"data": "menuId"},
+                {"data": "id"},
                 {"data": "menuName"},
                 {"data": "menuUrl"},
                 {"data": "menuOrder"},
@@ -93,13 +91,13 @@
                 "render": function (data, type, row) {
                     return ""
                             <shiro:hasPermission name="right/editMenu">
-                            + '<a href="right/editMenu?menuId=' + row.menuId + '" class="btn btn-outline btn-circle btn-sm green" data-model="dialog"><i class="fa fa-edit"></i>编辑</a>'
+                            + '<a href="right/editMenu?id=' + row.id + '" class="btn btn-outline btn-circle btn-sm green" data-model="dialog"><i class="fa fa-edit"></i>编辑</a>'
                             </shiro:hasPermission>
                             <shiro:hasPermission name="right/deleteMenu">
-                            + '<a href="right/deleteMenu?menuId=' + row.menuId + '" data-msg="将删除该菜单下的所有子菜单和权限，确定删除吗？" data-model="ajaxToDo" data-callback="refreshTable" class="btn btn-outline btn-circle btn-sm green"><i class="fa fa-trash-o"></i>删除</a>'
+                            + '<a href="right/deleteMenu?id=' + row.id + '" data-msg="将删除该菜单下的所有子菜单和权限，确定删除吗？" data-model="ajaxToDo" data-callback="refreshTable" class="btn btn-outline btn-circle btn-sm green"><i class="fa fa-trash-o"></i>删除</a>'
                             </shiro:hasPermission>
                             <shiro:hasPermission name="right/subMenu">
-                            + '<a href="right/subMenu?parentId=' + row.menuId + '" class="btn btn-outline btn-circle btn-sm green" data-target="navTab"><i class="fa fa-search"></i>查看子菜单</a>'
+                            + '<a href="right/subMenu?parentId=' + row.id + '" class="btn btn-outline btn-circle btn-sm green" data-target="navTab"><i class="fa fa-search"></i>查看子菜单</a>'
                             </shiro:hasPermission>;
                 }
             }],

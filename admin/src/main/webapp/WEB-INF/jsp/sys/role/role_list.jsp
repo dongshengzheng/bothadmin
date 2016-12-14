@@ -38,7 +38,7 @@
                     <thead>
                     <tr>
                         <th width="10px">
-                            <input type='checkbox' id ="defaultCheck"/>
+                           <input type='checkbox' id="defaultCheck"/>
                         </th>
 
                         <th>角色名称</th>
@@ -64,18 +64,19 @@
                 "url": "role/list",
                 "type": "post",
                 "data": function (data) {
-                    data.roleName = $("#keyword").val();
+                    data.roleName = $("#roleName").val();
+                    data.keyword = $("#keyword").val();
                 }
             },
             "language": {
                 "url": "<%=basePath%>assets/global/plugins/datatables/cn.txt"
             },
             "createdRow": function (row, data, index) {
-                $('td:eq(0)', row).html("<input type='checkbox' name='chx_default' value='" + data.roleId + "'/>");
+                $('td:eq(0)', row).html("<input type='checkbox' name='chx_default' value='" + data.id + "'/>");
             },
             "lengthMenu": [[5, 40, 60], [5, 40, 60]],
             "columns": [
-                {"data": "roleId"},
+                {"data": "id"},
                 {"data": "roleName"},
                 {"data": "description"},
             ],
@@ -84,13 +85,13 @@
                 "render": function (data, type, row) {
                     return ""
                             <shiro:hasPermission name="role/editBtn">
-                            + '<a href="role/edit?roleId=' + row.roleId + '" class="btn btn-outline btn-circle btn-sm green" data-model="dialog"><i class="fa fa-edit"></i>编辑</a>'
+                            + '<a href="role/edit?id=' + row.id + '" class="btn btn-outline btn-circle btn-sm green" data-model="dialog"><i class="fa fa-edit"></i>编辑</a>'
                             </shiro:hasPermission>
                             <shiro:hasPermission name="role/deleteBtn">
-                            + '<a href="role/delete?roleId=' + row.roleId + '" data-msg="确定删除吗？"  data-model="ajaxToDo" data-callback="refreshTable" class="btn btn-outline btn-circle btn-sm green"><i class="fa fa-times"></i>删除</a>'
+                            + '<a href="role/delete?id=' + row.id + '" data-msg="确定删除吗？"  data-model="ajaxToDo" data-callback="refreshTable" class="btn btn-outline btn-circle btn-sm green"><i class="fa fa-times"></i>删除</a>'
                             </shiro:hasPermission>
                             <shiro:hasPermission name="role/editRight">
-                            + '<a href="role/editRight?roleId=' + row.roleId + '" class="btn btn-outline btn-circle btn-sm green" data-model="dialog"><i class="fa fa-user"></i>分配权限</a>'
+                            + '<a href="role/editRight?id=' + row.id + '" class="btn btn-outline btn-circle btn-sm green" data-model="dialog"><i class="fa fa-user"></i>分配权限</a>'
                             </shiro:hasPermission>;
                 }
             }],
@@ -104,6 +105,7 @@
     });
 
     function refreshTable(toFirst) {
+        //defaultTable.ajax.reload();
         if (toFirst) {//表格重绘，并跳转到第一页
             defTable.draw();
         } else {//表格重绘，保持在当前页

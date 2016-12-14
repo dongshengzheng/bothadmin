@@ -44,35 +44,35 @@ public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implemen
 
         for (Menu menu : menuList) {
             RoleTree roleTree = new RoleTree();
-            roleTree.setId(menu.getMenuId().toString());
+            roleTree.setId(menu.getId().toString());
             roleTree.setpId(menu.getParentId());
             roleTree.setName(menu.getMenuName());
             roleTree.setOpen("true");
-            roleTree.setResFlag(menu.getMenuId() + "_" + menu.getMenuType());
+            roleTree.setResFlag(menu.getId() + "_" + menu.getMenuType());
             roleTrees.add(roleTree);
 
 
             EntityWrapper<Menu> ew2 = new EntityWrapper<>();
-            ew2.addFilter("del_flag != -1 AND menu_type={0} AND parent_id={1}", 2, menu.getMenuId());
+            ew2.addFilter("del_flag != -1 AND menu_type={0} AND parent_id={1}", 2, menu.getId());
             List<Menu> subMenuList = menuMapper.selectList(ew2);
             for (Menu subMenu : subMenuList) {
                 RoleTree subTree = new RoleTree();
-                subTree.setId(subMenu.getMenuId().toString());
+                subTree.setId(subMenu.getId().toString());
                 subTree.setpId(subMenu.getParentId());
                 subTree.setName(subMenu.getMenuName());
                 subTree.setOpen("true");
-                subTree.setResFlag(subMenu.getMenuId() + "_" + subMenu.getMenuType());
+                subTree.setResFlag(subMenu.getId() + "_" + subMenu.getMenuType());
                 roleTrees.add(subTree);
                 EntityWrapper<Button> ew3 = new EntityWrapper<>();
-                ew3.addFilter("del_flag != -1 AND menu_id={0} ", subMenu.getMenuId());
+                ew3.addFilter("del_flag != -1 AND menu_id={0} ", subMenu.getId());
                 List<Button> buttonList = buttonMapper.selectList(ew3);
                 for (Button button : buttonList) {
                     RoleTree butttonTree = new RoleTree();
-                    butttonTree.setId(button.getMenuId() + "_" + button.getButtonId());
+                    butttonTree.setId(button.getMenuId() + "_" + button.getId());
                     butttonTree.setpId(button.getMenuId());
                     butttonTree.setName(button.getButtonName());
                     butttonTree.setOpen("true");
-                    butttonTree.setResFlag(button.getButtonId() + "_" + 3);
+                    butttonTree.setResFlag(button.getId() + "_" + 3);
                     roleTrees.add(butttonTree);
                 }
             }

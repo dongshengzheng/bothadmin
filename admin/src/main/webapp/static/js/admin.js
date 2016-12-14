@@ -203,7 +203,11 @@ $(function () {
                     $('#' + targetid).modal("hide");
                     if (data.status) {
                         if (callback) {
-                            eval(callback + "()");
+                            if (callback.indexOf(')') != -1){
+                                eval(callback);
+                            }else{
+                                eval(callback + "()");
+                            }
                         }
                         BootstrapDialog.show({
                             type: BootstrapDialog.TYPE_SUCCESS,

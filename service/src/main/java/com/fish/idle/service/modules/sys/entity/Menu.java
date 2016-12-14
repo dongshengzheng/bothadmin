@@ -23,8 +23,8 @@ public class Menu implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**  */
-    @TableId(value = "menu_id", type = IdType.AUTO)
-    private Integer menuId;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
 
     /**
      * 菜单名称
@@ -79,12 +79,12 @@ public class Menu implements Serializable {
     @TableField(exist = false)
     private List<Button> buttons;
 
-    public Integer getMenuId() {
-        return menuId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setMenuId(Integer menuId) {
-        this.menuId = menuId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getMenuName() {

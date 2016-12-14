@@ -6,7 +6,7 @@
         select distinct m.*
         from sys_user_role ur, sys_role_resource rs, sys_menu m
         where ur.role_id= rs.role_id
-        and rs.resource_id = m.menu_id
+        and rs.resource_id = m.id
         and rs.resource_type = 1
         and m.del_flag != -1
         <if test="_parameter != 1"><!--only for non-admin user -->
@@ -18,7 +18,7 @@
         select distinct m.*
         from sys_user_role ur, sys_role_resource rs, sys_menu m
         where ur.role_id = rs.role_id
-        and rs.resource_id = m.menu_id
+        and rs.resource_id = m.id
         and rs.resource_type = 2<!-- 菜单资源 -->
         and m.parent_id = #{menuId}
         and m.del_flag != -1

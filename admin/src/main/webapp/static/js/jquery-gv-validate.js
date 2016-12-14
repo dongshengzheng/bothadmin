@@ -24,12 +24,14 @@ $.validator.setDefaults({
                     $(form).clearForm();
                     if ($(form).find("*[data-dismiss='modal']").length > 0) {
                         $(form).find("*[data-dismiss='modal']").click();
-                        var callfn = $(form).attr("callfn");
-                        if (callfn) {
+                    }
+                    var callfn = $(form).attr("callfn");
+                    if (callfn) {
+                        if (callfn.indexOf(')') != -1){
+                            eval(callfn);
+                        }else{
                             eval(callfn + "()");
                         }
-                    } else {
-                        $("#breadNav li:nth-last-child(2) > a").click();
                     }
                     BootstrapDialog.show({
                         type: BootstrapDialog.TYPE_SUCCESS,

@@ -73,11 +73,11 @@
                 "url": "<%=basePath%>assets/global/plugins/datatables/cn.txt"
             },
             "createdRow": function (row, data, index) {
-                $('td:eq(0)', row).html("<input type='checkbox' name='chx_default' value='" + data.userId + "'/>");
+                $('td:eq(0)', row).html("<input type='checkbox' name='chx_default' value='" + data.id + "'/>");
             },
             "lengthMenu": [[5, 40, 60], [5, 40, 60]],
             "columns": [
-                {"data": "userId", "orderable": false},
+                {"data": "id", "orderable": false},
                 {"data": "loginName", "orderable": false},
                 {"data": "name"},
                 {"data": "email"},
@@ -89,14 +89,14 @@
                 "render": function (data, type, row) {
                     return ""
                     <shiro:hasPermission name="right/editBtn">
-                    +'<a href="user/edit?userId=' + row.userId + '" class="btn btn-outline btn-circle btn-sm green" data-model="dialog"><i class="fa fa-edit"></i>编辑</a>'
+                    +'<a href="user/edit?id=' + row.id + '" class="btn btn-outline btn-circle btn-sm green" data-model="dialog"><i class="fa fa-edit"></i>编辑</a>'
                     </shiro:hasPermission>
                     <shiro:hasPermission name="right/deleteBtn">
-                    +'<a href="user/delete?userId=' + row.userId +
+                    +'<a href="user/delete?id=' + row.id +
                            '" data-msg="确定删除吗？"  data-model="ajaxToDo" data-callback="refreshTable" class="btn btn-outline btn-circle btn-sm green"><i class="fa fa-times"></i>删除</a>'
                     </shiro:hasPermission>
                     <shiro:hasPermission name="right/editRole">
-                            +'<a href="user/editRole?userId=' + row.userId + '" class="btn btn-outline btn-circle btn-sm green" data-model="dialog"><i class="fa fa-user"></i>分配角色</a>'
+                            +'<a href="user/editRole?id=' + row.id + '" class="btn btn-outline btn-circle btn-sm green" data-model="dialog"><i class="fa fa-user"></i>分配角色</a>'
                     </shiro:hasPermission>;
                 }
             }],

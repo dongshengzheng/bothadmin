@@ -23,8 +23,8 @@ public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**  */
-	@TableId(value = "role_id", type = IdType.AUTO)
-	private Integer roleId;
+	@TableId(value = "id", type = IdType.AUTO)
+	private Integer id;
 
 	/** 角色名称 */
 	@TableField(value = "role_name")
@@ -59,12 +59,12 @@ public class Role implements Serializable {
 		this.checked = checked;
 	}
 
-	public Integer getRoleId() {
-		return this.roleId;
+	public Integer getId() {
+		return this.id;
 	}
 
-	public void setRoleId(Integer roleId) {
-		this.roleId = roleId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getRoleName() {

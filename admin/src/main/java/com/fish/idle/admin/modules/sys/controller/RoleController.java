@@ -1,11 +1,8 @@
 package com.fish.idle.admin.modules.sys.controller;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import org.springframework.util.StringUtils;
+import com.fish.idle.admin.controller.BaseController;
 import com.fish.idle.service.modules.sys.entity.Role;
 import com.fish.idle.service.modules.sys.entity.RoleTree;
 import com.fish.idle.service.modules.sys.service.RoleService;
@@ -15,12 +12,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fish.idle.admin.controller.BaseController;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author Sun.Han
@@ -68,8 +67,8 @@ public class RoleController extends BaseController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public String toEdit(@RequestParam Integer roleId, ModelMap map) {
-        Role role = roleService.selectById(roleId);
+    public String toEdit(@RequestParam Integer id, ModelMap map) {
+        Role role = roleService.selectById(id);
         map.put("role", role);
 
         return "sys/role/role_edit";
@@ -86,8 +85,8 @@ public class RoleController extends BaseController {
 
     @RequestMapping(value = "/delete")
     @ResponseBody
-    public JSONObject delete(@RequestParam Integer roleId) {
-        roleService.deleteById(roleId);
+    public JSONObject delete(@RequestParam Integer id) {
+        roleService.deleteById(id);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("status", 1);
         return jsonObject;
@@ -104,15 +103,15 @@ public class RoleController extends BaseController {
     }
 
     @RequestMapping(value = "/editRight", method = RequestMethod.GET)
-    public String toEditRight(@RequestParam Integer roleId, ModelMap map) {
-        map.put("role", roleService.selectById(roleId));
+    public String toEditRight(@RequestParam Integer id, ModelMap map) {
+        map.put("role", roleService.selectById(id));
         return "sys/role/role_right_edit";
     }
 
     @RequestMapping(value = "/resNodes")
     @ResponseBody
-    public List<RoleTree> resNodes(@RequestParam Integer roleId) {
-        return roleService.listTreeData(roleId);
+    public List<RoleTree> resNodes(@RequestParam Integer id) {
+        return roleService.listTreeData(id);
     }
 
     @RequestMapping(value = "/editRight", method = RequestMethod.POST)

@@ -50,7 +50,7 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
         List<UserRole> userRoles = userRoleMapper.selectByMap(map);
         for (Role role : roles) {
             for (UserRole userRole : userRoles) {
-                if (role.getRoleId().equals(userRole.getRoleId())) {
+                if (role.getId().equals(userRole.getRoleId())) {
                     role.setChecked(true);
                     break;
                 }
@@ -63,7 +63,7 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
         String roleIds = user.getRoleIds();
         if (StringUtils.isNotBlank(roleIds)) {
             List<UserRole> list = new ArrayList<>();
-            Integer userId = user.getUserId();
+            Integer userId = user.getId();
             String[] roleIdArr = roleIds.split(",");
             for (String roleId : roleIdArr) {
                 UserRole userRole = new UserRole();
@@ -91,13 +91,13 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
         Subject subject = SecurityUtils.getSubject();
         User sessionUser = (User) subject.getSession().getAttribute(Const.SESSION_USER);
 
-        User user = userMapper.selectById(sessionUser.getUserId());
+        User user = userMapper.selectById(sessionUser.getId());
         String loginName = user.getLoginName();
         String encodePwd = new SimpleHash("SHA-1", loginName, oldPassword).toString();
         if (user.getPassword().equals(encodePwd)) {
             User newer = new User();
             newer.setPassword(new SimpleHash("SHA-1", loginName, password).toString());
-            newer.setUserId(sessionUser.getUserId());
+            newer.setId(sessionUser.getId());
             userMapper.updateSelectiveById(newer);
             result.put("status", 1);
         } else {

@@ -16,7 +16,7 @@
     <div class="modal-body">
         <div class="container-fluid">
             <div class="form-group">
-                <input type="hidden" name="buttonId" value="${button.buttonId}"/> <label
+                <input type="hidden" name="id" value="${button.id}"/> <label
                     for="buttonName" class="col-sm-2 control-label">名称</label>
                 <div class="col-sm-7">
                     <input id="buttonName" name="buttonName" value="${button.buttonName}"

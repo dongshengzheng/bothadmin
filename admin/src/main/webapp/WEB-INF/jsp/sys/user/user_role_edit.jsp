@@ -32,7 +32,7 @@
                         <c:forEach items="${roles}" var="role" varStatus="vs">
                             <tr>
                                 <td><label><input type="checkbox" name="roleIds"
-                                                  value="${role.roleId}" ${role.checked ? "checked" : ""}></label></td>
+                                                  value="${role.id}" ${role.checked ? "checked" : ""}></label></td>
                                 <td>${vs.count}</td>
                                 <td>${role.roleName}</td>
                                 <td>${role.description}</td>
