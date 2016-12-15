@@ -209,7 +209,7 @@
 
 <div class="all div-outer">
     <div class="all-title">
-        <input value="     全部作品"/>
+        <input value="     全部作品" disabled/>
     </div>
 
     <c:forEach items="${page.records}" var="works">

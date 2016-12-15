@@ -10,9 +10,11 @@ import com.fish.idle.service.modules.jsdd.service.IWorksService;
 import com.fish.idle.service.modules.sys.entity.User;
 import com.fish.idle.service.modules.sys.service.UserService;
 import com.fish.idle.service.util.Const;
+import com.fish.idle.service.util.DateUtil;
 import com.fish.idle.service.util.StringUtils;
 import com.fish.idle.weixin.interceptor.OAuthRequired;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
@@ -547,13 +549,13 @@ public class MobileController extends BaseController {
         List<Works> worksNowList = new ArrayList<>();
         List<Works> worksDraftList = new ArrayList<>();
         for (Works w : worksList) {
-            if (w.getStatus().equals(Const.WORKS_STATUS_PASS)) {
+            if (Const.WORKS_STATUS_PASS.equals(w.getStatus())) {
                 worksSuccessList.add(w);
-            } else if (w.getStatus().equals(Const.WORKS_STATUS_UNPASS)) {
+            } else if (Const.WORKS_STATUS_UNPASS.equals(w.getStatus())) {
                 worksFailureList.add(w);
-            } else if (w.getStatus().equals(Const.WORKS_STATUS_COMMIT)) {
+            } else if (Const.WORKS_STATUS_COMMIT.equals(w.getStatus())) {
                 worksNowList.add(w);
-            } else if (w.getStatus().equals(Const.WORKS_STATUS_DRAFT)) {
+            } else if (Const.WORKS_STATUS_DRAFT.equals(w.getStatus())) {
                 worksDraftList.add(w);
             }
         }
@@ -572,115 +574,115 @@ public class MobileController extends BaseController {
      *
      * @return
      */
-    @RequestMapping(value = "my/myWorksSuccess", method = RequestMethod.GET)
-    @OAuthRequired
-    public String myWorksSuccess(HttpSession session,
-                                 Works works,
-                                 HttpServletRequest request,
-                                 HttpServletResponse response,
-                                 ModelMap map) {
-        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
-        User u = new User();
-        u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
-            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
-        }
-        works.setStatus(Const.WORKS_STATUS_PASS);
-        works.setCreateBy(user.getId());
-        EntityWrapper ew = new EntityWrapper(works);
-        List<Works> worksList = worksService.selectList(ew);
-        map.put("worksList", worksList);
-
-        return "modules/mobile/pawn2/myWorksSuccess";
-    }
+//    @RequestMapping(value = "my/myWorksSuccess", method = RequestMethod.GET)
+//    @OAuthRequired
+//    public String myWorksSuccess(HttpSession session,
+//                                 Works works,
+//                                 HttpServletRequest request,
+//                                 HttpServletResponse response,
+//                                 ModelMap map) {
+//        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+//        String openId = wxMpUser.getOpenId();
+//        User u = new User();
+//        u.setOpenId(openId);
+//        User user = userService.selectOne(u);
+//        if (user == null) {
+//            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+//        }
+//        works.setStatus(Const.WORKS_STATUS_PASS);
+//        works.setCreateBy(user.getId());
+//        EntityWrapper ew = new EntityWrapper(works);
+//        List<Works> worksList = worksService.selectList(ew);
+//        map.put("worksList", worksList);
+//
+//        return "modules/mobile/pawn2/myWorksSuccess";
+//    }
 
     /**
      * 跳往个人信息:审查成功失败页面
      *
      * @return
      */
-    @RequestMapping(value = "my/myWorksFailure", method = RequestMethod.GET)
-    @OAuthRequired
-    public String myWorksFailure(HttpSession session,
-                                 Works works,
-                                 HttpServletRequest request,
-                                 HttpServletResponse response,
-                                 ModelMap map) {
-        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
-        User u = new User();
-        u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
-            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
-        }
-        works.setStatus(Const.WORKS_STATUS_UNPASS);
-        works.setCreateBy(user.getId());
-        EntityWrapper ew = new EntityWrapper(works);
-        List<Works> worksList = worksService.selectList(ew);
-        map.put("worksList", worksList);
-        return "modules/mobile/pawn2/myWorksFailure";
-    }
+//    @RequestMapping(value = "my/myWorksFailure", method = RequestMethod.GET)
+//    @OAuthRequired
+//    public String myWorksFailure(HttpSession session,
+//                                 Works works,
+//                                 HttpServletRequest request,
+//                                 HttpServletResponse response,
+//                                 ModelMap map) {
+//        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+//        String openId = wxMpUser.getOpenId();
+//        User u = new User();
+//        u.setOpenId(openId);
+//        User user = userService.selectOne(u);
+//        if (user == null) {
+//            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+//        }
+//        works.setStatus(Const.WORKS_STATUS_UNPASS);
+//        works.setCreateBy(user.getId());
+//        EntityWrapper ew = new EntityWrapper(works);
+//        List<Works> worksList = worksService.selectList(ew);
+//        map.put("worksList", worksList);
+//        return "modules/mobile/pawn2/myWorksFailure";
+//    }
 
     /**
      * 跳往个人信息:审查中作品页面
      *
      * @return
      */
-    @RequestMapping(value = "my/myWorksNow", method = RequestMethod.GET)
-    @OAuthRequired
-    public String myWorksNow(HttpSession session,
-                             Works works,
-                             HttpServletRequest request,
-                             HttpServletResponse response,
-                             ModelMap map) {
-        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
-        User u = new User();
-        u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
-            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
-        }
-        works.setStatus(Const.WORKS_STATUS_COMMIT);
-        works.setCreateBy(user.getId());
-        EntityWrapper ew = new EntityWrapper(works);
-        List<Works> worksList = worksService.selectList(ew);
-        map.put("worksList", worksList);
-
-        return "modules/mobile/pawn2/myWorksNow";
-    }
+//    @RequestMapping(value = "my/myWorksNow", method = RequestMethod.GET)
+//    @OAuthRequired
+//    public String myWorksNow(HttpSession session,
+//                             Works works,
+//                             HttpServletRequest request,
+//                             HttpServletResponse response,
+//                             ModelMap map) {
+//        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+//        String openId = wxMpUser.getOpenId();
+//        User u = new User();
+//        u.setOpenId(openId);
+//        User user = userService.selectOne(u);
+//        if (user == null) {
+//            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+//        }
+//        works.setStatus(Const.WORKS_STATUS_COMMIT);
+//        works.setCreateBy(user.getId());
+//        EntityWrapper ew = new EntityWrapper(works);
+//        List<Works> worksList = worksService.selectList(ew);
+//        map.put("worksList", worksList);
+//
+//        return "modules/mobile/pawn2/myWorksNow";
+//    }
 
     /**
      * 跳往个人信息:草稿箱作品页面
      *
      * @return
      */
-    @RequestMapping(value = "my/myWorksDraft", method = RequestMethod.GET)
-    @OAuthRequired
-    public String myWorksDraft(HttpSession session,
-                               Works works,
-                               HttpServletRequest request,
-                               HttpServletResponse response,
-                               ModelMap map) {
-        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
-        User u = new User();
-        u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
-            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
-        }
-        works.setStatus(Const.WORKS_STATUS_DRAFT);
-        works.setCreateBy(user.getId());
-        EntityWrapper ew = new EntityWrapper(works);
-        List<Works> worksList = worksService.selectList(ew);
-        map.put("worksList", worksList);
-
-        return "modules/mobile/pawn2/myWorksDraft";
-    }
+//    @RequestMapping(value = "my/myWorksDraft", method = RequestMethod.GET)
+//    @OAuthRequired
+//    public String myWorksDraft(HttpSession session,
+//                               Works works,
+//                               HttpServletRequest request,
+//                               HttpServletResponse response,
+//                               ModelMap map) {
+//        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+//        String openId = wxMpUser.getOpenId();
+//        User u = new User();
+//        u.setOpenId(openId);
+//        User user = userService.selectOne(u);
+//        if (user == null) {
+//            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+//        }
+//        works.setStatus(Const.WORKS_STATUS_DRAFT);
+//        works.setCreateBy(user.getId());
+//        EntityWrapper ew = new EntityWrapper(works);
+//        List<Works> worksList = worksService.selectList(ew);
+//        map.put("worksList", worksList);
+//
+//        return "modules/mobile/pawn2/myWorksDraft";
+//    }
 
     /**
      * 跳往个人信息:转让-收藏-关注页面
@@ -758,72 +760,72 @@ public class MobileController extends BaseController {
      *
      * @return
      */
-    @RequestMapping(value = "my/myWorksTransfer", method = RequestMethod.GET)
-    @OAuthRequired
-    public String myWorksTransfer(HttpSession session,
-                                  Works works,
-                                  HttpServletRequest request,
-                                  HttpServletResponse response,
-                                  ModelMap map) {
-        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
-        User u = new User();
-        u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
-            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
-        }
-        works.setStatus(Const.WORKS_STATUS_PASS);
-        return "modules/mobile/pawn2/myWorksTransfer";
-    }
+//    @RequestMapping(value = "my/myWorksTransfer", method = RequestMethod.GET)
+//    @OAuthRequired
+//    public String myWorksTransfer(HttpSession session,
+//                                  Works works,
+//                                  HttpServletRequest request,
+//                                  HttpServletResponse response,
+//                                  ModelMap map) {
+//        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+//        String openId = wxMpUser.getOpenId();
+//        User u = new User();
+//        u.setOpenId(openId);
+//        User user = userService.selectOne(u);
+//        if (user == null) {
+//            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+//        }
+//        works.setStatus(Const.WORKS_STATUS_PASS);
+//        return "modules/mobile/pawn2/myWorksTransfer";
+//    }
 
     /**
      * 跳往个人信息:收藏作品页面
      *
      * @return
      */
-    @RequestMapping(value = "my/myWorksCollection", method = RequestMethod.GET)
-    @OAuthRequired
-    public String myWorksCollection(HttpSession session,
-                                    Works works,
-                                    HttpServletRequest request,
-                                    HttpServletResponse response,
-                                    ModelMap map) {
-        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
-        User u = new User();
-        u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
-            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
-        }
-        works.setStatus(Const.WORKS_STATUS_PASS);
-        return "modules/mobile/pawn2/myWorksCollection";
-    }
+//    @RequestMapping(value = "my/myWorksCollection", method = RequestMethod.GET)
+//    @OAuthRequired
+//    public String myWorksCollection(HttpSession session,
+//                                    Works works,
+//                                    HttpServletRequest request,
+//                                    HttpServletResponse response,
+//                                    ModelMap map) {
+//        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+//        String openId = wxMpUser.getOpenId();
+//        User u = new User();
+//        u.setOpenId(openId);
+//        User user = userService.selectOne(u);
+//        if (user == null) {
+//            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+//        }
+//        works.setStatus(Const.WORKS_STATUS_PASS);
+//        return "modules/mobile/pawn2/myWorksCollection";
+//    }
 
     /**
      * 跳往个人信息:关注用户页面
      *
      * @return
      */
-    @RequestMapping(value = "my/myWorksFocus", method = RequestMethod.GET)
-    @OAuthRequired
-    public String myWorksFocus(HttpSession session,
-                               Works works,
-                               HttpServletRequest request,
-                               HttpServletResponse response,
-                               ModelMap map) {
-        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
-        User u = new User();
-        u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
-            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
-        }
-        works.setStatus(Const.WORKS_STATUS_PASS);
-        return "modules/mobile/pawn2/myWorksFocus";
-    }
+//    @RequestMapping(value = "my/myWorksFocus", method = RequestMethod.GET)
+//    @OAuthRequired
+//    public String myWorksFocus(HttpSession session,
+//                               Works works,
+//                               HttpServletRequest request,
+//                               HttpServletResponse response,
+//                               ModelMap map) {
+//        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+//        String openId = wxMpUser.getOpenId();
+//        User u = new User();
+//        u.setOpenId(openId);
+//        User user = userService.selectOne(u);
+//        if (user == null) {
+//            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+//        }
+//        works.setStatus(Const.WORKS_STATUS_PASS);
+//        return "modules/mobile/pawn2/myWorksFocus";
+//    }
 
     /**
      * 作品注册页面1
@@ -859,7 +861,8 @@ public class MobileController extends BaseController {
                                  HttpServletRequest request,
                                  HttpServletResponse response,
                                  ModelMap map,
-                                 Works works) {
+                                 Works works,
+                                 @RequestParam String createDateString) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
         User u = new User();
@@ -869,6 +872,8 @@ public class MobileController extends BaseController {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
         works.setCreateBy(user.getId());
+        Date createDate = DateUtil.parseDate(createDateString, "yyyy-MM-dd");
+        works.setCreateDate(createDate);
         worksService.insert(works);
         session.setAttribute("registerWorksId", works.getId());
         return "modules/mobile/pawn2/worksRegister2";
@@ -910,16 +915,16 @@ public class MobileController extends BaseController {
         works.setBreed(breed);
         works.setType(type);
         String size = "";
-        if (length != null) {
+        if (length != null && length.trim().length() > 0) {
             size += length + "|";
         }
-        if (width != null) {
+        if (width != null && width.trim().length() > 0) {
             size += width + "|";
         }
-        if (height != null) {
+        if (height != null && height.trim().length() > 0) {
             size += height + "|";
         }
-        if (weight != null) {
+        if (weight != null && width.trim().length() > 0) {
             size += width;
         }
         works.setSize(size);
@@ -991,7 +996,8 @@ public class MobileController extends BaseController {
     public String worksEdit1(HttpSession session,
                              HttpServletRequest request,
                              HttpServletResponse response,
-                             ModelMap map) {
+                             ModelMap map,
+                             @RequestParam int id) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
         User u = new User();
@@ -1000,6 +1006,9 @@ public class MobileController extends BaseController {
         if (user == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
+
+        Works works = worksService.selectById(id);
+        session.setAttribute("editWorks", works);
         return "modules/mobile/pawn2/worksEdit1";
     }
 
@@ -1013,7 +1022,15 @@ public class MobileController extends BaseController {
     public String worksEdit2(HttpSession session,
                              HttpServletRequest request,
                              HttpServletResponse response,
-                             ModelMap map) {
+                             ModelMap map,
+                             @RequestParam(required = false) String name,
+                             @RequestParam(required = false) String provideBy,
+                             @RequestParam(required = false) String collectCardNo,
+                             @RequestParam(required = false) String address,
+                             @RequestParam(required = false) String phone,
+                             @RequestParam(required = false) String createDateString,
+                             @RequestParam(required = false) String remarks
+    ) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
         User u = new User();
@@ -1022,6 +1039,12 @@ public class MobileController extends BaseController {
         if (user == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
+        Works works = (Works) session.getAttribute("editWorks");
+        works.setName(name);
+        works.setProvideBy(provideBy);
+        works.setRemarks(remarks);
+
+        session.setAttribute("editWorks", works);
         return "modules/mobile/pawn2/worksEdit2";
     }
 
@@ -1035,7 +1058,19 @@ public class MobileController extends BaseController {
     public String worksEdit3(HttpSession session,
                              HttpServletRequest request,
                              HttpServletResponse response,
-                             ModelMap map) {
+                             ModelMap map,
+                             @RequestParam(required = false) String breed,
+                             @RequestParam(required = false) String type,
+                             @RequestParam(required = false) String length,
+                             @RequestParam(required = false) String width,
+                             @RequestParam(required = false) String height,
+                             @RequestParam(required = false) String weight,
+                             @RequestParam(required = false) String gyType,
+                             @RequestParam(required = false) String levelZk,
+                             @RequestParam(required = false) String kqdy,
+                             @RequestParam(required = false) String maker,
+                             @RequestParam(required = false) Date makeTime,
+                             @RequestParam(required = false) String worksMeanning) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
         User u = new User();
@@ -1044,6 +1079,31 @@ public class MobileController extends BaseController {
         if (user == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
+        Works works = (Works) session.getAttribute("editWorks");
+        works.setBreed(breed);
+        works.setType(type);
+        String size = "";
+        if (length != null && length.trim().length() > 0) {
+            size += length + "|";
+        }
+        if (width != null && width.trim().length() > 0) {
+            size += width + "|";
+        }
+        if (height != null && height.trim().length() > 0) {
+            size += height + "|";
+        }
+        if (weight != null && width.trim().length() > 0) {
+            size += width;
+        }
+        works.setSize(size);
+        works.setGyType(gyType);
+        works.setLevelZk(levelZk);
+        works.setKqdy(kqdy);
+        works.setMaker(maker);
+        works.setMakeTime(makeTime);
+        works.setWorksMeanning(worksMeanning);
+
+        session.setAttribute("editWorks", works);
         return "modules/mobile/pawn2/worksEdit3";
     }
 
@@ -1057,7 +1117,8 @@ public class MobileController extends BaseController {
     public String worksEdit4(HttpSession session,
                              HttpServletRequest request,
                              HttpServletResponse response,
-                             ModelMap map) {
+                             ModelMap map,
+                             WorksLevel worksLevel) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
         User u = new User();
@@ -1066,6 +1127,16 @@ public class MobileController extends BaseController {
         if (user == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
+
+        Works works = (Works) session.getAttribute("editWorks");
+
+        WorksLevel worksLevelBlank = new WorksLevel();
+        worksLevelBlank.setWorksId(works.getId());
+        WorksLevel worksLevelOld = worksLevelService.selectOne(new EntityWrapper<>(worksLevelBlank));
+        worksLevel.setId(worksLevelOld.getId());
+
+        session.setAttribute("editWorksLevel", worksLevel);
+
         return "modules/mobile/pawn2/worksEdit4";
     }
 

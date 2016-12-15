@@ -261,7 +261,7 @@
             ]
         });
 
-        $('#works-zhizuoshijian').datetimePicker();
+        $('#works-zhizuoshijian').calendar();
     });
 
 

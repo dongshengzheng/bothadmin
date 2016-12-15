@@ -101,7 +101,7 @@
             </div>
             <div class="works-floor-all">
                 <span class="works-floor-name-all">${works.name}</span>
-                <span class="works-floor-btn-all">&nbsp;&nbsp;操作&nbsp;&nbsp;</span>
+                <span class="works-floor-btn-all success-do">&nbsp;&nbsp;操作&nbsp;&nbsp;</span>
                 <span class="works-floor-img-all">${works.type}</span>
                 <span class="works-floor-date-all"><fmt:formatDate value="${works.createDate}"
                                                                    pattern="yyyy-MM-dd"/></span>
@@ -135,7 +135,7 @@
             </div>
             <div class="works-floor-all">
                 <span class="works-floor-name-all">${works.name}</span>
-                <span class="works-floor-btn-all">&nbsp;&nbsp;操作&nbsp;&nbsp;</span>
+                <span class="works-floor-btn-all">&nbsp;审核中&nbsp;</span>
                 <span class="works-floor-img-all">${works.type}</span>
                 <span class="works-floor-date-all"><fmt:formatDate value="${works.createDate}"
                                                                    pattern="yyyy-MM-dd"/></span>
@@ -169,7 +169,7 @@
             </div>
             <div class="works-floor-all">
                 <span class="works-floor-name-all">${works.name}</span>
-                <span class="works-floor-btn-all">&nbsp;&nbsp;操作&nbsp;&nbsp;</span>
+                <span class="works-floor-btn-all failure-do">&nbsp;&nbsp;操作&nbsp;&nbsp;</span>
                 <span class="works-floor-img-all">${works.type}</span>
                 <span class="works-floor-date-all"><fmt:formatDate value="${works.createDate}"
                                                                    pattern="yyyy-MM-dd"/></span>
@@ -204,7 +204,7 @@
             </div>
             <div class="works-floor-all">
                 <span class="works-floor-name-all">${works.name}</span>
-                <span class="works-floor-btn-all">&nbsp;&nbsp;操作&nbsp;&nbsp;</span>
+                <span class="works-floor-btn-all draft-do">&nbsp;&nbsp;操作&nbsp;&nbsp;</span>
                 <span class="works-floor-img-all">${works.type}</span>
                 <span class="works-floor-date-all"><fmt:formatDate value="${works.createDate}"
                                                                    pattern="yyyy-MM-dd"/></span>
@@ -233,9 +233,10 @@
     <div class="weui-mask" id="iosMask" style="display: none"></div>
     <div class="weui-actionsheet" id="iosActionsheet">
         <div class="weui-actionsheet__menu">
-            <div class="weui-actionsheet__cell">编辑</div>
+            <input id="nowWorksId" value="value" type="hidden">
+            <div class="weui-actionsheet__cell" id="edit">编辑</div>
             <div class="weui-actionsheet__cell" id="transfer">转让</div>
-            <div class="weui-actionsheet__cell">删除</div>
+            <div class="weui-actionsheet__cell" id="delete">删除</div>
         </div>
         <div class="weui-actionsheet__action">
             <div class="weui-actionsheet__cell" id="iosActionsheetCancel">取消</div>
@@ -316,19 +317,40 @@
 
         $iosMask.on('click', hideActionSheet);
         $('#iosActionsheetCancel').on('click', hideActionSheet);
-        $(".works-floor-btn-all").on("click", function () {
-            $iosActionsheet.addClass('weui-actionsheet_toggle');
-            $iosMask.fadeIn(200);
+
+        $('#transfer').on('click', function () {
+            $iosDialog1.fadeIn(200);
+            hideActionSheet();
         });
 
         $('#dialogs').on('click', '.weui-dialog__btn', function () {
             $(this).parents('.js_dialog').fadeOut(200);
         });
 
-        $('#transfer').on('click', function () {
-            $iosDialog1.fadeIn(200);
-            hideActionSheet();
+        //弹出操作菜单
+        $(".success-do").on("click", function () {
+            $iosActionsheet.addClass('weui-actionsheet_toggle');
+            $('#transfer').removeClass('div-hide');
+            var thisId = $(this).parent().siblings('.worksId').val();
+            $('#nowWorksId').val(thisId);
+            $iosMask.fadeIn(200);
         });
+
+        $(".failure-do,.draft-do").on("click", function () {
+            $iosActionsheet.addClass('weui-actionsheet_toggle');
+            $('#transfer').addClass('div-hide');
+            var thisId = $(this).parent().siblings('.worksId').val();
+            $('#nowWorksId').val(thisId);
+            $iosMask.fadeIn(200);
+        });
+
+        //跳往编辑页面
+        $('#edit').on('click', function () {
+            var id = $('#nowWorksId').val();
+            location.href = "${ctx}/mobile/worksEdit1?id=" + id;
+        });
+
+
     });
 
     $(function () {

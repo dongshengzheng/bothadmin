@@ -101,17 +101,17 @@
         <span>&nbsp;◇&nbsp;JS-A20161205001A&nbsp;◇&nbsp;</span></center>
 </div>
 <div>
-    <form action="${ctx}/mobile/worksEdit2" enctype="multipart/form-data">
+    <form action="${ctx}/mobile/worksEdit1Complete?id=${param.id}" enctype="multipart/form-data" method="post">
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="name" class="weui-input" type="tel" placeholder="请输入作品名称">
+                <input name="name" class="weui-input" type="tel" value="${works.name}">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">提供者</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="provideBy" class="weui-input" type="tel" placeholder="请输入姓名">
+                <input name="provideBy" class="weui-input" type="tel" value="${works.provideBy}">
             </div>
         </div>
         <div class="weui-cell">
@@ -135,7 +135,9 @@
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">登记时间</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="datatime" class="weui-input" id="showDatePicker" type="tel" placeholder="请选择时间">
+                <input name="createDateString" class="weui-input" id="showDatePicker" type="tel"
+                       placeholder="<fmt:formatDate value='${works.createDate}'
+                                                                   pattern="yyyy-MM-dd"/>">
             </div>
         </div>
         <div class="weui-cell">
@@ -178,7 +180,8 @@
         </div>
         <div class="fixed-footer">
             <div class="weui-form-preview__ft">
-                <a class="weui-form-preview__btn weui-form-preview__btn_default" href="javascript:">放弃修改</a>
+                <a class="weui-form-preview__btn weui-form-preview__btn_default"
+                   href="${ctx}/mobile/my/myWorks?showwhich=success">放弃修改</a>
                 <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">
                     提交审核
                 </button>
@@ -219,24 +222,14 @@
             $gallery.fadeOut(100);
         });
 
-//        $('#showDatePicker').on('click', function () {
-//            weui.datePicker({
-//                start: 1990,
-//                end: new Date().getFullYear(),
-//                onChange: function (result) {
-//                    console.log(result);
-//                },
-//                onConfirm: function (result) {
-//                    console.log(result);
-//                }
-//            });
-//        });
 
         $(function () {
             $('.weui-navbar__item').on('click', function () {
                 $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
             });
         });
+
+        $("#showDatePicker").calendar();
     });
 
 </script>

@@ -94,7 +94,7 @@
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">登记时间</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="createDate" class="weui-input" id="showDatePicker" type="date" placeholder="请选择时间">
+                <input name="createDateString" class="weui-input" id="showDatePicker" type="text" placeholder="请选择时间">
             </div>
         </div>
         <div class="weui-cell">
@@ -198,7 +198,7 @@
             $(".js_dialog").fadeOut(200);
         })
 
-        $("#showDatePicker").datetimePicker();
+        $("#showDatePicker").calendar();
 
     });
 
