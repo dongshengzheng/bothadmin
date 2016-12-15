@@ -74,9 +74,8 @@
     </div>
 
     <div id="not-care-people">
-
-        <for:forEach items="${page.records}" var="person">
-            <div class="weui-panel__bd" id="${person.userId}">
+        <c:forEach items="${page.records}" var="person">
+            <div class="weui-panel__bd" id="${person.id}">
                 <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
                     <div class="weui-media-box__hd">
                         <img class="weui-media-box__thumb"
@@ -102,8 +101,7 @@
                     </div>
                 </a>
             </div>
-        </for:forEach>
-
+        </c:forEach>
     </div>
 
 

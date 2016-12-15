@@ -108,6 +108,19 @@
             ALTER TABLE `dd_works_level` ADD COLUMN `chunjingdu` varchar(64) DEFAULT NULL COMMENT '纯净度';
         </sql>
     </changeSet>
+    <changeSet author="WangShun" id="15950097942-014">
+        <sql>
+            ALTER TABLE `dd_works` DROP COLUMN `create_by`;
+            ALTER TABLE `dd_works` ADD COLUMN `create_by` int(11) DEFAULT NULL COMMENT '创建者';
+        </sql>
+    </changeSet>
+    <changeSet author="WangShun" id="15950097942-015">
+        <sql>
+            ALTER TABLE `sys_user` CHANGE COLUMN `score` `score` int(11) DEFAULT 0 COMMENT '积分';
+            ALTER TABLE `sys_score_calc` CHANGE COLUMN `value` `value` int(11) DEFAULT NULL;
+            ALTER TABLE `dd_score_history` CHANGE COLUMN `value` `value` int(11) DEFAULT NULL COMMENT '加减积分';
+        </sql>
+    </changeSet>
 
 
 </databaseChangeLog>

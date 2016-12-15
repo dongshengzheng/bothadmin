@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ include file="include/taglib.jsp" %>
+<%@ include file="../pawn2/include/taglib.jsp" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 
@@ -143,7 +143,7 @@
 </div>
 
 
-<%@include file="include/tab-3.jsp" %>
+<%@include file="../pawn2/include/tab-3.jsp" %>
 
 <div>
     <div class="weui-mask" id="iosMask" style="display: none"></div>

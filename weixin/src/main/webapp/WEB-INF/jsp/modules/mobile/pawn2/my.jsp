@@ -62,8 +62,8 @@
                      alt="">
             </div>
             <div class="weui-media-box__bd" id="my-info">
-                <h4 class="weui-media-box__title">老特福德永恒</h4>
-                <p class="weui-media-box__desc">积分:0&nbsp;关注:0&nbsp;收藏:0</p>
+                <h4 class="weui-media-box__title">${user.name}</h4>
+                <p class="weui-media-box__desc">积分:${user.score}&nbsp;关注:0(未完成)&nbsp;收藏:0(未完成)</p>
             </div>
             <span id="go-to-set">设置</span>
         </a>
@@ -72,25 +72,25 @@
 
 <div class="weui-grids div-outer">
     <center id="title">我的作品</center>
-    <a href="${ctx}/mobile/my/myWorksSuccess" class="weui-grid first-row">
+    <a href="${ctx}/mobile/my/myWorks?showwhich=success" class="weui-grid first-row">
         <div class="weui-grid__icon">
             <img src="${ctxStatic}/img/cut/个人中心_审核通过.png" alt="">
         </div>
         <p class="weui-grid__label">审核通过</p>
     </a>
-    <a href="${ctx}/mobile/my/myWorksFailure" class="weui-grid first-row">
+    <a href="${ctx}/mobile/my/myWorks?showwhich=failure" class="weui-grid first-row">
         <div class="weui-grid__icon">
             <img src="${ctxStatic}/img/cut/个人中心_审核失败.png" alt="">
         </div>
         <p class="weui-grid__label">审核失败</p>
     </a>
-    <a href="${ctx}/mobile/my/myWorksNow" class="weui-grid first-row">
+    <a href="${ctx}/mobile/my/myWorks?showwhich=now" class="weui-grid first-row">
         <div class="weui-grid__icon">
             <img src="${ctxStatic}/img/cut/个人中心_审核中.png" alt="">
         </div>
         <p class="weui-grid__label">审核中</p>
     </a>
-    <a href="${ctx}/mobile/my/myWorksDraft" class="weui-grid first-row">
+    <a href="${ctx}/mobile/my/myWorks?showwhich=draft" class="weui-grid first-row">
         <div class="weui-grid__icon">
             <img src="${ctxStatic}/img/cut/个人中心_草稿箱.png" alt="">
         </div>
@@ -98,19 +98,19 @@
     </a>
 </div>
 <div class="weui-grids div-outer">
-    <a href="${ctx}/mobile/my/myWorksTransfer" class="weui-grid">
+    <a href="${ctx}/mobile/my/transferCollectionFocus?showwhich=transfer" class="weui-grid">
         <div class="weui-grid__icon">
             <img src="${ctxStatic}/img/cut/个人中心_转让作品.png" alt="">
         </div>
         <p class="weui-grid__label">转让作品</p>
     </a>
-    <a href="${ctx}/mobile/my/myWorksCollection" class="weui-grid">
+    <a href="${ctx}/mobile/my/transferCollectionFocus?showwhich=collection" class="weui-grid">
         <div class="weui-grid__icon">
             <img src="${ctxStatic}/img/cut/个人中心_收藏作品.png" alt="">
         </div>
         <p class="weui-grid__label">收藏作品</p>
     </a>
-    <a href="${ctx}/mobile/my/myWorksFocus" class="weui-grid">
+    <a href="${ctx}/mobile/my/transferCollectionFocus?showwhich=focus" class="weui-grid">
         <div class="weui-grid__icon">
             <img src="${ctxStatic}/img/cut/个人中心_关注用户.png" alt="">
         </div>
@@ -121,7 +121,7 @@
             <img src="${ctxStatic}/img/cut/个人中心_积分中心.png" alt="">
         </div>
         <p class="weui-grid__label">积分中心</p>
-        <p class="weui-grid__label" style="color: gray">500</p>
+        <p class="weui-grid__label" style="color: gray">${user.score}</p>
     </a>
     <a href="javascript:;" class="weui-grid">
         <div class="weui-grid__icon">

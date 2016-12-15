@@ -17,8 +17,6 @@
     <script src="${ctxStatic}/js/jquery-weui.js"></script>
 </head>
 
-<script src="js/jquery-2.1.4.js"></script>
-
 <style>
     #first-text {
         padding-left: 5%;

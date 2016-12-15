@@ -46,59 +46,58 @@
                      alt="">
             </div>
             <div class="weui-media-box__bd">
-                <h4 class="weui-media-box__title">老特福德永恒</h4>
+                <h4 class="weui-media-box__title">${user.name}</h4>
                 <p class="weui-media-box__desc">(头像、昵称将同步微信)</p>
             </div>
             <span id="update">更新</span>
         </a>
     </div>
 </div>
-<form action="my.jsp">
+<form action="${ctx}/mobile/my/mySetComplete" method="post">
     <div class="weui-cells weui-cells_form">
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">姓名</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input class="weui-input" type="tel" placeholder="必填">
+                <input name="name" class="weui-input" type="tel" placeholder="必填">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">地址</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input class="weui-input" type="tel" placeholder="可不填">
+                <input name="address" class="weui-input" type="tel" placeholder="可不填">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">联系方式</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input class="weui-input" type="tel" placeholder="必填">
+                <input name="phone" class="weui-input" type="tel" placeholder="必填">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">Email</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input class="weui-input" type="tel" placeholder="可不填">
+                <input name="email" class="weui-input" type="tel" placeholder="可不填">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">身份证</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input class="weui-input" type="tel" placeholder="可不填">
+                <input name="identification" class="weui-input" type="tel" placeholder="可不填">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">收藏偏好</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input class="weui-input" type="tel" placeholder="请选择您的收藏编号">
+                <input name="perfer" class="weui-input" type="tel" placeholder="请选择您的收藏偏好">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">信息公开</label></div>
-            <input class="weui-switch" type="checkbox"/>
+            <input name="ifpublic" class="weui-switch" type="checkbox"/>
         </div>
     </div>
 
     <div class="fixed-footer">
-        <!--<p>下一步即表示同意<a href="#">《金石典当登记申请记录》</a></p>-->
         <hr>
         <div class="weui-form-preview__ft">
             <a class="weui-form-preview__btn weui-form-preview__btn_default" href="javascript:">取消</a>

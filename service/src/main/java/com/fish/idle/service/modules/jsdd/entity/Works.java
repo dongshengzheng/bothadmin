@@ -29,7 +29,7 @@ public class Works implements Serializable {
      * 创建者
      */
     @TableField(value = "create_by")
-    private String createBy;
+    private Integer createBy;
 
     /**
      * 创建时间
@@ -201,11 +201,11 @@ public class Works implements Serializable {
         this.id = id;
     }
 
-    public String getCreateBy() {
+    public Integer getCreateBy() {
         return this.createBy;
     }
 
-    public void setCreateBy(String createBy) {
+    public void setCreateBy(Integer createBy) {
         this.createBy = createBy;
     }
 

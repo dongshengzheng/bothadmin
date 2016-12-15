@@ -1,12 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ include file="include/taglib.jsp" %>
+<%@ include file="../pawn2/include/taglib.jsp" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0"/>
-    <title>草稿箱</title>
+    <title>审核失败</title>
     <link rel="stylesheet" href="${ctxStatic}/css/custom.css"/>
     <link rel="stylesheet" href="${ctxStatic}/css/weui.min.css"/>
     <link rel="stylesheet" href="${ctxStatic}/css/jquery-weui.min.css"/>
@@ -73,10 +73,10 @@
         <div class="weui-navbar__item" id="check-title-now">
             审核中
         </div>
-        <div class="weui-navbar__item" id="check-title-failure">
+        <div class="weui-navbar__item weui-bar__item_on" id="check-title-failure">
             审核失败
         </div>
-        <div class="weui-navbar__item weui-bar__item_on" id="check-title-draft">
+        <div class="weui-navbar__item" id="check-title-draft">
             草稿箱
         </div>
     </div>
@@ -86,10 +86,10 @@
 </div>
 
 
-<div id="check-draft-works" class="div-outer">
+<div id="check-failure-works" class="div-outer">
     <div class="works-all-outer">
         <div class="works-all">
-            <img src="${ctxStatic}/img/cut/index-all.png" alt="" class="works-img-all"/>
+            <img src="${ctxStatic}/img/swiper/swiper-3.jpg" alt="" class="works-img-all"/>
             <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
         </div>
         <div class="works-floor-all">
@@ -101,7 +101,7 @@
     </div>
     <div class="works-all-outer">
         <div class="works-all">
-            <img src="${ctxStatic}/img/headImg/10.jpg" alt="" class="works-img-all"/>
+            <img src="${ctxStatic}/img/swiper/swiper-3.jpg" alt="" class="works-img-all"/>
             <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
         </div>
         <div class="works-floor-all">
@@ -113,7 +113,7 @@
     </div>
     <div class="works-all-outer">
         <div class="works-all">
-            <img src="${ctxStatic}/img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
+            <img src="${ctxStatic}/img/swiper/swiper-3.jpg" alt="" class="works-img-all"/>
             <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
         </div>
         <div class="works-floor-all">
@@ -125,7 +125,7 @@
     </div>
     <div class="works-all-outer">
         <div class="works-all">
-            <img src="${ctxStatic}/img/headImg/11.jpg" alt="" class="works-img-all"/>
+            <img src="${ctxStatic}/img/swiper/swiper-2.jpg" alt="" class="works-img-all"/>
             <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
         </div>
         <div class="works-floor-all">
@@ -142,7 +142,8 @@
     </div>
 </div>
 
-<%@include file="include/tab-3.jsp" %>
+
+<%@include file="../pawn2/include/tab-3.jsp" %>
 
 <div>
     <div class="weui-mask" id="iosMask" style="display: none"></div>

@@ -38,7 +38,7 @@ public class ScoreHistory implements Serializable {
     /**
      * 加减积分
      */
-    private BigDecimal value;
+    private Integer value;
 
     /**
      * (字典表)(如果是交易类型的，标注to,from)
@@ -100,11 +100,11 @@ public class ScoreHistory implements Serializable {
         this.toUserId = toUserId;
     }
 
-    public BigDecimal getValue() {
+    public Integer getValue() {
         return this.value;
     }
 
-    public void setValue(BigDecimal value) {
+    public void setValue(Integer value) {
         this.value = value;
     }
 

@@ -82,7 +82,7 @@
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">联系地址</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="address" class="weui-input" type="tel" placeholder="请输入详细地址">
+                <input name="address" class="weui-input" placeholder="请输入详细地址">
             </div>
         </div>
         <div class="weui-cell">
@@ -94,7 +94,7 @@
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">登记时间</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="createDate" class="weui-input" id="showDatePicker" type="tel" placeholder="请选择时间">
+                <input name="createDate" class="weui-input" id="showDatePicker" type="date" placeholder="请选择时间">
             </div>
         </div>
         <div class="weui-cell">

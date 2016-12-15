@@ -53,13 +53,15 @@
 <body>
 <div class="weui-tab">
     <div class="weui-navbar">
-        <div class="weui-navbar__item weui-bar__item_on" id="transfer-title">
+        <div class="weui-navbar__item <c:if test="${showwhich=='transfer'}">weui-bar__item_on</c:if>"
+             id="transfer-title">
             转让作品
         </div>
-        <div class="weui-navbar__item" id="collection-title">
+        <div class="weui-navbar__item <c:if test="${showwhich=='collection'}">weui-bar__item_on</c:if>"
+             id="collection-title">
             收藏作品
         </div>
-        <div class="weui-navbar__item" id="foucs-title">
+        <div class="weui-navbar__item <c:if test="${showwhich=='focus'}">weui-bar__item_on</c:if>" id="foucs-title">
             关注用户
         </div>
     </div>
@@ -70,11 +72,11 @@
 </div>
 
 
-<div id="tranfer-works" class="div-hide div-on div-outer">
+<div id="tranfer-works" class="div-hide div-outer <c:if test="${showwhich=='transfer'}">div-on</c:if>">
     <div class="works-all-outer">
         <div class="works-all">
-            <img src="img/cut/已转出.png" class="transfer-img">
-            <img src="img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
+            <img src="${ctxStatic}/img/cut/已转出.png" class="transfer-img">
+            <img src="${ctxStatic}/img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
             <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
         </div>
         <div class="works-floor-all">
@@ -87,8 +89,8 @@
     </div>
     <div class="works-all-outer">
         <div class="works-all">
-            <img src="img/cut/已转入.png" class="transfer-img">
-            <img src="img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
+            <img src="${ctxStatic}/img/cut/已转入.png" class="transfer-img">
+            <img src="${ctxStatic}/img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
             <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
         </div>
         <div class="works-floor-all">
@@ -100,8 +102,8 @@
     </div>
     <div class="works-all-outer">
         <div class="works-all">
-            <img src="img/cut/待确认.png" class="transfer-img">
-            <img src="img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
+            <img src="${ctxStatic}/img/cut/待确认.png" class="transfer-img">
+            <img src="${ctxStatic}/img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
             <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
         </div>
         <div class="works-floor-all">
@@ -114,8 +116,8 @@
     </div>
     <div class="works-all-outer">
         <div class="works-all">
-            <img src="img/cut/待对方确认.png" class="transfer-img">
-            <img src="img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
+            <img src="${ctxStatic}/img/cut/待对方确认.png" class="transfer-img">
+            <img src="${ctxStatic}/img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
             <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
         </div>
         <div class="works-floor-all">
@@ -133,55 +135,23 @@
     </div>
 </div>
 
-<div id="collection-works" class="div-hide div-outer">
-    <div class="works-all-outer">
-        <div class="works-all">
-            <img src="img/swiper/swiper-2.jpg" alt="" class="works-img-all"/>
-            <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
+<div id="collection-works" class="div-hide div-outer <c:if test="${showwhich=='collection'}">div-on</c:if>">
+    <c:forEach items="${fhWorksList}" var="works">
+        <div class="works-all-outer">
+            <div class="works-all">
+                <img src="${ctxStatic}/img/swiper/swiper-2.jpg" alt="" class="works-img-all"/>
+                <textarea class="works-intro-all">${works.remarks}</textarea>
+            </div>
+            <div class="works-floor-all">
+                <span class="works-floor-name-all">${works.name}</span>
+                <span class="works-floor-btn-all">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span class="works-floor-img-all">${works.type}</span>
+                <span class="works-floor-date-all"><fmt:formatDate value="${works.createDate}"
+                                                                   pattern="yyyy-MM-dd"/></span>
+            </div>
         </div>
-        <div class="works-floor-all">
-            <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <span class="works-floor-btn-all">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="works-floor-img-all">田黄鸡血石</span>
-            <span class="works-floor-date-all">2016-12-4</span>
-        </div>
-    </div>
-    <div class="works-all-outer">
-        <div class="works-all">
-            <img src="img/swiper/swiper-2.jpg" alt="" class="works-img-all"/>
-            <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
-        </div>
-        <div class="works-floor-all">
-            <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <span class="works-floor-btn-all">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="works-floor-img-all">田黄鸡血石</span>
-            <span class="works-floor-date-all">2016-12-4</span>
-        </div>
-    </div>
-    <div class="works-all-outer">
-        <div class="works-all">
-            <img src="img/swiper/swiper-2.jpg" alt="" class="works-img-all"/>
-            <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
-        </div>
-        <div class="works-floor-all">
-            <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <span class="works-floor-btn-all">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="works-floor-img-all">田黄鸡血石</span>
-            <span class="works-floor-date-all">2016-12-4</span>
-        </div>
-    </div>
-    <div class="works-all-outer">
-        <div class="works-all">
-            <img src="img/swiper/swiper-2.jpg" alt="" class="works-img-all"/>
-            <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
-        </div>
-        <div class="works-floor-all">
-            <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <span class="works-floor-btn-all">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="works-floor-img-all">田黄鸡血石</span>
-            <span class="works-floor-date-all">2016-12-4</span>
-        </div>
-    </div>
+    </c:forEach>
+
     <div class="hr-text ">
         <center>
             <hr>
@@ -189,21 +159,27 @@
     </div>
 </div>
 
-<div id="focus-people" class="div-hide div-outer">
-    <div class="weui-panel weui-panel_access">
-        <div class="weui-panel__bd">
+<div id="focus-people" class="div-hide div-outer <c:if test="${showwhich=='focus'}">div-on</c:if>">
+    <c:forEach items="${fhPeopleList}" var="person">
+        <div class="weui-panel__bd" id="${person.id}">
             <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
                 <div class="weui-media-box__hd">
                     <img class="weui-media-box__thumb"
-                         src="img/headImg/3.jpg"
+                         src="${ctxStatic}/img/headImg/4.jpg"
                          alt="">
                 </div>
                 <div class="weui-media-box__bd">
-                    <h4 class="weui-media-box__title">老特福德永恒</h4>
+                    <h4 class="weui-media-box__title">${person.name}</h4>
                     <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
                     <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
-                    <div class="search-results-one-care ">
-                        <img src="img/cut/to-focus.png" class="search-results-one-care-img"/>
+                    <div class="search-results-one-care have-care div-on">
+                        <img src="${ctxStatic}/img/cut/have-focus.png" class="search-results-one-care-img "/>
+                        <p class="search-results-one-care-text-have ">
+                            已关注
+                        </p>
+                    </div>
+                    <div class="search-results-one-care not-care div-hide">
+                        <img src="${ctxStatic}/img/cut/to-focus.png" class="search-results-one-care-img "/>
                         <p class="search-results-one-care-text-not ">
                             加关注
                         </p>
@@ -211,29 +187,7 @@
                 </div>
             </a>
         </div>
-    </div>
-    <div class="weui-panel weui-panel_access">
-        <div class="weui-panel__bd">
-            <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
-                <div class="weui-media-box__hd">
-                    <img class="weui-media-box__thumb"
-                         src="img/headImg/3.jpg"
-                         alt="">
-                </div>
-                <div class="weui-media-box__bd">
-                    <h4 class="weui-media-box__title">老特福德永恒</h4>
-                    <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
-                    <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
-                    <div class="search-results-one-care ">
-                        <img src="img/cut/have-focus.png" class="search-results-one-care-img"/>
-                        <p class="search-results-one-care-text-have ">
-                            已关注
-                        </p>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
+    </c:forEach>
     <div class="hr-text ">
         <center>
             <hr>
@@ -241,30 +195,7 @@
     </div>
 </div>
 
-<div class="fixed-footer">
-    <div class="weui-tabbar">
-        <a href="indexWorks.html" class="weui-tabbar__item ">
-            <div class="weui-tabbar__icon">
-                <img src="img/cut/首页.png" alt="">
-            </div>
-            <p class="weui-tabbar__label">首页</p>
-        </a>
-        <a href="worksRegister1.jsp" class="weui-tabbar__item">
-            <div class="weui-tabbar__icon">
-                <img src="img/cut/登记申请.png" alt="">
-            </div>
-            <p class="weui-tabbar__label">登记申请</p>
-        </a>
-        <a href="my.jsp" class="weui-tabbar__item weui-bar__item_on">
-            <div class="weui-tabbar__icon">
-                <img src="img/cut/我的_ed.png" alt="">
-            </div>
-            <p class="weui-tabbar__label">我的</p>
-        </a>
-    </div>
-</div>
-<div class="bottom-blank">
-</div>
+<%@include file="include/tab-3.jsp" %>
 
 
 <script>

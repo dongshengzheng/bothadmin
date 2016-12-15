@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -33,6 +34,7 @@ public class User implements Serializable {
     private String description; // 描述
     private String email; // 邮箱
     private String phone; // 电话号码
+    private Integer score;//积分
 
     @TableField(value = "open_id")
     private String openId; // 微信openId
@@ -129,6 +131,7 @@ public class User implements Serializable {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
     public List<Role> getRoles() {
         return roles;
     }
@@ -143,5 +146,13 @@ public class User implements Serializable {
 
     public void setOpenId(String openId) {
         this.openId = openId;
+    }
+
+    public Integer getScore() {
+        return score;
+    }
+
+    public void setScore(Integer score) {
+        this.score = score;
     }
 }

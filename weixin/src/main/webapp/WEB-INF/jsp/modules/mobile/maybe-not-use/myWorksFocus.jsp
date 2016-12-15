@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ include file="include/taglib.jsp" %>
+<%@ include file="../pawn2/include/taglib.jsp" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 
@@ -138,13 +138,13 @@
             </div>
             <p class="weui-tabbar__label">首页</p>
         </a>
-        <a href="worksRegister1.jsp" class="weui-tabbar__item">
+        <a href="../pawn2/worksRegister1.jsp" class="weui-tabbar__item">
             <div class="weui-tabbar__icon">
                 <img src="${ctxStatic}/img/cut/登记申请.png" alt="">
             </div>
             <p class="weui-tabbar__label">登记申请</p>
         </a>
-        <a href="my.jsp" class="weui-tabbar__item weui-bar__item_on">
+        <a href="../pawn2/my.jsp" class="weui-tabbar__item weui-bar__item_on">
             <div class="weui-tabbar__icon">
                 <img src="${ctxStatic}/img/cut/我的_ed.png" alt="">
             </div>
@@ -227,7 +227,7 @@
         })
 
         $('.weui-media-box__thumb').on('click', function () {
-            location.href = 'userInfo.jsp';
+            location.href = '../pawn2/userInfo.jsp';
         })
     })
 </script>

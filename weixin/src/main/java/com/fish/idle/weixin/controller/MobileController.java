@@ -223,8 +223,11 @@ public class MobileController extends BaseController {
         }
 
         Page<User> page = new Page<>(1, 100);
+
         EntityWrapper<User> ew = new EntityWrapper<>(new User());
         ew.like("name", name);
+        ew.notIn("id", user.getId());
+
         page = userService.selectPage(page, ew);
         map.put("page", page);
 
@@ -368,8 +371,7 @@ public class MobileController extends BaseController {
     public String my(HttpSession session,
                      HttpServletRequest request,
                      HttpServletResponse response,
-                     ModelMap map,
-                     @RequestParam int id) {
+                     ModelMap map) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
         User u = new User();
@@ -394,8 +396,7 @@ public class MobileController extends BaseController {
     public String mySet(HttpSession session,
                         HttpServletRequest request,
                         HttpServletResponse response,
-                        ModelMap map,
-                        @RequestParam int id) {
+                        ModelMap map) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
         User u = new User();
@@ -409,6 +410,41 @@ public class MobileController extends BaseController {
     }
 
     /**
+     * 完成个人信息编辑更新
+     *
+     * @return
+     */
+    @RequestMapping(value = "my/mySetComplete", method = RequestMethod.POST)
+    @OAuthRequired
+    public String mySetComplete(HttpSession session,
+                                HttpServletRequest request,
+                                HttpServletResponse response,
+                                ModelMap map,
+                                @RequestParam(required = false) String name,
+                                @RequestParam(required = false) String address,
+                                @RequestParam(required = false) String phone,
+                                @RequestParam(required = false) String email,
+                                @RequestParam(required = false) String identification,
+                                @RequestParam(required = false) String perfer,
+                                @RequestParam(required = false) String ifpublic) {
+        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+        String openId = wxMpUser.getOpenId();
+        User u = new User();
+        u.setOpenId(openId);
+        User user = userService.selectOne(u);
+        if (user == null) {
+            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+        }
+        user.setName(name);
+        user.setPhone(phone);
+        user.setEmail(email);
+
+        userService.updateById(user);
+        map.put("user", user);
+        return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my";
+    }
+
+    /**
      * 跳往个人信息积分中心页面
      *
      * @return
@@ -418,8 +454,7 @@ public class MobileController extends BaseController {
     public String pointCenter(HttpSession session,
                               HttpServletRequest request,
                               HttpServletResponse response,
-                              ModelMap map,
-                              @RequestParam int id) {
+                              ModelMap map) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
         User u = new User();
@@ -429,6 +464,7 @@ public class MobileController extends BaseController {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
 
+        map.put("user", user);
 
         return "modules/mobile/pawn2/pointCenter";
     }
@@ -482,6 +518,56 @@ public class MobileController extends BaseController {
     }
 
     /**
+     * 跳往个人信息:我的作品页面
+     *
+     * @return
+     */
+    @RequestMapping(value = "my/myWorks", method = RequestMethod.GET)
+    @OAuthRequired
+    public String myWorks(HttpSession session,
+                          Works works,
+                          HttpServletRequest request,
+                          HttpServletResponse response,
+                          ModelMap map,
+                          @RequestParam String showwhich) {
+        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+        String openId = wxMpUser.getOpenId();
+        User u = new User();
+        u.setOpenId(openId);
+        User user = userService.selectOne(u);
+        if (user == null) {
+            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+        }
+        works.setCreateBy(user.getId());
+        EntityWrapper ew = new EntityWrapper(works);
+        List<Works> worksList = worksService.selectList(ew);
+
+        List<Works> worksSuccessList = new ArrayList<>();
+        List<Works> worksFailureList = new ArrayList<>();
+        List<Works> worksNowList = new ArrayList<>();
+        List<Works> worksDraftList = new ArrayList<>();
+        for (Works w : worksList) {
+            if (w.getStatus().equals(Const.WORKS_STATUS_PASS)) {
+                worksSuccessList.add(w);
+            } else if (w.getStatus().equals(Const.WORKS_STATUS_UNPASS)) {
+                worksFailureList.add(w);
+            } else if (w.getStatus().equals(Const.WORKS_STATUS_COMMIT)) {
+                worksNowList.add(w);
+            } else if (w.getStatus().equals(Const.WORKS_STATUS_DRAFT)) {
+                worksDraftList.add(w);
+            }
+        }
+
+        map.put("showwhich", showwhich);
+        map.put("worksSuccessList", worksSuccessList);
+        map.put("worksFailureList", worksFailureList);
+        map.put("worksNowList", worksNowList);
+        map.put("worksDraftList", worksDraftList);
+        return "modules/mobile/pawn2/myWorks";
+    }
+
+
+    /**
      * 跳往个人信息:审查成功作品页面
      *
      * @return
@@ -502,6 +588,11 @@ public class MobileController extends BaseController {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
         works.setStatus(Const.WORKS_STATUS_PASS);
+        works.setCreateBy(user.getId());
+        EntityWrapper ew = new EntityWrapper(works);
+        List<Works> worksList = worksService.selectList(ew);
+        map.put("worksList", worksList);
+
         return "modules/mobile/pawn2/myWorksSuccess";
     }
 
@@ -525,12 +616,16 @@ public class MobileController extends BaseController {
         if (user == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
-        works.setStatus(Const.WORKS_STATUS_PASS);
+        works.setStatus(Const.WORKS_STATUS_UNPASS);
+        works.setCreateBy(user.getId());
+        EntityWrapper ew = new EntityWrapper(works);
+        List<Works> worksList = worksService.selectList(ew);
+        map.put("worksList", worksList);
         return "modules/mobile/pawn2/myWorksFailure";
     }
 
     /**
-     * 跳往个人信息:审查成功中作品页面
+     * 跳往个人信息:审查中作品页面
      *
      * @return
      */
@@ -549,7 +644,12 @@ public class MobileController extends BaseController {
         if (user == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
-        works.setStatus(Const.WORKS_STATUS_PASS);
+        works.setStatus(Const.WORKS_STATUS_COMMIT);
+        works.setCreateBy(user.getId());
+        EntityWrapper ew = new EntityWrapper(works);
+        List<Works> worksList = worksService.selectList(ew);
+        map.put("worksList", worksList);
+
         return "modules/mobile/pawn2/myWorksNow";
     }
 
@@ -573,9 +673,85 @@ public class MobileController extends BaseController {
         if (user == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
-        works.setStatus(Const.WORKS_STATUS_PASS);
+        works.setStatus(Const.WORKS_STATUS_DRAFT);
+        works.setCreateBy(user.getId());
+        EntityWrapper ew = new EntityWrapper(works);
+        List<Works> worksList = worksService.selectList(ew);
+        map.put("worksList", worksList);
+
         return "modules/mobile/pawn2/myWorksDraft";
     }
+
+    /**
+     * 跳往个人信息:转让-收藏-关注页面
+     *
+     * @return
+     */
+    @RequestMapping(value = "my/transferCollectionFocus", method = RequestMethod.GET)
+    @OAuthRequired
+    public String transferCollectionFocus(HttpSession session,
+                                          HttpServletRequest request,
+                                          HttpServletResponse response,
+                                          ModelMap map,
+                                          @RequestParam String showwhich) {
+        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+        String openId = wxMpUser.getOpenId();
+        User u = new User();
+        u.setOpenId(openId);
+        User user = userService.selectOne(u);
+        if (user == null) {
+            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+        }
+        Works works1 = new Works();
+        EntityWrapper ew1 = new EntityWrapper(works1);
+        List<Integer> transferIds;
+
+
+        //收藏作品集合
+        FollowHistory fhWorks = new FollowHistory();
+        fhWorks.setType(0);
+        fhWorks.setUserId(user.getId());
+        EntityWrapper ew2 = new EntityWrapper(fhWorks);
+        List<FollowHistory> followHistoryList = followHistoryService.selectList(ew2);
+        List<Integer> fhWorksIds = new ArrayList<>();
+        for (FollowHistory fh : followHistoryList) {
+            fhWorksIds.add(fh.getTargetId());
+        }
+        List<Works> fhWorksList = new ArrayList<>();
+        if (fhWorksIds.size() > 0) {
+            Works works2 = new Works();
+            EntityWrapper ew3 = new EntityWrapper(works2);
+            ew3.in("id", fhWorksIds);
+            fhWorksList = worksService.selectList(ew3);
+        }
+
+
+        //        关注用户集合
+        FollowHistory fhPeople = new FollowHistory();
+        fhPeople.setType(1);
+        fhPeople.setUserId(user.getId());
+        EntityWrapper ew4 = new EntityWrapper(fhPeople);
+        List<FollowHistory> followHistoryList2 = followHistoryService.selectList(ew4);
+        List<Integer> fhPeopleIds = new ArrayList<>();
+        for (FollowHistory fh : followHistoryList2) {
+            fhPeopleIds.add(fh.getTargetId());
+        }
+        List<User> fhPeopleList = new ArrayList<>();
+        if (fhPeopleIds.size() > 0) {
+            User user1 = new User();
+            EntityWrapper ew5 = new EntityWrapper(user1);
+            ew5.in("id", fhPeopleIds);
+            fhPeopleList = userService.selectList(ew5);
+        }
+
+
+        map.put("showwhich", showwhich);
+        map.put("fhWorksList", fhWorksList);
+        map.put("fhPeopleList", fhPeopleList);
+
+        return "modules/mobile/pawn2/transferCollectionFocus";
+    }
+
 
     /**
      * 跳往个人信息:转让作品页面
@@ -692,6 +868,7 @@ public class MobileController extends BaseController {
         if (user == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
+        works.setCreateBy(user.getId());
         worksService.insert(works);
         session.setAttribute("registerWorksId", works.getId());
         return "modules/mobile/pawn2/worksRegister2";

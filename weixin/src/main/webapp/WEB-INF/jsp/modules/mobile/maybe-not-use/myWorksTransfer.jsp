@@ -1,12 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ include file="include/taglib.jsp" %>
+<%@ include file="../pawn2/include/taglib.jsp" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0"/>
-    <title>收藏作品</title>
+    <title>转让作品</title>
     <link rel="stylesheet" href="${ctxStatic}/css/custom.css"/>
     <link rel="stylesheet" href="${ctxStatic}/css/weui.min.css"/>
     <link rel="stylesheet" href="${ctxStatic}/css/jquery-weui.min.css"/>
@@ -46,17 +46,29 @@
             border: none;
         }
 
+        .transfer-img {
+            position: absolute;
+            transform: rotate(40deg);
+            top: 50px;
+            left: 100px;
+            width: 70px;
+            height: 70px;
+            background-color: white;
+            z-index: 100;
+
+        }
 
     </style>
+
 
 </head>
 <body>
 <div class="weui-tab">
     <div class="weui-navbar">
-        <div class="weui-navbar__item" id="transfer-title">
+        <div class="weui-navbar__item weui-bar__item_on" id="transfer-title">
             转让作品
         </div>
-        <div class="weui-navbar__item weui-bar__item_on" id="collection-title">
+        <div class="weui-navbar__item" id="collection-title">
             收藏作品
         </div>
         <div class="weui-navbar__item" id="foucs-title">
@@ -70,10 +82,25 @@
 </div>
 
 
-<div id="collection-works" class="div-outer">
+<div id="tranfer-works" class="div-hide div-on div-outer">
     <div class="works-all-outer">
         <div class="works-all">
-            <img src="${ctxStatic}/img/swiper/swiper-2.jpg" alt="" class="works-img-all"/>
+            <img src="${ctxStatic}/img/cut/已转出.png" class="transfer-img">
+            <img src="${ctxStatic}/img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
+            <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
+        </div>
+        <div class="works-floor-all">
+            <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
+            <span class="works-floor-btn-all">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="works-floor-img-all">田黄鸡血石</span>
+            <span class="works-floor-date-all">2016-12-4</span>
+
+        </div>
+    </div>
+    <div class="works-all-outer">
+        <div class="works-all">
+            <img src="${ctxStatic}/img/cut/已转入.png" class="transfer-img">
+            <img src="${ctxStatic}/img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
             <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
         </div>
         <div class="works-floor-all">
@@ -85,7 +112,8 @@
     </div>
     <div class="works-all-outer">
         <div class="works-all">
-            <img src="${ctxStatic}/img/swiper/swiper-2.jpg" alt="" class="works-img-all"/>
+            <img src="${ctxStatic}/img/cut/待确认.png" class="transfer-img">
+            <img src="${ctxStatic}/img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
             <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
         </div>
         <div class="works-floor-all">
@@ -93,11 +121,13 @@
             <span class="works-floor-btn-all">&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <span class="works-floor-img-all">田黄鸡血石</span>
             <span class="works-floor-date-all">2016-12-4</span>
+
         </div>
     </div>
     <div class="works-all-outer">
         <div class="works-all">
-            <img src="${ctxStatic}/img/swiper/swiper-2.jpg" alt="" class="works-img-all"/>
+            <img src="${ctxStatic}/img/cut/待对方确认.png" class="transfer-img">
+            <img src="${ctxStatic}/img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
             <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
         </div>
         <div class="works-floor-all">
@@ -105,18 +135,7 @@
             <span class="works-floor-btn-all">&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <span class="works-floor-img-all">田黄鸡血石</span>
             <span class="works-floor-date-all">2016-12-4</span>
-        </div>
-    </div>
-    <div class="works-all-outer">
-        <div class="works-all">
-            <img src="${ctxStatic}/img/swiper/swiper-2.jpg" alt="" class="works-img-all"/>
-            <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
-        </div>
-        <div class="works-floor-all">
-            <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <span class="works-floor-btn-all">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="works-floor-img-all">田黄鸡血石</span>
-            <span class="works-floor-date-all">2016-12-4</span>
+
         </div>
     </div>
     <div class="hr-text ">
@@ -135,13 +154,13 @@
             </div>
             <p class="weui-tabbar__label">首页</p>
         </a>
-        <a href="worksRegister1.jsp" class="weui-tabbar__item">
+        <a href="../pawn2/worksRegister1.jsp" class="weui-tabbar__item">
             <div class="weui-tabbar__icon">
                 <img src="${ctxStatic}/img/cut/登记申请.png" alt="">
             </div>
             <p class="weui-tabbar__label">登记申请</p>
         </a>
-        <a href="my.jsp" class="weui-tabbar__item weui-bar__item_on">
+        <a href="../pawn2/my.jsp" class="weui-tabbar__item weui-bar__item_on">
             <div class="weui-tabbar__icon">
                 <img src="${ctxStatic}/img/cut/我的_ed.png" alt="">
             </div>

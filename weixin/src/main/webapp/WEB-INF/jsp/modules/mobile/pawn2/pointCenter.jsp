@@ -125,7 +125,7 @@
 <div id="header">
     <div id="point-total">
         <h3>积分</h3>
-        <h2>178</h2>
+        <h2>${user.score}</h2>
     </div>
     <input type="button" id="point-rule" class="point-btn" value="积分规则"/>
     <a id="point-save" class="point-btn" href="${ctx}/mobile/my/pointSave">积分充值</a>

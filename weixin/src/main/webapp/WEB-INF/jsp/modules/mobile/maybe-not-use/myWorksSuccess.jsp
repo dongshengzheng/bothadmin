@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ include file="include/taglib.jsp" %>
+<%@ include file="../pawn2/include/taglib.jsp" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 
@@ -87,54 +87,24 @@
 
 
 <div id="check-success-works" class="div-hide div-on div-outer">
-    <div class="works-all-outer">
-        <div class="works-all">
-            <img src="${ctxStatic}/img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
-            <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
+    <c:forEach items="${worksList}" var="works">
+        <div class="works-all-outer">
+            <input class="worksId" style="display:none" value="${works.id}">
+            <div class="works-all">
+                <img onclick="fun2()" class="works-img-all" src="${works.images}"
+                     onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
+                     alt="">
+                <textarea disabled class="works-intro-all">${works.remarks}</textarea>
+            </div>
+            <div class="works-floor-all">
+                <span class="works-floor-name-all">${works.name}</span>
+                <span class="works-floor-btn-all">&nbsp;&nbsp;操作&nbsp;&nbsp;</span>
+                <span class="works-floor-img-all">${works.type}</span>
+                <span class="works-floor-date-all"><fmt:formatDate value="${works.createDate}"
+                                                                   pattern="yyyy-MM-dd"/></span>
+            </div>
         </div>
-        <div class="works-floor-all">
-            <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <span class="works-floor-btn-all">&nbsp;&nbsp;操作&nbsp;&nbsp;</span>
-            <span class="works-floor-img-all">田黄鸡血石</span>
-            <span class="works-floor-date-all">2016-12-4</span>
-        </div>
-    </div>
-    <div class="works-all-outer">
-        <div class="works-all">
-            <img src="${ctxStatic}/img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
-            <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
-        </div>
-        <div class="works-floor-all">
-            <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <span class="works-floor-btn-all">&nbsp;&nbsp;操作&nbsp;&nbsp;</span>
-            <span class="works-floor-img-all">田黄鸡血石</span>
-            <span class="works-floor-date-all">2016-12-4</span>
-        </div>
-    </div>
-    <div class="works-all-outer">
-        <div class="works-all">
-            <img src="${ctxStatic}/img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
-            <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
-        </div>
-        <div class="works-floor-all">
-            <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <span class="works-floor-btn-all">&nbsp;&nbsp;操作&nbsp;&nbsp;</span>
-            <span class="works-floor-img-all">田黄鸡血石</span>
-            <span class="works-floor-date-all">2016-12-4</span>
-        </div>
-    </div>
-    <div class="works-all-outer">
-        <div class="works-all">
-            <img src="${ctxStatic}/img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
-            <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
-        </div>
-        <div class="works-floor-all">
-            <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <span class="works-floor-btn-all">&nbsp;&nbsp;操作&nbsp;&nbsp;</span>
-            <span class="works-floor-img-all">田黄鸡血石</span>
-            <span class="works-floor-date-all">2016-12-4</span>
-        </div>
-    </div>
+    </c:forEach>
     <div class="hr-text ">
         <center>
             <hr>
@@ -142,7 +112,8 @@
     </div>
 </div>
 
-<%@include file="include/tab-3.jsp" %>
+
+<%@include file="../pawn2/include/tab-3.jsp" %>
 
 <div>
     <div class="weui-mask" id="iosMask" style="display: none"></div>
