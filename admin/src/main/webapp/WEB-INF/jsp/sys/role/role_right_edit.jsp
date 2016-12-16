@@ -2,6 +2,7 @@
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+<c:set var="global" value="http://idle-data.oss-cn-shanghai.aliyuncs.com/global"/>
 <style type="text/css">
     ul.ztree {
         background: #ecf0f5 none repeat scroll 0 0;
@@ -11,9 +12,8 @@
         overflow-y: scroll;
     }
 </style>
-<link
-        href="${pageContext.request.contextPath}/assets/global/plugins/zTree/css/zTreeStyle/zTreeStyle.css"
-        rel="stylesheet" type="text/css"/>
+<link href="${global}/plugins/zTree/css/zTreeStyle/zTreeStyle.css"
+      rel="stylesheet" type="text/css"/>
 <form class="form-horizontal" action="role/editRight" method="post"
       id="roleResEditForm">
     <div class="modal-header">
@@ -39,9 +39,7 @@
         </shiro:hasPermission>
     </div>
 </form>
-<script
-        src="${pageContext.request.contextPath}/assets/global/plugins/zTree/js/jquery.ztree.all-3.5.min.js"
-        type="text/javascript"></script>
+<script src="${global}/plugins/zTree/js/jquery.ztree.all-3.5.min.js" type="text/javascript"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         var setting = {
