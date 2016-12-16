@@ -99,9 +99,24 @@ public class Works implements Serializable {
     private String type;
 
     /**
-     * 尺寸重量
+     * 长度
      */
-    private String size;
+    private BigDecimal length;
+
+    /**
+     * 宽度
+     */
+    private BigDecimal width;
+
+    /**
+     * 高度
+     */
+    private BigDecimal height;
+
+    /**
+     * 重量
+     */
+    private BigDecimal weight;
 
     /**
      * 工艺制作
@@ -305,13 +320,6 @@ public class Works implements Serializable {
         this.type = type;
     }
 
-    public String getSize() {
-        return this.size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
 
     public String getGyType() {
         return this.gyType;
@@ -457,4 +465,35 @@ public class Works implements Serializable {
         this.workingStatus = workingStatus;
     }
 
+    public BigDecimal getLength() {
+        return length;
+    }
+
+    public void setLength(BigDecimal length) {
+        this.length = length;
+    }
+
+    public BigDecimal getWidth() {
+        return width;
+    }
+
+    public void setWidth(BigDecimal width) {
+        this.width = width;
+    }
+
+    public BigDecimal getHeight() {
+        return height;
+    }
+
+    public void setHeight(BigDecimal height) {
+        this.height = height;
+    }
+
+    public BigDecimal getWeight() {
+        return weight;
+    }
+
+    public void setWeight(BigDecimal weight) {
+        this.weight = weight;
+    }
 }

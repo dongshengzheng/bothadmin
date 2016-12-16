@@ -4,37 +4,38 @@
     <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
         <div class="weui-cell__bd weui-cell_primary">
-            <input name="name" class="weui-input" type="tel" value="${works.name}">
+            <input name="worksShowName" class="weui-input" type="tel" value="${works.name}" disabled>
         </div>
     </div>
     <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">品种</label></div>
         <div class="weui-cell__bd weui-cell_primary">
-            <input name="breed" id="works-pinzhong" class="weui-input " type="tel" value="${works.type}">
+            <input name="breed" id="works-pinzhong" class="weui-input " type="tel" value="${works.breed}">
         </div>
     </div>
     <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">作品类型</label></div>
         <div class="weui-cell__bd weui-cell_primary">
-            <input name="type" id="works-zuopinleixing" class="weui-input " type="tel" placeholder="请选择作品类型">
+            <input name="worksType" id="works-zuopinleixing" class="weui-input " type="tel" value="${works.type}"
+                   placeholder="请选择作品类型">
         </div>
     </div>
     <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">尺寸(长-宽-高)</label></div>
         <div class="weui-cell__bd weui-cell_primary">
-            <input name="length" class="weui-input" type="tel" placeholder="长">
+            <input name="length" class="weui-input" type="tel" value="${works.length}" placeholder="长">
         </div>
         <div class="weui-cell__bd weui-cell_primary">
             <input class="weui-input" type="tel" value="cm" disabled>
         </div>
         <div class="weui-cell__bd weui-cell_primary">
-            <input name="width" class="weui-input" type="tel" placeholder="宽">
+            <input name="width" class="weui-input" type="tel" value="${works.width}" placeholder="宽">
         </div>
         <div class="weui-cell__bd weui-cell_primary">
             <input class="weui-input" type="tel" value="cm" disabled>
         </div>
         <div class="weui-cell__bd weui-cell_primary">
-            <input name="height" class="weui-input" type="tel" placeholder="高">
+            <input name="height" class="weui-input" type="tel" value="${works.height}" placeholder="高">
         </div>
         <div class="weui-cell__bd weui-cell_primary">
             <input class="weui-input" type="tel" value="cm" disabled>
@@ -43,7 +44,7 @@
     <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">重量</label></div>
         <div class="weui-cell__bd weui-cell_primary">
-            <input name="weight" class="weui-input" type="tel" placeholder="请输入重量">
+            <input name="weight" class="weui-input" type="tel" value="${works.weight}" placeholder="请输入重量">
         </div>
         <div class="weui-cell__bd weui-cell_primary">
             <input class="weui-input" type="tel" value="g" disabled>
@@ -52,37 +53,41 @@
     <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">工艺制作</label></div>
         <div class="weui-cell__bd weui-cell_primary">
-            <input name="gyType" id="works-gongyizhizuo" class="weui-input  " type="tel" placeholder="请选择工艺制作">
+            <input name="gyType" id="works-gongyizhizuo" class="weui-input" value="${works.gyType}"
+                   placeholder="请选择工艺制作">
         </div>
     </div>
     <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">篆刻级别</label></div>
         <div class="weui-cell__bd weui-cell_primary">
-            <input name="levelZk" id="works-zhuankejibie" class="weui-input  " type="tel" placeholder="请选择篆刻级别">
+            <input name="levelZk" id="works-zhuankejibie" class="weui-input" value="${works.levelZk}"
+                   placeholder="请选择篆刻级别">
         </div>
     </div>
     <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">矿区地域</label></div>
         <div class="weui-cell__bd weui-cell_primary">
-            <input name="kqdy" id="works-kuangqudiyu" class="weui-input  " type="tel" placeholder="请选择矿区地域">
+            <input name="kqdy" id="works-kuangqudiyu" class="weui-input" value="${works.kqdy}" placeholder="请选择矿区地域">
         </div>
     </div>
     <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">制作人</label></div>
         <div class="weui-cell__bd weui-cell_primary">
-            <input name="maker" id="works-zhizuoren" class="weui-input" type="tel" placeholder="请输入制作人">
+            <input name="maker" id="works-zhizuoren" class="weui-input" value="${works.maker}" placeholder="请输入制作人">
         </div>
     </div>
     <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">制作时间</label></div>
         <div class="weui-cell__bd weui-cell_primary">
-            <input name="makeTime" id="works-zhizuoshijian" class="weui-input" type="tel" placeholder="请选择制作时间">
+            <input name="makeTimeString" id="works-zhizuoshijian" class="weui-input" value="${works.makeTime}"
+                   type="tel"
+                   placeholder="请选择制作时间">
         </div>
     </div>
     <div class="weui-cell">
         <div class="weui-cell__bd weui-cell_primary">
                     <textarea name="worksMeanning" id="works-zuopinquanshi" class="weui-textarea" placeholder="作品诠释..."
-                              rows="3"></textarea>
+                              rows="3">${works.worksMeanning}</textarea>
             <!--<div class="weui-textarea-counter">-->
             <!--<span>0</span>/200-->
             <!--</div>-->

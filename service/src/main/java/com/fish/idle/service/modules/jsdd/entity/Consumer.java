@@ -60,7 +60,7 @@ public class Consumer implements Serializable {
     private Integer delFlag;
 
     /**
-     * 用户类型
+     * 用户类型(1提供者2收藏者  王顺12.16备注)
      */
     private String type;
 

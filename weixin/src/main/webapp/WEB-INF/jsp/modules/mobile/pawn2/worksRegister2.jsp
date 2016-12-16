@@ -60,7 +60,8 @@
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input name="name" class="weui-input" type="tel" placeholder="田黄鸡血石精品吊坠">
+                    <input name="name" class="weui-input" type="tel" value="${sessionScope.registerWorksName}"
+                           disabled>
                 </div>
             </div>
             <div class="weui-cell">
@@ -132,7 +133,7 @@
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">制作时间</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input name="makeTime" id="works-zhizuoshijian" class="weui-input" placeholder="请选择制作时间">
+                    <input name="makeTimeString" id="works-zhizuoshijian" class="weui-input" placeholder="请选择制作时间">
                 </div>
             </div>
             <div class="weui-cell">
@@ -151,7 +152,7 @@
             <hr>
             <div class="weui-form-preview__ft">
                 <a class="weui-form-preview__btn weui-form-preview__btn_default" href="javascript:">存为草稿</a>
-                <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">
+                <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary">
                     下一步
                 </button>
             </div>

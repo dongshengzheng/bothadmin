@@ -100,7 +100,7 @@
         <hr>
         <span>&nbsp;◇&nbsp;JS-A20161205001A&nbsp;◇&nbsp;</span></center>
 </div>
-<form action="${ctx}/mobile/worksEdit1Complete?id=${param.id}" enctype="multipart/form-data" method="post">
+<form action="${ctx}/mobile/worksEditComplete" enctype="multipart/form-data" method="post">
 
     <div class="weui_tab_bd">
         <div id="tab1" class="weui_tab_bd_item weui_tab_bd_item_active ">
@@ -124,7 +124,7 @@
     <div class="fixed-footer">
         <div class="weui-form-preview__ft">
             <a class="weui-form-preview__btn weui-form-preview__btn_default"
-               href="${ctx}/mobile/my/myWorks?showwhich=success">放弃修改</a>
+               href="${ctx}/mobile/my">放弃修改</a>
             <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">
                 提交审核
             </button>

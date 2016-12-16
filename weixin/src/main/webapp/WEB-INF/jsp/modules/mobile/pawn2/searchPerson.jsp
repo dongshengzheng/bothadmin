@@ -45,36 +45,38 @@
 
 <div class="search-results div-outer">
     <div id="have-care-people" class="div-outer">
-        <div class="weui-panel__bd" id="test1">
-            <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
-                <div class="weui-media-box__hd">
-                    <img class="weui-media-box__thumb"
-                         src="${ctxStatic}/img/headImg/3.jpg"
-                         alt="">
-                </div>
-                <div class="weui-media-box__bd">
-                    <h4 class="weui-media-box__title">老特福德永恒</h4>
-                    <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
-                    <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
-                    <div class="search-results-one-care not-care div-hide">
-                        <img src="${ctxStatic}/img/cut/to-focus.png" class="search-results-one-care-img "/>
-                        <p class="search-results-one-care-text-not ">
-                            加关注
-                        </p>
+        <c:forEach items="${haveFocusList}" var="person">
+            <div class="weui-panel__bd" id="${person.id}">
+                <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img class="weui-media-box__thumb"
+                             src="${ctxStatic}/img/headImg/4.jpg"
+                             alt="">
                     </div>
-                    <div class="search-results-one-care have-care div-hide div-on">
-                        <img src="${ctxStatic}/img/cut/have-focus.png" class="search-results-one-care-img "/>
-                        <p class="search-results-one-care-text-have ">
-                            已关注
-                        </p>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">${person.name}</h4>
+                        <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
+                        <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
+                        <div class="search-results-one-care have-care div-hide div-on">
+                            <img src="${ctxStatic}/img/cut/have-focus.png" class="search-results-one-care-img "/>
+                            <p class="search-results-one-care-text-have ">
+                                已关注
+                            </p>
+                        </div>
+                        <div class="search-results-one-care not-care div-hide">
+                            <img src="${ctxStatic}/img/cut/to-focus.png" class="search-results-one-care-img "/>
+                            <p class="search-results-one-care-text-not ">
+                                加关注
+                            </p>
+                        </div>
                     </div>
-                </div>
-            </a>
-        </div>
+                </a>
+            </div>
+        </c:forEach>
     </div>
 
     <div id="not-care-people">
-        <c:forEach items="${page.records}" var="person">
+        <c:forEach items="${notFocusList}" var="person">
             <div class="weui-panel__bd" id="${person.id}">
                 <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
                     <div class="weui-media-box__hd">
@@ -199,12 +201,28 @@
         });
 
         $('.not-care').on('click', function () {
-            $notCareDialog.fadeIn(200);
-            $(this).removeClass('div-on').siblings('.search-results-one-care').addClass('div-on');
-            var outer = $(this).parent().parent().parent();
-            var notCareOuter = outer.parent();
-            var haveCareOuter = notCareOuter.siblings('#have-care-people');
-            haveCareOuter.append(outer);
+            var thisone = $(this);
+            var targetId = thisone.parent().parent().parent().attr('id');
+
+            $.ajax({
+                type: "POST",
+                url: "${ctx}/mobile/notToHave",
+                data: {
+                    targetId: targetId
+                },
+                success: function (data) {
+                    $notCareDialog.find('.weui-dialog__title').html(data);
+                    $notCareDialog.fadeIn(200);
+                    if (data == '关注成功!') {
+                        thisone.removeClass('div-on').siblings('.search-results-one-care').addClass('div-on');
+                        var outer = thisone.parent().parent().parent();
+                        var notCareOuter = outer.parent();
+                        var haveCareOuter = notCareOuter.siblings('#have-care-people');
+                        haveCareOuter.append(outer);
+                    }
+                }
+            })
+
 
         });
 
@@ -213,13 +231,29 @@
         })
 
         $('#haveCareDialog .weui-dialog__btn_primary').on('click', function () {
+            var targetId = $('#haveCareDialog').attr('data-id');
             var thisOne = $('#' + ($('#haveCareDialog').attr('data-id')) + ' .have-care');
-            thisOne.removeClass('div-on').siblings('.search-results-one-care').addClass('div-on');
-            $(thisOne).removeClass('div-on').siblings('.search-results-one-care').addClass('div-on');
-            var outer = $(thisOne).parent().parent().parent();
-            var haveCareOuter = outer.parent();
-            var notCareOuter = haveCareOuter.siblings('#not-care-people');
-            notCareOuter.append(outer);
+
+            $.ajax({
+                type: "POST",
+                url: "${ctx}/mobile/haveToNot",
+                data: {
+                    targetId: targetId
+                },
+                success: function (data) {
+                    $notCareDialog.find('.weui-dialog__title').html(data);
+                    if (data == '取关成功!') {
+                        thisOne.removeClass('div-on').siblings('.search-results-one-care').addClass('div-on');
+                        thisOne.removeClass('div-on').siblings('.search-results-one-care').addClass('div-on');
+                        var outer = $(thisOne).parent().parent().parent();
+                        var haveCareOuter = outer.parent();
+                        var notCareOuter = haveCareOuter.siblings('#not-care-people');
+                        notCareOuter.append(outer);
+                    }
+                    $notCareDialog.fadeIn(200);
+                }
+            })
+
 
         })
 
