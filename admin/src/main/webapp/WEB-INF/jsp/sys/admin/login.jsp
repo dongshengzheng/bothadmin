@@ -9,6 +9,7 @@
             + path + "/";
 %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<c:set var="global" value="http://windyeel.oss-cn-shanghai.aliyuncs.com/global"/>
 <!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
@@ -25,25 +26,24 @@
     <base href="<%=basePath%>">
     <meta content="" name="description" />
     <meta content="" name="author" />
-    <link href="${ctx}/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="${ctx}/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
-    <link href="${ctx}/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="${ctx}/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
-    <link href="${ctx}/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
-    <link href="${ctx}/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="${ctx}/assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
-    <link href="${ctx}/assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <link href="${global}/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="${global}/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="${global}/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="${global}/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+    <link href="${global}/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="${global}/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="${global}/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="${global}/css/plugins.min.css" rel="stylesheet" type="text/css" />
     <link href="${ctx}/static/css/login.min.css" rel="stylesheet" type="text/css" />
 
     <!-- Bootstrap 3.3.4 -->
-    <script src="${ctx}/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="${global}/plugins/jquery.min.js" type="text/javascript"></script>
     <script src="${ctx}/static/js/jquery.cookie.js"></script>
     <script src="${ctx}/static/js/jquery.tips.js"></script>
     <link rel="shortcut icon" href="${ctx}/favicon.ico" />
 <body class=" login">
 <div class="logo">
-    <a href="index.html">
-         </a>
+    <a href="index.html"></a>
 </div>
 <div class="content">
     <form role="form" method="post" action="" name="loginForm"
@@ -79,7 +79,7 @@
 <!-- BEGIN COPYRIGHT -->
 <div class="copyright"> 2016 &copy; <a href="http://www.xianyutec.com/">苏州闲鱼信息科技有限公司</a> 版权保留. </div>
 
-<script src="${ctx}/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="${global}/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="${global}/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
 </body>
 <script type="text/javascript">
