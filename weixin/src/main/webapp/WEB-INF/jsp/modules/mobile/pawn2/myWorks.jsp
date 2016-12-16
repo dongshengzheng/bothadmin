@@ -347,7 +347,7 @@
         //跳往编辑页面
         $('#edit').on('click', function () {
             var id = $('#nowWorksId').val();
-            location.href = "${ctx}/mobile/worksEdit1?id=" + id;
+            location.href = "${ctx}/mobile/worksEdit?id=" + id;
         });
 
 

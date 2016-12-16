@@ -121,6 +121,12 @@
             ALTER TABLE `dd_score_history` CHANGE COLUMN `value` `value` int(11) DEFAULT NULL COMMENT '加减积分';
         </sql>
     </changeSet>
+    <changeSet author="WangShun" id="15950097942-016">
+        <sql>
+            ALTER TABLE `dd_consumer` ADD COLUMN `works_id` int(11) DEFAULT NULL COMMENT '作品id';
+            ALTER TABLE `dd_consumer` ADD COLUMN `is_draft` int(2) DEFAULT NULL COMMENT '是否是草稿';
+        </sql>
+    </changeSet>
 
 
 </databaseChangeLog>

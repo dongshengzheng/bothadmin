@@ -76,7 +76,7 @@
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">身份证</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="collectCardNo" class="weui-input" type="tel" placeholder="可不填写">
+                <input name="no" class="weui-input" type="tel" placeholder="可不填写">
             </div>
         </div>
         <div class="weui-cell">

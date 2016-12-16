@@ -152,11 +152,20 @@
         </div>
     </c:forEach>
 
-    <div class="hr-text ">
-        <center>
-            <hr>
-            <span>&nbsp;&nbsp;到底啦&nbsp;&nbsp;</span></center>
-    </div>
+    <c:if test="${fn:length(fhWorksList) == 0}">
+        <div style="text-align:center;margin-top:35%">
+            <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="" style="width: 50%;">
+            <p style="color:#CCCCCC">尚无作品</p>
+        </div>
+    </c:if>
+    <c:if test="${fn:length(fhWorksList) > 0}">
+        <div class="hr-text ">
+            <center>
+                <hr>
+                <span>&nbsp;&nbsp;到底啦&nbsp;&nbsp;</span></center>
+        </div>
+    </c:if>
+
 </div>
 
 <div id="focus-people" class="div-hide div-outer <c:if test="${showwhich=='focus'}">div-on</c:if>">
@@ -188,11 +197,19 @@
             </a>
         </div>
     </c:forEach>
-    <div class="hr-text ">
-        <center>
-            <hr>
-            <span>&nbsp;&nbsp;到底啦&nbsp;&nbsp;</span></center>
-    </div>
+    <c:if test="${fn:length(fhPeopleList) == 0}">
+        <div style="text-align:center;margin-top:35%">
+            <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="" style="width: 50%;">
+            <p style="color:#CCCCCC">尚无关注用户</p>
+        </div>
+    </c:if>
+    <c:if test="${fn:length(fhPeopleList) > 0}">
+        <div class="hr-text ">
+            <center>
+                <hr>
+                <span>&nbsp;&nbsp;到底啦&nbsp;&nbsp;</span></center>
+        </div>
+    </c:if>
 </div>
 
 <%@include file="include/tab-3.jsp" %>

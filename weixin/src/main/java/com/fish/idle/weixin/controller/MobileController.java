@@ -862,6 +862,7 @@ public class MobileController extends BaseController {
                                  HttpServletResponse response,
                                  ModelMap map,
                                  Works works,
+                                 Consumer consumer,
                                  @RequestParam String createDateString) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
@@ -987,11 +988,11 @@ public class MobileController extends BaseController {
     }
 
     /**
-     * 作品编辑页面1
+     * 作品编辑页面
      *
      * @return
      */
-    @RequestMapping(value = "worksEdit1", method = RequestMethod.GET)
+    @RequestMapping(value = "worksEdit", method = RequestMethod.GET)
     @OAuthRequired
     public String worksEdit1(HttpSession session,
                              HttpServletRequest request,
@@ -1008,159 +1009,192 @@ public class MobileController extends BaseController {
         }
 
         Works works = worksService.selectById(id);
-        session.setAttribute("editWorks", works);
-        return "modules/mobile/pawn2/worksEdit1";
+        WorksLevel wl = new WorksLevel();
+        wl.setWorksId(id);
+        WorksLevel worksLevel = worksLevelService.selectOne(new EntityWrapper<>(wl));
+
+        map.put("works", works);
+        map.put("worksLevel", worksLevel);
+
+        return "modules/mobile/pawn2/worksEdit";
     }
 
-    /**
-     * 作品编辑页面2
-     *
-     * @return
-     */
-    @RequestMapping(value = "worksEdit2", method = RequestMethod.GET)
-    @OAuthRequired
-    public String worksEdit2(HttpSession session,
-                             HttpServletRequest request,
-                             HttpServletResponse response,
-                             ModelMap map,
-                             @RequestParam(required = false) String name,
-                             @RequestParam(required = false) String provideBy,
-                             @RequestParam(required = false) String collectCardNo,
-                             @RequestParam(required = false) String address,
-                             @RequestParam(required = false) String phone,
-                             @RequestParam(required = false) String createDateString,
-                             @RequestParam(required = false) String remarks
-    ) {
-        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
-        User u = new User();
-        u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
-            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
-        }
-        Works works = (Works) session.getAttribute("editWorks");
-        works.setName(name);
-        works.setProvideBy(provideBy);
-        works.setRemarks(remarks);
 
-        session.setAttribute("editWorks", works);
-        return "modules/mobile/pawn2/worksEdit2";
-    }
-
-    /**
-     * 作品编辑页面3
-     *
-     * @return
-     */
-    @RequestMapping(value = "worksEdit3", method = RequestMethod.GET)
-    @OAuthRequired
-    public String worksEdit3(HttpSession session,
-                             HttpServletRequest request,
-                             HttpServletResponse response,
-                             ModelMap map,
-                             @RequestParam(required = false) String breed,
-                             @RequestParam(required = false) String type,
-                             @RequestParam(required = false) String length,
-                             @RequestParam(required = false) String width,
-                             @RequestParam(required = false) String height,
-                             @RequestParam(required = false) String weight,
-                             @RequestParam(required = false) String gyType,
-                             @RequestParam(required = false) String levelZk,
-                             @RequestParam(required = false) String kqdy,
-                             @RequestParam(required = false) String maker,
-                             @RequestParam(required = false) Date makeTime,
-                             @RequestParam(required = false) String worksMeanning) {
-        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
-        User u = new User();
-        u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
-            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
-        }
-        Works works = (Works) session.getAttribute("editWorks");
-        works.setBreed(breed);
-        works.setType(type);
-        String size = "";
-        if (length != null && length.trim().length() > 0) {
-            size += length + "|";
-        }
-        if (width != null && width.trim().length() > 0) {
-            size += width + "|";
-        }
-        if (height != null && height.trim().length() > 0) {
-            size += height + "|";
-        }
-        if (weight != null && width.trim().length() > 0) {
-            size += width;
-        }
-        works.setSize(size);
-        works.setGyType(gyType);
-        works.setLevelZk(levelZk);
-        works.setKqdy(kqdy);
-        works.setMaker(maker);
-        works.setMakeTime(makeTime);
-        works.setWorksMeanning(worksMeanning);
-
-        session.setAttribute("editWorks", works);
-        return "modules/mobile/pawn2/worksEdit3";
-    }
-
-    /**
-     * 作品编辑页面4
-     *
-     * @return
-     */
-    @RequestMapping(value = "worksEdit4", method = RequestMethod.GET)
-    @OAuthRequired
-    public String worksEdit4(HttpSession session,
-                             HttpServletRequest request,
-                             HttpServletResponse response,
-                             ModelMap map,
-                             WorksLevel worksLevel) {
-        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
-        User u = new User();
-        u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
-            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
-        }
-
-        Works works = (Works) session.getAttribute("editWorks");
-
-        WorksLevel worksLevelBlank = new WorksLevel();
-        worksLevelBlank.setWorksId(works.getId());
-        WorksLevel worksLevelOld = worksLevelService.selectOne(new EntityWrapper<>(worksLevelBlank));
-        worksLevel.setId(worksLevelOld.getId());
-
-        session.setAttribute("editWorksLevel", worksLevel);
-
-        return "modules/mobile/pawn2/worksEdit4";
-    }
-
-    /**
-     * 作品编辑页面5
-     *
-     * @return
-     */
-    @RequestMapping(value = "worksEdit5", method = RequestMethod.GET)
-    @OAuthRequired
-    public String worksEdit5(HttpSession session,
-                             HttpServletRequest request,
-                             HttpServletResponse response,
-                             ModelMap map) {
-        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
-        User u = new User();
-        u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
-            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
-        }
-        return "modules/mobile/pawn2/worksEdit5";
-    }
+//    /**
+//     * 作品编辑页面1
+//     *
+//     * @return
+//     */
+//    @RequestMapping(value = "worksEdit1", method = RequestMethod.GET)
+//    @OAuthRequired
+//    public String worksEdit1(HttpSession session,
+//                             HttpServletRequest request,
+//                             HttpServletResponse response,
+//                             ModelMap map,
+//                             @RequestParam int id) {
+//        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+//        String openId = wxMpUser.getOpenId();
+//        User u = new User();
+//        u.setOpenId(openId);
+//        User user = userService.selectOne(u);
+//        if (user == null) {
+//            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+//        }
+//
+//        Works works = worksService.selectById(id);
+//        session.setAttribute("editWorks", works);
+//        return "modules/mobile/pawn2/worksEdit1";
+//    }
+//
+//    /**
+//     * 作品编辑页面2
+//     *
+//     * @return
+//     */
+//    @RequestMapping(value = "worksEdit2", method = RequestMethod.GET)
+//    @OAuthRequired
+//    public String worksEdit2(HttpSession session,
+//                             HttpServletRequest request,
+//                             HttpServletResponse response,
+//                             ModelMap map,
+//                             @RequestParam(required = false) String name,
+//                             @RequestParam(required = false) String provideBy,
+//                             @RequestParam(required = false) String collectCardNo,
+//                             @RequestParam(required = false) String address,
+//                             @RequestParam(required = false) String phone,
+//                             @RequestParam(required = false) String createDateString,
+//                             @RequestParam(required = false) String remarks
+//    ) {
+//        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+//        String openId = wxMpUser.getOpenId();
+//        User u = new User();
+//        u.setOpenId(openId);
+//        User user = userService.selectOne(u);
+//        if (user == null) {
+//            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+//        }
+//        Works works = (Works) session.getAttribute("editWorks");
+//        works.setName(name);
+//        works.setProvideBy(provideBy);
+//        works.setRemarks(remarks);
+//
+//        session.setAttribute("editWorks", works);
+//        return "modules/mobile/pawn2/worksEdit2";
+//    }
+//
+//    /**
+//     * 作品编辑页面3
+//     *
+//     * @return
+//     */
+//    @RequestMapping(value = "worksEdit3", method = RequestMethod.GET)
+//    @OAuthRequired
+//    public String worksEdit3(HttpSession session,
+//                             HttpServletRequest request,
+//                             HttpServletResponse response,
+//                             ModelMap map,
+//                             @RequestParam(required = false) String breed,
+//                             @RequestParam(required = false) String type,
+//                             @RequestParam(required = false) String length,
+//                             @RequestParam(required = false) String width,
+//                             @RequestParam(required = false) String height,
+//                             @RequestParam(required = false) String weight,
+//                             @RequestParam(required = false) String gyType,
+//                             @RequestParam(required = false) String levelZk,
+//                             @RequestParam(required = false) String kqdy,
+//                             @RequestParam(required = false) String maker,
+//                             @RequestParam(required = false) Date makeTime,
+//                             @RequestParam(required = false) String worksMeanning) {
+//        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+//        String openId = wxMpUser.getOpenId();
+//        User u = new User();
+//        u.setOpenId(openId);
+//        User user = userService.selectOne(u);
+//        if (user == null) {
+//            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+//        }
+//        Works works = (Works) session.getAttribute("editWorks");
+//        works.setBreed(breed);
+//        works.setType(type);
+//        String size = "";
+//        if (length != null && length.trim().length() > 0) {
+//            size += length + "|";
+//        }
+//        if (width != null && width.trim().length() > 0) {
+//            size += width + "|";
+//        }
+//        if (height != null && height.trim().length() > 0) {
+//            size += height + "|";
+//        }
+//        if (weight != null && width.trim().length() > 0) {
+//            size += width;
+//        }
+//        works.setSize(size);
+//        works.setGyType(gyType);
+//        works.setLevelZk(levelZk);
+//        works.setKqdy(kqdy);
+//        works.setMaker(maker);
+//        works.setMakeTime(makeTime);
+//        works.setWorksMeanning(worksMeanning);
+//
+//        session.setAttribute("editWorks", works);
+//        return "modules/mobile/pawn2/worksEdit3";
+//    }
+//
+//    /**
+//     * 作品编辑页面4
+//     *
+//     * @return
+//     */
+//    @RequestMapping(value = "worksEdit4", method = RequestMethod.GET)
+//    @OAuthRequired
+//    public String worksEdit4(HttpSession session,
+//                             HttpServletRequest request,
+//                             HttpServletResponse response,
+//                             ModelMap map,
+//                             WorksLevel worksLevel) {
+//        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+//        String openId = wxMpUser.getOpenId();
+//        User u = new User();
+//        u.setOpenId(openId);
+//        User user = userService.selectOne(u);
+//        if (user == null) {
+//            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+//        }
+//
+//        Works works = (Works) session.getAttribute("editWorks");
+//
+//        WorksLevel worksLevelBlank = new WorksLevel();
+//        worksLevelBlank.setWorksId(works.getId());
+//        WorksLevel worksLevelOld = worksLevelService.selectOne(new EntityWrapper<>(worksLevelBlank));
+//        worksLevel.setId(worksLevelOld.getId());
+//
+//        session.setAttribute("editWorksLevel", worksLevel);
+//
+//        return "modules/mobile/pawn2/worksEdit4";
+//    }
+//
+//    /**
+//     * 作品编辑页面5
+//     *
+//     * @return
+//     */
+//    @RequestMapping(value = "worksEdit5", method = RequestMethod.GET)
+//    @OAuthRequired
+//    public String worksEdit5(HttpSession session,
+//                             HttpServletRequest request,
+//                             HttpServletResponse response,
+//                             ModelMap map) {
+//        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+//        String openId = wxMpUser.getOpenId();
+//        User u = new User();
+//        u.setOpenId(openId);
+//        User user = userService.selectOne(u);
+//        if (user == null) {
+//            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+//        }
+//        return "modules/mobile/pawn2/worksEdit5";
+//    }
 
 }
 
