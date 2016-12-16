@@ -80,7 +80,7 @@
 <div class="copyright"> 2016 &copy; <a href="http://www.xianyutec.com/">苏州闲鱼信息科技有限公司</a> 版权保留. </div>
 
 <script src="${ctx}/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-
+<script src="${global}/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
 </body>
 <script type="text/javascript">
     //服务器校验
@@ -141,6 +141,20 @@
     $(document).ready(function () {
         changeCode();
         $("#codeImg").bind("click", changeCode);
+
+        // init background slide images
+        $.backstretch([
+                "${ctx}/assets/layouts/layout/img/bg/6.jpg",
+                "${ctx}/assets/layouts/layout/img/bg/1.jpg",
+                "${ctx}/assets/layouts/layout/img/bg/4.jpg",
+                "${ctx}/assets/layouts/layout/img/bg/5.jpg"
+
+            ], {
+                fade: 1000,
+                duration: 8000
+            }
+        );
+
     });
 
     $(document).keyup(function (event) {
