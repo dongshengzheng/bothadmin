@@ -1,209 +1,105 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="include/taglib.jsp" %>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0"/>
-    <title>作品编辑</title>
-    <link rel="stylesheet" href="${ctxStatic}/css/custom.css"/>
-    <link rel="stylesheet" href="${ctxStatic}/css/weui.min.css"/>
-    <link rel="stylesheet" href="${ctxStatic}/css/jquery-weui.min.css"/>
-
-    <script src="${ctxStatic}/js/jquery-2.1.4.js"></script>
-    <script src="${ctxStatic}/js/jquery-weui.js"></script>
-    <script src="${ctxStatic}/js/swiper.js"></script>
-    <style>
-        body {
-            background-color: white;
-        }
-
-        .weui-navbar {
-            width: 97%;
-            margin: 1%;
-            border: 1px solid #2698DE;
-            border-radius: 5px;
-        }
-
-        .weui-navbar__item.weui-bar__item_on {
-            background-color: #2698DE;
-            color: white;
-        }
-
-        .weui-navbar__item {
-            border: 1px solid #2698DE;
-            background-color: white;
-            color: #2698DE;
-        }
-
-        .title {
-            margin-top: 10%;
-            text-align: center;
-        }
-
-        .title hr {
-            width: 80%;
-            border-top: 1px solid red;
-            color: red;
-        }
-
-        .title span {
-            position: relative;
-            top: -15px;
-            background-color: white;
-            color: red;
-        }
-
-        .fixed-footer p {
-            font-size: 10px;
-            padding-left: 30%;
-        }
-
-        .fixed-footer a {
-            color: #A2D2EF;
-        }
-
-    </style>
-</head>
-<body>
-<div class="weui-tab">
-    <div class="weui-navbar">
-        <div class="weui-navbar__item " id="check-title-success">
-            物品信息
-        </div>
-        <div class="weui-navbar__item " id="check-title-now">
-            作品信息
-        </div>
-        <div class="weui-navbar__item weui-bar__item_on" id="check-title-failure">
-            作品等级
-        </div>
-        <div class="weui-navbar__item" id="check-title-draft">
-            评估报告
-        </div>
-        <div class="weui-navbar__item" id="check-title-">
-            收藏信息
+<div class="weui-cells weui-cells_form">
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
+        <div class="weui-cell__bd weui-cell_primary">
+            <input name="worksShowName" class="weui-input" type="tel" value="${works.name}" disabled>
         </div>
     </div>
-</div>
-<div class="fixed-footer-blank">
-
-</div>
-<div class="title">
-    <center>
-        <hr>
-        <span>&nbsp;◇&nbsp;JS-A20161205001A&nbsp;◇&nbsp;</span></center>
-</div>
-<div>
-    <form action="${ctx}/mobile/worksEdit4">
-        <div class="weui-cells weui-cells_form">
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input name="name" class="weui-input" type="tel" placeholder="田黄鸡血石精品吊坠">
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">质地一</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input name="zhidi" id="works-zhidiyi" class="weui-input " type="tel" placeholder="请选择质地一">
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">质地二</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input name="zhidi2" id="works-zhidier" class="weui-input " type="tel" placeholder="请选择质地二">
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">感观</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input name="ganguan" id="works-ganguan" class="weui-input " type="tel" placeholder="请选择感观">
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">磨氏度</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input name="moshidu" id="works-moshidu" class="weui-input " type="tel" placeholder="请选择磨氏度">
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">血量</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input name="xueliang" id="works-xueliang" class="weui-input " type="tel" placeholder="请选择血量">
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">血色</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input name="xuese" id="works-xuese" class="weui-input " type="tel" placeholder="请选择血色">
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">血形</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input name="xuexing" id="works-xuexing" class="weui-input " type="tel" placeholder="请选择血形">
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">浓艳度</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input name="nongyandu" id="works-nongyandu" class="weui-input " type="tel" placeholder="请选择浓艳度">
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">纯净度</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input name="chunjingdu" id="works-chunjingdu" class="weui-input " type="tel" placeholder="请选择纯净度">
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">地色</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input name="dise" id="works-dise" class="weui-input " type="tel" placeholder="请选择地色">
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">活筋</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input name="liu" id="works-huojin" class="weui-input " type="tel" placeholder="请选择活筋">
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">裂</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input name="lie" id="works-lie" class="weui-input " type="tel" placeholder="请选择裂">
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">印章</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input name="hanxuemian" id="works-yinzhang" class="weui-input " type="tel" placeholder="请选择印章">
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">含血方式</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input name="hanxuefangshi" id="works-hanxuefangshi" class="weui-input " type="tel"
-                           placeholder="请选择含血方式">
-                </div>
-            </div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">质地一</label></div>
+        <div class="weui-cell__bd weui-cell_primary">
+            <input name="zhidi" id="works-zhidiyi" class="weui-input " value="${worksLevel.zhidi}" placeholder="请选择质地一">
         </div>
-
-        <div class="fixed-footer">
-            <!--<p>下一步即表示同意<a href="#">《金石典当登记申请记录》</a></p>-->
-            <hr>
-            <div class="weui-form-preview__ft">
-                <a class="weui-form-preview__btn weui-form-preview__btn_default" href="javascript:">放弃编辑</a>
-                <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">
-                    提交审核
-                </button>
-            </div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">质地二</label></div>
+        <div class="weui-cell__bd weui-cell_primary">
+            <input name="zhidi2" id="works-zhidier" class="weui-input " value="${worksLevel.zhidi2}"
+                   placeholder="请选择质地二">
         </div>
-        <div class="fixed-footer-blank">
-
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">感观</label></div>
+        <div class="weui-cell__bd weui-cell_primary">
+            <input name="ganguan" id="works-ganguan" class="weui-input " value="${worksLevel.ganguan}"
+                   placeholder="请选择感观">
         </div>
-    </form>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">磨氏度</label></div>
+        <div class="weui-cell__bd weui-cell_primary">
+            <input name="moshidu" id="works-moshidu" class="weui-input " value="${worksLevel.moshidu}"
+                   placeholder="请选择磨氏度">
+        </div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">血量</label></div>
+        <div class="weui-cell__bd weui-cell_primary">
+            <input name="xueliang" id="works-xueliang" class="weui-input " value="${worksLevel.xueliang}"
+                   placeholder="请选择血量">
+        </div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">血色</label></div>
+        <div class="weui-cell__bd weui-cell_primary">
+            <input name="xuese" id="works-xuese" class="weui-input " value="${worksLevel.xuese}" placeholder="请选择血色">
+        </div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">血形</label></div>
+        <div class="weui-cell__bd weui-cell_primary">
+            <input name="xuexing" id="works-xuexing" class="weui-input " value="${worksLevel.xuexing}"
+                   placeholder="请选择血形">
+        </div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">浓艳度</label></div>
+        <div class="weui-cell__bd weui-cell_primary">
+            <input name="nongyandu" id="works-nongyandu" class="weui-input " value="${worksLevel.nongyandu}"
+                   placeholder="请选择浓艳度">
+        </div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">纯净度</label></div>
+        <div class="weui-cell__bd weui-cell_primary">
+            <input name="chunjingdu" id="works-chunjingdu" class="weui-input " value="${worksLevel.chunjingdu}"
+                   placeholder="请选择纯净度">
+        </div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">地色</label></div>
+        <div class="weui-cell__bd weui-cell_primary">
+            <input name="dise" id="works-dise" class="weui-input " value="${worksLevel.dise}" placeholder="请选择地色">
+        </div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">活筋</label></div>
+        <div class="weui-cell__bd weui-cell_primary">
+            <input name="liu" id="works-huojin" class="weui-input " value="${worksLevel.liu}" placeholder="请选择活筋">
+        </div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">裂</label></div>
+        <div class="weui-cell__bd weui-cell_primary">
+            <input name="lie" id="works-lie" class="weui-input " value="${worksLevel.lie}" placeholder="请选择裂">
+        </div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">印章</label></div>
+        <div class="weui-cell__bd weui-cell_primary">
+            <input name="hanxuemian" id="works-yinzhang" class="weui-input " value="${worksLevel.hanxuemian}"
+                   placeholder="请选择印章">
+        </div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">含血方式</label></div>
+        <div class="weui-cell__bd weui-cell_primary">
+            <input name="hanxuefangshi" id="works-hanxuefangshi" class="weui-input " value="${worksLevel.hanxuefangshi}"
+                   placeholder="请选择含血方式">
+        </div>
+    </div>
 </div>
 
 
@@ -350,5 +246,3 @@
 
     })
 </script>
-</body>
-</html>

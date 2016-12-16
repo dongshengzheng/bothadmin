@@ -64,7 +64,7 @@
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="name" class="weui-input" type="tel" placeholder="请输入作品名称">
+                <input name="worksName" class="weui-input" type="tel" placeholder="请输入作品名称">
             </div>
         </div>
         <div class="weui-cell">
@@ -76,7 +76,7 @@
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">身份证</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="collectCardNo" class="weui-input" type="tel" placeholder="可不填写">
+                <input name="consumerNo" class="weui-input" type="tel" placeholder="可不填写">
             </div>
         </div>
         <div class="weui-cell">
@@ -99,7 +99,7 @@
         </div>
         <div class="weui-cell">
             <div class="weui-cell__bd weui-cell_primary">
-                <textarea class="weui-textarea" placeholder="我的作品描述" rows="3"></textarea>
+                <textarea name="worksRemarks" class="weui-textarea" placeholder="我的作品描述" rows="3"></textarea>
                 <!--<div class="weui-textarea-counter">-->
                 <!--<span>0</span>/200-->
                 <!--</div>-->
@@ -140,7 +140,7 @@
             <hr>
             <div class="weui-form-preview__ft">
                 <a class="weui-form-preview__btn weui-form-preview__btn_default" href="javascript:">存为草稿</a>
-                <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">
+                <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary">
                     下一步
                 </button>
             </div>
@@ -160,6 +160,16 @@
         </div>
     </div>
 </div>
+
+<div class="weui-gallery" id="gallery">
+    <span class="weui-gallery__img" id="galleryImg"></span>
+    <div class="weui-gallery__opr">
+        <a href="javascript:" class="weui-gallery__del">
+            <i class="weui-icon-delete weui-icon_gallery-delete"></i>
+        </a>
+    </div>
+</div>
+
 
 <script>
     $(function () {

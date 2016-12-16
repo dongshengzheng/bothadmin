@@ -250,10 +250,10 @@ public class WorkController extends BaseController {
     @RequestMapping(value = "/addCollect/{type}", method = RequestMethod.POST)
     public String addCollect(@ModelAttribute Consumer consumer, ModelMap map, @PathVariable Integer type) {
         //判断goodsId
-        if (null == consumer.getGoodsId()) {
+        if (null == consumer.getWorksId()) {
             map.put("step", 1);
         } else {
-            GoodsInfo goodsInfo = getGoodsInfoById(consumer.getGoodsId());
+            GoodsInfo goodsInfo = getGoodsInfoById(consumer.getWorksId());
             if (type == 1) {
                 //存为草稿
                 consumer.setIsDraft(1);

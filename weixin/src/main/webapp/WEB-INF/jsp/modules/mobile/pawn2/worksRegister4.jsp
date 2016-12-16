@@ -84,7 +84,7 @@
         #certificate-text2 {
             float: right;
             margin-top: 10px;
-            background-image: url("${ctxStatic}/img//cut/证书icon.png");
+            background-image: url("${ctxStatic}/img//cut/certificate-icon.png");
             background-repeat: no-repeat;
             background-size: 30px;
             background-position-x: right;
@@ -100,14 +100,15 @@
     <center>
         <hr>
         <span>&nbsp;◇&nbsp;JS-A20161205001A&nbsp;◇&nbsp;</span></center>
-    <center><span>田黄鸡血石精品吊坠</span></center>
+    <center><span>${sessionScope.registerWorksName}
+    </span></center>
 </div>
 <form action="worksRegister5.jsp" enctype="multipart/form-data" method="post">
     <div class="div-outer">
 
         <p class="report">昌化鸡血石鉴定评估报告</p>
         <div class="weui-cell__bd weui-cell_primary">
-            <textarea class="weui-textarea" placeholder="详细鉴定报告..." rows="13"></textarea>
+            <textarea name="des" class="weui-textarea" placeholder="详细鉴定报告..." rows="13"></textarea>
             <!--<div class="weui-textarea-counter">-->
             <!--<span>0</span>/200-->
             <!--</div>-->

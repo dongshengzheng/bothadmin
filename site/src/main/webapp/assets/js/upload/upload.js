@@ -119,7 +119,7 @@ function initUploaders(buttonId, bucket, domain) {
                 set_upload_param(up, file.name, true, domain);
             },
             FileUploaded: function () {
-                $("#" + buttonId).before('<div class="" onclick=""  style="float:left;position:relative;padding: 0px"><input name="imgs" type="hidden" value="'+ g_object_name +'" >' +
+                $("#" + buttonId).before('<div class="" onclick=""  style="float:left;position:relative;padding: 0px"><input name="imgs" type="hidden" value="' + g_object_name + '" >' +
                     '<span onclick="javascript:this.parentNode.remove();" class="glyphicon glyphicon-remove" style="background: rgba(0,0,0,.5);color:white;position:absolute;top:0px;right:5px;z-index: 999;"></span>' +
                     '<img src="http://' + bucket + '.img-cn-shanghai.aliyuncs.com/' + g_object_name + '?x-oss-process=image/resize,m_fill,h_100,w_100" style="max-height: 100px;margin-right:5px;" onclick="" class="min-img">' + '</div>');
             }
@@ -128,7 +128,7 @@ function initUploaders(buttonId, bucket, domain) {
     uploader.init();
 }
 
-function initUploaders_inner(buttonId, bucket, domain,container,inputName) {
+function initUploaders_inner(buttonId, bucket, domain, container, inputName) {
     var uploader = new plupload.Uploader({
         runtimes: 'html5,flash,silverlight,html4',
         browse_button: buttonId,
@@ -151,9 +151,9 @@ function initUploaders_inner(buttonId, bucket, domain,container,inputName) {
                 set_upload_param(up, file.name, true, domain);
             },
             FileUploaded: function () {
-                $("#" + container).html('<div id="imgContainer"><input name="'+inputName+'" type="hidden" value="'+ g_object_name +'" >' +
+                $("#" + container).html('<div id="imgContainer"><input name="' + inputName + '" type="hidden" value="' + g_object_name + '" >' +
                     '<span onclick="javascript:this.parentNode.remove();" class="glyphicon glyphicon-remove" style="background: rgba(0,0,0,.5);color:white;position:absolute;top:6px;right:371px;z-index: 999;"></span>' +
-                    '<img src="http://' + bucket + '.img-cn-shanghai.aliyuncs.com/' + g_object_name + '?x-oss-process=image/resize,m_fill,h_200,w_200" style="max-height: 200px;margin-right:5px;" onclick="" class="min-img">'+'</div>');
+                    '<img src="http://' + bucket + '.img-cn-shanghai.aliyuncs.com/' + g_object_name + '?x-oss-process=image/resize,m_fill,h_200,w_200" style="max-height: 200px;margin-right:5px;" onclick="" class="min-img">' + '</div>');
             }
         }
     });

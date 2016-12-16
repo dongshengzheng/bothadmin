@@ -10,234 +10,250 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 
 /**
- *
  * 提供/收藏者
- *
  */
 @TableName("dd_consumer")
 public class Consumer implements Serializable {
 
-	@TableField(exist = false)
-	private static final long serialVersionUID = 1L;
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
 
-	/** 主键 */
-	@TableId(type = IdType.AUTO)
-	private String id;
+    /**
+     * 主键
+     */
+    @TableId(type = IdType.AUTO)
+    private Integer id;
 
-	/** 创建者 */
-	@TableField(value = "create_by")
-	private String createBy;
+    /**
+     * 创建者
+     */
+    @TableField(value = "create_by")
+    private String createBy;
 
-	/** 创建时间 */
-	@TableField(value = "create_date")
-	private Date createDate;
+    /**
+     * 创建时间
+     */
+    @TableField(value = "create_date")
+    private Date createDate;
 
-	/** 更新者 */
-	@TableField(value = "update_by")
-	private String updateBy;
+    /**
+     * 更新者
+     */
+    @TableField(value = "update_by")
+    private String updateBy;
 
-	/** 更新时间 */
-	@TableField(value = "update_date")
-	private Date updateDate;
+    /**
+     * 更新时间
+     */
+    @TableField(value = "update_date")
+    private Date updateDate;
 
-	/** 备注信息 */
-	private String remarks;
+    /**
+     * 备注信息
+     */
+    private String remarks;
 
-	/** 逻辑删除标记（0：显示；1：隐藏） */
-	@TableField(value = "del_flag")
-	private Integer delFlag;
+    /**
+     * 逻辑删除标记（0：显示；1：隐藏）
+     */
+    @TableField(value = "del_flag")
+    private Integer delFlag;
 
-	/** 用户类型 */
-	private String type;
+    /**
+     * 用户类型(1提供者2收藏者  王顺12.16备注)
+     */
+    private String type;
 
-	/** 备选名字 */
-	private String customer;
+    /**
+     * 备选名字
+     */
+    private String customer;
 
-	/** 姓名 */
-	private String name;
+    /**
+     * 姓名
+     */
+    private String name;
 
-	/** 地址 */
-	private String address;
+    /**
+     * 地址
+     */
+    private String address;
 
-	/** 联系方式 */
-	private String phone;
+    /**
+     * 联系方式
+     */
+    private String phone;
 
-	/** 身份证 */
-	private String no;
+    /**
+     * 身份证
+     */
+    private String no;
 
-	/** 备注 */
-	private String remark;
+    /**
+     * 备注
+     */
+    private String remark;
 
-	/** 登记/收藏时间 */
-	private Date datetime;
+    /**
+     * 登记/收藏时间
+     */
+    private Date datetime;
 
-	/** 是否公开 */
-	private String pub;
+    /**
+     * 是否公开
+     */
+    private String pub;
 
-	@TableField(value = "goods_id")
-	private Integer goodsId;
+    @TableField(value = "works_id")
+    private Integer worksId;
 
-	@TableField(value = "is_draft")
-	private Integer isDraft;
-
-	/**
-	 * 身份证号码
-	 */
-	@TableField(value = "collect_card_no")
-	private Integer collectCardNo;
-
-	public Integer getDelFlag() {
-		return delFlag;
-	}
-
-	public void setDelFlag(Integer delFlag) {
-		this.delFlag = delFlag;
-	}
-
-	public Integer getCollectCardNo() {
-		return collectCardNo;
-	}
-
-	public void setCollectCardNo(Integer collectCardNo) {
-		this.collectCardNo = collectCardNo;
-	}
-
-	public Integer getIsDraft() {
-		return isDraft;
-	}
-
-	public void setIsDraft(Integer isDraft) {
-		this.isDraft = isDraft;
-	}
-
-	public Integer getGoodsId() {
-		return goodsId;
-	}
-
-	public void setGoodsId(Integer goodsId) {
-		this.goodsId = goodsId;
-	}
-
-	public String getId() {
-		return this.id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getCreateBy() {
-		return this.createBy;
-	}
-
-	public void setCreateBy(String createBy) {
-		this.createBy = createBy;
-	}
-
-	public Date getCreateDate() {
-		return this.createDate;
-	}
-
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
-
-	public String getUpdateBy() {
-		return this.updateBy;
-	}
-
-	public void setUpdateBy(String updateBy) {
-		this.updateBy = updateBy;
-	}
-
-	public Date getUpdateDate() {
-		return this.updateDate;
-	}
-
-	public void setUpdateDate(Date updateDate) {
-		this.updateDate = updateDate;
-	}
-
-	public String getRemarks() {
-		return this.remarks;
-	}
-
-	public void setRemarks(String remarks) {
-		this.remarks = remarks;
-	}
+    @TableField(value = "is_draft")
+    private Integer isDraft;
 
 
+    public Integer getDelFlag() {
+        return delFlag;
+    }
 
-	public String getType() {
-		return this.type;
-	}
+    public void setDelFlag(Integer delFlag) {
+        this.delFlag = delFlag;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public Integer getIsDraft() {
+        return isDraft;
+    }
 
-	public String getCustomer() {
-		return this.customer;
-	}
+    public void setIsDraft(Integer isDraft) {
+        this.isDraft = isDraft;
+    }
 
-	public void setCustomer(String customer) {
-		this.customer = customer;
-	}
+    public Integer getWorksId() {
+        return worksId;
+    }
 
-	public String getName() {
-		return this.name;
-	}
+    public void setWorksId(Integer worksId) {
+        this.worksId = worksId;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public Integer getId() {
+        return this.id;
+    }
 
-	public String getAddress() {
-		return this.address;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public String getCreateBy() {
+        return this.createBy;
+    }
 
-	public String getPhone() {
-		return this.phone;
-	}
+    public void setCreateBy(String createBy) {
+        this.createBy = createBy;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public Date getCreateDate() {
+        return this.createDate;
+    }
 
-	public String getNo() {
-		return this.no;
-	}
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
 
-	public void setNo(String no) {
-		this.no = no;
-	}
+    public String getUpdateBy() {
+        return this.updateBy;
+    }
 
-	public String getRemark() {
-		return this.remark;
-	}
+    public void setUpdateBy(String updateBy) {
+        this.updateBy = updateBy;
+    }
 
-	public void setRemark(String remark) {
-		this.remark = remark;
-	}
+    public Date getUpdateDate() {
+        return this.updateDate;
+    }
 
-	public Date getDatetime() {
-		return this.datetime;
-	}
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
 
-	public void setDatetime(Date datetime) {
-		this.datetime = datetime;
-	}
+    public String getRemarks() {
+        return this.remarks;
+    }
 
-	public String getPub() {
-		return this.pub;
-	}
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
 
-	public void setPub(String pub) {
-		this.pub = pub;
-	}
+
+    public String getType() {
+        return this.type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getCustomer() {
+        return this.customer;
+    }
+
+    public void setCustomer(String customer) {
+        this.customer = customer;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return this.address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return this.phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getNo() {
+        return this.no;
+    }
+
+    public void setNo(String no) {
+        this.no = no;
+    }
+
+    public String getRemark() {
+        return this.remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public Date getDatetime() {
+        return this.datetime;
+    }
+
+    public void setDatetime(Date datetime) {
+        this.datetime = datetime;
+    }
+
+    public String getPub() {
+        return this.pub;
+    }
+
+    public void setPub(String pub) {
+        this.pub = pub;
+    }
 
 }

@@ -138,7 +138,6 @@
     </div>
 </div>
 </body>
-<script src="js/jquery-2.1.4.js"></script>
 <script>
     $(function () {
         var $searchBar = $('#searchBar'),
@@ -188,7 +187,6 @@
             cancelSearch();
             $searchInput.blur();
         });
-
 
         $(function () {
             $('.weui-tabbar__item').on('click', function () {
