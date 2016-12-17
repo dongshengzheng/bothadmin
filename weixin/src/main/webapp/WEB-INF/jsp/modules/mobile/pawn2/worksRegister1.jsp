@@ -11,12 +11,6 @@
     <link rel="stylesheet" href="${ctxStatic}/css/weui.min.css"/>
     <link rel="stylesheet" href="${ctxStatic}/css/jquery-weui.min.css"/>
 
-    <script src="${ctxStatic}/js/jquery-2.1.4.js"></script>
-    <script src="${ctxStatic}/js/jquery-weui.js"></script>
-    <script src="${ctxStatic}/js/swiper.js"></script>
-    <script src="${ctxStatic}/js/upload.js"></script>
-    <script src="${ctxStatic}/js/plupload-2.1.2/js/moxie.js"></script>
-    <script src="${ctxStatic}/js/plupload-2.1.2/js/plupload.dev.js"></script>
 
 
     <style>
@@ -120,11 +114,9 @@
                     <div class="weui-uploader__bd">
                         <ul class="weui-uploader__files" id="uploaderFiles">
 
-
-                            <li class="weui-uploader__input-box">
-                                <input id="uploaderInput" class="weui-uploader__input" type="file" accept="image/*"
-                                       multiple/>
-                            </li>
+                            <li class="weui-uploader__file"style="background-image:url(http://windyeel.img-cn-shanghai.aliyuncs.com/works-image/MdTzJaQaBt.jpg?x-oss-process=image/resize,m_fill,h_100,w_100)"></li>
+                            <a id="uploaderInput" class="weui-uploader__input-box">
+                            </a>
                         </ul>
 
                     </div>
@@ -165,8 +157,12 @@
         </a>
     </div>
 </div>
-
-
+<script src="${ctxStatic}/js/jquery-2.1.4.js"></script>
+<script src="${ctxStatic}/js/jquery-weui.js"></script>
+<script src="${ctxStatic}/js/swiper.js"></script>
+<script src="${ctxStatic}/js/upload.js"></script>
+<script src="${ctxStatic}/js/plupload-2.1.2/js/moxie.js"></script>
+<script src="${ctxStatic}/js/plupload-2.1.2/js/plupload.dev.js"></script>
 <script>
     $(function () {
         var  $gallery = $("#gallery"), $galleryImg = $("#galleryImg");
@@ -184,7 +180,7 @@
 
         $("#showDatePicker").calendar();
 
-        initUploaders("windyeel", "http://steins00gate.s1.natapp.cc/");
+        initUploaders("windyeel", "http://xianyu.s1.natapp.cc/");
 
     });
 
