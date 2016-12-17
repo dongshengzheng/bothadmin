@@ -3,6 +3,17 @@
 <mapper namespace="com.fish.idle.service.modules.sys.mapper.UserMapper">
 
     <sql id="userColumns">login_name,name,password,rights,del_flag,role_id</sql>
+
+
+    <select id="searchUser" resultType="User" parameterType="User">
+        select u.*,count(fh.id) as follow_count from sys_user u
+        left join dd_follow_history fh on fh.target_id = u.id
+        <where>
+
+        </where>
+        group by u.id;
+    </select>
+
     <!-- 判断用户名和密码 -->
 
 </mapper>

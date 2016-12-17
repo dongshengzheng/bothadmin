@@ -44,6 +44,32 @@ public class User implements Serializable {
     @TableField(exist = false)
     private String roleIds;
 
+
+    // 业务字段
+
+    @TableField(exist = false)
+    private int followCount;
+
+
+    @TableField(exist = false)
+    private int worksCount;
+
+    public int getWorksCount() {
+        return worksCount;
+    }
+
+    public void setWorksCount(int worksCount) {
+        this.worksCount = worksCount;
+    }
+
+    public int getFollowCount() {
+        return followCount;
+    }
+
+    public void setFollowCount(int followCount) {
+        this.followCount = followCount;
+    }
+
     public String getRoleIds() {
         return roleIds;
     }
