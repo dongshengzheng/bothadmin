@@ -23,17 +23,16 @@ import java.util.Map;
 @Controller
 @RequestMapping(value = "oss")
 public class PolicyController {
-    @Value("#{oss.endpoint}")
+    @Value("#{wxProperties.endpoint}")
     private String endpoint;
 
-    @Value("#{oss.accessId}")
+    @Value("#{wxProperties.accessId}")
     private String accessId;
 
-    @Value("#{oss.accessKey}")
+    @Value("#{wxProperties.accessKey}")
     private String accessKey;
-    @Value("#{oss.bucket}")
+    @Value("#{wxProperties.bucket}")
     private String bucket;
-
 
 
     @RequestMapping(value = "/policy", method = RequestMethod.GET)

@@ -14,6 +14,11 @@
     <script src="${ctxStatic}/js/jquery-2.1.4.js"></script>
     <script src="${ctxStatic}/js/jquery-weui.js"></script>
     <script src="${ctxStatic}/js/swiper.js"></script>
+    <script src="${ctxStatic}/js/upload.js"></script>
+    <script src="${ctxStatic}/js/plupload-2.1.2/js/moxie.js"></script>
+    <script src="${ctxStatic}/js/plupload-2.1.2/js/plupload.dev.js"></script>
+
+
     <style>
         body {
             background-color: white;
@@ -114,23 +119,14 @@
                     <!--</div>-->
                     <div class="weui-uploader__bd">
                         <ul class="weui-uploader__files" id="uploaderFiles">
-                            <li class="weui-uploader__file"
-                                style="background-image:url(${ctxStatic}/img/headImg/2.jpg)"></li>
-                            <li class="weui-uploader__file weui-uploader__file_status"
-                                style="background-image:url(${ctxStatic}/img/headImg/2.jpg)">
-                                <div class="weui-uploader__file-content">
-                                    <i class="weui-icon-warn"></i>
-                                </div>
-                            </li>
-                            <li class="weui-uploader__file weui-uploader__file_status"
-                                style="background-image:url(${ctxStatic}/img/headImg/2.jpg)">
-                                <div class="weui-uploader__file-content">50%</div>
+
+
+                            <li class="weui-uploader__input-box">
+                                <input id="uploaderInput" class="weui-uploader__input" type="file" accept="image/*"
+                                       multiple/>
                             </li>
                         </ul>
-                        <div class="weui-uploader__input-box">
-                            <input id="uploaderInput" class="weui-uploader__input" type="file" accept="image/*"
-                                   multiple/>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -173,30 +169,8 @@
 
 <script>
     $(function () {
-        var tmpl = '<li class="weui-uploader__file" style="background-image:url(#url#)"></li>',
-                $gallery = $("#gallery"), $galleryImg = $("#galleryImg"),
-                $uploaderInput = $("#uploaderInput"),
-                $uploaderFiles = $("#uploaderFiles")
-                ;
+        var  $gallery = $("#gallery"), $galleryImg = $("#galleryImg");
 
-        $uploaderInput.on("change", function (e) {
-            var src, url = window.URL || window.webkitURL || window.mozURL, files = e.target.files;
-            for (var i = 0, len = files.length; i < len; ++i) {
-                var file = files[i];
-
-                if (url) {
-                    src = url.createObjectURL(file);
-                } else {
-                    src = e.target.result;
-                }
-
-                $uploaderFiles.append($(tmpl.replace('#url#', src)));
-            }
-        });
-        $uploaderFiles.on("click", "li", function () {
-            $galleryImg.attr("style", this.getAttribute("style"));
-            $gallery.fadeIn(100);
-        });
         $gallery.on("click", function () {
             $gallery.fadeOut(100);
         });
@@ -209,6 +183,8 @@
         })
 
         $("#showDatePicker").calendar();
+
+        initUploaders("windyeel", "http://steins00gate.s1.natapp.cc/");
 
     });
 
