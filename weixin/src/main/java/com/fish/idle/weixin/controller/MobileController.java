@@ -440,7 +440,6 @@ public class MobileController extends BaseController {
 
         }
 
-
         return "modules/mobile/pawn2/worksDetail";
     }
 

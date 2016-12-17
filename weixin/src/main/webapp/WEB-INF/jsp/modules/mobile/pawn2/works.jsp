@@ -288,45 +288,45 @@
         paginationClickable: true
     });
 
-    function fun1() {
-        var worksid = $(this).parent().siblings('.worksId').val();
-        $.ajax({
-            type: "POST",
-            url: "${ctx}/mobile/collectWorks",
-            data: {
-                worksId: worksid
-            },
-            success: function (data) {
-                $('#iosDialog2 .weui-dialog__bd').html(data);
-                $('#iosDialog2').fadeIn(200);
-            }
-        })
-    }
+    <%--function fun1() {--%>
+    <%--var worksid = $(this).parent().siblings('.worksId').val();--%>
+    <%--$.ajax({--%>
+    <%--type: "POST",--%>
+    <%--url: "${ctx}/mobile/collectWorks",--%>
+    <%--data: {--%>
+    <%--worksId: worksid--%>
+    <%--},--%>
+    <%--success: function (data) {--%>
+    <%--$('#iosDialog2 .weui-dialog__bd').html(data);--%>
+    <%--$('#iosDialog2').fadeIn(200);--%>
+    <%--}--%>
+    <%--})--%>
+    <%--}--%>
 
-    function fun2() {
-        var worksid = $(this).parent().siblings('.worksId').val();
-        location.href = '${ctx}/mobile/worksDetail?id=' + worksid;
-    }
+    <%--function fun2() {--%>
+    <%--var worksid = $(this).parent().siblings('.worksId').val();--%>
+    <%--location.href = '${ctx}/mobile/worksDetail?id=' + worksid;--%>
+    <%--}--%>
 
     $(function () {
 //        $('.weui-tabbar__item').on('click', function () {
 //            $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
 //        });
 
-        <%--$('.works-floor-btn-all,.works-floor-btn').click(function () {--%>
-        <%--var worksid = $(this).parent().siblings('.worksId').val();--%>
-        <%--$.ajax({--%>
-        <%--type: "POST",--%>
-        <%--url: "${ctx}/mobile/collectWorks",--%>
-        <%--data: {--%>
-        <%--worksId: worksid--%>
-        <%--},--%>
-        <%--success: function (data) {--%>
-        <%--$('#iosDialog2 .weui-dialog__bd').html(data);--%>
-        <%--$('#iosDialog2').fadeIn(200);--%>
-        <%--}--%>
-        <%--})--%>
-        <%--})--%>
+        $('.works-floor-btn-all,.works-floor-btn').click(function () {
+            var worksid = $(this).parent().siblings('.worksId').val();
+            $.ajax({
+                type: "POST",
+                url: "${ctx}/mobile/collectWorks",
+                data: {
+                    worksId: worksid
+                },
+                success: function (data) {
+                    $('#iosDialog2 .weui-dialog__bd').html(data);
+                    $('#iosDialog2').fadeIn(200);
+                }
+            })
+        })
 
         <%--function fun1() {--%>
         <%--var worksid = $(this).parent().siblings('.worksId').val();--%>
@@ -347,9 +347,10 @@
             $(this).parents('.js_dialog').fadeOut(200);
         });
 
-//        $('.works-img,.works-img-all').click(function () {
-//
-//        })
+        $('.works-img,.works-img-all').click(function () {
+            var worksid = $(this).parent().siblings('.worksId').val();
+            location.href = '${ctx}/mobile/worksDetail?id=' + worksid;
+        })
 
 
         <c:if test="${page.current < page.pages}">
@@ -393,8 +394,6 @@
             })
         });
         </c:if>
-
-
     });
 
 
