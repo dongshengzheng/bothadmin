@@ -57,7 +57,7 @@
     <link type="image/png" href="${ctx}/static/img/great_vision.png" rel="shortcut icon">
     <link rel="shortcut icon" href="${ctx}/favicon.ico" />
 </head>
-<body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
+<body onhashchange="hashChange()" class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
 
 <jsp:include page="include/header.jsp"></jsp:include>
 <div class="clearfix"></div>
@@ -120,5 +120,24 @@
 <script src="${ctx}/static/js/admin.js" type="text/javascript"></script>
 <script src="${ctx}/static/js/xianyu.common.js"></script>
 </body>
+<script>
+
+    $(document).ready(function() {
+        intPage();
+    });
+
+    function intPage() {
+        var url;
+        if (window.location.hash)
+            url = window.location.hash.substring(1);
+        else
+            url = "account";
+
+        $("a[href='"+url+"']").click();
+    }
+    function hashChange(){
+        intPage();
+    }
+</script>
 
 </html>

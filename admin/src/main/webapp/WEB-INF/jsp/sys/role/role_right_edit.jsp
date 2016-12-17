@@ -2,7 +2,7 @@
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
-<c:set var="global" value="http://idle-data.oss-cn-shanghai.aliyuncs.com/global"/>
+<c:set var="global" value="http://windyeel.oss-cn-shanghai.aliyuncs.com/global"/>
 <style type="text/css">
     ul.ztree {
         background: #ecf0f5 none repeat scroll 0 0;
