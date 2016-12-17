@@ -113,8 +113,6 @@
                     <!--</div>-->
                     <div class="weui-uploader__bd">
                         <ul class="weui-uploader__files" id="uploaderFiles">
-
-                            <li class="weui-uploader__file"style="background-image:url(http://windyeel.img-cn-shanghai.aliyuncs.com/works-image/MdTzJaQaBt.jpg?x-oss-process=image/resize,m_fill,h_100,w_100)"></li>
                             <a id="uploaderInput" class="weui-uploader__input-box">
                             </a>
                         </ul>
@@ -183,7 +181,6 @@
         initUploaders("windyeel", "http://xianyu.s1.natapp.cc/");
 
     });
-
 </script>
 </body>
 </html>
