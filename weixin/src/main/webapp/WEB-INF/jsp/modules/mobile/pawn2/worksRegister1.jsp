@@ -122,8 +122,7 @@
 
 
                             <li class="weui-uploader__input-box">
-                                <input id="uploaderInput" class="weui-uploader__input" type="file" accept="image/*"
-                                       multiple/>
+                                <a id="uploaderInput" class="weui-uploader__input" />
                             </li>
                         </ul>
 
@@ -169,25 +168,8 @@
 
 <script>
     $(function () {
-        var  $gallery = $("#gallery"), $galleryImg = $("#galleryImg");
-
-        $gallery.on("click", function () {
-            $gallery.fadeOut(100);
-        });
-
-        $('#register-rule').on('click', function () {
-            $(".js_dialog").fadeIn(200);
-        })
-        $('.weui-dialog__btn_primary').on('click', function () {
-            $(".js_dialog").fadeOut(200);
-        })
-
-        $("#showDatePicker").calendar();
-
         initUploaders("windyeel", "http://steins00gate.s1.natapp.cc/");
-
     });
-
 </script>
 </body>
 </html>

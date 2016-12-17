@@ -119,6 +119,7 @@ function initUploaders(bucket, domain) {
                 set_upload_param(up, file.name, true, domain);
             },
             FileUploaded: function () {
+                console.log('http://' + bucket + '.img-cn-shanghai.aliyuncs.com/' + g_object_name + '?x-oss-process=image/resize,m_fill,h_100,w_100');
                 $("#uploaderInput").insertBefore('<li class="weui-uploader__file"'
                     + 'style="background-image:url(' +
                     'http://' + bucket + '.img-cn-shanghai.aliyuncs.com/' + g_object_name + '?x-oss-process=image/resize,m_fill,h_100,w_100'
