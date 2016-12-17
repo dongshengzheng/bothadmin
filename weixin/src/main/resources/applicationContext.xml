@@ -14,6 +14,9 @@
 
     <!-- 自动扫描com.fish.idle包 ,将带有注解的类 纳入spring容器管理 -->
     <context:component-scan base-package="com.fish.idle.weixin"/>
+    <!--属性占位文件引入，可以通过${属性名}获得属性文件中的内容 -->
+    <context:property-placeholder location="classpath:properties/override.properties" />
+
     <import resource="classpath:spring/spring-mybatis.xml"/>
 
     <!--<bean id="freemarkerConfig"-->
