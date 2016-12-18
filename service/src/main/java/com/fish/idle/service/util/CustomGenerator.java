@@ -13,14 +13,14 @@ public class CustomGenerator {
         cg.setDbPassword("root");
         cg.setDbUrl("jdbc:mysql://127.0.0.1:3306/jsdd?characterEncoding=utf8");
         // 配置包名
-        cg.setEntityPackage("com.fish.idle.service.modules.sys.entity");
-        cg.setMapperPackage("com.fish.idle.service.modules.sys.mapper");
-        cg.setServicePackage("com.fish.idle.service.modules.sys.service");
-        cg.setXmlPackage("com.fish.idle.service.modules.sys.mapper.xml");
-        cg.setServiceImplPackage("com.fish.idle.service.modules.sys.service.impl");
-        cg.setControllerPackage("com.fish.idle.service.modules.sys.controller");
+        cg.setEntityPackage("com.fish.idle.service.modules.jsdd.entity");
+        cg.setMapperPackage("com.fish.idle.service.modules.jsdd.mapper");
+        cg.setServicePackage("com.fish.idle.service.modules.jsdd.service");
+        cg.setXmlPackage("com.fish.idle.service.modules.jsdd.mapper.xml");
+        cg.setServiceImplPackage("com.fish.idle.service.modules.jsdd.service.impl");
+        cg.setControllerPackage("com.fish.idle.service.modules.jsdd.controller");
 
-        String[] tables= {"sys_dict",
+        String[] tables= {"dd_images",
         };
         cg.setTableNames(tables);
         cg.setDbPrefix(true);

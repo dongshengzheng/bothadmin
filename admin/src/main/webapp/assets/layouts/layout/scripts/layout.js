@@ -628,6 +628,8 @@ var Layout = function () {
                     pageContent.html(res);
                     Layout.fixContentHeight(); // fix content height
                     App.initAjax(); // initialize core stuff
+                    if (window.history.pushState)
+                        window.history.pushState(0, 0, "#" + url);
                 },
                 error: function (res, ajaxOptions, thrownError) {
                     App.stopPageLoading();

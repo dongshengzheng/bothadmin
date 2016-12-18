@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-         <groupId>com.fish.idle</groupId>
+        <groupId>com.fish.idle</groupId>
         <artifactId>fish</artifactId>
         <version>1.0</version>
     </parent>
@@ -158,9 +158,9 @@
 
         <!-- freemarker start-->
         <!--<dependency>-->
-            <!--<groupId>org.freemarker</groupId>-->
-            <!--<artifactId>freemarker</artifactId>-->
-            <!--<version>${freemarker.version}</version>-->
+        <!--<groupId>org.freemarker</groupId>-->
+        <!--<artifactId>freemarker</artifactId>-->
+        <!--<version>${freemarker.version}</version>-->
         <!--</dependency>-->
         <!--freemarker end-->
 
@@ -249,6 +249,10 @@
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun.oss</groupId>
+            <artifactId>aliyun-sdk-oss</artifactId>
         </dependency>
     </dependencies>
 
