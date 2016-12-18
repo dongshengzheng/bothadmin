@@ -1,8 +1,6 @@
 package com.fish.idle.site.web;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.fish.idle.service.modules.jsdd.entity.City;
-import com.fish.idle.service.modules.jsdd.entity.ScoreHistory;
 import com.fish.idle.service.modules.jsdd.entity.Works;
 import com.fish.idle.service.modules.jsdd.service.IAreaService;
 import com.fish.idle.service.modules.jsdd.service.IScoreHistoryService;

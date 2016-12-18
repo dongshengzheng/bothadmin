@@ -1,11 +1,8 @@
 package com.fish.idle.site.web;
 
-import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.fish.idle.service.modules.jsdd.entity.GoodsInfo;
 import com.fish.idle.service.modules.jsdd.entity.Works;
-import com.fish.idle.service.modules.jsdd.service.IGoodsInfoService;
 import com.fish.idle.service.modules.jsdd.service.IWorksService;
 import com.fish.idle.site.entity.Paging;
 import org.springframework.beans.factory.annotation.Autowired;

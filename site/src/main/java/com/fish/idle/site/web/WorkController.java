@@ -34,12 +34,6 @@ public class WorkController extends BaseController {
     // TODO: 08/12/2016 记录登记到第几步骤
 
     @Autowired
-    private IGoodsInfoService goodsInfoService;
-
-    @Autowired
-    private IWorksInfoService worksInfoService;
-
-    @Autowired
     private IWorksLevelService worksLevelService;
 
     @Autowired
@@ -310,11 +304,6 @@ public class WorkController extends BaseController {
     public String edit(ModelMap map) {
         map.put("step", 2);
         return "works/work_edit";
-    }
-
-
-    private GoodsInfo getGoodsInfoById(Integer id) {
-        return goodsInfoService.selectById(id);
     }
 
     /**
