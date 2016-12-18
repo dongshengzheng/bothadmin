@@ -55,7 +55,6 @@ public class WorkController extends BaseController {
     @RequestMapping(value = "detail/{goodsId}", method = RequestMethod.GET)
     public String detail(@PathVariable Integer goodsId, ModelMap map) {
         if (StringUtils.isNotEmpty(goodsId.toString())) {
-
             Works works = worksService.selectById(goodsId);
             String imgStr = works.getImages();
             String[] imgArr = imgStr.split(",");

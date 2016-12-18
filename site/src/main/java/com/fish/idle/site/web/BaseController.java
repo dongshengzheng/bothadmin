@@ -1,5 +1,6 @@
 package com.fish.idle.site.web;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.fish.idle.service.util.Const;
@@ -18,9 +19,6 @@ import java.util.Date;
  */
 public class BaseController {
 
-    @Autowired
-    protected HttpServletRequest request;
-
     /**
      * <p>
      * 获取分页对象
@@ -28,10 +26,10 @@ public class BaseController {
      *
      * @return
      */
-    protected <T> Page<T> getPage() {
+    protected <T> Page<T> getPage(HttpServletRequest request) {
         int start = 0;
         int length = 10;
-        if (request.getParameter(Const.LENGTH) != null) {
+        if (request.getParameter(Const.START) != null) {
             start = Integer.parseInt(request.getParameter(Const.START));
         }
         if (request.getParameter(Const.LENGTH) != null) {

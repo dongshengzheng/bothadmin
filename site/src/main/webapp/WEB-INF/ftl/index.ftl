@@ -142,7 +142,7 @@
     <div class="row">
         <div class="col-md-12">
             <ul class="pagination">
-                <@pagination.pages 1..50 1/>
+                <@pagination.pages 1..worksPaging.totalPages worksPaging.current/>
             </ul>
         </div>
 
