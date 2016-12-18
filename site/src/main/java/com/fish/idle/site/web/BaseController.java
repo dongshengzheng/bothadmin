@@ -40,12 +40,11 @@ public class BaseController {
         return new Page<>(start / length + 1, length);
     }
 
-    protected <T> EntityWrapper<T> getEntityWrapper() {
+    protected <T> EntityWrapper<T>  getEntityWrapper(){
         EntityWrapper<T> ew = new EntityWrapper<>();
         ew.where("del_flag={0}", Const.DEL_FLAG_NORMAL);
         return ew;
     }
-
     /**
      * @param binder
      * @Title: initBinder
