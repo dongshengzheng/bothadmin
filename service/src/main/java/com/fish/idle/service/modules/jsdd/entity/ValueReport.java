@@ -24,8 +24,8 @@ public class ValueReport implements Serializable {
 	@TableId(type = IdType.AUTO)
 	private Integer id;
 	/**  */
-	@TableField(value = "goods_id")
-	private Integer goodsId;
+	@TableField(value = "works_id")
+	private Integer worksId;
 
 	/** 作品详细评估报告图片 */
 	@TableField(value = "zpxx_imge")
@@ -58,17 +58,6 @@ public class ValueReport implements Serializable {
 	@TableField(value = "del_flag")
 	private Integer delFlag;
 
-	/** 是否是草稿 */
-	private int isDraft = 0; //1 是  0 否
-
-	public int getIsDraft() {
-		return isDraft;
-	}
-
-	public void setIsDraft(int isDraft) {
-		this.isDraft = isDraft;
-	}
-
 	public Integer getId() {
 		return id;
 	}
@@ -77,12 +66,12 @@ public class ValueReport implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getGoodsId() {
-		return goodsId;
+	public Integer getWorksId() {
+		return worksId;
 	}
 
-	public void setGoodsId(Integer goodsId) {
-		this.goodsId = goodsId;
+	public void setWorksId(Integer worksId) {
+		this.worksId = worksId;
 	}
 
 	public String getZpxxImge() {

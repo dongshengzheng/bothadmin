@@ -9,7 +9,7 @@
 
 	<select id="getConsumerByGoodsId" parameterType="java.lang.Integer" resultType="Consumer">
 
-		select * from dd_consumer WHERE  goods_id = #{id};
+		select * from dd_consumer WHERE  works_id = #{id};
 	</select>
 
 </mapper>

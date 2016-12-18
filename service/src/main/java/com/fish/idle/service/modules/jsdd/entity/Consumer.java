@@ -28,7 +28,7 @@ public class Consumer implements Serializable {
      * 创建者
      */
     @TableField(value = "create_by")
-    private String createBy;
+    private Integer createBy;
 
     /**
      * 创建时间
@@ -40,7 +40,7 @@ public class Consumer implements Serializable {
      * 更新者
      */
     @TableField(value = "update_by")
-    private String updateBy;
+    private Integer updateBy;
 
     /**
      * 更新时间
@@ -143,12 +143,16 @@ public class Consumer implements Serializable {
         this.id = id;
     }
 
-    public String getCreateBy() {
-        return this.createBy;
+    public Integer getCreateBy() {
+        return createBy;
     }
 
-    public void setCreateBy(String createBy) {
+    public void setCreateBy(Integer createBy) {
         this.createBy = createBy;
+    }
+
+    public void setUpdateBy(Integer updateBy) {
+        this.updateBy = updateBy;
     }
 
     public Date getCreateDate() {
@@ -157,14 +161,6 @@ public class Consumer implements Serializable {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
-    }
-
-    public String getUpdateBy() {
-        return this.updateBy;
-    }
-
-    public void setUpdateBy(String updateBy) {
-        this.updateBy = updateBy;
     }
 
     public Date getUpdateDate() {
