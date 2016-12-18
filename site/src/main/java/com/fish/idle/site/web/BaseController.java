@@ -45,16 +45,6 @@ public class BaseController {
         ew.where("del_flag={0}", Const.DEL_FLAG_NORMAL);
         return ew;
     }
-    /**
-     * @param binder
-     * @Title: initBinder
-     * @Description:日期格式转换
-     * @date Apr 17, 2015
-     */
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
-    }
+
 
 }

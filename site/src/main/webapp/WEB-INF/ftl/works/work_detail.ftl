@@ -1,10 +1,10 @@
 <#include "../layout/main.ftl"/>
 
 <@htmlHead title="作品详情">
-    <link rel="stylesheet" href="${staticPath}/assets/css/jsdd/work/work_detail.css">
-    <!-- CSS Page Style -->
-    <link rel="stylesheet" href="${staticPath}/assets/css/pages/profile.css">
-    <link rel="stylesheet" href="${staticPath}/assets/css/pages/shortcode_timeline2.css">
+<link rel="stylesheet" href="${staticPath}/assets/css/jsdd/work/work_detail.css">
+<!-- CSS Page Style -->
+<link rel="stylesheet" href="${staticPath}/assets/css/pages/profile.css">
+<link rel="stylesheet" href="${staticPath}/assets/css/pages/shortcode_timeline2.css">
 </@htmlHead>
 <@htmlBody>
 <hr style="margin: 0px;padding: 0px"/>
@@ -31,8 +31,8 @@
                     </div>
                 </div>
                 <div class="col-md-6" style="margin-left: -10px">
-                    <h4>${goodsInfo.name}</h4>
-                    <p>${goodsInfo.description}</p>
+                    <h4>${works.name}</h4>
+                    <p>${works.remarks}</p>
                     <div style="background: rgb(244,244,244);width: 100%">
                         <div class="row">
                             <div class="col-md-4 col-md-offset-1" style="margin-top: 15px">
@@ -47,7 +47,7 @@
                                 类型
                             </div>
                             <div class="col-md-6" style="margin-top: 10px">
-                                印章
+                            ${works.type}
                             </div>
                         </div>
 
@@ -56,7 +56,7 @@
                                 尺寸
                             </div>
                             <div class="col-md-6" style="margin-top: 10px">
-                                ${worksInfo.length}*${worksInfo.width}*${worksInfo.height}
+                            ${works.length}*${works.width}*${works.height}
                             </div>
                         </div>
 
@@ -65,7 +65,7 @@
                                 品种
                             </div>
                             <div class="col-md-6" style="margin-top: 10px">
-                                ${worksInfo.type}
+                            ${works.breed}
                             </div>
                         </div>
                         <div class="row">
@@ -73,7 +73,8 @@
                                 浏览次数
                             </div>
                             <div class="col-md-6" style="margin-top: 10px">
-                                1932
+                            <#--${works.browserCount}-->
+                                11
                             </div>
                         </div>
 
@@ -82,7 +83,7 @@
                                 登记时间
                             </div>
                             <div class="col-md-6" style="margin-top: 10px;margin-bottom: 10px">
-                                ${goodsInfo.registerTime}
+                            ${consumer.datetime?string("yyyy-MM-dd")}
                             </div>
                         </div>
                     </div>
@@ -97,7 +98,8 @@
                                 <div class="media-body">
                                     <p style="margin-top: 25px">说就看电视
                                         <span style="float:  right;">
-                                                <button id="addFocus" class="btn btn-default btn-sm" style="margin-right: 6px">
+                                                <button id="addFocus" class="btn btn-default btn-sm"
+                                                        style="margin-right: 6px">
                                                     <i class="glyphicon glyphicon-plus"
                                                        style="margin-right: 3px"></i>
                                                     关注
@@ -141,14 +143,15 @@
                                     <table class="table table-bordered">
                                         <tbody>
                                         <tr>
-                                            <td>姓名：${goodsInfo.provideBy}</td>
-                                            <td>联系方式：${goodsInfo.contact}</td>
-                                            <td>地址：${goodsInfo.address}</td>
+                                            <td>姓名：${works.provideBy}</td>
+                                            <td>联系方式：${consumer.phone}</td>
+                                            <td>地址：${consumer.address}</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3">身份证：${goodsInfo.cardNo}</td>
+                                            <td colspan="3">身份证：
+                                            <#--${consumer.no}-->12312312312321
+                                            </td>
                                         </tr>
-
                                         </tbody>
                                     </table>
                                     <!--End Table Bordered-->
@@ -159,19 +162,19 @@
                                     <table class="table table-bordered">
                                         <tbody>
                                         <tr>
-                                            <td>品种：${worksInfo.breed}</td>
-                                            <td>作品类型：${worksInfo.type}</td>
-                                            <td>尺寸：${worksInfo.length}cm*${worksInfo.width}cm*${worksInfo.height}cm</td>
+                                            <td>品种：${works.breed}</td>
+                                            <td>作品类型：${works.type}</td>
+                                            <td>尺寸：${works.length}cm*${works.width}cm*${works.height}cm</td>
                                         </tr>
                                         <tr>
-                                            <td>重量：${worksInfo.weight}g</td>
-                                            <td>工艺制作：${worksInfo.productionProcess}</td>
-                                            <td>篆刻级别：${worksInfo.sealCuttingLevel}</td>
+                                            <td>重量：${works.weight}g</td>
+                                            <td>工艺制作：${works.gyType}</td>
+                                            <td>篆刻级别：${works.levelZk}</td>
                                         </tr>
                                         <tr>
-                                            <td>矿区地域：${worksInfo.mineArea}</td>
-                                            <td>制作人：${worksInfo.producer}</td>
-                                            <td>制作时间：${worksInfo.produceTime}</td>
+                                            <td>矿区地域：${works.kqdy}</td>
+                                            <td>制作人：${works.maker}</td>
+                                            <td>制作时间：${works.makeTime?string("yyyy-MM-dd")}</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -195,7 +198,10 @@
                                         <tr>
                                             <td>血形：${worksLevel.xuexing}</td>
                                             <td>浓艳度：${worksLevel.nongyandu}</td>
-                                            <td>纯净度：${worksLevel.jingdu}</td>
+                                            <td>纯净度：
+                                            1
+                                            <#--${worksLevel.jingdu}-->
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>地色：${worksLevel.dise}</td>
@@ -223,20 +229,19 @@
                                     <table class="table table-bordered">
                                         <tbody>
                                         <tr>
-                                            <td>姓名：${consumer.name}</td>
+                                            <td>姓名：
+                                            苏中央
+                                            <#--${consumer.name}-->
+                                                </td>
                                             <td>联系方式：${consumer.phone}</td>
                                             <td>地址：${consumer.address}</td>
                                         </tr>
                                         <tr>
                                             <td>身份证：
-                                                <#if (consumer.collectCardNo)??>
-                                                ${consumer.collectCardNo}
-                                                </#if>
+                                                3247236478
                                             </td>
                                             <td colspan="2">收藏时间：
-                                                <#if (consumer.datetime)??>
-                                                    ${consumer.datetime}
-                                                </#if>
+                                                ${consumer.datetime?string("yyyy-MM-dd")}
                                             </td>
                                         </tr>
 
@@ -638,12 +643,12 @@
     });
 
     //关注
-    $("#addFocus").bind("click",function () {
+    $("#addFocus").bind("click", function () {
         alert("关注成功");
     });
 
     //关注
-    $("#addCollect").bind("click",function () {
+    $("#addCollect").bind("click", function () {
         alert("收藏成功");
     });
 </script>
