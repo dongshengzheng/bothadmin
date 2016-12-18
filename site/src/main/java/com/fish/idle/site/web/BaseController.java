@@ -37,6 +37,16 @@ public class BaseController {
         }
         return new Page<>(start / length + 1, length);
     }
+    /**
+     * <p>
+     * 获取分页对象
+     * </p>
+     *
+     * @return
+     */
+    protected <T> Page<T> getPage(Integer start,Integer length) {
+        return new Page<>(start, length);
+    }
 
     protected <T> EntityWrapper<T>  getEntityWrapper(){
         EntityWrapper<T> ew = new EntityWrapper<>();

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -32,20 +33,29 @@ public class DashboardController extends BaseController{
 
 
     @RequestMapping(value = { "", "index" })
-    public String index(ModelMap map,HttpServletRequest request){
+    public String index(ModelMap map, HttpServletRequest request,
+                        @RequestParam(required = false) Integer start,
+                        @RequestParam(required = false) Integer length){
+        Paging paging = new Paging();
+        if(null == start){
+            start = 1;
+        }
+        if(null == length){
+            length = 6;
+        }
         //首页轮播图
         //首页全部作品(pageSize=6)
         EntityWrapper<Works> ew = getEntityWrapper();
-        Page<Works> page = worksService.selectPage(getPage(request),ew);
+        Page<Works> page = worksService.selectPage(getPage(start,length),ew);
         for (Works item:page.getRecords()){
             String[] imageArr = item.getImages().split(",");
             item.setImages(imgOssPath + imageArr[0]);
         }
-        Paging paging = new Paging();
+
         paging.setData(page.getRecords());
         paging.setTotalPages(page.getPages());
-        paging.setCurrent(page.getCurrent()+1);
-        paging.setPageSize(page.getSize());
+        paging.setCurrent(start);
+        paging.setPageSize(length);
         map.put("worksPaging",paging);
         return "index";
     }
