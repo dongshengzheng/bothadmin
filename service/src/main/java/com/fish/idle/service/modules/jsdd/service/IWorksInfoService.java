@@ -1,8 +1,6 @@
 package com.fish.idle.service.modules.jsdd.service;
 
 import com.baomidou.framework.service.ISuperService;
-import com.fish.idle.service.modules.jsdd.entity.GoodsInfo;
-import com.fish.idle.service.modules.jsdd.entity.WorksInfo;
 
 /**
  *
