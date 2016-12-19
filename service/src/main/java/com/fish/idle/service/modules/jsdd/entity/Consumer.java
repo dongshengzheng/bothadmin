@@ -151,9 +151,6 @@ public class Consumer implements Serializable {
         this.createBy = createBy;
     }
 
-    public void setUpdateBy(Integer updateBy) {
-        this.updateBy = updateBy;
-    }
 
     public Date getCreateDate() {
         return this.createDate;
@@ -252,4 +249,11 @@ public class Consumer implements Serializable {
         this.pub = pub;
     }
 
+    public Integer getUpdateBy() {
+        return updateBy;
+    }
+
+    public void setUpdateBy(Integer updateBy) {
+        this.updateBy = updateBy;
+    }
 }

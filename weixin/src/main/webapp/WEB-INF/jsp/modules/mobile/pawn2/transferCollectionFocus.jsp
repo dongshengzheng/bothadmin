@@ -214,6 +214,27 @@
 
 <%@include file="include/tab-3.jsp" %>
 
+<div class="js_dialog" id="haveCareDialog" style="display: none;" date-id="">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog">
+        <div class="weui-dialog__hd"><strong class="weui-dialog__title">取消关注</strong></div>
+        <div class="weui-dialog__bd">取消关注后将无法看到该用户的相关信息</div>
+        <div class="weui-dialog__ft">
+            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default">取消</a>
+            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">确定</a>
+        </div>
+    </div>
+</div>
+
+<div class="js_dialog" id="notCareDialog" style="display: none;">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog">
+        <div class="weui-dialog__hd"><strong class="weui-dialog__title">替换内容</strong></div>
+        <div class="weui-dialog__ft">
+            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">确定</a>
+        </div>
+    </div>
+</div>
 
 <script>
     $(function () {
@@ -237,6 +258,47 @@
             $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
         });
     });
+
+
+    var $haveCareDialog = $('#haveCareDialog');
+    var $notCareDialog = $('#notCareDialog');
+
+    $('#dialogs').on('click', '.weui-dialog__btn', function () {
+        $(this).parents('.js_dialog').fadeOut(200);
+    });
+
+    $('.weui-dialog__btn').on('click', function () {
+        $('.js_dialog').fadeOut(200);
+    })
+
+    $('.have-care').on('click', function () {
+        $haveCareDialog.fadeIn(200);
+        $haveCareDialog.attr('data-id', $(this).parent().parent().parent().attr('id'));
+    });
+
+    $('#haveCareDialog .weui-dialog__btn_primary').on('click', function () {
+        var targetId = $('#haveCareDialog').attr('data-id');
+        var thisOne = $('#' + ($('#haveCareDialog').attr('data-id')) + ' .have-care');
+
+        $.ajax({
+            type: "POST",
+            url: "${ctx}/mobile/haveToNot",
+            data: {
+                targetId: targetId
+            },
+            success: function (data) {
+                $notCareDialog.find('.weui-dialog__title').html(data);
+                if (data == '取关成功!') {
+                    thisOne.removeClass('div-on').siblings('.search-results-one-care').addClass('div-on');
+                    thisOne.removeClass('div-on').siblings('.search-results-one-care').addClass('div-on');
+                    var outer = $(thisOne).parent().parent().parent();
+                    var haveCareOuter = outer.parent();
+                    outer.remove();
+                }
+                $notCareDialog.fadeIn(200);
+            }
+        })
+    })
 
 
 </script>

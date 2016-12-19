@@ -4,10 +4,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.toolkit.CollectionUtil;
 import com.fish.idle.service.modules.jsdd.entity.*;
-import com.fish.idle.service.modules.jsdd.service.IConsumerService;
-import com.fish.idle.service.modules.jsdd.service.IFollowHistoryService;
-import com.fish.idle.service.modules.jsdd.service.IWorksLevelService;
-import com.fish.idle.service.modules.jsdd.service.IWorksService;
+import com.fish.idle.service.modules.jsdd.service.*;
 import com.fish.idle.service.modules.sys.entity.User;
 import com.fish.idle.service.modules.sys.service.UserService;
 import com.fish.idle.service.util.Const;
@@ -56,6 +53,9 @@ public class MobileController extends BaseController {
 
     @Autowired
     private IWorksLevelService worksLevelService;
+
+    @Autowired
+    private IImagesService imagesService;
 
     @Autowired
     private IFollowHistoryService followHistoryService;
@@ -765,7 +765,8 @@ public class MobileController extends BaseController {
                                  @RequestParam(required = false) String createDateString,
                                  @RequestParam(required = false) String worksName,
                                  @RequestParam(required = false) String consumerNo,
-                                 @RequestParam(required = false) String worksRemarks) {
+                                 @RequestParam(required = false) String worksRemarks,
+                                 @RequestParam(required = false) String imgUrls) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
         User u = new User();
@@ -788,8 +789,21 @@ public class MobileController extends BaseController {
         consumer.setNo(consumerNo);
         consumerService.insert(consumer);
 
+        Integer worksId = works.getId();
+
+        if (imgUrls != null && imgUrls.trim().length() > 0) {
+            String[] urls = imgUrls.split("\\|");
+            for (String url : urls) {
+                Images images = new Images();
+                images.setTargetId(worksId);
+                images.setUrl(url);
+                images.setType(Const.IMAGES_WORKS);
+                imagesService.insert(images);
+            }
+        }
+
         session.setAttribute("registerWorksName", works.getName());
-        session.setAttribute("registerWorksId", works.getId());
+        session.setAttribute("registerWorksId", worksId);
         return "modules/mobile/pawn2/worksRegister2";
     }
 
@@ -856,7 +870,8 @@ public class MobileController extends BaseController {
                                  HttpServletRequest request,
                                  HttpServletResponse response,
                                  ModelMap map,
-                                 WorksLevel worksLevel) {
+                                 WorksLevel worksLevel,
+                                 @RequestParam(required = false) String certificateImgUrl) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
         User u = new User();
@@ -868,6 +883,12 @@ public class MobileController extends BaseController {
         int id = (int) session.getAttribute("registerWorksId");
         worksLevel.setWorksId(id);
         worksLevelService.insert(worksLevel);
+
+        Images images = new Images();
+        images.setUrl(certificateImgUrl);
+        images.setType(Const.IMAGES_CERTIFICATE);
+        images.setTargetId(id);
+
         return "modules/mobile/pawn2/worksRegister4";
     }
 
@@ -924,11 +945,19 @@ public class MobileController extends BaseController {
         consumer.setWorksId(id);
         consumer = consumerService.selectOne(new EntityWrapper<>(consumer));
 
+        Images images = new Images();
+        images.setTargetId(id);
+        images.setType(Const.IMAGES_WORKS);
+        List<Images> imagesList = imagesService.selectList(new EntityWrapper<>(images));
+
+        images.setType(Const.IMAGES_CERTIFICATE);
+        Images certificateImg = imagesService.selectOne(new EntityWrapper<>(images));
 
         map.put("works", works);
         map.put("consumer", consumer);
         map.put("worksLevel", worksLevel);
-
+        map.put("imagesList", imagesList);
+        map.put("certificateImg", certificateImg);
 
         session.setAttribute("worksIdInSession", id);
 

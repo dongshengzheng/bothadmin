@@ -84,4 +84,10 @@ public class Const {
     public static final String WORKS_STATUS_UNPASS = "2";    // 未通过
     public static final String WORKS_STATUS_PASS = "3";      // 已通过
 
+    /**
+     * 图片表中图片类型
+     */
+    public static final String IMAGES_WORKS = "0";    // 作品普通图片
+    public static final String IMAGES_CERTIFICATE = "1";    // 作品认证图片
+
 }

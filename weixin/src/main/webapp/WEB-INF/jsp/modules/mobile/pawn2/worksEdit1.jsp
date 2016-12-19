@@ -15,7 +15,7 @@
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">身份证</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input name="consumerNo" class="weui-input" type="tel" value="${consumer.no}" placeholder="可不填写">
+        <input name="consumerNo" class="weui-input" type="number" value="${consumer.no}" placeholder="可不填写">
     </div>
 </div>
 <div class="weui-cell">
@@ -55,64 +55,15 @@
             <!--</div>-->
             <div class="weui-uploader__bd">
                 <ul class="weui-uploader__files" id="uploaderFiles">
-                    <li class="weui-uploader__file"
-                        style="background-image:url(${ctxStatic}/img/headImg/2.jpg)"></li>
-                    <li class="weui-uploader__file weui-uploader__file_status"
-                        style="background-image:url(${ctxStatic}/img/headImg/2.jpg)">
-                        <div class="weui-uploader__file-content">
-                            <i class="weui-icon-warn"></i>
-                        </div>
-                    </li>
-                    <li class="weui-uploader__file weui-uploader__file_status"
-                        style="background-image:url(${ctxStatic}/img/headImg/2.jpg)">
-                        <div class="weui-uploader__file-content">50%</div>
-                    </li>
+                    <c:forEach items="${imagesList}" var="images">
+                        <li class="weui-uploader__file" style="background-image:url(${images.url})">
+                        </li>
+                    </c:forEach>
+                    <a id="uploaderInput" class="weui-uploader__input-box">
+                    </a>
                 </ul>
-                <div class="weui-uploader__input-box">
-                    <input id="uploaderInput" class="weui-uploader__input" type="file" accept="image/*"
-                           multiple/>
-                </div>
             </div>
         </div>
     </div>
 </div>
-<script>
-    $(function () {
-        var tmpl = '<li class="weui-uploader__file" style="background-image:url(#url#)"></li>',
-                $gallery = $("#gallery"), $galleryImg = $("#galleryImg"),
-                $uploaderInput = $("#uploaderInput"),
-                $uploaderFiles = $("#uploaderFiles")
-                ;
-
-        $uploaderInput.on("change", function (e) {
-            var src, url = window.URL || window.webkitURL || window.mozURL, files = e.target.files;
-            for (var i = 0, len = files.length; i < len; ++i) {
-                var file = files[i];
-
-                if (url) {
-                    src = url.createObjectURL(file);
-                } else {
-                    src = e.target.result;
-                }
-
-                $uploaderFiles.append($(tmpl.replace('#url#', src)));
-            }
-        });
-        $uploaderFiles.on("click", "li", function () {
-            $galleryImg.attr("style", this.getAttribute("style"));
-            $gallery.fadeIn(100);
-        });
-        $gallery.on("click", function () {
-            $gallery.fadeOut(100);
-        });
-
-
-        $(function () {
-            $('.weui-navbar__item').on('click', function () {
-                $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
-            });
-        });
-
-        $("#showDatePicker").calendar();
-    });
-</script>
+<input type="hidden" name="imgUrls" id="imgUrls"/>

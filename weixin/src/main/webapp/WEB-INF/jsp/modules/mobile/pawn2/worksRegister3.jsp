@@ -60,7 +60,7 @@
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input name="name" class="weui-input" type="tel" placeholder="${sessionScope.registerWorksName}"
+                    <input name="name" class="weui-input" type="tel" value="${sessionScope.registerWorksName}"
                            disabled>
                 </div>
             </div>

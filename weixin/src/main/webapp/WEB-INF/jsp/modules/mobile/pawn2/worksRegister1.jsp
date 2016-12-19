@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="${ctxStatic}/css/custom.css"/>
     <link rel="stylesheet" href="${ctxStatic}/css/weui.min.css"/>
     <link rel="stylesheet" href="${ctxStatic}/css/jquery-weui.min.css"/>
-
-
     <style>
         body {
             background-color: white;
@@ -115,17 +113,17 @@
                             <a id="uploaderInput" class="weui-uploader__input-box">
                             </a>
                         </ul>
-
                     </div>
                 </div>
             </div>
         </div>
+        <input type="hidden" name="imgUrls" id="imgUrls"/>
         <div class="fixed-footer">
             <p>下一步即表示同意<a href="javascript:;" id="register-rule">《金石典当登记申请记录》</a></p>
             <hr>
             <div class="weui-form-preview__ft">
                 <a class="weui-form-preview__btn weui-form-preview__btn_default" href="javascript:">存为草稿</a>
-                <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary">
+                <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" id="trueSubmit">
                     下一步
                 </button>
             </div>
@@ -156,17 +154,11 @@
 </div>
 <script src="${ctxStatic}/js/jquery-2.1.4.js"></script>
 <script src="${ctxStatic}/js/jquery-weui.js"></script>
-<script src="${ctxStatic}/js/swiper.js"></script>
 <script src="${ctxStatic}/js/upload.js"></script>
 <script src="${ctxStatic}/js/plupload-2.1.2/js/moxie.js"></script>
 <script src="${ctxStatic}/js/plupload-2.1.2/js/plupload.dev.js"></script>
 <script>
     $(function () {
-        var $gallery = $("#gallery"), $galleryImg = $("#galleryImg");
-
-        $gallery.on("click", function () {
-            $gallery.fadeOut(100);
-        });
 
         $('#register-rule').on('click', function () {
             $(".js_dialog").fadeIn(200);
@@ -179,7 +171,26 @@
 
         initUploaders("windyeel", "http://steins00gate.s1.natapp.cc/");
 
+
+        $('#trueSubmit').on('click', function () {
+            var lis = $('li');
+            var imgUrls = "";
+            var len = lis.length;
+            if (len > 0) {
+                lis.each(function () {
+                    var li = $(this);
+                    var str = li.css("background-image");
+                    var length = str.length;
+                    var url = str.substring(5, length - 2);
+                    imgUrls += url + '|';
+                })
+                imgUrls = imgUrls.substring(0, imgUrls.length - 1);
+            }
+            $('#imgUrls').val(imgUrls);
+        })
+
     });
+
 </script>
 </body>
 </html>

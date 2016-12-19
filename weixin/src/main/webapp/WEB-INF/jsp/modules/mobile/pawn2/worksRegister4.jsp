@@ -13,7 +13,9 @@
 
     <script src="${ctxStatic}/js/jquery-2.1.4.js"></script>
     <script src="${ctxStatic}/js/jquery-weui.js"></script>
-    <script src="${ctxStatic}/js/swiper.js"></script>
+    <script src="${ctxStatic}/js/upload.js"></script>
+    <script src="${ctxStatic}/js/plupload-2.1.2/js/moxie.js"></script>
+    <script src="${ctxStatic}/js/plupload-2.1.2/js/plupload.dev.js"></script>
     <style>
         body {
             background-color: white;
@@ -76,14 +78,18 @@
             display: inline-block;
         }
 
+        .certificate-text {
+            height: 12%;
+        }
+
         #certificate-text1 {
             float: left;
             margin-top: 10px;
         }
 
         #certificate-text2 {
-            float: right;
             margin-top: 10px;
+            margin-left: 50%;
             background-image: url("${ctxStatic}/img//cut/certificate-icon.png");
             background-repeat: no-repeat;
             background-size: 30px;
@@ -107,15 +113,17 @@
     <div class="div-outer">
 
         <p class="report">昌化鸡血石鉴定评估报告</p>
-        <div class="weui-cell__bd weui-cell_primary">
-            <textarea name="des" class="weui-textarea" placeholder="详细鉴定报告..." rows="13"></textarea>
-            <!--<div class="weui-textarea-counter">-->
-            <!--<span>0</span>/200-->
-            <!--</div>-->
+        <div class="weui-cell">
+            <div class="weui-cell__bd weui-cell_primary">
+                <textarea name="des" class="weui-textarea" placeholder="详细鉴定报告..." rows="13"></textarea>
+                <!--<div class="weui-textarea-counter">-->
+                <!--<span>0</span>/200-->
+                <!--</div>-->
+            </div>
         </div>
-        <div>
+        <div class="weui-cell certificate-text">
             <span id="certificate-text1">鉴定证书</span>
-            <span id="certificate-text2">已上传</span>
+            <span id="certificate-text2">未上传</span>
         </div>
     </div>
 
@@ -143,7 +151,7 @@
     <div class="weui-actionsheet" id="iosActionsheet">
         <div class="weui-actionsheet__menu">
             <div class="weui-actionsheet__cell">删除</div>
-            <div class="weui-actionsheet__cell" id="transfer">预览</div>
+            <div class="weui-actionsheet__cell" id="prelook">预览</div>
         </div>
         <div class="weui-actionsheet__action">
             <div class="weui-actionsheet__cell" id="iosActionsheetCancel">取消</div>
@@ -165,38 +173,9 @@
 
 <script type="text/javascript">
     $(function () {
-        var tmpl = '<li class="weui-uploader__file" style="background-image:url(#url#)"></li>',
-                $gallery = $("#gallery"), $galleryImg = $("#galleryImg"),
-                $uploaderInput = $("#uploaderInput"),
-                $uploaderFiles = $("#uploaderFiles")
-                ;
-
-        $uploaderInput.on("change", function (e) {
-            var src, url = window.URL || window.webkitURL || window.mozURL, files = e.target.files;
-            for (var i = 0, len = files.length; i < len; ++i) {
-                var file = files[i];
-
-                if (url) {
-                    src = url.createObjectURL(file);
-                } else {
-                    src = e.target.result;
-                }
-
-                $uploaderFiles.append($(tmpl.replace('#url#', src)));
-            }
-        });
-        $uploaderFiles.on("click", "li", function () {
-            $galleryImg.attr("style", this.getAttribute("style"));
-            $gallery.fadeIn(100);
-        });
-        $gallery.on("click", function () {
-            $gallery.fadeOut(100);
-        });
-
 
         var $iosActionsheet = $('#iosActionsheet');
         var $iosMask = $('#iosMask');
-        var $iosDialog1 = $('#iosDialog1');
 
         function hideActionSheet() {
             $iosActionsheet.removeClass('weui-actionsheet_toggle');
@@ -214,7 +193,7 @@
             $(this).parents('.js_dialog').fadeOut(200);
         });
 
-        $('#transfer').on('click', function () {
+        $('#prelook').on('click', function () {
             $iosDialog1.fadeIn(200);
             hideActionSheet();
         });

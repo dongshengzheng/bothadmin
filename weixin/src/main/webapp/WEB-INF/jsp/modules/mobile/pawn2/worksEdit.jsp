@@ -2,7 +2,6 @@
 <%@ include file="include/taglib.jsp" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
-
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0"/>
@@ -10,10 +9,12 @@
     <link rel="stylesheet" href="${ctxStatic}/css/custom.css"/>
     <link rel="stylesheet" href="${ctxStatic}/css/weui.min.css"/>
     <link rel="stylesheet" href="${ctxStatic}/css/jquery-weui.min.css"/>
-
     <script src="${ctxStatic}/js/jquery-2.1.4.js"></script>
     <script src="${ctxStatic}/js/jquery-weui.js"></script>
     <script src="${ctxStatic}/js/swiper.js"></script>
+    <script src="${ctxStatic}/js/upload.js"></script>
+    <script src="${ctxStatic}/js/plupload-2.1.2/js/moxie.js"></script>
+    <script src="${ctxStatic}/js/plupload-2.1.2/js/plupload.dev.js"></script>
     <style>
         .weui-navbar {
             width: 97%;
@@ -56,7 +57,7 @@
         }
 
         .fixed-footer {
-            height: 12%;
+            height: 8%;
         }
 
         .fixed-footer p {
@@ -132,11 +133,9 @@
     </div>
 
     <div class="fixed-footer-blank">
-
     </div>
 </form>
 <script>
-
     $(function () {
         var tmpl = '<li class="weui-uploader__file" style="background-image:url(#url#)"></li>',
                 $gallery = $("#gallery"), $galleryImg = $("#galleryImg"),
@@ -177,7 +176,16 @@
 
         });
 
+        initUploaders("windyeel", "http://steins00gate.s1.natapp.cc/");
+
+        $(function () {
+            $('.weui-navbar__item').on('click', function () {
+                $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
+            });
+        });
+
         $("#showDatePicker").calendar();
+
     });
 
 </script>

@@ -216,14 +216,14 @@
         <div class="works-all-outer">
             <input class="worksId" style="display:none" value="${works.id}">
             <div class="works-all">
-                <img onclick="fun2()" class="works-img-all" src="${works.images}"
+                <img class="works-img-all" src="${works.images}"
                      onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
                      alt="">
                 <textarea disabled class="works-intro-all">${works.remarks}</textarea>
             </div>
             <div class="works-floor-all">
                 <span class="works-floor-name-all">${works.name}</span>
-                <span class="works-floor-btn-all" onclick="fun1()">&nbsp;+&nbsp;收藏&nbsp;</span>
+                <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
                 <span class="works-floor-img-all">${works.type}</span>
                 <span class="works-floor-date-all"><fmt:formatDate value="${works.createDate}"
                                                                    pattern="yyyy-MM-dd"/></span>
@@ -267,15 +267,15 @@
 <div id="tmp" class="works-all-outer div-hide">
     <input class="worksId" style="display:none" value="value">
     <div class="works-all">
-        <img onclick="fun2()" class="works-img-all" src="${works.images}"
+        <img class="works-img-all" src="${works.images}"
              onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
              alt="">
         <textarea disabled class="works-intro-all">${works.remarks}</textarea>
     </div>
     <div class="works-floor-all">
         <span class="works-floor-name-all">${works.name}</span>
-        <span class="works-floor-btn-all" onclick="fun1()">&nbsp;+&nbsp;收藏&nbsp;</span>
-        <span class="works-floor-img-all">${works.type}</span>
+        <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
+        <span class="works-floor-img-all">${works.breed}</span>
         <span class="works-floor-date-all"><fmt:formatDate value="${works.createDate}"
                                                            pattern="yyyy-MM-dd"/></span>
     </div>
@@ -288,25 +288,6 @@
         paginationClickable: true
     });
 
-    <%--function fun1() {--%>
-    <%--var worksid = $(this).parent().siblings('.worksId').val();--%>
-    <%--$.ajax({--%>
-    <%--type: "POST",--%>
-    <%--url: "${ctx}/mobile/collectWorks",--%>
-    <%--data: {--%>
-    <%--worksId: worksid--%>
-    <%--},--%>
-    <%--success: function (data) {--%>
-    <%--$('#iosDialog2 .weui-dialog__bd').html(data);--%>
-    <%--$('#iosDialog2').fadeIn(200);--%>
-    <%--}--%>
-    <%--})--%>
-    <%--}--%>
-
-    <%--function fun2() {--%>
-    <%--var worksid = $(this).parent().siblings('.worksId').val();--%>
-    <%--location.href = '${ctx}/mobile/worksDetail?id=' + worksid;--%>
-    <%--}--%>
 
     $(function () {
 //        $('.weui-tabbar__item').on('click', function () {
@@ -328,20 +309,6 @@
             })
         })
 
-        <%--function fun1() {--%>
-        <%--var worksid = $(this).parent().siblings('.worksId').val();--%>
-        <%--$.ajax({--%>
-        <%--type: "POST",--%>
-        <%--url: "${ctx}/mobile/collectWorks",--%>
-        <%--data: {--%>
-        <%--worksId: worksid--%>
-        <%--},--%>
-        <%--success: function (data) {--%>
-        <%--$('#iosDialog2 .weui-dialog__bd').html(data);--%>
-        <%--$('#iosDialog2').fadeIn(200);--%>
-        <%--}--%>
-        <%--})--%>
-        <%--}--%>
 
         $('#dialogs .weui-dialog__btn').click(function () {
             $(this).parents('.js_dialog').fadeOut(200);

@@ -121,8 +121,6 @@ function initUploaders(bucket, domain) {
                     + 'style="background-image:url(' +
                     'http://' + bucket + '.img-cn-shanghai.aliyuncs.com/' + g_object_name + '?x-oss-process=image/resize,m_fill,h_100,w_100'
                     + ')"></li>');
-
-
             }
         }
     });

@@ -72,7 +72,6 @@ public class User implements Serializable {
     private Integer collectionCount;
 
 
-
     public int getWorksCount() {
         return worksCount;
     }

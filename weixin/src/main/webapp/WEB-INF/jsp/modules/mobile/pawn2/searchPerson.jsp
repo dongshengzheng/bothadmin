@@ -194,11 +194,6 @@
             $(this).parents('.js_dialog').fadeOut(200);
         });
 
-        $('.have-care').on('click', function () {
-            $haveCareDialog.fadeIn(200);
-            $haveCareDialog.attr('data-id', $(this).parent().parent().parent().attr('id'));
-        });
-
         $('.not-care').on('click', function () {
             var thisone = $(this);
             var targetId = thisone.parent().parent().parent().attr('id');
@@ -225,6 +220,11 @@
         $('.weui-dialog__btn').on('click', function () {
             $('.js_dialog').fadeOut(200);
         })
+
+        $('.have-care').on('click', function () {
+            $haveCareDialog.fadeIn(200);
+            $haveCareDialog.attr('data-id', $(this).parent().parent().parent().attr('id'));
+        });
 
         $('#haveCareDialog .weui-dialog__btn_primary').on('click', function () {
             var targetId = $('#haveCareDialog').attr('data-id');

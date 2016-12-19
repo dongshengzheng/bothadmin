@@ -44,15 +44,22 @@
 </style>
 <div class="div-outer">
     <p class="report">昌化鸡血石鉴定评估报告</p>
-    <div class="weui-cell__bd weui-cell_primary">
-        <textarea class="weui-textarea" placeholder="详细鉴定报告..." rows="15">    测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字</textarea>
-        <!--<div class="weui-textarea-counter">-->
-        <!--<span>0</span>/200-->
-        <!--</div>-->
+    <div class="weui-cell">
+        <div class="weui-cell__bd weui-cell_primary">
+            <textarea class="weui-textarea" placeholder="详细鉴定报告..." rows="15">    测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字</textarea>
+            <!--<div class="weui-textarea-counter">-->
+            <!--<span>0</span>/200-->
+            <!--</div>-->
+        </div>
     </div>
-    <div>
+    <div class="weui-cell">
         <span id="certificate-text1">鉴定证书</span>
-        <span id="certificate-text2">已上传</span>
+        <c:if test="${!empty certificateImg}">
+            <span id="certificate-text2">已上传</span>
+        </c:if>
+        <c:if test="${empty certificateImg}">
+            <span id="certificate-text2">未上传</span>
+        </c:if>
     </div>
 </div>
 
@@ -72,59 +79,29 @@
 
 <script type="text/javascript">
     $(function () {
-        var tmpl = '<li class="weui-uploader__file" style="background-image:url(#url#)"></li>',
-                $gallery = $("#gallery"), $galleryImg = $("#galleryImg"),
-                $uploaderInput = $("#uploaderInput"),
-                $uploaderFiles = $("#uploaderFiles")
-                ;
+        var $iosActionsheet = $('#iosActionsheet');
+        var $iosMask = $('#iosMask');
+        var $iosDialog1 = $('#iosDialog1');
 
-        $uploaderInput.on("change", function (e) {
-            var src, url = window.URL || window.webkitURL || window.mozURL, files = e.target.files;
-            for (var i = 0, len = files.length; i < len; ++i) {
-                var file = files[i];
+        function hideActionSheet() {
+            $iosActionsheet.removeClass('weui-actionsheet_toggle');
+            $iosMask.fadeOut(200);
+        }
 
-                if (url) {
-                    src = url.createObjectURL(file);
-                } else {
-                    src = e.target.result;
-                }
-
-                $uploaderFiles.append($(tmpl.replace('#url#', src)));
-            }
-        });
-        $uploaderFiles.on("click", "li", function () {
-            $galleryImg.attr("style", this.getAttribute("style"));
-            $gallery.fadeIn(100);
-        });
-        $gallery.on("click", function () {
-            $gallery.fadeOut(100);
+        $iosMask.on('click', hideActionSheet);
+        $('#iosActionsheetCancel').on('click', hideActionSheet);
+        $("#certificate-text2").on("click", function () {
+            $iosActionsheet.addClass('weui-actionsheet_toggle');
+            $iosMask.fadeIn(200);
         });
 
-        $(function () {
-            var $iosActionsheet = $('#iosActionsheet');
-            var $iosMask = $('#iosMask');
-            var $iosDialog1 = $('#iosDialog1');
+        $('#dialogs').on('click', '.weui-dialog__btn', function () {
+            $(this).parents('.js_dialog').fadeOut(200);
+        });
 
-            function hideActionSheet() {
-                $iosActionsheet.removeClass('weui-actionsheet_toggle');
-                $iosMask.fadeOut(200);
-            }
-
-            $iosMask.on('click', hideActionSheet);
-            $('#iosActionsheetCancel').on('click', hideActionSheet);
-            $("#certificate-text2").on("click", function () {
-                $iosActionsheet.addClass('weui-actionsheet_toggle');
-                $iosMask.fadeIn(200);
-            });
-
-            $('#dialogs').on('click', '.weui-dialog__btn', function () {
-                $(this).parents('.js_dialog').fadeOut(200);
-            });
-
-            $('#transfer').on('click', function () {
-                $iosDialog1.fadeIn(200);
-                hideActionSheet();
-            });
+        $('#transfer').on('click', function () {
+            $iosDialog1.fadeIn(200);
+            hideActionSheet();
         });
     });
 </script>

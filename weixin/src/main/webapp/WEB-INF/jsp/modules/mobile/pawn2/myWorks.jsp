@@ -94,7 +94,7 @@
         <div class="works-all-outer">
             <input class="worksId" style="display:none" value="${works.id}">
             <div class="works-all">
-                <img onclick="fun2()" class="works-img-all" src="${works.images}"
+                <img class="works-img-all" src="${works.images}"
                      onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
                      alt="">
                 <textarea disabled class="works-intro-all">${works.remarks}</textarea>
@@ -128,7 +128,7 @@
         <div class="works-all-outer">
             <input class="worksId" style="display:none" value="${works.id}">
             <div class="works-all">
-                <img onclick="fun2()" class="works-img-all" src="${works.images}"
+                <img class="works-img-all" src="${works.images}"
                      onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
                      alt="">
                 <textarea disabled class="works-intro-all">${works.remarks}</textarea>
@@ -136,7 +136,7 @@
             <div class="works-floor-all">
                 <span class="works-floor-name-all">${works.name}</span>
                 <span class="works-floor-btn-all">&nbsp;审核中&nbsp;</span>
-                <span class="works-floor-img-all">${works.type}</span>
+                <span class="works-floor-img-all">${works.breed}</span>
                 <span class="works-floor-date-all"><fmt:formatDate value="${works.createDate}"
                                                                    pattern="yyyy-MM-dd"/></span>
             </div>
@@ -162,7 +162,7 @@
         <div class="works-all-outer">
             <input class="worksId" style="display:none" value="${works.id}">
             <div class="works-all">
-                <img onclick="fun2()" class="works-img-all" src="${works.images}"
+                <img class="works-img-all" src="${works.images}"
                      onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
                      alt="">
                 <textarea disabled class="works-intro-all">${works.remarks}</textarea>
@@ -197,7 +197,7 @@
         <div class="works-all-outer">
             <input class="worksId" style="display:none" value="${works.id}">
             <div class="works-all">
-                <img onclick="fun2()" class="works-img-all" src="${works.images}"
+                <img class="works-img-all" src="${works.images}"
                      onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
                      alt="">
                 <textarea disabled class="works-intro-all">${works.remarks}</textarea>
