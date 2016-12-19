@@ -47,12 +47,31 @@ public class User implements Serializable {
 
     // 业务字段
 
+    /**
+     * 粉丝数量，冗余字段
+     */
     @TableField(exist = false)
     private int followCount;
 
-
+    /**
+     * 作品数量，冗余字段
+     */
     @TableField(exist = false)
     private int worksCount;
+
+    /**
+     * 关注他人数量，冗余字段
+     */
+    @TableField(exist = false)
+    private Integer focusOtherCount;
+
+    /**
+     * 收藏作品数量，冗余字段
+     */
+    @TableField(exist = false)
+    private Integer collectionCount;
+
+
 
     public int getWorksCount() {
         return worksCount;
@@ -180,5 +199,21 @@ public class User implements Serializable {
 
     public void setScore(Integer score) {
         this.score = score;
+    }
+
+    public Integer getFocusOtherCount() {
+        return focusOtherCount;
+    }
+
+    public void setFocusOtherCount(Integer focusOtherCount) {
+        this.focusOtherCount = focusOtherCount;
+    }
+
+    public Integer getCollectionCount() {
+        return collectionCount;
+    }
+
+    public void setCollectionCount(Integer collectionCount) {
+        this.collectionCount = collectionCount;
     }
 }

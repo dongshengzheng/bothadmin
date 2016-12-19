@@ -182,8 +182,14 @@ public class Works implements Serializable {
     /**
      * 关注数量，冗余字段
      */
-    @TableField(value = "follow_count")
+    @TableField(exist = false)
     private Integer followCount;
+
+    /**
+     * 作品数量，冗余字段
+     */
+    @TableField(exist = false)
+    private Integer worksCount;
 
     /**
      * 价值
@@ -495,5 +501,13 @@ public class Works implements Serializable {
 
     public void setWeight(BigDecimal weight) {
         this.weight = weight;
+    }
+
+    public Integer getWorksCount() {
+        return worksCount;
+    }
+
+    public void setWorksCount(Integer worksCount) {
+        this.worksCount = worksCount;
     }
 }

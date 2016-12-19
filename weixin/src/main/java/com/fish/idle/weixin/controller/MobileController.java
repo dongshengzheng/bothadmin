@@ -225,10 +225,8 @@ public class MobileController extends BaseController {
         }
 
 
-        EntityWrapper<User> ew = new EntityWrapper<>(new User());
-        ew.like("name", name);
-        ew.notIn("id", user.getId());
-        List<User> userList = userService.selectList(ew);
+        List<User> userList = userService.searchUsersByName(name, user.getId());
+
         Map<Integer, User> userMap = new HashMap<>();
         for (User uu : userList) {
             userMap.put(uu.getId(), uu);
@@ -487,7 +485,7 @@ public class MobileController extends BaseController {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
 
-        map.put("user", user);
+        map.put("user", userService.searchMyInfo(user.getId()));
 
         return "modules/mobile/pawn2/my";
     }
@@ -718,22 +716,7 @@ public class MobileController extends BaseController {
 
 
         //        关注用户集合
-        FollowHistory fhPeople = new FollowHistory();
-        fhPeople.setType(1);
-        fhPeople.setUserId(user.getId());
-        EntityWrapper ew4 = new EntityWrapper(fhPeople);
-        List<FollowHistory> followHistoryList2 = followHistoryService.selectList(ew4);
-        List<Integer> fhPeopleIds = new ArrayList<>();
-        for (FollowHistory fh : followHistoryList2) {
-            fhPeopleIds.add(fh.getTargetId());
-        }
-        List<User> fhPeopleList = new ArrayList<>();
-        if (fhPeopleIds.size() > 0) {
-            User user1 = new User();
-            EntityWrapper ew5 = new EntityWrapper(user1);
-            ew5.in("id", fhPeopleIds);
-            fhPeopleList = userService.selectList(ew5);
-        }
+        List<User> fhPeopleList = userService.searchFocusById(user.getId());
 
         map.put("showwhich", showwhich);
         map.put("fhWorksList", fhWorksList);

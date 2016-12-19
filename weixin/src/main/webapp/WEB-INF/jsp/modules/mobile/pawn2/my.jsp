@@ -63,7 +63,8 @@
             </div>
             <div class="weui-media-box__bd" id="my-info">
                 <h4 class="weui-media-box__title">${user.name}</h4>
-                <p class="weui-media-box__desc">积分:${user.score}&nbsp;关注:0(未完成)&nbsp;收藏:0(未完成)</p>
+                <p class="weui-media-box__desc">
+                    积分:${user.score}&nbsp;关注:${user.focusOtherCount}&nbsp;收藏:${user.collectionCount}</p>
             </div>
             <span id="go-to-set">设置</span>
         </a>

@@ -131,11 +131,20 @@
         </div>
     </c:forEach>
 
-    <div class="hr-text ">
-        <center>
-            <hr>
-            <span>&nbsp;&nbsp;到底啦&nbsp;&nbsp;</span></center>
-    </div>
+    <c:if test="${fn:length(page.records) == 0}">
+        <div style="text-align:center;margin-top:35%">
+            <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="" style="width: 50%;">
+            <p style="color:#CCCCCC">尚无作品</p>
+        </div>
+    </c:if>
+    <c:if test="${fn:length(page.records) > 0}">
+        <div class="hr-text ">
+            <center>
+                <hr>
+                <span>&nbsp;&nbsp;到底啦&nbsp;&nbsp;</span></center>
+        </div>
+    </c:if>
+
 </div>
 </body>
 <script>
@@ -175,10 +184,9 @@
                 })
                 .on('keyup', function () {
                     if (event.keyCode == 13) {
-                        location.href = "userInfo.jsp";
+                        location.href = "${ctx}/mobile/searchWorks?name=" + $('#searchInput').val();
                     }
-                })
-        ;
+                });
         $searchClear.on('click', function () {
             hideSearchResult();
             $searchInput.focus();

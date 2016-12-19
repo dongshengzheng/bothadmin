@@ -8,4 +8,10 @@ import java.util.List;
 public interface UserMapper extends AutoMapper<User> {
 
     List<User> searchUser(User user);
+
+    List<User> searchUsersByName(String name, Integer myId);
+
+    User searchMyInfo(Integer myId);
+
+    List<User> searchFocusById(Integer id);
 }

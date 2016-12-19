@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="${ctxStatic}/css/jquery-weui.min.css"/>
 
 
-
     <style>
         body {
             background-color: white;
@@ -163,7 +162,7 @@
 <script src="${ctxStatic}/js/plupload-2.1.2/js/plupload.dev.js"></script>
 <script>
     $(function () {
-        var  $gallery = $("#gallery"), $galleryImg = $("#galleryImg");
+        var $gallery = $("#gallery"), $galleryImg = $("#galleryImg");
 
         $gallery.on("click", function () {
             $gallery.fadeOut(100);
@@ -178,7 +177,7 @@
 
         $("#showDatePicker").calendar();
 
-        initUploaders("windyeel", "http://xianyu.s1.natapp.cc/");
+        initUploaders("windyeel", "http://steins00gate.s1.natapp.cc/");
 
     });
 </script>

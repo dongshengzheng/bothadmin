@@ -56,7 +56,7 @@
                     <div class="weui-media-box__bd">
                         <h4 class="weui-media-box__title">${person.name}</h4>
                         <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
-                        <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
+                        <p class="weui-media-box__desc">作品:${person.worksCount} &nbsp;粉丝:${person.followCount}</p>
                         <div class="search-results-one-care have-care div-hide div-on">
                             <img src="${ctxStatic}/img/cut/have-focus.png" class="search-results-one-care-img "/>
                             <p class="search-results-one-care-text-have ">
@@ -87,7 +87,7 @@
                     <div class="weui-media-box__bd">
                         <h4 class="weui-media-box__title">${person.name}</h4>
                         <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
-                        <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
+                        <p class="weui-media-box__desc">作品:${person.worksCount} &nbsp;粉丝:${person.followCount}</p>
                         <div class="search-results-one-care have-care div-hide">
                             <img src="${ctxStatic}/img/cut/have-focus.png" class="search-results-one-care-img "/>
                             <p class="search-results-one-care-text-have ">
@@ -174,10 +174,9 @@
                 })
                 .on('keyup', function () {
                     if (event.keyCode == 13) {
-                        location.href = "userInfo.jsp";
+                        location.href = "${ctx}/mobile/searchPerson?name=" + $('#searchInput').val();
                     }
-                })
-        ;
+                });
         $searchClear.on('click', function () {
             hideSearchResult();
             $searchInput.focus();
@@ -203,7 +202,6 @@
         $('.not-care').on('click', function () {
             var thisone = $(this);
             var targetId = thisone.parent().parent().parent().attr('id');
-
             $.ajax({
                 type: "POST",
                 url: "${ctx}/mobile/notToHave",
@@ -222,8 +220,6 @@
                     }
                 }
             })
-
-
         });
 
         $('.weui-dialog__btn').on('click', function () {
@@ -253,8 +249,6 @@
                     $notCareDialog.fadeIn(200);
                 }
             })
-
-
         })
 
 

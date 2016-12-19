@@ -106,4 +106,19 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
         }
         return result;
     }
+
+    @Override
+    public List<User> searchUsersByName(String name, Integer myId) {
+        return userMapper.searchUsersByName(name, myId);
+    }
+
+    @Override
+    public User searchMyInfo(Integer myId) {
+        return userMapper.searchMyInfo(myId);
+    }
+
+    @Override
+    public List<User> searchFocusById(Integer id) {
+        return userMapper.searchFocusById(id);
+    }
 }

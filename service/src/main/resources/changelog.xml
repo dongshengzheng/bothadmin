@@ -147,6 +147,11 @@
             ) COMMENT='';
         </sql>
     </changeSet>
+    <changeSet author="WangShun" id="15950097942-018">
+        <sql>
+            ALTER TABLE `sys_user` DROP COLUMN `follow_count`;
+        </sql>
+    </changeSet>
 
     <changeSet author="SunZhongYang" id="15606137056-001">
         <sql>

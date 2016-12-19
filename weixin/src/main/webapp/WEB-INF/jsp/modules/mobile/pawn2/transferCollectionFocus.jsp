@@ -180,7 +180,7 @@
                 <div class="weui-media-box__bd">
                     <h4 class="weui-media-box__title">${person.name}</h4>
                     <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
-                    <p class="weui-media-box__desc">作品:36 &nbsp;粉丝:6</p>
+                    <p class="weui-media-box__desc">作品:${person.worksCount} &nbsp;粉丝:${person.followCount}</p>
                     <div class="search-results-one-care have-care div-on">
                         <img src="${ctxStatic}/img/cut/have-focus.png" class="search-results-one-care-img "/>
                         <p class="search-results-one-care-text-have ">
