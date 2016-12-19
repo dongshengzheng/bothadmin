@@ -587,9 +587,9 @@
     $(document).ready(function () {
         $('.date-picker').datepicker({autoclose: true, todayHighlight: true,format:'yyyy-mm-dd'});
 
-        initUploaders("upload_works_info", "windyeel", "localhost:8080/");
-        initUploaders_inner("zpxx_img", "windyeel", "localhost:8080/", "zpxx_container", "zpxxImge");
-        initUploaders_inner("jzrz_img", "windyeel", "localhost:8080/", "jzrz_container", "jzrzImge");
+        initUploaders("upload_works_info", "windyeel", '${staticPath}/');
+        initUploaders_inner("zpxx_img", "windyeel", '${staticPath}/', "zpxx_container", "zpxxImge");
+        initUploaders_inner("jzrz_img", "windyeel", '${staticPath}/', "jzrz_container", "jzrzImge");
 
         var $form = $("#works_info");
 
