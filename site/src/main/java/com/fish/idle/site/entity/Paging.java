@@ -13,6 +13,16 @@ public class Paging {
 
     private int totals;
 
+    private int totalPages;
+
+    public int getTotalPages() {
+        return totalPages;
+    }
+
+    public void setTotalPages(int totalPages) {
+        this.totalPages = totalPages;
+    }
+
     public int getCurrent() {
         return current;
     }

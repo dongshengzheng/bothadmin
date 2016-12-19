@@ -5,6 +5,7 @@
 <!-- CSS Page Style -->
 <link rel="stylesheet" href="${staticPath}/assets/css/pages/profile.css">
 <link rel="stylesheet" href="${staticPath}/assets/css/pages/shortcode_timeline2.css">
+<link rel="stylesheet" href="${staticPath}/assets/css/datepicker.css">
 </@htmlHead>
 <@htmlBody>
 
@@ -60,8 +61,8 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="registerTime">登记时间</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" name="registerTime" id="registerTime" type="text"
-                                           placeholder="请选择登记时间"/>
+                                    <input class="form-control date-picker" name="registerTime" id="registerTime" type="text"
+                                           placeholder="请选择登记时间" readonly/>
                                 </div>
 
                             </div>
@@ -209,7 +210,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="produceTime">制作时间</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="produceTime" name="produceTime"
+                                    <input readonly type="text" class="form-control date-picker" id="produceTime" name="produceTime"
                                            placeholder="请输入制作时间">
                                 </div>
                             </div>
@@ -247,7 +248,7 @@
                 <div class="col-md-6">
                     <div class="row">
                         <form action="${staticPath}/works/addWorksLevel/0" method="post" class="form-horizontal">
-                            <input type="hidden" name="goodsId" id="goodsId" value="${goodsId}">
+                            <input type="hidden" name="worksId" id="worksId" value="${goodsId}">
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="name">作品名称</label>
@@ -422,7 +423,7 @@
                 <div class="col-md-6">
                     <div class="row">
                         <form action="${staticPath}/works/addValueReport/0" method="post" class="form-horizontal">
-                            <input type="hidden" name="goodsId" id="goodsId" value="${goodsId}">
+                            <input type="hidden" name="worksId" id="worksId" value="${goodsId}">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="name">作品名称</label>
                                 <div class="col-sm-10">
@@ -458,7 +459,7 @@
                             <div class="form-group" style="margin-top: 10px">
                                 <label class="col-sm-3 control-label" for="jzyxsjs">价值有效时间</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control" name="jzyxsj" value="" type="text"/>
+                                    <input class="form-control date-picker" readonly name="jzyxsj" value="" type="text"/>
                                 </div>
                             </div>
 
@@ -537,8 +538,8 @@
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="datetime">收藏时间</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" name="datetime" id="datetime" type="text"
+                                <div class="col-sm-10 ">
+                                    <input class="form-control date-picker" name="datetime" id="datetime" type="text"
                                            placeholder="请输入收藏时间"/>
                                 </div>
 
@@ -578,15 +579,17 @@
 <script src="${staticPath}/assets/js/upload/upload.js"></script>
 <script src="${staticPath}/assets/js/plugins/plupload-2.1.2/js/moxie.js"></script>
 <script src="${staticPath}/assets/js/plugins/plupload-2.1.2/js/plupload.dev.js"></script>
+<script src="${staticPath}/assets/js/plugins/date-time/bootstrap-datepicker.js"></script>
+<script src="${staticPath}/assets/plugins/jquery/jquery.validate.min.js"></script>
 </@footerJS>
 
 <script>
     $(document).ready(function () {
+        $('.date-picker').datepicker({autoclose: true, todayHighlight: true,format:'yyyy-mm-dd'});
 
         initUploaders("upload_works_info", "windyeel", "http://young2016.s1.natapp.cc/");
         initUploaders_inner("zpxx_img", "windyeel", "http://young2016.s1.natapp.cc/", "zpxx_container", "zpxxImge");
         initUploaders_inner("jzrz_img", "windyeel", "http://young2016.s1.natapp.cc/", "jzrz_container", "jzrzImge");
-
 
         var $form = $("#works_info");
 

@@ -148,5 +148,28 @@
         </sql>
     </changeSet>
 
+    <changeSet author="SunZhongYang" id="15606137056-001">
+        <sql>
+            ALTER TABLE `dd_consumer` DROP COLUMN `create_by`;
+            ALTER TABLE `dd_consumer` DROP COLUMN `update_by`;
+            ALTER TABLE `dd_consumer` ADD COLUMN `create_by` int(11) DEFAULT NULL COMMENT '创建者';
+            ALTER TABLE `dd_consumer` ADD COLUMN `update_by` int(11) DEFAULT NULL COMMENT '更新者';
+        </sql>
+    </changeSet>
+
+    <changeSet author="SunZhongYang" id="15606137056-002">
+        <sql>
+            ALTER TABLE `dd_value_report` ADD COLUMN `zpxx_imge` varchar(256) DEFAULT NULL COMMENT '作品详细评估报告图片';
+            ALTER TABLE `dd_value_report` ADD COLUMN `jzrz_imge` varchar(256) DEFAULT NULL COMMENT '作品价值认证图片';
+        </sql>
+    </changeSet>
+
+    <changeSet author="SunZhongYang" id="15606137056-003">
+        <sql>
+            ALTER TABLE `dd_value_report` ADD COLUMN `jzyxsj` date DEFAULT NULL COMMENT '价值认证时间';
+        </sql>
+    </changeSet>
+
+
 
 </databaseChangeLog>

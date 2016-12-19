@@ -8,7 +8,7 @@
 	</sql>
 
 	<select id="getValueReportByGoodsId" parameterType="java.lang.Integer" resultType="ValueReport">
-		select * from dd_value_report WHERE goods_id = #{id};
+		select * from dd_value_report WHERE works_id = #{id};
 	</select>
 
 </mapper>
