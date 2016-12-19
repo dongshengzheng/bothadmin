@@ -1,52 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-						http://www.springframework.org/schema/beans/spring-beans.xsd
-						http://www.springframework.org/schema/context
-						http://www.springframework.org/schema/context/spring-context.xsd">
+	            http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                http://www.springframework.org/schema/util
+                http://www.springframework.org/schema/util/spring-util.xsd">
 
-    <!--属性占位文件引入，可以通过${属性名}获得属性文件中的内容 -->
-    <context:property-placeholder location="classpath:properties/override.properties" />
-
-
-    <!--<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">-->
-        <!--<property name="securityManager" ref="securityManager"/>-->
-        <!--<property name="loginUrl" value=""/>-->
-        <!--&lt;!&ndash;在controller中硬编码跳转&ndash;&gt;-->
-        <!--&lt;!&ndash;<property name="successUrl" value="/main"/>&ndash;&gt;-->
-        <!--<property name="unauthorizedUrl" value=""/>-->
-        <!--<property name="filters">-->
-            <!--<util:map>-->
-                <!--<entry key="authc" value-ref="formAuthenticationFilter"/>-->
-            <!--</util:map>-->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="loginUrl" value="/index"/>
+        <!--在controller中硬编码跳转-->
+        <!--<property name="successUrl" value="/main"/>-->
+        <property name="unauthorizedUrl" value=""/>
+        <property name="filters">
+            <util:map>
+                <entry key="authc" value-ref="formAuthenticationFilter"/>
+            </util:map>
+        </property>
+        <!--<property name="filterChainDefinitions">-->
+        <!--<value>-->
+        <!--/login = authc-->
+        <!--/logout = logout-->
+        <!--/authenticated = authc-->
+        <!--/** = user-->
+        <!--&lt;!&ndash;/login/tologin = anon&ndash;&gt;-->
+        <!--&lt;!&ndash;/logout = logout&ndash;&gt;-->
+        <!--&lt;!&ndash;/static/** = anon&ndash;&gt;-->
+        <!--&lt;!&ndash;&lt;!&ndash; /** = user”表示访问该地址的用户是身份验证通过或RememberMe登录的都可以 &ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;/user/** = authc&ndash;&gt;-->
+        <!--</value>-->
         <!--</property>-->
-    <!--</bean>-->
+    </bean>
 
-    <!--<bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">-->
-        <!--<property name="cacheManagerConfigFile" value="classpath:ehcache-shiro.xml"/>-->
-    <!--</bean>-->
+    <bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManagerConfigFile" value="classpath:ehcache-shiro.xml"/>
+    </bean>
 
-    <!--<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">-->
-        <!--<property name="realm" ref="myShiroRealm"/>-->
-        <!--<property name="cacheManager" ref="shiroEhcacheManager"/>-->
-        <!--&lt;!&ndash;<property name="sessionManager" ref="defaultWebSessionManager"/>&ndash;&gt;-->
-        <!--&lt;!&ndash;<property name="rememberMeManager" ref="rememberMeManager"/>&ndash;&gt;-->
-    <!--</bean>-->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="myShiroRealm"/>
+        <property name="cacheManager" ref="shiroEhcacheManager"/>
+        <!--<property name="sessionManager" ref="defaultWebSessionManager"/>-->
+        <!--<property name="rememberMeManager" ref="rememberMeManager"/>-->
+    </bean>
 
-    <!--<bean id="myShiroRealm" class="com.young.security.MyShiroRealm">-->
-        <!--&lt;!&ndash; userDao 用来实现用户名密码的查询 &ndash;&gt;-->
-        <!--<property name="userDao" ref="userDao"/>-->
-        <!--&lt;!&ndash;<property name="cacheManager" ref="shiroCacheManager"/>&ndash;&gt;-->
-    <!--</bean>-->
+    <bean id="myShiroRealm" class="com.young.security.MyShiroRealm">
+        <!-- userDao 用来实现用户名密码的查询 -->
+        <property name="userDao" ref="userDao"/>
+        <!--<property name="cacheManager" ref="shiroCacheManager"/>-->
+    </bean>
 
-    <!--<bean id="lifecycleBeanPostProcessor"-->
-          <!--class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>-->
+    <bean id="lifecycleBeanPostProcessor"
+          class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
 
 
-    <!--<bean id="formAuthenticationFilter"-->
-          <!--class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter"/>-->
+    <bean id="formAuthenticationFilter"
+          class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter"/>
+
 
 
 </beans>
