@@ -135,8 +135,8 @@ public class WorkController extends BaseController {
             List<Dict> kqdy = getWorksLevelDicByType("dd_kqdy");
             //todo  篆刻级别
             List<Dict> level = getWorksLevelDicByType("dd_level");
-            List<Dict> pinzhong = getWorksLevelDicByType("dd_dd_pinzhong");
-            List<Dict> zuopinleixing = getWorksLevelDicByType("zuopinleixing");
+            List<Dict> pinzhong = getWorksLevelDicByType("dd_pinzhong");
+            List<Dict> zuopinleixing = getWorksLevelDicByType("dd_zuopinleixing");
             //todo  工艺制作
             map.put("kqdy",kqdy);
             map.put("level",level);
