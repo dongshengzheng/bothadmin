@@ -1,6 +1,7 @@
 package com.fish.idle.site.web;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.fish.idle.service.modules.jsdd.entity.*;
 import com.fish.idle.service.modules.jsdd.service.*;
 import com.fish.idle.service.modules.sys.entity.Dict;
@@ -8,6 +9,7 @@ import com.fish.idle.service.modules.sys.service.IDictService;
 import com.fish.idle.service.util.Const;
 import com.fish.idle.service.util.StringUtils;
 import com.fish.idle.site.entity.GoodsInfoRequest;
+import com.fish.idle.site.entity.Paging;
 import com.fish.idle.site.entity.WorkInfoRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -51,6 +53,35 @@ public class WorkController extends BaseController {
 
     @Autowired
     private IDictService dictService;
+
+    @RequestMapping(value = "search",method = RequestMethod.GET)
+    public String search(ModelMap map,@RequestParam(value ="keywords",required = false) String keywords,
+                         @RequestParam(value = "start",required = false) Integer start,
+                         @RequestParam(value= "length",required = false) Integer length){
+        Paging paging = new Paging();
+        if(null == start){
+            start = 1;
+        }
+        if(null == length){
+            length = 6;
+        }
+        //首页全部作品(pageSize=6)
+        EntityWrapper<Works> ew = getEntityWrapper();
+        if(org.apache.commons.lang.StringUtils.isNotBlank(keywords)){
+            ew.addFilter("name like {0}","%"+keywords.trim()+"%");
+        }
+        Page<Works> page = worksService.selectPage(getPage(start,length),ew);
+        for (Works item:page.getRecords()){
+            String[] imageArr = item.getImages().split(",");
+            item.setImages(imgOssPath + imageArr[0]);
+        }
+        paging.setData(page.getRecords());
+        paging.setTotalPages(page.getPages());
+        paging.setCurrent(start);
+        paging.setPageSize(length);
+        map.put("worksPaging",paging);
+        return "search/search_works_result";
+    }
 
 
     @RequestMapping(value = "detail/{goodsId}", method = RequestMethod.GET)
