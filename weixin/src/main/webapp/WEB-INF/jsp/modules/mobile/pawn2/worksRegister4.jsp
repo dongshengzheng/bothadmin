@@ -82,12 +82,12 @@
             height: 12%;
         }
 
-        #certificate-text1 {
+        .certificate-text1 {
             float: left;
             margin-top: 10px;
         }
 
-        #certificate-text2 {
+        .certificate-text2 {
             margin-top: 10px;
             margin-left: 50%;
             background-image: url("${ctxStatic}/img//cut/certificate-icon.png");
@@ -121,9 +121,10 @@
                 <!--</div>-->
             </div>
         </div>
+        <input id="zpxxImge" name="zpxxImge" type="hidden" value="">
         <div class="weui-cell certificate-text">
-            <span id="certificate-text1">鉴定证书</span>
-            <span id="certificate-text2">未上传</span>
+            <span class="certificate-text1">鉴定证书</span>
+            <a id="uploaderInput2" class="certificate-text2">未上传</a>
         </div>
     </div>
 
@@ -131,7 +132,10 @@
         <p>下一步即表示同意为收藏者信息,可不填写直接提交</p>
         <hr>
         <div class="weui-form-preview__ft">
-            <a class="weui-form-preview__btn weui-form-preview__btn_default" href="javascript:">存为草稿</a>
+            <input name="draftYN" type="hidden" value="NO">
+            <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" id="draftSubmit">
+                存为草稿
+            </button>
             <button id="confirmSubmit" type="button" class="weui-form-preview__btn weui-form-preview__btn_primary"
                     href="javascript:">
                 确认提交
@@ -150,7 +154,7 @@
     <div class="weui-mask" id="iosMask" style="display: none"></div>
     <div class="weui-actionsheet" id="iosActionsheet">
         <div class="weui-actionsheet__menu">
-            <div class="weui-actionsheet__cell">删除</div>
+            <div class="weui-actionsheet__cell" id="del">删除</div>
             <div class="weui-actionsheet__cell" id="prelook">预览</div>
         </div>
         <div class="weui-actionsheet__action">
@@ -158,6 +162,7 @@
         </div>
     </div>
 </div>
+
 
 <div id="dialogs">
     <div class="js_dialog" id="iosDialog2" style="display: none;">
@@ -184,18 +189,17 @@
 
         $iosMask.on('click', hideActionSheet);
         $('#iosActionsheetCancel').on('click', hideActionSheet);
-        $("#certificate-text2").on("click", function () {
+        function haveUpload() {
             $iosActionsheet.addClass('weui-actionsheet_toggle');
             $iosMask.fadeIn(200);
-        });
+        }
+
+//        $("#haveUpload").on("click", function () {
+//
+//        });
 
         $('#dialogs').on('click', '.weui-dialog__btn', function () {
             $(this).parents('.js_dialog').fadeOut(200);
-        });
-
-        $('#prelook').on('click', function () {
-            $iosDialog1.fadeIn(200);
-            hideActionSheet();
         });
 
         var $iosDialog2 = $('#iosDialog2');
@@ -207,6 +211,35 @@
         $('#confirmSubmit').on('click', function () {
             $iosDialog2.fadeIn(200);
         });
+
+        initUploaders2("windyeel", "http://steins00gate.s1.natapp.cc/");
+
+        $('#prelook').on('click', function () {
+            hideActionSheet();
+        });
+
+        $('#del').on('click', function () {
+            $('.weui-uploader__file').remove();
+            $('.certificate-text2').html("未上传").attr('id', 'uploaderInput2');
+            hideActionSheet();
+        })
+
+        $('#confirmSubmit').on('click', function () {
+            var lis = $('.zpxxImgeUpload');
+            var imgUrls = "";
+            var len = lis.length;
+            if (len > 0) {
+                lis.each(function () {
+                    var li = $(this);
+                    var str = li.css("background-image");
+                    var length = str.length;
+                    var url = str.substring(5, length - 2);
+                    imgUrls += url + '|';
+                })
+                imgUrls = imgUrls.substring(0, imgUrls.length - 1);
+            }
+            $('#zpxxImge').val(imgUrls);
+        })
 
 
     });

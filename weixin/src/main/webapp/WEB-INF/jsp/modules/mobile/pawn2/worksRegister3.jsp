@@ -155,7 +155,10 @@
             <!--<p>下一步即表示同意<a href="#">《金石典当登记申请记录》</a></p>-->
             <hr>
             <div class="weui-form-preview__ft">
-                <a class="weui-form-preview__btn weui-form-preview__btn_default" href="javascript:">存为草稿</a>
+                <input id="draftYN" name="draftYN" type="hidden" value="NO">
+                <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" id="draftSubmit">
+                    存为草稿
+                </button>
                 <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary">
                     下一步
                 </button>

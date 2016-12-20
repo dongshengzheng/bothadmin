@@ -122,7 +122,10 @@
             <p>下一步即表示同意<a href="javascript:;" id="register-rule">《金石典当登记申请记录》</a></p>
             <hr>
             <div class="weui-form-preview__ft">
-                <a class="weui-form-preview__btn weui-form-preview__btn_default" href="javascript:">存为草稿</a>
+                <input id="draftYN" name="draftYN" type="hidden" value="NO">
+                <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" id="draftSubmit">
+                    存为草稿
+                </button>
                 <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" id="trueSubmit">
                     下一步
                 </button>
@@ -187,6 +190,24 @@
                 imgUrls = imgUrls.substring(0, imgUrls.length - 1);
             }
             $('#imgUrls').val(imgUrls);
+        })
+
+        $('#draftSubmit').on('click', function () {
+            var lis = $('li');
+            var imgUrls = "";
+            var len = lis.length;
+            if (len > 0) {
+                lis.each(function () {
+                    var li = $(this);
+                    var str = li.css("background-image");
+                    var length = str.length;
+                    var url = str.substring(5, length - 2);
+                    imgUrls += url + '|';
+                })
+                imgUrls = imgUrls.substring(0, imgUrls.length - 1);
+            }
+            $('#imgUrls').val(imgUrls);
+            $('#draftYN').val('yes');
         })
 
     });

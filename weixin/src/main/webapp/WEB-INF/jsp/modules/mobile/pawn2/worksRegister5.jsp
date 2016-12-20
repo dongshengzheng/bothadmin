@@ -66,31 +66,31 @@
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">收藏者</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input class="weui-input" type="tel" placeholder="请输入姓名">
+                    <input name="name" class="weui-input" type="tel" placeholder="请输入姓名">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">身份证</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input class="weui-input" type="tel" placeholder="可不填写">
+                    <input name="no" class="weui-input" type="tel" placeholder="可不填写">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">联系地址</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input class="weui-input" type="tel" placeholder="请输入详细地址">
+                    <input name="address" class="weui-input" type="tel" placeholder="请输入详细地址">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">联系方式</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input class="weui-input" type="tel" placeholder="请输入联系方式">
+                    <input name="phone" class="weui-input" type="tel" placeholder="请输入联系方式">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">收藏时间</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input class="weui-input" type="tel" placeholder="请选择时间">
+                    <input name="datetimeString" class="weui-input" type="tel" placeholder="请选择时间">
                 </div>
             </div>
             <div class="weui-cell">
@@ -103,7 +103,10 @@
             <!--<p>下一步即表示同意<a href="#">《金石典当登记申请记录》</a></p>-->
             <hr>
             <div class="weui-form-preview__ft">
-                <a class="weui-form-preview__btn weui-form-preview__btn_default" href="javascript:">存为草稿</a>
+                <input id="draftYN" name="draftYN" type="hidden" value="NO">
+                <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" id="draftSubmit">
+                    存为草稿
+                </button>
                 <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">
                     确认提交
                 </button>
