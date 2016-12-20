@@ -24,12 +24,12 @@
         display: inline-block;
     }
 
-    #certificate-text1 {
+    .certificate-text1 {
         float: left;
         margin-top: 10px;
     }
 
-    #certificate-text2 {
+    .certificate-text2 {
         float: right;
         margin-top: 10px;
         background-image: url("${ctxStatic}/img/cut/certificate-icon.png");
@@ -53,13 +53,15 @@
         </div>
     </div>
     <div class="weui-cell">
-        <span id="certificate-text1">鉴定证书</span>
-        <c:if test="${!empty certificateImg}">
-            <span id="certificate-text2">已上传</span>
-        </c:if>
-        <c:if test="${empty certificateImg}">
-            <span id="certificate-text2">未上传</span>
-        </c:if>
+        <div class="weui-cell certificate-text">
+            <span class="certificate-text1">鉴定证书</span>
+            <c:if test="${!empty certificateImg}">
+                <a id="haveUpload" class="certificate-text2">已上传</a>
+            </c:if>
+            <c:if test="${empty certificateImg}">
+                <a id="uploaderInput2" class="certificate-text2">未上传</a>
+            </c:if>
+        </div>
     </div>
 </div>
 
@@ -103,5 +105,13 @@
             $iosDialog1.fadeIn(200);
             hideActionSheet();
         });
+
+        initUploaders2("windyeel", "http://steins00gate.s1.natapp.cc/");
+
+        $('#del').on('click', function () {
+            $('.weui-uploader__file').remove();
+            $('.certificate-text2').html("未上传").attr('id', 'uploaderInput2');
+            hideActionSheet();
+        })
     });
 </script>

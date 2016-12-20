@@ -61,6 +61,8 @@ public class MobileController extends BaseController {
     private IFollowHistoryService followHistoryService;
 
     @Autowired
+    private IValueReportService valueReportService;
+    @Autowired
     private WxMpConfigStorage configStorage;
 
     @Autowired
@@ -766,7 +768,8 @@ public class MobileController extends BaseController {
                                  @RequestParam(required = false) String worksName,
                                  @RequestParam(required = false) String consumerNo,
                                  @RequestParam(required = false) String worksRemarks,
-                                 @RequestParam(required = false) String imgUrls) {
+                                 @RequestParam(required = false) String imgUrls,
+                                 @RequestParam(required = false) String draftYN) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
         User u = new User();
@@ -782,6 +785,9 @@ public class MobileController extends BaseController {
         }
         works.setName(worksName);
         works.setRemarks(worksRemarks);
+        if ("yes".equals(draftYN)) {
+            works.setType(Const.WORKS_STATUS_DRAFT);
+        }
         worksService.insert(works);
         consumer.setName(works.getProvideBy());
         consumer.setType("1");
@@ -801,9 +807,12 @@ public class MobileController extends BaseController {
                 imagesService.insert(images);
             }
         }
-
+        if ("yes".equals(draftYN)) {
+            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/pawn2/my/myWorks?showwhich=draft";
+        }
         session.setAttribute("registerWorksName", works.getName());
         session.setAttribute("registerWorksId", worksId);
+        session.setAttribute("registerWorks", works);
         return "modules/mobile/pawn2/worksRegister2";
     }
 
@@ -829,7 +838,8 @@ public class MobileController extends BaseController {
                                  @RequestParam(required = false) String kqdy,
                                  @RequestParam(required = false) String maker,
                                  @RequestParam(required = false) String makeTimeString,
-                                 @RequestParam(required = false) String worksMeanning) {
+                                 @RequestParam(required = false) String worksMeanning,
+                                 @RequestParam(required = false) String draftYN) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
         User u = new User();
@@ -838,8 +848,7 @@ public class MobileController extends BaseController {
         if (user == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
-        int id = (int) session.getAttribute("registerWorksId");
-        Works works = worksService.selectById(id);
+        Works works = (Works) session.getAttribute("registerWorks");
         works.setBreed(breed);
         works.setType(type);
         works.setLength(length);
@@ -855,7 +864,14 @@ public class MobileController extends BaseController {
             works.setMakeTime(makeTime);
         }
         works.setWorksMeanning(worksMeanning);
+        if ("yes".equals(draftYN)) {
+            works.setType(Const.WORKS_STATUS_DRAFT);
+        }
         worksService.updateById(works);
+        if ("yes".equals(draftYN)) {
+            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/pawn2/my/myWorks?showwhich=draft";
+        }
+        session.setAttribute("registerWorks", works);
         return "modules/mobile/pawn2/worksRegister3";
     }
 
@@ -871,7 +887,8 @@ public class MobileController extends BaseController {
                                  HttpServletResponse response,
                                  ModelMap map,
                                  WorksLevel worksLevel,
-                                 @RequestParam(required = false) String certificateImgUrl) {
+                                 @RequestParam(required = false) String certificateImgUrl,
+                                 @RequestParam(required = false) String draftYN) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
         User u = new User();
@@ -880,14 +897,21 @@ public class MobileController extends BaseController {
         if (user == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
-        int id = (int) session.getAttribute("registerWorksId");
-        worksLevel.setWorksId(id);
+        int worksId = (int) session.getAttribute("registerWorksId");
+        worksLevel.setWorksId(worksId);
         worksLevelService.insert(worksLevel);
 
         Images images = new Images();
         images.setUrl(certificateImgUrl);
         images.setType(Const.IMAGES_CERTIFICATE);
-        images.setTargetId(id);
+        images.setTargetId(worksId);
+
+        if ("yes".equals(draftYN)) {
+            Works works = (Works) session.getAttribute("registerWorks");
+            works.setType(Const.WORKS_STATUS_DRAFT);
+            worksService.updateById(works);
+            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/pawn2/my/myWorks?showwhich=draft";
+        }
 
         return "modules/mobile/pawn2/worksRegister4";
     }
@@ -902,7 +926,9 @@ public class MobileController extends BaseController {
     public String worksRegister5(HttpSession session,
                                  HttpServletRequest request,
                                  HttpServletResponse response,
-                                 ModelMap map) {
+                                 ModelMap map,
+                                 ValueReport valueReport,
+                                 @RequestParam(required = false) String draftYN) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
         User u = new User();
@@ -911,7 +937,61 @@ public class MobileController extends BaseController {
         if (user == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
+        Integer worksId = (Integer) session.getAttribute("registerWorksId");
+        valueReport.setWorksId(worksId);
+        valueReportService.insert(valueReport);
+
+        if ("yes".equals(draftYN)) {
+            Works works = (Works) session.getAttribute("registerWorks");
+            works.setType(Const.WORKS_STATUS_DRAFT);
+            worksService.updateById(works);
+            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/pawn2/my/myWorks?showwhich=draft";
+        }
+
         return "modules/mobile/pawn2/worksRegister5";
+    }
+
+    /**
+     * 作品完成
+     *
+     * @return
+     */
+    @RequestMapping(value = "worksRegisterComplete", method = RequestMethod.POST)
+    @OAuthRequired
+    public String worksRegisterComplete(HttpSession session,
+                                        HttpServletRequest request,
+                                        HttpServletResponse response,
+                                        ModelMap map,
+                                        ValueReport valueReport,
+                                        @RequestParam(required = false) String draftYN,
+                                        Consumer consumer,
+                                        @RequestParam(required = false) String dateTimeString) {
+        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+        String openId = wxMpUser.getOpenId();
+        User u = new User();
+        u.setOpenId(openId);
+        User user = userService.selectOne(u);
+        if (user == null) {
+            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+        }
+
+        Integer worksId = (Integer) session.getAttribute("registerWorksId");
+        consumer.setWorksId(worksId);
+        consumer.setType("2");
+        if (dateTimeString != null && dateTimeString.trim().length() > 0) {
+            Date datetime = DateUtil.parseDate(dateTimeString, "yyyy-MM-dd");
+            consumer.setDatetime(datetime);
+        }
+        consumerService.insert(consumer);
+
+        if ("yes".equals(draftYN)) {
+            Works works = (Works) session.getAttribute("registerWorks");
+            works.setType(Const.WORKS_STATUS_DRAFT);
+            worksService.updateById(works);
+            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/pawn2/my/myWorks?showwhich=draft";
+        }
+
+        return "modules/mobile/pawn2/my/myWorks?showwhich=now";
     }
 
     /**
@@ -1001,7 +1081,6 @@ public class MobileController extends BaseController {
         consumer.setType("1");
         consumer.setWorksId(id);
         worksLevel.setWorksId(id);
-
 
         WorksLevel wl = new WorksLevel();
         wl.setWorksId(id);
