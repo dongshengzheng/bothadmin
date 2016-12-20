@@ -40,15 +40,15 @@ public class NavigaterTag extends TagSupport {
         }
         JspWriter writer = pageContext.getOut();
         try {
-            writer.append("<ol class='breadcrumb'>").append("	<li><a href='./'><i class='icon-home'></i> 主页</a></li>");
+            writer.append("<div class='page-bar'><ul class='page-breadcrumb'>").append("	<li><a href='./'><i class='icon-home'></i> 主页</a></li>");
             if (menus != null && !menus.isEmpty()) {
-                writer.append("	<li class='active'>").append(menus.get(0).getMenuName()).append("</li>");
+                writer.append("	<li><i class='fa fa-circle'></i>").append(menus.get(0).getMenuName()).append("</li>");
                 if (menus.size() == 2) {
-                    writer.append("	<li><a href='").append(menus.get(1).getMenuUrl()).append("' data-target='navTab'>")
+                    writer.append("	<li><i class='fa fa-circle'></i><a href='").append(menus.get(1).getMenuUrl()).append("' data-target='navTab'>")
                             .append(menus.get(1).getMenuName()).append("</a></li>");
                 }
             }
-            writer.append("</ol>");
+            writer.append("</ul></div>");
             writer.flush();
         } catch (IOException e) {
             throw new JspException(e.getMessage(), e);

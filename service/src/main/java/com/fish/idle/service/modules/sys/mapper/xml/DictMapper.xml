@@ -4,6 +4,6 @@
 
 	<!-- 通用查询结果列-->
 	<sql id="Base_Column_List">
-		id, `value`, `label`, `type`, description, sort, parent_id AS parentId, create_by AS createBy, create_date AS createDate, update_by AS updateBy, update_date AS updateDate, remarks, del_flag AS delFlag
+		id, `value`, `label`, `type`, description, sort, parent_id AS parentId, remarks, del_flag AS delFlag
 	</sql>
 </mapper>

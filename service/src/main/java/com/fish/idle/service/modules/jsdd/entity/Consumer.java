@@ -60,7 +60,7 @@ public class Consumer implements Serializable {
     private Integer delFlag;
 
     /**
-     * 用户类型(1提供者2收藏者  王顺12.16备注)
+     * 用户类型(1提供者 2收藏者  王顺12.16备注)
      */
     private String type;
 
@@ -255,5 +255,13 @@ public class Consumer implements Serializable {
 
     public void setUpdateBy(Integer updateBy) {
         this.updateBy = updateBy;
+    }
+
+    public Consumer() {
+    }
+
+    public Consumer(String type, Integer worksId) {
+        this.type = type;
+        this.worksId = worksId;
     }
 }

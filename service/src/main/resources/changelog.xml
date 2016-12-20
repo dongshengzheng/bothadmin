@@ -174,7 +174,16 @@
             ALTER TABLE `dd_value_report` ADD COLUMN `jzyxsj` date DEFAULT NULL COMMENT '价值认证时间';
         </sql>
     </changeSet>
-
-
+    <changeSet author="SunHan" id="15862614903-013">
+        <sql dbms="mysql">
+            ALTER TABLE `sys_dict` DROP COLUMN `create_by`, DROP COLUMN `create_date`, DROP COLUMN
+            `update_by`, DROP COLUMN `update_date`;
+        </sql>
+    </changeSet>
+    <changeSet author="SunHan" id="15862614903-014">
+        <sql dbms="mysql">
+            ALTER TABLE `dd_report` CHANGE COLUMN `works_id` `works_id` int(11) DEFAULT NULL COMMENT '作品Id';
+        </sql>
+    </changeSet>
 
 </databaseChangeLog>

@@ -41,7 +41,8 @@
     <link href="${global}/plugins/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet"type="text/css">
     <link href="${global}/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css">
     <link href="${global}/plugins/Editor-1.5.4/css/editor.dataTables.min.css" rel="stylesheet" type="text/css">
-
+    <link href="${global}/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css">
+    <link href="${global}/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css">
     <!-- END GLOBAL MANDATORY STYLES -->
     <!-- BEGIN THEME GLOBAL STYLES -->
 
@@ -57,7 +58,7 @@
     <link type="image/png" href="${ctx}/static/img/great_vision.png" rel="shortcut icon">
     <link rel="shortcut icon" href="${ctx}/favicon.ico" />
 </head>
-<body onhashchange="hashChange()" class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
+<body onhashchange="hashChange()" class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
 
 <jsp:include page="include/header.jsp"></jsp:include>
 <div class="clearfix"></div>
@@ -102,6 +103,8 @@
 <script src="${global}/plugins/Editor-1.5.4/js/dataTables.editor.min.js"></script>
 
 <script src="${global}/plugins/bootstrap-dialog/bootstrap-dialog.min.js"></script>
+<script src="${global}/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
+
 <!-- END CORE PLUGINS -->
 <!-- BEGIN THEME GLOBAL SCRIPTS -->
 <script src="${global}/scripts/app.min.js" type="text/javascript"></script>
@@ -131,13 +134,16 @@
         if (window.location.hash)
             url = window.location.hash.substring(1);
         else
-            url = "account";
+            url = "user";
 
-        $("a[href='"+url+"']").click();
+        if($("a[href='"+url+"']").length > 0){
+            $("a[href='"+url+"']").click();
+        }else{
+            Layout.loadAjaxContent(url);
+        }
     }
     function hashChange(){
         intPage();
     }
 </script>
-
 </html>
