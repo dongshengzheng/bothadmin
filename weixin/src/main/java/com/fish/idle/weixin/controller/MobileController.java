@@ -62,6 +62,10 @@ public class MobileController extends BaseController {
 
     @Autowired
     private IValueReportService valueReportService;
+
+    @Autowired
+    private ITransferHistoryService transferHistoryService;
+
     @Autowired
     private WxMpConfigStorage configStorage;
 
@@ -595,8 +599,34 @@ public class MobileController extends BaseController {
         if (user == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
-        works.setStatus(Const.WORKS_STATUS_PASS);
         return "modules/mobile/pawn2/pointSave";
+    }
+
+    /**
+     * 积分充值完成
+     *
+     * @return
+     */
+    @RequestMapping(value = "my/pointSaveComplete", method = RequestMethod.GET)
+    @OAuthRequired
+    public String pointSaveComplete(HttpSession session,
+                                    Works works,
+                                    HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    ModelMap map,
+                                    @RequestParam(required = false) int score) {
+        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+        String openId = wxMpUser.getOpenId();
+        User u = new User();
+        u.setOpenId(openId);
+        User user = userService.selectOne(u);
+        if (user == null) {
+            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+        }
+
+        //充值接口
+
+        return "modules/mobile/pawn2/my";
     }
 
     /**
@@ -619,8 +649,34 @@ public class MobileController extends BaseController {
         if (user == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
-        works.setStatus(Const.WORKS_STATUS_PASS);
         return "modules/mobile/pawn2/pointWithdraw";
+    }
+
+    /**
+     * 积分提现完成
+     *
+     * @return
+     */
+    @RequestMapping(value = "my/pointWithdrawComplete", method = RequestMethod.GET)
+    @OAuthRequired
+    public String pointWithdrawComplete(HttpSession session,
+                                        Works works,
+                                        HttpServletRequest request,
+                                        HttpServletResponse response,
+                                        ModelMap map,
+                                        @RequestParam(required = false) int score) {
+        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+        String openId = wxMpUser.getOpenId();
+        User u = new User();
+        u.setOpenId(openId);
+        User user = userService.selectOne(u);
+        if (user == null) {
+            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+        }
+
+        //提现接口
+
+        return "modules/mobile/pawn2/my";
     }
 
     /**
@@ -693,34 +749,20 @@ public class MobileController extends BaseController {
         if (user == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
-        Works works1 = new Works();
-        EntityWrapper ew1 = new EntityWrapper(works1);
-        List<Integer> transferIds;
 
+        Integer userId = user.getId();
+
+        //转让作品集合
+        List<Works> transferWorksList = worksService.transferWorksList(userId);
 
         //收藏作品集合
-        FollowHistory fhWorks = new FollowHistory();
-        fhWorks.setType(0);
-        fhWorks.setUserId(user.getId());
-        EntityWrapper ew2 = new EntityWrapper(fhWorks);
-        List<FollowHistory> followHistoryList = followHistoryService.selectList(ew2);
-        List<Integer> fhWorksIds = new ArrayList<>();
-        for (FollowHistory fh : followHistoryList) {
-            fhWorksIds.add(fh.getTargetId());
-        }
-        List<Works> fhWorksList = new ArrayList<>();
-        if (fhWorksIds.size() > 0) {
-            Works works2 = new Works();
-            EntityWrapper ew3 = new EntityWrapper(works2);
-            ew3.in("id", fhWorksIds);
-            fhWorksList = worksService.selectList(ew3);
-        }
+        List<Works> fhWorksList = worksService.collectionWorksList(userId);
 
-
-        //        关注用户集合
-        List<User> fhPeopleList = userService.searchFocusById(user.getId());
+        //关注用户集合
+        List<User> fhPeopleList = userService.searchFocusById(userId);
 
         map.put("showwhich", showwhich);
+        map.put("transferWorksList", transferWorksList);
         map.put("fhWorksList", fhWorksList);
         map.put("fhPeopleList", fhPeopleList);
 
@@ -991,8 +1033,63 @@ public class MobileController extends BaseController {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/pawn2/my/myWorks?showwhich=draft";
         }
 
-        return "modules/mobile/pawn2/my/myWorks?showwhich=now";
+        return "modules/mobile/pawn2/myWorks?showwhich=now";
     }
+
+    /**
+     * 转让完成
+     *
+     * @return
+     */
+    @RequestMapping(value = "transferComplete", method = RequestMethod.POST)
+    @OAuthRequired
+    public String transferComplete(HttpSession session,
+                                   HttpServletRequest request,
+                                   HttpServletResponse response,
+                                   ModelMap map,
+                                   TransferHistory transferHistory) {
+        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+        String openId = wxMpUser.getOpenId();
+        User u = new User();
+        u.setOpenId(openId);
+        User user = userService.selectOne(u);
+        if (user == null) {
+            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+        }
+        transferHistory.setStatus(Const.TRANSFER_STATUS_WAIT);
+        transferHistoryService.insert(transferHistory);
+
+        return "redirect:" + configStorage.getOauth2redirectUri()
+                + "/mobile/pawn/my/transferCollectionFocus?showwhich=transfer";
+    }
+
+    /**
+     * 跳往转让历史页面
+     *
+     * @return
+     */
+    @RequestMapping(value = "transferHistory", method = RequestMethod.GET)
+    @OAuthRequired
+    public String transferHistory(HttpSession session,
+                                  HttpServletRequest request,
+                                  HttpServletResponse response,
+                                  ModelMap map,
+                                  @RequestParam(required = false) Integer worksId) {
+        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+        String openId = wxMpUser.getOpenId();
+        User u = new User();
+        u.setOpenId(openId);
+        User user = userService.selectOne(u);
+        if (user == null) {
+            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+        }
+
+        List<TransferHistory> transferHistoryList = transferHistoryService.thContainUsersInfo(worksId);
+
+        map.put("transferHistoryList", transferHistoryList);
+        return "modules/mobile/pawn2/transferHistory";
+    }
+
 
     /**
      * 作品编辑页面
@@ -1099,6 +1196,7 @@ public class MobileController extends BaseController {
 
         return "modules/mobile/pawn2/my";
     }
+
 
 }
 

@@ -212,7 +212,7 @@
             $iosDialog2.fadeIn(200);
         });
 
-        initUploaders2("windyeel", "http://steins00gate.s1.natapp.cc/");
+        initUploaders2("windyeel", "http://steins00gate.s1.758kongbao.com/");
 
         $('#prelook').on('click', function () {
             hideActionSheet();

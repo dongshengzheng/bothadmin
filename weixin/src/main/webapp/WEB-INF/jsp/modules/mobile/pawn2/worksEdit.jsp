@@ -176,7 +176,7 @@
 
         });
 
-        initUploaders("windyeel", "http://steins00gate.s1.natapp.cc/");
+        initUploaders("windyeel", "http://steins00gate.s1.758kongbao.com/");
 
         $(function () {
             $('.weui-navbar__item').on('click', function () {

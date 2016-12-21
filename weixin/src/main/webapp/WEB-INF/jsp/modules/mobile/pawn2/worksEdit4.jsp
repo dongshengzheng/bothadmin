@@ -106,7 +106,7 @@
             hideActionSheet();
         });
 
-        initUploaders2("windyeel", "http://steins00gate.s1.natapp.cc/");
+        initUploaders2("windyeel", "http://steins00gate.s1.758kongbao.com/");
 
         $('#del').on('click', function () {
             $('.weui-uploader__file').remove();
