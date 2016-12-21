@@ -1,10 +1,15 @@
 package com.fish.idle.site.web;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.fish.idle.service.modules.jsdd.entity.*;
 import com.fish.idle.service.modules.jsdd.service.*;
+import com.fish.idle.service.modules.sys.entity.Dict;
+import com.fish.idle.service.modules.sys.service.IDictService;
 import com.fish.idle.service.util.Const;
 import com.fish.idle.service.util.StringUtils;
 import com.fish.idle.site.entity.GoodsInfoRequest;
+import com.fish.idle.site.entity.Paging;
 import com.fish.idle.site.entity.WorkInfoRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -44,6 +49,39 @@ public class WorkController extends BaseController {
 
     @Autowired
     private IWorksService worksService;
+
+
+    @Autowired
+    private IDictService dictService;
+
+    @RequestMapping(value = "search",method = RequestMethod.GET)
+    public String search(ModelMap map,@RequestParam(value ="keywords",required = false) String keywords,
+                         @RequestParam(value = "start",required = false) Integer start,
+                         @RequestParam(value= "length",required = false) Integer length){
+        Paging paging = new Paging();
+        if(null == start){
+            start = 1;
+        }
+        if(null == length){
+            length = 6;
+        }
+        //首页全部作品(pageSize=6)
+        EntityWrapper<Works> ew = getEntityWrapper();
+        if(org.apache.commons.lang.StringUtils.isNotBlank(keywords)){
+            ew.addFilter("name like {0}","%"+keywords.trim()+"%");
+        }
+        Page<Works> page = worksService.selectPage(getPage(start,length),ew);
+        for (Works item:page.getRecords()){
+            String[] imageArr = item.getImages().split(",");
+            item.setImages(imgOssPath + imageArr[0]);
+        }
+        paging.setData(page.getRecords());
+        paging.setTotalPages(page.getPages());
+        paging.setCurrent(start);
+        paging.setPageSize(length);
+        map.put("worksPaging",paging);
+        return "search/search_works_result";
+    }
 
 
     @RequestMapping(value = "detail/{goodsId}", method = RequestMethod.GET)
@@ -124,11 +162,24 @@ public class WorkController extends BaseController {
         consumer.setDelFlag(Const.DEL_FLAG_NORMAL);
         boolean isConsumerOk = consumerService.insert(consumer);
         if (isWorkOk && isConsumerOk) {
+            //矿区地域
+            List<Dict> kqdy = getWorksLevelDicByType("dd_kqdy");
+            //todo  篆刻级别
+            List<Dict> level = getWorksLevelDicByType("dd_level");
+            List<Dict> pinzhong = getWorksLevelDicByType("dd_pinzhong");
+            List<Dict> zuopinleixing = getWorksLevelDicByType("dd_zuopinleixing");
+            //todo  工艺制作
+            map.put("kqdy",kqdy);
+            map.put("level",level);
+            map.put("pinzhong",pinzhong);
+            map.put("zuopinleixing",zuopinleixing);
             map.put("goodsName", works.getName());
             map.put("goodsId", works.getId());
             map.put("success", true);
             map.put("msg", "添加成功");
             map.put("step", 2);
+
+
         } else {
             map.put("success", false);
             map.put("msg", "添加失败");
@@ -168,6 +219,37 @@ public class WorkController extends BaseController {
                 works.setWorksMeanning(workInfoRequest.getWorksExplanation());
                 boolean isOk = worksService.updateById(works);
                 if (isOk) {
+                    //质地一
+                    List<Dict> zhidi1 = getWorksLevelDicByType("dd_zhidi");
+                    List<Dict> zhidi2 = getWorksLevelDicByType("dd_zhidi2");
+                    List<Dict> ganguan = getWorksLevelDicByType("dd_ganguan");
+                    List<Dict> moshidu = getWorksLevelDicByType("dd_moshidu");
+                    List<Dict> xueliang = getWorksLevelDicByType("dd_xueliang");
+                    List<Dict> xuese = getWorksLevelDicByType("dd_xuese");
+                    List<Dict> xuexing = getWorksLevelDicByType("dd_xuexing");
+                    List<Dict> nongyandu = getWorksLevelDicByType("dd_nongyandu");
+                    List<Dict> jingdu = getWorksLevelDicByType("dd_jingdu");
+                    List<Dict> dise = getWorksLevelDicByType("dd_dise");
+                    //活经
+                    List<Dict> liu = getWorksLevelDicByType("dd_liu");
+                    List<Dict> lie = getWorksLevelDicByType("dd_lie");
+//                    印章含血面
+                    List<Dict> mian = getWorksLevelDicByType("dd_mian");
+                    List<Dict> hanxuefangshi = getWorksLevelDicByType("dd_hanxuefangshi");
+                    map.put("zhidi1",zhidi1);
+                    map.put("zhidi2",zhidi2);
+                    map.put("ganguan",ganguan);
+                    map.put("moshidu",moshidu);
+                    map.put("xueliang",xueliang);
+                    map.put("xuese",xuese);
+                    map.put("xuexing",xuexing);
+                    map.put("nongyandu",nongyandu);
+                    map.put("jingdu",jingdu);
+                    map.put("dise",dise);
+                    map.put("liu",liu);
+                    map.put("lie",lie);
+                    map.put("mian",mian);
+                    map.put("hanxuefangshi",hanxuefangshi);
                     map.put("goodsName", works.getName());
                     map.put("goodsId", works.getId());
                     map.put("step", 3);
@@ -316,6 +398,14 @@ public class WorkController extends BaseController {
     public void initBinder(WebDataBinder binder) {
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
+    }
+
+//    获取作品登记字典表
+    private List<Dict> getWorksLevelDicByType(String type){
+        EntityWrapper entityWrapper = new EntityWrapper();
+        entityWrapper.addFilter("type={0}",type);
+        List<Dict> list = dictService.selectList(entityWrapper);
+        return list;
     }
 
 

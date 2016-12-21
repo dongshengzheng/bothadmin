@@ -48,7 +48,6 @@ public class DashboardController extends BaseController{
             String[] imageArr = item.getImages().split(",");
             item.setImages(imgOssPath + imageArr[0]);
         }
-
         paging.setData(page.getRecords());
         paging.setTotalPages(page.getPages());
         paging.setCurrent(start);
@@ -56,5 +55,6 @@ public class DashboardController extends BaseController{
         map.put("worksPaging",paging);
         return "index";
     }
+
 
 }

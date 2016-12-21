@@ -6,8 +6,10 @@
 <link rel="stylesheet" href="${staticPath}/assets/css/pages/profile.css">
 <link rel="stylesheet" href="${staticPath}/assets/css/pages/shortcode_timeline2.css">
 <link rel="stylesheet" href="${staticPath}/assets/css/datepicker.css">
+<link rel="stylesheet" href="${staticPath}/assets/js/chosen/chosen.min.css">
 </@htmlHead>
 <@htmlBody>
+<hr/>
 
 <div class="wrapper">
     <#if step == 1>
@@ -122,10 +124,12 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="breed">品种</label>
                                 <div class="col-sm-10">
-                                    <select id="breed" class="form-control" name="breed">
-                                        <option value="1">水晶</option>
-                                        <option value="1">鸡血石</option>
-                                        <option value="1">古玩</option>
+                                    <select data-placeholder="请选择" id="breed" class="form-control chzn-chosen" name="breed">
+                                        <option value=""></option>
+                                        <#list pinzhong as pz>
+                                            <option value="${pz.label}">${pz.label}</option>
+                                        </#list>
+
                                     </select>
                                 </div>
                             </div>
@@ -133,10 +137,11 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="name">作品类型</label>
                                 <div class="col-sm-10">
-                                    <select id="type" class="form-control" name="type">
-                                        <option value="1">水晶</option>
-                                        <option value="1">鸡血石</option>
-                                        <option value="1">古玩</option>
+                                    <select data-placeholder="请选择"  id="type" class="form-control chzn-chosen" name="type">
+                                        <option value=""></option>
+                                        <#list zuopinleixing as zplx>
+                                            <option value="${zplx.label}">${zplx.label}</option>
+                                        </#list>
                                     </select>
                                 </div>
                             </div>
@@ -169,10 +174,10 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="productionProcess">工艺制作</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" id="productionProcess" name="productionProcess">
-                                        <option value="1">水晶</option>
-                                        <option value="1">鸡血石</option>
-                                        <option value="1">古玩</option>
+                                    <select data-placeholder="请选择" class="form-control chzn-chosen" id="productionProcess" name="productionProcess">
+                                        <option value=""></option>
+                                        <option value="工艺制作">工艺制作</option>
+                                        <option value="工艺制作">工艺制作</option>
                                     </select>
                                 </div>
                             </div>
@@ -180,10 +185,11 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="sealCuttingLevel">篆刻级别</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" id="sealCuttingLevel" name="sealCuttingLevel">
-                                        <option value="1">水晶</option>
-                                        <option value="1">鸡血石</option>
-                                        <option value="1">古玩</option>
+                                    <select data-placeholder="请选择" class="form-control chzn-chosen" id="sealCuttingLevel" name="sealCuttingLevel">
+                                        <option value=""></option>
+                                        <#list level as lvl>
+                                            <option value="${lvl.label}">${lvl.label}</option>
+                                        </#list>
                                     </select>
                                 </div>
                             </div>
@@ -191,10 +197,11 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="mineArea">矿区地域</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" id="mineArea" name="mineArea">
-                                        <option value="1">水晶</option>
-                                        <option value="1">鸡血石</option>
-                                        <option value="1">古玩</option>
+                                    <select data-placeholder="请选择" class="form-control chzn-chosen" id="mineArea" name="mineArea">
+                                        <option value=""></option>
+                                        <#list kqdy as kq>
+                                            <option value="${kq.label}">${kq.label}</option>
+                                        </#list>
                                     </select>
                                 </div>
                             </div>
@@ -253,7 +260,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="name">作品名称</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="text" value="${goodsName}" disabled="disabled"/>
+                                    <input data-placehoder="" class="form-control" type="text" value="${goodsName}" disabled="disabled"/>
                                 </div>
 
                             </div>
@@ -261,10 +268,11 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="zhidi">质地一</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" name="zhidi">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
+                                    <select data-placeholder="请选择" class="form-control chzn-chosen" name="zhidi">
+                                        <option value=""></option>
+                                        <#list zhidi1 as zd1>
+                                            <option value="${zd1.label}">${zd1.label}</option>
+                                        </#list>
                                     </select>
                                 </div>
                             </div>
@@ -272,10 +280,11 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="zhidi2">质地二</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" name="zhidi2">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
+                                    <select data-placeholder="请选择" class="form-control chzn-chosen" name="zhidi2">
+                                        <option value=""></option>
+                                        <#list zhidi2 as zd2>
+                                            <option value="${zd2.label}">${zd2.label}</option>
+                                        </#list>
                                     </select>
                                 </div>
                             </div>
@@ -283,10 +292,11 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="ganguan">感官</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" name="ganguan">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
+                                    <select data-placeholder="请选择" class="form-control chzn-chosen" name="ganguan">
+                                        <option value=""></option>
+                                        <#list ganguan as gg>
+                                            <option value="${gg.label}">${gg.label}</option>
+                                        </#list>
                                     </select>
                                 </div>
                             </div>
@@ -294,10 +304,11 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="moshidu">磨氏度</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" name="moshidu">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
+                                    <select data-placeholder="请选择" class="form-control chzn-chosen" name="moshidu">
+                                        <option value=""></option>
+                                        <#list moshidu as msd>
+                                            <option value="${msd.label}">${msd.label}</option>
+                                        </#list>
                                     </select>
                                 </div>
                             </div>
@@ -305,10 +316,11 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="xueliang">血量</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" name="xueliang">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
+                                    <select data-placeholder="请选择" class="form-control chzn-chosen" name="xueliang">
+                                        <option value=""></option>
+                                        <#list xueliang as xl>
+                                            <option value="${xl.label}">${xl.label}</option>
+                                        </#list>
                                     </select>
                                 </div>
                             </div>
@@ -316,10 +328,11 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="xuese">血色</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" name="xuese">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
+                                    <select data-placeholder="请选择" class="form-control chzn-chosen" name="xuese">
+                                        <option value=""></option>
+                                        <#list xuese as xs>
+                                            <option value="${xs.label}">${xs.label}</option>
+                                        </#list>
                                     </select>
                                 </div>
                             </div>
@@ -327,10 +340,11 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="xuexing">血形</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" name="xuexing">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
+                                    <select data-placeholder="请选择" class="form-control chzn-chosen" name="xuexing">
+                                        <option value=""></option>
+                                        <#list xuexing as xx>
+                                            <option value="${xx.label}">${xx.label}</option>
+                                        </#list>
                                     </select>
                                 </div>
                             </div>
@@ -338,10 +352,11 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="nongyandu">浓艳度</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" name="nongyandu">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
+                                    <select data-placeholder="请选择" class="form-control chzn-chosen" name="nongyandu">
+                                        <option value=""></option>
+                                        <#list nongyandu as nyd>
+                                            <option value="${nyd.label}">${nyd.label}</option>
+                                        </#list>
                                     </select>
                                 </div>
                             </div>
@@ -349,10 +364,11 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="jingdu">纯净度</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" name="jingdu">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
+                                    <select data-placeholder="请选择" class="form-control chzn-chosen" name="jingdu">
+                                        <option value=""></option>
+                                        <#list jingdu as jd>
+                                            <option value="${jd.label}">${jd.label}</option>
+                                        </#list>
                                     </select>
                                 </div>
                             </div>
@@ -360,10 +376,11 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="dise">地色</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" name="dise">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
+                                    <select data-placeholder="请选择" class="form-control chzn-chosen" name="dise">
+                                        <option value=""></option>
+                                        <#list dise as ds>
+                                            <option value="${ds.label}">${ds.label}</option>
+                                        </#list>
                                     </select>
                                 </div>
                             </div>
@@ -371,31 +388,46 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="liu">活筋</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" name="liu">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
+                                    <select data-placeholder="请选择" class="form-control chzn-chosen" name="liu">
+                                        <option value=""></option>
+                                        <#list liu as lu>
+                                            <option value="${lu.label}">${lu.label}</option>
+                                        </#list>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="lie">裂</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" name="lie">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
+                                    <select data-placeholder="请选择" class="form-control chzn-chosen" name="lie">
+                                        <option value=""></option>
+                                        <#list lie as le>
+                                            <option value="${le.label}">${le.label}</option>
+                                        </#list>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label" for="inithanxueliang">印章</label>
+                                <label class="col-sm-2 control-label" for="inithanxueliang">印章含血面</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" name="inithanxueliang">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
+                                    <select data-placeholder="请选择" class="form-control chzn-chosen" name="inithanxueliang">
+                                        <option value=""></option>
+                                        <#list mian as ma>
+                                            <option value="${ma.label}">${ma.label}</option>
+                                        </#list>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="hanxuefangshi">含血方式</label>
+                                <div class="col-sm-10">
+                                    <select data-placeholder="请选择" class="form-control chzn-chosen" name="hanxuefangshi">
+                                        <option value=""></option>
+                                        <#list hanxuefangshi as hxfs>
+                                            <option value="${hxfs.label}">${hxfs.label}</option>
+                                        </#list>
                                     </select>
                                 </div>
                             </div>
@@ -488,15 +520,12 @@
                 <div class="col-md-6">
                     <div class="row">
                         <form action="${staticPath}/works/addCollect/0" method="post" class="form-horizontal">
-
                             <input type="hidden" name="goodsId" id="goodsId" value="${goodsId}">
-
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="name">作品名称</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="name" id="name" value="${goodsName}" type="text" disabled="disabled"/>
                                 </div>
-
                             </div>
 
                             <div class="form-group">
@@ -514,17 +543,13 @@
                                     <input class="form-control" name="collectCardNo" id="collectCardNo" type="text"
                                            placeholder="请输入身份证(可不输)"/>
                                 </div>
-
                             </div>
-
-
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="address">联系地址</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="address" id="address" type="text"
                                            placeholder="请输入联系地址"/>
                                 </div>
-
                             </div>
 
                             <div class="form-group">
@@ -568,7 +593,6 @@
                 <div class="col-md-3"></div>
             </div>
         </div>
-
     </#if >
 
 
@@ -581,10 +605,13 @@
 <script src="${staticPath}/assets/js/plugins/plupload-2.1.2/js/plupload.dev.js"></script>
 <script src="${staticPath}/assets/js/plugins/date-time/bootstrap-datepicker.js"></script>
 <script src="${staticPath}/assets/plugins/jquery/jquery.validate.min.js"></script>
+<script src="${staticPath}/assets/js/chosen/chosen.jquery.min.js"></script>
 </@footerJS>
 
 <script>
     $(document).ready(function () {
+        $(".chzn-chosen").chosen();
+
         $('.date-picker').datepicker({autoclose: true, todayHighlight: true,format:'yyyy-mm-dd'});
 
         initUploaders("upload_works_info", "windyeel", '${staticPath}/');

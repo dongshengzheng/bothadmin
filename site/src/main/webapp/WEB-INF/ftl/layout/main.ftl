@@ -48,41 +48,41 @@ description="金石典当"
     <link rel="stylesheet" href="${staticPath}/assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css">
     <link rel="stylesheet" href="${staticPath}/assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
     <link rel="stylesheet" href="${staticPath}/assets/plugins/revolution-slider/rs-plugin/css/settings.css">
-    <#--<link rel="stylesheet" href="${staticPath}/assets/js/plugins/datetimepicker/bootstrap-datetimepicker.min.css">-->
+<#--<link rel="stylesheet" href="${staticPath}/assets/js/plugins/datetimepicker/bootstrap-datetimepicker.min.css">-->
     <!-- CSS Theme -->
-    <#--<link rel="stylesheet" href="http://htmlstream.com/preview/unify-v1.9/Shop-UI/assets/css/theme-colors/teal.css"-->
-          <#--id="style_color">-->
+<#--<link rel="stylesheet" href="http://htmlstream.com/preview/unify-v1.9/Shop-UI/assets/css/theme-colors/teal.css"-->
+<#--id="style_color">-->
     <!-- CSS Customization -->
     <link rel="stylesheet" href="${staticPath}/assets/css/custom.css">
     <link rel="stylesheet" href="${staticPath}/assets/css/jsdd/main.css">
     <#nested/>
 
-    <#--<script type="text/javascript">-->
-        <#--var _contextPath = "${rc.contextPath}";-->
-        <#--var _staticPath = "${staticPath}";-->
-        <#--var current_url = window.location.href;-->
+<#--<script type="text/javascript">-->
+<#--var _contextPath = "${rc.contextPath}";-->
+<#--var _staticPath = "${staticPath}";-->
+<#--var current_url = window.location.href;-->
 
-        <#--// 获取文档模式-->
-        <#--engine = null;-->
-        <#--if (window.navigator.appName == "Microsoft Internet Explorer") {-->
-            <#--if (document.documentMode) // IE8-->
-                <#--engine = document.documentMode;-->
-            <#--else // IE 5-7-->
-            <#--{-->
-                <#--engine = 5; // Assume quirks mode unless proven otherwise-->
-                <#--if (document.compatMode) {-->
-                    <#--if (document.compatMode == "CSS1Compat")-->
-                        <#--engine = 7; // standards mode-->
-                <#--}-->
-            <#--}-->
-        <#--}-->
+<#--// 获取文档模式-->
+<#--engine = null;-->
+<#--if (window.navigator.appName == "Microsoft Internet Explorer") {-->
+<#--if (document.documentMode) // IE8-->
+<#--engine = document.documentMode;-->
+<#--else // IE 5-7-->
+<#--{-->
+<#--engine = 5; // Assume quirks mode unless proven otherwise-->
+<#--if (document.compatMode) {-->
+<#--if (document.compatMode == "CSS1Compat")-->
+<#--engine = 7; // standards mode-->
+<#--}-->
+<#--}-->
+<#--}-->
 
-        <#--if ((navigator.userAgent.indexOf("MSIE 7.") > 0-->
-                <#--|| navigator.userAgent.indexOf("MSIE 6.") > 0 || (engine != null && engine <= 7)) && current_url.indexOf("obsolete.html") <= 0) {-->
-            <#--location.href = _contextPath + '/obsolete.html';-->
-        <#--}-->
-        <#--params.autoSaveAdvertisementFrom();-->
-    <#--</script>-->
+<#--if ((navigator.userAgent.indexOf("MSIE 7.") > 0-->
+<#--|| navigator.userAgent.indexOf("MSIE 6.") > 0 || (engine != null && engine <= 7)) && current_url.indexOf("obsolete.html") <= 0) {-->
+<#--location.href = _contextPath + '/obsolete.html';-->
+<#--}-->
+<#--params.autoSaveAdvertisementFrom();-->
+<#--</script>-->
 </head>
 </#macro>
 
@@ -107,14 +107,14 @@ description="金石典当"
 
                 <!--shouye-->
                 <div class="col-md-1 text-center" style="height: 100%;">
-                    <div  style="" class="header_tab_active index_head_tab">
+                    <div style="" class="header_tab_active index_head_tab">
                         <a style="text-decoration:none " href="${staticPath}">
                             <h3 id="sy" style="margin-top: 20px">首页</h3></a></div>
                 </div>
                 <!--/shouye-->
 
                 <!--zuopingdengji-->
-                <div  class="col-md-2 text-center index_head_tab" style="height: 100%;">
+                <div class="col-md-2 text-center index_head_tab" style="height: 100%;">
                     <div style="width: 120px;">
                         <a style="text-decoration:none;" href="${staticPath}/works/add">
                             <h3 id="zpdj" style="margin-top: 20px">作品登记</h3></a>
@@ -124,13 +124,17 @@ description="金石典当"
 
                 <!--search-->
                 <div class="col-md-4">
-                    <div class="input-group" style="margin-top: 18px">
-                        <input type="text" class="form-control" placeholder="输入要搜索的作品或用户">
-                        <span class="input-group-btn">
-							<button class="btn" type="button" style="color: white;background: #D70016">搜作品</button>
+                    <form id="search_form" action="" method="get">
+                        <div class="input-group" style="margin-top: 18px">
+                            <input id="keywords" name="keywords" type="text" class="form-control"
+                                   placeholder="输入要搜索的作品或用户">
+                            <span class="input-group-btn">
+							<button id="searchworksbtn" class="btn" type="button"
+                                    style="color: white;background: #D70016">搜作品</button>
 							<button class="btn" type="button" style="color: white;background: #FB591D;margin-left: 3px">搜用户</button>
 						</span>
-                    </div>
+                        </div>
+                    </form>
                 </div>
                 <!--/search-->
                 <!---login-->
@@ -190,6 +194,7 @@ description="金石典当"
 <script src="${staticPath}/assets/plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script src="${staticPath}/assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
 <script src="${staticPath}/assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<script src="${staticPath}/assets/plugins/jquery/jquery.validate.min.js"></script>
 <!-- JS Customization -->
 <script src="${staticPath}/assets/js/custom.js"></script>
 <!-- JS Page Level -->
@@ -197,6 +202,7 @@ description="金石典当"
 <script src="${staticPath}/assets/js/plugins/owl-carousel.js"></script>
 <script src="${staticPath}/assets/js/plugins/revolution-slider.js"></script>
 <script src="${staticPath}/assets/js/plugins/style-switcher.js"></script>
+
 <#--模板-->
 <script src="${staticPath}/assets/js/mustache.js"></script>
 <!-- 全局JS结束 -->
@@ -210,6 +216,34 @@ description="金石典当"
         OwlCarousel.initOwlCarousel();
         RevolutionSlider.initRSfullWidth();
         StyleSwitcher.initStyleSwitcher();
+
+        //搜索
+        var search_form = $("#search_form");
+//        search_form.validate({
+//            rules: {
+//                keywords: {
+//                    required: true
+//                }
+//            }
+//
+//
+//        });
+
+        $("#searchworksbtn").bind("click",function () {
+            var key = $("#keywords").val();
+            if (!key) {
+                alert("请输入搜索作品关键字");
+            }else {
+                search_form.attr("action", "${staticPath}/works/search?keywords=" + key);
+                search_form.submit();
+
+            }
+
+        });
+
+
+
+
 
 //        $("#sy").bind("click",function (e) {
 //            $("#zpdj").removeClass("header_tab_active");
