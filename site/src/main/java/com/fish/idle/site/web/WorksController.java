@@ -29,7 +29,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping(value = "/works")
-public class WorkController extends BaseController {
+public class WorksController extends BaseController {
 
     @Value("${img_oss_path}")
     private String imgOssPath;
