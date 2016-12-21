@@ -29,4 +29,7 @@ public interface UserService extends ISuperService<User> {
     //根据id查找该用户关注的用户,用且带有关注他人的数目,收藏作品数目
     List<User> searchFocusById(Integer id);
 
+    //根据信息模糊匹配名字或id的用户集合
+    List<User> searchUserByNameAndId(String info, Integer myId);
+
 }

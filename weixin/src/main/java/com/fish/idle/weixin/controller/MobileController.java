@@ -2,19 +2,15 @@ package com.fish.idle.weixin.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.baomidou.mybatisplus.toolkit.CollectionUtil;
 import com.fish.idle.service.modules.jsdd.entity.*;
 import com.fish.idle.service.modules.jsdd.service.*;
 import com.fish.idle.service.modules.sys.entity.User;
 import com.fish.idle.service.modules.sys.service.UserService;
 import com.fish.idle.service.util.Const;
 import com.fish.idle.service.util.DateUtil;
-import com.fish.idle.service.util.StringUtils;
 import com.fish.idle.weixin.interceptor.OAuthRequired;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -138,11 +134,11 @@ public class MobileController extends BaseController {
                                  HttpServletResponse response,
                                  ModelMap map,
                                  int pageNo) {
-//        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-//        String openId = wxMpUser.getOpenId();
-//        User u = new User();
-//        u.setOpenId(openId);
-//        User user = userService.selectOne(u);
+        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+        String openId = wxMpUser.getOpenId();
+        User u = new User();
+        u.setOpenId(openId);
+        User user = userService.selectOne(u);
 //        if (user == null) {
 //            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
 //        }
@@ -229,7 +225,6 @@ public class MobileController extends BaseController {
         if (user == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
-
 
         List<User> userList = userService.searchUsersByName(name, user.getId());
 
@@ -769,6 +764,103 @@ public class MobileController extends BaseController {
         return "modules/mobile/pawn2/transferCollectionFocus";
     }
 
+    /**
+     * 跳往转让页面
+     *
+     * @return
+     */
+    @RequestMapping(value = "transfer", method = RequestMethod.GET)
+    @OAuthRequired
+    public String worksRegister1(HttpSession session,
+                                 HttpServletRequest request,
+                                 HttpServletResponse response,
+                                 ModelMap map,
+                                 @RequestParam(required = false) int worksId) {
+        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+        String openId = wxMpUser.getOpenId();
+        User u = new User();
+        u.setOpenId(openId);
+        User user = userService.selectOne(u);
+        if (user == null) {
+            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+        }
+        Works works = worksService.selectById(worksId);
+        map.put("worksId", worksId);
+        map.put("works", works);
+        return "modules/mobile/pawn2/transfer";
+    }
+
+    /**
+     * 转让页面ajax查找用户
+     *
+     * @return
+     */
+    @RequestMapping(value = "selectTransferPerson", method = RequestMethod.GET,
+            produces = "application/json;charset=utf-8")
+    @OAuthRequired
+    @ResponseBody
+    public List<User> selectTransferPerson(HttpSession session,
+                                           HttpServletRequest request,
+                                           HttpServletResponse response,
+                                           ModelMap map,
+                                           @RequestParam(required = false) String info) {
+        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+        String openId = wxMpUser.getOpenId();
+        User u = new User();
+        u.setOpenId(openId);
+        User user = userService.selectOne(u);
+//        if (user == null) {
+//            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+//        }
+        List<User> users = new ArrayList<>();
+        if (info != null && info.trim().length() > 0) {
+            users = userService.searchUserByNameAndId(info, user.getId());
+        }
+
+        return users;
+    }
+
+
+    /**
+     * 转让完成
+     *
+     * @return
+     */
+    @RequestMapping(value = "transferComplete", method = RequestMethod.POST)
+    @OAuthRequired
+    public String transferComplete(HttpSession session,
+                                   HttpServletRequest request,
+                                   HttpServletResponse response,
+                                   ModelMap map,
+                                   TransferHistory transferHistory,
+                                   @RequestParam(required = false) String transferTypeString) {
+        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+        String openId = wxMpUser.getOpenId();
+        User u = new User();
+        u.setOpenId(openId);
+        User user = userService.selectOne(u);
+        if (user == null) {
+            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+        }
+
+        Works works = worksService.selectById(transferHistory.getWorksId());
+        works.setStatus(Const.WORKS_STATUS_TRANSFER);
+        worksService.updateById(works);
+
+        transferHistory.setFromUserId(user.getId());
+        transferHistory.setStatus(Const.TRANSFER_STATUS_WAIT);
+        if ("售卖".equals(transferTypeString)) {
+            transferHistory.setTransferType(1);
+        } else if ("赠送".equals(transferTypeString)) {
+            transferHistory.setTransferType(2);
+        }
+        transferHistory.setCreateDate(new Date());
+        transferHistoryService.insert(transferHistory);
+
+        return "redirect:" + configStorage.getOauth2redirectUri()
+                + "/mobile/my/transferCollectionFocus?showwhich=transfer";
+    }
+
 
     /**
      * 作品注册页面1
@@ -1037,33 +1129,6 @@ public class MobileController extends BaseController {
     }
 
     /**
-     * 转让完成
-     *
-     * @return
-     */
-    @RequestMapping(value = "transferComplete", method = RequestMethod.POST)
-    @OAuthRequired
-    public String transferComplete(HttpSession session,
-                                   HttpServletRequest request,
-                                   HttpServletResponse response,
-                                   ModelMap map,
-                                   TransferHistory transferHistory) {
-        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
-        User u = new User();
-        u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
-            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
-        }
-        transferHistory.setStatus(Const.TRANSFER_STATUS_WAIT);
-        transferHistoryService.insert(transferHistory);
-
-        return "redirect:" + configStorage.getOauth2redirectUri()
-                + "/mobile/pawn/my/transferCollectionFocus?showwhich=transfer";
-    }
-
-    /**
      * 跳往转让历史页面
      *
      * @return
@@ -1090,7 +1155,6 @@ public class MobileController extends BaseController {
         return "modules/mobile/pawn2/transferHistory";
     }
 
-
     /**
      * 作品编辑页面
      *
@@ -1102,7 +1166,7 @@ public class MobileController extends BaseController {
                             HttpServletRequest request,
                             HttpServletResponse response,
                             ModelMap map,
-                            @RequestParam int id) {
+                            @RequestParam int worksId) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
         User u = new User();
@@ -1112,18 +1176,18 @@ public class MobileController extends BaseController {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
 
-        Works works = worksService.selectById(id);
+        Works works = worksService.selectById(worksId);
 
         WorksLevel worksLevel = new WorksLevel();
-        worksLevel.setWorksId(id);
+        worksLevel.setWorksId(worksId);
         worksLevel = worksLevelService.selectOne(new EntityWrapper<>(worksLevel));
 
         Consumer consumer = new Consumer();
-        consumer.setWorksId(id);
+        consumer.setWorksId(worksId);
         consumer = consumerService.selectOne(new EntityWrapper<>(consumer));
 
         Images images = new Images();
-        images.setTargetId(id);
+        images.setTargetId(worksId);
         images.setType(Const.IMAGES_WORKS);
         List<Images> imagesList = imagesService.selectList(new EntityWrapper<>(images));
 
@@ -1136,7 +1200,7 @@ public class MobileController extends BaseController {
         map.put("imagesList", imagesList);
         map.put("certificateImg", certificateImg);
 
-        session.setAttribute("worksIdInSession", id);
+        session.setAttribute("worksIdInSession", worksId);
 
         return "modules/mobile/pawn2/worksEdit";
     }
@@ -1193,10 +1257,6 @@ public class MobileController extends BaseController {
         worksLevelService.updateById(worksLevel);
         consumerService.updateById(consumer);
 
-
         return "modules/mobile/pawn2/my";
     }
-
-
 }
-

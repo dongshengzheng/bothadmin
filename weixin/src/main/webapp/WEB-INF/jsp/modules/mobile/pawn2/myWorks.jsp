@@ -231,7 +231,7 @@
 
 <div>
     <div class="weui-mask" id="iosMask" style="display: none"></div>
-    <div class="weui-actionsheet" id="iosActionsheet">
+    <div class="weui-actionsheet" id="iosActionsheet" data-id="">
         <div class="weui-actionsheet__menu">
             <input id="nowWorksId" value="value" type="hidden">
             <div class="weui-actionsheet__cell" id="edit">编辑</div>
@@ -244,40 +244,6 @@
     </div>
 </div>
 
-<div id="dialogs">
-    <!--BEGIN dialog1-->
-    <div class="js_dialog" id="iosDialog1" style="display: none;">
-        <div class="weui-mask"></div>
-        <div class="weui-dialog">
-            <div class="weui-dialog__hd"><strong class="weui-dialog__title">作品转让</strong></div>
-            <div class="weui-cell ">目标用户昵称:<input style="width: 150px"></div>
-
-            <div class="weui-cell ">转让原因:<textarea id="reason" rows="5" cols="24"></textarea></div>
-
-            <div class="weui-cell ">与用户关系:</div>
-            <input type="button" value="爱人" class="relation-btn relation-btn-on"><input type="button" value="朋友"
-                                                                                        class="relation-btn"><input
-                type="button"
-                value="亲人"
-                class="relation-btn"><input
-                type="button" value="亲戚" class="relation-btn">
-            <div>
-                售卖<input type="radio" name="transfer-way">赠送<input type="radio" name="transfer-way">
-            </div>
-            <div class="weui-cell ">
-                售卖价格(&yen;):
-                <div class="weui-cell__bd">
-                    <input placeholder="请输入">
-                </div>
-            </div>
-            <div class="weui-dialog__ft">
-                <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default">取消</a>
-                <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary"
-                   style="color:#2698DE ">确定转让</a>
-            </div>
-        </div>
-    </div>
-</div>
 
 <script>
     $(function () {
@@ -308,7 +274,6 @@
     $(function () {
         var $iosActionsheet = $('#iosActionsheet');
         var $iosMask = $('#iosMask');
-        var $iosDialog1 = $('#iosDialog1');
 
         function hideActionSheet() {
             $iosActionsheet.removeClass('weui-actionsheet_toggle');
@@ -318,9 +283,10 @@
         $iosMask.on('click', hideActionSheet);
         $('#iosActionsheetCancel').on('click', hideActionSheet);
 
+        //跳往转让页面
         $('#transfer').on('click', function () {
-            $iosDialog1.fadeIn(200);
-            hideActionSheet();
+            var worksId = $('#nowWorksId').val();
+            location.href = "${ctx}/mobile/transfer?worksId=" + worksId;
         });
 
         $('#dialogs').on('click', '.weui-dialog__btn', function () {
@@ -346,18 +312,12 @@
 
         //跳往编辑页面
         $('#edit').on('click', function () {
-            var id = $('#nowWorksId').val();
-            location.href = "${ctx}/mobile/worksEdit?id=" + id;
+            var worksId = $('#nowWorksId').val();
+            location.href = "${ctx}/mobile/worksEdit?worksId=" + worksId;
         });
 
 
     });
-
-    $(function () {
-        $('.relation-btn').on('click', function () {
-            $(this).addClass('relation-btn-on').siblings('.relation-btn').removeClass('relation-btn-on');
-        })
-    })
 
 
 </script>

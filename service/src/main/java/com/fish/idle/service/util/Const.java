@@ -84,6 +84,8 @@ public class Const {
     public static final String WORKS_STATUS_UNPASS = "2";    // 未通过
     public static final String WORKS_STATUS_PASS = "3";      // 已通过
 
+    public static final String WORKS_STATUS_TRANSFER = "10";      // 已通过
+
     /**
      * 转让状态
      */
