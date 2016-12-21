@@ -121,22 +121,22 @@
 </div>
 </body>
 <script src="${ctxStatic}/jquery/jquery-1.8.3.min.js" type="text/javascript"></script>
-<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"> </script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script src="${ctxStatic}/common/wx-sdk.js" type="text/javascript"></script>
 <script>
     $.ajax({
-        url: "http://steins00gate.s1.natapp.cc /ticket",
+        url: "http://steins00gate.s1.758kongbao.com /ticket",
         success: function (data) {
-            var time=new Date().getTime();
-            $.get("http://steins00gate.s1.natapp.cc /sign",
+            var time = new Date().getTime();
+            $.get("http://steins00gate.s1.758kongbao.com /sign",
                     {
-                        noncestr:"Wm3WZYTPz0wzccnW",
-                        jsapi_ticket:data,//获取的jsapi_ticket
-                        timestamp:time,
-                        url:location.href.split('#')[0]
+                        noncestr: "Wm3WZYTPz0wzccnW",
+                        jsapi_ticket: data,//获取的jsapi_ticket
+                        timestamp: time,
+                        url: location.href.split('#')[0]
                     },
-                    function(sign){
-                        console.log("sign:"+sign)
+                    function (sign) {
+                        console.log("sign:" + sign)
                         wx.config({
                             debug: true,
                             appId: 'wx3d5c70dd6026a276',

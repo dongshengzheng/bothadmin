@@ -73,66 +73,38 @@
 
 
 <div id="tranfer-works" class="div-hide div-outer <c:if test="${showwhich=='transfer'}">div-on</c:if>">
-    <div class="works-all-outer">
-        <div class="works-all">
-            <img src="${ctxStatic}/img/cut/已转出.png" class="transfer-img">
-            <img src="${ctxStatic}/img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
-            <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
+    <c:forEach items="${transferWorksList}" var="works">
+        <div class="works-all-outer" data-id="${works.id}">
+            <div class="works-all">
+                <img src="${ctxStatic}/img/cut/已转出.png" class="transfer-img">
+                <img class="works-img-all" src="${works.images}"
+                     onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
+                     alt="">
+                <textarea class="works-intro-all">${works.remarks}</textarea>
+            </div>
+            <div class="works-floor-all">
+                <span class="works-floor-name-all">${works.name}</span>
+                <span class="works-floor-btn-all go-to-history">转让历史</span>
+                <span class="works-floor-img-all">${works.breed}</span>
+                <span class="works-floor-date-all"><fmt:formatDate value="${works.createDate}"
+                                                                   pattern="yyyy-MM-dd"/></span>
+            </div>
         </div>
-        <div class="works-floor-all">
-            <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <span class="works-floor-btn-all">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="works-floor-img-all">田黄鸡血石</span>
-            <span class="works-floor-date-all">2016-12-4</span>
+    </c:forEach>
 
+    <c:if test="${fn:length(transferWorksList) == 0}">
+        <div style="text-align:center;margin-top:35%">
+            <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="" style="width: 50%;">
+            <p style="color:#CCCCCC">尚无作品</p>
         </div>
-    </div>
-    <div class="works-all-outer">
-        <div class="works-all">
-            <img src="${ctxStatic}/img/cut/已转入.png" class="transfer-img">
-            <img src="${ctxStatic}/img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
-            <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
+    </c:if>
+    <c:if test="${fn:length(transferWorksList) > 0}">
+        <div class="hr-text ">
+            <center>
+                <hr>
+                <span>&nbsp;&nbsp;到底啦&nbsp;&nbsp;</span></center>
         </div>
-        <div class="works-floor-all">
-            <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <span class="works-floor-btn-all">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="works-floor-img-all">田黄鸡血石</span>
-            <span class="works-floor-date-all">2016-12-4</span>
-        </div>
-    </div>
-    <div class="works-all-outer">
-        <div class="works-all">
-            <img src="${ctxStatic}/img/cut/待确认.png" class="transfer-img">
-            <img src="${ctxStatic}/img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
-            <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
-        </div>
-        <div class="works-floor-all">
-            <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <span class="works-floor-btn-all">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="works-floor-img-all">田黄鸡血石</span>
-            <span class="works-floor-date-all">2016-12-4</span>
-
-        </div>
-    </div>
-    <div class="works-all-outer">
-        <div class="works-all">
-            <img src="${ctxStatic}/img/cut/待对方确认.png" class="transfer-img">
-            <img src="${ctxStatic}/img/swiper/swiper-1.jpg" alt="" class="works-img-all"/>
-            <textarea class="works-intro-all">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
-        </div>
-        <div class="works-floor-all">
-            <span class="works-floor-name-all">冰阳绿树叶吊坠</span>
-            <span class="works-floor-btn-all">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="works-floor-img-all">田黄鸡血石</span>
-            <span class="works-floor-date-all">2016-12-4</span>
-
-        </div>
-    </div>
-    <div class="hr-text ">
-        <center>
-            <hr>
-            <span>&nbsp;&nbsp;到底啦&nbsp;&nbsp;</span></center>
-    </div>
+    </c:if>
 </div>
 
 <div id="collection-works" class="div-hide div-outer <c:if test="${showwhich=='collection'}">div-on</c:if>">
@@ -259,44 +231,54 @@
         });
     });
 
+    //取消关注
+    $(function () {
+        var $haveCareDialog = $('#haveCareDialog');
+        var $notCareDialog = $('#notCareDialog');
 
-    var $haveCareDialog = $('#haveCareDialog');
-    var $notCareDialog = $('#notCareDialog');
+        $('#dialogs').on('click', '.weui-dialog__btn', function () {
+            $(this).parents('.js_dialog').fadeOut(200);
+        });
 
-    $('#dialogs').on('click', '.weui-dialog__btn', function () {
-        $(this).parents('.js_dialog').fadeOut(200);
-    });
+        $('.weui-dialog__btn').on('click', function () {
+            $('.js_dialog').fadeOut(200);
+        })
 
-    $('.weui-dialog__btn').on('click', function () {
-        $('.js_dialog').fadeOut(200);
+        $('.have-care').on('click', function () {
+            $haveCareDialog.fadeIn(200);
+            $haveCareDialog.attr('data-id', $(this).parent().parent().parent().attr('id'));
+        });
+
+        $('#haveCareDialog .weui-dialog__btn_primary').on('click', function () {
+            var targetId = $('#haveCareDialog').attr('data-id');
+            var thisOne = $('#' + ($('#haveCareDialog').attr('data-id')) + ' .have-care');
+
+            $.ajax({
+                type: "POST",
+                url: "${ctx}/mobile/haveToNot",
+                data: {
+                    targetId: targetId
+                },
+                success: function (data) {
+                    $notCareDialog.find('.weui-dialog__title').html(data);
+                    if (data == '取关成功!') {
+                        thisOne.removeClass('div-on').siblings('.search-results-one-care').addClass('div-on');
+                        thisOne.removeClass('div-on').siblings('.search-results-one-care').addClass('div-on');
+                        var outer = $(thisOne).parent().parent().parent();
+                        var haveCareOuter = outer.parent();
+                        outer.remove();
+                    }
+                    $notCareDialog.fadeIn(200);
+                }
+            })
+        })
     })
 
-    $('.have-care').on('click', function () {
-        $haveCareDialog.fadeIn(200);
-        $haveCareDialog.attr('data-id', $(this).parent().parent().parent().attr('id'));
-    });
-
-    $('#haveCareDialog .weui-dialog__btn_primary').on('click', function () {
-        var targetId = $('#haveCareDialog').attr('data-id');
-        var thisOne = $('#' + ($('#haveCareDialog').attr('data-id')) + ' .have-care');
-
-        $.ajax({
-            type: "POST",
-            url: "${ctx}/mobile/haveToNot",
-            data: {
-                targetId: targetId
-            },
-            success: function (data) {
-                $notCareDialog.find('.weui-dialog__title').html(data);
-                if (data == '取关成功!') {
-                    thisOne.removeClass('div-on').siblings('.search-results-one-care').addClass('div-on');
-                    thisOne.removeClass('div-on').siblings('.search-results-one-care').addClass('div-on');
-                    var outer = $(thisOne).parent().parent().parent();
-                    var haveCareOuter = outer.parent();
-                    outer.remove();
-                }
-                $notCareDialog.fadeIn(200);
-            }
+    //    跳往历史转让页面
+    $(function () {
+        $('.go-to-history').on('click', function () {
+            var worksId = $(this).parent().parent().attr('data-id');
+            location.href = "${ctx}/mobile/transferHistory?worksId=" + worksId;
         })
     })
 

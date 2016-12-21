@@ -47,6 +47,13 @@
         GROUP BY outer_.id
     </select>
 
+    <!--根据信息模糊匹配名字或id的用户集合(不包括自己)-->
+    <select id="searchUserByNameAndId" resultType="User">
+        SELECT u.* from sys_user u
+        WHERE u.id LIKE CONCAT('%',#{0},'%') and u.id !=#{1} or u.name like CONCAT('%',#{0},'%')
+    </select>
+
+
     <!-- 判断用户名和密码 -->
 
 </mapper>

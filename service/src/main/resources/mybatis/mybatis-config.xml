@@ -20,6 +20,8 @@
         <typeAlias type="com.fish.idle.service.modules.jsdd.entity.WorksLevel" alias="WorksLevel"/>
         <typeAlias type="com.fish.idle.service.modules.jsdd.entity.Consumer" alias="Consumer"/>
         <typeAlias type="com.fish.idle.service.modules.jsdd.entity.ValueReport" alias="ValueReport"/>
+        <typeAlias type="com.fish.idle.service.modules.jsdd.entity.Works" alias="Works"/>
+        <typeAlias type="com.fish.idle.service.modules.jsdd.entity.TransferHistory" alias="TransferHistory"/>
     </typeAliases>
     <!-- 映射map -->
     <mappers>

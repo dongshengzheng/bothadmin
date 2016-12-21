@@ -224,7 +224,7 @@
             <div class="works-floor-all">
                 <span class="works-floor-name-all">${works.name}</span>
                 <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
-                <span class="works-floor-img-all">${works.type}</span>
+                <span class="works-floor-img-all">${works.breed}</span>
                 <span class="works-floor-date-all"><fmt:formatDate value="${works.createDate}"
                                                                    pattern="yyyy-MM-dd"/></span>
             </div>

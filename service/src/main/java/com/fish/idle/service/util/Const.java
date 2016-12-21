@@ -84,6 +84,20 @@ public class Const {
     public static final String WORKS_STATUS_UNPASS = "2";    // 未通过
     public static final String WORKS_STATUS_PASS = "3";      // 已通过
 
+    public static final String WORKS_STATUS_TRANSFER = "10";      // 已通过
+
+    /**
+     * 转让状态
+     */
+    public static final int TRANSFER_STATUS_HAVE = 1;    // 已转出
+    public static final int TRANSFER_STATUS_WAIT = 2;    // 待确认
+
+    /**
+     * 转让类型
+     */
+    public static final int TRANSFER_TYPE_SELL = 1;    // 售卖
+    public static final int TRANSFER_TYPE_GIVE = 2;    // 赠送
+
     /**
      * 图片表中图片类型
      */
