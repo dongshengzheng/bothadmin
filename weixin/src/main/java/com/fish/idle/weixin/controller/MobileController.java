@@ -924,7 +924,7 @@ public class MobileController extends BaseController {
         }
         worksService.insert(works);
         consumer.setName(works.getProvideBy());
-        consumer.setType(Const.CONSUMER_PROVIDER);
+        consumer.setType(Const.CONSUMER_TYPE_PROVIDER);
         consumer.setWorksId(works.getId());
         consumer.setNo(consumerNo);
         consumerService.insert(consumer);
@@ -1108,7 +1108,8 @@ public class MobileController extends BaseController {
                                         ModelMap map,
                                         @RequestParam(required = false) String draftYN,
                                         Consumer consumer,
-                                        @RequestParam(required = false) String collecterDatetimeString) {
+                                        @RequestParam(required = false) String collecterDatetimeString,
+                                        @RequestParam(required = false) String collecterPub) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
         User u = new User();
@@ -1120,10 +1121,15 @@ public class MobileController extends BaseController {
 
         Integer worksId = (Integer) session.getAttribute("registerWorksId");
         consumer.setWorksId(worksId);
-        consumer.setType(Const.CONSUMER_COLLECTER);
+        consumer.setType(Const.CONSUMER_TYPE_COLLECT);
         if (collecterDatetimeString != null && collecterDatetimeString.trim().length() > 0) {
             Date datetime = DateUtil.parseDate(collecterDatetimeString, "yyyy-MM-dd");
             consumer.setDatetime(datetime);
+        }
+        if (collecterPub != null) {
+            consumer.setPub(Const.CONSUMER_PUB_YES);
+        } else {
+            consumer.setPub(Const.CONSUMER_PUB_NO);
         }
         consumerService.insert(consumer);
         Works works = (Works) session.getAttribute("registerWorks");
@@ -1193,12 +1199,12 @@ public class MobileController extends BaseController {
 
         Consumer provider = new Consumer();
         provider.setWorksId(worksId);
-        provider.setType(Const.CONSUMER_PROVIDER);
+        provider.setType(Const.CONSUMER_TYPE_PROVIDER);
         provider = consumerService.selectOne(new EntityWrapper<>(provider));
 
         Consumer collecter = new Consumer();
         collecter.setWorksId(worksId);
-        collecter.setType(Const.CONSUMER_COLLECTER);
+        collecter.setType(Const.CONSUMER_TYPE_COLLECT);
         collecter = consumerService.selectOne(new EntityWrapper<>(collecter));
 
         Images images = new Images();
@@ -1240,6 +1246,8 @@ public class MobileController extends BaseController {
                                     @RequestParam(required = false) String worksName,
                                     @RequestParam(required = false) String worksRemarks,
                                     @RequestParam(required = false) String worksType,
+                                    @RequestParam(required = false) String makeTimeString,
+                                    @RequestParam(required = false) String createDateString,
                                     @RequestParam(required = false) String consumerNo,
                                     @RequestParam(required = false) String collecterName,
                                     @RequestParam(required = false) String collecterNo,
@@ -1268,6 +1276,14 @@ public class MobileController extends BaseController {
         works.setName(worksName);
         works.setRemarks(worksRemarks);
         works.setStatus(Const.WORKS_STATUS_COMMIT);
+        if (createDateString != null && createDateString.trim().length() > 0) {
+            Date createDate = DateUtil.parseDate(createDateString, "yyyy-MM-dd");
+            works.setCreateDate(createDate);
+        }
+        if (makeTimeString != null && makeTimeString.trim().length() > 0) {
+            Date makeTime = DateUtil.parseDate(makeTimeString, "yyyy-MM-dd");
+            works.setMakeTime(makeTime);
+        }
         worksService.updateById(works);
 
         Images oldImg = new Images();
@@ -1305,11 +1321,11 @@ public class MobileController extends BaseController {
 
         consumer.setNo(consumerNo);
         consumer.setName(works.getProvideBy());
-        consumer.setType(Const.CONSUMER_PROVIDER);
+        consumer.setType(Const.CONSUMER_TYPE_PROVIDER);
         consumer.setWorksId(worksId);
         Consumer cs = new Consumer();
         cs.setWorksId(worksId);
-        cs.setType(Const.CONSUMER_PROVIDER);
+        cs.setType(Const.CONSUMER_TYPE_PROVIDER);
         cs = consumerService.selectOne(new EntityWrapper<>(cs));
         consumer.setId(cs.getId());
         consumerService.updateById(consumer);
@@ -1318,18 +1334,23 @@ public class MobileController extends BaseController {
         Consumer collecter = new Consumer();
         collecter.setWorksId(worksId);
         collecter.setName(collecterName);
-        collecter.setType(Const.CONSUMER_COLLECTER);
+        collecter.setType(Const.CONSUMER_TYPE_COLLECT);
         collecter.setNo(collecterNo);
         collecter.setAddress(collecterAddress);
         collecter.setNo(collecterNo);
         collecter.setPhone(collecterPhone);
+        if (collecterPub != null) {
+            collecter.setPub(Const.CONSUMER_PUB_YES);
+        } else {
+            collecter.setPub(Const.CONSUMER_PUB_NO);
+        }
         if (collecterDateTimeString != null && collecterDateTimeString.trim().length() > 0) {
             Date collectDate = DateUtil.parseDate(collecterDateTimeString);
             collecter.setDatetime(collectDate);
         }
         Consumer oldConsumer = new Consumer();
         oldConsumer.setWorksId(worksId);
-        oldConsumer.setType(Const.CONSUMER_COLLECTER);
+        oldConsumer.setType(Const.CONSUMER_TYPE_COLLECT);
         oldConsumer = consumerService.selectOne(new EntityWrapper<>(cs));
         if (oldConsumer == null) {
             consumerService.insert(collecter);
@@ -1338,6 +1359,7 @@ public class MobileController extends BaseController {
             consumerService.updateById(collecter);
         }
 
-        return "modules/mobile/pawn2/my";
+        return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my";
+
     }
 }

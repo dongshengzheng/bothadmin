@@ -33,8 +33,8 @@
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">收藏时间</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input name="collecterDatetimeString" id="collecterDatePicker" class="weui-input" type="tel"
-               value="${collecter.datetime}" placeholder="请选择时间">
+        <input name="collecterDateTimeString" id="collecterDatePicker" class="weui-input" type="tel"
+               value="<fmt:formatDate value='${collecter.datetime}' pattern="yyyy-MM-dd"/>" placeholder="请选择时间">
     </div>
 </div>
 <div class="weui-cell">

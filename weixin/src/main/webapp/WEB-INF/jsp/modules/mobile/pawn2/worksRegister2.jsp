@@ -73,7 +73,7 @@
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">作品类型</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input name="worksType" id="works-zuopinleixing" class="weui-input " type="tel"
+                    <input name="type" id="works-zuopinleixing" class="weui-input " type="tel"
                            placeholder="请选择作品类型">
                 </div>
             </div>

@@ -97,7 +97,7 @@
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">是否公开</label></div>
-                <input class="weui-switch" type="checkbox"/>
+                <input name="collecterPub" class="weui-switch" type="checkbox"/>
             </div>
         </div>
 

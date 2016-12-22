@@ -84,7 +84,7 @@ public class Const {
     public static final String WORKS_STATUS_UNPASS = "2";    // 未通过
     public static final String WORKS_STATUS_PASS = "3";      // 已通过
 
-    public static final String WORKS_STATUS_TRANSFER = "10";      // 已通过
+    public static final String WORKS_STATUS_TRANSFER = "10";      // 已通过 在转让中
 
     /**
      * 转让状态
@@ -105,14 +105,12 @@ public class Const {
     public static final String IMAGES_CERTIFICATE = "1";    // 作品认证图片
 
 
-<<<<<<< HEAD
     //consumer类型
-    public static final String CONSUMER_PROVIDER = "1";    // 提供者
-    public static final String CONSUMER_COLLECTER = "２";    // 收藏者
+    public static final String CONSUMER_TYPE_PROVIDER = "1";  //提供者
+    public static final String CONSUMER_TYPE_COLLECT = "2";  //收藏者
 
-=======
-    public static final String CONSUMER_TYPE_PROVIDER ="1";  //提供者
-    public static final String CONSUMER_TYPE_COLLECT ="2";  //收藏者
->>>>>>> 0b83b28a1ce116683c9d0bf0fb3cf29461ecd809
+    public static final String CONSUMER_PUB_YES = "1";    // 公开
+    public static final String CONSUMER_PUB_NO = "２";    // 不公开
+
 
 }
