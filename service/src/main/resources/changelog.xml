@@ -174,6 +174,15 @@
             ALTER TABLE `dd_value_report` ADD COLUMN `jzyxsj` date DEFAULT NULL COMMENT '价值认证时间';
         </sql>
     </changeSet>
+<<<<<<< HEAD
+
+    <changeSet author="WangShun" id="15950097942-019">
+        <sql>
+            ALTER TABLE `dd_works_level` CHANGE COLUMN `works_id` `works_id` int(11) DEFAULT NULL COMMENT '作品id';
+        </sql>
+    </changeSet>
+
+=======
     <changeSet author="SunHan" id="15862614903-013">
         <sql dbms="mysql">
             ALTER TABLE `sys_dict` DROP COLUMN `create_by`, DROP COLUMN `create_date`, DROP COLUMN
@@ -185,5 +194,6 @@
             ALTER TABLE `dd_report` CHANGE COLUMN `works_id` `works_id` int(11) DEFAULT NULL COMMENT '作品Id';
         </sql>
     </changeSet>
+>>>>>>> 0b83b28a1ce116683c9d0bf0fb3cf29461ecd809
 
 </databaseChangeLog>

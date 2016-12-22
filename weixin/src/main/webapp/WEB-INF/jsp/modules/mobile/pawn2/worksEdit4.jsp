@@ -24,15 +24,19 @@
         display: inline-block;
     }
 
+    .certificate-text {
+        height: 12%;
+    }
+
     .certificate-text1 {
         float: left;
         margin-top: 10px;
     }
 
     .certificate-text2 {
-        float: right;
         margin-top: 10px;
-        background-image: url("${ctxStatic}/img/cut/certificate-icon.png");
+        margin-left: 50%;
+        background-image: url("${ctxStatic}/img//cut/certificate-icon.png");
         background-repeat: no-repeat;
         background-size: 30px;
         background-position-x: right;
@@ -44,21 +48,25 @@
 </style>
 <div class="div-outer">
     <p class="report">昌化鸡血石鉴定评估报告</p>
-    <div class="weui-cell">
-        <div class="weui-cell__bd weui-cell_primary">
-            <textarea class="weui-textarea" placeholder="详细鉴定报告..." rows="15">    测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字</textarea>
-            <!--<div class="weui-textarea-counter">-->
-            <!--<span>0</span>/200-->
-            <!--</div>-->
+    <div class="div-outer">
+        <div class="weui-cell">
+            <div class="weui-cell__bd weui-cell_primary">
+            <textarea name="description" class="weui-textarea" placeholder="详细鉴定报告..."
+                      rows="15">${valueReport.description}</textarea>
+                <!--<div class="weui-textarea-counter">-->
+                <!--<span>0</span>/200-->
+                <!--</div>-->
+            </div>
         </div>
-    </div>
-    <div class="weui-cell">
+        <input id="zpxxImge" name="zpxxImge" type="hidden" value="">
         <div class="weui-cell certificate-text">
             <span class="certificate-text1">鉴定证书</span>
-            <c:if test="${!empty certificateImg}">
+            <c:if test="${(!empty valueReport.zpxxImge)&&(fn:length(valueReport.zpxxImge)>0)}">
+                <li class="weui-uploader__file zpxxImgeUpload"
+                    style="display:none;background-image:url(${valueReport.zpxxImge})"></li>
                 <a id="haveUpload" class="certificate-text2">已上传</a>
             </c:if>
-            <c:if test="${empty certificateImg}">
+            <c:if test="${(empty valueReport.zpxxImge)||(fn:length(valueReport.zpxxImge)==0)}">
                 <a id="uploaderInput2" class="certificate-text2">未上传</a>
             </c:if>
         </div>
@@ -70,13 +78,17 @@
     <div class="weui-mask" id="iosMask" style="display: none"></div>
     <div class="weui-actionsheet" id="iosActionsheet">
         <div class="weui-actionsheet__menu">
-            <div class="weui-actionsheet__cell">删除</div>
-            <div class="weui-actionsheet__cell" id="transfer">预览</div>
+            <div class="weui-actionsheet__cell" id="del">删除</div>
+            <div class="weui-actionsheet__cell" id="prelook">预览</div>
         </div>
         <div class="weui-actionsheet__action">
             <div class="weui-actionsheet__cell" id="iosActionsheetCancel">取消</div>
         </div>
     </div>
+</div>
+
+<div class="weui-gallery" id="gallery">
+    <span class="weui-gallery__img" id="galleryImg"></span>
 </div>
 
 <script type="text/javascript">
@@ -101,17 +113,29 @@
             $(this).parents('.js_dialog').fadeOut(200);
         });
 
-        $('#transfer').on('click', function () {
-            $iosDialog1.fadeIn(200);
+        initUploaders2("windyeel", "http://steins00gate.s1.758kongbao.com/");
+
+        $('#prelook').on('click', function () {
             hideActionSheet();
+            $('#galleryImg').css('background-image', $('li').css('background-image'))
+            $("#gallery").fadeIn(100);
         });
 
-        initUploaders2("windyeel", "http://steins00gate.s1.758kongbao.com/");
+        $("#gallery").on("click", function () {
+            $("#gallery").fadeOut(100);
+        });
 
         $('#del').on('click', function () {
             $('.weui-uploader__file').remove();
             $('.certificate-text2').html("未上传").attr('id', 'uploaderInput2');
+            initUploaders2("windyeel", "http://steins00gate.s1.758kongbao.com/");
             hideActionSheet();
         })
+
+        $('#haveUpload').on('click', function () {
+            $('#iosActionsheet').addClass('weui-actionsheet_toggle');
+            $('#iosMask').fadeIn(200);
+        })
+
     });
 </script>

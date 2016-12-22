@@ -9,7 +9,7 @@
 
     <!--根据用户id查询转入或转出的作品-->
     <select id="transferWorksList" resultType="Works">
-        SELECT w.*  from dd_works w
+        SELECT DISTINCT w.*  from dd_works w
         join dd_transfer_history t on w.id=t.works_id
         where t.from_user_id=#{0} or t.to_user_id=#{0}
     </select>

@@ -15,19 +15,19 @@
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">身份证</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input name="consumerNo" class="weui-input" type="number" value="${consumer.no}" placeholder="可不填写">
+        <input name="consumerNo" class="weui-input" type="number" value="${provider.no}" placeholder="可不填写">
     </div>
 </div>
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">联系地址</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input name="address" class="weui-input" type="tel" value="${consumer.address}" placeholder="请输入详细地址">
+        <input name="address" class="weui-input" type="tel" value="${provider.address}" placeholder="请输入详细地址">
     </div>
 </div>
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">联系方式</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input name="phone" class="weui-input" type="tel" value="${consumer.phone}" placeholder="请输入联系方式">
+        <input name="phone" class="weui-input" type="tel" value="${provider.phone}" placeholder="请输入联系方式">
     </div>
 </div>
 <div class="weui-cell">
@@ -55,8 +55,8 @@
             <!--</div>-->
             <div class="weui-uploader__bd">
                 <ul class="weui-uploader__files" id="uploaderFiles">
-                    <c:forEach items="${imagesList}" var="images">
-                        <li class="weui-uploader__file" style="background-image:url(${images.url})">
+                    <c:forEach items="${worksImagesList}" var="image">
+                        <li class="weui-uploader__file worksImgs" style="background-image:url(${image.url})">
                         </li>
                     </c:forEach>
                     <a id="uploaderInput" class="weui-uploader__input-box">

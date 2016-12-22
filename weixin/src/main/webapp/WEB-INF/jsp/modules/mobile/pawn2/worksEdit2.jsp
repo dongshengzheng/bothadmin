@@ -78,9 +78,9 @@
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">制作时间</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input name="makeTimeString" id="works-zhizuoshijian" class="weui-input" value="${works.makeTime}"
-               type="tel"
-               placeholder="请选择制作时间">
+        <input name="makeTimeString" id="works-zhizuoshijian" class="weui-input"
+               value="<fmt:formatDate value='${works.makeTime}' pattern="yyyy-MM-dd"/>"
+               type="tel" placeholder="请选择制作时间">
     </div>
 </div>
 <div class="weui-cell">

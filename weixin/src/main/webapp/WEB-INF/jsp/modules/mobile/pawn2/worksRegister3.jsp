@@ -312,6 +312,11 @@
             ]
         });
 
+
+        $('#draftSubmit').on('click', function () {
+            $('#draftYN').val('yes');
+        })
+
     })
 </script>
 </body>
