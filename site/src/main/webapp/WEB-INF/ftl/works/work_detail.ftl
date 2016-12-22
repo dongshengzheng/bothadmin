@@ -13,9 +13,9 @@
 <div class="container margin-bottom-40 margin-top-20">
     <div class="row">
         <!--left start-->
-        <div class="col-md-9">
+        <div class="col-sm-9">
             <div class="row" style="border-right: 1px solid #eee">
-                <div class="col-md-6" style="margin-left: -15px">
+                <div class="col-sm-6" style="margin-left: -15px">
                     <div class="zoom-box"><!-- 容器-->
                         <div class="small-box"><!-- 小图片容器-->
                             <img src="${goodsInfoImages[0]}" alt=""/>
@@ -30,59 +30,59 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6" style="margin-left: -10px">
+                <div class="col-sm-6" style="margin-left: -10px">
                     <h4>${works.name}</h4>
                     <p>${works.remarks}</p>
                     <div style="background: rgb(244,244,244);width: 100%">
                         <div class="row">
-                            <div class="col-md-4 col-md-offset-1" style="margin-top: 15px">
+                            <div class="col-sm-4 col-sm-offset-1" style="margin-top: 15px">
                                 编号
                             </div>
-                            <div class="col-md-6 " style="color: red;margin-top: 15px">
+                            <div class="col-sm-6 " style="color: red;margin-top: 15px">
                                 JAX-100000233
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4 col-md-offset-1" style="margin-top: 10px">
+                            <div class="col-sm-4 col-sm-offset-1" style="margin-top: 10px">
                                 类型
                             </div>
-                            <div class="col-md-6" style="margin-top: 10px">
+                            <div class="col-sm-6" style="margin-top: 10px">
                             ${works.type}
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-4 col-md-offset-1" style="margin-top: 10px">
+                            <div class="col-sm-4 col-sm-offset-1" style="margin-top: 10px">
                                 尺寸
                             </div>
-                            <div class="col-md-6" style="margin-top: 10px">
+                            <div class="col-sm-6" style="margin-top: 10px">
                             ${works.length}*${works.width}*${works.height}
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-4 col-md-offset-1" style="margin-top: 10px">
+                            <div class="col-sm-4 col-sm-offset-1" style="margin-top: 10px">
                                 品种
                             </div>
-                            <div class="col-md-6" style="margin-top: 10px">
+                            <div class="col-sm-6" style="margin-top: 10px">
                             ${works.breed}
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4 col-md-offset-1" style="margin-top: 10px">
+                            <div class="col-sm-4 col-sm-offset-1" style="margin-top: 10px">
                                 浏览次数
                             </div>
-                            <div class="col-md-6" style="margin-top: 10px">
+                            <div class="col-sm-6" style="margin-top: 10px">
                             <#--${works.browserCount}-->
                                 11
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-4 col-md-offset-1" style="margin-top: 10px">
+                            <div class="col-sm-4 col-sm-offset-1" style="margin-top: 10px">
                                 登记时间
                             </div>
-                            <div class="col-md-6" style="margin-top: 10px;margin-bottom: 10px">
+                            <div class="col-sm-6" style="margin-top: 10px;margin-bottom: 10px">
                             ${consumer.datetime?string("yyyy-MM-dd")}
                             </div>
                         </div>
@@ -120,7 +120,7 @@
             </div>
             <div class="container margin-top-5 margin-bottom-20">
                 <div class="row">
-                    <div class="col-md-9">
+                    <div class="col-sm-9">
                         <div class="tab-v1" style="margin-top: 30px">
                             <ul class="nav nav-tabs" style="background: rgb(244,244,244)">
                                 <li class="active" style="">
@@ -255,7 +255,7 @@
                                     <!--<div class="container">-->
                                     <div class="row">
                                         <!--头像-->
-                                        <div class="col-md-1" style="">
+                                        <div class="col-sm-1" style="">
                                             <div style="margin-top: 5px;margin-bottom: 5px; margin-left: 15px;">
                                                 <img style="height: 50px;width: 50px;-webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px;overflow:hidden"
                                                      class="" src="${staticPath}/assets/img/testimonials/img5.jpg"
@@ -263,7 +263,7 @@
                                             </div>
                                         </div>
                                         <!--文本-->
-                                        <div class="col-md-10" style="margin-left: 25px;background:rgb(246,237,236)">
+                                        <div class="col-sm-10" style="margin-left: 25px;background:rgb(246,237,236)">
                                             <form action="" method="post">
 
                                                 <label class="textarea" style="margin-top: 10px">
@@ -285,7 +285,7 @@
                                     <!--诠释列表-->
                                     <div class="row">
                                         <!--头像-->
-                                        <div class="col-md-1" style="margin-top: 15px">
+                                        <div class="col-sm-1" style="margin-top: 15px">
                                             <div style="margin-top: 5px;margin-bottom: 5px; margin-left: 15px;">
                                                 <img style="height: 50px;width: 50px;-webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px;overflow:hidden"
                                                      class="" src="${staticPath}/assets/img/testimonials/img5.jpg"
@@ -293,7 +293,7 @@
                                             </div>
                                         </div>
                                         <!--文本-->
-                                        <div class="col-md-10" style="margin-left: 25px;margin-top: 15px">
+                                        <div class="col-sm-10" style="margin-left: 25px;margin-top: 15px">
                                             <p>jssss**被 <span style="float: right;">2013年10月25日</span></p>
                                             <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
                                                 啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
@@ -320,7 +320,7 @@
 
                                     <div class="row">
                                         <!--头像-->
-                                        <div class="col-md-1" style="margin-top: 15px">
+                                        <div class="col-sm-1" style="margin-top: 15px">
                                             <div style="margin-top: 5px;margin-bottom: 5px; margin-left: 15px;">
                                                 <img style="height: 50px;width: 50px;-webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px;overflow:hidden"
                                                      class="" src="${staticPath}/assets/img/testimonials/img5.jpg"
@@ -328,7 +328,7 @@
                                             </div>
                                         </div>
                                         <!--文本-->
-                                        <div class="col-md-10" style="margin-left: 25px;margin-top: 15px">
+                                        <div class="col-sm-10" style="margin-left: 25px;margin-top: 15px">
                                             <p>jssss**被 <span style="float: right;">2013年10月25日</span></p>
                                             <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
                                                 啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
@@ -356,7 +356,7 @@
 
                                     <div class="row">
                                         <!--头像-->
-                                        <div class="col-md-1" style="margin-top: 15px">
+                                        <div class="col-sm-1" style="margin-top: 15px">
                                             <div style="margin-top: 5px;margin-bottom: 5px; margin-left: 15px;">
                                                 <img style="height: 50px;width: 50px;-webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px;overflow:hidden"
                                                      class="" src="${staticPath}/assets/img/testimonials/img5.jpg"
@@ -364,7 +364,7 @@
                                             </div>
                                         </div>
                                         <!--文本-->
-                                        <div class="col-md-10" style="margin-left: 25px;margin-top: 15px">
+                                        <div class="col-sm-10" style="margin-left: 25px;margin-top: 15px">
                                             <p>jssss**被 <span style="float: right;">2013年10月25日</span></p>
                                             <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
                                                 啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
@@ -391,7 +391,7 @@
 
                                     <div class="row">
                                         <!--头像-->
-                                        <div class="col-md-1" style="margin-top: 15px">
+                                        <div class="col-sm-1" style="margin-top: 15px">
                                             <div style="margin-top: 5px;margin-bottom: 5px; margin-left: 15px;">
                                                 <img style="height: 50px;width: 50px;-webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px;overflow:hidden"
                                                      class="" src="${staticPath}/assets/img/testimonials/img5.jpg"
@@ -399,7 +399,7 @@
                                             </div>
                                         </div>
                                         <!--文本-->
-                                        <div class="col-md-10" style="margin-left: 25px;margin-top: 15px">
+                                        <div class="col-sm-10" style="margin-left: 25px;margin-top: 15px">
                                             <p>jssss**被 <span style="float: right;">2013年10月25日</span></p>
                                             <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
                                                 啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
@@ -480,44 +480,44 @@
         <!--left end-->
 
         <!--right start-->
-        <div class="col-md-3">
+        <div class="col-sm-3">
 
             <div class="row margin-bottom-15" style="border-bottom: solid 1px #eee;margin-left: 10px">
                 <h4>收藏者</h4>
             </div>
 
             <div class="row">
-                <div class="col-md-4" style="padding-right: 0px;width: 75px">
+                <div class="col-sm-4" style="padding-right: 0px;width: 75px">
                     <img class="" style="margin: 10px 0px 10px 10px;height: 50px;width: 50px"
                          src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
                 </div>
 
-                <div class="col-md-4" style="padding-right: 0px;width: 75px">
+                <div class="col-sm-4" style="padding-right: 0px;width: 75px">
                     <img class="" style="margin: 10px 0px 10px 10px;height: 50px;width: 50px"
                          src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
                 </div>
 
-                <div class="col-md-4" style="padding-right: 0px;width: 75px">
+                <div class="col-sm-4" style="padding-right: 0px;width: 75px">
                     <img class="" style="margin: 10px 0px 10px 10px;height: 50px;width: 50px"
                          src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
                 </div>
 
-                <div class="col-md-4" style="padding-right: 0px;width: 75px">
+                <div class="col-sm-4" style="padding-right: 0px;width: 75px">
                     <img class="" style="margin: 10px 0px 10px 10px;height: 50px;width: 50px"
                          src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
                 </div>
 
-                <div class="col-md-4" style="padding-right: 0px;width: 75px">
+                <div class="col-sm-4" style="padding-right: 0px;width: 75px">
                     <img class="" style="margin: 10px 0px 10px 10px;height: 50px;width: 50px"
                          src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
                 </div>
 
-                <div class="col-md-4" style="padding-right: 0px;width: 75px">
+                <div class="col-sm-4" style="padding-right: 0px;width: 75px">
                     <img class="" style="margin: 10px 0px 10px 10px;height: 50px;width: 50px"
                          src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
                 </div>
 
-                <div class="col-md-4" style="padding-right: 0px;width: 75px">
+                <div class="col-sm-4" style="padding-right: 0px;width: 75px">
                     <img class="" style="margin: 10px 0px 10px 10px;height: 50px;width: 50px"
                          src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
                 </div>

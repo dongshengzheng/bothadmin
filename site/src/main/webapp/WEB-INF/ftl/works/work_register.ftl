@@ -2,22 +2,19 @@
 
 <@htmlHead title="作品详情">
 <link rel="stylesheet" href="${staticPath}/assets/css/jsdd/work/work_detail.css">
-<!-- CSS Page Style -->
 <link rel="stylesheet" href="${staticPath}/assets/css/pages/profile.css">
 <link rel="stylesheet" href="${staticPath}/assets/css/pages/shortcode_timeline2.css">
 <link rel="stylesheet" href="${staticPath}/assets/css/datepicker.css">
 <link rel="stylesheet" href="${staticPath}/assets/js/chosen/chosen.min.css">
 </@htmlHead>
 <@htmlBody>
-<hr/>
-
 <div class="wrapper">
     <#if step == 1>
         <!--物品信息-->
         <div class="container margin-bottom-40">
             <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
                     <div class="row">
                         <form id="works_info" action="${staticPath}/works/addGoodsInfo/0" method="post"
                               class="form-horizontal">
@@ -100,7 +97,7 @@
 
                 </div>
 
-                <div class="col-md-3"></div>
+                <div class="col-sm-3"></div>
             </div>
         </div>
     </#if >
@@ -109,8 +106,8 @@
         <!--作品信息-->
         <div class="container margin-bottom-40">
             <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
                     <div class="row">
                         <form action="${staticPath}/works/addWorksInfo/0" method="post" class="form-horizontal">
                             <input type="hidden" name="goodsId" id="goodsId" value="${goodsId}">
@@ -242,7 +239,7 @@
 
                 </div>
 
-                <div class="col-md-3"></div>
+                <div class="col-sm-3"></div>
             </div>
         </div>
     </#if >
@@ -251,8 +248,8 @@
         <!--作品等级-->
         <div class="container margin-bottom-40">
             <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
                     <div class="row">
                         <form action="${staticPath}/works/addWorksLevel/0" method="post" class="form-horizontal">
                             <input type="hidden" name="worksId" id="worksId" value="${goodsId}">
@@ -442,7 +439,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-md-3"></div>
+                <div class="col-sm-3"></div>
             </div>
         </div>
     </#if>
@@ -451,8 +448,8 @@
         <!--评估报告-->
         <div class="container margin-bottom-40">
             <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
                     <div class="row">
                         <form action="${staticPath}/works/addValueReport/0" method="post" class="form-horizontal">
                             <input type="hidden" name="worksId" id="worksId" value="${goodsId}">
@@ -507,7 +504,7 @@
 
                 </div>
 
-                <div class="col-md-3"></div>
+                <div class="col-sm-3"></div>
             </div>
         </div>
     </#if >
@@ -516,8 +513,8 @@
         <!--收藏者信息-->
         <div class="container margin-bottom-40">
             <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
                     <div class="row">
                         <form action="${staticPath}/works/addCollect/0" method="post" class="form-horizontal">
                             <input type="hidden" name="goodsId" id="goodsId" value="${goodsId}">
@@ -590,7 +587,7 @@
                     </div>
 
                 </div>
-                <div class="col-md-3"></div>
+                <div class="col-sm-3"></div>
             </div>
         </div>
     </#if >
@@ -609,6 +606,8 @@
 </@footerJS>
 
 <script>
+
+$("#headerWorks").addClass("header_tab_active");
     $(document).ready(function () {
         $(".chzn-chosen").chosen();
 
@@ -664,25 +663,6 @@
                     maxlength: 256
                 }
             }
-//            ,
-        <#--submitHandler: function () {-->
-        <#--var successUrl = "${staticPath}/works/add";-->
-        <#--$.ajax({-->
-        <#--url: $form.attr("action"),-->
-        <#--type: "post",-->
-        <#--data: $form.serialize()+"&isDraft=0",-->
-        <#--contentType : "application/x-www-form-urlencoded; charset=utf-8",-->
-        <#--dataType: "JSON",-->
-        <#--success: function (data) {-->
-        <#--if (data.success) {-->
-        <#--alert("success");-->
-        <#--location.href = successUrl;-->
-        <#--} else {-->
-        <#--alert(data.msg)-->
-        <#--}-->
-        <#--}-->
-        <#--});-->
-        <#--}-->
         })
     });
 </script>

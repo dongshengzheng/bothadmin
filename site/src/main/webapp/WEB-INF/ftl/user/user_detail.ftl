@@ -6,11 +6,11 @@
 <!--content start-->
 <div class="container">
         <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8" style="height: 300px;border: 1px solid red">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8" style="height: 300px;border: 1px solid red">
                 <div class="row">
-                    <div class="col-md-5"></div>
-                    <div class="col-md-7" style=" margin-top: 30px">
+                    <div class="col-sm-5"></div>
+                    <div class="col-sm-7" style=" margin-top: 30px">
                         <div style="height: 80px;width: 80px;border-radius: 50px;overflow:hidden">
                             <img class="" src="../assets/img/testimonials/img5.jpg" alt=""/>
                         </div>
@@ -28,13 +28,13 @@
                 </div>
 
             </div>
-            <div class="col-md-2"></div>
+            <div class="col-sm-2"></div>
         </div>
         <!--<div class="row text-center">-->
 
         <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
 
                 <div class="tab-v1" style="margin-top: 30px">
                     <ul class="nav nav-tabs">
@@ -51,7 +51,7 @@
                     <div class="tab-content" style="background: rgb(254,255,255)">
                         <div class="tab-pane fade in active" id="grzl">
                             <div class="row">
-                                <div class="col-md-9" style="margin-top: 10px;margin-left: 20px;">
+                                <div class="col-sm-9" style="margin-top: 10px;margin-left: 20px;">
                                     <p style="color: rgb(186,187,188);">姓名：<span style="color: black">缘梦溪缘梦溪</span></p>
                                     <p style="color: rgb(186,187,188);">住址：<span style="color: black">缘梦溪缘梦溪缘梦溪缘梦溪</span></p>
                                     <p style="color: rgb(186,187,188);">身份证：<span style="color: black">320723199111113816</span></p>
@@ -348,7 +348,7 @@
                 </div>
 
             </div>
-            <div class="col-md-2"></div>
+            <div class="col-sm-2"></div>
 
 
         </div>

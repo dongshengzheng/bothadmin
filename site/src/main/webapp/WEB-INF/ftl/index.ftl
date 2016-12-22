@@ -92,7 +92,7 @@
 <!--paging start-->
 <div class="container text-right" style="margin-top: -40px">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-sm-12">
             <ul class="pagination">
                 <@pagination.pages 1..worksPaging.totalPages worksPaging.current/>
             </ul>
@@ -113,6 +113,7 @@
 </@htmlBody>
 <@footerJS>
 <script>
+    $("#headerHome").addClass("header_tab_active");
     $(document).ready(function () {
 
 //        $(".pageRefreshBtn").bind("click", function (e) {

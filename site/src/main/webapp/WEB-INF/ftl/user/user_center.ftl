@@ -461,7 +461,7 @@
             </div>
             <div class="tab-pane fade in" id="see-user">
                 <div class="row">
-                    <div class="col-md-9 " style="margin-top: 20px">
+                    <div class="col-sm-9 " style="margin-top: 20px">
                         <div class="media">
                             <div class="pull-left">
                                 <div style="height: 60px;width: 60px;border-radius: 50px;overflow:hidden">
@@ -654,21 +654,21 @@
                 </div>
 
                 <div class="row text-center margin-bottom-40">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-8">
-                        <div class="col-md-5">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-8">
+                        <div class="col-sm-5">
                             <button class="btn btn-u btn-u-default" data-toggle="modal" data-target=".withdrawModel"
                                     style="width: 150px;background: #AFAFB0;color: whitesmoke">提现
                             </button>
                         </div>
-                        <div class="col-md-2"></div>
-                        <div class="col-md-5">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-5">
                             <button class="btn btn-u btn-u-default" data-toggle="modal" data-target=".chargeModel"
                                     style="width: 150px;background: #D70016;color: whitesmoke">充值
                             </button>
                         </div>
                     </div>
-                    <div class="col-md-2"></div>
+                    <div class="col-sm-2"></div>
                 </div>
 
                 <div class="heading heading-v1 margin-bottom-20">
@@ -676,8 +676,8 @@
                 </div>
 
                 <div class="row table">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-6">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6">
                         <ul class="">
                             <li style="" class="jf_active user_jf_li" data-type="qb">
                                 <a href="#quanbu" data-toggle="tab">全部</a>
@@ -693,7 +693,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-md-3"></div>
+                    <div class="col-sm-3"></div>
 
                 </div>
             <#--积分列表-->
@@ -806,41 +806,41 @@
 <script id="qb_jf" type="mustache">
     <div class="container" style="margin-top: 50px">
                             <div class="row margin-bottom-10">
-                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
-                                <div class="col-md-5">作品被浏览</div>
-                                <div class="col-md-2" style="color: orangered">+1</div>
+                                <div class="col-sm-2 col-sm-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-sm-5">作品被浏览</div>
+                                <div class="col-sm-2" style="color: orangered">+1</div>
                             </div>
                             <hr style="height: 0px ;margin: 0px;"/>
                         </div>
                         <div class="container" style="margin-top: 30px">
                             <div class="row margin-bottom-10">
-                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
-                                <div class="col-md-5">作品被浏览</div>
-                                <div class="col-md-2" style="color: orangered">+1</div>
+                                <div class="col-sm-2 col-sm-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-sm-5">作品被浏览</div>
+                                <div class="col-sm-2" style="color: orangered">+1</div>
                             </div>
                             <hr style="height: 0px ;margin: 0px;"/>
                         </div>
                         <div class="container" style="margin-top: 30px">
                             <div class="row margin-bottom-10">
-                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
-                                <div class="col-md-5">作品被浏览</div>
-                                <div class="col-md-2" style="color: orangered">+1</div>
+                                <div class="col-sm-2 col-sm-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-sm-5">作品被浏览</div>
+                                <div class="col-sm-2" style="color: orangered">+1</div>
                             </div>
                             <hr style="height: 0px ;margin: 0px;"/>
                         </div>
                         <div class="container" style="margin-top: 30px">
                             <div class="row margin-bottom-10">
-                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
-                                <div class="col-md-5">作品被浏览</div>
-                                <div class="col-md-2" style="color: orangered">+1</div>
+                                <div class="col-sm-2 col-sm-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-sm-5">作品被浏览</div>
+                                <div class="col-sm-2" style="color: orangered">+1</div>
                             </div>
                             <hr style="height: 0px ;margin: 0px;"/>
                         </div>
                         <div class="container" style="margin-top: 30px">
                             <div class="row margin-bottom-10">
-                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
-                                <div class="col-md-5">作品被浏览</div>
-                                <div class="col-md-2" style="color: orangered">+1</div>
+                                <div class="col-sm-2 col-sm-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-sm-5">作品被浏览</div>
+                                <div class="col-sm-2" style="color: orangered">+1</div>
                             </div>
                             <hr style="height: 0px ;margin: 0px;"/>
                         </div>
@@ -852,41 +852,41 @@
 <script id="cz_jf" type="mustache">
     <div class="container" style="margin-top: 50px">
                             <div class="row margin-bottom-10">
-                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
-                                <div class="col-md-5">充值送积分</div>
-                                <div class="col-md-2" style="color: orangered">+1</div>
+                                <div class="col-sm-2 col-sm-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-sm-5">充值送积分</div>
+                                <div class="col-sm-2" style="color: orangered">+1</div>
                             </div>
                             <hr style="height: 0px ;margin: 0px;"/>
                         </div>
                         <div class="container" style="margin-top: 30px">
                             <div class="row margin-bottom-10">
-                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
-                                <div class="col-md-5">充值送积分</div>
-                                <div class="col-md-2" style="color: orangered">+1</div>
+                                <div class="col-sm-2 col-sm-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-sm-5">充值送积分</div>
+                                <div class="col-sm-2" style="color: orangered">+1</div>
                             </div>
                             <hr style="height: 0px ;margin: 0px;"/>
                         </div>
                         <div class="container" style="margin-top: 30px">
                             <div class="row margin-bottom-10">
-                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
-                                <div class="col-md-5">充值送积分</div>
-                                <div class="col-md-2" style="color: orangered">+1</div>
+                                <div class="col-sm-2 col-sm-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-sm-5">充值送积分</div>
+                                <div class="col-sm-2" style="color: orangered">+1</div>
                             </div>
                             <hr style="height: 0px ;margin: 0px;"/>
                         </div>
                         <div class="container" style="margin-top: 30px">
                             <div class="row margin-bottom-10">
-                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
-                                <div class="col-md-5">充值送积分</div>
-                                <div class="col-md-2" style="color: orangered">+1</div>
+                                <div class="col-sm-2 col-sm-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-sm-5">充值送积分</div>
+                                <div class="col-sm-2" style="color: orangered">+1</div>
                             </div>
                             <hr style="height: 0px ;margin: 0px;"/>
                         </div>
                         <div class="container" style="margin-top: 30px">
                             <div class="row margin-bottom-10">
-                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
-                                <div class="col-md-5">充值送积分</div>
-                                <div class="col-md-2" style="color: orangered">+1</div>
+                                <div class="col-sm-2 col-sm-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-sm-5">充值送积分</div>
+                                <div class="col-sm-2" style="color: orangered">+1</div>
                             </div>
                             <hr style="height: 0px ;margin: 0px;"/>
                         </div>
@@ -898,17 +898,17 @@
 <script id="tx_jf" type="mustache">
     <div class="container" style="margin-top: 50px">
                             <div class="row margin-bottom-10">
-                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
-                                <div class="col-md-5">提现送积分</div>
-                                <div class="col-md-2" style="color: orangered">+1</div>
+                                <div class="col-sm-2 col-sm-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-sm-5">提现送积分</div>
+                                <div class="col-sm-2" style="color: orangered">+1</div>
                             </div>
                             <hr style="height: 0px ;margin: 0px;"/>
                         </div>
                         <div class="container" style="margin-top: 30px">
                             <div class="row margin-bottom-10">
-                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
-                                <div class="col-md-5">提现送积分</div>
-                                <div class="col-md-2" style="color: orangered">+1</div>
+                                <div class="col-sm-2 col-sm-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-sm-5">提现送积分</div>
+                                <div class="col-sm-2" style="color: orangered">+1</div>
                             </div>
                             <hr style="height: 0px ;margin: 0px;"/>
                         </div>
@@ -920,17 +920,17 @@
 <script id="qt_jf" type="mustache">
     <div class="container" style="margin-top: 50px">
                             <div class="row margin-bottom-10">
-                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
-                                <div class="col-md-5">其他送积分</div>
-                                <div class="col-md-2" style="color: orangered">+1</div>
+                                <div class="col-sm-2 col-sm-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-sm-5">其他送积分</div>
+                                <div class="col-sm-2" style="color: orangered">+1</div>
                             </div>
                             <hr style="height: 0px ;margin: 0px;"/>
                         </div>
                         <div class="container" style="margin-top: 30px">
                             <div class="row margin-bottom-10">
-                                <div class="col-md-2 col-md-offset-1">2016-11-29 12:00:00</div>
-                                <div class="col-md-5">其他送积分</div>
-                                <div class="col-md-2" style="color: orangered">+1</div>
+                                <div class="col-sm-2 col-sm-offset-1">2016-11-29 12:00:00</div>
+                                <div class="col-sm-5">其他送积分</div>
+                                <div class="col-sm-2" style="color: orangered">+1</div>
                             </div>
                             <hr style="height: 0px ;margin: 0px;"/>
                         </div>
@@ -958,11 +958,11 @@
 
                     <div class="row">
 
-                        <div class="col-md-1"></div>
-                        <div class="col-md-2 text-right">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-2 text-right">
                             <p>请输入提现积分：</p>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-sm-4">
                             <input type="text" id="jifen" class="form-control">
                             <p style="margin-bottom: 0px">预计一个工作日内以红包的形式发放到你的微信账户</p>
                             <p style="color: darkred">请输入0~280提现积分</p>
@@ -992,7 +992,7 @@
                 </div>
                 <div class="container">
                     <div class="row margin-bottom-20">
-                        <div class="col-md-4">
+                        <div class="col-sm-4">
                             <div style="border: solid #E6E7E8 1px;height: 100px">
                                 <div class="row">
                                     <label style="color:#51C041;text-align: center;border-right: solid #E6E7E8 1px;width: 50%;margin-top: 20px"><span
@@ -1002,7 +1002,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-sm-4">
                             <div style="border: solid #E6E7E8 1px;height: 100px">
                                 <div class="row">
                                     <label style="color:#51C041;text-align: center;border-right: solid #E6E7E8 1px;width: 50%;margin-top: 20px"><span
@@ -1015,7 +1015,7 @@
                         </div>
                     </div>
                     <div class="row margin-bottom-20">
-                        <div class="col-md-4">
+                        <div class="col-sm-4">
                             <div style="border: solid #E6E7E8 1px;height: 100px">
                                 <div class="row">
                                     <label style="color:#51C041;text-align: center;border-right: solid #E6E7E8 1px;width: 50%;margin-top: 20px"><span
@@ -1025,7 +1025,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-sm-4">
                             <div style="border: solid #E6E7E8 1px;height: 100px">
                                 <div class="row">
                                     <label style="color:#51C041;text-align: center;border-right: solid #E6E7E8 1px;width: 50%;margin-top: 20px"><span
@@ -1038,7 +1038,7 @@
                         </div>
                     </div>
                     <div class="row margin-bottom-20">
-                        <div class="col-md-4">
+                        <div class="col-sm-4">
                             <div style="border: solid #E6E7E8 1px;height: 100px">
                                 <div class="row">
                                     <label style="color:#51C041;text-align: center;border-right: solid #E6E7E8 1px;width: 50%;margin-top: 20px"><span
@@ -1048,7 +1048,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-sm-4">
                             <div style="border: solid #E6E7E8 1px;height: 100px">
                                 <div class="row">
                                     <label style="color:#51C041;text-align: center;border-right: solid #E6E7E8 1px;width: 50%;margin-top: 20px"><span
@@ -1077,11 +1077,11 @@
 <#--<div class="modal-body margin-top-20 margin-bottom-50">-->
 <#--<div class="container">-->
 <#--<div class="row">-->
-<#--<div class="col-md-1"></div>-->
-<#--<div class="col-md-2 text-right">-->
+<#--<div class="col-sm-1"></div>-->
+<#--<div class="col-sm-2 text-right">-->
 <#--<p>请输入提现积分：</p>-->
 <#--</div>-->
-<#--<div class="col-md-4">-->
+<#--<div class="col-sm-4">-->
 <#--<input type="text" id="jifen" class="form-control">-->
 <#--<p style="margin-bottom: 0px">预计一个工作日内以红包的形式发放到你的微信账户</p>-->
 <#--<p style="color: darkred">请输入0~280提现积分</p>-->

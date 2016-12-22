@@ -10,11 +10,11 @@
 <div class="container">
 
     <div class="row">
-        <div class="col-md-9 col-md-offset-1 text-left"
+        <div class="col-sm-9 col-sm-offset-1 text-left"
              style="background: rgb(237,238,239);margin-top: 20px;padding-top: 10px;padding-bottom: 10px;border:1px solid #E9EAEB;font-size: 16px">
             搜索作品结果
         </div>
-        <div class="col-md-9 col-md-offset-1" style="border-right: 1px solid #E9EAEB;
+        <div class="col-sm-9 col-sm-offset-1" style="border-right: 1px solid #E9EAEB;
                     border-left: 1px solid #E9EAEB;
                     border-bottom: 1px solid #E9EAEB;margin-bottom: 50px;">
             <div id="all_works_page_content" style="margin-top: 30px;">
