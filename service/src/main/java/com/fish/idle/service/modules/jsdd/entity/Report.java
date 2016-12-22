@@ -49,7 +49,7 @@ public class Report implements Serializable {
 
 	/** 作品Id */
 	@TableField(value = "works_id")
-	private String worksId;
+	private Integer worksId;
 
 	/** 作品编号 */
 	@TableField(value = "works_no")
@@ -115,11 +115,11 @@ public class Report implements Serializable {
 		this.delFlag = delFlag;
 	}
 
-	public String getWorksId() {
+	public Integer getWorksId() {
 		return this.worksId;
 	}
 
-	public void setWorksId(String worksId) {
+	public void setWorksId(Integer worksId) {
 		this.worksId = worksId;
 	}
 
@@ -139,4 +139,10 @@ public class Report implements Serializable {
 		this.des = des;
 	}
 
+	public Report() {
+	}
+
+	public Report(Integer worksId) {
+		this.worksId = worksId;
+	}
 }

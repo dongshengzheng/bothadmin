@@ -349,4 +349,11 @@ public class WorksLevel implements Serializable {
         this.hanxuefangshi = hanxuefangshi;
     }
 
+
+    public WorksLevel() {
+    }
+
+    public WorksLevel(Integer worksId) {
+        this.worksId = worksId;
+    }
 }

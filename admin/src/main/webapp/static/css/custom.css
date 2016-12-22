@@ -151,8 +151,19 @@ div.DTE_Inline div.DTE_Inline_Buttons div.DTE_Form_Buttons button {
     z-index: 100500 !important;
 }
 
+.mt-checkbox, .mt-radio{
+    margin-bottom: 0px !important;
+}
 
 /*********dataTables********/
 .dataTables_empty{
     text-align:center;
+}
+
+.form-horizontal .form-group .mt-radio-inline{
+    padding-top:7px !important;
+}
+
+.page-bar{
+    margin-bottom:15px !important;
 }

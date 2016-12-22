@@ -17,7 +17,7 @@
     <div class="modal-body">
         <div class="container-fluid">
             <div class="form-group">
-                <input type="hidden" name="userId" value="${user.userId}"/> <label
+                <input type="hidden" name="id" value="${user.id}"/> <label
                     for="loginName" class="col-sm-2 control-label">用户名</label>
                 <div class="col-sm-7">
                     <input id="loginName" value="${user.loginName}" type="text"

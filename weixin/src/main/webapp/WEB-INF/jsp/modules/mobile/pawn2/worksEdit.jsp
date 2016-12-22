@@ -181,8 +181,8 @@
                     var li2 = $(this);
                     var str2 = li2.css("background-image");
                     var length2 = str2.length;
-                    var url2 = str2.substring(5, length - 2);
-                    imgUrls2 += url + '|';
+                    var url2 = str2.substring(5, length2 - 2);
+                    imgUrls2 += url2 + '|';
                 })
                 imgUrls2 = imgUrls2.substring(0, imgUrls2.length - 1);
             }

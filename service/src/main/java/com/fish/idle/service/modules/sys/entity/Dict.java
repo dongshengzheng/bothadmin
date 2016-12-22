@@ -43,23 +43,6 @@ public class Dict implements Serializable {
 	/** 父级编号 */
 	@TableField(value = "parent_id")
 	private String parentId;
-
-	/** 创建者 */
-	@TableField(value = "create_by")
-	private String createBy;
-
-	/** 创建时间 */
-	@TableField(value = "create_date")
-	private Date createDate;
-
-	/** 更新者 */
-	@TableField(value = "update_by")
-	private String updateBy;
-
-	/** 更新时间 */
-	@TableField(value = "update_date")
-	private Date updateDate;
-
 	/** 备注信息 */
 	private String remarks;
 
@@ -122,38 +105,6 @@ public class Dict implements Serializable {
 
 	public void setParentId(String parentId) {
 		this.parentId = parentId;
-	}
-
-	public String getCreateBy() {
-		return this.createBy;
-	}
-
-	public void setCreateBy(String createBy) {
-		this.createBy = createBy;
-	}
-
-	public Date getCreateDate() {
-		return this.createDate;
-	}
-
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
-
-	public String getUpdateBy() {
-		return this.updateBy;
-	}
-
-	public void setUpdateBy(String updateBy) {
-		this.updateBy = updateBy;
-	}
-
-	public Date getUpdateDate() {
-		return this.updateDate;
-	}
-
-	public void setUpdateDate(Date updateDate) {
-		this.updateDate = updateDate;
 	}
 
 	public String getRemarks() {

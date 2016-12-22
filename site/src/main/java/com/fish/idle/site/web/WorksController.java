@@ -31,7 +31,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping(value = "/works")
-public class WorkController extends BaseController {
+public class WorksController extends BaseController {
 
     @Value("${img_oss_path}")
     private String imgOssPath;
@@ -49,6 +49,11 @@ public class WorkController extends BaseController {
 
     @Autowired
     private IWorksService worksService;
+
+    @RequestMapping(value = "/demo", method = RequestMethod.GET)
+    public String demo(ModelMap map) {
+        return "works/works_demo";
+    }
 
 
     @Autowired

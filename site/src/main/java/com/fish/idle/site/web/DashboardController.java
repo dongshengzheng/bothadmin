@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -45,8 +46,10 @@ public class DashboardController extends BaseController{
         EntityWrapper<Works> ew = getEntityWrapper();
         Page<Works> page = worksService.selectPage(getPage(start,length),ew);
         for (Works item:page.getRecords()){
-            String[] imageArr = item.getImages().split(",");
-            item.setImages(imgOssPath + imageArr[0]);
+            if (!StringUtils.isEmpty(item.getImages())){
+                String[] imageArr = item.getImages().split(",");
+                item.setImages(imgOssPath + imageArr[0]);
+            }
         }
         paging.setData(page.getRecords());
         paging.setTotalPages(page.getPages());
