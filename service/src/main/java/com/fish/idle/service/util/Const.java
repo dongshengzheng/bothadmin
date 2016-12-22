@@ -104,4 +104,10 @@ public class Const {
     public static final String IMAGES_WORKS = "0";    // 作品普通图片
     public static final String IMAGES_CERTIFICATE = "1";    // 作品认证图片
 
+
+    //consumer类型
+    public static final String CONSUMER_PROVIDER = "1";    // 提供者
+    public static final String CONSUMER_COLLECTER = "２";    // 收藏者
+
+
 }

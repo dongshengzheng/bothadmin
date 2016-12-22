@@ -123,6 +123,7 @@
             <hr>
             <div class="weui-form-preview__ft">
                 <input id="draftYN" name="draftYN" type="hidden" value="NO">
+                <br/>
                 <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" id="draftSubmit">
                     存为草稿
                 </button>
@@ -155,6 +156,8 @@
         </a>
     </div>
 </div>
+
+
 <script src="${ctxStatic}/js/jquery-2.1.4.js"></script>
 <script src="${ctxStatic}/js/jquery-weui.js"></script>
 <script src="${ctxStatic}/js/upload.js"></script>
@@ -162,7 +165,6 @@
 <script src="${ctxStatic}/js/plupload-2.1.2/js/plupload.dev.js"></script>
 <script>
     $(function () {
-
         $('#register-rule').on('click', function () {
             $(".js_dialog").fadeIn(200);
         })
@@ -176,7 +178,7 @@
 
 
         $('#trueSubmit').on('click', function () {
-            var lis = $('li');
+            var lis = $('.worksImgs');
             var imgUrls = "";
             var len = lis.length;
             if (len > 0) {
@@ -193,7 +195,7 @@
         })
 
         $('#draftSubmit').on('click', function () {
-            var lis = $('li');
+            var lis = $('.worksImgs');
             var imgUrls = "";
             var len = lis.length;
             if (len > 0) {

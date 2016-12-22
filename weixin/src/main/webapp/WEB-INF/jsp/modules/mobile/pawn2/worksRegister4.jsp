@@ -109,13 +109,12 @@
     <center><span>${sessionScope.registerWorksName}
     </span></center>
 </div>
-<form action="worksRegister5.jsp" enctype="multipart/form-data" method="post">
+<form action="${ctx}/mobile/worksRegister5" enctype="multipart/form-data" method="post">
     <div class="div-outer">
-
         <p class="report">昌化鸡血石鉴定评估报告</p>
         <div class="weui-cell">
             <div class="weui-cell__bd weui-cell_primary">
-                <textarea name="des" class="weui-textarea" placeholder="详细鉴定报告..." rows="13"></textarea>
+                <textarea name="description" class="weui-textarea" placeholder="详细鉴定报告..." rows="13"></textarea>
                 <!--<div class="weui-textarea-counter">-->
                 <!--<span>0</span>/200-->
                 <!--</div>-->
@@ -136,11 +135,12 @@
             <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" id="draftSubmit">
                 存为草稿
             </button>
-            <button id="confirmSubmit" type="button" class="weui-form-preview__btn weui-form-preview__btn_primary"
+            <button id="confirmSubmit" type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary"
                     href="javascript:">
                 确认提交
             </button>
-            <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">
+            <button id="nextSubmit" type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary"
+                    href="javascript:">
                 下一步
             </button>
         </div>
@@ -176,6 +176,10 @@
     </div>
 </div>
 
+<div class="weui-gallery" id="gallery">
+    <span class="weui-gallery__img" id="galleryImg"></span>
+</div>
+
 <script type="text/javascript">
     $(function () {
 
@@ -194,9 +198,6 @@
             $iosMask.fadeIn(200);
         }
 
-//        $("#haveUpload").on("click", function () {
-//
-//        });
 
         $('#dialogs').on('click', '.weui-dialog__btn', function () {
             $(this).parents('.js_dialog').fadeOut(200);
@@ -216,11 +217,19 @@
 
         $('#prelook').on('click', function () {
             hideActionSheet();
+            $('#galleryImg').css('background-image', $('li').css('background-image'))
+            $("#gallery").fadeIn(100);
         });
+
+        $("#gallery").on("click", function () {
+            $("#gallery").fadeOut(100);
+        });
+
 
         $('#del').on('click', function () {
             $('.weui-uploader__file').remove();
             $('.certificate-text2').html("未上传").attr('id', 'uploaderInput2');
+            initUploaders2("windyeel", "http://steins00gate.s1.758kongbao.com/");
             hideActionSheet();
         })
 
@@ -239,9 +248,44 @@
                 imgUrls = imgUrls.substring(0, imgUrls.length - 1);
             }
             $('#zpxxImge').val(imgUrls);
+            $('#draftYN').val('confirm');
         })
 
 
+        $('#draftSubmit').on('click', function () {
+            var lis = $('.zpxxImgeUpload');
+            var imgUrls = "";
+            var len = lis.length;
+            if (len > 0) {
+                lis.each(function () {
+                    var li = $(this);
+                    var str = li.css("background-image");
+                    var length = str.length;
+                    var url = str.substring(5, length - 2);
+                    imgUrls += url + '|';
+                })
+                imgUrls = imgUrls.substring(0, imgUrls.length - 1);
+            }
+            $('#zpxxImge').val(imgUrls);
+            $('#draftYN').val('yes');
+        })
+
+        $('#nextSubmit').on('click', function () {
+            var lis = $('.zpxxImgeUpload');
+            var imgUrls = "";
+            var len = lis.length;
+            if (len > 0) {
+                lis.each(function () {
+                    var li = $(this);
+                    var str = li.css("background-image");
+                    var length = str.length;
+                    var url = str.substring(5, length - 2);
+                    imgUrls += url + '|';
+                })
+                imgUrls = imgUrls.substring(0, imgUrls.length - 1);
+            }
+            $('#zpxxImge').val(imgUrls);
+        })
     });
 </script>
 </body>

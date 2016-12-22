@@ -175,6 +175,11 @@
         </sql>
     </changeSet>
 
+    <changeSet author="WangShun" id="15950097942-019">
+        <sql>
+            ALTER TABLE `dd_works_level` CHANGE COLUMN `works_id` `works_id` int(11) DEFAULT NULL COMMENT '作品id';
+        </sql>
+    </changeSet>
 
 
 </databaseChangeLog>

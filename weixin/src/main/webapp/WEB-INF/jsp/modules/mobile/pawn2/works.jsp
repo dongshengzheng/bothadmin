@@ -151,7 +151,6 @@
         align-items: center;
     }
 </style>
-
 <body>
 <div class="swiper-container div-outer">
     <div class="swiper-wrapper">
@@ -290,11 +289,10 @@
 
 
     $(function () {
-//        $('.weui-tabbar__item').on('click', function () {
-//            $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
-//        });
 
-        $('.works-floor-btn-all,.works-floor-btn').click(function () {
+
+        $('.works-floor-btn-all,.works-floor-btn').on('click', fun1);
+        function fun1() {
             var worksid = $(this).parent().siblings('.worksId').val();
             $.ajax({
                 type: "POST",
@@ -307,16 +305,22 @@
                     $('#iosDialog2').fadeIn(200);
                 }
             })
-        })
+        }
 
 
         $('#dialogs .weui-dialog__btn').click(function () {
             $(this).parents('.js_dialog').fadeOut(200);
         });
 
-        $('.works-img,.works-img-all').click(function () {
-            var worksid = $(this).parent().siblings('.worksId').val();
-            location.href = '${ctx}/mobile/worksDetail?id=' + worksid;
+        <%--$('.works-img,.works-img-all').on('click', fun2)--%>
+        <%--function fun2() {--%>
+        <%--var worksid = $(this).parent().siblings('.worksId').val();--%>
+        <%--location.href = '${ctx}/mobile/worksDetail?id=' + worksid;--%>
+        <%--}--%>
+
+        $('.works,.works-all').on('click', function () {
+            var worksId = $(this).siblings('.worksId').val();
+            location.href = '${ctx}/mobile/worksDetail?worksId=' + worksId;
         })
 
 
@@ -344,9 +348,11 @@
                         $tmp = $("#tmp").clone();
                         $tmp.removeAttr('id');
                         $tmp.find(".worksId").val(data.records[i].id);
+//                        $tmp.find(".works-img-all").on('click', fun2);
                         $tmp.find(".works-floor-name-all").html(data.records[i].name);
                         $tmp.find(".works-floor-img-all").html(data.records[i].type);
                         $tmp.find(".works-floor-date-all").html(data.records[i].createDate);
+                        $tmp.find(".works-floor-btn-all").on('click', fun1);
                         $tmp.removeClass('div-hide');
                         $(".all").append($tmp);
                     }

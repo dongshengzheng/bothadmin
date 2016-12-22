@@ -55,12 +55,13 @@
         <span>&nbsp;◇&nbsp;JS-A20161205001A&nbsp;◇&nbsp;</span></center>
 </div>
 <div>
-    <form action="worksRegister4.jsp">
+    <form action="${ctx}/mobile/worksRegisterComplete" method="post">
         <div class="weui-cells weui-cells_form">
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input class="weui-input" type="tel" placeholder="田黄鸡血石精品吊坠">
+                    <input class="weui-input" type="tel" value="${sessionScope.registerWorksName}"
+                           disabled>
                 </div>
             </div>
             <div class="weui-cell">
@@ -90,7 +91,8 @@
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">收藏时间</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input name="datetimeString" class="weui-input" type="tel" placeholder="请选择时间">
+                    <input id="showDatePicker" name="collecterDatetimeString" class="weui-input" type="tel"
+                           placeholder="请选择时间">
                 </div>
             </div>
             <div class="weui-cell">
@@ -117,6 +119,14 @@
         </div>
     </form>
 </div>
-
 </body>
+<script>
+    $(function () {
+        $('#draftSubmit').on('click', function () {
+            $('#draftYN').val('yes');
+        })
+
+        $("#showDatePicker").calendar();
+    })
+</script>
 </html>

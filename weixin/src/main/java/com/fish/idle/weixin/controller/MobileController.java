@@ -403,7 +403,7 @@ public class MobileController extends BaseController {
                               HttpServletRequest request,
                               HttpServletResponse response,
                               ModelMap map,
-                              @RequestParam int id) {
+                              @RequestParam int worksId) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
         User u = new User();
@@ -413,16 +413,16 @@ public class MobileController extends BaseController {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
 
-        Works works = worksService.selectById(id);
+        Works works = worksService.selectById(worksId);
 
         WorksLevel wl = new WorksLevel();
-        wl.setWorksId(id);
+        wl.setWorksId(worksId);
         WorksLevel worksLevel = worksLevelService.selectOne(new EntityWrapper<>(wl));
 
         //收藏该作品的历史
         FollowHistory fh = new FollowHistory();
         fh.setType(1);
-        fh.setTargetId(id);
+        fh.setTargetId(worksId);
         List<FollowHistory> fhList = followHistoryService.selectList(new EntityWrapper<>(fh));
         List<User> fhuserList = new ArrayList<>();
         for (int i = 0; i < (fhList.size() < 10 ? fhList.size() : 10); i++) {
@@ -432,7 +432,7 @@ public class MobileController extends BaseController {
         //查看过该作品的历史
         FollowHistory bh = new FollowHistory();
         bh.setType(2);
-        bh.setTargetId(id);
+        bh.setTargetId(worksId);
         List<FollowHistory> bhList = followHistoryService.selectList(new EntityWrapper<>(bh));
         List<User> bhuserList = new ArrayList<>();
         for (int i = 0; i < (bhList.size() < 10 ? bhList.size() : 10); i++) {
@@ -771,11 +771,11 @@ public class MobileController extends BaseController {
      */
     @RequestMapping(value = "transfer", method = RequestMethod.GET)
     @OAuthRequired
-    public String worksRegister1(HttpSession session,
-                                 HttpServletRequest request,
-                                 HttpServletResponse response,
-                                 ModelMap map,
-                                 @RequestParam(required = false) int worksId) {
+    public String transfer(HttpSession session,
+                           HttpServletRequest request,
+                           HttpServletResponse response,
+                           ModelMap map,
+                           @RequestParam(required = false) int worksId) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
         User u = new User();
@@ -920,11 +920,11 @@ public class MobileController extends BaseController {
         works.setName(worksName);
         works.setRemarks(worksRemarks);
         if ("yes".equals(draftYN)) {
-            works.setType(Const.WORKS_STATUS_DRAFT);
+            works.setStatus(Const.WORKS_STATUS_DRAFT);
         }
         worksService.insert(works);
         consumer.setName(works.getProvideBy());
-        consumer.setType("1");
+        consumer.setType(Const.CONSUMER_PROVIDER);
         consumer.setWorksId(works.getId());
         consumer.setNo(consumerNo);
         consumerService.insert(consumer);
@@ -942,7 +942,7 @@ public class MobileController extends BaseController {
             }
         }
         if ("yes".equals(draftYN)) {
-            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/pawn2/my/myWorks?showwhich=draft";
+            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=draft";
         }
         session.setAttribute("registerWorksName", works.getName());
         session.setAttribute("registerWorksId", worksId);
@@ -999,11 +999,11 @@ public class MobileController extends BaseController {
         }
         works.setWorksMeanning(worksMeanning);
         if ("yes".equals(draftYN)) {
-            works.setType(Const.WORKS_STATUS_DRAFT);
+            works.setStatus(Const.WORKS_STATUS_DRAFT);
         }
         worksService.updateById(works);
         if ("yes".equals(draftYN)) {
-            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/pawn2/my/myWorks?showwhich=draft";
+            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=draft";
         }
         session.setAttribute("registerWorks", works);
         return "modules/mobile/pawn2/worksRegister3";
@@ -1021,7 +1021,6 @@ public class MobileController extends BaseController {
                                  HttpServletResponse response,
                                  ModelMap map,
                                  WorksLevel worksLevel,
-                                 @RequestParam(required = false) String certificateImgUrl,
                                  @RequestParam(required = false) String draftYN) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
@@ -1035,16 +1034,12 @@ public class MobileController extends BaseController {
         worksLevel.setWorksId(worksId);
         worksLevelService.insert(worksLevel);
 
-        Images images = new Images();
-        images.setUrl(certificateImgUrl);
-        images.setType(Const.IMAGES_CERTIFICATE);
-        images.setTargetId(worksId);
 
         if ("yes".equals(draftYN)) {
             Works works = (Works) session.getAttribute("registerWorks");
-            works.setType(Const.WORKS_STATUS_DRAFT);
+            works.setStatus(Const.WORKS_STATUS_DRAFT);
             worksService.updateById(works);
-            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/pawn2/my/myWorks?showwhich=draft";
+            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=draft";
         }
 
         return "modules/mobile/pawn2/worksRegister4";
@@ -1062,7 +1057,8 @@ public class MobileController extends BaseController {
                                  HttpServletResponse response,
                                  ModelMap map,
                                  ValueReport valueReport,
-                                 @RequestParam(required = false) String draftYN) {
+                                 @RequestParam(required = false) String draftYN,
+                                 @RequestParam(required = false) String certificateImgUrl) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
         User u = new User();
@@ -1075,12 +1071,26 @@ public class MobileController extends BaseController {
         valueReport.setWorksId(worksId);
         valueReportService.insert(valueReport);
 
+//        if (certificateImgUrl != null && certificateImgUrl.length() > 0) {
+//            Images images = new Images();
+//            images.setUrl(certificateImgUrl);
+//            images.setType(Const.IMAGES_CERTIFICATE);
+//            images.setTargetId(worksId);
+//        }
+
+
         if ("yes".equals(draftYN)) {
             Works works = (Works) session.getAttribute("registerWorks");
-            works.setType(Const.WORKS_STATUS_DRAFT);
+            works.setStatus(Const.WORKS_STATUS_DRAFT);
             worksService.updateById(works);
-            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/pawn2/my/myWorks?showwhich=draft";
+            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=draft";
+        } else if ("confirm".equals(draftYN)) {
+            Works works = (Works) session.getAttribute("registerWorks");
+            works.setStatus(Const.WORKS_STATUS_COMMIT);
+            worksService.updateById(works);
+            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=now";
         }
+
 
         return "modules/mobile/pawn2/worksRegister5";
     }
@@ -1096,10 +1106,9 @@ public class MobileController extends BaseController {
                                         HttpServletRequest request,
                                         HttpServletResponse response,
                                         ModelMap map,
-                                        ValueReport valueReport,
                                         @RequestParam(required = false) String draftYN,
                                         Consumer consumer,
-                                        @RequestParam(required = false) String dateTimeString) {
+                                        @RequestParam(required = false) String collecterDatetimeString) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
         User u = new User();
@@ -1111,21 +1120,21 @@ public class MobileController extends BaseController {
 
         Integer worksId = (Integer) session.getAttribute("registerWorksId");
         consumer.setWorksId(worksId);
-        consumer.setType("2");
-        if (dateTimeString != null && dateTimeString.trim().length() > 0) {
-            Date datetime = DateUtil.parseDate(dateTimeString, "yyyy-MM-dd");
+        consumer.setType(Const.CONSUMER_COLLECTER);
+        if (collecterDatetimeString != null && collecterDatetimeString.trim().length() > 0) {
+            Date datetime = DateUtil.parseDate(collecterDatetimeString, "yyyy-MM-dd");
             consumer.setDatetime(datetime);
         }
         consumerService.insert(consumer);
-
+        Works works = (Works) session.getAttribute("registerWorks");
         if ("yes".equals(draftYN)) {
-            Works works = (Works) session.getAttribute("registerWorks");
-            works.setType(Const.WORKS_STATUS_DRAFT);
+            works.setStatus(Const.WORKS_STATUS_DRAFT);
             worksService.updateById(works);
-            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/pawn2/my/myWorks?showwhich=draft";
+            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=draft";
         }
-
-        return "modules/mobile/pawn2/myWorks?showwhich=now";
+        works.setStatus(Const.WORKS_STATUS_COMMIT);
+        worksService.updateById(works);
+        return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=now";
     }
 
     /**
@@ -1182,23 +1191,32 @@ public class MobileController extends BaseController {
         worksLevel.setWorksId(worksId);
         worksLevel = worksLevelService.selectOne(new EntityWrapper<>(worksLevel));
 
-        Consumer consumer = new Consumer();
-        consumer.setWorksId(worksId);
-        consumer = consumerService.selectOne(new EntityWrapper<>(consumer));
+        Consumer provider = new Consumer();
+        provider.setWorksId(worksId);
+        provider.setType(Const.CONSUMER_PROVIDER);
+        provider = consumerService.selectOne(new EntityWrapper<>(provider));
+
+        Consumer collecter = new Consumer();
+        collecter.setWorksId(worksId);
+        collecter.setType(Const.CONSUMER_COLLECTER);
+        collecter = consumerService.selectOne(new EntityWrapper<>(collecter));
 
         Images images = new Images();
         images.setTargetId(worksId);
         images.setType(Const.IMAGES_WORKS);
-        List<Images> imagesList = imagesService.selectList(new EntityWrapper<>(images));
+        List<Images> worksImagesList = imagesService.selectList(new EntityWrapper<>(images));
 
-        images.setType(Const.IMAGES_CERTIFICATE);
-        Images certificateImg = imagesService.selectOne(new EntityWrapper<>(images));
+        ValueReport valueReport = new ValueReport();
+        valueReport.setWorksId(worksId);
+        valueReport = valueReportService.selectOne(new EntityWrapper<>(valueReport));
+
 
         map.put("works", works);
-        map.put("consumer", consumer);
+        map.put("provider", provider);
         map.put("worksLevel", worksLevel);
-        map.put("imagesList", imagesList);
-        map.put("certificateImg", certificateImg);
+        map.put("worksImagesList", worksImagesList);
+        map.put("collecter", collecter);
+        map.put("valueReport", valueReport);
 
         session.setAttribute("worksIdInSession", worksId);
 
@@ -1206,7 +1224,7 @@ public class MobileController extends BaseController {
     }
 
     /**
-     * 作品编辑页面
+     * 作品编辑完成
      *
      * @return
      */
@@ -1221,7 +1239,15 @@ public class MobileController extends BaseController {
                                     Consumer consumer,
                                     @RequestParam(required = false) String worksName,
                                     @RequestParam(required = false) String worksRemarks,
-                                    @RequestParam(required = false) String consumerNo) {
+                                    @RequestParam(required = false) String worksType,
+                                    @RequestParam(required = false) String consumerNo,
+                                    @RequestParam(required = false) String collecterName,
+                                    @RequestParam(required = false) String collecterNo,
+                                    @RequestParam(required = false) String collecterAddress,
+                                    @RequestParam(required = false) String collecterPhone,
+                                    @RequestParam(required = false) String collecterDateTimeString,
+                                    @RequestParam(required = false) String collecterPub,
+                                    @RequestParam(required = false) String imgUrls) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
         User u = new User();
@@ -1231,31 +1257,86 @@ public class MobileController extends BaseController {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
 
-        Integer id = (Integer) session.getAttribute("worksIdInSession");
+        Integer worksId = (Integer) session.getAttribute("worksIdInSession");
 
-        works.setId(id);
+        Works oldWorks = worksService.selectById(worksId);
+
+        works.setCreateBy(oldWorks.getCreateBy());
+        works.setCreateDate(oldWorks.getCreateDate());
+        works.setId(worksId);
+        works.setType(worksType);
         works.setName(worksName);
         works.setRemarks(worksRemarks);
         works.setStatus(Const.WORKS_STATUS_COMMIT);
+        worksService.updateById(works);
+
+        Images oldImg = new Images();
+        oldImg.setTargetId(worksId);
+        oldImg.setType(Const.IMAGES_WORKS);
+        List<Images> oldImgs = imagesService.selectList(new EntityWrapper<>(oldImg));
+        List<Integer> ids = new ArrayList<>();
+        for (Images img : oldImgs) {
+            ids.add(img.getId());
+        }
+        imagesService.deleteBatchIds(ids);
+
+        if (imgUrls != null && imgUrls.trim().length() > 0) {
+            String[] urls = imgUrls.split("\\|");
+            for (String url : urls) {
+                Images images = new Images();
+                images.setTargetId(worksId);
+                images.setUrl(url);
+                images.setType(Const.IMAGES_WORKS);
+                imagesService.insert(images);
+            }
+        }
+
+        worksLevel.setWorksId(worksId);
+        WorksLevel wl = new WorksLevel();
+        wl.setWorksId(worksId);
+        wl = worksLevelService.selectOne(new EntityWrapper<>(wl));
+        if (wl == null) {
+            worksLevelService.insert(worksLevel);
+        } else {
+            worksLevel.setId(wl.getId());
+            worksLevelService.updateById(worksLevel);
+        }
+
+
         consumer.setNo(consumerNo);
         consumer.setName(works.getProvideBy());
-        consumer.setType("1");
-        consumer.setWorksId(id);
-        worksLevel.setWorksId(id);
-
-        WorksLevel wl = new WorksLevel();
-        wl.setWorksId(id);
-        wl = worksLevelService.selectOne(new EntityWrapper<>(wl));
-        worksLevel.setId(wl.getId());
-
+        consumer.setType(Const.CONSUMER_PROVIDER);
+        consumer.setWorksId(worksId);
         Consumer cs = new Consumer();
-        cs.setWorksId(id);
+        cs.setWorksId(worksId);
+        cs.setType(Const.CONSUMER_PROVIDER);
         cs = consumerService.selectOne(new EntityWrapper<>(cs));
         consumer.setId(cs.getId());
-
-        worksService.updateById(works);
-        worksLevelService.updateById(worksLevel);
         consumerService.updateById(consumer);
+
+
+        Consumer collecter = new Consumer();
+        collecter.setWorksId(worksId);
+        collecter.setName(collecterName);
+        collecter.setType(Const.CONSUMER_COLLECTER);
+        collecter.setNo(collecterNo);
+        collecter.setAddress(collecterAddress);
+        collecter.setNo(collecterNo);
+        collecter.setPhone(collecterPhone);
+        if (collecterDateTimeString != null && collecterDateTimeString.trim().length() > 0) {
+            Date collectDate = DateUtil.parseDate(collecterDateTimeString);
+            collecter.setDatetime(collectDate);
+        }
+        Consumer oldConsumer = new Consumer();
+        oldConsumer.setWorksId(worksId);
+        oldConsumer.setType(Const.CONSUMER_COLLECTER);
+        oldConsumer = consumerService.selectOne(new EntityWrapper<>(cs));
+        if (oldConsumer == null) {
+            consumerService.insert(collecter);
+        } else {
+            collecter.setId(cs.getId());
+            consumerService.updateById(collecter);
+        }
 
         return "modules/mobile/pawn2/my";
     }

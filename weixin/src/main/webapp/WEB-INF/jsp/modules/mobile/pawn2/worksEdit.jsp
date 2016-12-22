@@ -126,7 +126,8 @@
         <div class="weui-form-preview__ft">
             <a class="weui-form-preview__btn weui-form-preview__btn_default"
                href="${ctx}/mobile/my">放弃修改</a>
-            <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">
+            <button id="submit" type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary"
+                    href="javascript:">
                 提交审核
             </button>
         </div>
@@ -137,43 +138,12 @@
 </form>
 <script>
     $(function () {
-        var tmpl = '<li class="weui-uploader__file" style="background-image:url(#url#)"></li>',
-                $gallery = $("#gallery"), $galleryImg = $("#galleryImg"),
-                $uploaderInput = $("#uploaderInput"),
-                $uploaderFiles = $("#uploaderFiles")
-                ;
-
-        $uploaderInput.on("change", function (e) {
-            var src, url = window.URL || window.webkitURL || window.mozURL, files = e.target.files;
-            for (var i = 0, len = files.length; i < len; ++i) {
-                var file = files[i];
-
-                if (url) {
-                    src = url.createObjectURL(file);
-                } else {
-                    src = e.target.result;
-                }
-
-                $uploaderFiles.append($(tmpl.replace('#url#', src)));
-            }
-        });
-        $uploaderFiles.on("click", "li", function () {
-            $galleryImg.attr("style", this.getAttribute("style"));
-            $gallery.fadeIn(100);
-        });
-        $gallery.on("click", function () {
-            $gallery.fadeOut(100);
-        });
-
-
         $(function () {
             $('.weui-navbar__item').on('click', function () {
                 $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
                 var tab = $(this).attr('id').charAt(4);
                 $('#tab' + tab).addClass('weui_tab_bd_item_active').siblings('.weui_tab_bd_item_active').removeClass('weui_tab_bd_item_active');
             });
-
-
         });
 
         initUploaders("windyeel", "http://steins00gate.s1.758kongbao.com/");
@@ -186,8 +156,39 @@
 
         $("#showDatePicker").calendar();
 
-    });
 
+        $('#submit').on('click', function () {
+            var lis = $('.worksImgs');
+            var imgUrls = "";
+            var len = lis.length;
+            if (len > 0) {
+                lis.each(function () {
+                    var li = $(this);
+                    var str = li.css("background-image");
+                    var length = str.length;
+                    var url = str.substring(5, length - 2);
+                    imgUrls += url + '|';
+                })
+                imgUrls = imgUrls.substring(0, imgUrls.length - 1);
+            }
+            $('#imgUrls').val(imgUrls);
+
+            var lis2 = $('.zpxxImgeUpload');
+            var imgUrls2 = "";
+            var len2 = lis2.length;
+            if (len2 > 0) {
+                lis2.each(function () {
+                    var li2 = $(this);
+                    var str2 = li2.css("background-image");
+                    var length2 = str2.length;
+                    var url2 = str2.substring(5, length - 2);
+                    imgUrls2 += url + '|';
+                })
+                imgUrls2 = imgUrls2.substring(0, imgUrls2.length - 1);
+            }
+            $('#zpxxImge').val(imgUrls2);
+        })
+    });
 </script>
 </body>
 </html>

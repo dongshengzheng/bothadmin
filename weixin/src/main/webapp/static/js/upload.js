@@ -117,7 +117,7 @@ function initUploaders(bucket, domain) {
                 set_upload_param(up, file.name, true, domain);
             },
             FileUploaded: function () {
-                $("#uploaderInput").before('<li class="weui-uploader__file"'
+                $("#uploaderInput").before('<li class="weui-uploader__file worksImgs"'
                     + 'style="background-image:url(' +
                     'http://' + bucket + '.img-cn-shanghai.aliyuncs.com/' + g_object_name + '?x-oss-process=image/resize,m_fill,h_100,w_100'
                     + ')"></li>');
@@ -160,7 +160,6 @@ function initUploaders2(bucket, domain) {
                     $('#iosMask').fadeIn(200);
                 })
                 $('.moxie-shim').remove();
-
             }
         }
     });
