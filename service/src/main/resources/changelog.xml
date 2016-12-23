@@ -174,7 +174,6 @@
             ALTER TABLE `dd_value_report` ADD COLUMN `jzyxsj` date DEFAULT NULL COMMENT '价值认证时间';
         </sql>
     </changeSet>
-<<<<<<< HEAD
 
     <changeSet author="WangShun" id="15950097942-019">
         <sql>
@@ -182,7 +181,6 @@
         </sql>
     </changeSet>
 
-=======
     <changeSet author="SunHan" id="15862614903-013">
         <sql dbms="mysql">
             ALTER TABLE `sys_dict` DROP COLUMN `create_by`, DROP COLUMN `create_date`, DROP COLUMN
@@ -194,6 +192,19 @@
             ALTER TABLE `dd_report` CHANGE COLUMN `works_id` `works_id` int(11) DEFAULT NULL COMMENT '作品Id';
         </sql>
     </changeSet>
->>>>>>> 0b83b28a1ce116683c9d0bf0fb3cf29461ecd809
+
+    <changeSet author="WangShun" id="15950097942-021">
+        <sql>
+            ALTER TABLE `sys_user` DROP COLUMN `perfer`;
+            ALTER TABLE `sys_user` ADD COLUMN `prefer` varchar(64) DEFAULT NULL COMMENT '偏好';
+            ALTER TABLE `sys_user` ADD COLUMN `address` varchar(64) DEFAULT NULL COMMENT '地址';
+        </sql>
+    </changeSet>
+    <changeSet author="WangShun" id="15950097942-022">
+        <sql>
+            ALTER TABLE `sys_user` ADD COLUMN `head_img_url` varchar(200) DEFAULT NULL COMMENT '头像图片地址';
+        </sql>
+    </changeSet>
+
 
 </databaseChangeLog>

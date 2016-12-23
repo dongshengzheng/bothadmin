@@ -58,7 +58,7 @@
         <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
             <div class="weui-media-box__hd">
                 <img class="weui-media-box__thumb"
-                     src="${ctxStatic}/img/headImg/5.jpg"
+                     src="${user.headImgUrl}"
                      alt="">
             </div>
             <div class="weui-media-box__bd" id="my-info">

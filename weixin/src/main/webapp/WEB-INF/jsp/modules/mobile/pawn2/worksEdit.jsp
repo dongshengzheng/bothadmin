@@ -188,6 +188,12 @@
             }
             $('#zpxxImge').val(imgUrls2);
         })
+
+
+        $('#worksName').on('change', function () {
+            $('.worksShowName').val($(this).val());
+        })
+
     });
 </script>
 </body>

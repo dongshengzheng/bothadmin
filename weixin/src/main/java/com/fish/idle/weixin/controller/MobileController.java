@@ -84,6 +84,7 @@ public class MobileController extends BaseController {
             user.setDelFlag(Const.DEL_FLAG_NORMAL);
             user.setOpenId(wxMpUser.getOpenId());
             user.setLastLogin(new Date());
+            user.setHeadImgUrl(wxMpUser.getHeadImgUrl());
             userService.insert(user);
         } else {
             user.setLastLogin(new Date());
@@ -380,7 +381,8 @@ public class MobileController extends BaseController {
     public String userInfo(HttpSession session,
                            HttpServletRequest request,
                            HttpServletResponse response,
-                           ModelMap map) {
+                           ModelMap map,
+                           @RequestParam(required = false) int userId) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
         User u = new User();
@@ -389,6 +391,40 @@ public class MobileController extends BaseController {
         if (user == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
+
+        User user1 = userService.selectById(userId);
+
+        Works works = new Works();
+        works.setCreateBy(userId);
+        List<Works> worksList = worksService.selectList(new EntityWrapper<>(works));
+        user1.setWorksCount(worksList.size());
+
+        List<User> userList = userService.searchFollowUsersByUserId(userId);
+        user1.setFollowCount(userList.size());
+
+        List<User> haveFocusList = new ArrayList<>();
+        Map<Integer, User> userMap = new HashMap<>();
+        for (User uu : userList) {
+            userMap.put(uu.getId(), uu);
+        }
+        FollowHistory followHistory = new FollowHistory();
+        followHistory.setUserId(user.getId());
+        followHistory.setType(1);
+        followHistory.setDelFlag(0);
+        List<FollowHistory> followHistoryList = followHistoryService.selectList(new EntityWrapper<>(followHistory));
+        for (FollowHistory fw : followHistoryList) {
+            Integer id = fw.getTargetId();
+            if (userMap.containsKey(id)) {
+                haveFocusList.add(userMap.get(id));
+            }
+        }
+
+        userList.removeAll(haveFocusList);
+        map.put("user", user1);
+        map.put("worksList", worksList);
+        map.put("haveFocusList", haveFocusList);
+        map.put("notFocusList", userList);
+
         return "modules/mobile/pawn2/userInfo";
     }
 
@@ -413,31 +449,71 @@ public class MobileController extends BaseController {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
 
-        Works works = worksService.selectById(worksId);
+        //增加浏览记录
+        FollowHistory addBrowse = new FollowHistory();
+        addBrowse.setTargetId(worksId);
+        addBrowse.setUserId(user.getId());
+        addBrowse.setType(Const.FOLLOW_HISTORY_TYPE_BROWSE);
+        FollowHistory oldBrowse = followHistoryService.selectOne(new EntityWrapper<>(addBrowse));
+        if (oldBrowse == null) {
+            addBrowse.setCreateDate(new Date());
+            followHistoryService.insert(addBrowse);
+        } else {
+            oldBrowse.setUpdateDate(new Date());
+            followHistoryService.updateById(oldBrowse);
+        }
 
+
+        //作品
+        Works works = worksService.selectById(worksId);
+        //作品等级
         WorksLevel wl = new WorksLevel();
         wl.setWorksId(worksId);
         WorksLevel worksLevel = worksLevelService.selectOne(new EntityWrapper<>(wl));
+        //作品用户
+        User user1 = userService.selectById(works.getCreateBy());
+        //作品提供者
+        Consumer provider = new Consumer();
+        provider.setType(Const.CONSUMER_TYPE_PROVIDER);
+        provider.setWorksId(worksId);
+        provider = consumerService.selectOne(new EntityWrapper<>(provider));
+        //作品收藏者
+        Consumer collecter = new Consumer();
+        collecter.setType(Const.CONSUMER_TYPE_COLLECT);
+        collecter.setWorksId(worksId);
+        collecter = consumerService.selectOne(new EntityWrapper<>(collecter));
+        //作品图片
+        Images images = new Images();
+        images.setTargetId(worksId);
+        images.setType(Const.IMAGES_WORKS);
+        List<Images> imagesList = imagesService.selectList(new EntityWrapper<>(images));
 
-        //收藏该作品的历史
-        FollowHistory fh = new FollowHistory();
-        fh.setType(1);
-        fh.setTargetId(worksId);
-        List<FollowHistory> fhList = followHistoryService.selectList(new EntityWrapper<>(fh));
-        List<User> fhuserList = new ArrayList<>();
-        for (int i = 0; i < (fhList.size() < 10 ? fhList.size() : 10); i++) {
-
+        //收藏该作品的用户集合
+        List<User> collecterList = userService.searchFollowHistoryUsers(Const.FOLLOW_HISTORY_TYPE_COLLECT, worksId);
+        if (collecterList.size() > 10) {
+            collecterList = collecterList.subList(0, 9);
         }
 
-        //查看过该作品的历史
-        FollowHistory bh = new FollowHistory();
-        bh.setType(2);
-        bh.setTargetId(worksId);
-        List<FollowHistory> bhList = followHistoryService.selectList(new EntityWrapper<>(bh));
-        List<User> bhuserList = new ArrayList<>();
-        for (int i = 0; i < (bhList.size() < 10 ? bhList.size() : 10); i++) {
-
+        //查看过该作品的用户集合
+        List<User> browseList = userService.searchFollowHistoryUsers(Const.FOLLOW_HISTORY_TYPE_BROWSE, worksId);
+        if (browseList.size() > 10) {
+            browseList = browseList.subList(0, 9);
         }
+
+        //评估报告
+        ValueReport valueReport = new ValueReport();
+        valueReport.setWorksId(worksId);
+        valueReport = valueReportService.selectOne(new EntityWrapper<>(valueReport));
+
+        map.put("user", user1);
+        map.put("works", works);
+        map.put("worksLevel", worksLevel);
+        map.put("provider", provider);
+        map.put("collecter", collecter);
+        map.put("imagesList", imagesList);
+        map.put("collecterList", collecterList);
+        map.put("browseList", browseList);
+        map.put("valueReport", valueReport);
 
         return "modules/mobile/pawn2/worksDetail";
     }
@@ -530,7 +606,7 @@ public class MobileController extends BaseController {
                                 @RequestParam(required = false) String phone,
                                 @RequestParam(required = false) String email,
                                 @RequestParam(required = false) String identification,
-                                @RequestParam(required = false) String perfer,
+                                @RequestParam(required = false) String prefer,
                                 @RequestParam(required = false) String ifpublic) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
@@ -543,9 +619,10 @@ public class MobileController extends BaseController {
         user.setName(name);
         user.setPhone(phone);
         user.setEmail(email);
-
+        user.setAddress(address);
+        user.setIdentification(identification);
+        user.setPrefer(prefer);
         userService.updateById(user);
-        map.put("user", user);
         return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my";
     }
 
@@ -619,8 +696,6 @@ public class MobileController extends BaseController {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
 
-        //充值接口
-
         return "modules/mobile/pawn2/my";
     }
 
@@ -668,8 +743,6 @@ public class MobileController extends BaseController {
         if (user == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
-
-        //提现接口
 
         return "modules/mobile/pawn2/my";
     }
@@ -850,9 +923,9 @@ public class MobileController extends BaseController {
         transferHistory.setFromUserId(user.getId());
         transferHistory.setStatus(Const.TRANSFER_STATUS_WAIT);
         if ("售卖".equals(transferTypeString)) {
-            transferHistory.setTransferType(1);
+            transferHistory.setTransferType(Const.TRANSFER_TYPE_SELL);
         } else if ("赠送".equals(transferTypeString)) {
-            transferHistory.setTransferType(2);
+            transferHistory.setTransferType(Const.TRANSFER_TYPE_GIVE);
         }
         transferHistory.setCreateDate(new Date());
         transferHistoryService.insert(transferHistory);
@@ -1327,8 +1400,12 @@ public class MobileController extends BaseController {
         cs.setWorksId(worksId);
         cs.setType(Const.CONSUMER_TYPE_PROVIDER);
         cs = consumerService.selectOne(new EntityWrapper<>(cs));
-        consumer.setId(cs.getId());
-        consumerService.updateById(consumer);
+        if (cs == null) {
+            consumerService.insert(consumer);
+        } else {
+            consumer.setId(cs.getId());
+            consumerService.updateById(consumer);
+        }
 
 
         Consumer collecter = new Consumer();
@@ -1355,7 +1432,7 @@ public class MobileController extends BaseController {
         if (oldConsumer == null) {
             consumerService.insert(collecter);
         } else {
-            collecter.setId(cs.getId());
+            collecter.setId(oldConsumer.getId());
             consumerService.updateById(collecter);
         }
 

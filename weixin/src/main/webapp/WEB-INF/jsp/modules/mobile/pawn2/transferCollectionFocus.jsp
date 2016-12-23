@@ -80,7 +80,7 @@
                 <img class="works-img-all" src="${works.images}"
                      onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
                      alt="">
-                <textarea class="works-intro-all">${works.remarks}</textarea>
+                <textarea class="works-intro-all" disabled>${works.remarks}</textarea>
             </div>
             <div class="works-floor-all">
                 <span class="works-floor-name-all">${works.name}</span>
@@ -112,7 +112,7 @@
         <div class="works-all-outer">
             <div class="works-all">
                 <img src="${ctxStatic}/img/swiper/swiper-2.jpg" alt="" class="works-img-all"/>
-                <textarea class="works-intro-all">${works.remarks}</textarea>
+                <textarea class="works-intro-all" disabled>${works.remarks}</textarea>
             </div>
             <div class="works-floor-all">
                 <span class="works-floor-name-all">${works.name}</span>

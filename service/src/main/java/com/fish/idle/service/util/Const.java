@@ -112,5 +112,8 @@ public class Const {
     public static final String CONSUMER_PUB_YES = "1";    // 公开
     public static final String CONSUMER_PUB_NO = "２";    // 不公开
 
-
+    //follow history类型
+    public static final int FOLLOW_HISTORY_TYPE_COLLECT = 0;   // 收藏作品
+    public static final int FOLLOW_HISTORY_TYPE_FOCUS = 1;   // 关注用户
+    public static final int FOLLOW_HISTORY_TYPE_BROWSE = 2;   // 浏览作品
 }

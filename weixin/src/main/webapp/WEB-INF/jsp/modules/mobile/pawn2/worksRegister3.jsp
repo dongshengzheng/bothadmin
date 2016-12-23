@@ -156,6 +156,7 @@
             <hr>
             <div class="weui-form-preview__ft">
                 <input id="draftYN" name="draftYN" type="hidden" value="NO">
+                <br/>
                 <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" id="draftSubmit">
                     存为草稿
                 </button>

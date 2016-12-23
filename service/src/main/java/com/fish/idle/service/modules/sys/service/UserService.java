@@ -32,4 +32,10 @@ public interface UserService extends ISuperService<User> {
     //根据信息模糊匹配名字或id的用户集合
     List<User> searchUserByNameAndId(String info, Integer myId);
 
+    //根据id查找该用户的粉丝集合(级联查询出粉丝们的作品数和粉丝数)
+    List<User> searchFollowUsersByUserId(Integer id);
+
+    //根据target_id和type查找followHistory中的user_id对应的user集合
+    List<User> searchFollowHistoryUsers(Integer followHistoryType, Integer targetId);
+
 }

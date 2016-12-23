@@ -3,7 +3,8 @@
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input name="worksName" class="weui-input" type="tel" value="${works.name}" placeholder="请输入作品名称">
+        <input id="worksName" name="worksName" class="weui-input" type="tel" value="${works.name}"
+               placeholder="请输入作品名称">
     </div>
 </div>
 <div class="weui-cell">
