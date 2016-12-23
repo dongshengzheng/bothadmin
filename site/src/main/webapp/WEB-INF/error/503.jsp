@@ -9,7 +9,7 @@
 <!--[if !IE]><!-->
 <html lang="en"> <!--<![endif]-->
 <head>
-    <title>500 服务器错误</title>
+    <title>503 服务器错误</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -43,7 +43,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="error-v2">
-                <span class="error-v2-title">500</span>
+                <span class="error-v2-title">503</span>
                 <span>出现错误了!</span>
                 <p>服务器出现异常 <br> 请联系管理员</p>
             </div>

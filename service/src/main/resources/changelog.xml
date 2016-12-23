@@ -206,5 +206,26 @@
         </sql>
     </changeSet>
 
+    <changeSet author="SunHan" id="15862614903-015">
+        <sql dbms="mysql">
+            CREATE TABLE `sys_app_user` (
+            `id` int NOT NULL AUTO_INCREMENT COMMENT '',
+            `login_name` varchar(64) NOT NULL COMMENT '登录名',
+            `password` varchar(64) NOT NULL COMMENT '登录密码',
+            `email` varchar(32) DEFAULT NULL COMMENT '邮箱',
+            `phone` varchar(32) DEFAULT NULL COMMENT '手机号码',
+            `identification` varchar(64) DEFAULT NULL COMMENT '身份证',
+            `pub` bit(1) DEFAULT NULL COMMENT '是否公开',
+            `score` int(11) DEFAULT 0 COMMENT '积分',
+            `open_id` varchar(200) DEFAULT NULL COMMENT 'openId',
+            `prefer` varchar(64) DEFAULT NULL COMMENT '偏好',
+            `address` varchar(64) DEFAULT NULL COMMENT '地址',
+            `head_img_url` varchar(200) DEFAULT NULL COMMENT '头像图片地址',
+            PRIMARY KEY (`id`)
+            ) COMMENT='';
+        </sql>
+    </changeSet>
+
+
 
 </databaseChangeLog>

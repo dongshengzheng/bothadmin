@@ -62,11 +62,14 @@
             <shiro:hasPermission name="user/editRole">
             <div class="form-group">
                 <label for="description" class="col-sm-2 control-label">角色</label>
-                <div class="col-sm-7">
+                <div class="col-sm-7" style="margin-top:7px;">
                     <c:choose>
                         <c:when test="${user.roles != null && fn:length(user.roles) > 0}">
                             <c:forEach items="${user.roles}" var="role" varStatus="vs">
-                                <input type="checkbox" name="roleIds" value="${role.id}" ${role.checked ? "checked" : ""}>${role.roleName}
+                                <label class="mt-checkbox mt-checkbox-outline"> ${role.roleName}
+                                    <input type="checkbox" name="roleIds" value="${role.id}" ${role.checked ? "checked" : ""}>
+                                    <span></span>
+                                </label>
                             </c:forEach>
                         </c:when>
                         <c:otherwise>

@@ -116,4 +116,11 @@ public class Const {
     public static final int FOLLOW_HISTORY_TYPE_COLLECT = 0;   // 收藏作品
     public static final int FOLLOW_HISTORY_TYPE_FOCUS = 1;   // 关注用户
     public static final int FOLLOW_HISTORY_TYPE_BROWSE = 2;   // 浏览作品
+
+
+
+
+    public static final String SITE_SESSION_USER = "siteSessionUser";
+
+
 }

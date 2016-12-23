@@ -35,6 +35,23 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <!-- Shiro filter start -->
+    <filter>
+        <filter-name>shiroFilter</filter-name>
+        <filter-class>
+            org.springframework.web.filter.DelegatingFilterProxy
+        </filter-class>
+        <init-param>
+            <param-name>targetFilterLifecycle</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>shiroFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
     <!--log4j-->
 
     <!-- 日志记录 -->
@@ -96,6 +113,11 @@
         <location>/WEB-INF/error/500.jsp</location>
     </error-page>
 
+    <error-page>
+        <!-- 内部错误 -->
+        <error-code>503</error-code>
+        <location>/WEB-INF/error/503.jsp</location>
+    </error-page>
 
     <!--
         即客户端连续两次与服务器交互间隔时间最长为60分钟，
