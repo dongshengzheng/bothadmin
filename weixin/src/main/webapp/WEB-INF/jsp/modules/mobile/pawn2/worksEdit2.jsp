@@ -3,7 +3,7 @@
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input name="worksShowName" class="weui-input" type="tel" value="${works.name}" disabled>
+        <input name="worksShowName" class="weui-input worksShowName" type="tel" value="${works.name}" disabled>
     </div>
 </div>
 <div class="weui-cell">

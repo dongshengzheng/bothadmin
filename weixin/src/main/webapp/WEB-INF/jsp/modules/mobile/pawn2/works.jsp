@@ -287,10 +287,7 @@
         paginationClickable: true
     });
 
-
     $(function () {
-
-
         $('.works-floor-btn-all,.works-floor-btn').on('click', fun1);
         function fun1() {
             var worksid = $(this).parent().siblings('.worksId').val();
@@ -307,21 +304,16 @@
             })
         }
 
+        $('.works-all,.works').on('click', fun2)
+        function fun2() {
+            var worksid = $(this).siblings('.worksId').val();
+            location.href = '${ctx}/mobile/worksDetail?worksId=' + worksid;
+        }
+
 
         $('#dialogs .weui-dialog__btn').click(function () {
             $(this).parents('.js_dialog').fadeOut(200);
         });
-
-        <%--$('.works-img,.works-img-all').on('click', fun2)--%>
-        <%--function fun2() {--%>
-        <%--var worksid = $(this).parent().siblings('.worksId').val();--%>
-        <%--location.href = '${ctx}/mobile/worksDetail?id=' + worksid;--%>
-        <%--}--%>
-
-        $('.works,.works-all').on('click', function () {
-            var worksId = $(this).siblings('.worksId').val();
-            location.href = '${ctx}/mobile/worksDetail?worksId=' + worksId;
-        })
 
 
         <c:if test="${page.current < page.pages}">
@@ -348,11 +340,11 @@
                         $tmp = $("#tmp").clone();
                         $tmp.removeAttr('id');
                         $tmp.find(".worksId").val(data.records[i].id);
-//                        $tmp.find(".works-img-all").on('click', fun2);
                         $tmp.find(".works-floor-name-all").html(data.records[i].name);
                         $tmp.find(".works-floor-img-all").html(data.records[i].type);
                         $tmp.find(".works-floor-date-all").html(data.records[i].createDate);
                         $tmp.find(".works-floor-btn-all").on('click', fun1);
+                        $tmp.find(".works-all").on('click', fun2);
                         $tmp.removeClass('div-hide');
                         $(".all").append($tmp);
                     }
@@ -368,7 +360,6 @@
         });
         </c:if>
     });
-
 
 </script>
 </body>

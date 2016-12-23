@@ -1,151 +1,151 @@
-## *��ҳ*
-1. ��ȡ�ֲ���Ʒlist
-2. ��ȡ������Ʒlist
-3. ����works��id��user��id,��dd_follow_history�м�¼���ղ���Ϣ
+﻿## *首页*
+1. 获取轮播作品list
+2. 获取所有作品list
+3. 根据works的id和user的id,在dd_follow_history中记录下收藏信息
 
-## *����_1,����_2,����_3*
-1. ����user.idչʾ��ʷ��ѯ��¼list
-2. ����user.idɾ��ȫ����ʷ��ѯ��¼
+## *搜索_1,搜索_2,搜索_3*
+1. 根据user.id展示历史查询记录list
+2. 根据user.id删除全部历史查询记录
 
-## *�������_�û�*
-1. �����û�����ģ��ƥ���ѯ�û�list,ͬʱ����û��ķ�˿������Ʒ��(��ѯ�������'��'��id��Ϊ'��'�ѹ�ע���û�list��δ��ע���û�list)
-## *�������_�û�_ȡ����ע����*
-1. ����user.id��'��'��id,��dd_follow_history�м�¼�¹�ע��Ϣ
-2. ����user.id��'��'��id,��dd_follow_history��ɾ����ע��Ϣ
+## *搜索结果_用户*
+1. 根据用户名称模糊匹配查询用户list,同时查出用户的粉丝数和作品数(查询结果根据'我'的id分为'我'已关注的用户list和未关注的用户list)
+## *搜索结果_用户_取消关注弹窗*
+1. 根据user.id和'我'的id,在dd_follow_history中记录下关注信息
+2. 根据user.id和'我'的id,在dd_follow_history中删除关注信息
 
-## *�����û�����_Ta������*
-1. ����id��ѯuser
-## *�����û�����_Ta�ķ�˿*
-1. ����id��ѯuser�ķ�˿list,ͬʱ����û��ķ�˿������Ʒ��(��ѯ�������'��'��id��Ϊ'��'�ѹ�ע���û�list��δ��ע���û�list)
-2. ����user.id��'��'��id,��dd_follow_history�м�¼�¹�ע��Ϣ
-3. ����user.id��'��'��id,��dd_follow_history��ɾ����ע��Ϣ
-## *�����û�����_Ta����Ʒ*
-1. ����id��ѯuser����Ʒlist
-2. ����works��id��'��'��id,��dd_follow_history�м�¼���ղ���Ϣ
-## *�����û�����_��˿����_Ta������*
-1. ȡ�����������ҳ��
-## *�����û�����_��˿����_Ta����Ʒ*
-1. ȡ�����������ҳ��
+## *搜索用户详情_Ta的资料*
+1. 根据id查询user
+## *搜索用户详情_Ta的粉丝*
+1. 根据id查询user的粉丝list,同时查出用户的粉丝数和作品数(查询结果根据'我'的id分为'我'已关注的用户list和未关注的用户list)
+2. 根据user.id和'我'的id,在dd_follow_history中记录下关注信息
+3. 根据user.id和'我'的id,在dd_follow_history中删除关注信息
+## *搜索用户详情_Ta的作品*
+1. 根据id查询user的作品list
+2. 根据works的id和'我'的id,在dd_follow_history中记录下收藏信息
+## *搜索用户详情_粉丝详情_Ta的资料*
+1. 取消两个标题的页面
+## *搜索用户详情_粉丝详情_Ta的作品*
+1. 取消两个标题的页面
 
-## *�������_��Ʒ_1,�������_��Ʒ_2*
-1. ����works.nameģ��ƥ���ѯ��Ʒ(�������'����'�ܲ��'С����','����','����С')
-2. ����works.nameģ��ƥ���ѯ��Ʒ(���ϼ�ʱ������)
-3. ����works.nameģ��ƥ���ѯ��Ʒ(�������������)
-4. ����works��id��user��id,��dd_follow_history�м�¼���ղ���Ϣ
+## *搜索结果_作品_1,搜索结果_作品_2*
+1. 根据works.name模糊匹配查询作品(比如根据'红玉'能查出'小红玉','红玉','红玉小')
+2. 根据works.name模糊匹配查询作品(按上架时间排序)
+3. 根据works.name模糊匹配查询作品(按离我最近排序)
+4. 根据works的id和user的id,在dd_follow_history中记录下收藏信息
 
-## *�������_��Ʒ����*
-1. ����works��id��ѯworks
-2. ����works��id��ѯworks_level
-3. ����works��id��ѯimages(typeΪ��ƷͼƬ,ڹ��ͼƬ,��֤֤��),
-4. ����works��id��ѯconsumer(type�ֱ�ΪprovideBy��collectBy),
-5. ����works��id��ѯreport,
-6. ����works��id��ѯuser list(�ղ���)(ͨ���м��dd_follow_history)
-7. ����works��id��ѯuser list(�����)(ͨ���м��dd_browse_history)
-8. ����works��id��ѯinterpretation list(ڹ���б�)
-## *�������_��Ʒ����_����Ա��������Ʒʱ*
-1. ����works��id��ѯworks,works_level,images,consumer(provideBy��collectBy),report,value_report,follow_history(�ղ���),browse_history,interpretation
-2. ����'�ҵ�'id�ж��Ƿ��ǹ���Ա
-## *�������_��Ʒ����_ڹ�͵���*
-1. ����works��id������interpretation(���ǵݹ������ٲ���parent_id)
-## *������Ʒ_����ҳ_ڹ������*
-1. ����id��ѯinterpretation
+## *搜索结果_作品详情*
+1. 根据works的id查询works
+2. 根据works的id查询works_level
+3. 根据works的id查询images(type为作品图片,诠释图片,认证证书),
+4. 根据works的id查询consumer(type分别为provideBy和collectBy),
+5. 根据works的id查询report,
+6. 根据works的id查询user list(收藏者)(通过中间表dd_follow_history)
+7. 根据works的id查询user list(浏览者)(通过中间表dd_browse_history)
+8. 根据works的id查询interpretation list(诠释列表)
+## *搜索结果_作品详情_管理员新增的作品时*
+1. 根据works的id查询works,works_level,images,consumer(provideBy和collectBy),report,value_report,follow_history(收藏者),browse_history,interpretation
+2. 根据'我的'id判断是否是管理员
+## *搜索结果_作品详情_诠释弹窗*
+1. 根据works的id来保存interpretation(若是递归评论再插入parent_id)
+## *搜索作品_详情页_诠释详情*
+1. 根骨id查询interpretation
 
-## *�Ǽ�����_��Ʒ��Ϣ*
-1. ����ҳ�洫�͵����ݺ�user��id����works(Ҫ�ж��Ƿ�ݸ�),consumer(typeΪprovideBy�ṩ��),images
-## *�Ǽ�����_��Ʒ��Ϣ*
-1. ����ҳ�洫�͵����ݺ�works��id(֮ǰ����worksʱ��works��id��name����session,name��ҳ������ʾ)��works����
-## *�Ǽ�����_��Ʒ�ȼ�*
-1. ����ҳ�洫�͵����ݺ�works��id(֮ǰ����worksʱ��works��id��name����session,name��ҳ������ʾ)����works_level
-## *�Ǽ�����_��Ʒ�ȼ�_ѡ�񵯴�*
-1. ��
-## *�Ǽ�����_��������_δ�ϴ�֤��*
-1. ����works��id(֮ǰ��'�Ǽ�����_��Ʒ��Ϣ'����ʱ,����session)����images(typeҪ����Ϊ��֤֤��)
-## *�Ǽ�����_��������_���ϴ�֤��*
-1. ����works��id(֮ǰ��'�Ǽ�����_��Ʒ��Ϣ'����ʱ,����session)ɾ��images(typeΪ��֤֤��)
-## *�Ǽ�����_��������_�ύ����*
-1. ����works��id(֮ǰ��'�Ǽ�����_��Ʒ��Ϣ'����ʱ,����session)����report
-## *�Ǽ�����_��������_����Ա��дʱ*
-1. ����'�ҵ�'id�ж��Ƿ��ǹ���Ա
-## *�Ǽ�����_��������_���֤��ѡ��*
-1. ����works��id(֮ǰ��'�Ǽ�����_��Ʒ��Ϣ'����ʱ,����session)�����ɾ��images(typeΪ��֤֤��)
-## *�Ǽ�����_������֪����*
-1. ��
-## *�Ǽ�����_�ղ���Ϣ*
-1. ����works��id����consumer(typeΪcollectBy�ղ���)
-## *�Ǽ�����_�ղ���Ϣ_�ύ����*
-1. ��
+## *登记申请_物品信息*
+1. 根据页面传送的数据和user的id保存works(要判断是否草稿),consumer(type为provideBy提供者),images
+## *登记申请_作品信息*
+1. 根据页面传送的数据和works的id(之前保存works时将works的id和name存入session,name在页面中显示)将works更新
+## *登记申请_作品等级*
+1. 根据页面传送的数据和works的id(之前保存works时将works的id和name存入session,name在页面中显示)保存works_level
+## *登记申请_作品等级_选择弹窗*
+1. 无
+## *登记申请_评估报告_未上传证书*
+1. 根据works的id(之前在'登记申请_物品信息'保存时,存入session)保存images(type要保存为认证证书)
+## *登记申请_评估报告_已上传证书*
+1. 根据works的id(之前在'登记申请_物品信息'保存时,存入session)删除images(type为认证证书)
+## *登记申请_评估报告_提交弹窗*
+1. 根据works的id(之前在'登记申请_物品信息'保存时,存入session)保存report
+## *登记申请_评估报告_管理员填写时*
+1. 根据'我的'id判断是否是管理员
+## *登记申请_评估报告_点击证书选项*
+1. 根据works的id(之前在'登记申请_物品信息'保存时,存入session)保存或删除images(type为认证证书)
+## *登记申请_申请须知弹窗*
+1. 无
+## *登记申请_收藏信息*
+1. 根据works的id保存consumer(type为collectBy收藏者)
+## *登记申请_收藏信息_提交弹窗*
+1. 无
 
-## *��������*
-1. ����'��'��id��ѯuser,����openId��ѯ΢��ͷ��,�ǳ�
-## *����*
-1. ����'��'��id��ѯuser,����openId��ѯ΢��ͷ��,�ǳ�
-## *��������*
-1. ����'��'��id��ѯdd_score_history(������֧���)list,����dd_score_history��id������ѯscoreCalc,���ķ�������?
-## *��������_���ֳ�ֵ*
-1. ����'��'��id��ҳ�洫���ĳ�ֵ��ֵ,����dd_score_history,��ֵ�Ľӿ�???
-## *��������_��������_������ʾ*
-1. ����'��'��id��ҳ�洫����������ֵ,����dd_score_history,Ǯת���Ľӿ�???
+## *个人中心*
+1. 根据'我'的id查询user,根据openId查询微信头像,昵称
+## *设置*
+1. 根据'我'的id查询user,根据openId查询微信头像,昵称
+## *积分中心*
+1. 根据'我'的id查询dd_score_history(积分收支情况)list,根据dd_score_history的id级联查询scoreCalc,最后的返回类型?
+## *积分中心_积分充值*
+1. 根据'我'的id及页面传来的充值数值,保存dd_score_history,充值的接口???
+## *积分中心_积分提现_弹窗提示*
+1. 根据'我'的id及页面传来的提现数值,保存dd_score_history,钱转出的接口???
 
-## *��ע�û�*
-1. ����'��'��id��ѯ'��'��ע���û�list,ͬʱ���û���Ʒ���ͷ�˿�����
-## *��ע�û�_ȡ����ע����*
-1. ����'��'��id(user_id)��user��id(target_id),ɾ��dd_follow_history�еĹ�ע��¼(typeΪ��ע�û�)
-## *��ע�û�_�û�����ҳ_Ta������*
-1. ����id��ѯuser
-## *��ע�û�_�û�����ҳ_Ta�ķ�˿*
-1. ����id��ѯuser�ķ�˿list,ͬʱ����û��ķ�˿������Ʒ��(��ѯ�������'��'��id��Ϊ'��'�ѹ�ע���û�list��δ��ע���û�list)
-2. ����user.id��'��'��id,��dd_follow_history�м�¼�¹�ע��Ϣ
-3. ����user.id��'��'��id,��dd_follow_history��ɾ����ע��Ϣ
-## *��ע�û�_�û�����ҳ_Ta����Ʒ*
-1. ����id��ѯuser����Ʒlist
-2. ����works��id��'��'��id,��dd_follow_history�м�¼���ղ���Ϣ
-## *��ע�û�_�û�����ҳ_Ta�ķ�˿����ҳ_Ta������*
-1. ȡ����������
-## *��ע�û�_�û�����ҳ_Ta�ķ�˿����ҳ_Ta����Ʒ*
-1. ȡ����������
+## *关注用户*
+1. 根据'我'的id查询'我'关注的用户list,同时将用户作品数和粉丝数查出
+## *关注用户_取消关注弹窗*
+1. 根据'我'的id(user_id)和user的id(target_id),删除dd_follow_history中的关注记录(type为关注用户)
+## *关注用户_用户详情页_Ta的资料*
+1. 根据id查询user
+## *关注用户_用户详情页_Ta的粉丝*
+1. 根据id查询user的粉丝list,同时查出用户的粉丝数和作品数(查询结果根据'我'的id分为'我'已关注的用户list和未关注的用户list)
+2. 根据user.id和'我'的id,在dd_follow_history中记录下关注信息
+3. 根据user.id和'我'的id,在dd_follow_history中删除关注信息
+## *关注用户_用户详情页_Ta的作品*
+1. 根据id查询user的作品list
+2. 根据works的id和'我'的id,在dd_follow_history中记录下收藏信息
+## *关注用户_用户详情页_Ta的粉丝详情页_Ta的资料*
+1. 取消两个标题
+## *关注用户_用户详情页_Ta的粉丝详情页_Ta的作品*
+1. 取消两个标题
 
-## *�ղ���Ʒ_�鿴����*
-1. ͬ'�������_��Ʒ����'
-## *�ղ���Ʒ_����Ʒ*
-1. ����'��'��id����ҵ��ղ���Ʒlist(ͨ���м��dd_follow_history)
-## *�ղ���Ʒ_����Ʒ*
-1. ��
+## *收藏作品_查看详情*
+1. 同'搜索结果_作品详情'
+## *收藏作品_有作品*
+1. 根据'我'的id查出我的收藏作品list(通过中间表dd_follow_history)
+## *收藏作品_无作品*
+1. 无
 
-## *ת����Ʒ_����Ʒ*
-1. ��
-## *ת����Ʒ_����Ʒ*
-1.  ����'��'��id���ת����Ʒlist(ͨ���м��dd_transfer_history)
-## *ת����Ʒ_��ת�����Ʒ��_�鿴����_��Ʒ����*
+## *转入作品_无作品*
+1. 无
+## *转入作品_有作品*
+1.  根据'我'的id查出转让作品list(通过中间表dd_transfer_history)
+## *转让作品_除转入的作品外_查看详情_作品详情*
 
-## *ת����Ʒ_ת����Ʒ_��ȷ��ת�����Ʒ_�鿴����*
+## *转入作品_转让作品_待确认转入的作品_查看详情*
 
-## *ת����Ʒ_ת����ʷ*
-1. ������Ʒ��id,���(ת����ʷdd_transfer_history��ת�õ�˫���û�user1��user2)list[���SQL�����е���д,Ȼ������֮����ʲô���������ѯ����������?]
+## *转入作品_转让历史*
+1. 根据作品的id,查出(转让历史dd_transfer_history及转让的双方用户user1和user2)list[这个SQL好像有点难写,然后查出来之后用什么来接这个查询出来的数据?]
 
-## *ת����Ʒ_ת����Ʒ_ת�����Ʒ_�鿴����*
-1. ͬ'�ղ���Ʒ_�鿴����'
+## *转入作品_转让作品_转入的作品_查看详情*
+1. 同'收藏作品_查看详情'
 
-## *�ҵ���Ʒ_�����_�鿴����*
-1. ͬ'�������_��Ʒ����'
-## *�ҵ���Ʒ_�����_����Ʒ*
-1. �����ҵ�id��works.typeΪ����в��'��'�������Ʒlist
-## *�ҵ���Ʒ_�����_����Ʒ*
-1. ��
+## *我的作品_审核中_查看详情*
+1. 同'搜索结果_作品详情'
+## *我的作品_审核中_有作品*
+1. 根据我的id和works.type为审核中查出'我'审核中作品list
+## *我的作品_审核中_无作品*
+1. 无
 
-## *�ҵ���Ʒ_�ݸ���_�༭*
-1. ����works��id���works,����Ϣ��ʾ��ҳ����
-## *�ҵ���Ʒ_�ݸ���_�鿴����*
-1. ͬ'�ղ���Ʒ_�鿴����'
-## *�ҵ���Ʒ_�ݸ���_����Ʒ*
-1. ��
-## *�ҵ���Ʒ_�ݸ���_����Ʒ*
-1. ���ݸ����ҵ�id��works.typeΪ�ݸ���'��'�ݸ�����Ʒlist
-## *�ҵ���Ʒ_�ݸ���_����Ʒ_����*
-1. ����works��idɾ����works
-## *�ҵ���Ʒ_���ͨ��(ʧ��)ͬ�ݸ���*
+## *我的作品_草稿箱_编辑*
+1. 根据works的id查出works,将信息显示在页面上
+## *我的作品_草稿箱_查看详情*
+1. 同'收藏作品_查看详情'
+## *我的作品_草稿箱_无作品*
+1. 无
+## *我的作品_草稿箱_有作品*
+1. 根据根据我的id和works.type为草稿查出'我'草稿箱作品list
+## *我的作品_草稿箱_有作品_弹窗*
+1. 根据works的id删除该works
+## *我的作品_审核通过(失败)同草稿箱*
 
 
-## *����*
-1. ���콨��ͼƬ��,�������ֶ�,���Ը���type�ж���ʲôͼƬ(��ƷͼƬ[һ����Ʒ���ж���ͼƬ],��֤ͼƬ,ڹ��ͼƬ[һ��ڹ�����ж���ͼƬ]��).��������Ʒ����ҳ,�����кܶ�ڹ������,��jsp�ж��ڹ������Ķ��images����ҵ������Լ���ڹ������?
-2. �������б�������del_flag�ֶ�,ҳ����Ҫɾ������ʱ,�Ǹı�del_flag������Ľ����ݿ��е�����Ҳɾ��?
-3. del_flagĬ��Ϊ��.�ڱ������ݵ�ʱ��,del_flag��������Ϊδ��ɾ����״̬,�Ƿ�Ҫ��del_flag��Ĭ��ֵ�Ķ�һ��?���ƵĻ���createDate,updateDateĬ��Ϊ��.
+## *问题*
+1. 那天建的图片表,有类型字段,可以根据type判断是什么图片(作品图片[一个作品能有多张图片],认证图片,诠释图片[一个诠释能有多张图片]等).但是在作品详情页,可以有很多诠释详情,在jsp中多个诠释详情的多个images如何找到属于自己的诠释详情?
+2. 几乎所有表都带有del_flag字段,页面上要删除数据时,是改变del_flag还是真的将数据库中的数据也删除?
+3. del_flag默认为空.在保存数据的时候,del_flag都是设置为未被删除的状态,是否要将del_flag的默认值改动一下?类似的还有createDate,updateDate默认为空.

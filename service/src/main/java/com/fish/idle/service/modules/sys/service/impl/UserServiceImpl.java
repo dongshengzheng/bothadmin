@@ -126,4 +126,14 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
     public List<User> searchUserByNameAndId(String info, Integer myId) {
         return userMapper.searchUserByNameAndId(info, myId);
     }
+
+    @Override
+    public List<User> searchFollowUsersByUserId(Integer id) {
+        return userMapper.searchFollowUsersByUserId(id);
+    }
+
+    @Override
+    public List<User> searchFollowHistoryUsers(Integer followHistoryType, Integer targetId) {
+        return userMapper.searchFollowHistoryUsers(followHistoryType, targetId);
+    }
 }

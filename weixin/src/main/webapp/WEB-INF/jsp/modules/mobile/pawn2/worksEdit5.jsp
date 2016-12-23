@@ -3,7 +3,8 @@
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input name="worksShowName" class="weui-input" type="tel" value="${works.name}" placeholder="田黄鸡血石精品吊坠">
+        <input name="worksShowName" class="weui-input worksShowName" type="tel" value="${works.name}"
+               placeholder="作品名称" disabled>
     </div>
 </div>
 <div class="weui-cell">
@@ -39,7 +40,7 @@
 </div>
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">是否公开</label></div>
-    <input name="collecterPub" class="weui-switch" type="checkbox"/>
+    <input name="collecterPub" class="weui-switch" type="checkbox" <c:if test="${collecter.pub==1}">checked</c:if>/>
 </div>
 <script>
     $(function () {

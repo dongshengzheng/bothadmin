@@ -35,6 +35,10 @@ public class User implements Serializable {
     private String email; // 邮箱
     private String phone; // 电话号码
     private Integer score;//积分
+    private String identification;//身份证
+    private String prefer;//偏好
+    private String address;//地址
+    private String headImgUrl;//头像
 
     @TableField(value = "open_id")
     private String openId; // 微信openId
@@ -214,5 +218,37 @@ public class User implements Serializable {
 
     public void setCollectionCount(Integer collectionCount) {
         this.collectionCount = collectionCount;
+    }
+
+    public String getIdentification() {
+        return identification;
+    }
+
+    public void setIdentification(String identification) {
+        this.identification = identification;
+    }
+
+    public String getPrefer() {
+        return prefer;
+    }
+
+    public void setPrefer(String prefer) {
+        this.prefer = prefer;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getHeadImgUrl() {
+        return headImgUrl;
+    }
+
+    public void setHeadImgUrl(String headImgUrl) {
+        this.headImgUrl = headImgUrl;
     }
 }

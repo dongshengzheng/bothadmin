@@ -53,6 +53,22 @@
         WHERE u.id LIKE CONCAT('%',#{0},'%') and u.id !=#{1} or u.name like CONCAT('%',#{0},'%')
     </select>
 
+    <!--根据id查找该用户的粉丝集合(级联查询出粉丝们的作品数和粉丝数)-->
+    <select id="searchFollowUsersByUserId" resultType="User">
+        SELECT outer_.*,count(f2.id) follow_count from
+            (SELECT inner_.*,count(w.id) works_count from
+                (SELECT u.* from sys_user u join dd_follow_history f on u.id=f.user_id where f.target_id=#{0})inner_
+                 left join dd_works w on inner_.id=w.create_by GROUP BY inner_.id)outer_
+             LEFT JOIN dd_follow_history f2 ON f2.target_id=outer_.id and f2.type=1
+             GROUP BY outer_.id
+    </select>
+
+    <!--根据target_id和type查找followHistory中的user_id对应的user集合-->
+    <select id="searchFollowHistoryUsers" resultType="User">
+        SELECT u.* from sys_user u where u.id in (
+        select f.user_id from dd_follow_history f where f.type=#{0} and f.target_id=#{1})
+    </select>
+
 
     <!-- 判断用户名和密码 -->
 

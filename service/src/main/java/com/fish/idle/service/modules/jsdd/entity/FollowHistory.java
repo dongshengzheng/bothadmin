@@ -35,7 +35,7 @@ public class FollowHistory implements Serializable {
     private Integer targetId;
 
     /**
-     * 0收藏作品 1关注用户 2查看过该作品的用户(王顺12.14注)
+     * 0收藏作品 1关注用户 2查看过该作品的用户
      */
     private Integer type;
 

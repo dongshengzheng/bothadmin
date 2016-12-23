@@ -25,22 +25,20 @@
         #header-left-img {
             height: 50px;
             width: 50px;
-            background-image: url("${ctxStatic}/img/headImg/15.jpg");
-
+            margin-left: 5px;
         }
 
         #header-left-like {
             font-size: 8px;
             width: 50px;
+            margin-left: 5px;
+            margin-top: 5px;
         }
 
         #header-right {
             display: inline-block;
-            /*float: right;*/
             margin-left: 3%;
             width: 80%;
-            height: 500px;
-
         }
 
         #header-right-tab {
@@ -303,6 +301,9 @@
 
         }
 
+        .div-outer {
+            padding-top: 15px;
+        }
 
     </style>
 
@@ -310,14 +311,15 @@
 <body>
 <div id="header" class="div-outer">
     <div id="header-left">
-        <div id="header-left-img"></div>
+        <img src="${user.headImgUrl}"
+             onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png'" id="header-left-img">
         <input type="button" value=" +关注 " id="header-left-like">
     </div>
     <div id="header-right">
         <div id="header-right-tab">
-            <span class="header-right-userName">谁与论春秋</span>
+            <span class="header-right-userName">${user.name}</span>
             <span class="header-right-workId">JS_A201612050001A</span>
-            <span class="header-right-workName">[极品玉化琥珀老星月菩提佛珠]</span>
+            <span class="header-right-workName">[${works.name}]</span>
             <span class="header-right-btn">&nbsp;+&nbsp;收藏&nbsp;</span>
         </div>
         <div id="header-right-intro">
@@ -325,46 +327,16 @@
             测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字
         </div>
         <div class="weui-grids">
-            <a href="javascript:;" class="weui-grid">
-                <div class="weui-grid__icon">
-                    <img src="${ctxStatic}/img/headImg/16.jpg" alt="">
-                </div>
-            </a>
-            <a href="javascript:;" class="weui-grid">
-                <div class="weui-grid__icon">
-                    <img src="${ctxStatic}/img/headImg/16.jpg" alt="">
-                </div>
-            </a>
-            <a href="javascript:;" class="weui-grid">
-                <div class="weui-grid__icon">
-                    <img src="${ctxStatic}/img/headImg/16.jpg" alt="">
-                </div>
-            </a>
-            <a href="javascript:;" class="weui-grid">
-                <div class="weui-grid__icon">
-                    <img src="${ctxStatic}/img/headImg/16.jpg" alt="">
-                </div>
-            </a>
-            <a href="javascript:;" class="weui-grid">
-                <div class="weui-grid__icon">
-                    <img src="${ctxStatic}/img/headImg/16.jpg" alt="">
-                </div>
-            </a>
-            <a href="javascript:;" class="weui-grid">
-                <div class="weui-grid__icon">
-                    <img src="${ctxStatic}/img/headImg/16.jpg" alt="">
-                </div>
-            </a>
-            <a href="javascript:;" class="weui-grid">
-                <div class="weui-grid__icon">
-                    <img src="${ctxStatic}/img/headImg/16.jpg" alt="">
-                </div>
-            </a>
-            <a href="javascript:;" class="weui-grid">
-                <div class="weui-grid__icon">
-                    <img src="${ctxStatic}/img/headImg/16.jpg" alt="">
-                </div>
-            </a>
+            <c:forEach items="${imagesList}" var="image">
+                <a href="javascript:;" class="weui-grid">
+                    <div class="weui-grid__icon">
+                        <img src="${image.url}"
+                             onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
+                             alt="">
+                    </div>
+                </a>
+            </c:forEach>
+
             <a href="javascript:;" class="weui-grid">
                 <div class="weui-grid__icon">
                     <img src="${ctxStatic}/img/headImg/16.jpg" alt="">
@@ -378,28 +350,20 @@
     </div>
 </div>
 
-<div class="div-outer">
+<div class="like-and-look div-outer">
     <div id="like">
         <div id="like-icon">
             <img src="${ctxStatic}/img/cut/worksDetail-likepeople.png">
         </div>
 
         <div id="like-people">
+            <c:forEach items="${collecterList}" var="person">
+                <img class="like-people-one" src="${person.headImgUrl}"
+                     onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img like-people-one'"
+                     alt="">
+            </c:forEach>
+
             <img src="${ctxStatic}/img/headImg/1.jpg" class="like-people-one">
-            <img src="${ctxStatic}/img/headImg/2.jpg" class="like-people-one">
-            <img src="${ctxStatic}/img/headImg/3.jpg" class="like-people-one">
-            <img src="${ctxStatic}/img/headImg/4.jpg" class="like-people-one">
-            <img src="${ctxStatic}/img/headImg/5.jpg" class="like-people-one">
-            <img src="${ctxStatic}/img/headImg/6.jpg" class="like-people-one">
-            <img src="${ctxStatic}/img/headImg/7.jpg" class="like-people-one">
-            <img src="${ctxStatic}/img/headImg/8.jpg" class="like-people-one">
-            <img src="${ctxStatic}/img/headImg/9.jpg" class="like-people-one">
-            <img src="${ctxStatic}/img/headImg/10.jpg" class="like-people-one">
-            <img src="${ctxStatic}/img/headImg/11.jpg" class="like-people-one">
-            <img src="${ctxStatic}/img/headImg/12.jpg" class="like-people-one">
-            <img src="${ctxStatic}/img/headImg/13.jpg" class="like-people-one">
-            <img src="${ctxStatic}/img/headImg/14.jpg" class="like-people-one">
-            <img src="${ctxStatic}/img/headImg/15.jpg" class="like-people-one">
             <img src="${ctxStatic}/img/cut/worksDetail-morelikepeople.png" class="like-people-one">
         </div>
     </div>
@@ -411,6 +375,27 @@
         </div>
 
         <div id="look-people">
+            <c:forEach items="${browseList}" var="person">
+                <div class="look-people-one">
+                    <img src="${person.headImgUrl}" class="look-people-one-img"
+                         onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
+                         alt="">
+                    <div class="look-people-one-info">
+                        <p class="look-people-one-info-name">
+                                ${person.name}
+                        </p>
+                        <p class="look-people-one-info-date">
+                            16-12-05 &nbsp;09:19:27
+                        </p>
+                    </div>
+                    <div class="look-people-one-care">
+                        <p class="look-people-one-care-text-not">
+                            +关注
+                        </p>
+                    </div>
+                </div>
+            </c:forEach>
+
             <div class="look-people-one">
                 <img src="${ctxStatic}/img/headImg/16.jpg" class="look-people-one-img"/>
                 <div class="look-people-one-info">
@@ -427,38 +412,6 @@
                     </p>
                 </div>
             </div>
-            <div class="look-people-one">
-                <img src="${ctxStatic}/img/headImg/17.jpg" class="look-people-one-img"/>
-                <div class="look-people-one-info">
-                    <p class="look-people-one-info-name">
-                        老特拉福德永恒
-                    </p>
-                    <p class="look-people-one-info-date">
-                        16-12-05 &nbsp;09:19:27
-                    </p>
-                </div>
-                <div class="look-people-one-care">
-                    <p class="look-people-one-care-text-not">
-                        +关注
-                    </p>
-                </div>
-            </div>
-            <div class="look-people-one">
-                <img src="${ctxStatic}/img/headImg/18.jpg" class="look-people-one-img"/>
-                <div class="look-people-one-info">
-                    <p class="look-people-one-info-name">
-                        致明天的信
-                    </p>
-                    <p class="look-people-one-info-date">
-                        16-12-05 &nbsp;09:19:27
-                    </p>
-                </div>
-                <div class="look-people-one-care">
-                    <p class="look-people-one-care-text-have">
-                        已关注
-                    </p>
-                </div>
-            </div>
             <center id="look-people-more">加载更多</center>
         </div>
     </div>
@@ -472,105 +425,97 @@
                 <p class="info-register-left-icon">登记者信息</p>
             </div>
             <div class="info-register-right">
-                <p>姓名:张三</p>
-                <p>联系方式:15151999000</p>
-                <p>地址:江苏无锡滨湖区科教创业园1号602</p>
-                <p>身份证:320503199911011884</p>
+                <p>姓名:${provider.name}</p>
+                <p>联系方式:${provider.phone}</p>
+                <p>地址:${provider.address}</p>
+                <p>身份证:${provider.no}</p>
             </div>
         </div>
 
         <div class="info-work">
             <center>作品信息</center>
             <div class="each-row-two">
-                <span>品种:</span>昌化田黄石
+                <span>品种:</span>${works.breed}
             </div>
             <div class="each-row-two">
-                <span>作品类型: </span>印章
+                <span>作品类型: </span>${works.type}
             </div>
             <div class="each-row-two">
-                <span>尺寸: </span>17cm*20cm*20cm
+                <span>尺寸: </span>${works.length}cm*${works.width}cm*${works.height}cm
             </div>
             <div class="each-row-two">
-                <span>重量:</span>106g
+                <span>重量:</span>${works.weight}g
             </div>
             <div class="each-row-two">
-                <span>工艺制作: </span>一级
+                <span>工艺制作: </span>${works.gyType}
             </div>
             <div class="each-row-two">
-                <span>篆刻级别:</span>三级
+                <span>篆刻级别:</span>${works.levelZk}
             </div>
             <div class="each-row-two">
-                <span>矿区地域:</span>核桃岭
+                <span>矿区地域:</span>${works.kqdy}
             </div>
             <div class="each-row-two">
-                <span>制作人:</span>赵四
+                <span>制作人:</span>${works.maker}
             </div>
             <div>
-                <span>制作时间:</span>2016-12-05 14:40
+                <span>制作时间:</span><fmt:formatDate value="${works.makeTime}"
+                                                  pattern="yyyy-MM-dd"/>
             </div>
             <div>
-                <span>作品诠释:</span>测试文字测试文字测试文字测试文字测试文字测试文字测试文字
-                测试文字测试文字测试文字测试文字测试文字测试文字测试文字
-                测试文字测试文字测试文字测试文字测试文字测试文字测试文字
-                测试文字测试文字测试文字测试文字测试文字测试文字测试文字
+                <span>作品诠释:</span>${works.worksMeanning}
             </div>
         </div>
 
         <div class="info-work">
             <center>作品等级</center>
             <div class="each-row-two">
-                <span>质地一:</span>冻
+                <span>质地一:</span>${worksLevel.zhidi}
             </div>
             <div class="each-row-two">
-                <span>质地二: </span>软地
+                <span>质地二: </span>${worksLevel.zhidi2}
             </div>
             <div class="each-row-two">
-                <span>感观: </span>透细腻温润
+                <span>感观: </span>${worksLevel.ganguan}
             </div>
             <div class="each-row-two">
-                <span>磨氏度: </span>2-2.5
+                <span>磨氏度: </span>${worksLevel.moshidu}
             </div>
             <div class="each-row-two">
-                <span>血量:</span>&gt;50%
+                <span>血量:</span>${worksLevel.xueliang}
             </div>
             <div class="each-row-two">
-                <span>血色: </span>鲜红
+                <span>血色: </span>${worksLevel.xuese}
             </div>
             <div class="each-row-two">
-                <span>血形:</span>团状块
+                <span>血形:</span>${worksLevel.xuexing}
             </div>
             <div class="each-row-two">
-                <span>浓艳度:</span>浓艳
+                <span>浓艳度:</span>${worksLevel.nongyandu}
             </div>
             <div class="each-row-two">
-                <span>纯净度:</span>略净
+                <span>纯净度:</span>${worksLevel.chunjingdu}
             </div>
             <div class="each-row-two">
-                <span>地色:</span>黄
+                <span>地色:</span>${worksLevel.dise}
             </div>
             <div class="each-row-two">
-                <span>活筋:</span>格裂复位粘结
+                <span>活筋:</span>${worksLevel.liu}
             </div>
             <div class="each-row-two">
-                <span>裂:</span>裂缝
+                <span>裂:</span>${worksLevel.lie}
             </div>
             <div class="each-row-two">
-                <span>印章:</span>5面
+                <span>印章:</span>${worksLevel.hanxuemian}
             </div>
             <div class="each-row-two">
-                <span>含血方式:</span>表面及内在含血
+                <span>含血方式:</span>${worksLevel.hanxuefangshi}
             </div>
         </div>
 
         <div class="info-work">
             <center>评估报告</center>
-            测试文字测试文字测试文字测试文字测试文字测试文字
-            测试文字测试文字测试文字测试文字测试文字测试文字
-            测试文字测试文字测试文字测试文字测试文字测试文字
-            测试文字测试文字测试文字测试文字测试文字测试文字
-            测试文字测试文字测试文字测试文字测试文字测试文字
-            测试文字测试文字测试文字测试文字测试文字测试文字
-            测试文字测试文字测试文字测试文字测试文字测试文字
+            ${valueReport.description}
         </div>
 
         <div class="info-register">
@@ -578,10 +523,10 @@
                 <p class="info-register-left-icon">收藏者信息</p>
             </div>
             <div class="info-register-right">
-                <p>姓名:张三</p>
-                <p>联系方式:15151999000</p>
-                <p>地址:江苏无锡滨湖区科教创业园1号602</p>
-                <p>身份证:320503199911011884</p>
+                <p>姓名:${collecter.name}</p>
+                <p>联系方式:${collecter.phone}</p>
+                <p>地址:${collecter.address}</p>
+                <p>身份证:${collecter.no}</p>
             </div>
         </div>
 

@@ -16,4 +16,9 @@ public interface UserMapper extends AutoMapper<User> {
     List<User> searchFocusById(Integer id);
 
     List<User> searchUserByNameAndId(String info, Integer myId);
+
+    List<User> searchFollowUsersByUserId(Integer id);
+
+    List<User> searchFollowHistoryUsers(Integer followHistoryType, Integer targetId);
+
 }

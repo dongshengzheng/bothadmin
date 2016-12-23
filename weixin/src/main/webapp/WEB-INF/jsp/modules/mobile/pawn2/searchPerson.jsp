@@ -106,7 +106,6 @@
         </c:forEach>
     </div>
 
-
     <div class="hr-text div-outer">
         <center>
             <hr>
@@ -187,7 +186,7 @@
         });
 
 
-//        关注与取消关注
+        // 关注与取消关注
         var $haveCareDialog = $('#haveCareDialog');
         var $notCareDialog = $('#notCareDialog');
         $('#dialogs').on('click', '.weui-dialog__btn', function () {
@@ -253,7 +252,7 @@
 
 
         $('.weui-media-box__thumb').on('click', function () {
-            location.href = '${ctx}/mobile/userInfo';
+            location.href = '${ctx}/mobile/userInfo?userId=' + $(this).parent().parent().parent().attr('id');
         })
 
 
