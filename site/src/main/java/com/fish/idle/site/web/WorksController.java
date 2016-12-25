@@ -11,6 +11,7 @@ import com.fish.idle.service.util.Const;
 import com.fish.idle.service.util.StringUtils;
 import com.fish.idle.site.entity.Paging;
 import com.fish.idle.site.entity.WorkInfoRequest;
+import com.fish.idle.site.entity.WorksBo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.beans.factory.annotation.Value;
@@ -74,18 +75,7 @@ public class WorksController extends BaseController {
     }
 
 
-    /**
-     * 第一步：登记物品信息
-     *
-     * @return
-     */
-    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public String edit(@PathVariable Integer id, ModelMap map) {
-        map.put("works",worksService.selectById(id));
-        Consumer provider = consumerService.selectOne(new Consumer(Const.CONSUMER_TYPE_PROVIDER, id));
-        map.put("provider", provider);
-        return "works/work_edit";
-    }
+
 
 
     /**
@@ -324,6 +314,81 @@ public class WorksController extends BaseController {
         jsonObject.put("suc", true);
         return jsonObject;
     }
+
+    /**
+     * 作品编辑
+     *
+     * @return
+     */
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String edit(@PathVariable Integer id, ModelMap map) {
+        map.put("works",worksService.selectById(id));
+        List<Images> worksImage = imagesService.selectList(new EntityWrapper<>(new Images(id, Const.IMAGES_WORKS)));
+        //作品信息图片列表
+        map.put("worksImage", worksImage);
+        WorksLevel worksLevel = worksLevelService.selectOne(new WorksLevel(id));
+        map.put("worksLevel", worksLevel);
+        ValueReport valueReport = valueReportService.selectOne(new ValueReport(id));
+        map.put("valueReport", valueReport);
+        Consumer provider = consumerService.selectOne(new Consumer(Const.CONSUMER_TYPE_PROVIDER, id));
+        map.put("provider", provider);
+        Consumer collect = consumerService.selectOne(new Consumer(Const.CONSUMER_TYPE_COLLECT, id));
+        map.put("collect", collect);
+        Report report = reportService.selectOne(new Report(id));
+        map.put("report", report);
+
+        //评估报告图片
+        List<Images> reportImage = imagesService.selectList(new EntityWrapper<>(new Images(id, Const.IMAGES_REPORT_DES)));
+        map.put("reportImage", reportImage);
+        //评估价值认证照片
+        List<Images> certifyImage = imagesService.selectList(new EntityWrapper<>(new Images(report.getId(), Const.IMAGES_REPORT_CERTIFICATE)));
+        map.put("certifyImage", certifyImage.get(0));
+
+        // 矿区地域
+        map.put("kqdy", getWorksLevelDicByType("dd_kqdy"));
+        map.put("level", getWorksLevelDicByType("dd_level"));
+        map.put("pinzhong", getWorksLevelDicByType("dd_pinzhong"));
+        map.put("zuopinleixing", getWorksLevelDicByType("dd_zuopinleixing"));
+        map.put("gyType", getWorksLevelDicByType("dd_level"));
+
+        // 作品登记
+        map.put("zhidi1", getWorksLevelDicByType("dd_zhidi"));
+        map.put("zhidi2", getWorksLevelDicByType("dd_zhidi2"));
+        map.put("ganguan", getWorksLevelDicByType("dd_ganguan"));
+        map.put("moshidu", getWorksLevelDicByType("dd_moshidu"));
+        map.put("xueliang", getWorksLevelDicByType("dd_xueliang"));
+        map.put("xuese", getWorksLevelDicByType("dd_xuese"));
+        map.put("xuexing", getWorksLevelDicByType("dd_xuexing"));
+        map.put("nongyandu", getWorksLevelDicByType("dd_nongyandu"));
+        map.put("jingdu", getWorksLevelDicByType("dd_jingdu"));
+        map.put("dise", getWorksLevelDicByType("dd_dise"));
+        map.put("liu", getWorksLevelDicByType("dd_liu"));
+        map.put("lie", getWorksLevelDicByType("dd_lie"));
+        map.put("mian", getWorksLevelDicByType("dd_mian"));
+        map.put("hanxuefangshi", getWorksLevelDicByType("dd_hanxuefangshi"));
+        return "works/work_edit";
+    }
+
+
+    /**
+     * 编辑作品信息
+     *
+     * @return
+     */
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject editWorks(WorksBo worksBo) {
+        JSONObject jsonObject = new JSONObject();
+        wrapUpdateEntity(worksBo.getCollect());
+        wrapUpdateEntity(worksBo.getWorks());
+        wrapUpdateEntity(worksBo.getProvider());
+        wrapUpdateEntity(worksBo.getReport());
+        wrapUpdateEntity(worksBo.getLevel());
+
+        jsonObject.put("suc", true);
+        return jsonObject;
+    }
+
 
     @RequestMapping(value = "detail/{id}", method = RequestMethod.GET)
     public String detail(@PathVariable Integer id, ModelMap map) {

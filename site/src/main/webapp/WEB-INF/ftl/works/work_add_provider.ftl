@@ -82,14 +82,14 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="name">作品名称</label>
                             <div class="col-sm-10">
-                                <input class="form-control" name="name" id="name" type="text" value="${works.name!}"
+                                <input class="form-control" name="name" id="name" type="text"
                                        placeholder="请输入作品名称"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="provideBy">提供者</label>
                             <div class="col-sm-10">
-                                <input class="form-control" name="provider" id="provider" type="text" value="${(provider.name)!}"
+                                <input class="form-control" name="provider" id="provider" type="text"
                                        placeholder="请输入提供者"/>
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                             <label class="col-sm-2 control-label" for="cardNo">身份证</label>
                             <div class="col-sm-10">
                                 <input class="form-control" name="no" id="no" type="text"
-                                       value="${provider.no!}" placeholder="请输入身份证"/>
+                                        placeholder="请输入身份证"/>
                             </div>
                         </div>
 
@@ -106,7 +106,7 @@
                             <label class="col-sm-2 control-label" for="address">联系地址</label>
                             <div class="col-sm-10">
                                 <input class="form-control" name="address" id="address" type="text"
-                                       value="${provider.address!}" placeholder="请输入联系地址"/>
+                                        placeholder="请输入联系地址"/>
                             </div>
                         </div>
 
@@ -114,7 +114,7 @@
                             <label class="col-sm-2 control-label" for="contact">手机号码</label>
                             <div class="col-sm-10">
                                 <input class="form-control" name="phone" id="phone" type="text"
-                                       value="${provider.phone!}" placeholder="请输入手机号码"/>
+                                        placeholder="请输入手机号码"/>
                             </div>
                         </div>
 
@@ -122,7 +122,7 @@
                             <label class="col-sm-2 control-label" for="datetime">登记时间</label>
                             <div class="col-sm-10">
                                 <input class="form-control date-picker" name="datetime" id="datetime"
-                                       value="${provider.datetime?string("yyyy-MM-dd")!}" type="text"
+                                       type="text"
                                        placeholder="请选择登记时间" readonly/>
                             </div>
 

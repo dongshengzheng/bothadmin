@@ -96,6 +96,13 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
+
+    <!-- 错误跳转页面 -->
+    <error-page>
+        <!-- 路径不正确 -->
+        <error-code>400</error-code>
+        <location>/WEB-INF/error/400.jsp</location>
+    </error-page>
     <!-- 错误跳转页面 -->
     <error-page>
         <!-- 路径不正确 -->

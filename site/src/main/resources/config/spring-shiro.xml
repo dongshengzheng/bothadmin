@@ -23,6 +23,7 @@
                 /logout = anon
                 /user/** = user
                 /works/add/** = user
+                /works/edit/** = user
             </value>
         </property>
     </bean>
