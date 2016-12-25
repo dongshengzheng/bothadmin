@@ -133,8 +133,8 @@ public class Works implements Serializable {
     /**
      * 作品诠释
      */
-    @TableField(value = "works_meanning")
-    private String worksMeanning;
+    @TableField(value = "works_meaning")
+    private String worksMeaning;
 
     /**
      * 审核状态
@@ -343,12 +343,12 @@ public class Works implements Serializable {
         this.levelZk = levelZk;
     }
 
-    public String getWorksMeanning() {
-        return this.worksMeanning;
+    public String getWorksMeaning() {
+        return this.worksMeaning;
     }
 
-    public void setWorksMeanning(String worksMeanning) {
-        this.worksMeanning = worksMeanning;
+    public void setWorksMeaning(String worksMeaning) {
+        this.worksMeaning = worksMeaning;
     }
 
     public String getStatus() {

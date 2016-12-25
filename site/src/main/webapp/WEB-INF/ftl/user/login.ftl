@@ -32,8 +32,6 @@
     <link rel="stylesheet" href="${staticPath}/assets/css/theme-skins/dark.css">
 
     <!-- CSS Customization -->
-    <link rel="stylesheet" href="${staticPath}/assets/css/custom.css">
-
     <link rel="stylesheet" href="${staticPath}/static/css/custom.css">
 </head>
 
@@ -94,8 +92,10 @@
                 success: function (data) {
                    if(data.result == ''){
                        alert("登录成功，跳转页面")
-                   }else {}
-                   $("#errInfo").html(data.result);
+                   }else {
+                       $("#errInfo").html(data.result);
+                   }
+
                 },
                 error:function () {
                     alert("error");

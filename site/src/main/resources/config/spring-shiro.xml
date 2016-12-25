@@ -22,7 +22,27 @@
                 /login = anon
                 /logout = anon
                 /user/** = user
+                /works/add/** = user
             </value>
         </property>
+    </bean>
+
+    <!-- 会话Cookie模板 似乎不管用-->
+    <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="sid"/>
+        <!--设置Cookie名字，默认为JSESSIONID-->
+        <property name="name" value="SITESID" />
+    </bean>
+
+
+    <!-- session管理类 似乎也不管用 -->
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <property name="sessionDAO" ref="customShiroSessionDAO"/>
+        <!-- session过期时间 -->
+        <property name="globalSessionTimeout" value="1800000"/>
+        <!-- cookie名称 -->
+        <property name="sessionIdCookie.name" value="site"/>
+        <!-- cookie生效路径 -->
+        <property name="sessionIdCookie.path" value="/"/>
     </bean>
 </beans>

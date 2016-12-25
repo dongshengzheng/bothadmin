@@ -6,16 +6,77 @@
 <link rel="stylesheet" href="${staticPath}/assets/css/pages/shortcode_timeline2.css">
 <link rel="stylesheet" href="${staticPath}/assets/css/datepicker.css">
 <link rel="stylesheet" href="${staticPath}/assets/js/chosen/chosen.min.css">
+<link rel="stylesheet" href="${staticPath}/static/css/plugins.css">
+<link rel="stylesheet" href="${staticPath}/static/css/shop.style.css">
+
 </@htmlHead>
 <@htmlBody>
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">作品登记</h1>
+        <ul class="pull-right breadcrumb">
+            <li><a href="index.html">首页</a></li>
+            <li class="active">作品登记</li>
+        </ul>
+    </div>
+</div>
+
 <div class="wrapper">
     <#if step == 1>
         <!--物品信息-->
         <div class="container margin-bottom-40">
-            <div class="row">
-                <div class="col-sm-3"></div>
-                <div class="col-sm-6">
-                    <div class="row">
+
+            <div class="form-wizard">
+                <ul class="nav nav-pills nav-justified steps">
+                    <li class="active">
+                        <a href="#tab1" class="step">
+                            <span class="number">1</span>
+                            <span class="desc">
+                                <i class="fa fa-check"></i>物品信息
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="step">
+                            <span class="number">2</span>
+                            <span class="desc">
+                                <i class="fa fa-check"></i>作品信息
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="step active">
+                            <span class="number">3</span>
+                            <span class="desc">
+                                <i class="fa fa-check"></i>作品等级
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="step">
+                            <span class="number">4</span>
+                            <span class="desc">
+                                <i class="fa fa-check"></i>评估报告
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="step">
+                            <span class="number">5</span>
+                            <span class="desc">
+                                <i class="fa fa-check"></i>收藏者信息
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+                <div id="bar" class="progress progress-u progress-lg rounded" role="progressbar">
+                    <div class="progress-bar progress-bar-light-green" style="width: 20%;"></div>
+                </div>
+            </div>
+            <div class="row shopping-cart">
+                <div class="col-sm-offset-3 col-sm-6">
+                    <h2 class="title-type">物品信息</h2>
+                    <div class="billing-info-inputs checkbox-list">
                         <form id="works_info" action="${staticPath}/works/addGoodsInfo/0" method="post"
                               class="form-horizontal">
                             <div class="form-group">
@@ -60,7 +121,8 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="registerTime">登记时间</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control date-picker" name="registerTime" id="registerTime" type="text"
+                                    <input class="form-control date-picker" name="registerTime" id="registerTime"
+                                           type="text"
                                            placeholder="请选择登记时间" readonly/>
                                 </div>
 
@@ -79,25 +141,24 @@
                                 <div class="col-sm-10">
                                     <div id="upload_works_info" class=""
                                          style="border: dotted 1px #bbb;height: 100px;width: 100px;overflow: hidden">
-
+                                        <img src="${staticPath}/static/img/upload.png" style="width: 100%;" alt="" />
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-2">
-                                <button data-type="0" type="submit" class="btn btn-u btn-u-red info_btn">下一步</button>
-                            </div>
 
-                            <div class="col-sm-10">
-                                <button data-type="1" type="submit" class="btn btn-u btn-u-default info_btn"
-                                        style="margin-left: 20px">存为草稿
-                                </button>
+                            <!--上传图片-->
+                            <div class="form-group">
+                                <label class="col-sm-2" for=""></label>
+                                <div class="col-sm-10">
+                                    <button data-type="0" type="submit" class="btn btn-u btn-u-red info_btn">下一步</button>
+                                    <button data-type="1" type="submit" class="btn btn-u btn-u-default info_btn"
+                                            style="margin-left: 20px">存为草稿
+                                    </button>
+                                </div>
                             </div>
                         </form>
                     </div>
-
                 </div>
-
-                <div class="col-sm-3"></div>
             </div>
         </div>
     </#if >
@@ -121,7 +182,8 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="breed">品种</label>
                                 <div class="col-sm-10">
-                                    <select data-placeholder="请选择" id="breed" class="form-control chzn-chosen" name="breed">
+                                    <select data-placeholder="请选择" id="breed" class="form-control chzn-chosen"
+                                            name="breed">
                                         <option value=""></option>
                                         <#list pinzhong as pz>
                                             <option value="${pz.label}">${pz.label}</option>
@@ -134,7 +196,8 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="name">作品类型</label>
                                 <div class="col-sm-10">
-                                    <select data-placeholder="请选择"  id="type" class="form-control chzn-chosen" name="type">
+                                    <select data-placeholder="请选择" id="type" class="form-control chzn-chosen"
+                                            name="type">
                                         <option value=""></option>
                                         <#list zuopinleixing as zplx>
                                             <option value="${zplx.label}">${zplx.label}</option>
@@ -171,7 +234,8 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="productionProcess">工艺制作</label>
                                 <div class="col-sm-10">
-                                    <select data-placeholder="请选择" class="form-control chzn-chosen" id="productionProcess" name="productionProcess">
+                                    <select data-placeholder="请选择" class="form-control chzn-chosen"
+                                            id="productionProcess" name="productionProcess">
                                         <option value=""></option>
                                         <option value="工艺制作">工艺制作</option>
                                         <option value="工艺制作">工艺制作</option>
@@ -182,7 +246,8 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="sealCuttingLevel">篆刻级别</label>
                                 <div class="col-sm-10">
-                                    <select data-placeholder="请选择" class="form-control chzn-chosen" id="sealCuttingLevel" name="sealCuttingLevel">
+                                    <select data-placeholder="请选择" class="form-control chzn-chosen"
+                                            id="sealCuttingLevel" name="sealCuttingLevel">
                                         <option value=""></option>
                                         <#list level as lvl>
                                             <option value="${lvl.label}">${lvl.label}</option>
@@ -194,7 +259,8 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="mineArea">矿区地域</label>
                                 <div class="col-sm-10">
-                                    <select data-placeholder="请选择" class="form-control chzn-chosen" id="mineArea" name="mineArea">
+                                    <select data-placeholder="请选择" class="form-control chzn-chosen" id="mineArea"
+                                            name="mineArea">
                                         <option value=""></option>
                                         <#list kqdy as kq>
                                             <option value="${kq.label}">${kq.label}</option>
@@ -214,7 +280,8 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="produceTime">制作时间</label>
                                 <div class="col-sm-10">
-                                    <input readonly type="text" class="form-control date-picker" id="produceTime" name="produceTime"
+                                    <input readonly type="text" class="form-control date-picker" id="produceTime"
+                                           name="produceTime"
                                            placeholder="请输入制作时间">
                                 </div>
                             </div>
@@ -257,7 +324,8 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="name">作品名称</label>
                                 <div class="col-sm-10">
-                                    <input data-placehoder="" class="form-control" type="text" value="${goodsName}" disabled="disabled"/>
+                                    <input data-placehoder="" class="form-control" type="text" value="${goodsName}"
+                                           disabled="disabled"/>
                                 </div>
 
                             </div>
@@ -408,7 +476,8 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="inithanxueliang">印章含血面</label>
                                 <div class="col-sm-10">
-                                    <select data-placeholder="请选择" class="form-control chzn-chosen" name="inithanxueliang">
+                                    <select data-placeholder="请选择" class="form-control chzn-chosen"
+                                            name="inithanxueliang">
                                         <option value=""></option>
                                         <#list mian as ma>
                                             <option value="${ma.label}">${ma.label}</option>
@@ -420,7 +489,8 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="hanxuefangshi">含血方式</label>
                                 <div class="col-sm-10">
-                                    <select data-placeholder="请选择" class="form-control chzn-chosen" name="hanxuefangshi">
+                                    <select data-placeholder="请选择" class="form-control chzn-chosen"
+                                            name="hanxuefangshi">
                                         <option value=""></option>
                                         <#list hanxuefangshi as hxfs>
                                             <option value="${hxfs.label}">${hxfs.label}</option>
@@ -479,7 +549,8 @@
                                     <p style="padding: 0px;margin: 0px;color: #bbb">请上传价值认证报告</p>
 
                                 </div>
-                                <a id="jzrz_img" style="text-decoration:none;display:block;height: 80px; width: 80px;border: dotted 1px #bbb;">
+                                <a id="jzrz_img"
+                                   style="text-decoration:none;display:block;height: 80px; width: 80px;border: dotted 1px #bbb;">
                                     <p style="color: #bbb;font-size: 10px;margin-bottom: 2px;margin-top: 50px">
                                         上传价值认证报告</p>
                                     <p style="color: #bbb;font-size: 10px">(最多8张)</p>
@@ -488,7 +559,8 @@
                             <div class="form-group" style="margin-top: 10px">
                                 <label class="col-sm-3 control-label" for="jzyxsjs">价值有效时间</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control date-picker" readonly name="jzyxsj" value="" type="text"/>
+                                    <input class="form-control date-picker" readonly name="jzyxsj" value=""
+                                           type="text"/>
                                 </div>
                             </div>
 
@@ -521,7 +593,8 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="name">作品名称</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" name="name" id="name" value="${goodsName}" type="text" disabled="disabled"/>
+                                    <input class="form-control" name="name" id="name" value="${goodsName}" type="text"
+                                           disabled="disabled"/>
                                 </div>
                             </div>
 
@@ -607,11 +680,11 @@
 
 <script>
 
-$("#headerWorks").addClass("header_tab_active");
+    $("#headerWorks").addClass("active");
     $(document).ready(function () {
         $(".chzn-chosen").chosen();
 
-        $('.date-picker').datepicker({autoclose: true, todayHighlight: true,format:'yyyy-mm-dd'});
+        $('.date-picker').datepicker({autoclose: true, todayHighlight: true, format: 'yyyy-mm-dd'});
 
         initUploaders("upload_works_info", "windyeel", '${staticPath}/');
         initUploaders_inner("zpxx_img", "windyeel", '${staticPath}/', "zpxx_container", "zpxxImge");

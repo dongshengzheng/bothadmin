@@ -1070,7 +1070,7 @@ public class MobileController extends BaseController {
             Date makeTime = DateUtil.parseDate(makeTimeString, "yyyy-MM-dd");
             works.setMakeTime(makeTime);
         }
-        works.setWorksMeanning(worksMeanning);
+        works.setWorksMeaning(worksMeanning);
         if ("yes".equals(draftYN)) {
             works.setStatus(Const.WORKS_STATUS_DRAFT);
         }

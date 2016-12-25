@@ -226,6 +226,12 @@
         </sql>
     </changeSet>
 
+    <changeSet author="SunHan" id="15862614903-016">
+    <sql dbms="mysql">
+        ALTER TABLE `dd_works` CHANGE COLUMN `works_meanning` `works_meaning` varchar(1000) DEFAULT NULL COMMENT '作品诠释';
+
+    </sql>
+    </changeSet>
 
 
 </databaseChangeLog>

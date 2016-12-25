@@ -70,4 +70,15 @@
         <property name="defaultEncoding" value="utf-8"/>
     </bean>
 
+    <!-- session管理类 -->
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <property name="sessionDAO" ref="customShiroSessionDAO"/>
+        <!-- session过期时间 -->
+        <property name="globalSessionTimeout" value="1800000"/>
+        <!-- cookie名称 -->
+        <property name="sessionIdCookie.name" value="admin"/>
+        <!-- cookie生效路径 -->
+        <property name="sessionIdCookie.path" value="/"/>
+    </bean>
+
 </beans>

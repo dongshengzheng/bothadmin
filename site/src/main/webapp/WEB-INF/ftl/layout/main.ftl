@@ -13,26 +13,37 @@ description="金石典当"
 <html lang="en"> <!--<![endif]-->
 <head>
     <title>${title}</title>
+
+    <!-- Meta -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link rel="shortcut icon" href="${staticPath}/assets/img/favicon.ico.png">
-    <link rel="stylesheet" href="${staticPath}/assets/plugins/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${staticPath}/assets/css/style.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico.png">
 
-    <link rel="stylesheet" href="${staticPath}/assets/css/headers/header-v5.css">
-    <link rel="stylesheet" href="${staticPath}/assets/css/footers/footer-v4.css">
+    <!-- Web Fonts -->
+    <link rel='stylesheet' type='text/css'
+          href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800&subset=cyrillic,latin'>
 
-    <link rel="stylesheet" href="${staticPath}/assets/plugins/animate.css">
-    <link rel="stylesheet" href="${staticPath}/assets/plugins/line-icons/line-icons.css">
-    <link rel="stylesheet" href="${staticPath}/assets/plugins/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="${staticPath}/assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css">
-    <link rel="stylesheet" href="${staticPath}/assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
-    <link rel="stylesheet" href="${staticPath}/assets/plugins/revolution-slider/rs-plugin/css/settings.css">
-    <link rel="stylesheet" href="${staticPath}/assets/css/custom.css">
-    <link rel="stylesheet" href="${staticPath}/assets/css/jsdd/main.css">
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="${staticPath}/static/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${staticPath}/static/css/shop.style.css">
+
+    <!-- CSS Header and Footer -->
+    <link rel="stylesheet" href="${staticPath}/static/css/headers/header-v5.css">
+    <link rel="stylesheet" href="${staticPath}/static/css/footers/footer-v4.css">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="${staticPath}/static/plugins/animate.css">
+    <link rel="stylesheet" href="${staticPath}/static/plugins/line-icons/line-icons.css">
+    <link rel="stylesheet" href="${staticPath}/static/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="${staticPath}/static/plugins/scrollbar/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" href="${staticPath}/static/plugins/owl-carousel/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="${staticPath}/static/plugins/revolution-slider/rs-plugin/css/settings.css">
+    <link rel="stylesheet" href="${staticPath}/assets/css/blocks.css">
+    <link rel="stylesheet" href="${staticPath}/static/css/custom.css">
     <#nested/>
 </head>
 </#macro>
@@ -40,41 +51,53 @@ description="金石典当"
 <spring:htmlEscape defaultHtmlEscape="true"/>
 <body>
 <div class="wrapper">
-    <div class="header-v5 header-static" style="height: 70px;">
-        <div class="container">
-            <div class="row" style="">
-                <div class="col-sm-3">
-                    <a class="" href="/">
-                        <img id="" style="margin: 12px 0px 6px 0px;display: block"
-                             src="${staticPath}/assets/img/index/logo.png">
+    <div class="header-v5 header-static">
+        <div class="topbar-v3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-offset-6 col-sm-6">
+                        <ul class="list-inline right-topbar pull-right">
+                            <li><a href="shop-ui-login.html">登录</a> | <a href="shop-ui-register.html">注册</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navbar navbar-default mega-menu" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target=".navbar-responsive-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">
+                        <img id="logo-header" src="${staticPath}/static/img/logo.png" alt="Logo">
                     </a>
                 </div>
-                <div class="col-sm-1 text-center">
-                    <div id="headerHome" class="index_head_tab">
-                        <a style="text-decoration:none" href="/">
-                            <h3 style="margin-top: 20px">首页</h3>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-sm-2 text-center">
-                    <div id="headerWorks" style="width: 120px;" class="index_head_tab">
-                        <a style="text-decoration:none;" href="${staticPath}/works/add">
-                            <h3 style="margin-top: 20px">作品登记</h3>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <form id="search_form" action="" method="get">
-                        <div class="input-group" style="margin-top: 18px">
-                            <input id="keywords" name="keywords" type="text" class="form-control"
-                                   placeholder="输入要搜索的作品或用户">
-                            <span class="input-group-btn">
-							<button id="searchworksbtn" class="btn" type="button"
-                                    style="color: white;background: #D70016">搜作品</button>
-							<button class="btn" type="button" style="color: white;background: #FB591D;margin-left: 3px">搜用户</button>
-						</span>
-                        </div>
-                    </form>
+                <div class="collapse navbar-collapse navbar-responsive-collapse">
+                    <ul class="nav navbar-nav">
+                        <li id="headerHome"><a href="/">首页</a></li>
+                        <li id="headerWorks"><a href="/works/add">作品登记</a></li>
+                        <li>
+                            <form id="search_form" action="" method="get" style="padding: 25px 18px 22px;">
+                                <div class="input-group">
+                                    <input id="keywords" name="keywords" type="text" class="form-control"
+                                           placeholder="搜索作品/用户">
+                                    <span class="input-group-btn">
+                                        <button id="searchworksbtn" class="btn" type="button"
+                                                style="color: white;background: #D70016">搜作品</button>
+                                        <button class="btn" type="button"
+                                                style="color: white;background: #FB591D;margin-left: 3px">
+                                            搜用户
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -101,7 +124,9 @@ description="金石典当"
 </#macro>
 <#macro footerJS>
 <script src="${staticPath}/assets/plugins/jquery/jquery.min.js"></script>
-<script src="${staticPath}/assets/plugins/jquery/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="${staticPath}/assets/plugins/jquery/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="${staticPath}/assets/plugins/jquery/jquery.validate.min.js"></script>
+<script type="text/javascript" src="${staticPath}/assets/plugins/jquery/jquery.form.min.js"></script>
 <script src="${staticPath}/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="${staticPath}/assets/plugins/back-to-top.js"></script>
 <script src="${staticPath}/assets/plugins/smoothScroll.js"></script>

@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="${staticPath}/assets/css/theme-skins/dark.css">
 
     <!-- CSS Customization -->
-    <link rel="stylesheet" href="${staticPath}/assets/css/custom.css">
+    <link rel="stylesheet" href="${staticPath}/static/css/custom.css">
 </head> 
 
 <body>

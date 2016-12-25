@@ -2,7 +2,12 @@ package com.fish.idle.site.web;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.fish.idle.service.modules.sys.entity.AppUser;
+import com.fish.idle.service.modules.sys.entity.User;
 import com.fish.idle.service.util.Const;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
+
 import javax.servlet.http.HttpServletRequest;
 /**
  * Created by szy on 03/12/2016.
@@ -44,5 +49,9 @@ public class BaseController {
         return ew;
     }
 
+    public AppUser getCurrentUser() {
+        Subject subject = SecurityUtils.getSubject();
+        return (AppUser) subject.getPrincipal();
+    }
 
 }

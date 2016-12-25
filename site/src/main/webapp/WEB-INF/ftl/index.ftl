@@ -113,7 +113,7 @@
 </@htmlBody>
 <@footerJS>
 <script>
-    $("#headerHome").addClass("header_tab_active");
+    $("#headerHome").addClass("active");
     $(document).ready(function () {
 
 //        $(".pageRefreshBtn").bind("click", function (e) {

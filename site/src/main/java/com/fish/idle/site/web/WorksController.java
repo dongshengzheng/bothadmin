@@ -1,5 +1,6 @@
 package com.fish.idle.site.web;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.fish.idle.service.modules.jsdd.entity.*;
@@ -8,7 +9,6 @@ import com.fish.idle.service.modules.sys.entity.Dict;
 import com.fish.idle.service.modules.sys.service.IDictService;
 import com.fish.idle.service.util.Const;
 import com.fish.idle.service.util.StringUtils;
-import com.fish.idle.site.entity.GoodsInfoRequest;
 import com.fish.idle.site.entity.Paging;
 import com.fish.idle.site.entity.WorkInfoRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,14 +50,17 @@ public class WorksController extends BaseController {
     @Autowired
     private IWorksService worksService;
 
-    @RequestMapping(value = "/demo", method = RequestMethod.GET)
-    public String demo(ModelMap map) {
-        return "works/works_demo";
-    }
-
 
     @Autowired
     private IDictService dictService;
+
+
+    @Autowired
+    private IImagesService imagesService;
+
+
+
+
 
     @RequestMapping(value = "search",method = RequestMethod.GET)
     public String search(ModelMap map,@RequestParam(value ="keywords",required = false) String keywords,
@@ -128,71 +131,57 @@ public class WorksController extends BaseController {
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String register(ModelMap map) {
-        map.put("step", 1);
-        return "works/work_register";
+        return "works/work_add_provider";
     }
 
     /**
      * 登记物品信息
      *
-     * @param goodsInfoRequest
      * @return
      */
-    @RequestMapping(value = "/addGoodsInfo/{type}", method = RequestMethod.POST)
-    public String addGoodsInfo(@ModelAttribute GoodsInfoRequest goodsInfoRequest, ModelMap map, @PathVariable Integer type) {
-        if (type == 1) {
-            //存为草稿
-            goodsInfoRequest.setIsDraft(Integer.valueOf(Const.WORKS_STATUS_DRAFT));
-        }
-        //生成works
-        Works works = new Works();
-        works.setName(goodsInfoRequest.getName());
-        works.setRemarks(goodsInfoRequest.getDescription());
-        works.setStatus(Const.WORKS_STATUS_UNPASS);
-        works.setProvideBy(goodsInfoRequest.getProvideBy());
-        works.setImages(goodsInfoRequest.getImgs());
+    @RequestMapping(value = "/add/provider", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject saveProvider(Works works, Consumer consumer) {
+        JSONObject jsonObject = new JSONObject();
+
+        // 添加作品信息
         works.setDelFlag(String.valueOf(Const.DEL_FLAG_NORMAL));
-        works.setCreateBy(1);
+        works.setCreateBy(getCurrentUser().getId());
         works.setCreateDate(new Date());
-        boolean isWorkOk = worksService.insert(works);
-        //生成提供者
-        Consumer consumer = new Consumer();
-        consumer.setType(String.valueOf(1));
-        consumer.setNo(goodsInfoRequest.getCardNo());
-        consumer.setAddress(goodsInfoRequest.getAddress());
-        consumer.setWorksId(works.getId());
-        consumer.setPhone(goodsInfoRequest.getContact());
-        consumer.setDatetime(goodsInfoRequest.getRegisterTime());
-        consumer.setCreateBy(1);
-        consumer.setDelFlag(Const.DEL_FLAG_NORMAL);
-        boolean isConsumerOk = consumerService.insert(consumer);
-        if (isWorkOk && isConsumerOk) {
-            //矿区地域
-            List<Dict> kqdy = getWorksLevelDicByType("dd_kqdy");
-            //todo  篆刻级别
-            List<Dict> level = getWorksLevelDicByType("dd_level");
-            List<Dict> pinzhong = getWorksLevelDicByType("dd_pinzhong");
-            List<Dict> zuopinleixing = getWorksLevelDicByType("dd_zuopinleixing");
-            //todo  工艺制作
-            map.put("kqdy",kqdy);
-            map.put("level",level);
-            map.put("pinzhong",pinzhong);
-            map.put("zuopinleixing",zuopinleixing);
-            map.put("goodsName", works.getName());
-            map.put("goodsId", works.getId());
-            map.put("success", true);
-            map.put("msg", "添加成功");
-            map.put("step", 2);
-
-
-        } else {
-            map.put("success", false);
-            map.put("msg", "添加失败");
-            map.put("step", 1);
-            map.put("goodsInfoRequest", goodsInfoRequest);
-            map.put("consumer", consumer);
+        if (!worksService.insertOrUpdate(works)){
+            jsonObject.put("suc",false);
+            jsonObject.put("msg","添加作品信息出错");
+            return jsonObject;
         }
-        return "works/work_register";
+
+        //添加提供者
+        consumer.setType(String.valueOf(1));
+        consumer.setWorksId(works.getId());
+        consumer.setCreateBy(getCurrentUser().getId());
+        consumer.setDelFlag(Const.DEL_FLAG_NORMAL);
+        if (!consumerService.insertOrUpdate(consumer)){
+            jsonObject.put("suc",false);
+            jsonObject.put("msg","添加添加提供者信息出错");
+            return jsonObject;
+        }
+
+        // 保存图片信息
+        String images = works.getImages();
+        if (images != null && images.trim().length() > 0) {
+            String[] urls = images.split("，");
+            List<Images> list = new ArrayList<>();
+            for (String url : urls) {
+                Images img = new Images();
+                img.setTargetId(works.getId());
+                img.setUrl(url);
+                img.setType(Const.IMAGES_WORKS);
+                list.add(img);
+            }
+            imagesService.insertBatch(list);
+        }
+
+        jsonObject.put("suc",true);
+        return jsonObject;
     }
 
     /**
@@ -221,7 +210,7 @@ public class WorksController extends BaseController {
                 works.setKqdy(workInfoRequest.getMineArea());
                 works.setMaker(workInfoRequest.getProducer());
                 works.setMakeTime(workInfoRequest.getProduceTime());
-                works.setWorksMeanning(workInfoRequest.getWorksExplanation());
+                works.setWorksMeaning(workInfoRequest.getWorksExplanation());
                 boolean isOk = worksService.updateById(works);
                 if (isOk) {
                     //质地一
@@ -266,7 +255,7 @@ public class WorksController extends BaseController {
                 }
             }
         }
-        return "works/work_register";
+        return "/WEB-INF/ftl/works/work_add.ftl";
     }
 
     /**
@@ -304,7 +293,7 @@ public class WorksController extends BaseController {
                 map.put("step", 3);
             }
         }
-        return "works/work_register";
+        return "/WEB-INF/ftl/works/work_add.ftl";
     }
 
     /**
@@ -342,7 +331,7 @@ public class WorksController extends BaseController {
                 map.put("step", 4);
             }
         }
-        return "works/work_register";
+        return "/WEB-INF/ftl/works/work_add.ftl";
     }
 
     /**
