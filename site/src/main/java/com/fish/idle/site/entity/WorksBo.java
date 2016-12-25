@@ -20,6 +20,12 @@ public class WorksBo {
 
     private WorksLevel level;
 
+    private String worksImages;
+
+    private String certifyImage;
+
+    private String desImage;
+
 
     public Works getWorks() {
         return works;
@@ -59,5 +65,29 @@ public class WorksBo {
 
     public void setLevel(WorksLevel level) {
         this.level = level;
+    }
+
+    public String getWorksImages() {
+        return worksImages;
+    }
+
+    public void setWorksImages(String worksImages) {
+        this.worksImages = worksImages;
+    }
+
+    public String getCertifyImage() {
+        return certifyImage;
+    }
+
+    public void setCertifyImage(String certifyImage) {
+        this.certifyImage = certifyImage;
+    }
+
+    public String getDesImage() {
+        return desImage;
+    }
+
+    public void setDesImage(String desImage) {
+        this.desImage = desImage;
     }
 }

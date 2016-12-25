@@ -32,10 +32,10 @@
                             <#list worksImage as imgs>
                                 <div class="ms-slide">
                                     <img class="ms-brd"
-                                         src="http://windyeel.img-cn-shanghai.aliyuncs.com/${imgs.url)!}?x-oss-process=image/resize,m_fill,h_550,w_550"
-                                         data-src="http://windyeel.img-cn-shanghai.aliyuncs.com/${imgs.url)!}">
+                                         src="http://windyeel.img-cn-shanghai.aliyuncs.com/${imgs.url}?x-oss-process=image/resize,m_fill,h_550,w_550"
+                                         data-src="http://windyeel.img-cn-shanghai.aliyuncs.com/${imgs.url}">
                                     <img class="ms-thumb"
-                                         src="http://windyeel.img-cn-shanghai.aliyuncs.com/${imgs.url)!}?x-oss-process=image/resize,m_fill,h_80,w_80"
+                                         src="http://windyeel.img-cn-shanghai.aliyuncs.com/${imgs.url}?x-oss-process=image/resize,m_fill,h_80,w_80"
                                          alt="thumb">
                                 </div>
                             </#list>
@@ -215,8 +215,8 @@
                                     <pre>${(report.des)!}</pre>
                                     <div>
                                         <img width="500px;"
-                                             src="http://windyeel.img-cn-shanghai.aliyuncs.com/${certifyImage.url)!}?x-oss-process=image/resize,m_fill,h_500,w_500"
-                                             alt="评估证书">
+                                             src="http://windyeel.img-cn-shanghai.aliyuncs.com/${reportImage.url}?x-oss-process=image/resize,m_fill,h_500,w_500"
+                                             alt="评估报告">
                                     </div>
                                     <#if collect?exists>
                                         <div class="headline"><h2>收藏者信息</h2></div>

@@ -71,7 +71,7 @@
         <form id="works_info" class="tab-content margin-bottom-30 shopping-cart" style="background: rgb(254,255,255)"
               action="/works/edit" method="post">
             <input type="hidden" name="worksId" id="worksId" value="${(works.id)!}">
-            <input type="hidden" id="status" name="status"/>
+            <input type="hidden" id="status" name="works.status"/>
             <input type="hidden" name="works.id" value="${(works.id)!}"/>
             <input type="hidden" name="report.id" value="${(report.id)!}"/>
             <input type="hidden" name="collect.id" value="${(collect.id)!}"/>
@@ -142,6 +142,13 @@
                         <div class="form-group">
                             <label class="col-sm-2" for=""></label>
                             <div class="col-sm-10">
+                                <#list worksImage as image>
+                                    <div class="upload-container" data="${image.id}">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                        <img src="http://windyeel.img-cn-shanghai.aliyuncs.com/${image.url}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                                             class="min-img">
+                                    </div>
+                                </#list>
                                 <div id="upload_works_info" class=""
                                      style="border: dotted 1px #bbb;height: 100px;width: 100px;overflow: hidden">
                                     <img src="${staticPath}/static/img/upload.png" style="width: 100%;" alt=""/>
@@ -481,6 +488,14 @@
                         <div class="form-group">
                             <label class="col-sm-2" for=""></label>
                             <div class="col-sm-10">
+                                <#list reportImage as image>
+                                    <div class="upload-container" data='${image.id}'>
+                                        <spanclass
+                                        ="glyphicon glyphicon-remove"></span>
+                                        <img src="http://windyeel.img-cn-shanghai.aliyuncs.com/${image.url}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                                             class="min-img">
+                                    </div>
+                                </#list>
                                 <div id="upload_des" class=""
                                      style="border: dotted 1px #bbb;height: 100px;width: 100px;overflow: hidden">
                                     <img src="${staticPath}/static/img/upload.png" style="width: 100%;" alt=""/>
@@ -501,6 +516,14 @@
                         <div class="form-group">
                             <label class="col-sm-2" for=""></label>
                             <div class="col-sm-10">
+                                <#list certifyImage as image>
+                                    <div class="upload-container" data='${image.id}'>
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                        <img src="http://windyeel.img-cn-shanghai.aliyuncs.com/${image.url}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                                             class="min-img">
+                                    </div>
+                                </#list>
+
                                 <div id="upload_certify" class=""
                                      style="border: dotted 1px #bbb;height: 100px;width: 100px;overflow: hidden">
                                     <img src="${staticPath}/static/img/upload.png" style="width: 100%;" alt=""/>
@@ -583,8 +606,8 @@
                     <div class="form-group">
                         <label class="col-sm-2" for=""></label>
                         <div class="col-sm-10">
-                            <button data-type="0" type="submit" class="btn btn-u btn-u-red info_btn">提交审核</button>
-                            <button data-type="1" type="submit" class="btn btn-u btn-u-default info_btn"
+                            <button data-type="1" type="submit" class="btn btn-u btn-u-red info_btn">提交审核</button>
+                            <button data-type="0" type="submit" class="btn btn-u btn-u-default info_btn"
                                     style="margin-left: 20px">存为草稿
                             </button>
                         </div>
@@ -613,9 +636,21 @@
         $(".info_btn").bind("click", function () {
             $("#status").val($(this).attr("data-type"))
         });
+        $(".upload-container").bind("click", function () {
+            var _this = $(this)
+            if (confirm("你确认要删除当前图片?")) {
+                $.post("/works/image/delete/" + $(this).attr("data"), function (data) {
+                    if (data.suc) {
+                        _this.remove();
+                    } else {
+                        alert("图片不存在");
+                    }
+                });
 
+            }
+
+        });
         var $form = $("#works_info");
-
         $form.validate({
             submitHandler: function (form) {
                 $(form).ajaxSubmit({
@@ -623,9 +658,10 @@
                         if (data.suc) {
                             if ($("#status").val() == 0) {
                                 // 跳转到下一步
-                                window.location.href = "/works/add/" + data.id + "/info";
+                                window.location.href =  window.location.href;
                             } else {
                                 // 跳转到个人中心-> 我的作品->草稿里面
+                                window.location.href =  window.location.href;
                             }
                         } else {
                             alert(data.msg);
@@ -640,10 +676,9 @@
             }
         });
 
-        initUploaders("upload_pgbg", "windyeel", "http://hv64l.free.natapp.cc/");
-        initUploaders("upload_rzbg", "windyeel", "http://hv64l.free.natapp.cc/");
-        initUploaders("selectfiles", "windyeel", "http://hv64l.free.natapp.cc/");
+        initUploaders_inner("upload_works_info", "windyeel", '${staticPath}/', "worksImages");
 
-
+        initUploaders_inner("upload_certify", "windyeel", '${staticPath}/', "certifyImage");
+        initUploaders_inner("upload_des", "windyeel", '${staticPath}/', "desImage");
     });
 </script>

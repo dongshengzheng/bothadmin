@@ -24,6 +24,7 @@
                 /user/** = user
                 /works/add/** = user
                 /works/edit/** = user
+                /works/delete/** = user
             </value>
         </property>
     </bean>

@@ -26,43 +26,43 @@
         <div class="form-wizard">
             <ul class="nav nav-pills nav-justified steps">
                 <li class="active">
-                    <a href="#tab1" class="step">
+                    <a href="javascript:;" class="step">
                         <span class="number">1</span>
                         <span class="desc">
-                                <i class="fa fa-check"></i>物品信息
-                            </span>
+                            <i class="fa fa-check"></i>物品信息
+                        </span>
                     </a>
                 </li>
                 <li class="active">
                     <a href="javascript:;" class="step">
                         <span class="number">2</span>
                         <span class="desc">
-                                <i class="fa fa-check"></i>作品信息
-                            </span>
+                            <i class="fa fa-check"></i>作品信息
+                        </span>
                     </a>
                 </li>
                 <li class="active">
                     <a href="javascript:;" class="step active">
                         <span class="number">3</span>
                         <span class="desc">
-                                <i class="fa fa-check"></i>作品等级
-                            </span>
+                            <i class="fa fa-check"></i>作品等级
+                        </span>
                     </a>
                 </li>
                 <li class="active">
                     <a href="javascript:;" class="step">
                         <span class="number">4</span>
                         <span class="desc">
-                                <i class="fa fa-check"></i>评估报告
-                            </span>
+                            <i class="fa fa-check"></i>评估报告
+                        </span>
                     </a>
                 </li>
                 <li class="active">
                     <a href="javascript:;" class="step">
                         <span class="number">5</span>
                         <span class="desc">
-                                <i class="fa fa-check"></i>收藏者信息
-                            </span>
+                            <i class="fa fa-check"></i>收藏者信息
+                        </span>
                     </a>
                 </li>
             </ul>
@@ -99,7 +99,6 @@
                                        placeholder="请输入身份证"/>
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="address">联系地址</label>
                             <div class="col-sm-10">

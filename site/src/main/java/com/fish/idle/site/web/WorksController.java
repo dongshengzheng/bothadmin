@@ -13,7 +13,6 @@ import com.fish.idle.site.entity.Paging;
 import com.fish.idle.site.entity.WorkInfoRequest;
 import com.fish.idle.site.entity.WorksBo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -110,26 +109,14 @@ public class WorksController extends BaseController {
             jsonObject.put("msg", "保存提供者信息出错");
             return jsonObject;
         }
+        insertImage(works.getImages(),works.getId(),Const.IMAGES_WORKS);
 
-        // 保存图片信息
-        String images = works.getImages();
-        if (images != null && images.trim().length() > 0) {
-            String[] urls = images.split(",");
-            List<Images> list = new ArrayList<>();
-            for (String url : urls) {
-                Images img = new Images();
-                img.setTargetId(works.getId());
-                img.setUrl(url);
-                img.setType(Const.IMAGES_WORKS);
-                list.add(img);
-            }
-            imagesService.insertBatch(list);
-        }
 
         jsonObject.put("suc", true);
         jsonObject.put("id", works.getId());
         return jsonObject;
     }
+
 
     /**
      * 第二步：登记作品信息
@@ -230,7 +217,6 @@ public class WorksController extends BaseController {
         return "works/work_add_report";
     }
 
-
     /**
      * 第四步：登记评估报告
      *
@@ -248,35 +234,10 @@ public class WorksController extends BaseController {
             jsonObject.put("msg", "保存评估报告出错");
             return jsonObject;
         }
-
         // 保存评估报告
-        if (desImage != null && desImage.trim().length() > 0) {
-            String[] urls = desImage.split(",");
-            List<Images> list = new ArrayList<>();
-            for (String url : urls) {
-                Images img = new Images();
-                img.setTargetId(report.getId());
-                img.setUrl(url);
-                img.setType(Const.IMAGES_REPORT_DES);
-                list.add(img);
-            }
-            imagesService.insertBatch(list);
-        }
-
+        insertImage(desImage,report.getId(),Const.IMAGES_REPORT_DES);
         // 保存作品认证图片
-        if (certifyImage != null && certifyImage.trim().length() > 0) {
-            String[] urls = certifyImage.split(",");
-            List<Images> list = new ArrayList<>();
-            for (String url : urls) {
-                Images img = new Images();
-                img.setTargetId(report.getId());
-                img.setUrl(url);
-                img.setType(Const.IMAGES_REPORT_CERTIFICATE);
-                list.add(img);
-            }
-            imagesService.insertBatch(list);
-        }
-
+        insertImage(certifyImage,report.getId(),Const.IMAGES_REPORT_CERTIFICATE);
 
         jsonObject.put("suc", true);
         return jsonObject;
@@ -305,7 +266,14 @@ public class WorksController extends BaseController {
     @ResponseBody
     public JSONObject saveCollect(Consumer consumer) {
         JSONObject jsonObject = new JSONObject();
+
+
         wrapInsertEntity(consumer);
+        if(!StringUtils.isEmpty(consumer.getPub())){
+            consumer.setPub("1");
+        }else {
+            consumer.setPub("0");
+        }
         if (!consumerService.insert(consumer)) {
             jsonObject.put("suc", false);
             jsonObject.put("msg", "保存评估报告出错");
@@ -323,9 +291,7 @@ public class WorksController extends BaseController {
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String edit(@PathVariable Integer id, ModelMap map) {
         map.put("works",worksService.selectById(id));
-        List<Images> worksImage = imagesService.selectList(new EntityWrapper<>(new Images(id, Const.IMAGES_WORKS)));
-        //作品信息图片列表
-        map.put("worksImage", worksImage);
+
         WorksLevel worksLevel = worksLevelService.selectOne(new WorksLevel(id));
         map.put("worksLevel", worksLevel);
         ValueReport valueReport = valueReportService.selectOne(new ValueReport(id));
@@ -337,12 +303,16 @@ public class WorksController extends BaseController {
         Report report = reportService.selectOne(new Report(id));
         map.put("report", report);
 
+        List<Images> worksImage = imagesService.selectList(new EntityWrapper<>(new Images(id, Const.IMAGES_WORKS)));
+        //作品信息图片列表
+        map.put("worksImage", worksImage);
+
         //评估报告图片
         List<Images> reportImage = imagesService.selectList(new EntityWrapper<>(new Images(id, Const.IMAGES_REPORT_DES)));
         map.put("reportImage", reportImage);
         //评估价值认证照片
         List<Images> certifyImage = imagesService.selectList(new EntityWrapper<>(new Images(report.getId(), Const.IMAGES_REPORT_CERTIFICATE)));
-        map.put("certifyImage", certifyImage.get(0));
+        map.put("certifyImage", certifyImage);
 
         // 矿区地域
         map.put("kqdy", getWorksLevelDicByType("dd_kqdy"));
@@ -384,10 +354,31 @@ public class WorksController extends BaseController {
         wrapUpdateEntity(worksBo.getProvider());
         wrapUpdateEntity(worksBo.getReport());
         wrapUpdateEntity(worksBo.getLevel());
+        if(!StringUtils.isEmpty(worksBo.getCollect().getPub())){
+            worksBo.getCollect().setPub("1");
+        }else {
+            worksBo.getCollect().setPub("0");
+        }
+
+        // 更新作品相关信息
+        worksService.updateSelectiveById(worksBo.getWorks());
+        worksLevelService.updateSelectiveById(worksBo.getLevel());
+        reportService.updateSelectiveById(worksBo.getReport());
+        consumerService.updateSelectiveById(worksBo.getProvider());
+        consumerService.updateSelectiveById(worksBo.getCollect());
+
+        // 保存图片信息
+        insertImage(worksBo.getWorksImages(),worksBo.getWorks().getId(),Const.IMAGES_WORKS);
+        // 保存评估报告
+        insertImage(worksBo.getDesImage(),worksBo.getReport().getId(),Const.IMAGES_REPORT_DES);
+        // 保存作品认证图片
+        insertImage(worksBo.getCertifyImage(),worksBo.getReport().getId(),Const.IMAGES_REPORT_CERTIFICATE);
 
         jsonObject.put("suc", true);
         return jsonObject;
     }
+
+
 
 
     @RequestMapping(value = "detail/{id}", method = RequestMethod.GET)
@@ -416,10 +407,10 @@ public class WorksController extends BaseController {
 
         //评估报告图片
         List<Images> reportImage = imagesService.selectList(new EntityWrapper<>(new Images(id, Const.IMAGES_REPORT_DES)));
-        map.put("reportImage", reportImage);
+        map.put("reportImage", reportImage.get(0));
         //评估价值认证照片
         List<Images> certifyImage = imagesService.selectList(new EntityWrapper<>(new Images(report.getId(), Const.IMAGES_REPORT_CERTIFICATE)));
-        map.put("certifyImage", certifyImage.get(0));
+        map.put("certifyImage", certifyImage);
         //todo 转让历史列表
         //todo 诠释列表
         //todo 收藏者列表
@@ -427,6 +418,22 @@ public class WorksController extends BaseController {
 
         return "works/work_detail";
     }
+
+    /**
+     * 第五步：登记收藏者信息
+     *
+     * @return
+     */
+    @RequestMapping(value = "/image/delete/{id}", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject saveCollect(@PathVariable Integer id) {
+        JSONObject jsonObject = new JSONObject();
+        imagesService.deleteById(id);
+        jsonObject.put("suc", true);
+        return jsonObject;
+    }
+
+
 
 
     /**
@@ -659,6 +666,23 @@ public class WorksController extends BaseController {
         paging.setPageSize(length);
         map.put("worksPaging", paging);
         return "search/search_works_result";
+    }
+
+
+    private void insertImage(String images, Integer targetId, String types) {
+        // 保存图片信息
+        if (images != null && images.trim().length() > 0) {
+            String[] urls = images.split(",");
+            List<Images> list = new ArrayList<>();
+            for (String url : urls) {
+                Images img = new Images();
+                img.setTargetId(targetId);
+                img.setUrl(url);
+                img.setType(types);
+                list.add(img);
+            }
+            imagesService.insertBatch(list);
+        }
     }
 
 
