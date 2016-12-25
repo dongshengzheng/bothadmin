@@ -4,15 +4,32 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.fish.idle.service.modules.sys.entity.AppUser;
 import com.fish.idle.service.modules.sys.entity.User;
+import com.fish.idle.service.util.BaseEntity;
 import com.fish.idle.service.util.Const;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
+
 /**
  * Created by szy on 03/12/2016.
  */
 public class BaseController {
+
+
+    public void wrapInsertEntity(BaseEntity baseEntity){
+        baseEntity.setCreateDate(new Date());
+        baseEntity.setCreateBy(getCurrentUser().getId());
+        baseEntity.setUpdateBy(getCurrentUser().getId());
+        baseEntity.setUpdateDate(new Date());
+    }
+
+    public void wrapUpdateEntity(BaseEntity baseEntity){
+        baseEntity.setUpdateBy(getCurrentUser().getId());
+        baseEntity.setUpdateDate(new Date());
+    }
+
 
     /**
      * <p>

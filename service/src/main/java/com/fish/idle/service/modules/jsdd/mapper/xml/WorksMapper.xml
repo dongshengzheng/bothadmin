@@ -4,7 +4,7 @@
 
     <!-- 通用查询结果列-->
     <sql id="Base_Column_List">
-		id, create_by AS createBy, create_date AS createDate, update_by AS updateBy, update_date AS updateDate, remarks, del_flag AS delFlag, `no`, public_flag AS publicFlag, collect_by AS collectBy, provide_by AS provideBy, `name`, breed, `type`, `size`, gy_type AS gyType, level_zk AS levelZk, works_meaning AS worksMeanning, `status`, images, recommend, reason, kqdy, maker, make_time AS makeTime, slide, slide_till AS slideTill, browser_count AS browserCount, follow_count AS followCount, `value`, value_till AS valueTill, certified, working_status AS workingStatus
+		id, create_by AS createBy, create_date AS createDate, update_by AS updateBy, update_date AS updateDate, remarks, del_flag AS delFlag, `no`, public_flag AS publicFlag, `name`, breed, `type`, `size`, gy_type AS gyType, level_zk AS levelZk, works_meaning AS worksMeanning, `status`, images, recommend, reason, kqdy, maker, make_time AS makeTime, slide, slide_till AS slideTill, browser_count AS browserCount, follow_count AS followCount, `value`, value_till AS valueTill, certified, working_status AS workingStatus
 	</sql>
 
     <!--根据用户id查询转入或转出的作品-->

@@ -1,13 +1,10 @@
 package com.fish.idle.service.modules.jsdd.entity;
 
-import java.io.Serializable;
-import java.util.Date;
-
-import com.baomidou.mybatisplus.annotations.IdType;
-
 import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.fish.idle.service.util.BaseEntity;
+
+import java.util.Date;
 
 /**
  *
@@ -15,38 +12,7 @@ import com.baomidou.mybatisplus.annotations.TableName;
  *
  */
 @TableName("dd_report")
-public class Report implements Serializable {
-
-	@TableField(exist = false)
-	private static final long serialVersionUID = 1L;
-
-	/** 主键 */
-	@TableId(type = IdType.AUTO)
-	private String id;
-
-	/** 创建者 */
-	@TableField(value = "create_by")
-	private String createBy;
-
-	/** 创建时间 */
-	@TableField(value = "create_date")
-	private Date createDate;
-
-	/** 更新者 */
-	@TableField(value = "update_by")
-	private String updateBy;
-
-	/** 更新时间 */
-	@TableField(value = "update_date")
-	private Date updateDate;
-
-	/** 备注信息 */
-	private String remarks;
-
-	/** 逻辑删除标记（0：显示；1：隐藏） */
-	@TableField(value = "del_flag")
-	private String delFlag;
-
+public class Report extends BaseEntity {
 	/** 作品Id */
 	@TableField(value = "works_id")
 	private Integer worksId;
@@ -54,66 +20,15 @@ public class Report implements Serializable {
 	/** 作品编号 */
 	@TableField(value = "works_no")
 	private String worksNo;
-
-	/** 描述 */
+	/** 评估报告内容 */
 	private String des;
 
+	/** 认证报告 */
+	private String certify;
 
-	public String getId() {
-		return this.id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getCreateBy() {
-		return this.createBy;
-	}
-
-	public void setCreateBy(String createBy) {
-		this.createBy = createBy;
-	}
-
-	public Date getCreateDate() {
-		return this.createDate;
-	}
-
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
-
-	public String getUpdateBy() {
-		return this.updateBy;
-	}
-
-	public void setUpdateBy(String updateBy) {
-		this.updateBy = updateBy;
-	}
-
-	public Date getUpdateDate() {
-		return this.updateDate;
-	}
-
-	public void setUpdateDate(Date updateDate) {
-		this.updateDate = updateDate;
-	}
-
-	public String getRemarks() {
-		return this.remarks;
-	}
-
-	public void setRemarks(String remarks) {
-		this.remarks = remarks;
-	}
-
-	public String getDelFlag() {
-		return this.delFlag;
-	}
-
-	public void setDelFlag(String delFlag) {
-		this.delFlag = delFlag;
-	}
+	/** 价值有效时间 */
+	@TableField(value = "valid_time")
+	private Date validTime;
 
 	public Integer getWorksId() {
 		return this.worksId;
@@ -137,6 +52,22 @@ public class Report implements Serializable {
 
 	public void setDes(String des) {
 		this.des = des;
+	}
+
+	public String getCertify() {
+		return certify;
+	}
+
+	public void setCertify(String certify) {
+		this.certify = certify;
+	}
+
+	public Date getValidTime() {
+		return validTime;
+	}
+
+	public void setValidTime(Date validTime) {
+		this.validTime = validTime;
 	}
 
 	public Report() {

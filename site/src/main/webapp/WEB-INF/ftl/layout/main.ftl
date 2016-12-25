@@ -20,9 +20,6 @@ description="金石典当"
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="favicon.ico.png">
-
     <!-- Web Fonts -->
     <link rel='stylesheet' type='text/css'
           href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800&subset=cyrillic,latin'>
@@ -124,9 +121,9 @@ description="金石典当"
 </#macro>
 <#macro footerJS>
 <script src="${staticPath}/assets/plugins/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="${staticPath}/assets/plugins/jquery/jquery-migrate.min.js"></script>
-<script type="text/javascript" src="${staticPath}/assets/plugins/jquery/jquery.validate.min.js"></script>
-<script type="text/javascript" src="${staticPath}/assets/plugins/jquery/jquery.form.min.js"></script>
+<script src="${staticPath}/assets/plugins/jquery/jquery-migrate.min.js"></script>
+<script src="${staticPath}/assets/plugins/jquery/jquery.validate.min.js"></script>
+<script src="${staticPath}/assets/plugins/jquery/jquery.form.min.js"></script>
 <script src="${staticPath}/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="${staticPath}/assets/plugins/back-to-top.js"></script>
 <script src="${staticPath}/assets/plugins/smoothScroll.js"></script>

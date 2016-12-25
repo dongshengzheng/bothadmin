@@ -78,17 +78,18 @@
                 <div class="billing-info-inputs checkbox-list">
                     <form id="works_info" action="${staticPath}/works/add/provider" method="post"
                           class="form-horizontal">
+                        <input type="hidden" id="type" name="type" value="1"/>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="name">作品名称</label>
                             <div class="col-sm-10">
-                                <input class="form-control" name="name" id="name" type="text"
+                                <input class="form-control" name="name" id="name" type="text" value="${works.name!}"
                                        placeholder="请输入作品名称"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="provideBy">提供者</label>
                             <div class="col-sm-10">
-                                <input class="form-control" name="provideBy" id="provideBy" type="text"
+                                <input class="form-control" name="provider" id="provider" type="text" value="${(provider.name)!}"
                                        placeholder="请输入提供者"/>
                             </div>
                         </div>
@@ -97,7 +98,7 @@
                             <label class="col-sm-2 control-label" for="cardNo">身份证</label>
                             <div class="col-sm-10">
                                 <input class="form-control" name="no" id="no" type="text"
-                                       placeholder="请输入身份证"/>
+                                       value="${provider.no!}" placeholder="请输入身份证"/>
                             </div>
                         </div>
 
@@ -105,15 +106,15 @@
                             <label class="col-sm-2 control-label" for="address">联系地址</label>
                             <div class="col-sm-10">
                                 <input class="form-control" name="address" id="address" type="text"
-                                       placeholder="请输入联系地址"/>
+                                       value="${provider.address!}" placeholder="请输入联系地址"/>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" for="contact">联系方式</label>
+                            <label class="col-sm-2 control-label" for="contact">手机号码</label>
                             <div class="col-sm-10">
-                                <input class="form-control" name="contact" id="contact" type="text"
-                                       placeholder="请输入联系方式"/>
+                                <input class="form-control" name="phone" id="phone" type="text"
+                                       value="${provider.phone!}" placeholder="请输入手机号码"/>
                             </div>
                         </div>
 
@@ -121,7 +122,7 @@
                             <label class="col-sm-2 control-label" for="datetime">登记时间</label>
                             <div class="col-sm-10">
                                 <input class="form-control date-picker" name="datetime" id="datetime"
-                                       type="text"
+                                       value="${provider.datetime?string("yyyy-MM-dd")!}" type="text"
                                        placeholder="请选择登记时间" readonly/>
                             </div>
 
@@ -131,8 +132,8 @@
                             <label class="col-sm-2 control-label" for="description">作品描述</label>
                             <div class="col-sm-10">
                                     <textarea class="form-control" style="resize: none;height: 150px"
-                                              name="works.remarks"
-                                              id="works.remarks" type="text" placeholder="请输入作品描述"></textarea>
+                                              name="worksRemarks"
+                                              id="worksRemarks" type="text" placeholder="请输入作品描述">${works.remarks!}</textarea>
                                 <input type="hidden" id="status" name="status"/>
                             </div>
                         </div>
@@ -182,9 +183,14 @@
                 $(form).ajaxSubmit({
                     success: function (data) {
                         if (data.suc) {
-                            alert("登录成功，跳转页面")
+                            if ($("#status").val() == 0) {
+                                // 跳转到下一步
+                                window.location.href = "/works/add/" + data.id + "/info";
+                            } else {
+                                // 跳转到个人中心-> 我的作品->草稿里面
+                            }
                         } else {
-                            $("#errInfo").html(data.result);
+                            alert(data.msg);
                         }
 
                     },

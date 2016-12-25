@@ -102,7 +102,8 @@ public class Const {
      * 图片表中图片类型
      */
     public static final String IMAGES_WORKS = "0";    // 作品普通图片
-    public static final String IMAGES_CERTIFICATE = "1";    // 作品认证图片
+    public static final String IMAGES_REPORT_CERTIFICATE = "1";    // 作品认证图片
+    public static final String IMAGES_REPORT_DES = "2";    // 评估报告
 
 
     //consumer类型

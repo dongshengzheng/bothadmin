@@ -996,7 +996,7 @@ public class MobileController extends BaseController {
             works.setStatus(Const.WORKS_STATUS_DRAFT);
         }
         worksService.insert(works);
-        consumer.setName(works.getProvideBy());
+//        consumer.setName(works.getProvideBy());
         consumer.setType(Const.CONSUMER_TYPE_PROVIDER);
         consumer.setWorksId(works.getId());
         consumer.setNo(consumerNo);
@@ -1393,7 +1393,7 @@ public class MobileController extends BaseController {
 
 
         consumer.setNo(consumerNo);
-        consumer.setName(works.getProvideBy());
+//        consumer.setName(works.getProvideBy());
         consumer.setType(Const.CONSUMER_TYPE_PROVIDER);
         consumer.setWorksId(worksId);
         Consumer cs = new Consumer();

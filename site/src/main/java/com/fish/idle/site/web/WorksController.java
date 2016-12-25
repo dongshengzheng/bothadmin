@@ -12,6 +12,7 @@ import com.fish.idle.service.util.StringUtils;
 import com.fish.idle.site.entity.Paging;
 import com.fish.idle.site.entity.WorkInfoRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -59,116 +60,71 @@ public class WorksController extends BaseController {
     private IImagesService imagesService;
 
 
+    @Autowired
+    private IReportService reportService;
 
-
-
-    @RequestMapping(value = "search",method = RequestMethod.GET)
-    public String search(ModelMap map,@RequestParam(value ="keywords",required = false) String keywords,
-                         @RequestParam(value = "start",required = false) Integer start,
-                         @RequestParam(value= "length",required = false) Integer length){
-        Paging paging = new Paging();
-        if(null == start){
-            start = 1;
-        }
-        if(null == length){
-            length = 6;
-        }
-        //首页全部作品(pageSize=6)
-        EntityWrapper<Works> ew = getEntityWrapper();
-        if(org.apache.commons.lang.StringUtils.isNotBlank(keywords)){
-            ew.addFilter("name like {0}","%"+keywords.trim()+"%");
-        }
-        Page<Works> page = worksService.selectPage(getPage(start,length),ew);
-        for (Works item:page.getRecords()){
-            String[] imageArr = item.getImages().split(",");
-            item.setImages(imgOssPath + imageArr[0]);
-        }
-        paging.setData(page.getRecords());
-        paging.setTotalPages(page.getPages());
-        paging.setCurrent(start);
-        paging.setPageSize(length);
-        map.put("worksPaging",paging);
-        return "search/search_works_result";
-    }
-
-
-    @RequestMapping(value = "detail/{goodsId}", method = RequestMethod.GET)
-    public String detail(@PathVariable Integer goodsId, ModelMap map) {
-        if (StringUtils.isNotEmpty(goodsId.toString())) {
-            Works works = worksService.selectById(goodsId);
-            String imgStr = works.getImages();
-            String[] imgArr = imgStr.split(",");
-            List<String> goodsInfoImages = new ArrayList<>();
-
-            for (String s : imgArr) {
-                goodsInfoImages.add(imgOssPath + s);
-            }
-            WorksLevel worksLevel = worksLevelService.getWorksLevelByGoodsId(goodsId);
-            ValueReport valueReport = valueReportService.getValueReportByGoodsId(goodsId);
-            Consumer consumer = consumerService.getConsumerByGoodsId(goodsId);
-            map.put("works", works);
-            map.put("worksLevel", worksLevel);
-            map.put("valueReport", valueReport);
-            map.put("consumer", consumer);
-            //作品信息图片列表
-            map.put("goodsInfoImages", goodsInfoImages);
-            //评估报告图片
-            map.put("pgbgImg", imgOssPath + valueReport.getJzrzImge());
-            //todo 转让历史列表
-
-            //todo 诠释列表
-
-
-            //todo 收藏者列表
-
-            //todo 最近浏览的人
-
-            return "works/work_detail";
-        }
-        return "index";
-    }
-
-
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String register(ModelMap map) {
+    /**
+     * 第一步：登记物品信息
+     *
+     * @return
+     */
+    @RequestMapping(value = {"/add"}, method = RequestMethod.GET)
+    public String add(ModelMap map) {
         return "works/work_add_provider";
     }
 
+
     /**
-     * 登记物品信息
+     * 第一步：登记物品信息
+     *
+     * @return
+     */
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String edit(@PathVariable Integer id, ModelMap map) {
+        map.put("works",worksService.selectById(id));
+        Consumer provider = consumerService.selectOne(new Consumer(Const.CONSUMER_TYPE_PROVIDER, id));
+        map.put("provider", provider);
+        return "works/work_edit";
+    }
+
+
+    /**
+     * 第一步：登记物品信息
      *
      * @return
      */
     @RequestMapping(value = "/add/provider", method = RequestMethod.POST)
     @ResponseBody
-    public JSONObject saveProvider(Works works, Consumer consumer) {
+    public JSONObject saveProvider(Works works, Consumer consumer,
+                                   @RequestParam(required = false) String worksRemarks,
+                                   @RequestParam(required = false) String provider
+    ) {
+
         JSONObject jsonObject = new JSONObject();
 
-        // 添加作品信息
-        works.setDelFlag(String.valueOf(Const.DEL_FLAG_NORMAL));
-        works.setCreateBy(getCurrentUser().getId());
-        works.setCreateDate(new Date());
-        if (!worksService.insertOrUpdate(works)){
-            jsonObject.put("suc",false);
-            jsonObject.put("msg","添加作品信息出错");
+        // 保存作品信息
+        wrapInsertEntity(works);
+        works.setRemarks(worksRemarks);
+        if (!worksService.insert(works)) {
+            jsonObject.put("suc", false);
+            jsonObject.put("msg", "保存作品信息出错");
             return jsonObject;
         }
 
-        //添加提供者
-        consumer.setType(String.valueOf(1));
+        //保存提供者
+        wrapInsertEntity(consumer);
+        consumer.setName(provider);
         consumer.setWorksId(works.getId());
-        consumer.setCreateBy(getCurrentUser().getId());
-        consumer.setDelFlag(Const.DEL_FLAG_NORMAL);
-        if (!consumerService.insertOrUpdate(consumer)){
-            jsonObject.put("suc",false);
-            jsonObject.put("msg","添加添加提供者信息出错");
+        if (!consumerService.insert(consumer)) {
+            jsonObject.put("suc", false);
+            jsonObject.put("msg", "保存提供者信息出错");
             return jsonObject;
         }
 
         // 保存图片信息
         String images = works.getImages();
         if (images != null && images.trim().length() > 0) {
-            String[] urls = images.split("，");
+            String[] urls = images.split(",");
             List<Images> list = new ArrayList<>();
             for (String url : urls) {
                 Images img = new Images();
@@ -180,9 +136,233 @@ public class WorksController extends BaseController {
             imagesService.insertBatch(list);
         }
 
-        jsonObject.put("suc",true);
+        jsonObject.put("suc", true);
+        jsonObject.put("id", works.getId());
         return jsonObject;
     }
+
+    /**
+     * 第二步：登记作品信息
+     *
+     * @return
+     */
+    @RequestMapping(value = "/add/{id}/info", method = RequestMethod.GET)
+    public String info(ModelMap map, @PathVariable Integer id) {
+        Works works = worksService.selectById(id);
+        //矿区地域
+        map.put("kqdy", getWorksLevelDicByType("dd_kqdy"));
+        map.put("level", getWorksLevelDicByType("dd_level"));
+        map.put("pinzhong", getWorksLevelDicByType("dd_pinzhong"));
+        map.put("zuopinleixing", getWorksLevelDicByType("dd_zuopinleixing"));
+        map.put("gyType", getWorksLevelDicByType("dd_level"));
+        map.put("works", works);
+        return "works/work_add_info";
+    }
+
+    /**
+     * 第二步：登记作品信息
+     *
+     * @return
+     */
+    @RequestMapping(value = "/add/info", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject saveInfo(Works works) {
+        wrapUpdateEntity(works);
+        JSONObject jsonObject = new JSONObject();
+        if (!worksService.updateSelectiveById(works)) {
+            jsonObject.put("suc", false);
+            jsonObject.put("msg", "保存作品信息出错");
+            return jsonObject;
+        }
+        jsonObject.put("suc", true);
+        return jsonObject;
+    }
+
+
+    /**
+     * 第三步：登记作品等级
+     *
+     * @return
+     */
+    @RequestMapping(value = "/add/{id}/level", method = RequestMethod.GET)
+    public String level(ModelMap map, @PathVariable Integer id) {
+        Works works = worksService.selectById(id);
+        map.put("zhidi1", getWorksLevelDicByType("dd_zhidi"));
+        map.put("zhidi2", getWorksLevelDicByType("dd_zhidi2"));
+        map.put("ganguan", getWorksLevelDicByType("dd_ganguan"));
+        map.put("moshidu", getWorksLevelDicByType("dd_moshidu"));
+        map.put("xueliang", getWorksLevelDicByType("dd_xueliang"));
+        map.put("xuese", getWorksLevelDicByType("dd_xuese"));
+        map.put("xuexing", getWorksLevelDicByType("dd_xuexing"));
+        map.put("nongyandu", getWorksLevelDicByType("dd_nongyandu"));
+        map.put("jingdu", getWorksLevelDicByType("dd_jingdu"));
+        map.put("dise", getWorksLevelDicByType("dd_dise"));
+        map.put("liu", getWorksLevelDicByType("dd_liu"));
+        map.put("lie", getWorksLevelDicByType("dd_lie"));
+        map.put("mian", getWorksLevelDicByType("dd_mian"));
+        map.put("hanxuefangshi", getWorksLevelDicByType("dd_hanxuefangshi"));
+        map.put("works", works);
+        return "works/work_add_level";
+    }
+
+
+    /**
+     * 第三步：登记作品等级
+     *
+     * @return
+     */
+    @RequestMapping(value = "/add/level", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject saveLevel(WorksLevel worksLevel) {
+        JSONObject jsonObject = new JSONObject();
+
+        wrapInsertEntity(worksLevel);
+
+        if (!worksLevelService.insert(worksLevel)) {
+            jsonObject.put("suc", false);
+            jsonObject.put("msg", "保存作品等级出错");
+            return jsonObject;
+        }
+        jsonObject.put("suc", true);
+        return jsonObject;
+    }
+
+
+    /**
+     * 第四步：登记评估报告
+     *
+     * @return
+     */
+    @RequestMapping(value = "/add/{id}/report", method = RequestMethod.GET)
+    public String report(ModelMap map, @PathVariable Integer id) {
+        Works works = worksService.selectById(id);
+        map.put("works", works);
+        return "works/work_add_report";
+    }
+
+
+    /**
+     * 第四步：登记评估报告
+     *
+     * @return
+     */
+    @RequestMapping(value = "/add/report", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject saveReport(Report report,
+                                 @RequestParam(required = false) String certifyImage,
+                                 @RequestParam(required = false) String desImage) {
+        wrapInsertEntity(report);
+        JSONObject jsonObject = new JSONObject();
+        if (!reportService.insert(report)) {
+            jsonObject.put("suc", false);
+            jsonObject.put("msg", "保存评估报告出错");
+            return jsonObject;
+        }
+
+        // 保存评估报告
+        if (desImage != null && desImage.trim().length() > 0) {
+            String[] urls = desImage.split(",");
+            List<Images> list = new ArrayList<>();
+            for (String url : urls) {
+                Images img = new Images();
+                img.setTargetId(report.getId());
+                img.setUrl(url);
+                img.setType(Const.IMAGES_REPORT_DES);
+                list.add(img);
+            }
+            imagesService.insertBatch(list);
+        }
+
+        // 保存作品认证图片
+        if (certifyImage != null && certifyImage.trim().length() > 0) {
+            String[] urls = certifyImage.split(",");
+            List<Images> list = new ArrayList<>();
+            for (String url : urls) {
+                Images img = new Images();
+                img.setTargetId(report.getId());
+                img.setUrl(url);
+                img.setType(Const.IMAGES_REPORT_CERTIFICATE);
+                list.add(img);
+            }
+            imagesService.insertBatch(list);
+        }
+
+
+        jsonObject.put("suc", true);
+        return jsonObject;
+    }
+
+
+    /**
+     * 第五步：登记收藏者信息
+     *
+     * @return
+     */
+    @RequestMapping(value = "/add/{id}/collect", method = RequestMethod.GET)
+    public String collect(ModelMap map, @PathVariable Integer id) {
+        Works works = worksService.selectById(id);
+        map.put("works", works);
+        return "works/work_add_collect";
+    }
+
+
+    /**
+     * 第五步：登记收藏者信息
+     *
+     * @return
+     */
+    @RequestMapping(value = "/add/collect", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject saveCollect(Consumer consumer) {
+        JSONObject jsonObject = new JSONObject();
+        wrapInsertEntity(consumer);
+        if (!consumerService.insert(consumer)) {
+            jsonObject.put("suc", false);
+            jsonObject.put("msg", "保存评估报告出错");
+            return jsonObject;
+        }
+        jsonObject.put("suc", true);
+        return jsonObject;
+    }
+
+    @RequestMapping(value = "detail/{id}", method = RequestMethod.GET)
+    public String detail(@PathVariable Integer id, ModelMap map) {
+        if (id == null) {
+            return "redirect:/";
+        }
+        Works works = worksService.selectById(id);
+        if (works == null) {
+            return "redirect:/404";
+        }
+        map.put("works", works);
+        List<Images> worksImage = imagesService.selectList(new EntityWrapper<>(new Images(id, Const.IMAGES_WORKS)));
+        //作品信息图片列表
+        map.put("worksImage", worksImage);
+        WorksLevel worksLevel = worksLevelService.selectOne(new WorksLevel(id));
+        map.put("worksLevel", worksLevel);
+        ValueReport valueReport = valueReportService.selectOne(new ValueReport(id));
+        map.put("valueReport", valueReport);
+        Consumer provider = consumerService.selectOne(new Consumer(Const.CONSUMER_TYPE_PROVIDER, id));
+        map.put("provider", provider);
+        Consumer collect = consumerService.selectOne(new Consumer(Const.CONSUMER_TYPE_COLLECT, id));
+        map.put("collect", collect);
+        Report report = reportService.selectOne(new Report(id));
+        map.put("report", report);
+
+        //评估报告图片
+        List<Images> reportImage = imagesService.selectList(new EntityWrapper<>(new Images(id, Const.IMAGES_REPORT_DES)));
+        map.put("reportImage", reportImage);
+        //评估价值认证照片
+        List<Images> certifyImage = imagesService.selectList(new EntityWrapper<>(new Images(report.getId(), Const.IMAGES_REPORT_CERTIFICATE)));
+        map.put("certifyImage", certifyImage.get(0));
+        //todo 转让历史列表
+        //todo 诠释列表
+        //todo 收藏者列表
+        //todo 最近浏览的人
+
+        return "works/work_detail";
+    }
+
 
     /**
      * 登记作品信息
@@ -230,20 +410,20 @@ public class WorksController extends BaseController {
 //                    印章含血面
                     List<Dict> mian = getWorksLevelDicByType("dd_mian");
                     List<Dict> hanxuefangshi = getWorksLevelDicByType("dd_hanxuefangshi");
-                    map.put("zhidi1",zhidi1);
-                    map.put("zhidi2",zhidi2);
-                    map.put("ganguan",ganguan);
-                    map.put("moshidu",moshidu);
-                    map.put("xueliang",xueliang);
-                    map.put("xuese",xuese);
-                    map.put("xuexing",xuexing);
-                    map.put("nongyandu",nongyandu);
-                    map.put("jingdu",jingdu);
-                    map.put("dise",dise);
-                    map.put("liu",liu);
-                    map.put("lie",lie);
-                    map.put("mian",mian);
-                    map.put("hanxuefangshi",hanxuefangshi);
+                    map.put("zhidi1", zhidi1);
+                    map.put("zhidi2", zhidi2);
+                    map.put("ganguan", ganguan);
+                    map.put("moshidu", moshidu);
+                    map.put("xueliang", xueliang);
+                    map.put("xuese", xuese);
+                    map.put("xuexing", xuexing);
+                    map.put("nongyandu", nongyandu);
+                    map.put("jingdu", jingdu);
+                    map.put("dise", dise);
+                    map.put("liu", liu);
+                    map.put("lie", lie);
+                    map.put("mian", mian);
+                    map.put("hanxuefangshi", hanxuefangshi);
                     map.put("goodsName", works.getName());
                     map.put("goodsId", works.getId());
                     map.put("step", 3);
@@ -271,13 +451,7 @@ public class WorksController extends BaseController {
             map.put("step", 1);
         } else {
             Works works = worksService.selectById(worksLevel.getWorksId());
-            if (type == 1) {
-                //存为草稿
-                worksLevel.setIsDraft(1);
-            }
-            worksLevel.setUpdateBy("1");
             worksLevel.setUpdateDate(new Date());
-            worksLevel.setCreateBy("1");
             worksLevel.setCreateDate(new Date());
             worksLevel.setDelFlag(Const.DEL_FLAG_NORMAL);
 
@@ -348,11 +522,7 @@ public class WorksController extends BaseController {
             map.put("step", 1);
         } else {
             Works works = worksService.selectById(consumer.getWorksId());
-            if (type == 1) {
-                //存为草稿
-                consumer.setIsDraft(1);
-            }
-            consumer.setUpdateBy(1);
+
             consumer.setUpdateDate(new Date());
             consumer.setCreateBy(1);
             consumer.setCreateDate(new Date());
@@ -376,12 +546,6 @@ public class WorksController extends BaseController {
         return "works/work_edit";
     }
 
-    @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public String edit(ModelMap map) {
-        map.put("step", 2);
-        return "works/work_edit";
-    }
-
     /**
      * @param binder
      * @Title: initBinder
@@ -394,12 +558,42 @@ public class WorksController extends BaseController {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
     }
 
-//    获取作品登记字典表
-    private List<Dict> getWorksLevelDicByType(String type){
+    //    获取作品登记字典表
+    private List<Dict> getWorksLevelDicByType(String type) {
         EntityWrapper entityWrapper = new EntityWrapper();
-        entityWrapper.addFilter("type={0}",type);
+        entityWrapper.addFilter("type={0}", type);
         List<Dict> list = dictService.selectList(entityWrapper);
         return list;
+    }
+
+
+    @RequestMapping(value = "search", method = RequestMethod.GET)
+    public String search(ModelMap map, @RequestParam(value = "keywords", required = false) String keywords,
+                         @RequestParam(value = "start", required = false) Integer start,
+                         @RequestParam(value = "length", required = false) Integer length) {
+        Paging paging = new Paging();
+        if (null == start) {
+            start = 1;
+        }
+        if (null == length) {
+            length = 6;
+        }
+        //首页全部作品(pageSize=6)
+        EntityWrapper<Works> ew = getEntityWrapper();
+        if (org.apache.commons.lang.StringUtils.isNotBlank(keywords)) {
+            ew.addFilter("name like {0}", "%" + keywords.trim() + "%");
+        }
+        Page<Works> page = worksService.selectPage(getPage(start, length), ew);
+        for (Works item : page.getRecords()) {
+            String[] imageArr = item.getImages().split(",");
+            item.setImages(imgOssPath + imageArr[0]);
+        }
+        paging.setData(page.getRecords());
+        paging.setTotalPages(page.getPages());
+        paging.setCurrent(start);
+        paging.setPageSize(length);
+        map.put("worksPaging", paging);
+        return "search/search_works_result";
     }
 
 

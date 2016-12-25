@@ -163,4 +163,11 @@ public class ValueReport implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public ValueReport() {
+    }
+
+    public ValueReport(Integer worksId) {
+        this.worksId = worksId;
+    }
 }

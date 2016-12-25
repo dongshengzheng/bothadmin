@@ -8,62 +8,13 @@ import com.baomidou.mybatisplus.annotations.IdType;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.fish.idle.service.util.BaseEntity;
 
 /**
  * 作品等级
  */
 @TableName("dd_works_level")
-public class WorksLevel implements Serializable {
-
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
-
-    /**
-     * 主键
-     */
-    @TableId(type = IdType.AUTO)
-    private Integer id;
-
-    /**
-     * 创建者
-     */
-    @TableField(value = "create_by")
-    private String createBy;
-
-    /**
-     * 创建时间
-     */
-    @TableField(value = "create_date")
-    private Date createDate;
-
-    /**
-     * 更新者
-     */
-    @TableField(value = "update_by")
-    private String updateBy;
-
-    /**
-     * 更新时间
-     */
-    @TableField(value = "update_date")
-    private Date updateDate;
-
-    /**
-     * 备注信息
-     */
-    private String remarks;
-
-    /**
-     * 逻辑删除标记（0：显示；1：隐藏）
-     */
-    @TableField(value = "del_flag")
-    private int delFlag = 0;
-
-    /**
-     * 是否是草稿
-     */
-    @TableField(value = "is_draft")
-    private int isDraft = 0; //1 是  0 否
+public class WorksLevel extends BaseEntity {
 
     /**
      * 作品Id
@@ -146,72 +97,9 @@ public class WorksLevel implements Serializable {
      */
     private String hanxueliang;
 
-    /**  */
+    /** 含血方式 */
     private String hanxuefangshi;
 
-    public int getIsDraft() {
-        return isDraft;
-    }
-
-    public void setIsDraft(int isDraft) {
-        this.isDraft = isDraft;
-    }
-
-    public int getDelFlag() {
-        return delFlag;
-    }
-
-    public void setDelFlag(int delFlag) {
-        this.delFlag = delFlag;
-    }
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getCreateBy() {
-        return this.createBy;
-    }
-
-    public void setCreateBy(String createBy) {
-        this.createBy = createBy;
-    }
-
-    public Date getCreateDate() {
-        return this.createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
-    public String getUpdateBy() {
-        return this.updateBy;
-    }
-
-    public void setUpdateBy(String updateBy) {
-        this.updateBy = updateBy;
-    }
-
-    public Date getUpdateDate() {
-        return this.updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
-    }
-
-    public String getRemarks() {
-        return this.remarks;
-    }
-
-    public void setRemarks(String remarks) {
-        this.remarks = remarks;
-    }
 
     public Integer getWorksId() {
         return worksId;

@@ -66,4 +66,11 @@ public class Images implements Serializable {
 		this.type = type;
 	}
 
+	public Images() {
+	}
+
+	public Images(Integer targetId, String type) {
+		this.targetId = targetId;
+		this.type = type;
+	}
 }

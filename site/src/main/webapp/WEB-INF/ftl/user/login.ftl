@@ -91,21 +91,18 @@
             $(form).ajaxSubmit({
                 success: function (data) {
                    if(data.result == ''){
-                       alert("登录成功，跳转页面")
+                       window.location.href = "/"
                    }else {
                        $("#errInfo").html(data.result);
                    }
-
                 },
                 error:function () {
                     alert("error");
                     return;
                 }
             });
-        },
-
+        }
     });
-
 
     jQuery(document).ready(function () {
         App.init();

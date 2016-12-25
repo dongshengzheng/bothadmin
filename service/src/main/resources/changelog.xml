@@ -227,10 +227,68 @@
     </changeSet>
 
     <changeSet author="SunHan" id="15862614903-016">
-    <sql dbms="mysql">
-        ALTER TABLE `dd_works` CHANGE COLUMN `works_meanning` `works_meaning` varchar(1000) DEFAULT NULL COMMENT '作品诠释';
+        <sql dbms="mysql">
+            ALTER TABLE `dd_works` CHANGE COLUMN `works_meanning` `works_meaning` varchar(1000) DEFAULT NULL COMMENT
+            '作品诠释';
+        </sql>
+    </changeSet>
+    <changeSet author="SunHan" id="15862614903-017">
+        <sql dbms="mysql">
+            ALTER TABLE `dd_browser_history` CHANGE COLUMN `del_flag` `del_flag` varchar(64) NOT NULL DEFAULT "0" COMMENT
+            '逻辑删除标记（0：正常；1：删除）';
+            ALTER TABLE `dd_comments` CHANGE COLUMN `del_flag` `del_flag` varchar(64) NOT NULL DEFAULT "0" COMMENT
+            '逻辑删除标记（0：正常；1：删除）';
+            ALTER TABLE `dd_consumer` CHANGE COLUMN `del_flag` `del_flag` varchar(64) NOT NULL DEFAULT "0" COMMENT
+            '逻辑删除标记（0：正常；1：删除）';
+            ALTER TABLE `dd_follow_history` CHANGE COLUMN `del_flag` `del_flag` varchar(64) NOT NULL DEFAULT "0" COMMENT
+            '逻辑删除标记（0：正常；1：删除）';
+            ALTER TABLE `dd_interpretation` CHANGE COLUMN `del_flag` `del_flag` varchar(64) NOT NULL DEFAULT "0" COMMENT
+            '逻辑删除标记（0：正常；1：删除）';
+            ALTER TABLE `dd_message` CHANGE COLUMN `del_flag` `del_flag` varchar(64) NOT NULL DEFAULT "0" COMMENT
+            '逻辑删除标记（0：正常；1：删除）';
+            ALTER TABLE `dd_report` CHANGE COLUMN `del_flag` `del_flag` varchar(64) NOT NULL DEFAULT "0" COMMENT
+            '逻辑删除标记（0：正常；1：删除）';
+            ALTER TABLE `dd_score_calc` CHANGE COLUMN `del_flag` `del_flag` varchar(64) NOT NULL DEFAULT "0" COMMENT
+            '逻辑删除标记（0：正常；1：删除）';
+            ALTER TABLE `dd_score_history` CHANGE COLUMN `del_flag` `del_flag` varchar(64) NOT NULL DEFAULT "0" COMMENT
+            '逻辑删除标记（0：正常；1：删除）';
+            ALTER TABLE `dd_transfer_history` CHANGE COLUMN `del_flag` `del_flag` varchar(64) NOT NULL DEFAULT "0" COMMENT
+            '逻辑删除标记（0：正常；1：删除）';
+            ALTER TABLE `dd_value_report` CHANGE COLUMN `del_flag` `del_flag` varchar(64) NOT NULL DEFAULT "0" COMMENT
+            '逻辑删除标记（0：正常；1：删除）';
+            ALTER TABLE `dd_working_progress` CHANGE COLUMN `del_flag` `del_flag` varchar(64) NOT NULL DEFAULT "0" COMMENT
+            '逻辑删除标记（0：正常；1：删除）';
+            ALTER TABLE `dd_works` CHANGE COLUMN `del_flag` `del_flag` varchar(64) NOT NULL DEFAULT "0" COMMENT
+            '逻辑删除标记（0：正常；1：删除）';
+            ALTER TABLE `dd_works_level` CHANGE COLUMN `del_flag` `del_flag` varchar(64) NOT NULL DEFAULT "0" COMMENT
+            '逻辑删除标记（0：正常；1：删除）';
+        </sql>
+    </changeSet>
+    <changeSet author="SunHan" id="15862614903-018">
+        <sql dbms="mysql">
+            ALTER TABLE `dd_works` DROP COLUMN `collect_by`, DROP COLUMN `provide_by`;
+        </sql>
+    </changeSet>
+    <changeSet author="SunHan" id="15862614903-019">
+        <sql dbms="mysql">
+            ALTER TABLE `dd_consumer` DROP COLUMN `is_draft`;
+        </sql>
+    </changeSet>
+    <changeSet author="SunHan" id="15862614903-020">
+        <sql dbms="mysql">
+            ALTER TABLE `dd_report` ADD COLUMN `certify` text COMMENT '认证报告' AFTER `des`;
+        </sql>
+    </changeSet>
+    <changeSet author="SunHan" id="15862614903-021">
+        <sql dbms="mysql">
+            ALTER TABLE `dd_report` ADD COLUMN `valid_time` datetime COMMENT '价值有效时间' AFTER `certify`;
 
-    </sql>
+        </sql>
+    </changeSet>
+    <changeSet author="SunHan" id="15862614903-022">
+        <sql dbms="mysql">
+            ALTER TABLE `dd_works_level` DROP COLUMN `is_draft`;
+        </sql>
     </changeSet>
 
 
