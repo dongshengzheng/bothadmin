@@ -12,9 +12,10 @@
 </head>
 <style>
 
-    .weui_tab_bd{
-        overflow-x:inherit;
+    .weui_tab_bd {
+        overflow-x: inherit;
     }
+
     .items .item {
         background-color: #FEFFFF;
     }
@@ -54,15 +55,17 @@
     .weui_tab {
         height: calc(100% - 44px) !important;
     }
-    .error-img{
-        width:auto;
+
+    .error-img {
+        width: auto;
         height: auto;
         margin-top: 32px;
     }
 </style>
 <body>
 <%--<%@ include file="include/search.jsp" %>--%>
-<div class="swiper-container" data-space-between='10' data-pagination='.swiper-pagination' data-autoplay="1000" style="width:100%; height:40%">
+<div class="swiper-container" data-space-between='10' data-pagination='.swiper-pagination' data-autoplay="1000"
+     style="width:100%; height:40%">
     <div class="swiper-wrapper">
         <div class="swiper-slide"><img src="${ctxStaticImg}/swiper/swiper-1.jpg" alt=""></div>
         <div class="swiper-slide"><img src="${ctxStaticImg}/swiper/swiper-2.jpg" alt=""></div>
@@ -80,12 +83,15 @@
             <c:forEach items="${page.records}" var="works">
                 <a class="weui-col-50 item" href="${ctx}/mobile/worksDetail/${works.id}">
                     <div style="text-align: center; height: 200px;background-color: #E0E0E0">
-                        <img class="stone" src="${works.images}" onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"  alt="">
+                        <img class="stone" src="${works.indexImage}"
+                             onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
+                             alt="">
                     </div>
                     <div style="width: 100%;padding: 5px;">
                         <span style="color: #444;font-size: 0.9em;">${works.name}</span><br>
-                        <%--<c:if test="${fns:getDictLabel(works.breed, 'dd_pinzhong', '') != ''}"><span style="padding: 3px;background-color: #9E4F4D;color: black;font-size: 0.8em;">${fns:getDictLabel(works.breed, 'dd_pinzhong', '')}</span></c:if> <br>--%>
-                        <span style="color: #444;font-size: 0.7em;"><fmt:formatDate value="${works.createDate}" pattern="yyyy-MM-dd"/></span><br>
+                            <%--<c:if test="${fns:getDictLabel(works.breed, 'dd_pinzhong', '') != ''}"><span style="padding: 3px;background-color: #9E4F4D;color: black;font-size: 0.8em;">${fns:getDictLabel(works.breed, 'dd_pinzhong', '')}</span></c:if> <br>--%>
+                        <span style="color: #444;font-size: 0.7em;"><fmt:formatDate value="${works.createDate}"
+                                                                                    pattern="yyyy-MM-dd"/></span><br>
                     </div>
                 </a>
             </c:forEach>
@@ -104,11 +110,12 @@
         </c:if>
         <input type="hidden" value="${page.offsetCurrent}" id="pageNo">
     </div>
-    <%@include file="include/tab-1.jsp"%>
+    <%@include file="include/tab-1.jsp" %>
 </div>
 
 <a class="weui-col-50 item" id="tmp" style="display: none;">
-    <img class="stone" src="${ctxStatic}/modules/pawn/img/name.png" onerror="this.src='${ctxStatic}/modules/pawn/img/default.png'" style="" alt="">
+    <img class="stone" src="${ctxStatic}/modules/pawn/img/name.png"
+         onerror="this.src='${ctxStatic}/modules/pawn/img/default.png'" style="" alt="">
     <div style="width: 100%;text-align: center;">
         <span class="name">鸡血石</span>
     </div>
@@ -124,7 +131,7 @@
         height: 100
     });
 
-    $('.weui_search_outer').on('submit', function(e){
+    $('.weui_search_outer').on('submit', function (e) {
         return false;
     });
 
@@ -140,7 +147,7 @@
             url: "${ctx}/pawn/mobile/worksPage",
             data: {
                 pageNo: Number($("#pageNo").val()) + 1,
-                name:'${param.name}'
+                name: '${param.name}'
             },
             success: function (data) {
                 loading = false;
@@ -152,8 +159,8 @@
                     $tmp.css('display', "block");
                     $tmp.find(".name").html(data.list[i].name);
                     $tmp.find(".breed").html(data.list[i].breedStr);
-                    if (typeof data.list[i].breedStr == 'undefined' || data.list[i].breedStr == ''){
-                        $tmp.find(".breed").css("display","none");
+                    if (typeof data.list[i].breedStr == 'undefined' || data.list[i].breedStr == '') {
+                        $tmp.find(".breed").css("display", "none");
                     }
                     $tmp.find(".createDate").html(data.list[i].createDateStr);
                     $tmp.find(".stone").attr("src", data.lastImage)

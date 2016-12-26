@@ -58,13 +58,13 @@
         <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
             <div class="weui-media-box__hd">
                 <img class="weui-media-box__thumb"
-                     src="${user.headImgUrl}"
+                     src="${appUser.headImgUrl}"
                      alt="">
             </div>
             <div class="weui-media-box__bd" id="my-info">
-                <h4 class="weui-media-box__title">${user.name}</h4>
+                <h4 class="weui-media-box__title">${appUser.loginName}</h4>
                 <p class="weui-media-box__desc">
-                    积分:${user.score}&nbsp;关注:${user.focusOtherCount}&nbsp;收藏:${user.collectionCount}</p>
+                    积分:${appUser.score}&nbsp;关注:${appUser.focusOtherCount}&nbsp;收藏:${appUser.collectionCount}</p>
             </div>
             <span id="go-to-set">设置</span>
         </a>
@@ -122,7 +122,7 @@
             <img src="${ctxStatic}/img/cut/个人中心_积分中心.png" alt="">
         </div>
         <p class="weui-grid__label">积分中心</p>
-        <p class="weui-grid__label" style="color: gray">${user.score}</p>
+        <p class="weui-grid__label" style="color: gray">${appUser.score}</p>
     </a>
     <a href="javascript:;" class="weui-grid">
         <div class="weui-grid__icon">

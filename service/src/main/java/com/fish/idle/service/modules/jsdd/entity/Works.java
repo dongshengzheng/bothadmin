@@ -23,10 +23,10 @@ public class Works extends BaseEntity {
     private String no;
 
     /**
-     * 是否公开（0：隐藏；1：公开）
+     * 是否公开（1：隐藏；0：公开）
      */
     @TableField(value = "public_flag")
-    private String publicFlag = "0";
+    private String publicFlag = "1";
 
     /**
      * 作品名称
@@ -135,6 +135,12 @@ public class Works extends BaseEntity {
      */
     @TableField(exist = false)
     private Integer worksCount;
+
+    /**
+     * 首页放置时的一张图片
+     */
+    @TableField(exist = false)
+    private String indexImage;
 
     /**
      * 价值
@@ -382,5 +388,13 @@ public class Works extends BaseEntity {
 
     public void setWorksCount(Integer worksCount) {
         this.worksCount = worksCount;
+    }
+
+    public String getIndexImage() {
+        return indexImage;
+    }
+
+    public void setIndexImage(String indexImage) {
+        this.indexImage = indexImage;
     }
 }

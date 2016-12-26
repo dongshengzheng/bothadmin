@@ -73,8 +73,8 @@ public class Const {
     public static final String CHANNEL_ROLE = "3";
 
 
-    public static final int DEL_FLAG_NORMAL = 1; //正常
-    public static final int DEL_FLAG_DELETE = -1; // 删除
+    public static final int DEL_FLAG_NORMAL = 0; //正常
+    public static final int DEL_FLAG_DELETE = 1; // 删除
 
     /**
      * 作品状态
@@ -104,6 +104,7 @@ public class Const {
     public static final String IMAGES_WORKS = "0";    // 作品普通图片
     public static final String IMAGES_REPORT_CERTIFICATE = "1";    // 作品认证图片
     public static final String IMAGES_REPORT_DES = "2";    // 评估报告
+    public static final String IMAGES_INTERPRETATION = "3";    // 作品诠释图片
 
 
     //consumer类型
@@ -117,8 +118,6 @@ public class Const {
     public static final int FOLLOW_HISTORY_TYPE_COLLECT = 0;   // 收藏作品
     public static final int FOLLOW_HISTORY_TYPE_FOCUS = 1;   // 关注用户
     public static final int FOLLOW_HISTORY_TYPE_BROWSE = 2;   // 浏览作品
-
-
 
 
     public static final String SITE_SESSION_USER = "siteSessionUser";

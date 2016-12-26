@@ -2,6 +2,7 @@ package com.fish.idle.service.modules.jsdd.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import com.baomidou.mybatisplus.annotations.IdType;
 
@@ -11,191 +12,224 @@ import com.baomidou.mybatisplus.annotations.TableName;
 
 /**
  *
- * 
+ *
  *
  */
 @TableName("dd_interpretation")
 public class Interpretation implements Serializable {
 
-	@TableField(exist = false)
-	private static final long serialVersionUID = 1L;
+    @TableField(exist = false)
+    private static final long serialVersionUID = 1L;
 
-	/**  */
-	@TableId(type = IdType.AUTO)
-	private Integer id;
+    /**  */
+    @TableId(type = IdType.AUTO)
+    private Integer id;
 
-	/**  */
-	@TableField(value = "works_id")
-	private Integer worksId;
+    /**  */
+    @TableField(value = "works_id")
+    private Integer worksId;
 
-	/** 创建表 */
-	@TableField(value = "user_id")
-	private Integer userId;
+    /**
+     * 创建表
+     */
+    @TableField(value = "user_id")
+    private Integer userId;
 
-	/**  */
-	private String type;
+    /**  */
+    private String type;
 
-	/** 诠释有递归 */
-	@TableField(value = "parent_id")
-	private Integer parentId;
+    /**
+     * 诠释有递归
+     */
+    @TableField(value = "parent_id")
+    private Integer parentId;
 
-	/** 想要的分数 选项20 50 100 */
-	@TableField(value = "score_demanded")
-	private Integer scoreDemanded;
+    /**
+     * 想要的分数 选项20 50 100
+     */
+    @TableField(value = "score_demanded")
+    private Integer scoreDemanded;
 
-	/** 是否提交成功 */
-	private Integer status;
+    /**
+     * 是否提交成功
+     */
+    private Integer status;
 
-	/**  */
-	@TableField(value = "deal_date")
-	private Date dealDate;
+    /**  */
+    @TableField(value = "deal_date")
+    private Date dealDate;
 
-	/**  */
-	private String picture;
+    /**  */
+    private String picture;
 
-	/**  */
-	@TableField(value = "follow_count")
-	private Integer followCount;
+    /**  */
+    @TableField(value = "follow_count")
+    private Integer followCount;
 
-	/** 创建时间 */
-	@TableField(value = "create_date")
-	private Date createDate;
+    /**
+     * 创建时间
+     */
+    @TableField(value = "create_date")
+    private Date createDate;
 
-	/** 更新时间 */
-	@TableField(value = "update_date")
-	private Date updateDate;
+    /**
+     * 更新时间
+     */
+    @TableField(value = "update_date")
+    private Date updateDate;
 
-	/** 创建者 */
-	@TableField(value = "create_by")
-	private Integer createBy;
+    /**
+     * 创建者
+     */
+    @TableField(value = "create_by")
+    private Integer createBy;
 
-	/** 更新者 */
-	@TableField(value = "update_by")
-	private Integer updateBy;
+    /**
+     * 更新者
+     */
+    @TableField(value = "update_by")
+    private Integer updateBy;
 
-	/** 逻辑删除标记（0：显示；1：隐藏） */
-	@TableField(value = "del_flag")
-	private Integer delFlag;
+    /**
+     * 逻辑删除标记（0：显示；1：隐藏）
+     */
+    @TableField(value = "del_flag")
+    private Integer delFlag = 0;
+
+    /**
+     * 诠释的图片
+     */
+    @TableField(exist = false)
+    private List<String> imagesUrlList;
 
 
-	public Integer getId() {
-		return this.id;
-	}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
-	public Integer getWorksId() {
-		return this.worksId;
-	}
+    public Integer getId() {
+        return this.id;
+    }
 
-	public void setWorksId(Integer worksId) {
-		this.worksId = worksId;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public Integer getUserId() {
-		return this.userId;
-	}
+    public Integer getWorksId() {
+        return this.worksId;
+    }
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
+    public void setWorksId(Integer worksId) {
+        this.worksId = worksId;
+    }
 
-	public String getType() {
-		return this.type;
-	}
+    public Integer getUserId() {
+        return this.userId;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
-	public Integer getParentId() {
-		return this.parentId;
-	}
+    public String getType() {
+        return this.type;
+    }
 
-	public void setParentId(Integer parentId) {
-		this.parentId = parentId;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public Integer getScoreDemanded() {
-		return this.scoreDemanded;
-	}
+    public Integer getParentId() {
+        return this.parentId;
+    }
 
-	public void setScoreDemanded(Integer scoreDemanded) {
-		this.scoreDemanded = scoreDemanded;
-	}
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
+    }
 
-	public Integer getStatus() {
-		return this.status;
-	}
+    public Integer getScoreDemanded() {
+        return this.scoreDemanded;
+    }
 
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
+    public void setScoreDemanded(Integer scoreDemanded) {
+        this.scoreDemanded = scoreDemanded;
+    }
 
-	public Date getDealDate() {
-		return this.dealDate;
-	}
+    public Integer getStatus() {
+        return this.status;
+    }
 
-	public void setDealDate(Date dealDate) {
-		this.dealDate = dealDate;
-	}
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 
-	public String getPicture() {
-		return this.picture;
-	}
+    public Date getDealDate() {
+        return this.dealDate;
+    }
 
-	public void setPicture(String picture) {
-		this.picture = picture;
-	}
+    public void setDealDate(Date dealDate) {
+        this.dealDate = dealDate;
+    }
 
-	public Integer getFollowCount() {
-		return this.followCount;
-	}
+    public String getPicture() {
+        return this.picture;
+    }
 
-	public void setFollowCount(Integer followCount) {
-		this.followCount = followCount;
-	}
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
 
-	public Date getCreateDate() {
-		return this.createDate;
-	}
+    public Integer getFollowCount() {
+        return this.followCount;
+    }
 
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
+    public void setFollowCount(Integer followCount) {
+        this.followCount = followCount;
+    }
 
-	public Date getUpdateDate() {
-		return this.updateDate;
-	}
+    public Date getCreateDate() {
+        return this.createDate;
+    }
 
-	public void setUpdateDate(Date updateDate) {
-		this.updateDate = updateDate;
-	}
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
 
-	public Integer getCreateBy() {
-		return this.createBy;
-	}
+    public Date getUpdateDate() {
+        return this.updateDate;
+    }
 
-	public void setCreateBy(Integer createBy) {
-		this.createBy = createBy;
-	}
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
 
-	public Integer getUpdateBy() {
-		return this.updateBy;
-	}
+    public Integer getCreateBy() {
+        return this.createBy;
+    }
 
-	public void setUpdateBy(Integer updateBy) {
-		this.updateBy = updateBy;
-	}
+    public void setCreateBy(Integer createBy) {
+        this.createBy = createBy;
+    }
 
-	public Integer getDelFlag() {
-		return this.delFlag;
-	}
+    public Integer getUpdateBy() {
+        return this.updateBy;
+    }
 
-	public void setDelFlag(Integer delFlag) {
-		this.delFlag = delFlag;
-	}
+    public void setUpdateBy(Integer updateBy) {
+        this.updateBy = updateBy;
+    }
 
+    public Integer getDelFlag() {
+        return this.delFlag;
+    }
+
+    public void setDelFlag(Integer delFlag) {
+        this.delFlag = delFlag;
+    }
+
+    public List<String> getImagesUrlList() {
+        return imagesUrlList;
+    }
+
+    public void setImagesUrlList(List<String> imagesUrlList) {
+        this.imagesUrlList = imagesUrlList;
+    }
 }

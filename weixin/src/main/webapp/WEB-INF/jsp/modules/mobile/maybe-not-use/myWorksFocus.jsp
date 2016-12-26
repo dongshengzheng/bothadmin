@@ -227,7 +227,7 @@
         })
 
         $('.weui-media-box__thumb').on('click', function () {
-            location.href = '../pawn2/userInfo.jsp';
+            location.href = '../pawn2/appUserInfo.jsp';
         })
     })
 </script>

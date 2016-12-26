@@ -150,7 +150,7 @@
                          alt="">
                 </div>
                 <div class="weui-media-box__bd">
-                    <h4 class="weui-media-box__title">${person.name}</h4>
+                    <h4 class="weui-media-box__title">${person.loginName}</h4>
                     <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
                     <p class="weui-media-box__desc">作品:${person.worksCount} &nbsp;粉丝:${person.followCount}</p>
                     <div class="search-results-one-care have-care div-on">

@@ -2,9 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fish.idle.service.modules.jsdd.mapper.InterpretationMapper">
 
-	<!-- 通用查询结果列-->
-	<sql id="Base_Column_List">
+    <!-- 通用查询结果列-->
+    <sql id="Base_Column_List">
 		id, works_id AS worksId, user_id AS userId, `type`, parent_id AS parentId, score_demanded AS scoreDemanded, `status`, deal_date AS dealDate, picture, follow_count AS followCount, create_date AS createDate, update_date AS updateDate, create_by AS createBy, update_by AS updateBy, del_flag AS delFlag
 	</sql>
+
+    <!--根据作品id查询所有诠释,诠释包含诠释图片-->
+    <select id="interpretationContainImages" resultMap="InterpretationMap">
+        SELECT inter.*,img.url as oneUrl from dd_interpretation inter
+        left join dd_images img on img.target_id=inter.id  and img.type='3'
+        WHERE inter.works_id=#{0}
+    </select>
+
+    <resultMap id="InterpretationMap" type="Interpretation">
+        <collection property="imagesUrlList">
+            <result column="oneUrl"></result>
+        </collection>
+    </resultMap>
 
 </mapper>

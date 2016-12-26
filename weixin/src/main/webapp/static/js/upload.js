@@ -150,7 +150,7 @@ function initUploaders2(bucket, domain) {
                 set_upload_param(up, file.name, true, domain);
             },
             FileUploaded: function () {
-                $("#uploaderInput2").before('<li class="weui-uploader__file zpxxImgeUpload"'
+                $("#uploaderInput2").before('<li class="weui-uploader__file certImgeUpload"'
                     + 'style="display:none;background-image:url(' +
                     'http://' + bucket + '.img-cn-shanghai.aliyuncs.com/' + g_object_name + '?x-oss-process=image/resize,m_fill,h_100,w_100'
                     + ')"></li>');

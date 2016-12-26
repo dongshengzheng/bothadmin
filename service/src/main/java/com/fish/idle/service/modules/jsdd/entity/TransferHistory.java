@@ -83,7 +83,7 @@ public class TransferHistory implements Serializable {
      * 逻辑删除标记（0：显示；1：隐藏）
      */
     @TableField(value = "del_flag")
-    private Integer delFlag;
+    private Integer delFlag = 0;
 
     //	转让历史页面需要的参数(双方昵称及头像图片)
     @TableField(exist = false)
