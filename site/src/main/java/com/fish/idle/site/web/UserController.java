@@ -203,7 +203,6 @@ public class UserController extends BaseController {
         }else if(type == 2){
             String loginName = request.getParameter("loginName");
             String password = request.getParameter("password");
-
             String confirmPwd = request.getParameter("passwordConfirm");
             if(StringUtils.isEmpty(loginName)){
                 map.put("suc",false);
@@ -218,6 +217,11 @@ public class UserController extends BaseController {
             if(confirmPwd.compareTo(password) != 0){
                 map.put("suc",false);
                 map.put("msg","密码不一致");
+                return map;
+            }
+            if(userService.isNameExist(user.getLoginName())){
+                map.put("suc",false);
+                map.put("msg","用户名重复，请修改");
                 return map;
             }
             appUser.setLoginName(loginName);
