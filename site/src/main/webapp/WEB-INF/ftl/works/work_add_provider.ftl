@@ -133,7 +133,7 @@
                             <div class="col-sm-10">
                                     <textarea class="form-control" style="resize: none;height: 150px"
                                               name="worksRemarks"
-                                              id="worksRemarks" type="text" placeholder="请输入作品描述">${works.remarks!}</textarea>
+                                              id="worksRemarks" type="text" placeholder="请输入作品描述"></textarea>
                                 <input type="hidden" id="status" name="status"/>
                             </div>
                         </div>
