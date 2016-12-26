@@ -67,56 +67,67 @@
         <div class="headline-center">
             <h2>全部作品</h2>
         </div>
-        <ul class="list-unstyled row portfolio-box">
-            <li class="col-sm-4 md-margin-bottom-50">
-                <a class="thumbnail fancybox" data-rel="gallery" title="Project One" href="assets/img/main/img9.jpg">
-                    <img class="full-width img-responsive" src="assets/img/main/img9.jpg" alt="">
-                    <span class="portfolio-box-in">
-                        <i class="rounded-x icon-magnifier-add"></i>
-                    </span>
-                </a>
-                <div class="headline-left margin-bottom-10"><h3 class="headline-brd">Project One</h3></div>
-                <small class="project-tag"><i class="fa fa-tag"></i><a href="feature_news_blocks.html#">Technology</a>,
-                    <a href="feature_news_blocks.html#">Business</a></small>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet </p>
-            </li>
-            <li class="col-sm-4 md-margin-bottom-50">
-                <a class="thumbnail fancybox" data-rel="gallery" title="Project Two" href="assets/img/main/img22.jpg">
-                    <img class="full-width img-responsive" src="assets/img/main/img22.jpg" alt="">
-                    <span class="portfolio-box-in">
-                        <i class="rounded-x icon-magnifier-add"></i>
-                    </span>
-                </a>
-                <div class="headline-left margin-bottom-10"><h3 class="headline-brd">Project Two</h3></div>
-                <small class="project-tag"><i class="fa fa-tag"></i><a href="feature_news_blocks.html#">Technology</a>,
-                    <a href="feature_news_blocks.html#">Business</a></small>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet </p>
-            </li>
-            <li class="col-sm-4">
-                <a class="thumbnail fancybox" data-rel="gallery" title="Project Three" href="assets/img/main/img18.jpg">
-                    <img class="full-width img-responsive" src="assets/img/main/img18.jpg" alt="">
-                    <span class="portfolio-box-in">
-                        <i class="rounded-x icon-magnifier-add"></i>
-                    </span>
-                </a>
-                <div class="headline-left margin-bottom-10"><h3 class="headline-brd">Project Three</h3></div>
-                <small class="project-tag"><i class="fa fa-tag"></i><a href="feature_news_blocks.html#">Technology</a>,
-                    <a href="feature_news_blocks.html#">Business</a></small>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet </p>
-            </li>
+        <ul id="works-list" class="list-unstyled row portfolio-box">
         </ul>
-        <button type="button" class="btn-u btn-u-default btn-u-sm btn-block">加载更多</button>
+        <button type="button" class="btn-u btn-u-default btn-u-sm btn-block btn-more">加载更多</button>
     </div>
 </div>
+
+<li class="col-sm-4" style="display: none;" id="worksTemp">
+    <a class="thumbnail fancybox" data-rel="gallery" title="" href="">
+        <img class="full-width img-responsive works-image" src="" alt="">
+        <span class="portfolio-box-in">
+            <i class="rounded-x icon-magnifier-add"></i>
+        </span>
+    </a>
+    <div class="headline-left margin-bottom-10"><h3 class="headline-brd works-name">Project Three</h3></div>
+    <small class="project-tag">
+        <i class="fa fa-tag"></i>
+        <a href="feature_news_blocks.html#">Technology</a>,
+        <a href="feature_news_blocks.html#">Business</a>
+    </small>
+    <p class="works-remarks"></p>
+</li>
+
+
 
 </@htmlBody>
 <@footerJS>
 <script>
+    pageIndex = 0;
+
+    hasMore = true;
+
     $("#headerHome").addClass("active");
     $(document).ready(function () {
-        function load() {
-            
+        load(1);
+        function load(pageIndex) {
+            $.post("/works", {pageIndex: pageIndex}, function (data) {
+                console.log(data);
+                if (pageIndex >= data.pages) {
+                    // 数据加载完毕了
+                    $(".btn-more").html("客观，这次真没了");
+                    hasMore = false;
+                }
+
+                $.each(data.records, function () {
+                    var $li = $("#worksTemp").clone();
+                    $li.removeAttr("id").css("display", "block");
+                    $li.find(".works-image").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
+                    console.log("11");
+                    $("#works-list").append($li);
+                });
+
+
+            });
         }
+
+        $(".btn-more").on("click", function () {
+            if (hasMore) {
+                pageIndex++;
+                load(pageIndex);
+            }
+        })
     });
 </script>
 </@footerJS>

@@ -1,6 +1,7 @@
 package com.fish.idle.site.web;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.fish.idle.service.modules.sys.entity.AppUser;
 import com.fish.idle.service.modules.sys.service.IAppUserService;
 import com.fish.idle.service.util.Const;
@@ -40,7 +41,7 @@ public class LoginController extends BaseController{
         AppUser user = new AppUser();
         user.setLoginName(loginName);
         user.setPassword(passwd);
-        user = appUserService.selectOne(user);
+        user = appUserService.selectOne(new EntityWrapper<>(user));
         // 用于验证用户名和密码，改方法名需要改良
         if (user != null) {
             Subject subject = SecurityUtils.getSubject();

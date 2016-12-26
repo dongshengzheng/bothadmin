@@ -37,13 +37,9 @@ public class WorksController extends BaseController {
     @Value("${img_oss_path}")
     private String imgOssPath;
 
-    // TODO: 08/12/2016 记录登记到第几步骤
-
     @Autowired
     private IWorksLevelService worksLevelService;
 
-//    @Autowired
-//    private IValueReportService valueReportService;
 
     @Autowired
     private IConsumerService consumerService;
@@ -124,11 +120,11 @@ public class WorksController extends BaseController {
     public String info(ModelMap map, @PathVariable Integer id) {
         Works works = worksService.selectById(id);
         //矿区地域
-        map.put("kqdy", getWorksLevelDicByType("dd_kqdy"));
-        map.put("level", getWorksLevelDicByType("dd_level"));
-        map.put("pinzhong", getWorksLevelDicByType("dd_pinzhong"));
-        map.put("zuopinleixing", getWorksLevelDicByType("dd_zuopinleixing"));
-        map.put("gyType", getWorksLevelDicByType("dd_level"));
+        map.put("kqdy", dictService.getWorksLevelDicByType("dd_kqdy"));
+        map.put("level", dictService.getWorksLevelDicByType("dd_level"));
+        map.put("pinzhong", dictService.getWorksLevelDicByType("dd_pinzhong"));
+        map.put("zuopinleixing", dictService.getWorksLevelDicByType("dd_zuopinleixing"));
+        map.put("gyType", dictService.getWorksLevelDicByType("dd_level"));
         map.put("works", works);
         return "works/work_add_info";
     }
@@ -161,20 +157,20 @@ public class WorksController extends BaseController {
     @RequestMapping(value = "/add/{id}/level", method = RequestMethod.GET)
     public String level(ModelMap map, @PathVariable Integer id) {
         Works works = worksService.selectById(id);
-        map.put("zhidi1", getWorksLevelDicByType("dd_zhidi"));
-        map.put("zhidi2", getWorksLevelDicByType("dd_zhidi2"));
-        map.put("ganguan", getWorksLevelDicByType("dd_ganguan"));
-        map.put("moshidu", getWorksLevelDicByType("dd_moshidu"));
-        map.put("xueliang", getWorksLevelDicByType("dd_xueliang"));
-        map.put("xuese", getWorksLevelDicByType("dd_xuese"));
-        map.put("xuexing", getWorksLevelDicByType("dd_xuexing"));
-        map.put("nongyandu", getWorksLevelDicByType("dd_nongyandu"));
-        map.put("jingdu", getWorksLevelDicByType("dd_jingdu"));
-        map.put("dise", getWorksLevelDicByType("dd_dise"));
-        map.put("liu", getWorksLevelDicByType("dd_liu"));
-        map.put("lie", getWorksLevelDicByType("dd_lie"));
-        map.put("mian", getWorksLevelDicByType("dd_mian"));
-        map.put("hanxuefangshi", getWorksLevelDicByType("dd_hanxuefangshi"));
+        map.put("zhidi1", dictService.getWorksLevelDicByType("dd_zhidi"));
+        map.put("zhidi2", dictService.getWorksLevelDicByType("dd_zhidi2"));
+        map.put("ganguan", dictService.getWorksLevelDicByType("dd_ganguan"));
+        map.put("moshidu", dictService.getWorksLevelDicByType("dd_moshidu"));
+        map.put("xueliang", dictService.getWorksLevelDicByType("dd_xueliang"));
+        map.put("xuese", dictService.getWorksLevelDicByType("dd_xuese"));
+        map.put("xuexing", dictService.getWorksLevelDicByType("dd_xuexing"));
+        map.put("nongyandu", dictService.getWorksLevelDicByType("dd_nongyandu"));
+        map.put("jingdu", dictService.getWorksLevelDicByType("dd_jingdu"));
+        map.put("dise", dictService.getWorksLevelDicByType("dd_dise"));
+        map.put("liu", dictService.getWorksLevelDicByType("dd_liu"));
+        map.put("lie", dictService.getWorksLevelDicByType("dd_lie"));
+        map.put("mian", dictService.getWorksLevelDicByType("dd_mian"));
+        map.put("hanxuefangshi", dictService.getWorksLevelDicByType("dd_hanxuefangshi"));
         map.put("works", works);
         return "works/work_add_level";
     }
@@ -289,13 +285,13 @@ public class WorksController extends BaseController {
     public String edit(@PathVariable Integer id, ModelMap map) {
         map.put("works", worksService.selectById(id));
 
-        WorksLevel worksLevel = worksLevelService.selectOne(new WorksLevel(id));
+        WorksLevel worksLevel = worksLevelService.selectOne(new EntityWrapper<>(new WorksLevel(id)));
         map.put("worksLevel", worksLevel);
-        Consumer provider = consumerService.selectOne(new Consumer(Const.CONSUMER_TYPE_PROVIDER, id));
+        Consumer provider = consumerService.selectOne(new EntityWrapper<>(new Consumer(Const.CONSUMER_TYPE_PROVIDER, id)));
         map.put("provider", provider);
-        Consumer collect = consumerService.selectOne(new Consumer(Const.CONSUMER_TYPE_COLLECT, id));
+        Consumer collect = consumerService.selectOne(new EntityWrapper<>(new Consumer(Const.CONSUMER_TYPE_COLLECT, id)));
         map.put("collect", collect);
-        Report report = reportService.selectOne(new Report(id));
+        Report report = reportService.selectOne(new EntityWrapper<>(new Report(id)));
         map.put("report", report);
 
         List<Images> worksImage = imagesService.selectList(new EntityWrapper<>(new Images(id, Const.IMAGES_WORKS)));
@@ -310,27 +306,27 @@ public class WorksController extends BaseController {
         map.put("certifyImage", certifyImage);
 
         // 矿区地域
-        map.put("kqdy", getWorksLevelDicByType("dd_kqdy"));
-        map.put("level", getWorksLevelDicByType("dd_level"));
-        map.put("pinzhong", getWorksLevelDicByType("dd_pinzhong"));
-        map.put("zuopinleixing", getWorksLevelDicByType("dd_zuopinleixing"));
-        map.put("gyType", getWorksLevelDicByType("dd_level"));
+        map.put("kqdy", dictService.getWorksLevelDicByType("dd_kqdy"));
+        map.put("level", dictService.getWorksLevelDicByType("dd_level"));
+        map.put("pinzhong", dictService.getWorksLevelDicByType("dd_pinzhong"));
+        map.put("zuopinleixing", dictService.getWorksLevelDicByType("dd_zuopinleixing"));
+        map.put("gyType", dictService.getWorksLevelDicByType("dd_level"));
 
         // 作品登记
-        map.put("zhidi1", getWorksLevelDicByType("dd_zhidi"));
-        map.put("zhidi2", getWorksLevelDicByType("dd_zhidi2"));
-        map.put("ganguan", getWorksLevelDicByType("dd_ganguan"));
-        map.put("moshidu", getWorksLevelDicByType("dd_moshidu"));
-        map.put("xueliang", getWorksLevelDicByType("dd_xueliang"));
-        map.put("xuese", getWorksLevelDicByType("dd_xuese"));
-        map.put("xuexing", getWorksLevelDicByType("dd_xuexing"));
-        map.put("nongyandu", getWorksLevelDicByType("dd_nongyandu"));
-        map.put("jingdu", getWorksLevelDicByType("dd_jingdu"));
-        map.put("dise", getWorksLevelDicByType("dd_dise"));
-        map.put("liu", getWorksLevelDicByType("dd_liu"));
-        map.put("lie", getWorksLevelDicByType("dd_lie"));
-        map.put("mian", getWorksLevelDicByType("dd_mian"));
-        map.put("hanxuefangshi", getWorksLevelDicByType("dd_hanxuefangshi"));
+        map.put("zhidi1", dictService.getWorksLevelDicByType("dd_zhidi"));
+        map.put("zhidi2", dictService.getWorksLevelDicByType("dd_zhidi2"));
+        map.put("ganguan", dictService.getWorksLevelDicByType("dd_ganguan"));
+        map.put("moshidu", dictService.getWorksLevelDicByType("dd_moshidu"));
+        map.put("xueliang", dictService.getWorksLevelDicByType("dd_xueliang"));
+        map.put("xuese", dictService.getWorksLevelDicByType("dd_xuese"));
+        map.put("xuexing", dictService.getWorksLevelDicByType("dd_xuexing"));
+        map.put("nongyandu", dictService.getWorksLevelDicByType("dd_nongyandu"));
+        map.put("jingdu", dictService.getWorksLevelDicByType("dd_jingdu"));
+        map.put("dise", dictService.getWorksLevelDicByType("dd_dise"));
+        map.put("liu", dictService.getWorksLevelDicByType("dd_liu"));
+        map.put("lie", dictService.getWorksLevelDicByType("dd_lie"));
+        map.put("mian", dictService.getWorksLevelDicByType("dd_mian"));
+        map.put("hanxuefangshi", dictService.getWorksLevelDicByType("dd_hanxuefangshi"));
         return "works/work_edit";
     }
 
@@ -374,113 +370,9 @@ public class WorksController extends BaseController {
     }
 
 
-    @RequestMapping(value = "detail/{id}", method = RequestMethod.GET)
-    public String detail(@PathVariable Integer id, ModelMap map) {
-        if (id == null) {
-            return "redirect:/";
-        }
-        Works works = worksService.selectById(id);
-        if (works == null) {
-            return "redirect:/404";
-        }
-//        dd_kqdy dd_level dd_pinzhong dd_zuopinleixing dd_level
-        //矿区地域
-        if(StringUtils.isNotEmpty(works.getKqdy())){
-            works.setKqdy(dictService.getLabelByValue(works.getKqdy(),"dd_kqdy"));
-        }
-        //作品品种
-        if(StringUtils.isNotEmpty(works.getBreed())){
-            works.setBreed(dictService.getLabelByValue(works.getBreed(),"dd_pinzhong"));
-        }
-        //作品类型
-        if(StringUtils.isNotEmpty(works.getType())){
-            works.setType(dictService.getLabelByValue(works.getType(),"dd_zuopinleixing"));
-        }
-        if(StringUtils.isNotEmpty(works.getGyType())){
-            works.setGyType(dictService.getLabelByValue(works.getGyType(),"dd_level"));
-        }
-        if(StringUtils.isNotEmpty(works.getLevelZk())){
-            works.setLevelZk(dictService.getLabelByValue(works.getLevelZk(),"dd_level"));
-        }
-        map.put("works", works);
-        List<Images> worksImage = imagesService.selectList(new EntityWrapper<>(new Images(id, Const.IMAGES_WORKS)));
-        //作品信息图片列表
-        map.put("worksImage", worksImage);
-        WorksLevel worksLevel = worksLevelService.selectOne(new WorksLevel(id));
-        if(StringUtils.isNotEmpty(worksLevel.getZhidi())){
-
-            worksLevel.setZhidi(dictService.getLabelByValue(worksLevel.getZhidi(),"dd_zhidi"));
-        }
-        if(StringUtils.isNotEmpty(worksLevel.getZhidi2())){
-            worksLevel.setZhidi2(dictService.getLabelByValue(worksLevel.getZhidi2(),"dd_zhidi2"));
-        }
-        if(StringUtils.isNotEmpty(worksLevel.getGanguan())){
-            worksLevel.setGanguan(dictService.getLabelByValue(worksLevel.getGanguan(),"dd_ganguan"));
-        }
-        if(StringUtils.isNotEmpty(worksLevel.getMoshidu())){
-            worksLevel.setMoshidu(dictService.getLabelByValue(worksLevel.getMoshidu(),"dd_moshidu"));
-        }
-        if(StringUtils.isNotEmpty(worksLevel.getXueliang())){
-            worksLevel.setXueliang(dictService.getLabelByValue(worksLevel.getXueliang(),"dd_xueliang"));
-        }
-        if(StringUtils.isNotEmpty(worksLevel.getXuese())){
-            worksLevel.setXuese(dictService.getLabelByValue(worksLevel.getXuese(),"dd_xuese"));
-        }
-            if(StringUtils.isNotEmpty(worksLevel.getXuexing())){
-            worksLevel.setXuexing(dictService.getLabelByValue(worksLevel.getXuexing(),"dd_xuexing"));
-        }
-        //
-        if(StringUtils.isNotEmpty(worksLevel.getNongyandu())){
-            worksLevel.setNongyandu(dictService.getLabelByValue(worksLevel.getNongyandu(),"dd_nongyandu"));
-        }
-        if(StringUtils.isNotEmpty(worksLevel.getChunjingdu())){
-            worksLevel.setChunjingdu(dictService.getLabelByValue(worksLevel.getChunjingdu(),"dd_jingdu"));
-        }
-        if(StringUtils.isNotEmpty(worksLevel.getDise())){
-            worksLevel.setDise(dictService.getLabelByValue(worksLevel.getDise(),"dd_dise"));
-        }
-        if(StringUtils.isNotEmpty(worksLevel.getLie())){
-            worksLevel.setLie(dictService.getLabelByValue(worksLevel.getLie(),"dd_lie"));
-        }
-        if(StringUtils.isNotEmpty(worksLevel.getLiu())){
-            worksLevel.setLiu(dictService.getLabelByValue(worksLevel.getLiu(),"dd_liu"));
-        }
-        if(StringUtils.isNotEmpty(worksLevel.getInithanxueliang())){
-            worksLevel.setInithanxueliang(dictService.getLabelByValue(worksLevel.getInithanxueliang(),"dd_mian"));
-        }
-//        if(StringUtils.isNotEmpty(worksLevel.getHanxuemian())){
-//            worksLevel.setHanxuemian(dictService.getLabelByValue(worksLevel.getHanxuemian(),"dd_mian"));
-//        }
-        if(StringUtils.isNotEmpty(worksLevel.getHanxueliang())){
-            worksLevel.setHanxueliang(dictService.getLabelByValue(worksLevel.getHanxueliang(),"dd_hanxuefangshi"));
-        }
-        if(StringUtils.isNotEmpty(worksLevel.getHanxuefangshi())){
-            worksLevel.setHanxuefangshi(dictService.getLabelByValue(worksLevel.getHanxuefangshi(),"dd_hanxuefangshi"));
-        }
-        map.put("worksLevel", worksLevel);
-        Consumer provider = consumerService.selectOne(new Consumer(Const.CONSUMER_TYPE_PROVIDER, id));
-        map.put("provider", provider);
-        Consumer collect = consumerService.selectOne(new Consumer(Const.CONSUMER_TYPE_COLLECT, id));
-        map.put("collect", collect);
-        Report report = reportService.selectOne(new Report(id));
-        map.put("report", report);
-
-        //评估报告图片
-        List<Images> reportImage = imagesService.selectList(new EntityWrapper<>(new Images(id, Const.IMAGES_REPORT_DES)));
-        map.put("reportImage", reportImage.get(0));
-        //评估价值认证照片
-        List<Images> certifyImage = imagesService.selectList(new EntityWrapper<>(new Images(report.getId(), Const.IMAGES_REPORT_CERTIFICATE)));
-        map.put("certifyImage", certifyImage);
-        //todo 转让历史列表
-        //todo 诠释列表
-        //todo 收藏者列表
-        //todo 最近浏览的人
-
-        return "works/work_detail";
-    }
 
     /**
-     * 第五步：登记收藏者信息
+     * 根据Id删除图片消息
      *
      * @return
      */
@@ -495,113 +387,6 @@ public class WorksController extends BaseController {
 
 
     /**
-     * 登记作品信息
-     *
-     * @param workInfoRequest
-     * @return
-     */
-    @RequestMapping(value = "/addWorksInfo/{type}", method = RequestMethod.POST)
-    public String addWorksInfo(@ModelAttribute WorkInfoRequest workInfoRequest, ModelMap map, @PathVariable Integer type) {
-        //判断goodsId
-        if (null == workInfoRequest.getGoodsId()) {
-            map.put("step", 1);
-        } else {
-            Works works = worksService.selectById(workInfoRequest.getGoodsId());
-            if (works != null) {
-                works.setBreed(workInfoRequest.getBreed());
-                works.setType(workInfoRequest.getType());
-                works.setLength(workInfoRequest.getLength());
-                works.setWidth(workInfoRequest.getWidth());
-                works.setHeight(workInfoRequest.getHeight());
-                works.setWeight(workInfoRequest.getWeight());
-                works.setGyType(workInfoRequest.getProductionProcess());
-                //篆刻级别
-                works.setLevelZk(workInfoRequest.getSealCuttingLevel());
-                works.setKqdy(workInfoRequest.getMineArea());
-                works.setMaker(workInfoRequest.getProducer());
-                works.setMakeTime(workInfoRequest.getProduceTime());
-                works.setWorksMeaning(workInfoRequest.getWorksExplanation());
-                boolean isOk = worksService.updateById(works);
-                if (isOk) {
-                    //质地一
-                    List<Dict> zhidi1 = getWorksLevelDicByType("dd_zhidi");
-                    List<Dict> zhidi2 = getWorksLevelDicByType("dd_zhidi2");
-                    List<Dict> ganguan = getWorksLevelDicByType("dd_ganguan");
-                    List<Dict> moshidu = getWorksLevelDicByType("dd_moshidu");
-                    List<Dict> xueliang = getWorksLevelDicByType("dd_xueliang");
-                    List<Dict> xuese = getWorksLevelDicByType("dd_xuese");
-                    List<Dict> xuexing = getWorksLevelDicByType("dd_xuexing");
-                    List<Dict> nongyandu = getWorksLevelDicByType("dd_nongyandu");
-                    List<Dict> jingdu = getWorksLevelDicByType("dd_jingdu");
-                    List<Dict> dise = getWorksLevelDicByType("dd_dise");
-                    //活经
-                    List<Dict> liu = getWorksLevelDicByType("dd_liu");
-                    List<Dict> lie = getWorksLevelDicByType("dd_lie");
-                    // 印章含血面
-                    List<Dict> mian = getWorksLevelDicByType("dd_mian");
-                    List<Dict> hanxuefangshi = getWorksLevelDicByType("dd_hanxuefangshi");
-                    map.put("zhidi1", zhidi1);
-                    map.put("zhidi2", zhidi2);
-                    map.put("ganguan", ganguan);
-                    map.put("moshidu", moshidu);
-                    map.put("xueliang", xueliang);
-                    map.put("xuese", xuese);
-                    map.put("xuexing", xuexing);
-                    map.put("nongyandu", nongyandu);
-                    map.put("jingdu", jingdu);
-                    map.put("dise", dise);
-                    map.put("liu", liu);
-                    map.put("lie", lie);
-                    map.put("mian", mian);
-                    map.put("hanxuefangshi", hanxuefangshi);
-                    map.put("goodsName", works.getName());
-                    map.put("goodsId", works.getId());
-                    map.put("step", 3);
-                } else {
-                    map.put("success", false);
-                    map.put("msg", "添加失败");
-                    map.put("step", 2);
-                    map.put("worksInfoRequest", workInfoRequest);
-                }
-            }
-        }
-        return "/WEB-INF/ftl/works/work_add.ftl";
-    }
-
-    /**
-     * 登记作品等级
-     *
-     * @param worksLevel
-     * @return
-     */
-    @RequestMapping(value = "/addWorksLevel/{type}", method = RequestMethod.POST)
-    public String addWorksLevel(@ModelAttribute WorksLevel worksLevel, ModelMap map, @PathVariable Integer type) {
-        //判断goodsId
-        if (null == worksLevel.getWorksId()) {
-            map.put("step", 1);
-        } else {
-            Works works = worksService.selectById(worksLevel.getWorksId());
-            worksLevel.setUpdateDate(new Date());
-            worksLevel.setCreateDate(new Date());
-            worksLevel.setDelFlag(Const.DEL_FLAG_NORMAL);
-
-            boolean result = worksLevelService.insert(worksLevel);
-
-            if (result) {
-                map.put("goodsName", works.getName());
-                map.put("goodsId", works.getId());
-                map.put("step", 4);
-            } else {
-                map.put("success", false);
-                map.put("msg", "添加失败");
-                map.put("step", 3);
-            }
-        }
-        return "/WEB-INF/ftl/works/work_add.ftl";
-    }
-
-
-    /**
      * @param binder
      * @Title: initBinder
      * @Description:日期格式转换
@@ -612,45 +397,6 @@ public class WorksController extends BaseController {
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
     }
-
-    //    获取作品登记字典表
-    private List<Dict> getWorksLevelDicByType(String type) {
-        EntityWrapper entityWrapper = new EntityWrapper();
-        entityWrapper.addFilter("type={0}", type);
-        List<Dict> list = dictService.selectList(entityWrapper);
-        return list;
-    }
-
-
-    @RequestMapping(value = "search", method = RequestMethod.GET)
-    public String search(ModelMap map, @RequestParam(value = "keywords", required = false) String keywords,
-                         @RequestParam(value = "start", required = false) Integer start,
-                         @RequestParam(value = "length", required = false) Integer length) {
-        Paging paging = new Paging();
-        if (null == start) {
-            start = 1;
-        }
-        if (null == length) {
-            length = 6;
-        }
-        //首页全部作品(pageSize=6)
-        EntityWrapper<Works> ew = getEntityWrapper();
-        if (org.apache.commons.lang.StringUtils.isNotBlank(keywords)) {
-            ew.addFilter("name like {0}", "%" + keywords.trim() + "%");
-        }
-        Page<Works> page = worksService.selectPage(getPage(start, length), ew);
-        for (Works item : page.getRecords()) {
-            String[] imageArr = item.getImages().split(",");
-            item.setImages(imgOssPath + imageArr[0]);
-        }
-        paging.setData(page.getRecords());
-        paging.setTotalPages(page.getPages());
-        paging.setCurrent(start);
-        paging.setPageSize(length);
-        map.put("worksPaging", paging);
-        return "search/search_works_result";
-    }
-
 
     private void insertImage(String images, Integer targetId, String types) {
         // 保存图片信息
@@ -667,6 +413,5 @@ public class WorksController extends BaseController {
             imagesService.insertBatch(list);
         }
     }
-
 
 }
