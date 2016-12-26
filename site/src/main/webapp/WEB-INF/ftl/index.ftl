@@ -114,8 +114,6 @@
 <script>
     $("#headerHome").addClass("active");
     $(document).ready(function () {
-        
-        
         function load() {
             
         }

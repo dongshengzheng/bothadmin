@@ -54,7 +54,9 @@ description="金石典当"
                 <div class="row">
                     <div class="col-sm-offset-6 col-sm-6">
                         <ul class="list-inline right-topbar pull-right">
-                            <li><a href="shop-ui-login.html">登录</a> | <a href="shop-ui-register.html">注册</a></li>
+                            <li id="login">
+
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -140,9 +142,11 @@ description="金石典当"
 <script src="${staticPath}/assets/js/plugins/style-switcher.js"></script>
 
 <script src="${staticPath}/assets/js/mustache.js"></script>
+
     <#nested/>
 </body>
 <script>
+
     jQuery(document).ready(function () {
         App.init();
         App.initScrollBar();
@@ -160,6 +164,19 @@ description="金石典当"
             } else {
                 search_form.attr("action", "${staticPath}/works/search?keywords=" + key);
                 search_form.submit();
+            }
+        });
+        $.ajax({
+            type: "GET",
+            url: '${staticPath}/loginStatus',
+            dataType: 'json',
+            success: function (result) {
+                alert(result.suc);
+                if (result.suc) {
+                    $("#login")[0].innerHTML = '<a href="${staticPath}/user">'+result.loginName+'</a>';
+                } else {
+                    $("#login")[0].innerHTML = '<a href="${staticPath}/login">登录</a> | <a href="${staticPath}/register">注册</a>';
+                }
             }
         });
     });

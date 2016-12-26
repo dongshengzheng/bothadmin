@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
-public class LoginController {
+public class LoginController extends BaseController{
 
     @Autowired
     private IAppUserService appUserService;
@@ -99,4 +99,19 @@ public class LoginController {
     public String terms() {
         return "user/terms";
     }
+
+    @RequestMapping(value = "/loginStatus", method = RequestMethod.GET)
+    @ResponseBody
+    public JSONObject loginStatus(){
+        JSONObject jsonObject = new JSONObject();
+        AppUser user = getCurrentUser();
+        if (user == null){
+            jsonObject.put("suc",false);
+        }else {
+            jsonObject.put("suc",true);
+            jsonObject.put("loginName",user.getLoginName());
+        }
+        return jsonObject;
+    }
+
 }
