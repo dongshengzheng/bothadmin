@@ -5,7 +5,6 @@
 
 <@htmlHead title="金石典当">
 <link rel="stylesheet" href="${staticPath}/assets/css/style.css">
-<link rel="stylesheet" href="${staticPath}/assets/css/pages/profile.css">
 <link rel="stylesheet" href="${staticPath}/assets/plugins/line-icons/line-icons.css">
 </@htmlHead>
 
@@ -63,10 +62,11 @@
         </div>
     </div>
     <!--=== End Slider ===-->
-    <div class="headline-center">
-        <h2>全部作品</h2>
-    </div>
+
     <div class="container content-md">
+        <div class="headline-center">
+            <h2>全部作品</h2>
+        </div>
         <ul class="list-unstyled row portfolio-box">
             <li class="col-sm-4 md-margin-bottom-50">
                 <a class="thumbnail fancybox" data-rel="gallery" title="Project One" href="assets/img/main/img9.jpg">
@@ -105,6 +105,7 @@
                 <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet </p>
             </li>
         </ul>
+        <button type="button" class="btn-u btn-u-default btn-u-sm btn-block">加载更多</button>
     </div>
 </div>
 
@@ -113,6 +114,11 @@
 <script>
     $("#headerHome").addClass("active");
     $(document).ready(function () {
+        
+        
+        function load() {
+            
+        }
     });
 </script>
 </@footerJS>
