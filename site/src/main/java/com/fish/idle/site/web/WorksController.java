@@ -291,8 +291,6 @@ public class WorksController extends BaseController {
 
         WorksLevel worksLevel = worksLevelService.selectOne(new WorksLevel(id));
         map.put("worksLevel", worksLevel);
-//        ValueReport valueReport = valueReportService.selectOne(new ValueReport(id));
-//        map.put("valueReport", valueReport);
         Consumer provider = consumerService.selectOne(new Consumer(Const.CONSUMER_TYPE_PROVIDER, id));
         map.put("provider", provider);
         Consumer collect = consumerService.selectOne(new Consumer(Const.CONSUMER_TYPE_COLLECT, id));
@@ -388,21 +386,21 @@ public class WorksController extends BaseController {
 //        dd_kqdy dd_level dd_pinzhong dd_zuopinleixing dd_level
         //矿区地域
         if(StringUtils.isNotEmpty(works.getKqdy())){
-            works.setKqdy(getLabelByValue(works.getKqdy(),"dd_kqdy"));
+            works.setKqdy(dictService.getLabelByValue(works.getKqdy(),"dd_kqdy"));
         }
         //作品品种
         if(StringUtils.isNotEmpty(works.getBreed())){
-            works.setBreed(getLabelByValue(works.getBreed(),"dd_pinzhong"));
+            works.setBreed(dictService.getLabelByValue(works.getBreed(),"dd_pinzhong"));
         }
         //作品类型
         if(StringUtils.isNotEmpty(works.getType())){
-            works.setType(getLabelByValue(works.getType(),"dd_zuopinleixing"));
+            works.setType(dictService.getLabelByValue(works.getType(),"dd_zuopinleixing"));
         }
         if(StringUtils.isNotEmpty(works.getGyType())){
-            works.setGyType(getLabelByValue(works.getGyType(),"dd_level"));
+            works.setGyType(dictService.getLabelByValue(works.getGyType(),"dd_level"));
         }
         if(StringUtils.isNotEmpty(works.getLevelZk())){
-            works.setLevelZk(getLabelByValue(works.getLevelZk(),"dd_level"));
+            works.setLevelZk(dictService.getLabelByValue(works.getLevelZk(),"dd_level"));
         }
         map.put("works", works);
         List<Images> worksImage = imagesService.selectList(new EntityWrapper<>(new Images(id, Const.IMAGES_WORKS)));
@@ -411,57 +409,55 @@ public class WorksController extends BaseController {
         WorksLevel worksLevel = worksLevelService.selectOne(new WorksLevel(id));
         if(StringUtils.isNotEmpty(worksLevel.getZhidi())){
 
-            worksLevel.setZhidi(getLabelByValue(worksLevel.getZhidi(),"dd_zhidi"));
+            worksLevel.setZhidi(dictService.getLabelByValue(worksLevel.getZhidi(),"dd_zhidi"));
         }
         if(StringUtils.isNotEmpty(worksLevel.getZhidi2())){
-            worksLevel.setZhidi2(getLabelByValue(worksLevel.getZhidi2(),"dd_zhidi2"));
+            worksLevel.setZhidi2(dictService.getLabelByValue(worksLevel.getZhidi2(),"dd_zhidi2"));
         }
         if(StringUtils.isNotEmpty(worksLevel.getGanguan())){
-            worksLevel.setGanguan(getLabelByValue(worksLevel.getGanguan(),"dd_ganguan"));
+            worksLevel.setGanguan(dictService.getLabelByValue(worksLevel.getGanguan(),"dd_ganguan"));
         }
         if(StringUtils.isNotEmpty(worksLevel.getMoshidu())){
-            worksLevel.setMoshidu(getLabelByValue(worksLevel.getMoshidu(),"dd_moshidu"));
+            worksLevel.setMoshidu(dictService.getLabelByValue(worksLevel.getMoshidu(),"dd_moshidu"));
         }
         if(StringUtils.isNotEmpty(worksLevel.getXueliang())){
-            worksLevel.setXueliang(getLabelByValue(worksLevel.getXueliang(),"dd_xueliang"));
+            worksLevel.setXueliang(dictService.getLabelByValue(worksLevel.getXueliang(),"dd_xueliang"));
         }
         if(StringUtils.isNotEmpty(worksLevel.getXuese())){
-            worksLevel.setXuese(getLabelByValue(worksLevel.getXuese(),"dd_xuese"));
+            worksLevel.setXuese(dictService.getLabelByValue(worksLevel.getXuese(),"dd_xuese"));
         }
             if(StringUtils.isNotEmpty(worksLevel.getXuexing())){
-            worksLevel.setXuexing(getLabelByValue(worksLevel.getXuexing(),"dd_xuexing"));
+            worksLevel.setXuexing(dictService.getLabelByValue(worksLevel.getXuexing(),"dd_xuexing"));
         }
         //
         if(StringUtils.isNotEmpty(worksLevel.getNongyandu())){
-            worksLevel.setNongyandu(getLabelByValue(worksLevel.getNongyandu(),"dd_nongyandu"));
+            worksLevel.setNongyandu(dictService.getLabelByValue(worksLevel.getNongyandu(),"dd_nongyandu"));
         }
         if(StringUtils.isNotEmpty(worksLevel.getChunjingdu())){
-            worksLevel.setChunjingdu(getLabelByValue(worksLevel.getChunjingdu(),"dd_jingdu"));
+            worksLevel.setChunjingdu(dictService.getLabelByValue(worksLevel.getChunjingdu(),"dd_jingdu"));
         }
         if(StringUtils.isNotEmpty(worksLevel.getDise())){
-            worksLevel.setDise(getLabelByValue(worksLevel.getDise(),"dd_dise"));
+            worksLevel.setDise(dictService.getLabelByValue(worksLevel.getDise(),"dd_dise"));
         }
         if(StringUtils.isNotEmpty(worksLevel.getLie())){
-            worksLevel.setLie(getLabelByValue(worksLevel.getLie(),"dd_lie"));
+            worksLevel.setLie(dictService.getLabelByValue(worksLevel.getLie(),"dd_lie"));
         }
         if(StringUtils.isNotEmpty(worksLevel.getLiu())){
-            worksLevel.setLiu(getLabelByValue(worksLevel.getLiu(),"dd_liu"));
+            worksLevel.setLiu(dictService.getLabelByValue(worksLevel.getLiu(),"dd_liu"));
         }
         if(StringUtils.isNotEmpty(worksLevel.getInithanxueliang())){
-            worksLevel.setInithanxueliang(getLabelByValue(worksLevel.getInithanxueliang(),"dd_mian"));
+            worksLevel.setInithanxueliang(dictService.getLabelByValue(worksLevel.getInithanxueliang(),"dd_mian"));
         }
 //        if(StringUtils.isNotEmpty(worksLevel.getHanxuemian())){
-//            worksLevel.setHanxuemian(getLabelByValue(worksLevel.getHanxuemian(),"dd_mian"));
+//            worksLevel.setHanxuemian(dictService.getLabelByValue(worksLevel.getHanxuemian(),"dd_mian"));
 //        }
         if(StringUtils.isNotEmpty(worksLevel.getHanxueliang())){
-            worksLevel.setHanxueliang(getLabelByValue(worksLevel.getHanxueliang(),"dd_hanxuefangshi"));
+            worksLevel.setHanxueliang(dictService.getLabelByValue(worksLevel.getHanxueliang(),"dd_hanxuefangshi"));
         }
         if(StringUtils.isNotEmpty(worksLevel.getHanxuefangshi())){
-            worksLevel.setHanxuefangshi(getLabelByValue(worksLevel.getHanxuefangshi(),"dd_hanxuefangshi"));
+            worksLevel.setHanxuefangshi(dictService.getLabelByValue(worksLevel.getHanxuefangshi(),"dd_hanxuefangshi"));
         }
         map.put("worksLevel", worksLevel);
-//        ValueReport valueReport = valueReportService.selectOne(new ValueReport(id));
-//        map.put("valueReport", valueReport);
         Consumer provider = consumerService.selectOne(new Consumer(Const.CONSUMER_TYPE_PROVIDER, id));
         map.put("provider", provider);
         Consumer collect = consumerService.selectOne(new Consumer(Const.CONSUMER_TYPE_COLLECT, id));
@@ -604,81 +600,6 @@ public class WorksController extends BaseController {
         return "/WEB-INF/ftl/works/work_add.ftl";
     }
 
-    /**
-     * 登记价值报告
-     *
-     * @param valueReport
-     * @return
-     */
-//    @RequestMapping(value = "/addValueReport/{type}", method = RequestMethod.POST)
-//    public String addValueReport(@ModelAttribute ValueReport valueReport, ModelMap map, @PathVariable Integer type) {
-//        //判断goodsId
-//        if (null == valueReport.getWorksId()) {
-//            map.put("step", 1);
-//        } else {
-//            Works works = worksService.selectById(valueReport.getWorksId());
-//            if (type == 1) {
-//                //todo 存为草稿
-//
-//            }
-//            valueReport.setUpdateBy("1");
-//            valueReport.setUpdateDate(new Date());
-//            valueReport.setCreateBy("1");
-//            valueReport.setCreateDate(new Date());
-//
-//            boolean result = valueReportService.insert(valueReport);
-//            if (result) {
-//                map.put("goodsName", works.getName());
-//                map.put("goodsId", works.getId());
-//                map.put("step", 5);
-//            } else {
-//                map.put("goodsName", works.getName());
-//                map.put("goodsId", works.getId());
-//                map.put("success", false);
-//                map.put("msg", "添加失败");
-//                map.put("step", 4);
-//            }
-//        }
-//        return "/WEB-INF/ftl/works/work_add.ftl";
-//    }
-
-    /**
-     * 第五步
-     * 登记收藏者信息
-     *
-     * @param consumer
-     * @return
-     */
-    @RequestMapping(value = "/addCollect/{type}", method = RequestMethod.POST)
-    public String addCollect(@ModelAttribute Consumer consumer, ModelMap map, @PathVariable Integer type) {
-//        //判断goodsId
-        if (null == consumer.getWorksId()) {
-            map.put("step", 1);
-        } else {
-            Works works = worksService.selectById(consumer.getWorksId());
-
-            consumer.setUpdateDate(new Date());
-            consumer.setCreateBy(1);
-            consumer.setCreateDate(new Date());
-            consumer.setDelFlag(Const.DEL_FLAG_NORMAL);
-            //收藏者
-            consumer.setType(String.valueOf(2));
-
-            boolean result = consumerService.insert(consumer);
-            if (result) {
-                map.put("goodsName", works.getName());
-                map.put("goodsId", works.getId());
-                map.put("step", 1);
-            } else {
-                map.put("goodsName", works.getName());
-                map.put("goodsId", works.getId());
-                map.put("success", false);
-                map.put("msg", "添加失败");
-                map.put("step", 5);
-            }
-        }
-        return "works/work_edit";
-    }
 
     /**
      * @param binder
@@ -745,13 +666,6 @@ public class WorksController extends BaseController {
             }
             imagesService.insertBatch(list);
         }
-    }
-
-    //    获取作品登记字典表
-    private String getLabelByValue(String value,String type) {
-        EntityWrapper entityWrapper = new EntityWrapper();
-        entityWrapper.addFilter("value={0} and type={1}", value,type);
-        return dictService.selectOne(entityWrapper).getLabel();
     }
 
 

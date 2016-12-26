@@ -1,11 +1,13 @@
 package com.fish.idle.service.modules.sys.service.impl;
 
-import com.fish.idle.service.modules.sys.entity.Dict;
-import com.fish.idle.service.modules.sys.mapper.DictMapper;
-import com.fish.idle.service.modules.sys.service.IDictService;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.framework.service.impl.SuperServiceImpl;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+
+import com.fish.idle.service.modules.sys.entity.Dict;
+import com.fish.idle.service.modules.sys.mapper.DictMapper;
+import com.fish.idle.service.modules.sys.service.IDictService;
 
 /**
  *
@@ -15,4 +17,15 @@ import com.baomidou.framework.service.impl.SuperServiceImpl;
 @Service
 public class DictServiceImpl extends SuperServiceImpl<DictMapper, Dict> implements IDictService {
 
+    // 获取作品登记字典表
+    public String getLabelByValue(String value, String type) {
+        EntityWrapper entityWrapper = new EntityWrapper();
+
+        entityWrapper.addFilter("value={0} and type={1}", value, type);
+
+        return selectOne(entityWrapper).getLabel();
+    }
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com
