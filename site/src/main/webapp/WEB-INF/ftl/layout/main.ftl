@@ -171,7 +171,6 @@ description="金石典当"
             url: '${staticPath}/loginStatus',
             dataType: 'json',
             success: function (result) {
-                alert(result.suc);
                 if (result.suc) {
                     $("#login")[0].innerHTML = '<a href="${staticPath}/user">'+result.loginName+'</a>';
                 } else {
