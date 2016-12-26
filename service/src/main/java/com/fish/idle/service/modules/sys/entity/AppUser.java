@@ -17,7 +17,6 @@ import com.baomidou.mybatisplus.annotations.TableName;
 @TableName("sys_app_user")
 public class AppUser implements Serializable {
 
-<<<<<<< HEAD
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
@@ -91,7 +90,7 @@ public class AppUser implements Serializable {
     /**
      * 逻辑删除标志
      */
-    private Integer delFlag = 0;
+    private Integer delFlag;
 
     /**
      * 最后登录时间
@@ -217,94 +216,6 @@ public class AppUser implements Serializable {
     public String getHeadImgUrl() {
         return this.headImgUrl;
     }
-=======
-	@TableField(exist = false)
-	private static final long serialVersionUID = 1L;
-
-	/**  */
-	@TableId(type = IdType.AUTO)
-	private Integer id;
-
-	/** 登录名 */
-	@TableField(value = "login_name")
-	private String loginName;
-
-	/** 用户名 */
-	private String username;
-
-	/** 登录密码 */
-	private String password;
-
-	/** 邮箱 */
-	private String email;
-
-	/** 手机号码 */
-	private String phone;
-
-	/** 身份证 */
-	private String identification;
-
-	/** 是否公开 */
-	private Boolean pub;
-
-	/** 积分 */
-	private Integer score;
-
-	/** openId */
-	@TableField(value = "open_id")
-	private String openId;
-
-	/** 偏好 */
-	private String prefer;
-
-	/** 地址 */
-	private String address;
-
-	/** 头像图片地址 */
-	@TableField(value = "head_img_url")
-	private String headImgUrl;
-
-
-	public Integer getId() {
-		return this.id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getLoginName() {
-		return this.loginName;
-	}
-
-	public void setLoginName(String loginName) {
-		this.loginName = loginName;
-	}
-
-	public String getPassword() {
-		return this.password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getEmail() {
-		return this.email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPhone() {
-		return this.phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
->>>>>>> 01b9155ad210ba822173e1e604bcd8f5d5088ebf
 
     public void setHeadImgUrl(String headImgUrl) {
         this.headImgUrl = headImgUrl;

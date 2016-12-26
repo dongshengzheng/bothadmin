@@ -57,6 +57,7 @@
 </div>
 <div>
     <form action="${ctx}/mobile/worksRegister2" enctype="multipart/form-data" method="post">
+        <input type="hidden" name="worksId" value="${worksId}">
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">诠释价格</label></div>
             <div class="weui-cell__bd weui-cell_primary">
@@ -158,25 +159,6 @@
             }
             $('#imgUrls').val(imgUrls);
         })
-
-        $('#draftSubmit').on('click', function () {
-            var lis = $('.worksImgs');
-            var imgUrls = "";
-            var len = lis.length;
-            if (len > 0) {
-                lis.each(function () {
-                    var li = $(this);
-                    var str = li.css("background-image");
-                    var length = str.length;
-                    var url = str.substring(5, length - 2);
-                    imgUrls += url + ',';
-                })
-                imgUrls = imgUrls.substring(0, imgUrls.length - 1);
-            }
-            $('#imgUrls').val(imgUrls);
-            $('#draftYN').val('yes');
-        })
-
     });
 
 </script>

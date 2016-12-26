@@ -534,7 +534,7 @@
             <center>作品诠释</center>
             <img src="${ctxStatic}/img/headImg/3.jpg" class="explain-img">
             <input type="button" value="点击进行诠释" class="explain-btn"
-                   onclick="location.href='${ctx}/mobile/interPretationPre?worksId=${works.id}'"/>
+                   onclick="location.href='${ctx}/mobile/interpretationPre?worksId=${works.id}'"/>
         </div>
 
         <div class="info-work">

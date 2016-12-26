@@ -511,9 +511,9 @@ public class MobileController extends BaseController {
      *
      * @return
      */
-    @RequestMapping(value = "interPretationPre", method = RequestMethod.GET)
+    @RequestMapping(value = "interpretationPre", method = RequestMethod.GET)
     @OAuthRequired
-    public String interPretationPre(HttpSession session,
+    public String interpretationPre(HttpSession session,
                                     @RequestParam(required = false) int worksId,
                                     ModelMap map) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
@@ -525,7 +525,47 @@ public class MobileController extends BaseController {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
         map.put("worksId", worksId);
-        return "modules/mobile/pawn2/interPretation";
+        return "modules/mobile/pawn2/interpretation";
+    }
+
+    /**
+     * 完成作品诠释
+     *
+     * @return
+     */
+    @RequestMapping(value = "interpretationComplete", method = RequestMethod.GET)
+    @OAuthRequired
+    public String interpretationComplete(HttpSession session,
+                                         @RequestParam(required = false) int worksId,
+                                         ModelMap map,
+                                         Interpretation interpretation,
+                                         @RequestParam(required = false) String imgUrls) {
+        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+        String openId = wxMpUser.getOpenId();
+        AppUser u = new AppUser();
+        u.setOpenId(openId);
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
+            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+        }
+
+        interpretation.setUserId(appUser.getId());
+        interpretation.setWorksId(worksId);
+        interpretationService.insert(interpretation);
+        int interId = interpretation.getId();
+        if (imgUrls != null && imgUrls.trim().length() > 0) {
+            String[] urls = imgUrls.split(",");
+            for (String url : urls) {
+                Images images = new Images();
+                images.setTargetId(interId);
+                images.setUrl(url);
+                images.setType(Const.IMAGES_INTERPRETATION);
+                imagesService.insert(images);
+            }
+        }
+
+        map.put("worksId", worksId);
+        return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/worksDetail?worksId=" + worksId;
     }
 
 
