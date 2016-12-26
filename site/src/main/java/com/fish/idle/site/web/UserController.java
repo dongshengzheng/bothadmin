@@ -39,6 +39,76 @@ public class UserController extends BaseController {
      *
      * @return
      */
+    @RequestMapping(method = RequestMethod.GET)
+    public String dash() {
+        return "user/user";
+    }
+    /**
+     * 我的作品
+     *
+     * @return
+     */
+    @RequestMapping(value="works",method = RequestMethod.GET)
+    public String works() {
+        return "user/user_works";
+    }
+
+    /**
+     * 转让作品
+     *
+     * @return
+     */
+    @RequestMapping(value="transfer",method = RequestMethod.GET)
+    public String transfer() {
+        return "user/user_works_transfer";
+    }
+
+    /**
+     * 收藏作品
+     *
+     * @return
+     */
+    @RequestMapping(value="collect",method = RequestMethod.GET)
+    public String collect() {
+        return "user/user_works_collect";
+    }
+
+    /**
+     * 关注用户
+     *
+     * @return
+     */
+    @RequestMapping(value="follow",method = RequestMethod.GET)
+    public String follow() {
+        return "user/user_follow";
+    }
+
+    /**
+     * 积分中心
+     *
+     * @return
+     */
+    @RequestMapping(value="integral",method = RequestMethod.GET)
+    public String integral() {
+        return "user/user_integral";
+    }
+
+    /**
+     * 个人设置
+     *
+     * @return
+     */
+    @RequestMapping(value="settings",method = RequestMethod.GET)
+    public String settings() {
+        return "user/user_settings";
+    }
+
+
+    /**
+     * 用户详情
+     *
+     * @return
+     */
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     public String detail() {
         return "user/user_detail";

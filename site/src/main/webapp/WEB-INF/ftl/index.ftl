@@ -70,9 +70,7 @@
     <div class="headline-center margin-bottom-60">
         <h2>全部作品</h2>
     </div>
-
     <div id="all_works_page_content">
-
         <ul class="list-unstyled row portfolio-box">
             <#list worksPaging.data as works>
                 <li class="col-sm-4 md-margin-bottom-50">
@@ -83,74 +81,16 @@
                     <p style="">${works.remarks}</p>
                 </li>
             </#list>
+            <button type="button" class="btn-u btn-u-default btn-u-sm btn-block">加载更多</button>
         </ul>
-
-    </div>
-
-
-</div>
-<!--paging start-->
-<div class="container text-right" style="margin-top: -40px">
-    <div class="row">
-        <div class="col-sm-12">
-            <ul class="pagination">
-                <@pagination.pages 1..worksPaging.totalPages worksPaging.current/>
-            </ul>
-        </div>
-
     </div>
 </div>
-<!--content end-->
-<!--FOOTER-->
-
-<!--FOOTER END-->
-<#--<script id="all_works" type="mustache">-->
-
-
-
-<#--</script>-->
 
 </@htmlBody>
 <@footerJS>
 <script>
     $("#headerHome").addClass("active");
     $(document).ready(function () {
-
-//        $(".pageRefreshBtn").bind("click", function (e) {
-//            全部作品局部刷新分页
-//            getPage(parseInt(this.text));
-//        });
-
-//        getPage(1);
-
-//        function getPage(page) {
-//            $.ajax({
-//                type: "get",
-//                url: "http://localhost:8080/site/main/getPaging?page=" + page,
-//                contentType: "application/json",
-//                dataType: "json",
-//                success: function (result) {
-//                    var tpl = $("#all_works")[0].innerHTML;
-//                    var html = Mustache.render(tpl, result);
-//                    $("#all_works_page_content")[0].innerHTML = html;
-//                }
-//            });
-
-//            if(page == 1){
-//                var tpl = $("#all_works")[0].innerHTML;
-//                var html = Mustache.render(tpl, {});
-//                $("#all_works_page_content")[0].innerHTML = html;
-//
-//            }else {
-//                var tpl = $("#all_works_4")[0].innerHTML;
-//                var html = Mustache.render(tpl, {});
-//                $("#all_works_page_content")[0].innerHTML = html;
-//            }
-//
-//
-//        }
-//
-//
     });
 </script>
 </@footerJS>

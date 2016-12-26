@@ -20,7 +20,6 @@ body {
     color: #333;
     font-size: 13px;
     line-height: 1.6;
-    min-width: 1200px;
 }
 
 body.header-fixed-space {
@@ -1719,4 +1718,8 @@ img.img-mouse {
 /*Team v1*/
 .team-v1 li > h3 {
     color: #555;
+}
+
+.img-responsive{
+    margin-top:0px !important;
 }

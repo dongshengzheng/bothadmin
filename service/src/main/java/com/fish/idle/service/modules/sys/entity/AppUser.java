@@ -27,6 +27,9 @@ public class AppUser implements Serializable {
 	@TableField(value = "login_name")
 	private String loginName;
 
+	/** 用户名 */
+	private String username;
+
 	/** 登录密码 */
 	private String password;
 
