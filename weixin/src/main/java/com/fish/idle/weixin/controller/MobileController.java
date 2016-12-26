@@ -4,8 +4,8 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.fish.idle.service.modules.jsdd.entity.*;
 import com.fish.idle.service.modules.jsdd.service.*;
-import com.fish.idle.service.modules.sys.entity.User;
-import com.fish.idle.service.modules.sys.service.UserService;
+import com.fish.idle.service.modules.sys.entity.AppUser;
+import com.fish.idle.service.modules.sys.service.IAppUserService;
 import com.fish.idle.service.util.Const;
 import com.fish.idle.service.util.DateUtil;
 import com.fish.idle.weixin.interceptor.OAuthRequired;
@@ -16,8 +16,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import me.chanjar.weixin.mp.api.WxMpConfigStorage;
@@ -27,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -39,7 +38,7 @@ import java.util.*;
 @RequestMapping(value = "/mobile")
 public class MobileController extends BaseController {
     @Autowired
-    private UserService userService;
+    private IAppUserService appUserService;
 
     @Autowired
     private IConsumerService consumerService;
@@ -54,13 +53,16 @@ public class MobileController extends BaseController {
     private IImagesService imagesService;
 
     @Autowired
+    private IReportService reportService;
+
+    @Autowired
     private IFollowHistoryService followHistoryService;
 
     @Autowired
-    private IValueReportService valueReportService;
+    private ITransferHistoryService transferHistoryService;
 
     @Autowired
-    private ITransferHistoryService transferHistoryService;
+    private IInterpretationService interpretationService;
 
     @Autowired
     private WxMpConfigStorage configStorage;
@@ -73,22 +75,22 @@ public class MobileController extends BaseController {
     public String toLogin(HttpSession session, ModelMap map) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
-            user = new User();
-            user.setLoginName(wxMpUser.getNickname());
-            user.setPassword("iLoveMoney");
-            user.setName(wxMpUser.getNickname());
-            user.setDelFlag(Const.DEL_FLAG_NORMAL);
-            user.setOpenId(wxMpUser.getOpenId());
-            user.setLastLogin(new Date());
-            user.setHeadImgUrl(wxMpUser.getHeadImgUrl());
-            userService.insert(user);
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
+            appUser = new AppUser();
+            appUser.setLoginName(wxMpUser.getNickname());
+            appUser.setPassword("iLoveMoney");
+            appUser.setName(wxMpUser.getNickname());
+            appUser.setDelFlag(Const.DEL_FLAG_NORMAL);
+            appUser.setOpenId(wxMpUser.getOpenId());
+            appUser.setLastLogin(new Date());
+            appUser.setHeadImgUrl(wxMpUser.getHeadImgUrl());
+            appUserService.insert(appUser);
         } else {
-            user.setLastLogin(new Date());
-            userService.updateSelectiveById(user);
+            appUser.setLastLogin(new Date());
+            appUserService.updateSelectiveById(appUser);
         }
         return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/works";
     }
@@ -102,21 +104,21 @@ public class MobileController extends BaseController {
     @RequestMapping(value = "works", method = RequestMethod.GET)
     @OAuthRequired
     public String works(HttpSession session,
-                        Works works,
-                        HttpServletRequest request,
-                        HttpServletResponse response,
                         ModelMap map) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
+        Works works = new Works();
         works.setStatus(Const.WORKS_STATUS_PASS);
+        EntityWrapper<Works> ew = new EntityWrapper(works);
+        ew.setSqlSelect(" *,(select url from dd_images where target_id = dd_works.id and type = 0 limit 1) as images");
         Page<Works> page = new Page<>(1, 4);
-        page = worksService.selectPage(page, new EntityWrapper<>(works));
+        page = worksService.selectPage(page, ew);
         map.put("page", page);
         return "modules/mobile/pawn2/works";
     }
@@ -130,19 +132,16 @@ public class MobileController extends BaseController {
     @ResponseBody
     @OAuthRequired
     public Page<Works> worksPage(HttpSession session,
-                                 Works works,
-                                 HttpServletRequest request,
-                                 HttpServletResponse response,
-                                 ModelMap map,
                                  int pageNo) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-//        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+//        if (appUser == null) {
 //            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
 //        }
+        Works works = new Works();
         works.setStatus(Const.WORKS_STATUS_PASS);
         Page<Works> page = new Page<>(pageNo, 4);
         page = worksService.selectPage(page, new EntityWrapper<>(works));
@@ -158,21 +157,18 @@ public class MobileController extends BaseController {
     @ResponseBody
     @OAuthRequired
     public String collectWorks(HttpSession session,
-                               HttpServletRequest request,
-                               HttpServletResponse response,
-                               ModelMap map,
                                int worksId) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
 
         FollowHistory followHistory = new FollowHistory();
-        followHistory.setUserId(user.getId());
+        followHistory.setUserId(appUser.getId());
         followHistory.setTargetId(worksId);
         followHistory.setType(0);
         FollowHistory fh = followHistoryService.selectOne(new EntityWrapper<>(followHistory));
@@ -191,16 +187,13 @@ public class MobileController extends BaseController {
      */
     @RequestMapping(value = "search", method = RequestMethod.GET)
     @OAuthRequired
-    public String search(HttpSession session,
-                         HttpServletRequest request,
-                         HttpServletResponse response,
-                         ModelMap map) {
+    public String search(HttpSession session) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
         return "modules/mobile/pawn2/search";
@@ -214,44 +207,42 @@ public class MobileController extends BaseController {
     @RequestMapping(value = "searchPerson", method = RequestMethod.GET)
     @OAuthRequired
     public String searchPerson(HttpSession session,
-                               HttpServletRequest request,
-                               HttpServletResponse response,
                                ModelMap map,
                                @RequestParam(required = false) String name) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
 
-        List<User> userList = userService.searchUsersByName(name, user.getId());
+        List<AppUser> appUserList = appUserService.searchUsersByName(name, appUser.getId());
 
-        Map<Integer, User> userMap = new HashMap<>();
-        for (User uu : userList) {
-            userMap.put(uu.getId(), uu);
+        Map<Integer, AppUser> appUserMap = new HashMap<>();
+        for (AppUser uu : appUserList) {
+            appUserMap.put(uu.getId(), uu);
         }
 
-        List<User> haveFocusList = new ArrayList<>();
+        List<AppUser> haveFocusList = new ArrayList<>();
 
         FollowHistory followHistory = new FollowHistory();
-        followHistory.setUserId(user.getId());
+        followHistory.setUserId(appUser.getId());
         followHistory.setType(1);
         followHistory.setDelFlag(0);
         List<FollowHistory> followHistoryList = followHistoryService.selectList(new EntityWrapper<>(followHistory));
         for (FollowHistory fw : followHistoryList) {
             Integer id = fw.getTargetId();
-            if (userMap.containsKey(id)) {
-                haveFocusList.add(userMap.get(id));
+            if (appUserMap.containsKey(id)) {
+                haveFocusList.add(appUserMap.get(id));
             }
         }
 
-        userList.removeAll(haveFocusList);
+        appUserList.removeAll(haveFocusList);
 
         map.put("haveFocusList", haveFocusList);
-        map.put("notFocusList", userList);
+        map.put("notFocusList", appUserList);
 
 
         return "modules/mobile/pawn2/searchPerson";
@@ -267,21 +258,18 @@ public class MobileController extends BaseController {
     @ResponseBody
     @OAuthRequired
     public String notToHave(HttpSession session,
-                            HttpServletRequest request,
-                            HttpServletResponse response,
-                            ModelMap map,
                             int targetId) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
 
         FollowHistory followHistory = new FollowHistory();
-        followHistory.setUserId(user.getId());
+        followHistory.setUserId(appUser.getId());
         followHistory.setTargetId(targetId);
         followHistory.setType(1);
         FollowHistory fh = followHistoryService.selectOne(new EntityWrapper<>(followHistory));
@@ -308,21 +296,18 @@ public class MobileController extends BaseController {
     @ResponseBody
     @OAuthRequired
     public String haveToNot(HttpSession session,
-                            HttpServletRequest request,
-                            HttpServletResponse response,
-                            ModelMap map,
                             int targetId) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
 
         FollowHistory followHistory = new FollowHistory();
-        followHistory.setUserId(user.getId());
+        followHistory.setUserId(appUser.getId());
         followHistory.setTargetId(targetId);
         followHistory.setType(1);
         FollowHistory fh = followHistoryService.selectOne(new EntityWrapper<>(followHistory));
@@ -349,16 +334,14 @@ public class MobileController extends BaseController {
     @RequestMapping(value = "searchWorks", method = RequestMethod.GET)
     @OAuthRequired
     public String searchWorks(HttpSession session,
-                              HttpServletRequest request,
-                              HttpServletResponse response,
                               ModelMap map,
                               @RequestParam(required = false) String name) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
 
@@ -376,56 +359,54 @@ public class MobileController extends BaseController {
      *
      * @return
      */
-    @RequestMapping(value = "userInfo", method = RequestMethod.GET)
+    @RequestMapping(value = "appUserInfo", method = RequestMethod.GET)
     @OAuthRequired
-    public String userInfo(HttpSession session,
-                           HttpServletRequest request,
-                           HttpServletResponse response,
-                           ModelMap map,
-                           @RequestParam(required = false) int userId) {
+    public String appUserInfo(HttpSession session,
+                              ModelMap map,
+                              @RequestParam(required = false) int appUserId) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
 
-        User user1 = userService.selectById(userId);
+        AppUser appUser1 = appUserService.selectById(appUserId);
 
         Works works = new Works();
-        works.setCreateBy(userId);
+        works.setCreateBy(appUserId);
         List<Works> worksList = worksService.selectList(new EntityWrapper<>(works));
-        user1.setWorksCount(worksList.size());
+        appUser1.setWorksCount(worksList.size());
 
-        List<User> userList = userService.searchFollowUsersByUserId(userId);
-        user1.setFollowCount(userList.size());
+        List<AppUser> appUserList = appUserService.searchFollowUsersByUserId(appUserId);
+        appUser1.setFollowCount(appUserList.size());
 
-        List<User> haveFocusList = new ArrayList<>();
-        Map<Integer, User> userMap = new HashMap<>();
-        for (User uu : userList) {
-            userMap.put(uu.getId(), uu);
+        List<AppUser> haveFocusList = new ArrayList<>();
+        Map<Integer, AppUser> appUserMap = new HashMap<>();
+        for (AppUser uu : appUserList) {
+            appUserMap.put(uu.getId(), uu);
         }
         FollowHistory followHistory = new FollowHistory();
-        followHistory.setUserId(user.getId());
+        followHistory.setUserId(appUser.getId());
         followHistory.setType(1);
         followHistory.setDelFlag(0);
         List<FollowHistory> followHistoryList = followHistoryService.selectList(new EntityWrapper<>(followHistory));
         for (FollowHistory fw : followHistoryList) {
             Integer id = fw.getTargetId();
-            if (userMap.containsKey(id)) {
-                haveFocusList.add(userMap.get(id));
+            if (appUserMap.containsKey(id)) {
+                haveFocusList.add(appUserMap.get(id));
             }
         }
 
-        userList.removeAll(haveFocusList);
-        map.put("user", user1);
+        appUserList.removeAll(haveFocusList);
+        map.put("appUser", appUser1);
         map.put("worksList", worksList);
         map.put("haveFocusList", haveFocusList);
-        map.put("notFocusList", userList);
+        map.put("notFocusList", appUserList);
 
-        return "modules/mobile/pawn2/userInfo";
+        return "modules/mobile/pawn2/appUserInfo";
     }
 
     /**
@@ -436,23 +417,21 @@ public class MobileController extends BaseController {
     @RequestMapping(value = "worksDetail", method = RequestMethod.GET)
     @OAuthRequired
     public String worksDetail(HttpSession session,
-                              HttpServletRequest request,
-                              HttpServletResponse response,
                               ModelMap map,
                               @RequestParam int worksId) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
 
         //增加浏览记录
         FollowHistory addBrowse = new FollowHistory();
         addBrowse.setTargetId(worksId);
-        addBrowse.setUserId(user.getId());
+        addBrowse.setUserId(appUser.getId());
         addBrowse.setType(Const.FOLLOW_HISTORY_TYPE_BROWSE);
         FollowHistory oldBrowse = followHistoryService.selectOne(new EntityWrapper<>(addBrowse));
         if (oldBrowse == null) {
@@ -471,7 +450,7 @@ public class MobileController extends BaseController {
         wl.setWorksId(worksId);
         WorksLevel worksLevel = worksLevelService.selectOne(new EntityWrapper<>(wl));
         //作品用户
-        User user1 = userService.selectById(works.getCreateBy());
+        AppUser appUser1 = appUserService.selectById(works.getCreateBy());
         //作品提供者
         Consumer provider = new Consumer();
         provider.setType(Const.CONSUMER_TYPE_PROVIDER);
@@ -489,23 +468,30 @@ public class MobileController extends BaseController {
         List<Images> imagesList = imagesService.selectList(new EntityWrapper<>(images));
 
         //收藏该作品的用户集合
-        List<User> collecterList = userService.searchFollowHistoryUsers(Const.FOLLOW_HISTORY_TYPE_COLLECT, worksId);
+        List<AppUser> collecterList = appUserService.searchFollowHistoryUsers(Const.FOLLOW_HISTORY_TYPE_COLLECT, worksId);
         if (collecterList.size() > 10) {
             collecterList = collecterList.subList(0, 9);
         }
 
         //查看过该作品的用户集合
-        List<User> browseList = userService.searchFollowHistoryUsers(Const.FOLLOW_HISTORY_TYPE_BROWSE, worksId);
+        List<AppUser> browseList = appUserService.searchFollowHistoryUsers(Const.FOLLOW_HISTORY_TYPE_BROWSE, worksId);
         if (browseList.size() > 10) {
             browseList = browseList.subList(0, 9);
         }
 
-        //评估报告
-        ValueReport valueReport = new ValueReport();
-        valueReport.setWorksId(worksId);
-        valueReport = valueReportService.selectOne(new EntityWrapper<>(valueReport));
+        //评估报告及图片
+        Report report = new Report();
+        report.setWorksId(worksId);
+        report = reportService.selectOne(new EntityWrapper<>(report));
+        Images certImage = new Images();
+        certImage.setTargetId(worksId);
+        certImage.setType(Const.IMAGES_REPORT_CERTIFICATE);
 
-        map.put("user", user1);
+
+        //诠释详情
+        List<Interpretation> interpretationList = interpretationService.interpretationContainImages(worksId);
+
+        map.put("appUser", appUser1);
         map.put("works", works);
         map.put("worksLevel", worksLevel);
         map.put("provider", provider);
@@ -513,10 +499,35 @@ public class MobileController extends BaseController {
         map.put("imagesList", imagesList);
         map.put("collecterList", collecterList);
         map.put("browseList", browseList);
-        map.put("valueReport", valueReport);
+        map.put("report", report);
+        map.put("certImage", certImage);
+        map.put("interpretationList", interpretationList);
 
         return "modules/mobile/pawn2/worksDetail";
     }
+
+    /**
+     * 跳往作品诠释页面
+     *
+     * @return
+     */
+    @RequestMapping(value = "interPretationPre", method = RequestMethod.GET)
+    @OAuthRequired
+    public String interPretationPre(HttpSession session,
+                                    @RequestParam(required = false) int worksId,
+                                    ModelMap map) {
+        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+        String openId = wxMpUser.getOpenId();
+        AppUser u = new AppUser();
+        u.setOpenId(openId);
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
+            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+        }
+        map.put("worksId", worksId);
+        return "modules/mobile/pawn2/interPretation";
+    }
+
 
     /**
      * 跳往作品详情:诠释详情页面
@@ -525,20 +536,15 @@ public class MobileController extends BaseController {
      */
     @RequestMapping(value = "worksExplainDetail", method = RequestMethod.GET)
     @OAuthRequired
-    public String worksExplainDetail(HttpSession session,
-                                     Works works,
-                                     HttpServletRequest request,
-                                     HttpServletResponse response,
-                                     ModelMap map) {
+    public String worksExplainDetail(HttpSession session) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
-        works.setStatus(Const.WORKS_STATUS_PASS);
         return "modules/mobile/pawn2/worksExplainDetail";
     }
 
@@ -550,19 +556,17 @@ public class MobileController extends BaseController {
     @RequestMapping(value = "my", method = RequestMethod.GET)
     @OAuthRequired
     public String my(HttpSession session,
-                     HttpServletRequest request,
-                     HttpServletResponse response,
                      ModelMap map) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
 
-        map.put("user", userService.searchMyInfo(user.getId()));
+        map.put("appUser", appUserService.searchMyInfo(appUser.getId()));
 
         return "modules/mobile/pawn2/my";
     }
@@ -575,18 +579,16 @@ public class MobileController extends BaseController {
     @RequestMapping(value = "my/mySet", method = RequestMethod.GET)
     @OAuthRequired
     public String mySet(HttpSession session,
-                        HttpServletRequest request,
-                        HttpServletResponse response,
                         ModelMap map) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
-        map.put("user", user);
+        map.put("appUser", appUser);
         return "modules/mobile/pawn2/mySet";
     }
 
@@ -598,9 +600,6 @@ public class MobileController extends BaseController {
     @RequestMapping(value = "my/mySetComplete", method = RequestMethod.POST)
     @OAuthRequired
     public String mySetComplete(HttpSession session,
-                                HttpServletRequest request,
-                                HttpServletResponse response,
-                                ModelMap map,
                                 @RequestParam(required = false) String name,
                                 @RequestParam(required = false) String address,
                                 @RequestParam(required = false) String phone,
@@ -610,19 +609,19 @@ public class MobileController extends BaseController {
                                 @RequestParam(required = false) String ifpublic) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
-        user.setName(name);
-        user.setPhone(phone);
-        user.setEmail(email);
-        user.setAddress(address);
-        user.setIdentification(identification);
-        user.setPrefer(prefer);
-        userService.updateById(user);
+        appUser.setName(name);
+        appUser.setPhone(phone);
+        appUser.setEmail(email);
+        appUser.setAddress(address);
+        appUser.setIdentification(identification);
+        appUser.setPrefer(prefer);
+        appUserService.updateById(appUser);
         return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my";
     }
 
@@ -634,19 +633,17 @@ public class MobileController extends BaseController {
     @RequestMapping(value = "my/pointCenter", method = RequestMethod.GET)
     @OAuthRequired
     public String pointCenter(HttpSession session,
-                              HttpServletRequest request,
-                              HttpServletResponse response,
                               ModelMap map) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
 
-        map.put("user", user);
+        map.put("appUser", appUser);
 
         return "modules/mobile/pawn2/pointCenter";
     }
@@ -659,16 +656,13 @@ public class MobileController extends BaseController {
     @RequestMapping(value = "my/pointSave", method = RequestMethod.GET)
     @OAuthRequired
     public String pointSave(HttpSession session,
-                            Works works,
-                            HttpServletRequest request,
-                            HttpServletResponse response,
                             ModelMap map) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
         return "modules/mobile/pawn2/pointSave";
@@ -682,17 +676,14 @@ public class MobileController extends BaseController {
     @RequestMapping(value = "my/pointSaveComplete", method = RequestMethod.GET)
     @OAuthRequired
     public String pointSaveComplete(HttpSession session,
-                                    Works works,
-                                    HttpServletRequest request,
-                                    HttpServletResponse response,
                                     ModelMap map,
                                     @RequestParam(required = false) int score) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
 
@@ -707,16 +698,13 @@ public class MobileController extends BaseController {
     @RequestMapping(value = "my/pointWithdraw", method = RequestMethod.GET)
     @OAuthRequired
     public String pointWithdraw(HttpSession session,
-                                Works works,
-                                HttpServletRequest request,
-                                HttpServletResponse response,
                                 ModelMap map) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
         return "modules/mobile/pawn2/pointWithdraw";
@@ -730,17 +718,14 @@ public class MobileController extends BaseController {
     @RequestMapping(value = "my/pointWithdrawComplete", method = RequestMethod.GET)
     @OAuthRequired
     public String pointWithdrawComplete(HttpSession session,
-                                        Works works,
-                                        HttpServletRequest request,
-                                        HttpServletResponse response,
                                         ModelMap map,
                                         @RequestParam(required = false) int score) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
 
@@ -755,20 +740,18 @@ public class MobileController extends BaseController {
     @RequestMapping(value = "my/myWorks", method = RequestMethod.GET)
     @OAuthRequired
     public String myWorks(HttpSession session,
-                          Works works,
-                          HttpServletRequest request,
-                          HttpServletResponse response,
                           ModelMap map,
                           @RequestParam String showwhich) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
-        works.setCreateBy(user.getId());
+        Works works = new Works();
+        works.setCreateBy(appUser.getId());
         EntityWrapper ew = new EntityWrapper(works);
         List<Works> worksList = worksService.selectList(ew);
 
@@ -805,29 +788,27 @@ public class MobileController extends BaseController {
     @RequestMapping(value = "my/transferCollectionFocus", method = RequestMethod.GET)
     @OAuthRequired
     public String transferCollectionFocus(HttpSession session,
-                                          HttpServletRequest request,
-                                          HttpServletResponse response,
                                           ModelMap map,
                                           @RequestParam String showwhich) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
 
-        Integer userId = user.getId();
+        Integer appUserId = appUser.getId();
 
         //转让作品集合
-        List<Works> transferWorksList = worksService.transferWorksList(userId);
+        List<Works> transferWorksList = worksService.transferWorksList(appUserId);
 
         //收藏作品集合
-        List<Works> fhWorksList = worksService.collectionWorksList(userId);
+        List<Works> fhWorksList = worksService.collectionWorksList(appUserId);
 
         //关注用户集合
-        List<User> fhPeopleList = userService.searchFocusById(userId);
+        List<AppUser> fhPeopleList = appUserService.searchFocusById(appUserId);
 
         map.put("showwhich", showwhich);
         map.put("transferWorksList", transferWorksList);
@@ -845,16 +826,14 @@ public class MobileController extends BaseController {
     @RequestMapping(value = "transfer", method = RequestMethod.GET)
     @OAuthRequired
     public String transfer(HttpSession session,
-                           HttpServletRequest request,
-                           HttpServletResponse response,
                            ModelMap map,
                            @RequestParam(required = false) int worksId) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
         Works works = worksService.selectById(worksId);
@@ -872,25 +851,22 @@ public class MobileController extends BaseController {
             produces = "application/json;charset=utf-8")
     @OAuthRequired
     @ResponseBody
-    public List<User> selectTransferPerson(HttpSession session,
-                                           HttpServletRequest request,
-                                           HttpServletResponse response,
-                                           ModelMap map,
-                                           @RequestParam(required = false) String info) {
+    public List<AppUser> selectTransferPerson(HttpSession session,
+                                              @RequestParam(required = false) String info) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-//        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+//        if (appUser == null) {
 //            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
 //        }
-        List<User> users = new ArrayList<>();
+        List<AppUser> appUsers = new ArrayList<>();
         if (info != null && info.trim().length() > 0) {
-            users = userService.searchUserByNameAndId(info, user.getId());
+            appUsers = appUserService.searchUserByNameAndId(info, appUser.getId());
         }
 
-        return users;
+        return appUsers;
     }
 
 
@@ -902,17 +878,15 @@ public class MobileController extends BaseController {
     @RequestMapping(value = "transferComplete", method = RequestMethod.POST)
     @OAuthRequired
     public String transferComplete(HttpSession session,
-                                   HttpServletRequest request,
-                                   HttpServletResponse response,
                                    ModelMap map,
                                    TransferHistory transferHistory,
                                    @RequestParam(required = false) String transferTypeString) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
 
@@ -920,7 +894,7 @@ public class MobileController extends BaseController {
         works.setStatus(Const.WORKS_STATUS_TRANSFER);
         worksService.updateById(works);
 
-        transferHistory.setFromUserId(user.getId());
+        transferHistory.setFromUserId(appUser.getId());
         transferHistory.setStatus(Const.TRANSFER_STATUS_WAIT);
         if ("售卖".equals(transferTypeString)) {
             transferHistory.setTransferType(Const.TRANSFER_TYPE_SELL);
@@ -942,16 +916,13 @@ public class MobileController extends BaseController {
      */
     @RequestMapping(value = "worksRegister1", method = RequestMethod.GET)
     @OAuthRequired
-    public String worksRegister1(HttpSession session,
-                                 HttpServletRequest request,
-                                 HttpServletResponse response,
-                                 ModelMap map) {
+    public String worksRegister1(HttpSession session) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
 
@@ -966,46 +937,50 @@ public class MobileController extends BaseController {
     @RequestMapping(value = "worksRegister2", method = RequestMethod.POST)
     @OAuthRequired
     public String worksRegister2(HttpSession session,
-                                 HttpServletRequest request,
-                                 HttpServletResponse response,
-                                 ModelMap map,
                                  Works works,
                                  Consumer consumer,
                                  @RequestParam(required = false) String createDateString,
                                  @RequestParam(required = false) String worksName,
-                                 @RequestParam(required = false) String consumerNo,
+                                 @RequestParam(required = false) String providerName,
+                                 @RequestParam(required = false) String providerNo,
                                  @RequestParam(required = false) String worksRemarks,
                                  @RequestParam(required = false) String imgUrls,
                                  @RequestParam(required = false) String draftYN) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
-        works.setCreateBy(user.getId());
+        works.setCreateBy(appUser.getId());
         if (createDateString != null && createDateString.trim().length() > 0) {
             Date createDate = DateUtil.parseDate(createDateString, "yyyy-MM-dd");
             works.setCreateDate(createDate);
         }
         works.setName(worksName);
         works.setRemarks(worksRemarks);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        Long time = new Date().getTime();
+        String no = sdf.format(time);
+        works.setNo("JS-A" + no + "A");
+
         if ("yes".equals(draftYN)) {
             works.setStatus(Const.WORKS_STATUS_DRAFT);
         }
         worksService.insert(works);
-//        consumer.setName(works.getProvideBy());
+        consumer.setName(providerName);
         consumer.setType(Const.CONSUMER_TYPE_PROVIDER);
         consumer.setWorksId(works.getId());
-        consumer.setNo(consumerNo);
+        consumer.setNo(providerNo);
         consumerService.insert(consumer);
 
         Integer worksId = works.getId();
 
         if (imgUrls != null && imgUrls.trim().length() > 0) {
-            String[] urls = imgUrls.split("\\|");
+            String[] urls = imgUrls.split(",");
             for (String url : urls) {
                 Images images = new Images();
                 images.setTargetId(worksId);
@@ -1031,9 +1006,6 @@ public class MobileController extends BaseController {
     @RequestMapping(value = "worksRegister3", method = RequestMethod.POST)
     @OAuthRequired
     public String worksRegister3(HttpSession session,
-                                 HttpServletRequest request,
-                                 HttpServletResponse response,
-                                 ModelMap map,
                                  @RequestParam(required = false) String breed,
                                  @RequestParam(required = false) String type,
                                  @RequestParam(required = false) BigDecimal length,
@@ -1049,10 +1021,10 @@ public class MobileController extends BaseController {
                                  @RequestParam(required = false) String draftYN) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
         Works works = (Works) session.getAttribute("registerWorks");
@@ -1090,17 +1062,14 @@ public class MobileController extends BaseController {
     @RequestMapping(value = "worksRegister4", method = RequestMethod.POST)
     @OAuthRequired
     public String worksRegister4(HttpSession session,
-                                 HttpServletRequest request,
-                                 HttpServletResponse response,
-                                 ModelMap map,
                                  WorksLevel worksLevel,
                                  @RequestParam(required = false) String draftYN) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
         int worksId = (int) session.getAttribute("registerWorksId");
@@ -1126,30 +1095,27 @@ public class MobileController extends BaseController {
     @RequestMapping(value = "worksRegister5", method = RequestMethod.POST)
     @OAuthRequired
     public String worksRegister5(HttpSession session,
-                                 HttpServletRequest request,
-                                 HttpServletResponse response,
-                                 ModelMap map,
-                                 ValueReport valueReport,
+                                 Report report,
                                  @RequestParam(required = false) String draftYN,
-                                 @RequestParam(required = false) String certificateImgUrl) {
+                                 @RequestParam(required = false) String zpxxImge) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
         Integer worksId = (Integer) session.getAttribute("registerWorksId");
-        valueReport.setWorksId(worksId);
-        valueReportService.insert(valueReport);
+        report.setWorksId(worksId);
+        reportService.insert(report);
 
-//        if (certificateImgUrl != null && certificateImgUrl.length() > 0) {
-//            Images images = new Images();
-//            images.setUrl(certificateImgUrl);
-//            images.setType(Const.IMAGES_CERTIFICATE);
-//            images.setTargetId(worksId);
-//        }
+        if (zpxxImge != null && zpxxImge.length() > 0) {
+            Images images = new Images();
+            images.setUrl(zpxxImge);
+            images.setType(Const.IMAGES_REPORT_CERTIFICATE);
+            images.setTargetId(worksId);
+        }
 
 
         if ("yes".equals(draftYN)) {
@@ -1176,19 +1142,16 @@ public class MobileController extends BaseController {
     @RequestMapping(value = "worksRegisterComplete", method = RequestMethod.POST)
     @OAuthRequired
     public String worksRegisterComplete(HttpSession session,
-                                        HttpServletRequest request,
-                                        HttpServletResponse response,
-                                        ModelMap map,
                                         @RequestParam(required = false) String draftYN,
                                         Consumer consumer,
                                         @RequestParam(required = false) String collecterDatetimeString,
                                         @RequestParam(required = false) String collecterPub) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
 
@@ -1224,16 +1187,14 @@ public class MobileController extends BaseController {
     @RequestMapping(value = "transferHistory", method = RequestMethod.GET)
     @OAuthRequired
     public String transferHistory(HttpSession session,
-                                  HttpServletRequest request,
-                                  HttpServletResponse response,
                                   ModelMap map,
                                   @RequestParam(required = false) Integer worksId) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
 
@@ -1251,16 +1212,14 @@ public class MobileController extends BaseController {
     @RequestMapping(value = "worksEdit", method = RequestMethod.GET)
     @OAuthRequired
     public String worksEdit(HttpSession session,
-                            HttpServletRequest request,
-                            HttpServletResponse response,
                             ModelMap map,
                             @RequestParam int worksId) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
 
@@ -1285,9 +1244,13 @@ public class MobileController extends BaseController {
         images.setType(Const.IMAGES_WORKS);
         List<Images> worksImagesList = imagesService.selectList(new EntityWrapper<>(images));
 
-        ValueReport valueReport = new ValueReport();
-        valueReport.setWorksId(worksId);
-        valueReport = valueReportService.selectOne(new EntityWrapper<>(valueReport));
+        Report report = new Report();
+        report.setWorksId(worksId);
+        report = reportService.selectOne(new EntityWrapper<>(report));
+        Images certImage = new Images();
+        certImage.setTargetId(worksId);
+        certImage.setType(Const.IMAGES_REPORT_CERTIFICATE);
+        certImage = imagesService.selectOne(new EntityWrapper<>(certImage));
 
 
         map.put("works", works);
@@ -1295,7 +1258,8 @@ public class MobileController extends BaseController {
         map.put("worksLevel", worksLevel);
         map.put("worksImagesList", worksImagesList);
         map.put("collecter", collecter);
-        map.put("valueReport", valueReport);
+        map.put("report", report);
+        map.put("certImage", certImage);
 
         session.setAttribute("worksIdInSession", worksId);
 
@@ -1310,9 +1274,6 @@ public class MobileController extends BaseController {
     @RequestMapping(value = "worksEditComplete", method = RequestMethod.POST)
     @OAuthRequired
     public String worksEditComplete(HttpSession session,
-                                    HttpServletRequest request,
-                                    HttpServletResponse response,
-                                    ModelMap map,
                                     Works works,
                                     WorksLevel worksLevel,
                                     Consumer consumer,
@@ -1321,20 +1282,22 @@ public class MobileController extends BaseController {
                                     @RequestParam(required = false) String worksType,
                                     @RequestParam(required = false) String makeTimeString,
                                     @RequestParam(required = false) String createDateString,
-                                    @RequestParam(required = false) String consumerNo,
+                                    @RequestParam(required = false) String providerNo,
+                                    @RequestParam(required = false) String providerName,
                                     @RequestParam(required = false) String collecterName,
                                     @RequestParam(required = false) String collecterNo,
                                     @RequestParam(required = false) String collecterAddress,
                                     @RequestParam(required = false) String collecterPhone,
                                     @RequestParam(required = false) String collecterDateTimeString,
                                     @RequestParam(required = false) String collecterPub,
-                                    @RequestParam(required = false) String imgUrls) {
+                                    @RequestParam(required = false) String imgUrls,
+                                    @RequestParam(required = false) String zpxxImge) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
-        User u = new User();
+        AppUser u = new AppUser();
         u.setOpenId(openId);
-        User user = userService.selectOne(u);
-        if (user == null) {
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
 
@@ -1344,6 +1307,9 @@ public class MobileController extends BaseController {
 
         works.setCreateBy(oldWorks.getCreateBy());
         works.setCreateDate(oldWorks.getCreateDate());
+        works.setNo(oldWorks.getNo());
+        works.setUpdateBy(appUser.getId());
+        works.setUpdateDate(new Date());
         works.setId(worksId);
         works.setType(worksType);
         works.setName(worksName);
@@ -1370,7 +1336,7 @@ public class MobileController extends BaseController {
         imagesService.deleteBatchIds(ids);
 
         if (imgUrls != null && imgUrls.trim().length() > 0) {
-            String[] urls = imgUrls.split("\\|");
+            String[] urls = imgUrls.split(",");
             for (String url : urls) {
                 Images images = new Images();
                 images.setTargetId(worksId);
@@ -1392,8 +1358,8 @@ public class MobileController extends BaseController {
         }
 
 
-        consumer.setNo(consumerNo);
-//        consumer.setName(works.getProvideBy());
+        consumer.setNo(providerNo);
+        consumer.setName(providerName);
         consumer.setType(Const.CONSUMER_TYPE_PROVIDER);
         consumer.setWorksId(worksId);
         Consumer cs = new Consumer();
@@ -1434,6 +1400,19 @@ public class MobileController extends BaseController {
         } else {
             collecter.setId(oldConsumer.getId());
             consumerService.updateById(collecter);
+        }
+
+        if (zpxxImge != null && zpxxImge.length() > 0) {
+            Images images = new Images();
+            images.setType(Const.IMAGES_REPORT_CERTIFICATE);
+            images.setTargetId(worksId);
+            images = imagesService.selectOne(new EntityWrapper<>(images));
+            if (images != null) {
+                images.setUrl(zpxxImge);
+                imagesService.updateById(images);
+            } else {
+                imagesService.insert(images);
+            }
         }
 
         return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my";

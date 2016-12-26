@@ -44,8 +44,8 @@
                      alt="">
             </div>
             <div class="weui-media-box__bd">
-                <h4 class="weui-media-box__title">${user.name}</h4>
-                <p class="weui-media-box__desc">作品:${user.worksCount} &nbsp;粉丝:${user.followCount}</p>
+                <h4 class="weui-media-box__title">${appUser.loginName}</h4>
+                <p class="weui-media-box__desc">作品:${appUser.worksCount} &nbsp;粉丝:${appUser.followCount}</p>
                 <input type="button" value=" + 关注 " class="header-info-care"/>
             </div>
         </a>
@@ -78,7 +78,7 @@
                     <p>姓名:</p>
                 </div>
                 <div class="weui-cell_ft">
-                    ${user.name}
+                    ${appUser.name}
                 </div>
             </div>
             <div class="weui-cell">
@@ -86,7 +86,7 @@
                     <p>住址:</p>
                 </div>
                 <div class="weui-cell_ft">
-                    ${user.address}
+                    ${appUser.address}
                 </div>
             </div>
             <div class="weui-cell">
@@ -94,7 +94,7 @@
                     <p>身份证:</p>
                 </div>
                 <div class="weui-cell_ft">
-                    ${user.identification}
+                    ${appUser.identification}
                 </div>
             </div>
             <div class="weui-cell">
@@ -102,7 +102,7 @@
                     <p>手机号:</p>
                 </div>
                 <div class="weui-cell_ft">
-                    ${user.phone}
+                    ${appUser.phone}
                 </div>
             </div>
             <div class="weui-cell">
@@ -110,7 +110,7 @@
                     <p>Email:</p>
                 </div>
                 <div class="weui-cell_ft">
-                    ${user.email}
+                    ${appUser.email}
                 </div>
             </div>
             <div class="weui-cell">
@@ -118,7 +118,7 @@
                     <p>收藏偏好:</p>
                 </div>
                 <div class="weui-cell_ft">
-                    ${user.prefer}
+                    ${appUser.prefer}
                 </div>
             </div>
         </div>
@@ -349,7 +349,7 @@
 
 
         $('#fan .weui-media-box__thumb').on('click', function () {
-            location.href = '${ctx}/mobile/userInfo?userId=' + $(this).parent().parent().parent().attr('id');
+            location.href = '${ctx}/mobile/appUserInfo?appUserId=' + $(this).parent().parent().parent().attr('id');
         })
 
 

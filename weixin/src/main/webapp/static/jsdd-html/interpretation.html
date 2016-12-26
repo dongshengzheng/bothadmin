@@ -1,5 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
-<%@ include file="include/taglib.jsp" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 
@@ -7,9 +5,9 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0"/>
     <title>物品信息</title>
-    <link rel="stylesheet" href="${ctxStatic}/css/custom.css"/>
-    <link rel="stylesheet" href="${ctxStatic}/css/weui.min.css"/>
-    <link rel="stylesheet" href="${ctxStatic}/css/jquery-weui.min.css"/>
+    <link rel="stylesheet" href="css/custom.css"/>
+    <link rel="stylesheet" href="css/weui.min.css"/>
+    <link rel="stylesheet" href="css/jquery-weui.min.css"/>
     <style>
         body {
             background-color: white;
@@ -34,7 +32,7 @@
         }
 
         .fixed-footer {
-            height: 12%;
+            height: 8%;
         }
 
         .fixed-footer p {
@@ -58,44 +56,14 @@
 <div>
     <form action="${ctx}/mobile/worksRegister2" enctype="multipart/form-data" method="post">
         <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
+            <div class="weui-cell__hd"><label class="weui-label">诠释价格</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="worksName" class="weui-input" type="tel" placeholder="请输入作品名称">
-            </div>
-        </div>
-        <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">提供者</label></div>
-            <div class="weui-cell__bd weui-cell_primary">
-                <input name="provideBy" class="weui-input" type="tel" placeholder="请输入姓名">
-            </div>
-        </div>
-        <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">身份证</label></div>
-            <div class="weui-cell__bd weui-cell_primary">
-                <input name="consumerNo" class="weui-input" type="tel" placeholder="可不填写">
-            </div>
-        </div>
-        <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">联系地址</label></div>
-            <div class="weui-cell__bd weui-cell_primary">
-                <input name="address" class="weui-input" placeholder="请输入详细地址">
-            </div>
-        </div>
-        <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">联系方式</label></div>
-            <div class="weui-cell__bd weui-cell_primary">
-                <input name="phone" class="weui-input" type="tel" placeholder="请输入联系方式">
-            </div>
-        </div>
-        <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">登记时间</label></div>
-            <div class="weui-cell__bd weui-cell_primary">
-                <input name="createDateString" class="weui-input" id="showDatePicker" type="text" placeholder="请选择时间">
+                <input name="scoreDemanded" id="scoreDemanded" class="weui-input" type="tel" placeholder="请选择诠释价格">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__bd weui-cell_primary">
-                <textarea name="worksRemarks" class="weui-textarea" placeholder="我的作品描述" rows="3"></textarea>
+                <textarea name="worksRemarks" class="weui-textarea" placeholder="请进行作品诠释" rows="13"></textarea>
                 <!--<div class="weui-textarea-counter">-->
                 <!--<span>0</span>/200-->
                 <!--</div>-->
@@ -119,33 +87,20 @@
         </div>
         <input type="hidden" name="imgUrls" id="imgUrls"/>
         <div class="fixed-footer">
-            <p>下一步即表示同意<a href="javascript:;" id="register-rule">《金石典当登记申请记录》</a></p>
             <hr>
             <div class="weui-form-preview__ft">
                 <input id="draftYN" name="draftYN" type="hidden" value="NO">
                 <br/>
-                <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" id="draftSubmit">
-                    存为草稿
-                </button>
+                <a class="weui-form-preview__btn weui-form-preview__btn_default"
+                   href="#">取消</a>
                 <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" id="trueSubmit">
-                    下一步
+                    诠释
                 </button>
             </div>
         </div>
         <div class="fixed-footer-blank">
         </div>
     </form>
-</div>
-
-<div class="js_dialog" style="display: none;">
-    <div class="weui-mask"></div>
-    <div class="weui-dialog">
-        <div class="weui-dialog__hd"><strong class="weui-dialog__title">登记申请须知</strong></div>
-        <div class="weui-dialog__bd">登记申请须知.....</div>
-        <div class="weui-dialog__ft">
-            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">我知道了</a>
-        </div>
-    </div>
 </div>
 
 <div class="weui-gallery" id="gallery">
@@ -165,9 +120,17 @@
 <script src="${ctxStatic}/js/plupload-2.1.2/js/plupload.dev.js"></script>
 <script>
     $(function () {
-        $('#register-rule').on('click', function () {
-            $(".js_dialog").fadeIn(200);
-        })
+        $('#scoreDemanded').picker({
+            title: "请选择诠释价格",
+            cols: [
+                {
+                    textAlign: 'center',
+                    values: [20, 50, 100, 200]
+                }
+            ]
+        });
+
+
         $('.weui-dialog__btn_primary').on('click', function () {
             $(".js_dialog").fadeOut(200);
         })

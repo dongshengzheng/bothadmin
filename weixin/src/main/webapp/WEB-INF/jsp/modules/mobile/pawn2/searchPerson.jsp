@@ -54,7 +54,7 @@
                              alt="">
                     </div>
                     <div class="weui-media-box__bd">
-                        <h4 class="weui-media-box__title">${person.name}</h4>
+                        <h4 class="weui-media-box__title">${person.loginName}</h4>
                         <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
                         <p class="weui-media-box__desc">作品:${person.worksCount} &nbsp;粉丝:${person.followCount}</p>
                         <div class="search-results-one-care have-care div-hide div-on">
@@ -85,7 +85,7 @@
                              alt="">
                     </div>
                     <div class="weui-media-box__bd">
-                        <h4 class="weui-media-box__title">${person.name}</h4>
+                        <h4 class="weui-media-box__title">${person.loginName}</h4>
                         <p class="weui-media-box__desc search-results-one-info-location">长沙</p>
                         <p class="weui-media-box__desc">作品:${person.worksCount} &nbsp;粉丝:${person.followCount}</p>
                         <div class="search-results-one-care have-care div-hide">
@@ -252,7 +252,7 @@
 
 
         $('.weui-media-box__thumb').on('click', function () {
-            location.href = '${ctx}/mobile/userInfo?userId=' + $(this).parent().parent().parent().attr('id');
+            location.href = '${ctx}/mobile/appUserInfo?userId=' + $(this).parent().parent().parent().attr('id');
         })
 
 

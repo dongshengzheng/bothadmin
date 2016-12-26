@@ -9,8 +9,8 @@
 
     <select id="thContainUsersInfo" resultType="TransferHistory">
         select t.*,u1.name from_user_name,u2.name to_user_name from dd_transfer_history t
-        join sys_user u1 on t.from_user_id=u1.id
-        join sys_user u2 on t.to_user_id=u2.id
+        join sys_app_user u1 on t.from_user_id=u1.id
+        join sys_app_user u2 on t.to_user_id=u2.id
         where t.works_id=#{0}
     </select>
 

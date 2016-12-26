@@ -60,7 +60,7 @@ public class ScoreCalc implements Serializable {
      * 逻辑删除标记（0：显示；1：隐藏）
      */
     @TableField(value = "del_flag")
-    private Integer delFlag;
+    private Integer delFlag=0;
 
 
     public Integer getId() {

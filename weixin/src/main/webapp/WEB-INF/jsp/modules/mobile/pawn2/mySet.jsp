@@ -40,11 +40,11 @@
         <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
             <div class="weui-media-box__hd">
                 <img class="weui-media-box__thumb"
-                     src="${user.headImgUrl}"
+                     src="${appUser.headImgUrl}"
                      alt="">
             </div>
             <div class="weui-media-box__bd">
-                <h4 class="weui-media-box__title">${user.name}</h4>
+                <h4 class="weui-media-box__title">${appUser.loginName}</h4>
                 <p class="weui-media-box__desc">(头像、昵称将同步微信)</p>
             </div>
             <span id="update">更新</span>
@@ -56,37 +56,37 @@
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">姓名</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="name" class="weui-input" value="${user.name}" type="tel" placeholder="必填">
+                <input name="name" class="weui-input" value="${appUser.name}" type="tel" placeholder="必填">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">地址</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="address" class="weui-input" value="${user.address}" type="tel" placeholder="可不填">
+                <input name="address" class="weui-input" value="${appUser.address}" type="tel" placeholder="可不填">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">联系方式</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="phone" class="weui-input" ${user.phone} type="tel" placeholder="必填">
+                <input name="phone" class="weui-input" ${appUser.phone} type="tel" placeholder="必填">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">Email</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="email" class="weui-input" ${user.email} type="tel" placeholder="可不填">
+                <input name="email" class="weui-input" ${appUser.email} type="tel" placeholder="可不填">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">身份证</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="identification" class="weui-input" ${user.identification} type="tel" placeholder="可不填">
+                <input name="identification" class="weui-input" ${appUser.identification} type="tel" placeholder="可不填">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">收藏偏好</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="perfer" class="weui-input" ${user.prefer} type="tel" placeholder="请选择您的收藏偏好">
+                <input name="perfer" class="weui-input" ${appUser.prefer} type="tel" placeholder="请选择您的收藏偏好">
             </div>
         </div>
         <div class="weui-cell">

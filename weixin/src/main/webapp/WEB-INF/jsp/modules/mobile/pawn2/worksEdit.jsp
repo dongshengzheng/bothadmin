@@ -167,7 +167,7 @@
                     var str = li.css("background-image");
                     var length = str.length;
                     var url = str.substring(5, length - 2);
-                    imgUrls += url + '|';
+                    imgUrls += url + ',';
                 })
                 imgUrls = imgUrls.substring(0, imgUrls.length - 1);
             }
@@ -182,7 +182,7 @@
                     var str2 = li2.css("background-image");
                     var length2 = str2.length;
                     var url2 = str2.substring(5, length2 - 2);
-                    imgUrls2 += url2 + '|';
+                    imgUrls2 += url2 + ',';
                 })
                 imgUrls2 = imgUrls2.substring(0, imgUrls2.length - 1);
             }

@@ -47,7 +47,7 @@
             position: relative;
         }
 
-        .header-right-userName {
+        .header-right-appUserName {
             position: absolute;
             color: #98CCEB;
             top: 0;
@@ -311,13 +311,13 @@
 <body>
 <div id="header" class="div-outer">
     <div id="header-left">
-        <img src="${user.headImgUrl}"
+        <img src="${appUser.headImgUrl}"
              onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png'" id="header-left-img">
         <input type="button" value=" +关注 " id="header-left-like">
     </div>
     <div id="header-right">
         <div id="header-right-tab">
-            <span class="header-right-userName">${user.name}</span>
+            <span class="header-right-appUserName">${appUser.loginName}</span>
             <span class="header-right-workId">JS_A201612050001A</span>
             <span class="header-right-workName">[${works.name}]</span>
             <span class="header-right-btn">&nbsp;+&nbsp;收藏&nbsp;</span>
@@ -463,7 +463,7 @@
                                                   pattern="yyyy-MM-dd"/>
             </div>
             <div>
-                <span>作品诠释:</span>${works.worksMeanning}
+                <span>作品诠释:</span>${works.worksMeaning}
             </div>
         </div>
 
@@ -515,7 +515,7 @@
 
         <div class="info-work">
             <center>评估报告</center>
-            ${valueReport.description}
+            ${report.des}
         </div>
 
         <div class="info-register">
@@ -533,50 +533,11 @@
         <div class="info-work">
             <center>作品诠释</center>
             <img src="${ctxStatic}/img/headImg/3.jpg" class="explain-img">
-            <input type="text" class="explain-text" placeholder="点击进行诠释"/>
-            <input type="button" value="诠释" class="explain-btn"/>
+            <input type="button" value="点击进行诠释" class="explain-btn"
+                   onclick="location.href='${ctx}/mobile/interPretationPre?worksId=${works.id}'"/>
         </div>
 
         <div class="info-work">
-            <div class="explains-one">
-                <div class="explains-one-title">
-                    <img src="${ctxStatic}/img/headImg/5.jpg" class="explain-img">
-                    <input type="text" class="explains-one-title-name" value="天**我"/>
-                    <input type="text" value="2016-12-05" class="explains-one-title-date"/>
-                </div>
-                <div class="explains-one-text">
-                    新疆和田玉籽料,独籽,佛像,背面留皮,底部的皮裂痕是故意留下的,因为不影响整个构图,40.6毫米啦啦啦啦啦啦啦
-                </div>
-                <div class="explains-one-imgs">
-                    <img src="${ctxStatic}/img/swiper/swiper-1.jpg" class="explains-one-imgs-one">
-                    <img src="${ctxStatic}/img/swiper/swiper-2.jpg" class="explains-one-imgs-one">
-                    <img src="${ctxStatic}/img/swiper/swiper-3.jpg" class="explains-one-imgs-one">
-                    <img src="${ctxStatic}/img/cut/certificate-icon.png" class="explains-one-imgs-one">
-                    <img src="${ctxStatic}/img/swiper/swiper-1.jpg" class="explains-one-imgs-one">
-                    <img src="${ctxStatic}/img/headImg/1.jpg" class="explains-one-imgs-one">
-                    <img src="${ctxStatic}/img/swiper/swiper-1.jpg" class="explains-one-imgs-one">
-
-                </div>
-            </div>
-            <div class="explains-one">
-                <div class="explains-one-title">
-                    <img src="${ctxStatic}/img/headImg/5.jpg" class="explain-img">
-                    <input type="text" class="explains-one-title-name" value="天**我"/>
-                    <input type="text" value="2016-12-05" class="explains-one-title-date"/>
-                </div>
-                <div class="explains-one-text">
-                    新疆和田玉籽料,独籽,佛像,背面留皮,底部的皮裂痕是故意留下的,因为不影响整个构图,40.6毫米啦啦啦啦啦啦啦
-                </div>
-                <div class="explains-one-imgs">
-                    <img src="${ctxStatic}/img/swiper/swiper-1.jpg" class="explains-one-imgs-one">
-                    <img src="${ctxStatic}/img/swiper/swiper-2.jpg" class="explains-one-imgs-one">
-                    <img src="${ctxStatic}/img/swiper/swiper-3.jpg" class="explains-one-imgs-one">
-                    <img src="${ctxStatic}/img/cut/certificate-icon.png" class="explains-one-imgs-one">
-                    <img src="${ctxStatic}/img/swiper/swiper-1.jpg" class="explains-one-imgs-one">
-                    <img src="${ctxStatic}/img/headImg/1.jpg" class="explains-one-imgs-one">
-                    <img src="${ctxStatic}/img/swiper/swiper-1.jpg" class="explains-one-imgs-one">
-                </div>
-            </div>
             <div class="explains-one">
                 <div class="explains-one-title">
                     <img src="${ctxStatic}/img/headImg/5.jpg" class="explain-img">

@@ -10,13 +10,13 @@
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">提供者</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input name="provideBy" class="weui-input" type="tel" value="${works.provideBy}" placeholder="请输入姓名">
+        <input name="providerName" class="weui-input" type="tel" value="${provider.name}" placeholder="请输入姓名">
     </div>
 </div>
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">身份证</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input name="consumerNo" class="weui-input" type="number" value="${provider.no}" placeholder="可不填写">
+        <input name="providerNo" class="weui-input" type="number" value="${provider.no}" placeholder="可不填写">
     </div>
 </div>
 <div class="weui-cell">

@@ -67,13 +67,13 @@
         }
 
         .report:before {
-            content: url("${ctxStatic}/img//cut/评估报告_icon.png");
+            content: url("${ctxStatic}/img/cut/评估报告_icon.png");
             vertical-align: middle;
             display: inline-block;
         }
 
         .report:after {
-            content: url("${ctxStatic}/img//cut/评估报告_icon.png");
+            content: url("${ctxStatic}/img/cut/评估报告_icon.png");
             vertical-align: middle;
             display: inline-block;
         }
@@ -90,7 +90,7 @@
         .certificate-text2 {
             margin-top: 10px;
             margin-left: 50%;
-            background-image: url("${ctxStatic}/img//cut/certificate-icon.png");
+            background-image: url("${ctxStatic}/img/cut/certificate-icon.png");
             background-repeat: no-repeat;
             background-size: 30px;
             background-position-x: right;
@@ -114,13 +114,13 @@
         <p class="report">昌化鸡血石鉴定评估报告</p>
         <div class="weui-cell">
             <div class="weui-cell__bd weui-cell_primary">
-                <textarea name="description" class="weui-textarea" placeholder="详细鉴定报告..." rows="13"></textarea>
+                <textarea name="des" class="weui-textarea" placeholder="详细鉴定报告..." rows="13"></textarea>
                 <!--<div class="weui-textarea-counter">-->
                 <!--<span>0</span>/200-->
                 <!--</div>-->
             </div>
         </div>
-        <input id="zpxxImge" name="zpxxImge" type="hidden" value="">
+        <input id="certImge" name="certImge" type="hidden" value="">
         <div class="weui-cell certificate-text">
             <span class="certificate-text1">鉴定证书</span>
             <a id="uploaderInput2" class="certificate-text2">未上传</a>
@@ -235,7 +235,7 @@
         })
 
         $('#confirmSubmit').on('click', function () {
-            var lis = $('.zpxxImgeUpload');
+            var lis = $('.certImgeUpload');
             var imgUrls = "";
             var len = lis.length;
             if (len > 0) {
@@ -244,17 +244,17 @@
                     var str = li.css("background-image");
                     var length = str.length;
                     var url = str.substring(5, length - 2);
-                    imgUrls += url + '|';
+                    imgUrls += url + ',';
                 })
                 imgUrls = imgUrls.substring(0, imgUrls.length - 1);
             }
-            $('#zpxxImge').val(imgUrls);
+            $('#certImge').val(imgUrls);
             $('#draftYN').val('confirm');
         })
 
 
         $('#draftSubmit').on('click', function () {
-            var lis = $('.zpxxImgeUpload');
+            var lis = $('.certImgeUpload');
             var imgUrls = "";
             var len = lis.length;
             if (len > 0) {
@@ -263,16 +263,16 @@
                     var str = li.css("background-image");
                     var length = str.length;
                     var url = str.substring(5, length - 2);
-                    imgUrls += url + '|';
+                    imgUrls += url + ',';
                 })
                 imgUrls = imgUrls.substring(0, imgUrls.length - 1);
             }
-            $('#zpxxImge').val(imgUrls);
+            $('#certImge').val(imgUrls);
             $('#draftYN').val('yes');
         })
 
         $('#nextSubmit').on('click', function () {
-            var lis = $('.zpxxImgeUpload');
+            var lis = $('.certImgeUpload');
             var imgUrls = "";
             var len = lis.length;
             if (len > 0) {
@@ -281,11 +281,11 @@
                     var str = li.css("background-image");
                     var length = str.length;
                     var url = str.substring(5, length - 2);
-                    imgUrls += url + '|';
+                    imgUrls += url + ',';
                 })
                 imgUrls = imgUrls.substring(0, imgUrls.length - 1);
             }
-            $('#zpxxImge').val(imgUrls);
+            $('#certImge').val(imgUrls);
         })
     });
 </script>

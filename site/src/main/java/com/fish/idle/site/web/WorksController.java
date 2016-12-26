@@ -42,8 +42,8 @@ public class WorksController extends BaseController {
     @Autowired
     private IWorksLevelService worksLevelService;
 
-    @Autowired
-    private IValueReportService valueReportService;
+//    @Autowired
+//    private IValueReportService valueReportService;
 
     @Autowired
     private IConsumerService consumerService;
@@ -72,9 +72,6 @@ public class WorksController extends BaseController {
     public String add(ModelMap map) {
         return "works/work_add_provider";
     }
-
-
-
 
 
     /**
@@ -109,7 +106,7 @@ public class WorksController extends BaseController {
             jsonObject.put("msg", "保存提供者信息出错");
             return jsonObject;
         }
-        insertImage(works.getImages(),works.getId(),Const.IMAGES_WORKS);
+        insertImage(works.getImages(), works.getId(), Const.IMAGES_WORKS);
 
 
         jsonObject.put("suc", true);
@@ -235,9 +232,9 @@ public class WorksController extends BaseController {
             return jsonObject;
         }
         // 保存评估报告
-        insertImage(desImage,report.getId(),Const.IMAGES_REPORT_DES);
+        insertImage(desImage, report.getId(), Const.IMAGES_REPORT_DES);
         // 保存作品认证图片
-        insertImage(certifyImage,report.getId(),Const.IMAGES_REPORT_CERTIFICATE);
+        insertImage(certifyImage, report.getId(), Const.IMAGES_REPORT_CERTIFICATE);
 
         jsonObject.put("suc", true);
         return jsonObject;
@@ -269,9 +266,9 @@ public class WorksController extends BaseController {
 
 
         wrapInsertEntity(consumer);
-        if(!StringUtils.isEmpty(consumer.getPub())){
+        if (!StringUtils.isEmpty(consumer.getPub())) {
             consumer.setPub("1");
-        }else {
+        } else {
             consumer.setPub("0");
         }
         if (!consumerService.insert(consumer)) {
@@ -290,12 +287,12 @@ public class WorksController extends BaseController {
      */
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String edit(@PathVariable Integer id, ModelMap map) {
-        map.put("works",worksService.selectById(id));
+        map.put("works", worksService.selectById(id));
 
         WorksLevel worksLevel = worksLevelService.selectOne(new WorksLevel(id));
         map.put("worksLevel", worksLevel);
-        ValueReport valueReport = valueReportService.selectOne(new ValueReport(id));
-        map.put("valueReport", valueReport);
+//        ValueReport valueReport = valueReportService.selectOne(new ValueReport(id));
+//        map.put("valueReport", valueReport);
         Consumer provider = consumerService.selectOne(new Consumer(Const.CONSUMER_TYPE_PROVIDER, id));
         map.put("provider", provider);
         Consumer collect = consumerService.selectOne(new Consumer(Const.CONSUMER_TYPE_COLLECT, id));
@@ -354,9 +351,9 @@ public class WorksController extends BaseController {
         wrapUpdateEntity(worksBo.getProvider());
         wrapUpdateEntity(worksBo.getReport());
         wrapUpdateEntity(worksBo.getLevel());
-        if(!StringUtils.isEmpty(worksBo.getCollect().getPub())){
+        if (!StringUtils.isEmpty(worksBo.getCollect().getPub())) {
             worksBo.getCollect().setPub("1");
-        }else {
+        } else {
             worksBo.getCollect().setPub("0");
         }
 
@@ -368,17 +365,15 @@ public class WorksController extends BaseController {
         consumerService.updateSelectiveById(worksBo.getCollect());
 
         // 保存图片信息
-        insertImage(worksBo.getWorksImages(),worksBo.getWorks().getId(),Const.IMAGES_WORKS);
+        insertImage(worksBo.getWorksImages(), worksBo.getWorks().getId(), Const.IMAGES_WORKS);
         // 保存评估报告
-        insertImage(worksBo.getDesImage(),worksBo.getReport().getId(),Const.IMAGES_REPORT_DES);
+        insertImage(worksBo.getDesImage(), worksBo.getReport().getId(), Const.IMAGES_REPORT_DES);
         // 保存作品认证图片
-        insertImage(worksBo.getCertifyImage(),worksBo.getReport().getId(),Const.IMAGES_REPORT_CERTIFICATE);
+        insertImage(worksBo.getCertifyImage(), worksBo.getReport().getId(), Const.IMAGES_REPORT_CERTIFICATE);
 
         jsonObject.put("suc", true);
         return jsonObject;
     }
-
-
 
 
     @RequestMapping(value = "detail/{id}", method = RequestMethod.GET)
@@ -465,8 +460,8 @@ public class WorksController extends BaseController {
             worksLevel.setHanxuefangshi(getLabelByValue(worksLevel.getHanxuefangshi(),"dd_hanxuefangshi"));
         }
         map.put("worksLevel", worksLevel);
-        ValueReport valueReport = valueReportService.selectOne(new ValueReport(id));
-        map.put("valueReport", valueReport);
+//        ValueReport valueReport = valueReportService.selectOne(new ValueReport(id));
+//        map.put("valueReport", valueReport);
         Consumer provider = consumerService.selectOne(new Consumer(Const.CONSUMER_TYPE_PROVIDER, id));
         map.put("provider", provider);
         Consumer collect = consumerService.selectOne(new Consumer(Const.CONSUMER_TYPE_COLLECT, id));
@@ -501,8 +496,6 @@ public class WorksController extends BaseController {
         jsonObject.put("suc", true);
         return jsonObject;
     }
-
-
 
 
     /**
@@ -617,37 +610,37 @@ public class WorksController extends BaseController {
      * @param valueReport
      * @return
      */
-    @RequestMapping(value = "/addValueReport/{type}", method = RequestMethod.POST)
-    public String addValueReport(@ModelAttribute ValueReport valueReport, ModelMap map, @PathVariable Integer type) {
-        //判断goodsId
-        if (null == valueReport.getWorksId()) {
-            map.put("step", 1);
-        } else {
-            Works works = worksService.selectById(valueReport.getWorksId());
-            if (type == 1) {
-                //todo 存为草稿
-
-            }
-            valueReport.setUpdateBy("1");
-            valueReport.setUpdateDate(new Date());
-            valueReport.setCreateBy("1");
-            valueReport.setCreateDate(new Date());
-
-            boolean result = valueReportService.insert(valueReport);
-            if (result) {
-                map.put("goodsName", works.getName());
-                map.put("goodsId", works.getId());
-                map.put("step", 5);
-            } else {
-                map.put("goodsName", works.getName());
-                map.put("goodsId", works.getId());
-                map.put("success", false);
-                map.put("msg", "添加失败");
-                map.put("step", 4);
-            }
-        }
-        return "/WEB-INF/ftl/works/work_add.ftl";
-    }
+//    @RequestMapping(value = "/addValueReport/{type}", method = RequestMethod.POST)
+//    public String addValueReport(@ModelAttribute ValueReport valueReport, ModelMap map, @PathVariable Integer type) {
+//        //判断goodsId
+//        if (null == valueReport.getWorksId()) {
+//            map.put("step", 1);
+//        } else {
+//            Works works = worksService.selectById(valueReport.getWorksId());
+//            if (type == 1) {
+//                //todo 存为草稿
+//
+//            }
+//            valueReport.setUpdateBy("1");
+//            valueReport.setUpdateDate(new Date());
+//            valueReport.setCreateBy("1");
+//            valueReport.setCreateDate(new Date());
+//
+//            boolean result = valueReportService.insert(valueReport);
+//            if (result) {
+//                map.put("goodsName", works.getName());
+//                map.put("goodsId", works.getId());
+//                map.put("step", 5);
+//            } else {
+//                map.put("goodsName", works.getName());
+//                map.put("goodsId", works.getId());
+//                map.put("success", false);
+//                map.put("msg", "添加失败");
+//                map.put("step", 4);
+//            }
+//        }
+//        return "/WEB-INF/ftl/works/work_add.ftl";
+//    }
 
     /**
      * 第五步

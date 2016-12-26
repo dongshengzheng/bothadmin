@@ -36,7 +36,7 @@
     .certificate-text2 {
         margin-top: 10px;
         margin-left: 50%;
-        background-image: url("${ctxStatic}/img//cut/certificate-icon.png");
+        background-image: url("${ctxStatic}/img/cut/certificate-icon.png");
         background-repeat: no-repeat;
         background-size: 30px;
         background-position-x: right;
@@ -52,21 +52,21 @@
         <div class="weui-cell">
             <div class="weui-cell__bd weui-cell_primary">
             <textarea name="description" class="weui-textarea" placeholder="详细鉴定报告..."
-                      rows="15">${valueReport.description}</textarea>
+                      rows="15">${report.des}</textarea>
                 <!--<div class="weui-textarea-counter">-->
                 <!--<span>0</span>/200-->
                 <!--</div>-->
             </div>
         </div>
-        <input id="zpxxImge" name="zpxxImge" type="hidden" value="">
+        <input id="certImage" name="certImage" type="hidden" value="">
         <div class="weui-cell certificate-text">
             <span class="certificate-text1">鉴定证书</span>
-            <c:if test="${(!empty valueReport.zpxxImge)&&(fn:length(valueReport.zpxxImge)>0)}">
-                <li class="weui-uploader__file zpxxImgeUpload"
-                    style="display:none;background-image:url(${valueReport.zpxxImge})"></li>
+            <c:if test="${(!empty certImage)&&(fn:length(certImage)>0)}">
+                <li class="weui-uploader__file certImgeUpload"
+                    style="display:none;background-image:url(${certImage})"></li>
                 <a id="haveUpload" class="certificate-text2">已上传</a>
             </c:if>
-            <c:if test="${(empty valueReport.zpxxImge)||(fn:length(valueReport.zpxxImge)==0)}">
+            <c:if test="${(empty certImage)||(fn:length(certImage)==0)}">
                 <a id="uploaderInput2" class="certificate-text2">未上传</a>
             </c:if>
         </div>
