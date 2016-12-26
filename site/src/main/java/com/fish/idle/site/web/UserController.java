@@ -1,10 +1,15 @@
 package com.fish.idle.site.web;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.fish.idle.service.modules.jsdd.entity.City;
 import com.fish.idle.service.modules.jsdd.entity.Works;
 import com.fish.idle.service.modules.jsdd.service.IAreaService;
 import com.fish.idle.service.modules.jsdd.service.IScoreHistoryService;
 import com.fish.idle.service.modules.jsdd.service.IWorksService;
+import com.fish.idle.service.modules.sys.entity.AppUser;
+import com.fish.idle.service.modules.sys.entity.Dict;
+import com.fish.idle.service.modules.sys.service.IAppUserService;
+import com.fish.idle.service.modules.sys.service.IDictService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -33,6 +38,12 @@ public class UserController extends BaseController {
     @Autowired
     private IWorksService worksService;
 
+    @Autowired
+    private IDictService dictService;
+
+    @Autowired
+    private IAppUserService userService;
+
 
     /**
      * 用户详情
@@ -43,12 +54,13 @@ public class UserController extends BaseController {
     public String dash() {
         return "user/user";
     }
+
     /**
      * 我的作品
      *
      * @return
      */
-    @RequestMapping(value="works",method = RequestMethod.GET)
+    @RequestMapping(value = "works", method = RequestMethod.GET)
     public String works() {
         return "user/user_works";
     }
@@ -58,7 +70,7 @@ public class UserController extends BaseController {
      *
      * @return
      */
-    @RequestMapping(value="transfer",method = RequestMethod.GET)
+    @RequestMapping(value = "transfer", method = RequestMethod.GET)
     public String transfer() {
         return "user/user_works_transfer";
     }
@@ -68,7 +80,7 @@ public class UserController extends BaseController {
      *
      * @return
      */
-    @RequestMapping(value="collect",method = RequestMethod.GET)
+    @RequestMapping(value = "collect", method = RequestMethod.GET)
     public String collect() {
         return "user/user_works_collect";
     }
@@ -78,7 +90,7 @@ public class UserController extends BaseController {
      *
      * @return
      */
-    @RequestMapping(value="follow",method = RequestMethod.GET)
+    @RequestMapping(value = "follow", method = RequestMethod.GET)
     public String follow() {
         return "user/user_follow";
     }
@@ -88,7 +100,7 @@ public class UserController extends BaseController {
      *
      * @return
      */
-    @RequestMapping(value="integral",method = RequestMethod.GET)
+    @RequestMapping(value = "integral", method = RequestMethod.GET)
     public String integral() {
         return "user/user_integral";
     }
@@ -98,8 +110,13 @@ public class UserController extends BaseController {
      *
      * @return
      */
-    @RequestMapping(value="settings",method = RequestMethod.GET)
-    public String settings() {
+    @RequestMapping(value = "settings", method = RequestMethod.GET)
+    public String settings(ModelMap map) {
+        AppUser appUser = getCurrentUser();
+        List<Dict> list = getWorksLevelDicByType("dd_preference");
+        map.put("preference", list);
+        map.put("user",appUser);
+        map.put("pre",appUser.getPrefer() != null ? appUser.getPrefer().split(","):new String[0]);
         return "user/user_settings";
     }
 
@@ -170,11 +187,23 @@ public class UserController extends BaseController {
     //更新个人资料
     @RequestMapping(value = "/updateUserInfo", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> updateUserInfo(HttpServletRequest request) {
+    public Map<String, Object> updateUserInfo(AppUser user, HttpServletRequest request) {
         Map<String, Object> map = new HashMap<>();
-        map.put("success", false);
-        map.put("errMsg", "todo");
-
+        AppUser appUser = getCurrentUser();
+        appUser.setName(user.getName());
+        appUser.setPub(user.getPub());
+        appUser.setAddress(user.getAddress());
+        appUser.setIdentification(user.getIdentification());
+        appUser.setEmail(user.getEmail());
+        appUser.setPrefer(user.getPrefer());
+        appUser.setPhone(user.getPhone());
+        boolean res = userService.updateById(appUser);
+        if(res){
+            map.put("suc",true);
+        }else {
+            map.put("suc",false);
+            map.put("msg","更新失败");
+        }
         return map;
     }
 
@@ -182,10 +211,10 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/getCollectPage", method = RequestMethod.GET)
     @ResponseBody
     public Map<String, Object> getCollectPage(@RequestParam(required = false) Integer currentPage
-                                                ,@RequestParam(required = false) Integer pageSize) {
+            , @RequestParam(required = false) Integer pageSize) {
         Map<String, Object> map = new HashMap<>();
-        map.put("success", false);
-        map.put("errMsg", "todo");
+        map.put("suc", false);
+        map.put("msg", "todo");
         return map;
     }
 
@@ -206,6 +235,14 @@ public class UserController extends BaseController {
             map.put("errMsg", "todo");
         }
         return map;
+    }
+
+    //    获取作品登记字典表
+    private List<Dict> getWorksLevelDicByType(String type) {
+        EntityWrapper entityWrapper = new EntityWrapper();
+        entityWrapper.addFilter("type={0}", type);
+        List<Dict> list = dictService.selectList(entityWrapper);
+        return list;
     }
 
 
