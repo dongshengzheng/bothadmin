@@ -70,7 +70,7 @@ description="金石典当"
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="/">
                         <img id="logo-header" src="${staticPath}/static/img/logo.png" alt="Logo">
                     </a>
                 </div>

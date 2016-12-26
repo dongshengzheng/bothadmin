@@ -87,10 +87,12 @@ public class AppUser implements Serializable {
     @TableField(value = "head_img_url")
     private String headImgUrl;
 
+
     /**
      * 逻辑删除标志
      */
-    private Integer delFlag;
+    @TableField(value = "del_flag")
+    private Integer delFlag = 0;
 
     /**
      * 最后登录时间
@@ -99,7 +101,6 @@ public class AppUser implements Serializable {
     private Date lastLogin;
 
     // 业务字段
-
     /**
      * 粉丝数量，冗余字段
      */
