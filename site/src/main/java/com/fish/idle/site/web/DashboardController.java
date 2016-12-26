@@ -31,33 +31,7 @@ public class DashboardController extends BaseController{
 
 
     @RequestMapping(value = { "", "index" })
-    public String index(ModelMap map, HttpServletRequest request,
-                        @RequestParam(required = false) Integer start,
-                        @RequestParam(required = false) Integer length){
-        Paging paging = new Paging();
-        if(null == start){
-            start = 1;
-        }
-        if(null == length){
-            length = 6;
-        }
-        //首页轮播图
-        //首页全部作品(pageSize=6)
-        EntityWrapper<Works> ew = getEntityWrapper();
-        Page<Works> page = worksService.selectPage(getPage(start,length),ew);
-        for (Works item:page.getRecords()){
-            if (!StringUtils.isEmpty(item.getImages())){
-                String[] imageArr = item.getImages().split(",");
-                item.setImages(imgOssPath + imageArr[0]);
-            }
-        }
-        paging.setData(page.getRecords());
-        paging.setTotalPages(page.getPages());
-        paging.setCurrent(start);
-        paging.setPageSize(length);
-        map.put("worksPaging",paging);
+    public String index(ModelMap map){
         return "index";
     }
-
-
 }
