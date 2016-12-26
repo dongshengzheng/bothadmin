@@ -18,7 +18,7 @@
     <meta name="author" content="">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="favicon.ico.png">
+
 
     <!-- Web Fonts -->
     <link rel='stylesheet' type='text/css'

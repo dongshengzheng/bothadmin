@@ -9,6 +9,8 @@ import com.fish.idle.service.modules.sys.entity.Dict;
 import com.fish.idle.service.modules.sys.mapper.DictMapper;
 import com.fish.idle.service.modules.sys.service.IDictService;
 
+import java.util.List;
+
 /**
  *
  * Dict 表数据服务层接口实现类
@@ -25,7 +27,13 @@ public class DictServiceImpl extends SuperServiceImpl<DictMapper, Dict> implemen
 
         return selectOne(entityWrapper).getLabel();
     }
+
+
+    // 获取作品登记字典表
+    public List<Dict> getWorksLevelDicByType(String type) {
+        EntityWrapper entityWrapper = new EntityWrapper();
+        entityWrapper.addFilter("type={0}", type);
+        List<Dict> list = selectList(entityWrapper);
+        return list;
+    }
 }
-
-
-//~ Formatted by Jindent --- http://www.jindent.com
