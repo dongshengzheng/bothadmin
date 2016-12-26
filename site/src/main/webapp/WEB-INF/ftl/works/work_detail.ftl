@@ -206,7 +206,7 @@
                                         </tr>
                                         <tr>
                                             <td>印章：${(worksLevel.inithanxueliang)!}</td>
-                                            <td colspan="2">含血方式：TODO</td>
+                                            <td colspan="2">含血方式：${(worksLevel.hanxuefangshi)!}</td>
                                         </tr>
                                         </tbody>
                                     </table>
