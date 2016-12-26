@@ -10,6 +10,8 @@ import com.fish.idle.service.modules.sys.entity.AppUser;
 import com.fish.idle.service.modules.sys.entity.Dict;
 import com.fish.idle.service.modules.sys.service.IAppUserService;
 import com.fish.idle.service.modules.sys.service.IDictService;
+import com.fish.idle.service.util.StringUtils;
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -185,18 +187,43 @@ public class UserController extends BaseController {
     }
 
     //更新个人资料
-    @RequestMapping(value = "/updateUserInfo", method = RequestMethod.POST)
+    @RequestMapping(value = "/updateUserInfo/{type}", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> updateUserInfo(AppUser user, HttpServletRequest request) {
+    public Map<String, Object> updateUserInfo(@PathVariable Integer type, AppUser user, HttpServletRequest request) {
         Map<String, Object> map = new HashMap<>();
         AppUser appUser = getCurrentUser();
-        appUser.setName(user.getName());
-        appUser.setPub(user.getPub());
-        appUser.setAddress(user.getAddress());
-        appUser.setIdentification(user.getIdentification());
-        appUser.setEmail(user.getEmail());
-        appUser.setPrefer(user.getPrefer());
-        appUser.setPhone(user.getPhone());
+        if(type == 1){
+            appUser.setName(user.getName());
+            appUser.setPub(user.getPub());
+            appUser.setAddress(user.getAddress());
+            appUser.setIdentification(user.getIdentification());
+            appUser.setEmail(user.getEmail());
+            appUser.setPrefer(user.getPrefer());
+            appUser.setPhone(user.getPhone());
+        }else if(type == 2){
+            String loginName = request.getParameter("loginName");
+            String password = request.getParameter("password");
+
+            String confirmPwd = request.getParameter("passwordConfirm");
+            if(StringUtils.isEmpty(loginName)){
+                map.put("suc",false);
+                map.put("msg","请填写登录名");
+                return map;
+            }
+            if(StringUtils.isEmpty(password)|| StringUtils.isEmpty(confirmPwd)){
+                map.put("suc",false);
+                map.put("msg","请填写密码");
+                return map;
+            }
+            if(confirmPwd.compareTo(password) != 0){
+                map.put("suc",false);
+                map.put("msg","密码不一致");
+                return map;
+            }
+            appUser.setLoginName(loginName);
+            String passwd = new SimpleHash("SHA-1", loginName, password).toString(); // 密码加密
+            appUser.setPassword(passwd);
+        }
         boolean res = userService.updateById(appUser);
         if(res){
             map.put("suc",true);

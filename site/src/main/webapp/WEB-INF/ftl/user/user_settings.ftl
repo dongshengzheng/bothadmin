@@ -58,7 +58,7 @@
                         <div id="profile" class="profile-edit tab-pane fade in active">
                             <h2 class="heading-md">管理你的姓名，身份证，邮箱地址。</h2>
                             <br>
-                            <form id="userInfo-form" class="sky-form" id="sky-form4" action="${staticPath}/user/updateUserInfo" method="post">
+                            <form id="userInfo-form" class="sky-form" id="sky-form4" action="${staticPath}/user/updateUserInfo/1" method="post">
                                 <dl class="dl-horizontal">
                                     <dt>用户名</dt>
                                     <dd>
@@ -138,7 +138,7 @@
                             <h2 class="heading-md">管理你的安全设置</h2>
                             <p>更改你的密码</p>
                             <br>
-                            <form class="sky-form" id="sky-form4" action="#">
+                            <form id="updatePassword" class="sky-form" id="sky-form4" action="${staticPath}/user/updateUserInfo/2" method="post">
                                 <dl class="dl-horizontal">
                                     <dt>登录名</dt>
                                     <dd>
@@ -204,7 +204,26 @@
                 }
             });
         }
-    })
+    });
+
+    var passWordForm = $("#updatePassword");
+    passWordForm.validate({
+        submitHandler: function (form) {
+            $(form).ajaxSubmit({
+                success: function (data) {
+                    if (data.suc) {
+                        alert("更新成功");
+                    } else {
+                        alert(data.msg);
+                    }
+                },
+                error: function () {
+                    alert("error");
+                    return;
+                }
+            });
+        }
+    });
 
 </script>
 </@footerJS>
