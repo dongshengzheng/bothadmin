@@ -390,11 +390,80 @@ public class WorksController extends BaseController {
         if (works == null) {
             return "redirect:/404";
         }
+//        dd_kqdy dd_level dd_pinzhong dd_zuopinleixing dd_level
+        //矿区地域
+        if(StringUtils.isNotEmpty(works.getKqdy())){
+            works.setKqdy(getLabelByValue(works.getKqdy(),"dd_kqdy"));
+        }
+        //作品品种
+        if(StringUtils.isNotEmpty(works.getBreed())){
+            works.setBreed(getLabelByValue(works.getBreed(),"dd_pinzhong"));
+        }
+        //作品类型
+        if(StringUtils.isNotEmpty(works.getType())){
+            works.setType(getLabelByValue(works.getType(),"dd_zuopinleixing"));
+        }
+        if(StringUtils.isNotEmpty(works.getGyType())){
+            works.setGyType(getLabelByValue(works.getGyType(),"dd_level"));
+        }
+        if(StringUtils.isNotEmpty(works.getLevelZk())){
+            works.setLevelZk(getLabelByValue(works.getLevelZk(),"dd_level"));
+        }
         map.put("works", works);
         List<Images> worksImage = imagesService.selectList(new EntityWrapper<>(new Images(id, Const.IMAGES_WORKS)));
         //作品信息图片列表
         map.put("worksImage", worksImage);
         WorksLevel worksLevel = worksLevelService.selectOne(new WorksLevel(id));
+        if(StringUtils.isNotEmpty(worksLevel.getZhidi())){
+
+            worksLevel.setZhidi(getLabelByValue(worksLevel.getZhidi(),"dd_zhidi"));
+        }
+        if(StringUtils.isNotEmpty(worksLevel.getZhidi2())){
+            worksLevel.setZhidi2(getLabelByValue(worksLevel.getZhidi2(),"dd_zhidi2"));
+        }
+        if(StringUtils.isNotEmpty(worksLevel.getGanguan())){
+            worksLevel.setGanguan(getLabelByValue(worksLevel.getGanguan(),"dd_ganguan"));
+        }
+        if(StringUtils.isNotEmpty(worksLevel.getMoshidu())){
+            worksLevel.setMoshidu(getLabelByValue(worksLevel.getMoshidu(),"dd_moshidu"));
+        }
+        if(StringUtils.isNotEmpty(worksLevel.getXueliang())){
+            worksLevel.setXueliang(getLabelByValue(worksLevel.getXueliang(),"dd_xueliang"));
+        }
+        if(StringUtils.isNotEmpty(worksLevel.getXuese())){
+            worksLevel.setXuese(getLabelByValue(worksLevel.getXuese(),"dd_xuese"));
+        }
+            if(StringUtils.isNotEmpty(worksLevel.getXuexing())){
+            worksLevel.setXuexing(getLabelByValue(worksLevel.getXuexing(),"dd_xuexing"));
+        }
+        //
+        if(StringUtils.isNotEmpty(worksLevel.getNongyandu())){
+            worksLevel.setNongyandu(getLabelByValue(worksLevel.getNongyandu(),"dd_nongyandu"));
+        }
+        if(StringUtils.isNotEmpty(worksLevel.getChunjingdu())){
+            worksLevel.setChunjingdu(getLabelByValue(worksLevel.getChunjingdu(),"dd_jingdu"));
+        }
+        if(StringUtils.isNotEmpty(worksLevel.getDise())){
+            worksLevel.setDise(getLabelByValue(worksLevel.getDise(),"dd_dise"));
+        }
+        if(StringUtils.isNotEmpty(worksLevel.getLie())){
+            worksLevel.setLie(getLabelByValue(worksLevel.getLie(),"dd_lie"));
+        }
+        if(StringUtils.isNotEmpty(worksLevel.getLiu())){
+            worksLevel.setLiu(getLabelByValue(worksLevel.getLiu(),"dd_liu"));
+        }
+        if(StringUtils.isNotEmpty(worksLevel.getInithanxueliang())){
+            worksLevel.setInithanxueliang(getLabelByValue(worksLevel.getInithanxueliang(),"dd_mian"));
+        }
+//        if(StringUtils.isNotEmpty(worksLevel.getHanxuemian())){
+//            worksLevel.setHanxuemian(getLabelByValue(worksLevel.getHanxuemian(),"dd_mian"));
+//        }
+        if(StringUtils.isNotEmpty(worksLevel.getHanxueliang())){
+            worksLevel.setHanxueliang(getLabelByValue(worksLevel.getHanxueliang(),"dd_hanxuefangshi"));
+        }
+        if(StringUtils.isNotEmpty(worksLevel.getHanxuefangshi())){
+            worksLevel.setHanxuefangshi(getLabelByValue(worksLevel.getHanxuefangshi(),"dd_hanxuefangshi"));
+        }
         map.put("worksLevel", worksLevel);
         ValueReport valueReport = valueReportService.selectOne(new ValueReport(id));
         map.put("valueReport", valueReport);
@@ -683,6 +752,13 @@ public class WorksController extends BaseController {
             }
             imagesService.insertBatch(list);
         }
+    }
+
+    //    获取作品登记字典表
+    private String getLabelByValue(String value,String type) {
+        EntityWrapper entityWrapper = new EntityWrapper();
+        entityWrapper.addFilter("value={0} and type={1}", value,type);
+        return dictService.selectOne(entityWrapper).getLabel();
     }
 
 
