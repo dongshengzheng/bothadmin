@@ -1,15 +1,20 @@
 package com.fish.idle.site.web;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.fish.idle.service.modules.jsdd.entity.City;
+import com.fish.idle.service.modules.jsdd.entity.Images;
 import com.fish.idle.service.modules.jsdd.entity.Works;
 import com.fish.idle.service.modules.jsdd.service.IAreaService;
+import com.fish.idle.service.modules.jsdd.service.IImagesService;
 import com.fish.idle.service.modules.jsdd.service.IScoreHistoryService;
 import com.fish.idle.service.modules.jsdd.service.IWorksService;
 import com.fish.idle.service.modules.sys.entity.AppUser;
 import com.fish.idle.service.modules.sys.entity.Dict;
 import com.fish.idle.service.modules.sys.service.IAppUserService;
 import com.fish.idle.service.modules.sys.service.IDictService;
+import com.fish.idle.service.util.Const;
 import com.fish.idle.service.util.StringUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +51,9 @@ public class UserController extends BaseController {
     @Autowired
     private IAppUserService userService;
 
+    @Autowired
+    private IImagesService imagesService;
+
 
     /**
      * 用户详情
@@ -59,13 +67,30 @@ public class UserController extends BaseController {
 
     /**
      * 我的作品
-     *
+     *草稿 审核中 未通过 已通过
      * @return
      */
     @RequestMapping(value = "works", method = RequestMethod.GET)
     public String works() {
         return "user/user_works";
     }
+    //我的作品加载更多
+    @RequestMapping(value = "works_load/{type}", method = RequestMethod.GET)
+    @ResponseBody
+    public Page<Works> worksLoad(@PathVariable String type, @RequestParam(required = false, defaultValue = "0") Integer pageIndex,
+                                @RequestParam(required = false, defaultValue = "6") Integer pageSize, ModelMap map) {
+        Page<Works> page = new Page<>(pageIndex, pageSize);
+        Page<Works> worksPage = worksService.selectPage(page, getMyWorksEw(type));
+        for (Works work : worksPage.getRecords()) {
+            Images images = imagesService.selectOne(new EntityWrapper<>(new Images(work.getId(), Const.IMAGES_WORKS)));
+            if(images != null && !StringUtils.isEmpty(images.getUrl())){
+                work.setImages(images.getUrl());
+            }
+        }
+        map.put("worksTransferPassPage",worksPage);
+        return worksPage;
+    }
+
 
     /**
      * 转让作品
@@ -274,6 +299,18 @@ public class UserController extends BaseController {
         entityWrapper.addFilter("type={0}", type);
         List<Dict> list = dictService.selectList(entityWrapper);
         return list;
+    }
+
+
+    private EntityWrapper<Works> getMyWorksEw(String status){
+        AppUser user = getCurrentUser();
+        Works works = new Works();
+        EntityWrapper<Works> ew = new EntityWrapper<>(works);
+        ew.setSqlSelect("name,type,remarks");
+        ew.orderBy("id", false);
+        ew.where("status = " + status);
+        ew.where("create_by = " + user.getId());
+        return ew;
     }
 
 
