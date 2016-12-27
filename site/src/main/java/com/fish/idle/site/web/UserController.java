@@ -5,11 +5,9 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.fish.idle.service.modules.jsdd.entity.City;
 import com.fish.idle.service.modules.jsdd.entity.Images;
+import com.fish.idle.service.modules.jsdd.entity.TransferHistory;
 import com.fish.idle.service.modules.jsdd.entity.Works;
-import com.fish.idle.service.modules.jsdd.service.IAreaService;
-import com.fish.idle.service.modules.jsdd.service.IImagesService;
-import com.fish.idle.service.modules.jsdd.service.IScoreHistoryService;
-import com.fish.idle.service.modules.jsdd.service.IWorksService;
+import com.fish.idle.service.modules.jsdd.service.*;
 import com.fish.idle.service.modules.sys.entity.AppUser;
 import com.fish.idle.service.modules.sys.entity.Dict;
 import com.fish.idle.service.modules.sys.service.IAppUserService;
@@ -23,6 +21,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,6 +52,9 @@ public class UserController extends BaseController {
 
     @Autowired
     private IImagesService imagesService;
+
+    @Autowired
+    private ITransferHistoryService transferHistoryService;
 
 
     /**
@@ -98,9 +100,45 @@ public class UserController extends BaseController {
      * @return
      */
     @RequestMapping(value = "transfer", method = RequestMethod.GET)
-    public String transfer() {
+    public String transfer(ModelMap map) {
         return "user/user_works_transfer";
     }
+
+    /**
+     * 转让作品
+     *
+     * @return
+     */
+    @RequestMapping(value = "transfer_load/{status}", method = RequestMethod.GET)
+    @ResponseBody
+    public Page<Works> transferLoad(@PathVariable Integer status, @RequestParam(required = false, defaultValue = "0") Integer pageIndex,
+                                    @RequestParam(required = false, defaultValue = "6") Integer pageSize) {
+        Page<TransferHistory> page = new Page<>(pageIndex, pageSize);
+        TransferHistory transferHistory = new TransferHistory();
+        Integer userId = getCurrentUser().getId();
+        EntityWrapper<TransferHistory> ew = new EntityWrapper<>(transferHistory);
+        ew.setSqlSelect("works_id");
+        ew.addFilter("status = {0} and (from_user_id = {1} or to_user_id = {1})",status,userId);
+        Page<TransferHistory> transferHistoryPage = transferHistoryService.selectPage(page,ew);
+        List<Works> transferWorks = new ArrayList<>();
+        for (TransferHistory t:transferHistoryPage.getRecords()){
+            Works works = new Works();
+            works.setId(t.getWorksId());
+            works = worksService.selectOne(works);
+            Images images = imagesService.selectOne(new EntityWrapper<>(new Images(works.getId(), Const.IMAGES_WORKS)));
+            if(images != null && !StringUtils.isEmpty(images.getUrl())){
+                works.setImages(images.getUrl());
+            }
+            transferWorks.add(works);
+        }
+        Page<Works> worksPage = new Page<>(pageIndex,pageSize);
+        worksPage.setRecords(transferWorks);
+        worksPage.setTotal(transferHistoryPage.getPages());
+        return worksPage;
+    }
+
+
+
 
     /**
      * 收藏作品
@@ -300,7 +338,6 @@ public class UserController extends BaseController {
         List<Dict> list = dictService.selectList(entityWrapper);
         return list;
     }
-
 
     private EntityWrapper<Works> getMyWorksEw(String status){
         AppUser user = getCurrentUser();
