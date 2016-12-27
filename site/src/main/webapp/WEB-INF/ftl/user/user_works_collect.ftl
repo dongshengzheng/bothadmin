@@ -48,132 +48,74 @@
         <!-- Profile Content -->
         <div class="col-md-9">
             <div class="profile-body">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="easy-block-v1">
-                            <img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg" alt="">
-                            <div class="easy-block-v1-badge rgba-red">Web Design</div>
-                        </div>
-                        <div class="projects">
-                            <h2><a class="color-dark" href="page_profile_projects.html#">Getting Started Photography</a></h2>
-                            <ul class="list-unstyled list-inline blog-info-v2">
-                                <li>By: <a class="color-green" href="page_profile_projects.html#">Edward Rooster</a></li>
-                                <li><i class="fa fa-clock-o"></i> Jan 07, 2013</li>
-                            </ul>
-                            <div style="height: 90px;overflow: scroll">
-                                <p>Lis faucibustesque et rhoncus sapien, sed ullamcustesque et rhoncus sapien, sed ullamcustesque et rhoncus sapien, sed ullamcustesque et rhoncus sapien, sed ullamcustesque et rhoncus sapien, sed ullamcustesque et rhoncus sapien, sed ullamcustesque et rhoncus sapien, sed ullamcustesque et rhoncus sapien, sed ullamcustesque et rhoncus sapien, sed ullamcustesque et rhoncus sapien, sed ullamcustesque et rhoncus sapien, sed ullamcustesque et rhoncus sapien, sed ullamcorper justo.</p>
-                            </div>
-                            <br>
-                        </div>
-                        <div class="project-share">
-                            <ul class="list-inline comment-list-v2 pull-left">
-                                <li><i class="fa fa-eye"></i> <a href="page_profile_projects.html#">25</a></li>
-                                <li><i class="fa fa-comments"></i> <a href="page_profile_projects.html#">32</a></li>
-                                <li><i class="fa fa-retweet"></i> <a href="page_profile_projects.html#">77</a></li>
-                            </ul>
-                            <ul class="list-inline star-vote pull-right">
-                                <li><i class="color-green fa fa-star"></i></li>
-                                <li><i class="color-green fa fa-star"></i></li>
-                                <li><i class="color-green fa fa-star"></i></li>
-                                <li><i class="color-green fa fa-star-half-o"></i></li>
-                                <li><i class="color-green fa fa-star-o"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="service-or easy-block-v2 no-margin-bottom">
-                            <img class="img-responsive" src="${staticPath}/assets/img/main/img16.jpg" alt="">
-                            <div class="easy-bg-v2 rgba-default">Unify</div>
-                        </div>
-                        <div class="projects">
-                            <h2><a class="color-dark" href="page_profile_projects.html#">Getting Started Photography</a></h2>
-                            <ul class="list-unstyled list-inline blog-info-v2">
-                                <li>By: <a class="color-green" href="page_profile_projects.html#">Edward Rooster</a></li>
-                                <li><i class="fa fa-clock-o"></i> Jan 07, 2013</li>
-                            </ul>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing. Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
-                            <br>
-                        </div>
-                        <div class="project-share">
-                            <ul class="list-inline comment-list-v2 pull-left">
-                                <li><i class="fa fa-eye"></i> <a href="page_profile_projects.html#">45</a></li>
-                                <li><i class="fa fa-comments"></i> <a href="page_profile_projects.html#">90</a></li>
-                                <li><i class="fa fa-retweet"></i> <a href="page_profile_projects.html#">84</a></li>
-                            </ul>
-                            <ul class="list-inline star-vote pull-right">
-                                <li><i class="color-green fa fa-star"></i></li>
-                                <li><i class="color-green fa fa-star"></i></li>
-                                <li><i class="color-green fa fa-star"></i></li>
-                                <li><i class="color-green fa fa-star"></i></li>
-                                <li><i class="color-green fa fa-star-half-o"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="easy-block-v1">
-                            <img class="img-responsive" src="${staticPath}/assets/img/main/img17.jpg" alt="">
-                            <div class="easy-block-v1-badge rgba-purple">Graphic Design</div>
-                        </div>
-                        <div class="projects">
-                            <h2><a class="color-dark" href="page_profile_projects.html#">Getting Started Photography</a></h2>
-                            <ul class="list-unstyled list-inline blog-info-v2">
-                                <li>By: <a class="color-green" href="page_profile_projects.html#">Edward Rooster</a></li>
-                                <li><i class="fa fa-clock-o"></i> Jan 07, 2013</li>
-                            </ul>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing. Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
-                            <br>
-                        </div>
-                        <div class="project-share">
-                            <ul class="list-inline comment-list-v2 pull-left">
-                                <li><i class="fa fa-eye"></i> <a href="page_profile_projects.html#">25</a></li>
-                                <li><i class="fa fa-comments"></i> <a href="page_profile_projects.html#">32</a></li>
-                                <li><i class="fa fa-retweet"></i> <a href="page_profile_projects.html#">77</a></li>
-                            </ul>
-                            <ul class="list-inline star-vote pull-right">
-                                <li><i class="color-green fa fa-star"></i></li>
-                                <li><i class="color-green fa fa-star"></i></li>
-                                <li><i class="color-green fa fa-star"></i></li>
-                                <li><i class="color-green fa fa-star-half-o"></i></li>
-                                <li><i class="color-green fa fa-star-o"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="service-or easy-block-v2 no-margin-bottom">
-                            <img class="img-responsive" src="${staticPath}/assets/img/main/img18.jpg" alt="">
-                            <div class="easy-bg-v2 rgba-blue">Nokia</div>
-                        </div>
-                        <div class="projects">
-                            <h2><a class="color-dark" href="page_profile_projects.html#">Getting Started Photography</a></h2>
-                            <ul class="list-unstyled list-inline blog-info-v2">
-                                <li>By: <a class="color-green" href="page_profile_projects.html#">Edward Rooster</a></li>
-                                <li><i class="fa fa-clock-o"></i> Jan 07, 2013</li>
-                            </ul>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing. Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
-                            <br>
-                        </div>
-                        <div class="project-share">
-                            <ul class="list-inline comment-list-v2 pull-left">
-                                <li><i class="fa fa-eye"></i> <a href="page_profile_projects.html#">45</a></li>
-                                <li><i class="fa fa-comments"></i> <a href="page_profile_projects.html#">90</a></li>
-                                <li><i class="fa fa-retweet"></i> <a href="page_profile_projects.html#">84</a></li>
-                            </ul>
-                            <ul class="list-inline star-vote pull-right">
-                                <li><i class="color-green fa fa-star"></i></li>
-                                <li><i class="color-green fa fa-star"></i></li>
-                                <li><i class="color-green fa fa-star"></i></li>
-                                <li><i class="color-green fa fa-star"></i></li>
-                                <li><i class="color-green fa fa-star-half-o"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <button type="button" class="btn-u btn-u-default btn-u-sm btn-block">加载更多</button>
+                <div id="collect-content" class="row">
+
                 </div>
+                <button id="collectBtn" type="button" class="btn-u btn-u-default btn-u-sm btn-block">加载更多</button>
             </div>
         </div>
     </div>
 </div>
 
+<div id="collect_works" style="display: none" class="col-sm-6">
+    <div class="service-or easy-block-v2 no-margin-bottom">
+        <img class="img-responsive" src="${staticPath}/assets/img/main/img18.jpg" alt="">
+        <div class="easy-bg-v2 rgba-blue">Nokia</div>
+    </div>
+    <div class="projects">
+        <h2><a class="color-dark" href="page_profile_projects.html#">Getting Started Photography</a></h2>
+        <ul class="list-unstyled list-inline blog-info-v2">
+            <li>By: <a class="color-green" href="page_profile_projects.html#">Edward Rooster</a></li>
+            <li><i class="fa fa-clock-o"></i> Jan 07, 2013</li>
+        </ul>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing. Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
+        <br>
+    </div>
+    <div class="project-share">
+        <ul class="list-inline comment-list-v2 pull-left">
+            <li><i class="fa fa-eye"></i> <a href="page_profile_projects.html#">45</a></li>
+            <li><i class="fa fa-comments"></i> <a href="page_profile_projects.html#">90</a></li>
+            <li><i class="fa fa-retweet"></i> <a href="page_profile_projects.html#">84</a></li>
+        </ul>
+        <ul class="list-inline star-vote pull-right">
+            <li><i class="color-green fa fa-star"></i></li>
+            <li><i class="color-green fa fa-star"></i></li>
+            <li><i class="color-green fa fa-star"></i></li>
+            <li><i class="color-green fa fa-star"></i></li>
+            <li><i class="color-green fa fa-star-half-o"></i></li>
+        </ul>
+    </div>
+</div>
+
 </@htmlBody>
 <@footerJS>
+<script>
+    pageIndex = 0;
+    hasMore = true;
+    $(document).ready(function () {
+        load(1);
+        function load(pageIndex) {
+            $.get("/user/collect_load", {pageIndex: pageIndex}, function (data) {
+                if (pageIndex >= data.total) {
+                    // 数据加载完毕了
+                    $("#collectBtn").html("客观，这次真没了");
+                    hasMore = false;
+                }
+                $.each(data.records, function () {
+                    var $li = $("#collect_works").clone();
+                    $li.removeAttr("id").css("display", "block");
+                    $li.find(".works-image").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
+                    console.log("11");
+                    $("#collect-content").append($li);
+                });
+            });
+        }
+        $("#collectBtn").on("click", function () {
+            if (hasMore) {
+                pageIndex++;
+                load(pageIndex);
+            }
+        })
+    });
+</script>
 </@footerJS>
