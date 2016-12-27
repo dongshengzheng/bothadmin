@@ -146,8 +146,6 @@
             });
         });
 
-        initUploaders("windyeel", "http://steins00gate.s1.758kongbao.com/", "worksImages");
-
         $(function () {
             $('.weui-navbar__item').on('click', function () {
                 $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
@@ -159,6 +157,13 @@
         $('#worksName').on('change', function () {
             $('.worksShowName').val($(this).val());
         })
+
+
+        initUploaders("windyeel", "http://steins00gate.s1.758kongbao.com/", "worksImages");
+
+        initUploaders2("windyeel", "http://steins00gate.s1.758kongbao.com/");
+
+        initUploaders3("windyeel", "http://steins00gate.s1.758kongbao.com/", "valueImages");
 
     });
 </script>

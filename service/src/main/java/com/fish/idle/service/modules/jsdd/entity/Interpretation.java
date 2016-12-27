@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.annotations.IdType;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.fish.idle.service.modules.sys.entity.AppUser;
 
 /**
  *
@@ -30,7 +31,7 @@ public class Interpretation implements Serializable {
     private Integer worksId;
 
     /**
-     * 创建表
+     * 诠释者id
      */
     @TableField(value = "user_id")
     private Integer userId;
@@ -107,6 +108,12 @@ public class Interpretation implements Serializable {
      */
     @TableField(exist = false)
     private List<Images> imagesList;
+
+    /**
+     * 诠释者
+     */
+    @TableField(exist = false)
+    private AppUser appUser;
 
 
     public Integer getId() {
@@ -243,5 +250,13 @@ public class Interpretation implements Serializable {
 
     public void setImagesList(List<Images> imagesList) {
         this.imagesList = imagesList;
+    }
+
+    public AppUser getAppUser() {
+        return appUser;
+    }
+
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
     }
 }

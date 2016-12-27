@@ -66,13 +66,13 @@
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">提供者</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="provideBy" class="weui-input" type="tel" placeholder="请输入姓名">
+                <input name="provideName" class="weui-input" type="tel" placeholder="请输入姓名">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">身份证</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="consumerNo" class="weui-input" type="tel" placeholder="可不填写">
+                <input name="providerNo" class="weui-input" type="tel" placeholder="可不填写">
             </div>
         </div>
         <div class="weui-cell">
@@ -96,18 +96,11 @@
         <div class="weui-cell">
             <div class="weui-cell__bd weui-cell_primary">
                 <textarea name="worksRemarks" class="weui-textarea" placeholder="我的作品描述" rows="3"></textarea>
-                <!--<div class="weui-textarea-counter">-->
-                <!--<span>0</span>/200-->
-                <!--</div>-->
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__bd">
                 <div class="weui-uploader">
-                    <!--<div class="weui-uploader__hd">-->
-                    <!--<p class="weui-uploader__title">图片上传</p>-->
-                    <!--<div class="weui-uploader__info">0/2</div>-->
-                    <!--</div>-->
                     <div class="weui-uploader__bd">
                         <ul class="weui-uploader__files" id="uploaderFiles">
                             <a id="uploaderInput" class="weui-uploader__input-box">

@@ -114,12 +114,14 @@
 
     .all-title input {
         height: 20px;
+        padding-left: 20px;
         font-size: 18px;
         background-image: url(${ctxStatic}/img/cut/index-all.png);
         background-size: 18px 18px;
         background-repeat: no-repeat;
         border: none;
         bottom: 10px;
+        background-color: white;
     }
 
     .works-floor {
@@ -208,14 +210,15 @@
 
 <div class="all div-outer">
     <div class="all-title">
-        <input value="     全部作品" disabled/>
+        <input value="全部作品" disabled/>
     </div>
 
     <c:forEach items="${page.records}" var="works">
         <div class="works-all-outer">
             <input class="worksId" style="display:none" value="${works.id}">
             <div class="works-all">
-                <img class="works-img-all" src="${works.images}"
+                <img class="works-img-all"
+                     src="http://windyeel.img-cn-shanghai.aliyuncs.com/${works.images}?x-oss-process=image/resize,m_fill,h_100,w_100"
                      onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
                      alt="">
                 <textarea disabled class="works-intro-all">${works.remarks}</textarea>
@@ -266,9 +269,7 @@
 <div id="tmp" class="works-all-outer div-hide">
     <input class="worksId" style="display:none" value="value">
     <div class="works-all">
-        <img class="works-img-all" src="${works.images}"
-             onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
-             alt="">
+        <input type="hidden" class="nothing">
         <textarea disabled class="works-intro-all">${works.remarks}</textarea>
     </div>
     <div class="works-floor-all">
@@ -343,6 +344,17 @@
                         $tmp.find(".works-floor-name-all").html(data.records[i].name);
                         $tmp.find(".works-floor-img-all").html(data.records[i].type);
                         $tmp.find(".works-floor-date-all").html(data.records[i].createDate);
+                        $tmp.children('.works-img-all').attr('src', 'http://windyeel.img-cn-shanghai.aliyuncs.com/' + data.records[i].images + '?x-oss-process=image/resize,m_fill,h_100,w_100');
+                        var img = document.createElement('img');
+                        var $img = $(img);
+                        $img.addClass('works-img-all');
+                        $img.on('error', function () {
+                            this.src = '${ctxStatic}/modules/pawn/img/default.png';
+                            this.className = 'error-img';
+                        })
+                        $img.attr('src', 'http://windyeel.img-cn-shanghai.aliyuncs.com/' + data.records[i].images + '?x-oss-process=image/resize,m_fill,h_100,w_100');
+
+                        $tmp.find('.works-all').append(img);
                         $tmp.find(".works-floor-btn-all").on('click', fun1);
                         $tmp.find(".works-all").on('click', fun2);
                         $tmp.removeClass('div-hide');

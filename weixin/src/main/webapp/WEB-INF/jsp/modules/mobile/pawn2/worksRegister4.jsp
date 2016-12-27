@@ -61,6 +61,8 @@
         }
 
         .report {
+            padding-top: 5px;
+            padding-bottom: 5px;
             text-align: center;
             color: gray;
             font-size: 10px;
@@ -79,7 +81,7 @@
         }
 
         .certificate-text {
-            height: 12%;
+            height: 8%;
         }
 
         .certificate-text1 {
@@ -88,14 +90,30 @@
         }
 
         .certificate-text2 {
+
+            position: absolute;
+            right: 30px;
             margin-top: 10px;
-            margin-left: 50%;
             background-image: url("${ctxStatic}/img/cut/certificate-icon.png");
             background-repeat: no-repeat;
             background-size: 30px;
             background-position-x: right;
             background-position-y: center;
             padding-right: 35px;
+        }
+
+        #valueTime {
+            position: absolute;
+            right: 30px;
+            margin-top: 10px;
+            background-image: url("${ctxStatic}/img/cut/时间选择_icon.png");
+            background-repeat: no-repeat;
+            background-size: 18px;
+            background-position-x: right;
+            background-position-y: center;
+            padding-right: 25px;
+            width: 100px;
+            border: none;
         }
 
 
@@ -114,16 +132,32 @@
         <p class="report">昌化鸡血石鉴定评估报告</p>
         <div class="weui-cell">
             <div class="weui-cell__bd weui-cell_primary">
-                <textarea name="des" class="weui-textarea" placeholder="详细鉴定报告..." rows="13"></textarea>
-                <!--<div class="weui-textarea-counter">-->
-                <!--<span>0</span>/200-->
-                <!--</div>-->
+                <textarea name="des" class="weui-textarea" placeholder="详细鉴定报告..." rows="5"></textarea>
             </div>
         </div>
         <input id="certImge" name="certImge" type="hidden" value="">
         <div class="weui-cell certificate-text">
             <span class="certificate-text1">鉴定证书</span>
             <a id="uploaderInput2" class="certificate-text2">未上传</a>
+        </div>
+    </div>
+
+    <div class="div-outer">
+        <p class="report">金石典当认证价值报告</p>
+        <div class="weui-cell">
+            <div class="weui-cell__bd weui-cell_primary">
+                <textarea name="certify" class="weui-textarea" placeholder="详细价值报告" rows="5"></textarea>
+            </div>
+        </div>
+        <div class="weui-uploader__bd">
+            <ul class="weui-uploader__files" id="uploaderFiles">
+                <a id="uploaderInput" class="weui-uploader__input-box">
+                </a>
+            </ul>
+        </div>
+        <div class="weui-cell certificate-text">
+            <span class="certificate-text1">价值有效时间</span>
+            <input name="valueTimeString" id="valueTime" placeholder="选择有效时间">
         </div>
     </div>
 
@@ -214,7 +248,6 @@
             $iosDialog2.fadeIn(200);
         });
 
-        initUploaders2("windyeel", "http://steins00gate.s1.758kongbao.com/");
 
         $('#prelook').on('click', function () {
             hideActionSheet();
@@ -228,65 +261,26 @@
 
 
         $('#del').on('click', function () {
-            $('.weui-uploader__file').remove();
+            $('.certImageUpload').remove();
             $('.certificate-text2').html("未上传").attr('id', 'uploaderInput2');
             initUploaders2("windyeel", "http://steins00gate.s1.758kongbao.com/");
             hideActionSheet();
         })
 
         $('#confirmSubmit').on('click', function () {
-            var lis = $('.certImgeUpload');
-            var imgUrls = "";
-            var len = lis.length;
-            if (len > 0) {
-                lis.each(function () {
-                    var li = $(this);
-                    var str = li.css("background-image");
-                    var length = str.length;
-                    var url = str.substring(5, length - 2);
-                    imgUrls += url + ',';
-                })
-                imgUrls = imgUrls.substring(0, imgUrls.length - 1);
-            }
-            $('#certImge').val(imgUrls);
             $('#draftYN').val('confirm');
         })
 
 
         $('#draftSubmit').on('click', function () {
-            var lis = $('.certImgeUpload');
-            var imgUrls = "";
-            var len = lis.length;
-            if (len > 0) {
-                lis.each(function () {
-                    var li = $(this);
-                    var str = li.css("background-image");
-                    var length = str.length;
-                    var url = str.substring(5, length - 2);
-                    imgUrls += url + ',';
-                })
-                imgUrls = imgUrls.substring(0, imgUrls.length - 1);
-            }
-            $('#certImge').val(imgUrls);
             $('#draftYN').val('yes');
         })
 
-        $('#nextSubmit').on('click', function () {
-            var lis = $('.certImgeUpload');
-            var imgUrls = "";
-            var len = lis.length;
-            if (len > 0) {
-                lis.each(function () {
-                    var li = $(this);
-                    var str = li.css("background-image");
-                    var length = str.length;
-                    var url = str.substring(5, length - 2);
-                    imgUrls += url + ',';
-                })
-                imgUrls = imgUrls.substring(0, imgUrls.length - 1);
-            }
-            $('#certImge').val(imgUrls);
-        })
+        $('#valueTime').calendar();
+
+        initUploaders2("windyeel", "http://steins00gate.s1.758kongbao.com/");
+        initUploaders("windyeel", "http://steins00gate.s1.758kongbao.com/", "valueImages");
+
     });
 </script>
 </body>
