@@ -3,10 +3,7 @@ package com.fish.idle.site.web;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.fish.idle.service.modules.jsdd.entity.City;
-import com.fish.idle.service.modules.jsdd.entity.Images;
-import com.fish.idle.service.modules.jsdd.entity.TransferHistory;
-import com.fish.idle.service.modules.jsdd.entity.Works;
+import com.fish.idle.service.modules.jsdd.entity.*;
 import com.fish.idle.service.modules.jsdd.service.*;
 import com.fish.idle.service.modules.sys.entity.AppUser;
 import com.fish.idle.service.modules.sys.entity.Dict;
@@ -56,6 +53,9 @@ public class UserController extends BaseController {
     @Autowired
     private ITransferHistoryService transferHistoryService;
 
+    @Autowired
+    private IFollowHistoryService followHistoryService;
+
 
     /**
      * 用户详情
@@ -76,20 +76,21 @@ public class UserController extends BaseController {
     public String works() {
         return "user/user_works";
     }
+
     //我的作品加载更多
     @RequestMapping(value = "works_load/{type}", method = RequestMethod.GET)
     @ResponseBody
     public Page<Works> worksLoad(@PathVariable String type, @RequestParam(required = false, defaultValue = "0") Integer pageIndex,
-                                @RequestParam(required = false, defaultValue = "6") Integer pageSize, ModelMap map) {
+                                 @RequestParam(required = false, defaultValue = "6") Integer pageSize, ModelMap map) {
         Page<Works> page = new Page<>(pageIndex, pageSize);
         Page<Works> worksPage = worksService.selectPage(page, getMyWorksEw(type));
         for (Works work : worksPage.getRecords()) {
             Images images = imagesService.selectOne(new EntityWrapper<>(new Images(work.getId(), Const.IMAGES_WORKS)));
-            if(images != null && !StringUtils.isEmpty(images.getUrl())){
+            if (images != null && !StringUtils.isEmpty(images.getUrl())) {
                 work.setImages(images.getUrl());
             }
         }
-        map.put("worksTransferPassPage",worksPage);
+        map.put("worksTransferPassPage", worksPage);
         return worksPage;
     }
 
@@ -118,7 +119,7 @@ public class UserController extends BaseController {
     public Page<TransferHistory> transferLoad(@PathVariable Integer status,
                                               @PathVariable Boolean in,
                                               @RequestParam(required = false, defaultValue = "0") Integer pageIndex,
-                                    @RequestParam(required = false, defaultValue = "6") Integer pageSize) {
+                                              @RequestParam(required = false, defaultValue = "6") Integer pageSize) {
         Page<TransferHistory> page = new Page<>(pageIndex, pageSize);
         Integer userId = getCurrentUser().getId();
         EntityWrapper<TransferHistory> ew = new EntityWrapper<>(new TransferHistory());
@@ -157,6 +158,33 @@ public class UserController extends BaseController {
         return "user/user_works_collect";
     }
 
+    @RequestMapping(value = "collect_load", method = RequestMethod.GET)
+    @ResponseBody
+    public Page<Works> loadCollect(@RequestParam(required = false, defaultValue = "0") Integer pageIndex,
+                                   @RequestParam(required = false, defaultValue = "6") Integer pageSize) {
+
+        Page<FollowHistory> page = new Page<>(pageIndex, pageSize);
+        EntityWrapper<FollowHistory> ew = new EntityWrapper<>(new FollowHistory());
+        ew.setSqlSelect("target_id");
+        ew.addFilter("type = 0 and user_id = {0}", getCurrentUser().getId());
+        Page<FollowHistory> followHistoryPage = followHistoryService.selectPage(page,ew);
+        List<Works> followHistoryWorks = new ArrayList<>();
+        for (FollowHistory f:followHistoryPage.getRecords()){
+            Works works = new Works();
+            works.setId(f.getTargetId());
+            works = worksService.selectOne(works);
+            Images images = imagesService.selectOne(new EntityWrapper<>(new Images(works.getId(), Const.IMAGES_WORKS)));
+            if (images != null && !StringUtils.isEmpty(images.getUrl())) {
+                works.setImages(images.getUrl());
+            }
+            followHistoryWorks.add(works);
+        }
+        Page<Works> worksPage = new Page<>(pageIndex, pageSize);
+        worksPage.setRecords(followHistoryWorks);
+        worksPage.setTotal(followHistoryPage.getPages());
+        return worksPage;
+    }
+
     /**
      * 关注用户
      *
@@ -187,8 +215,8 @@ public class UserController extends BaseController {
         AppUser appUser = getCurrentUser();
         List<Dict> list = getWorksLevelDicByType("dd_preference");
         map.put("preference", list);
-        map.put("user",appUser);
-        map.put("pre",appUser.getPrefer() != null ? appUser.getPrefer().split(","):new String[0]);
+        map.put("user", appUser);
+        map.put("pre", appUser.getPrefer() != null ? appUser.getPrefer().split(",") : new String[0]);
         return "user/user_settings";
     }
 
@@ -262,7 +290,7 @@ public class UserController extends BaseController {
     public Map<String, Object> updateUserInfo(@PathVariable Integer type, AppUser user, HttpServletRequest request) {
         Map<String, Object> map = new HashMap<>();
         AppUser appUser = getCurrentUser();
-        if(type == 1){
+        if (type == 1) {
             appUser.setName(user.getName());
             appUser.setPub(user.getPub());
             appUser.setAddress(user.getAddress());
@@ -270,28 +298,28 @@ public class UserController extends BaseController {
             appUser.setEmail(user.getEmail());
             appUser.setPrefer(user.getPrefer());
             appUser.setPhone(user.getPhone());
-        }else if(type == 2){
+        } else if (type == 2) {
             String loginName = request.getParameter("loginName");
             String password = request.getParameter("password");
             String confirmPwd = request.getParameter("passwordConfirm");
-            if(StringUtils.isEmpty(loginName)){
-                map.put("suc",false);
-                map.put("msg","请填写登录名");
+            if (StringUtils.isEmpty(loginName)) {
+                map.put("suc", false);
+                map.put("msg", "请填写登录名");
                 return map;
             }
-            if(StringUtils.isEmpty(password)|| StringUtils.isEmpty(confirmPwd)){
-                map.put("suc",false);
-                map.put("msg","请填写密码");
+            if (StringUtils.isEmpty(password) || StringUtils.isEmpty(confirmPwd)) {
+                map.put("suc", false);
+                map.put("msg", "请填写密码");
                 return map;
             }
-            if(confirmPwd.compareTo(password) != 0){
-                map.put("suc",false);
-                map.put("msg","密码不一致");
+            if (confirmPwd.compareTo(password) != 0) {
+                map.put("suc", false);
+                map.put("msg", "密码不一致");
                 return map;
             }
-            if(userService.isNameExist(user.getLoginName())){
-                map.put("suc",false);
-                map.put("msg","用户名重复，请修改");
+            if (userService.isNameExist(user.getLoginName())) {
+                map.put("suc", false);
+                map.put("msg", "用户名重复，请修改");
                 return map;
             }
             appUser.setLoginName(loginName);
@@ -299,11 +327,11 @@ public class UserController extends BaseController {
             appUser.setPassword(passwd);
         }
         boolean res = userService.updateById(appUser);
-        if(res){
-            map.put("suc",true);
-        }else {
-            map.put("suc",false);
-            map.put("msg","更新失败");
+        if (res) {
+            map.put("suc", true);
+        } else {
+            map.put("suc", false);
+            map.put("msg", "更新失败");
         }
         return map;
     }
@@ -346,7 +374,7 @@ public class UserController extends BaseController {
         return list;
     }
 
-    private EntityWrapper<Works> getMyWorksEw(String status){
+    private EntityWrapper<Works> getMyWorksEw(String status) {
         AppUser user = getCurrentUser();
         Works works = new Works();
         EntityWrapper<Works> ew = new EntityWrapper<>(works);
