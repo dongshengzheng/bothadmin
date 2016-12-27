@@ -114,9 +114,8 @@ public class UserController extends BaseController {
     public Page<Works> transferLoad(@PathVariable Integer status, @RequestParam(required = false, defaultValue = "0") Integer pageIndex,
                                     @RequestParam(required = false, defaultValue = "6") Integer pageSize) {
         Page<TransferHistory> page = new Page<>(pageIndex, pageSize);
-        TransferHistory transferHistory = new TransferHistory();
         Integer userId = getCurrentUser().getId();
-        EntityWrapper<TransferHistory> ew = new EntityWrapper<>(transferHistory);
+        EntityWrapper<TransferHistory> ew = new EntityWrapper<>(new TransferHistory());
         ew.setSqlSelect("works_id");
         ew.addFilter("status = {0} and (from_user_id = {1} or to_user_id = {1})",status,userId);
         Page<TransferHistory> transferHistoryPage = transferHistoryService.selectPage(page,ew);
