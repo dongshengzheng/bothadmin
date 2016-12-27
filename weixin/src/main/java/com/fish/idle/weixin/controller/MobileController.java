@@ -116,9 +116,29 @@ public class MobileController extends BaseController {
         Works works = new Works();
         works.setStatus(Const.WORKS_STATUS_PASS);
         EntityWrapper<Works> ew = new EntityWrapper(works);
-//        ew.setSqlSelect(" *,(select url from dd_images where target_id = dd_works.id and type = 0 limit 1) as images");
         Page<Works> page = new Page<>(1, 4);
         page = worksService.selectPage(page, ew);
+
+
+//        List<Works> records = new ArrayList<>();
+//        for (Works work : page.getRecords()) {
+//            List<Images> images = imagesService.selectList(new EntityWrapper<>(new Images(work.getId(), Const.IMAGES_WORKS)));
+//            if (images != null && images.size() > 0) {
+//                works.setImages(images.get(0).getUrl());
+//            }
+//            records.add(work);
+//        }
+        //        page.setRecords(records);
+
+
+        for (int i = 0; i < page.getRecords().size(); i++) {
+            List<Images> images = imagesService.selectList(new EntityWrapper<>(new Images(page.getRecords().get(i).getId(), Const.IMAGES_WORKS)));
+            if (images != null && images.size() > 0) {
+                page.getRecords().get(i).setImages(images.get(0).getUrl());
+            }
+        }
+
+
         map.put("page", page);
         return "modules/mobile/pawn2/works";
     }
@@ -145,6 +165,23 @@ public class MobileController extends BaseController {
         works.setStatus(Const.WORKS_STATUS_PASS);
         Page<Works> page = new Page<>(pageNo, 4);
         page = worksService.selectPage(page, new EntityWrapper<>(works));
+
+        for (int i = 0; i < page.getRecords().size(); i++) {
+            List<Images> images = imagesService.selectList(new EntityWrapper<>(new Images(page.getRecords().get(i).getId(), Const.IMAGES_WORKS)));
+            if (images != null && images.size() > 0) {
+                page.getRecords().get(i).setImages(images.get(0).getUrl());
+            }
+        }
+
+//        List<Works> records = new ArrayList<>();
+//        for (Works work : page.getRecords()) {
+//            List<Images> images = imagesService.selectList(new EntityWrapper<>(new Images(work.getId(), Const.IMAGES_WORKS)));
+//            if (images != null && images.size() > 0) {
+//                works.setImages(images.get(0).getUrl());
+//            }
+//            records.add(work);
+//        }
+//        page.setRecords(records);
         return page;
     }
 
@@ -170,7 +207,7 @@ public class MobileController extends BaseController {
         FollowHistory followHistory = new FollowHistory();
         followHistory.setUserId(appUser.getId());
         followHistory.setTargetId(worksId);
-        followHistory.setType(0);
+        followHistory.setType(Const.FOLLOW_HISTORY_TYPE_COLLECT);
         FollowHistory fh = followHistoryService.selectOne(new EntityWrapper<>(followHistory));
         if (fh == null) {
             followHistoryService.insert(followHistory);
@@ -229,8 +266,8 @@ public class MobileController extends BaseController {
 
         FollowHistory followHistory = new FollowHistory();
         followHistory.setUserId(appUser.getId());
-        followHistory.setType(1);
-        followHistory.setDelFlag(0);
+        followHistory.setType(Const.FOLLOW_HISTORY_TYPE_FOCUS);
+        followHistory.setDelFlag(Const.DEL_FLAG_NORMAL);
         List<FollowHistory> followHistoryList = followHistoryService.selectList(new EntityWrapper<>(followHistory));
         for (FollowHistory fw : followHistoryList) {
             Integer id = fw.getTargetId();
@@ -271,14 +308,14 @@ public class MobileController extends BaseController {
         FollowHistory followHistory = new FollowHistory();
         followHistory.setUserId(appUser.getId());
         followHistory.setTargetId(targetId);
-        followHistory.setType(1);
+        followHistory.setType(Const.FOLLOW_HISTORY_TYPE_FOCUS);
         FollowHistory fh = followHistoryService.selectOne(new EntityWrapper<>(followHistory));
         Boolean result;
         if (fh == null) {
-            followHistory.setDelFlag(0);
+            followHistory.setDelFlag(Const.DEL_FLAG_NORMAL);
             result = followHistoryService.insert(followHistory);
         } else {
-            fh.setDelFlag(0);
+            fh.setDelFlag(Const.DEL_FLAG_NORMAL);
             result = followHistoryService.updateById(fh);
         }
         if (result) {
@@ -309,14 +346,14 @@ public class MobileController extends BaseController {
         FollowHistory followHistory = new FollowHistory();
         followHistory.setUserId(appUser.getId());
         followHistory.setTargetId(targetId);
-        followHistory.setType(1);
+        followHistory.setType(Const.FOLLOW_HISTORY_TYPE_FOCUS);
         FollowHistory fh = followHistoryService.selectOne(new EntityWrapper<>(followHistory));
         Boolean result;
         if (fh == null) {
-            followHistory.setDelFlag(1);
+            followHistory.setDelFlag(Const.DEL_FLAG_DELETE);
             result = followHistoryService.insert(followHistory);
         } else {
-            fh.setDelFlag(1);
+            fh.setDelFlag(Const.DEL_FLAG_DELETE);
             result = followHistoryService.updateById(fh);
         }
         if (result) {
@@ -390,8 +427,8 @@ public class MobileController extends BaseController {
         }
         FollowHistory followHistory = new FollowHistory();
         followHistory.setUserId(appUser.getId());
-        followHistory.setType(1);
-        followHistory.setDelFlag(0);
+        followHistory.setType(Const.FOLLOW_HISTORY_TYPE_FOCUS);
+        followHistory.setDelFlag(Const.DEL_FLAG_NORMAL);
         List<FollowHistory> followHistoryList = followHistoryService.selectList(new EntityWrapper<>(followHistory));
         for (FollowHistory fw : followHistoryList) {
             Integer id = fw.getTargetId();
@@ -507,7 +544,7 @@ public class MobileController extends BaseController {
     }
 
     /**
-     * 跳往作品诠释页面
+     * 添加作品诠释页面
      *
      * @return
      */
@@ -538,7 +575,7 @@ public class MobileController extends BaseController {
     public String interpretationComplete(HttpSession session,
                                          ModelMap map,
                                          Interpretation interpretation,
-                                         @RequestParam(required = false) String imgUrls) {
+                                         @RequestParam(required = false) String interImages) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
         AppUser u = new AppUser();
@@ -551,16 +588,7 @@ public class MobileController extends BaseController {
         interpretation.setUserId(appUser.getId());
         interpretationService.insert(interpretation);
         int interId = interpretation.getId();
-        if (imgUrls != null && imgUrls.trim().length() > 0) {
-            String[] urls = imgUrls.split(",");
-            for (String url : urls) {
-                Images images = new Images();
-                images.setTargetId(interId);
-                images.setUrl(url);
-                images.setType(Const.IMAGES_INTERPRETATION);
-                imagesService.insert(images);
-            }
-        }
+        insertImage(interImages, interId, Const.IMAGES_INTERPRETATION);
         return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/worksDetail?worksId=" + interpretation.getWorksId();
     }
 
@@ -570,9 +598,11 @@ public class MobileController extends BaseController {
      *
      * @return
      */
-    @RequestMapping(value = "worksExplainDetail", method = RequestMethod.GET)
+    @RequestMapping(value = "interpretationDetail", method = RequestMethod.GET)
     @OAuthRequired
-    public String worksExplainDetail(HttpSession session) {
+    public String worksExplainDetail(HttpSession session,
+                                     @RequestParam(required = false) int interId,
+                                     ModelMap map) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
         AppUser u = new AppUser();
@@ -581,7 +611,10 @@ public class MobileController extends BaseController {
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
-        return "modules/mobile/pawn2/worksExplainDetail";
+        Interpretation interpretation = interpretationService.byIdContainImages(interId);
+
+        map.put("interpretation", interpretation);
+        return "modules/mobile/pawn2/interpretationDetail";
     }
 
     /**
@@ -657,6 +690,11 @@ public class MobileController extends BaseController {
         appUser.setAddress(address);
         appUser.setIdentification(identification);
         appUser.setPrefer(prefer);
+        if (ifpublic == null) {
+            appUser.setPub(false);
+        } else {
+            appUser.setPub(true);
+        }
         appUserService.updateById(appUser);
         return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my";
     }
@@ -1124,7 +1162,9 @@ public class MobileController extends BaseController {
     public String worksRegister5(HttpSession session,
                                  Report report,
                                  @RequestParam(required = false) String draftYN,
-                                 @RequestParam(required = false) String zpxxImge) {
+                                 @RequestParam(required = false) String certImage,
+                                 @RequestParam(required = false) String valueImages,
+                                 @RequestParam(required = false) String valueTimeString) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
         AppUser u = new AppUser();
@@ -1135,15 +1175,16 @@ public class MobileController extends BaseController {
         }
         Integer worksId = (Integer) session.getAttribute("registerWorksId");
         report.setWorksId(worksId);
+        if (valueTimeString != null && valueTimeString.trim().length() > 0) {
+            Date valueTime = DateUtil.parseDate(valueTimeString, "yyyy-MM-dd");
+            report.setValidTime(valueTime);
+        }
         reportService.insert(report);
 
-        if (zpxxImge != null && zpxxImge.length() > 0) {
-            Images images = new Images();
-            images.setUrl(zpxxImge);
-            images.setType(Const.IMAGES_REPORT_CERTIFICATE);
-            images.setTargetId(worksId);
-        }
+        insertImage(certImage, report.getId(), Const.IMAGES_REPORT_CERTIFICATE);
+        insertImage(valueImages, report.getId(), Const.IMAGES_REPORT_DES);
 
+        session.removeAttribute("registerWorksId");
 
         if ("yes".equals(draftYN)) {
             Works works = (Works) session.getAttribute("registerWorks");
@@ -1156,7 +1197,6 @@ public class MobileController extends BaseController {
             worksService.updateById(works);
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=now";
         }
-
 
         return "modules/mobile/pawn2/worksRegister5";
     }
@@ -1250,17 +1290,21 @@ public class MobileController extends BaseController {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
 
+        //作品
         Works works = worksService.selectById(worksId);
 
+        //作品等级
         WorksLevel worksLevel = new WorksLevel();
         worksLevel.setWorksId(worksId);
         worksLevel = worksLevelService.selectOne(new EntityWrapper<>(worksLevel));
 
+        //提供者
         Consumer provider = new Consumer();
         provider.setWorksId(worksId);
         provider.setType(Const.CONSUMER_TYPE_PROVIDER);
         provider = consumerService.selectOne(new EntityWrapper<>(provider));
 
+        //收藏者
         Consumer collecter = new Consumer();
         collecter.setWorksId(worksId);
         collecter.setType(Const.CONSUMER_TYPE_COLLECT);
@@ -1269,15 +1313,23 @@ public class MobileController extends BaseController {
         Images images = new Images();
         images.setTargetId(worksId);
         images.setType(Const.IMAGES_WORKS);
+        //作品图片
         List<Images> worksImagesList = imagesService.selectList(new EntityWrapper<>(images));
 
+        //价值报告
         Report report = new Report();
         report.setWorksId(worksId);
         report = reportService.selectOne(new EntityWrapper<>(report));
         Images certImage = new Images();
-        certImage.setTargetId(worksId);
+        certImage.setTargetId(report.getId());
         certImage.setType(Const.IMAGES_REPORT_CERTIFICATE);
+        //认证图片
         certImage = imagesService.selectOne(new EntityWrapper<>(certImage));
+        //评估图片
+        Images valueImage = new Images();
+        valueImage.setTargetId(report.getId());
+        images.setType(Const.IMAGES_REPORT_DES);
+        List<Images> valueImages = imagesService.selectList(new EntityWrapper<>(valueImage));
 
 
         map.put("works", works);
@@ -1287,6 +1339,7 @@ public class MobileController extends BaseController {
         map.put("collecter", collecter);
         map.put("report", report);
         map.put("certImage", certImage);
+        map.put("valueImages", valueImages);
 
         session.setAttribute("worksIdInSession", worksId);
 
@@ -1304,6 +1357,7 @@ public class MobileController extends BaseController {
                                     Works works,
                                     WorksLevel worksLevel,
                                     Consumer consumer,
+                                    Report report,
                                     @RequestParam(required = false) String worksName,
                                     @RequestParam(required = false) String worksRemarks,
                                     @RequestParam(required = false) String worksType,
@@ -1318,7 +1372,9 @@ public class MobileController extends BaseController {
                                     @RequestParam(required = false) String collecterPhone,
                                     @RequestParam(required = false) String collecterDateTimeString,
                                     @RequestParam(required = false) String collecterPub,
-                                    @RequestParam(required = false) String zpxxImge) {
+                                    @RequestParam(required = false) String certImage,
+                                    @RequestParam(required = false) String valueImages,
+                                    @RequestParam(required = false) String valueTimeString) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
         AppUser u = new AppUser();
@@ -1352,20 +1408,6 @@ public class MobileController extends BaseController {
         }
         worksService.updateById(works);
 
-        Images oldImg = new Images();
-        oldImg.setTargetId(worksId);
-        oldImg.setType(Const.IMAGES_WORKS);
-        List<Images> oldImgs = imagesService.selectList(new EntityWrapper<>(oldImg));
-        if (oldImgs != null && oldImgs.size() > 0) {
-            List<Integer> ids = new ArrayList<>();
-            for (Images img : oldImgs) {
-                ids.add(img.getId());
-            }
-            imagesService.deleteBatchIds(ids);
-        }
-
-
-        insertImage(worksImages, worksId, Const.IMAGES_WORKS);
 
         worksLevel.setWorksId(worksId);
         WorksLevel wl = new WorksLevel();
@@ -1423,18 +1465,41 @@ public class MobileController extends BaseController {
             consumerService.updateById(collecter);
         }
 
-        if (zpxxImge != null && zpxxImge.length() > 0) {
-            Images images = new Images();
-            images.setType(Const.IMAGES_REPORT_CERTIFICATE);
-            images.setTargetId(worksId);
-            images = imagesService.selectOne(new EntityWrapper<>(images));
-            if (images != null) {
-                images.setUrl(zpxxImge);
-                imagesService.updateById(images);
-            } else {
-                imagesService.insert(images);
-            }
+        if (valueTimeString != null && valueTimeString.trim().length() > 0) {
+            Date valueTime = DateUtil.parseDate(valueTimeString, "yyyy-MM-dd");
+            report.setValidTime(valueTime);
         }
+        Report oldReport = new Report();
+        oldReport.setWorksId(worksId);
+        oldReport = reportService.selectOne(new EntityWrapper<>(oldReport));
+        if (oldReport == null) {
+            reportService.insert(report);
+        } else {
+            report.setId(oldReport.getId());
+            reportService.updateById(report);
+        }
+
+        Images oldImg = new Images();
+        oldImg.setTargetId(worksId);
+        oldImg.setType(Const.IMAGES_WORKS);
+        List<Images> oldImgs = imagesService.selectList(new EntityWrapper<>(oldImg));
+        oldImg.setTargetId(report.getId());
+        oldImg.setType(Const.IMAGES_REPORT_CERTIFICATE);
+        oldImgs.addAll(imagesService.selectList(new EntityWrapper<>(oldImg)));
+        oldImg.setType(Const.IMAGES_REPORT_DES);
+        oldImgs.addAll(imagesService.selectList(new EntityWrapper<>(oldImg)));
+        if (oldImgs != null && oldImgs.size() > 0) {
+            List<Integer> ids = new ArrayList<>();
+            for (Images img : oldImgs) {
+                ids.add(img.getId());
+            }
+            imagesService.deleteBatchIds(ids);
+        }
+
+        insertImage(worksImages, worksId, Const.IMAGES_WORKS);
+        insertImage(certImage, report.getId(), Const.IMAGES_REPORT_CERTIFICATE);
+        insertImage(valueImages, report.getId(), Const.IMAGES_REPORT_DES);
+
         return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my";
 
     }

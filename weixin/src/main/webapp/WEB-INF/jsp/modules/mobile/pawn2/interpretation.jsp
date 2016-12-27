@@ -140,7 +140,7 @@
 
         $("#showDatePicker").calendar();
 
-        initUploaders("windyeel", "http://steins00gate.s1.758kongbao.com/");
+        initUploaders("windyeel", "http://steins00gate.s1.758kongbao.com/", "interImages");
 
 
         $('#trueSubmit').on('click', function () {

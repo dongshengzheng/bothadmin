@@ -6,7 +6,7 @@
     <sql id="Base_Column_List">
 		id, target_id AS targetId, url, `type`
 	</sql>
-
+    <!--根据作品id查询诠释图片-->
     <select id="selectByInterId" resultType="Images">
         SELECT * FROM dd_images i WHERE i.type='3' and i.target_id=#{target_id}
     </select>

@@ -7,6 +7,8 @@
     }
 
     .report {
+        padding-top: 5px;
+        padding-bottom: 5px;
         text-align: center;
         color: gray;
         font-size: 10px;
@@ -34,14 +36,29 @@
     }
 
     .certificate-text2 {
+        position: absolute;
+        right: 30px;
         margin-top: 10px;
-        margin-left: 50%;
         background-image: url("${ctxStatic}/img/cut/certificate-icon.png");
         background-repeat: no-repeat;
         background-size: 30px;
         background-position-x: right;
         background-position-y: center;
         padding-right: 35px;
+    }
+
+    #valueTime {
+        position: absolute;
+        right: 30px;
+        margin-top: 10px;
+        background-image: url("${ctxStatic}/img/cut/时间选择_icon.png");
+        background-repeat: no-repeat;
+        background-size: 18px;
+        background-position-x: right;
+        background-position-y: center;
+        padding-right: 25px;
+        width: 100px;
+        border: none;
     }
 
 
@@ -52,24 +69,49 @@
         <div class="weui-cell">
             <div class="weui-cell__bd weui-cell_primary">
             <textarea name="description" class="weui-textarea" placeholder="详细鉴定报告..."
-                      rows="15">${report.des}</textarea>
-                <!--<div class="weui-textarea-counter">-->
-                <!--<span>0</span>/200-->
-                <!--</div>-->
+                      rows="5">${report.des}</textarea>
             </div>
         </div>
-        <input id="certImage" name="certImage" type="hidden" value="">
         <div class="weui-cell certificate-text">
             <span class="certificate-text1">鉴定证书</span>
             <c:if test="${(!empty certImage)&&(fn:length(certImage)>0)}">
-                <li class="weui-uploader__file certImgeUpload"
-                    style="display:none;background-image:url(${certImage})"></li>
+                <li class="weui-uploader__file certImageUpload"
+                    style="display:none;background-image:url(http://windyeel.img-cn-shanghai.aliyuncs.com/${certImage.url}?x-oss-process=image/resize,m_fill,h_100,w_100)">
+                    <input name="worksImages" type="hidden" value="${certImage.url}">
+                </li>
                 <a id="haveUpload" class="certificate-text2">已上传</a>
             </c:if>
-            <c:if test="${(empty certImage)||(fn:length(certImage)==0)}">
+            <c:if test="${(empty certImage.url)||(fn:length(certImage.url)==0)}">
                 <a id="uploaderInput2" class="certificate-text2">未上传</a>
             </c:if>
         </div>
+    </div>
+</div>
+<div class="div-outer">
+    <p class="report">金石典当认证价值报告</p>
+    <div class="weui-cell">
+        <div class="weui-cell__bd weui-cell_primary">
+                    <textarea name="certify" class="weui-textarea" value="${report.certify}" placeholder="详细价值报告"
+                              rows="5"></textarea>
+        </div>
+    </div>
+    <div class="weui-uploader__bd">
+        <ul class="weui-uploader__files" id="uploaderFiles">
+            <c:forEach items="${valueImages}" var="image">
+                <li class="weui-uploader__file valueImages"
+                    style="background-image:url(
+                            http://windyeel.img-cn-shanghai.aliyuncs.com/${image.url}?x-oss-process=image/resize,m_fill,h_100,w_100)">
+                    <input name="worksImages" type="hidden" value="${image.url}">
+                </li>
+            </c:forEach>
+            <a id="uploaderInput3" class="weui-uploader__input-box">
+            </a>
+        </ul>
+    </div>
+    <div class="weui-cell certificate-text">
+        <span class="certificate-text1">价值有效时间</span>
+        <input id="valueTime" value="<fmt:formatDate value='${report.validTime}' pattern="yyyy-MM-dd"/>"
+               placeholder="选择有效时间">
     </div>
 </div>
 
@@ -113,7 +155,6 @@
             $(this).parents('.js_dialog').fadeOut(200);
         });
 
-        initUploaders2("windyeel", "http://steins00gate.s1.758kongbao.com/");
 
         $('#prelook').on('click', function () {
             hideActionSheet();

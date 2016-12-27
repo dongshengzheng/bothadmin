@@ -13,9 +13,16 @@
         WHERE inter.works_id=#{0}
     </select>
 
+    <select id="byIdContainImages" resultMap="InterpretationMap">
+        SELECT inter.* from dd_interpretation inter
+        WHERE inter.id=#{0}
+    </select>
+
     <resultMap id="InterpretationMap" type="Interpretation">
         <result property="id" column="id"></result>
         <result property="userId" column="user_id"></result>
+        <association property="appUser" column="user_id"
+                     select="com.fish.idle.service.modules.sys.mapper.AppUserMapper.searchMyInfo"/>
         <collection property="imagesList" column="id" ofType="Images"
                     select="com.fish.idle.service.modules.jsdd.mapper.ImagesMapper.selectByInterId"/>
     </resultMap>

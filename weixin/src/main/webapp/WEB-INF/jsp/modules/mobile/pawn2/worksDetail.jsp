@@ -331,18 +331,19 @@
             <c:forEach items="${imagesList}" var="image">
                 <a href="javascript:;" class="weui-grid">
                     <div class="weui-grid__icon">
-                        <img src="${image.url}"
+                        <img src="http://windyeel.img-cn-shanghai.aliyuncs.com/${image.url}?x-oss-process=image/resize,m_fill,h_100,w_100"
                              onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
                              alt="">
                     </div>
                 </a>
             </c:forEach>
-
-            <a href="javascript:;" class="weui-grid">
-                <div class="weui-grid__icon">
-                    <img src="${ctxStatic}/img/headImg/16.jpg" alt="">
-                </div>
-            </a>
+            <c:if test="${fn:length(imagesList) == 0}">
+                <a href="javascript:;" class="weui-grid">
+                    <div class="weui-grid__icon">
+                        <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="">
+                    </div>
+                </a>
+            </c:if>
         </div>
         <div id="header-right-footer">
             <span>浏览次数 588</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -546,26 +547,44 @@
                     <input type="text" value="2016-12-05" class="explains-one-title-date"/>
                 </div>
                 <div class="explains-one-text">
-                    新疆和田玉籽料,独籽,佛像,背面留皮,底部的皮裂痕是故意留下的,因为不影响整个构图,40.6毫米啦啦啦啦啦啦啦
+                    这是假的,不要点
                 </div>
                 <div class="explains-one-imgs">
                     <img src="${ctxStatic}/img/swiper/swiper-1.jpg" class="explains-one-imgs-one">
                     <img src="${ctxStatic}/img/swiper/swiper-2.jpg" class="explains-one-imgs-one">
-                    <img src="${ctxStatic}/img/swiper/swiper-3.jpg" class="explains-one-imgs-one">
-                    <img src="${ctxStatic}/img/cut/certificate-icon.png" class="explains-one-imgs-one">
-                    <img src="${ctxStatic}/img/swiper/swiper-1.jpg" class="explains-one-imgs-one">
-                    <img src="${ctxStatic}/img/headImg/1.jpg" class="explains-one-imgs-one">
-                    <img src="${ctxStatic}/img/swiper/swiper-1.jpg" class="explains-one-imgs-one">
                 </div>
             </div>
         </div>
+        <c:forEach items="${interpretationList}" var="inter">
+            <div class="info-work">
+                <div class="explains-one">
+                    <div class="explains-one-title">
+                        <img class="explain-img" src="${inter.appUser.headImgUrl}"
+                             onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png'">
+                        <input type="text" class="explains-one-title-name" value="${inter.appUser.loginName}"/>
+                        <input type="text" value="2016-12-05" class="explains-one-title-date"/>
+                    </div>
+                    <div class="explains-one-text" data-id="${inter.id}">
+                        <c:if test="${fn:length(inter.description) >50}">${fn:substring(inter.description,0,50)}</c:if>
+                        <c:if test="${fn:length(inter.description) <=30}">${inter.description}</c:if>
+                    </div>
+                    <div class="explains-one-imgs">
+                        <img src="${ctxStatic}/img/swiper/swiper-2.jpg" class="explains-one-imgs-one">
+                        <c:forEach items="${inter.imagesList}" var="image">
+                            <img src="http://windyeel.img-cn-shanghai.aliyuncs.com/${image.url}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                                 class="explains-one-imgs-one">
+                        </c:forEach>
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
     </div>
 
 </div>
 <script>
     $(function () {
         $('.explains-one-text').on('click', function () {
-            location.href = "${ctx}/mobile/worksExplainDetail";
+            location.href = "${ctx}/mobile/interpretationDetail?interId=" + $(this).attr('data-id');
         })
     })
 

@@ -20,7 +20,12 @@ public class InterpretationServiceImpl extends SuperServiceImpl<InterpretationMa
     InterpretationMapper interpretationMapper;
 
     @Override
-    public List<Interpretation> interpretationContainImages(int worksId) {
+    public List<Interpretation> interpretationContainImages(Integer worksId) {
         return interpretationMapper.interpretationContainImages(worksId);
+    }
+
+    @Override
+    public Interpretation byIdContainImages(Integer id) {
+        return interpretationMapper.byIdContainImages(id);
     }
 }

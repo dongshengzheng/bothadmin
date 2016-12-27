@@ -10,5 +10,7 @@ import java.util.List;
  */
 public interface IInterpretationService extends ISuperService<Interpretation> {
 
-    List<Interpretation> interpretationContainImages(int worksId);
+    List<Interpretation> interpretationContainImages(Integer worksId);
+
+    Interpretation byIdContainImages(Integer id);
 }

@@ -2,6 +2,7 @@ package com.fish.idle.service.modules.jsdd.mapper;
 
 import com.fish.idle.service.modules.jsdd.entity.Interpretation;
 import com.baomidou.mybatisplus.mapper.AutoMapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -10,6 +11,8 @@ import java.util.List;
  */
 public interface InterpretationMapper extends AutoMapper<Interpretation> {
 
-    List<Interpretation> interpretationContainImages(int worksId);
+    List<Interpretation> interpretationContainImages(Integer worksId);
+
+    Interpretation byIdContainImages(Integer id);
 
 }

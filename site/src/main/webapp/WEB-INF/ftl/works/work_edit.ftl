@@ -658,10 +658,10 @@
                         if (data.suc) {
                             if ($("#status").val() == 0) {
                                 // 跳转到下一步
-                                window.location.href =  window.location.href;
+                                window.location.href = window.location.href;
                             } else {
                                 // 跳转到个人中心-> 我的作品->草稿里面
-                                window.location.href =  window.location.href;
+                                window.location.href = window.location.href;
                             }
                         } else {
                             alert(data.msg);
