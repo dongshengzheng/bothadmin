@@ -12,7 +12,6 @@
         <!--Left Sidebar-->
         <div class="col-md-3 md-margin-bottom-40">
             <img class="img-responsive profile-img margin-bottom-20" src="${staticPath}/assets/img/team/img32-md.jpg" alt="">
-            <a class="btn-u btn-u-sm" href="page_profile_me.html#">Change Picture</a>
             <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
                 <li class="list-group-item ">
                     <a href="/user"><i class="fa fa-tachometer"></i>面板</a>

@@ -208,16 +208,16 @@
 </@htmlBody>
 <@footerJS>
 <script>
-    //已转入
+    // 已转入
     rollinIndex = 0;
     rollinHasMore = true;
-    //已转出
+    // 已转出
     rollOutIndex = 0;
     rollOutHasMore = true;
-    //带确认
+    // 待确认转入
     rollInningIndex = 0;
     rollInningHasMore = true;
-    //
+    // 待确认转出
     rollOutingIndex = 0;
     rollOutingHasMore =true;
 

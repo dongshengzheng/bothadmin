@@ -69,7 +69,7 @@ public class UserController extends BaseController {
 
     /**
      * 我的作品
-     *草稿 审核中 未通过 已通过
+     * 草稿 审核中 未通过 已通过
      * @return
      */
     @RequestMapping(value = "works", method = RequestMethod.GET)
@@ -104,22 +104,33 @@ public class UserController extends BaseController {
         return "user/user_works_transfer";
     }
 
+
     /**
-     * 转让作品
-     *
+     * 转让作品列表
+     * @param status    状态--  1：转入转出已完成  2：正在进行
+     * @param in 是否是转入
+     * @param pageIndex
+     * @param pageSize
      * @return
      */
-    @RequestMapping(value = "transfer_load/{status}", method = RequestMethod.GET)
+    @RequestMapping(value = "transfer_load/{in}/{status}", method = RequestMethod.GET)
     @ResponseBody
-    public Page<Works> transferLoad(@PathVariable Integer status, @RequestParam(required = false, defaultValue = "0") Integer pageIndex,
+    public Page<TransferHistory> transferLoad(@PathVariable Integer status,
+                                              @PathVariable Boolean in,
+                                              @RequestParam(required = false, defaultValue = "0") Integer pageIndex,
                                     @RequestParam(required = false, defaultValue = "6") Integer pageSize) {
         Page<TransferHistory> page = new Page<>(pageIndex, pageSize);
         Integer userId = getCurrentUser().getId();
         EntityWrapper<TransferHistory> ew = new EntityWrapper<>(new TransferHistory());
         ew.setSqlSelect("works_id");
-        ew.addFilter("status = {0} and (from_user_id = {1} or to_user_id = {1})",status,userId);
+
+        ew.addFilter("status = {0} ",status,userId);
+        if(in){
+            ew.addFilter("to_user_id = {1}",userId);
+        }else {
+            ew.addFilter("from_user_id = {1}",userId);
+        }
         Page<TransferHistory> transferHistoryPage = transferHistoryService.selectPage(page,ew);
-        List<Works> transferWorks = new ArrayList<>();
         for (TransferHistory t:transferHistoryPage.getRecords()){
             Works works = new Works();
             works.setId(t.getWorksId());
@@ -128,12 +139,9 @@ public class UserController extends BaseController {
             if(images != null && !StringUtils.isEmpty(images.getUrl())){
                 works.setImages(images.getUrl());
             }
-            transferWorks.add(works);
+            t.setWorks(works);
         }
-        Page<Works> worksPage = new Page<>(pageIndex,pageSize);
-        worksPage.setRecords(transferWorks);
-        worksPage.setTotal(transferHistoryPage.getPages());
-        return worksPage;
+        return transferHistoryPage;
     }
 
 

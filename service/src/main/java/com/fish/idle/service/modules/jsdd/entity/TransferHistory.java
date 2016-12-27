@@ -98,6 +98,16 @@ public class TransferHistory implements Serializable {
     @TableField(exist = false)
     private String toUserImg;
 
+    @TableField(exist = false)
+    private Works works;
+
+    public Works getWorks() {
+        return works;
+    }
+
+    public void setWorks(Works works) {
+        this.works = works;
+    }
 
     public Integer getId() {
         return this.id;

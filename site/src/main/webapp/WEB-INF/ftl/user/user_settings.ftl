@@ -1,6 +1,7 @@
 <#include "../layout/main.ftl"/>
 
 <@htmlHead title="用户中心">
+<link rel="stylesheet" href="${staticPath}/assets/css/style.css">
 <link rel="stylesheet" href="${staticPath}/assets/css/pages/profile.css">
 <link rel="stylesheet" href="${staticPath}/assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css">
 <link rel="stylesheet" href="${staticPath}/assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css">

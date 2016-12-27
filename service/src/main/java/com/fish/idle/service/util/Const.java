@@ -89,7 +89,7 @@ public class Const {
     /**
      * 转让状态
      */
-    public static final int TRANSFER_STATUS_HAVE = 1;    // 已转出
+    public static final int TRANSFER_STATUS_HAVE = 1;    // 已转出、转入
     public static final int TRANSFER_STATUS_WAIT = 2;    // 待确认
 
     /**
