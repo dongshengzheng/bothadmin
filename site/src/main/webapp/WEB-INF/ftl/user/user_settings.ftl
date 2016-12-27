@@ -58,14 +58,14 @@
                         <div id="profile" class="profile-edit tab-pane fade in active">
                             <h2 class="heading-md">管理你的姓名，身份证，邮箱地址。</h2>
                             <br>
-                            <form class="sky-form" id="sky-form4" action="#">
+                            <form id="userInfo-form" class="sky-form" id="sky-form4" action="${staticPath}/user/updateUserInfo/1" method="post">
                                 <dl class="dl-horizontal">
                                     <dt>用户名</dt>
                                     <dd>
                                         <section>
                                             <label class="input">
                                                 <i class="icon-append fa fa-user"></i>
-                                                <input type="text" placeholder="用户名" name="username">
+                                                <input type="text" placeholder="用户名" name="name" value="${(user.name)!}">
                                                 <b class="tooltip tooltip-bottom-right">请输入用户名</b>
                                             </label>
                                         </section>
@@ -75,7 +75,7 @@
                                         <section>
                                             <label class="input">
                                                 <i class="icon-append fa fa-envelope"></i>
-                                                <input type="email" name="email" placeholder="邮箱地址" >
+                                                <input type="email" name="email" placeholder="邮箱地址" value="${(user.email)!}" >
                                             </label>
                                         </section>
                                     </dd>
@@ -84,7 +84,7 @@
                                         <section>
                                             <label class="input">
                                                 <i class="icon-append fa fa-location-arrow"></i>
-                                                <input type="text" name="password" placeholder="请输入详细地址">
+                                                <input type="text" name="address" placeholder="请输入详细地址" value="${(user.address)!}">
                                             </label>
                                         </section>
                                     </dd>
@@ -93,7 +93,7 @@
                                         <section>
                                             <label class="input">
                                                 <i class="icon-append fa fa-phone"></i>
-                                                <input type="text" name="phone" placeholder="请输入联系方式">
+                                                <input type="text" name="phone" placeholder="请输入联系方式" value="${(user.phone)!}">
                                             </label>
                                         </section>
                                     </dd>
@@ -102,7 +102,7 @@
                                         <section>
                                             <label class="input">
                                                 <i class="icon-append fa fa-lock"></i>
-                                                <input type="text" name="phone" placeholder="请输入身份证">
+                                                <input type="text" name="identification" placeholder="请输入身份证" value="${(user.identification)!}" >
                                             </label>
                                         </section>
                                     </dd>
@@ -110,14 +110,25 @@
                                     <dd>
                                         <section>
                                             <div class="inline-group">
-                                                <label class="checkbox"><input type="checkbox" value="1" checked="" name="prefer"><i class="rounded-x"></i>玉器</label>
-                                                <label class="checkbox"><input type="checkbox" value="2" name="prefer"><i class="rounded-x"></i>古玩</label>
-                                                <label class="checkbox"><input type="checkbox" value="3" name="prefer"><i class="rounded-x"></i>古玩家</label>
+                                                <#list preference as item>
+                                                    <label class="checkbox">
+                                                        <input type="checkbox"
+                                                               <#list pre as sel>
+                                                                   <#if sel == item.value>
+                                                                        checked="checked"
+                                                                   </#if>
+                                                               </#list>
+                                                               value="${item.value}" name="prefer">
+                                                        <i class="rounded-x"></i>${item.label}</label>
+                                                </#list>
                                             </div>
                                         </section>
                                     </dd>
                                 </dl>
-                                <label class="toggle toggle-change"><input type="checkbox" checked="" name="pub"><i class="no-rounded"></i>是否公开</label>
+                                <label class="toggle toggle-change">
+                                    <input type="checkbox" <#if (user.pub??) >checked="checked"</#if> name="pub">
+                                    <i class="no-rounded"></i>是否公开
+                                </label>
                                 <br>
                                 <button type="button" class="btn-u btn-u-default">取消</button>
                                 <button class="btn-u" type="submit">保存</button>
@@ -127,7 +138,7 @@
                             <h2 class="heading-md">管理你的安全设置</h2>
                             <p>更改你的密码</p>
                             <br>
-                            <form class="sky-form" id="sky-form4" action="#">
+                            <form id="updatePassword" class="sky-form" id="sky-form4" action="${staticPath}/user/updateUserInfo/2" method="post">
                                 <dl class="dl-horizontal">
                                     <dt>登录名</dt>
                                     <dd>
@@ -175,4 +186,44 @@
 
 </@htmlBody>
 <@footerJS>
+<script type="text/javascript">
+    var $form = $("#userInfo-form");
+    $form.validate({
+        submitHandler: function (form) {
+            $(form).ajaxSubmit({
+                success: function (data) {
+                    if (data.suc) {
+                        alert("更新成功");
+                    } else {
+                        alert(data.msg);
+                    }
+                },
+                error: function () {
+                    alert("error");
+                    return;
+                }
+            });
+        }
+    });
+
+    var passWordForm = $("#updatePassword");
+    passWordForm.validate({
+        submitHandler: function (form) {
+            $(form).ajaxSubmit({
+                success: function (data) {
+                    if (data.suc) {
+                        alert("更新成功");
+                    } else {
+                        alert(data.msg);
+                    }
+                },
+                error: function () {
+                    alert("error");
+                    return;
+                }
+            });
+        }
+    });
+
+</script>
 </@footerJS>

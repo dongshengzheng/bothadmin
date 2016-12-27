@@ -214,9 +214,11 @@
                                     <div class="headline"><h2>评估报告</h2></div>
                                     <pre>${(report.des)!}</pre>
                                     <div>
-                                        <img width="500px;"
-                                             src="http://windyeel.img-cn-shanghai.aliyuncs.com/${reportImage.url}?x-oss-process=image/resize,m_fill,h_500,w_500"
-                                             alt="评估报告">
+                                        <#if reportImage?exists>
+                                            <img width="500px;"
+                                                 src="http://windyeel.img-cn-shanghai.aliyuncs.com/${reportImage.url}?x-oss-process=image/resize,m_fill,h_500,w_500"
+                                                 alt="评估报告">
+                                        </#if>
                                     </div>
                                     <#if collect?exists>
                                         <div class="headline"><h2>收藏者信息</h2></div>

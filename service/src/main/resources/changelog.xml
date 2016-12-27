@@ -345,4 +345,9 @@
             ALTER TABLE `dd_interpretation` ADD COLUMN `description` varchar(1000) DEFAULT NULL COMMENT '诠释文字说明';
         </sql>
     </changeSet>
+    <changeSet author="SunHan" id="15862614903-023">
+        <sql>
+            ALTER TABLE `dd_works` DROP COLUMN `images`;
+        </sql>
+    </changeSet>
 </databaseChangeLog>

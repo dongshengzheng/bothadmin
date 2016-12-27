@@ -1,6 +1,7 @@
 package com.fish.idle.site.web;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.fish.idle.service.modules.sys.entity.AppUser;
 import com.fish.idle.service.modules.sys.service.IAppUserService;
 import com.fish.idle.service.util.Const;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
-public class LoginController {
+public class LoginController extends BaseController{
 
     @Autowired
     private IAppUserService appUserService;
@@ -40,7 +41,7 @@ public class LoginController {
         AppUser user = new AppUser();
         user.setLoginName(loginName);
         user.setPassword(passwd);
-        user = appUserService.selectOne(user);
+        user = appUserService.selectOne(new EntityWrapper<>(user));
         // 用于验证用户名和密码，改方法名需要改良
         if (user != null) {
             Subject subject = SecurityUtils.getSubject();
@@ -99,4 +100,19 @@ public class LoginController {
     public String terms() {
         return "user/terms";
     }
+
+    @RequestMapping(value = "/loginStatus", method = RequestMethod.GET)
+    @ResponseBody
+    public JSONObject loginStatus(){
+        JSONObject jsonObject = new JSONObject();
+        AppUser user = getCurrentUser();
+        if (user == null){
+            jsonObject.put("suc",false);
+        }else {
+            jsonObject.put("suc",true);
+            jsonObject.put("loginName",user.getLoginName());
+        }
+        return jsonObject;
+    }
+
 }
