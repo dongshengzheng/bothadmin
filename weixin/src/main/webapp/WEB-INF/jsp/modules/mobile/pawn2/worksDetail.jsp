@@ -246,7 +246,8 @@
             color: white;
             border: 2px solid white;
             height: 32px;
-            width: 80px;
+            width: 100px;
+            text-align: center;
             font-size: 14px;
             font-weight: bold;
             margin-left: 30px;

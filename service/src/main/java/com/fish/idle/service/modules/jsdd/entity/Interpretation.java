@@ -50,6 +50,12 @@ public class Interpretation implements Serializable {
     @TableField(value = "score_demanded")
     private Integer scoreDemanded;
 
+
+    /**
+     * 诠释文字说明
+     */
+    private String description;
+
     /**
      * 是否提交成功
      */
@@ -100,9 +106,7 @@ public class Interpretation implements Serializable {
      * 诠释的图片
      */
     @TableField(exist = false)
-    private List<String> imagesUrlList;
-
-
+    private List<Images> imagesList;
 
 
     public Integer getId() {
@@ -225,11 +229,19 @@ public class Interpretation implements Serializable {
         this.delFlag = delFlag;
     }
 
-    public List<String> getImagesUrlList() {
-        return imagesUrlList;
+    public String getDescription() {
+        return description;
     }
 
-    public void setImagesUrlList(List<String> imagesUrlList) {
-        this.imagesUrlList = imagesUrlList;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<Images> getImagesList() {
+        return imagesList;
+    }
+
+    public void setImagesList(List<Images> imagesList) {
+        this.imagesList = imagesList;
     }
 }

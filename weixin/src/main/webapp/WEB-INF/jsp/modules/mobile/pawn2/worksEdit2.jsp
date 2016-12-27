@@ -85,8 +85,8 @@
 </div>
 <div class="weui-cell">
     <div class="weui-cell__bd weui-cell_primary">
-                    <textarea name="worksMeanning" id="works-zuopinquanshi" class="weui-textarea" placeholder="作品诠释..."
-                              rows="3">${works.worksMeanning}</textarea>
+                    <textarea name="worksMeaning" id="works-zuopinquanshi" class="weui-textarea" placeholder="作品诠释..."
+                              rows="3">${works.worksMeaning}</textarea>
         <!--<div class="weui-textarea-counter">-->
         <!--<span>0</span>/200-->
         <!--</div>-->

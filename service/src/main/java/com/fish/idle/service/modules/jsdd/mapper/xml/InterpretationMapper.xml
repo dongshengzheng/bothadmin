@@ -9,15 +9,15 @@
 
     <!--根据作品id查询所有诠释,诠释包含诠释图片-->
     <select id="interpretationContainImages" resultMap="InterpretationMap">
-        SELECT inter.*,img.url as oneUrl from dd_interpretation inter
-        left join dd_images img on img.target_id=inter.id  and img.type='3'
+        SELECT inter.* from dd_interpretation inter
         WHERE inter.works_id=#{0}
     </select>
 
     <resultMap id="InterpretationMap" type="Interpretation">
-        <collection property="imagesUrlList">
-            <result column="oneUrl"></result>
-        </collection>
+        <result property="id" column="id"></result>
+        <result property="userId" column="user_id"></result>
+        <collection property="imagesList" column="id" ofType="Images"
+                    select="com.fish.idle.service.modules.jsdd.mapper.ImagesMapper.selectByInterId"/>
     </resultMap>
 
 </mapper>

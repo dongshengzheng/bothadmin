@@ -57,7 +57,9 @@
             <div class="weui-uploader__bd">
                 <ul class="weui-uploader__files" id="uploaderFiles">
                     <c:forEach items="${worksImagesList}" var="image">
-                        <li class="weui-uploader__file worksImgs" style="background-image:url(${image.url})">
+                        <li class="weui-uploader__file worksImgs"
+                            style="background-image:url(http://windyeel.img-cn-shanghai.aliyuncs.com/${image.url}?x-oss-process=image/resize,m_fill,h_100,w_100)">
+                            <input name="worksImages" type="hidden" value="${image.url}">
                         </li>
                     </c:forEach>
                     <a id="uploaderInput" class="weui-uploader__input-box">
@@ -67,4 +69,3 @@
         </div>
     </div>
 </div>
-<input type="hidden" name="imgUrls" id="imgUrls"/>

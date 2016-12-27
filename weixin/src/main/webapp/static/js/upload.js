@@ -94,7 +94,7 @@ function set_upload_param(up, filename, ret, domain) {
 }
 
 
-function initUploaders(bucket, domain) {
+function initUploaders(bucket, domain, inputName) {
     var uploader = new plupload.Uploader({
         runtimes: 'html5,flash,silverlight,html4',
         browse_button: 'uploaderInput',
@@ -120,7 +120,7 @@ function initUploaders(bucket, domain) {
                 $("#uploaderInput").before('<li class="weui-uploader__file worksImgs"'
                     + 'style="background-image:url(' +
                     'http://' + bucket + '.img-cn-shanghai.aliyuncs.com/' + g_object_name + '?x-oss-process=image/resize,m_fill,h_100,w_100'
-                    + ')"></li>');
+                    + ')"><input name="' + inputName + '" type="hidden" value="' + g_object_name + '" ></li>');
             }
         }
     });

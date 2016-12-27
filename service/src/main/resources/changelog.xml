@@ -342,9 +342,7 @@
     </changeSet>
     <changeSet author="WangShun" id="15950097942-027">
         <sql>
-            ALTER TABLE `dd_works` DROP COLUMN `id`;
-            ALTER TABLE `dd_works` ADD COLUMN `no` varchar(64) NOT NULL COMMENT '主键,时间戳',ADD PRIMARY KEY (`no`);
+            ALTER TABLE `dd_interpretation` ADD COLUMN `description` varchar(1000) DEFAULT NULL COMMENT '诠释文字说明';
         </sql>
     </changeSet>
-
 </databaseChangeLog>

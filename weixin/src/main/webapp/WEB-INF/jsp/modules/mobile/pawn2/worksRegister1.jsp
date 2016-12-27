@@ -117,7 +117,6 @@
                 </div>
             </div>
         </div>
-        <input type="hidden" name="imgUrls" id="imgUrls"/>
         <div class="fixed-footer">
             <p>下一步即表示同意<a href="javascript:;" id="register-rule">《金石典当登记申请记录》</a></p>
             <hr>
@@ -174,41 +173,9 @@
 
         $("#showDatePicker").calendar();
 
-        initUploaders("windyeel", "http://steins00gate.s1.758kongbao.com/");
-
-
-        $('#trueSubmit').on('click', function () {
-            var lis = $('.worksImgs');
-            var imgUrls = "";
-            var len = lis.length;
-            if (len > 0) {
-                lis.each(function () {
-                    var li = $(this);
-                    var str = li.css("background-image");
-                    var length = str.length;
-                    var url = str.substring(5, length - 2);
-                    imgUrls += url + ',';
-                })
-                imgUrls = imgUrls.substring(0, imgUrls.length - 1);
-            }
-            $('#imgUrls').val(imgUrls);
-        })
+        initUploaders("windyeel", "http://steins00gate.s1.758kongbao.com/", "images");
 
         $('#draftSubmit').on('click', function () {
-            var lis = $('.worksImgs');
-            var imgUrls = "";
-            var len = lis.length;
-            if (len > 0) {
-                lis.each(function () {
-                    var li = $(this);
-                    var str = li.css("background-image");
-                    var length = str.length;
-                    var url = str.substring(5, length - 2);
-                    imgUrls += url + ',';
-                })
-                imgUrls = imgUrls.substring(0, imgUrls.length - 1);
-            }
-            $('#imgUrls').val(imgUrls);
             $('#draftYN').val('yes');
         })
 

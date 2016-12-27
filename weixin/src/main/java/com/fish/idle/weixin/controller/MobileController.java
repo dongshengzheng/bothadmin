@@ -116,7 +116,7 @@ public class MobileController extends BaseController {
         Works works = new Works();
         works.setStatus(Const.WORKS_STATUS_PASS);
         EntityWrapper<Works> ew = new EntityWrapper(works);
-        ew.setSqlSelect(" *,(select url from dd_images where target_id = dd_works.id and type = 0 limit 1) as images");
+//        ew.setSqlSelect(" *,(select url from dd_images where target_id = dd_works.id and type = 0 limit 1) as images");
         Page<Works> page = new Page<>(1, 4);
         page = worksService.selectPage(page, ew);
         map.put("page", page);
@@ -533,10 +533,9 @@ public class MobileController extends BaseController {
      *
      * @return
      */
-    @RequestMapping(value = "interpretationComplete", method = RequestMethod.GET)
+    @RequestMapping(value = "interpretationComplete", method = RequestMethod.POST)
     @OAuthRequired
     public String interpretationComplete(HttpSession session,
-                                         @RequestParam(required = false) int worksId,
                                          ModelMap map,
                                          Interpretation interpretation,
                                          @RequestParam(required = false) String imgUrls) {
@@ -550,7 +549,6 @@ public class MobileController extends BaseController {
         }
 
         interpretation.setUserId(appUser.getId());
-        interpretation.setWorksId(worksId);
         interpretationService.insert(interpretation);
         int interId = interpretation.getId();
         if (imgUrls != null && imgUrls.trim().length() > 0) {
@@ -563,9 +561,7 @@ public class MobileController extends BaseController {
                 imagesService.insert(images);
             }
         }
-
-        map.put("worksId", worksId);
-        return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/worksDetail?worksId=" + worksId;
+        return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/worksDetail?worksId=" + interpretation.getWorksId();
     }
 
 
@@ -984,7 +980,6 @@ public class MobileController extends BaseController {
                                  @RequestParam(required = false) String providerName,
                                  @RequestParam(required = false) String providerNo,
                                  @RequestParam(required = false) String worksRemarks,
-                                 @RequestParam(required = false) String imgUrls,
                                  @RequestParam(required = false) String draftYN) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
@@ -1019,16 +1014,8 @@ public class MobileController extends BaseController {
 
         Integer worksId = works.getId();
 
-        if (imgUrls != null && imgUrls.trim().length() > 0) {
-            String[] urls = imgUrls.split(",");
-            for (String url : urls) {
-                Images images = new Images();
-                images.setTargetId(worksId);
-                images.setUrl(url);
-                images.setType(Const.IMAGES_WORKS);
-                imagesService.insert(images);
-            }
-        }
+        insertImage(works.getImages(), worksId, Const.IMAGES_WORKS);
+
         if ("yes".equals(draftYN)) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=draft";
         }
@@ -1320,6 +1307,7 @@ public class MobileController extends BaseController {
                                     @RequestParam(required = false) String worksName,
                                     @RequestParam(required = false) String worksRemarks,
                                     @RequestParam(required = false) String worksType,
+                                    @RequestParam(required = false) String worksImages,
                                     @RequestParam(required = false) String makeTimeString,
                                     @RequestParam(required = false) String createDateString,
                                     @RequestParam(required = false) String providerNo,
@@ -1330,7 +1318,6 @@ public class MobileController extends BaseController {
                                     @RequestParam(required = false) String collecterPhone,
                                     @RequestParam(required = false) String collecterDateTimeString,
                                     @RequestParam(required = false) String collecterPub,
-                                    @RequestParam(required = false) String imgUrls,
                                     @RequestParam(required = false) String zpxxImge) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
@@ -1369,22 +1356,16 @@ public class MobileController extends BaseController {
         oldImg.setTargetId(worksId);
         oldImg.setType(Const.IMAGES_WORKS);
         List<Images> oldImgs = imagesService.selectList(new EntityWrapper<>(oldImg));
-        List<Integer> ids = new ArrayList<>();
-        for (Images img : oldImgs) {
-            ids.add(img.getId());
-        }
-        imagesService.deleteBatchIds(ids);
-
-        if (imgUrls != null && imgUrls.trim().length() > 0) {
-            String[] urls = imgUrls.split(",");
-            for (String url : urls) {
-                Images images = new Images();
-                images.setTargetId(worksId);
-                images.setUrl(url);
-                images.setType(Const.IMAGES_WORKS);
-                imagesService.insert(images);
+        if (oldImgs != null && oldImgs.size() > 0) {
+            List<Integer> ids = new ArrayList<>();
+            for (Images img : oldImgs) {
+                ids.add(img.getId());
             }
+            imagesService.deleteBatchIds(ids);
         }
+
+
+        insertImage(worksImages, worksId, Const.IMAGES_WORKS);
 
         worksLevel.setWorksId(worksId);
         WorksLevel wl = new WorksLevel();
@@ -1454,8 +1435,24 @@ public class MobileController extends BaseController {
                 imagesService.insert(images);
             }
         }
-
         return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my";
 
+    }
+
+
+    private void insertImage(String images, Integer targetId, String types) {
+        // 保存图片信息
+        if (images != null && images.trim().length() > 0) {
+            String[] urls = images.split(",");
+            List<Images> list = new ArrayList<>();
+            for (String url : urls) {
+                Images img = new Images();
+                img.setTargetId(targetId);
+                img.setUrl(url);
+                img.setType(types);
+                list.add(img);
+            }
+            imagesService.insertBatch(list);
+        }
     }
 }

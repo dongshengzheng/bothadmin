@@ -7,9 +7,9 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0"/>
     <title>物品信息</title>
-    <link rel="stylesheet" href="css/custom.css"/>
-    <link rel="stylesheet" href="css/weui.min.css"/>
-    <link rel="stylesheet" href="css/jquery-weui.min.css"/>
+    <link rel="stylesheet" href="${ctxStatic}/css/custom.css"/>
+    <link rel="stylesheet" href="${ctxStatic}/css/weui.min.css"/>
+    <link rel="stylesheet" href="${ctxStatic}/css/jquery-weui.min.css"/>
     <style>
         body {
             background-color: white;
@@ -56,7 +56,7 @@
         <span>&nbsp;◇&nbsp;JS-A20161205001A&nbsp;◇&nbsp;</span></center>
 </div>
 <div>
-    <form action="${ctx}/mobile/worksRegister2" enctype="multipart/form-data" method="post">
+    <form action="${ctx}/mobile/interpretationComplete" enctype="multipart/form-data" method="post">
         <input type="hidden" name="worksId" value="${worksId}">
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">诠释价格</label></div>
@@ -66,7 +66,7 @@
         </div>
         <div class="weui-cell">
             <div class="weui-cell__bd weui-cell_primary">
-                <textarea name="worksRemarks" class="weui-textarea" placeholder="请进行作品诠释" rows="13"></textarea>
+                <textarea name="description" class="weui-textarea" placeholder="请进行作品诠释" rows="13"></textarea>
                 <!--<div class="weui-textarea-counter">-->
                 <!--<span>0</span>/200-->
                 <!--</div>-->

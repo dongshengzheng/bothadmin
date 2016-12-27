@@ -146,7 +146,7 @@
             });
         });
 
-        initUploaders("windyeel", "http://steins00gate.s1.758kongbao.com/");
+        initUploaders("windyeel", "http://steins00gate.s1.758kongbao.com/", "worksImages");
 
         $(function () {
             $('.weui-navbar__item').on('click', function () {
@@ -155,40 +155,6 @@
         });
 
         $("#showDatePicker").calendar();
-
-
-        $('#submit').on('click', function () {
-            var lis = $('.worksImgs');
-            var imgUrls = "";
-            var len = lis.length;
-            if (len > 0) {
-                lis.each(function () {
-                    var li = $(this);
-                    var str = li.css("background-image");
-                    var length = str.length;
-                    var url = str.substring(5, length - 2);
-                    imgUrls += url + ',';
-                })
-                imgUrls = imgUrls.substring(0, imgUrls.length - 1);
-            }
-            $('#imgUrls').val(imgUrls);
-
-            var lis2 = $('.zpxxImgeUpload');
-            var imgUrls2 = "";
-            var len2 = lis2.length;
-            if (len2 > 0) {
-                lis2.each(function () {
-                    var li2 = $(this);
-                    var str2 = li2.css("background-image");
-                    var length2 = str2.length;
-                    var url2 = str2.substring(5, length2 - 2);
-                    imgUrls2 += url2 + ',';
-                })
-                imgUrls2 = imgUrls2.substring(0, imgUrls2.length - 1);
-            }
-            $('#zpxxImge').val(imgUrls2);
-        })
-
 
         $('#worksName').on('change', function () {
             $('.worksShowName').val($(this).val());
