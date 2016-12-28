@@ -109,7 +109,7 @@ public class UserController extends BaseController {
     /**
      * 转让作品列表
      * @param status    状态--  1：转入转出已完成  2：正在进行
-     * @param in 是否是转入
+     * @param in 是否是转入  参数传 true/false  比如：transfer_load/false/1
      * @param pageIndex
      * @param pageSize
      * @return
