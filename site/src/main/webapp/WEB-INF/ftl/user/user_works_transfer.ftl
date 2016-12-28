@@ -90,135 +90,75 @@
 
 <div id="rollin_works" style="display: none" class="col-sm-6">
     <div class="easy-block-v1">
-        <img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg" alt="">
-        <div class="easy-block-v1-badge rgba-red">Web Design</div>
+        <a id="rollin_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg" alt=""></a>
+    <#--<div class="easy-block-v1-badge rgba-red">Web Design</div>-->
     </div>
-    <div class="projects">
-        <h2><a class="color-dark" href="page_profile_projects.html#">Getting Started Photography</a></h2>
-        <ul class="list-unstyled list-inline blog-info-v2">
-            <li>By: <a class="color-green" href="page_profile_projects.html#">Edward Rooster</a></li>
-            <li><i class="fa fa-clock-o"></i> Jan 07, 2013</li>
-        </ul>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing. Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
-        <br>
+    <div class="headline-left margin-bottom-10">
+        <h3 id="rollin_works_name" class="headline-brd works-name"></h3>
     </div>
-    <div class="project-share">
-        <ul class="list-inline comment-list-v2 pull-left">
-            <li><i class="fa fa-eye"></i> <a href="page_profile_projects.html#">25</a></li>
-            <li><i class="fa fa-comments"></i> <a href="page_profile_projects.html#">32</a></li>
-            <li><i class="fa fa-retweet"></i> <a href="page_profile_projects.html#">77</a></li>
-        </ul>
-        <ul class="list-inline star-vote pull-right">
-            <li><i class="color-green fa fa-star"></i></li>
-            <li><i class="color-green fa fa-star"></i></li>
-            <li><i class="color-green fa fa-star"></i></li>
-            <li><i class="color-green fa fa-star-half-o"></i></li>
-            <li><i class="color-green fa fa-star-o"></i></li>
-        </ul>
-    </div>
+    <small class="project-tag">
+        <i class="fa fa-tag"></i>
+        <a id="rollin_works_des" href="javascript:void(0)"></a>
+    </small>
+    <p class="rollin_works-remarks"></p>
 </div>
 <div id="rollOut_works" style="display: none"  class="col-sm-6">
     <div class="easy-block-v1">
-        <img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg" alt="">
-        <div class="easy-block-v1-badge rgba-red">Web Design</div>
+        <a id="rollOut_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg" alt=""></a>
+    <#--<div class="easy-block-v1-badge rgba-red">Web Design</div>-->
     </div>
-    <div class="projects">
-        <h2><a class="color-dark" href="page_profile_projects.html#">Getting Started Photography</a></h2>
-        <ul class="list-unstyled list-inline blog-info-v2">
-            <li>By: <a class="color-green" href="page_profile_projects.html#">Edward Rooster</a></li>
-            <li><i class="fa fa-clock-o"></i> Jan 07, 2013</li>
-        </ul>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing. Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
-        <br>
+    <div class="headline-left margin-bottom-10">
+        <h3 id="rollOut_works_name" class="headline-brd works-name"></h3>
     </div>
-    <div class="project-share">
-        <ul class="list-inline comment-list-v2 pull-left">
-            <li><i class="fa fa-eye"></i> <a href="page_profile_projects.html#">25</a></li>
-            <li><i class="fa fa-comments"></i> <a href="page_profile_projects.html#">32</a></li>
-            <li><i class="fa fa-retweet"></i> <a href="page_profile_projects.html#">77</a></li>
-        </ul>
-        <ul class="list-inline star-vote pull-right">
-            <li><i class="color-green fa fa-star"></i></li>
-            <li><i class="color-green fa fa-star"></i></li>
-            <li><i class="color-green fa fa-star"></i></li>
-            <li><i class="color-green fa fa-star-half-o"></i></li>
-            <li><i class="color-green fa fa-star-o"></i></li>
-        </ul>
-    </div>
+    <small class="project-tag">
+        <i class="fa fa-tag"></i>
+        <a id="rollOut_works_des" href="javascript:void(0)"></a>
+    </small>
+    <p class="rollOut_works-remarks"></p>
 </div>
 <div id="rollInning_works" style="display: none"  class="col-sm-6">
     <div class="easy-block-v1">
-        <img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg" alt="">
-        <div class="easy-block-v1-badge rgba-red">Web Design</div>
+        <a id="rollInning_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg" alt=""></a>
+    <#--<div class="easy-block-v1-badge rgba-red">Web Design</div>-->
     </div>
-    <div class="projects">
-        <h2><a class="color-dark" href="page_profile_projects.html#">Getting Started Photography</a></h2>
-        <ul class="list-unstyled list-inline blog-info-v2">
-            <li>By: <a class="color-green" href="page_profile_projects.html#">Edward Rooster</a></li>
-            <li><i class="fa fa-clock-o"></i> Jan 07, 2013</li>
-        </ul>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing. Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
-        <br>
+    <div class="headline-left margin-bottom-10">
+        <h3 id="rollInning_works_name" class="headline-brd works-name"></h3>
     </div>
-    <div class="project-share">
-        <ul class="list-inline comment-list-v2 pull-left">
-            <li><i class="fa fa-eye"></i> <a href="page_profile_projects.html#">25</a></li>
-            <li><i class="fa fa-comments"></i> <a href="page_profile_projects.html#">32</a></li>
-            <li><i class="fa fa-retweet"></i> <a href="page_profile_projects.html#">77</a></li>
-        </ul>
-        <ul class="list-inline star-vote pull-right">
-            <li><i class="color-green fa fa-star"></i></li>
-            <li><i class="color-green fa fa-star"></i></li>
-            <li><i class="color-green fa fa-star"></i></li>
-            <li><i class="color-green fa fa-star-half-o"></i></li>
-            <li><i class="color-green fa fa-star-o"></i></li>
-        </ul>
-    </div>
+    <small class="project-tag">
+        <i class="fa fa-tag"></i>
+        <a id="rollInning_works_des" href="javascript:void(0)"></a>
+    </small>
+    <p class="rollInning_works-remarks"></p>
 </div>
 <div id="rollOuting_works" style="display: none"  class="col-sm-6">
     <div class="easy-block-v1">
-        <img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg" alt="">
-        <div class="easy-block-v1-badge rgba-red">Web Design</div>
+        <a id="rollOuting_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg" alt=""></a>
+    <#--<div class="easy-block-v1-badge rgba-red">Web Design</div>-->
     </div>
-    <div class="projects">
-        <h2><a class="color-dark" href="page_profile_projects.html#">Getting Started Photography</a></h2>
-        <ul class="list-unstyled list-inline blog-info-v2">
-            <li>By: <a class="color-green" href="page_profile_projects.html#">Edward Rooster</a></li>
-            <li><i class="fa fa-clock-o"></i> Jan 07, 2013</li>
-        </ul>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing. Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
-        <br>
+    <div class="headline-left margin-bottom-10">
+        <h3 id="rollOuting_works_name" class="headline-brd works-name"></h3>
     </div>
-    <div class="project-share">
-        <ul class="list-inline comment-list-v2 pull-left">
-            <li><i class="fa fa-eye"></i> <a href="page_profile_projects.html#">25</a></li>
-            <li><i class="fa fa-comments"></i> <a href="page_profile_projects.html#">32</a></li>
-            <li><i class="fa fa-retweet"></i> <a href="page_profile_projects.html#">77</a></li>
-        </ul>
-        <ul class="list-inline star-vote pull-right">
-            <li><i class="color-green fa fa-star"></i></li>
-            <li><i class="color-green fa fa-star"></i></li>
-            <li><i class="color-green fa fa-star"></i></li>
-            <li><i class="color-green fa fa-star-half-o"></i></li>
-            <li><i class="color-green fa fa-star-o"></i></li>
-        </ul>
-    </div>
+    <small class="project-tag">
+        <i class="fa fa-tag"></i>
+        <a id="rollOuting_works_des" href="javascript:void(0)"></a>
+    </small>
+    <p class="rollOuting_works-remarks"></p>
 </div>
 
 </@htmlBody>
 <@footerJS>
 <script>
     // 已转入
-    rollinIndex = 0;
+    rollinIndex = 1;
     rollinHasMore = true;
     // 已转出
-    rollOutIndex = 0;
+    rollOutIndex = 1;
     rollOutHasMore = true;
     // 待确认转入
-    rollInningIndex = 0;
+    rollInningIndex = 1;
     rollInningHasMore = true;
     // 待确认转出
-    rollOutingIndex = 0;
+    rollOutingIndex = 1;
     rollOutingHasMore =true;
 
     $(document).ready(function () {
@@ -238,6 +178,9 @@
                     var $li = $("#rollin_works").clone();
                     $li.removeAttr("id").css("display", "block");
                     $li.find(".img-responsive").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.works.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
+                    $li.find("#rollin_works_des").html(this.works.breed);
+                    $li.find("#rollin_works_name").html(this.works.name);
+                    $li.find("#rollin_works_img").attr("href","${staticPath}/works/detail/" + this.works.id);
                     $("#rollin_content").append($li);
                 });
 
@@ -251,7 +194,6 @@
             }
         });
 
-        //
         function loadRollOut(rollOutIndex) {
             $.get("/user/transfer_load/true/1", {pageIndex: rollOutIndex}, function (data) {
                 if (rollOutIndex >= data.pages) {
@@ -263,6 +205,9 @@
                     var $li = $("#rollOut_works").clone();
                     $li.removeAttr("id").css("display", "block");
                     $li.find(".img-responsive").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.works.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
+                    $li.find("#rollOut_works_des").html(this.works.breed);
+                    $li.find("#rollOut_works_name").html(this.works.name);
+                    $li.find("#rollOut_works_img").attr("href","${staticPath}/works/detail/" + this.works.id);
                     $("#rollOut_content").append($li);
                 });
             });
@@ -285,6 +230,9 @@
                     var $li = $("#rollInning_works").clone();
                     $li.removeAttr("id").css("display", "block");
                     $li.find(".img-responsive").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.works.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
+                    $li.find("#rollInning_works_des").html(this.works.breed);
+                    $li.find("#rollInning_works_name").html(this.works.name);
+                    $li.find("#rollInning_works_img").attr("href","${staticPath}/works/detail/" + this.works.id);
                     $("#rollInning_content").append($li);
                 });
             });
@@ -308,6 +256,9 @@
                     var $li = $("#rollOuting_works").clone();
                     $li.removeAttr("id").css("display", "block");
                     $li.find(".img-responsive").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.works.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
+                    $li.find("#rollOuting_works_des").html(this.works.breed);
+                    $li.find("#rollOuting_works_name").html(this.works.name);
+                    $li.find("#rollOuting_works_img").attr("href","${staticPath}/works/detail/" + this.works.id);
                     $("#rollOuting_content").append($li);
                 });
             });

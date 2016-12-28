@@ -57,14 +57,17 @@ public class WorksDetailController extends BaseController {
     public Page<Works> list(@RequestParam(required = false, defaultValue = "0") Integer pageIndex,
                             @RequestParam(required = false, defaultValue = "6") Integer pageSize,
                             Works works) {
-
         Page<Works> page = new Page<>(pageIndex, pageSize);
 
         EntityWrapper<Works> ew = new EntityWrapper<>(works);
-        ew.setSqlSelect("name,type,remarks");
+        ew.setSqlSelect("id,name,type,remarks,breed");
         ew.orderBy("id", false);
         Page<Works> worksPage = worksService.selectPage(page, ew);
         for (Works work : worksPage.getRecords()) {
+            //品种
+            if(StringUtils.isNotEmpty(work.getBreed())){
+                work.setBreed(dictService.getLabelByValue(work.getBreed(), "dd_pinzhong"));
+            }
             Images images = imagesService.selectOne(new EntityWrapper<>(new Images(work.getId(), Const.IMAGES_WORKS)));
             if(images != null && !StringUtils.isEmpty(images.getUrl())){
                 work.setImages(images.getUrl());
@@ -127,7 +130,6 @@ public class WorksDetailController extends BaseController {
         if (StringUtils.isNotEmpty(worksLevel.getXuexing())) {
             worksLevel.setXuexing(dictService.getLabelByValue(worksLevel.getXuexing(), "dd_xuexing"));
         }
-        //
         if (StringUtils.isNotEmpty(worksLevel.getNongyandu())) {
             worksLevel.setNongyandu(dictService.getLabelByValue(worksLevel.getNongyandu(), "dd_nongyandu"));
         }
@@ -146,9 +148,6 @@ public class WorksDetailController extends BaseController {
         if (StringUtils.isNotEmpty(worksLevel.getInithanxueliang())) {
             worksLevel.setInithanxueliang(dictService.getLabelByValue(worksLevel.getInithanxueliang(), "dd_mian"));
         }
-//        if(StringUtils.isNotEmpty(worksLevel.getHanxuemian())){
-//            worksLevel.setHanxuemian(dictService.getLabelByValue(worksLevel.getHanxuemian(),"dd_mian"));
-//        }
         if (StringUtils.isNotEmpty(worksLevel.getHanxueliang())) {
             worksLevel.setHanxueliang(dictService.getLabelByValue(worksLevel.getHanxueliang(), "dd_hanxuefangshi"));
         }
