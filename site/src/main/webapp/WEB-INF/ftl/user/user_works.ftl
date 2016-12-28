@@ -91,139 +91,102 @@
 
 <div class="col-sm-6" id="passWorks" style="display: none">
     <div class="easy-block-v1">
-        <img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg" alt="">
-        <div class="easy-block-v1-badge rgba-red">Web Design</div>
+        <a id="pass_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg" alt=""></a>
+    <#--<div class="easy-block-v1-badge rgba-red">Web Design</div>-->
     </div>
-    <div class="projects">
-        <h2><a class="color-dark" href="page_profile_projects.html#">Getting Started Photography</a></h2>
-        <ul class="list-unstyled list-inline blog-info-v2">
-            <li>By: <a class="color-green" href="page_profile_projects.html#">Edward Rooster</a></li>
-            <li><i class="fa fa-clock-o"></i> Jan 07, 2013</li>
-        </ul>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing. Donec non dignissim eros.
-            Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
-        <br>
+    <div class="headline-left margin-bottom-10">
+        <h3 id="pass_works_name" class="headline-brd works-name"></h3>
     </div>
-    <div class="project-share">
-        <ul class="list-inline comment-list-v2 pull-left">
-            <li><i class="fa fa-eye"></i> <a href="page_profile_projects.html#">25</a></li>
-            <li><i class="fa fa-comments"></i> <a href="page_profile_projects.html#">32</a></li>
-            <li><i class="fa fa-retweet"></i> <a href="page_profile_projects.html#">77</a></li>
-        </ul>
-        <ul class="list-inline star-vote pull-right">
-            <li><i class="color-green fa fa-star"></i></li>
-            <li><i class="color-green fa fa-star"></i></li>
-            <li><i class="color-green fa fa-star"></i></li>
-            <li><i class="color-green fa fa-star-half-o"></i></li>
-            <li><i class="color-green fa fa-star-o"></i></li>
-        </ul>
-    </div>
+    <small class="project-tag">
+        <i class="fa fa-tag"></i>
+        <a id="pass_works_des" href="javascript:void(0)"></a>
+    </small>
+    <p class="pass_works-remarks"></p>
 </div>
 <div class="col-sm-6" id="unPassWorks" style="display: none">
     <div class="easy-block-v1">
-        <img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg" alt="">
-        <div class="easy-block-v1-badge rgba-red">Web Design</div>
+        <a id="unPass_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg" alt=""></a>
+    <#--<div class="easy-block-v1-badge rgba-red">Web Design</div>-->
     </div>
-    <div class="projects">
-        <h2><a class="color-dark" href="page_profile_projects.html#">Getting Started Photography</a></h2>
-        <ul class="list-unstyled list-inline blog-info-v2">
-            <li>By: <a class="color-green" href="page_profile_projects.html#">Edward Rooster</a></li>
-            <li><i class="fa fa-clock-o"></i> Jan 07, 2013</li>
-        </ul>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing. Donec non dignissim eros.
-            Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
-        <br>
+    <div class="headline-left margin-bottom-10">
+        <h3 id="unPass_works_name" class="headline-brd works-name"></h3>
     </div>
-    <div class="project-share">
-        <ul class="list-inline comment-list-v2 pull-left">
-            <li><i class="fa fa-eye"></i> <a href="page_profile_projects.html#">25</a></li>
-            <li><i class="fa fa-comments"></i> <a href="page_profile_projects.html#">32</a></li>
-            <li><i class="fa fa-retweet"></i> <a href="page_profile_projects.html#">77</a></li>
-        </ul>
-        <ul class="list-inline star-vote pull-right">
-            <li><i class="color-green fa fa-star"></i></li>
-            <li><i class="color-green fa fa-star"></i></li>
-            <li><i class="color-green fa fa-star"></i></li>
-            <li><i class="color-green fa fa-star-half-o"></i></li>
-            <li><i class="color-green fa fa-star-o"></i></li>
-        </ul>
-    </div>
+    <small class="project-tag">
+        <i class="fa fa-tag"></i>
+        <a id="unPass_works_des" href="javascript:void(0)"></a>
+    </small>
+    <p class="unPass_works-remarks"></p>
 </div>
+
 <div class="col-sm-6" id="checkingWorks" style="display: none">
     <div class="easy-block-v1">
-        <img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg" alt="">
-        <div class="easy-block-v1-badge rgba-red">Web Design</div>
+        <a id="checking_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg" alt=""></a>
+    <#--<div class="easy-block-v1-badge rgba-red">Web Design</div>-->
     </div>
-    <div class="projects">
-        <h2><a class="color-dark" href="page_profile_projects.html#">Getting Started Photography</a></h2>
-        <ul class="list-unstyled list-inline blog-info-v2">
-            <li>By: <a class="color-green" href="page_profile_projects.html#">Edward Rooster</a></li>
-            <li><i class="fa fa-clock-o"></i> Jan 07, 2013</li>
-        </ul>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing. Donec non dignissim eros.
-            Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
-        <br>
+    <div class="headline-left margin-bottom-10">
+        <h3 id="checking_works_name" class="headline-brd works-name"></h3>
     </div>
-    <div class="project-share">
-        <ul class="list-inline comment-list-v2 pull-left">
-            <li><i class="fa fa-eye"></i> <a href="page_profile_projects.html#">25</a></li>
-            <li><i class="fa fa-comments"></i> <a href="page_profile_projects.html#">32</a></li>
-            <li><i class="fa fa-retweet"></i> <a href="page_profile_projects.html#">77</a></li>
-        </ul>
-        <ul class="list-inline star-vote pull-right">
-            <li><i class="color-green fa fa-star"></i></li>
-            <li><i class="color-green fa fa-star"></i></li>
-            <li><i class="color-green fa fa-star"></i></li>
-            <li><i class="color-green fa fa-star-half-o"></i></li>
-            <li><i class="color-green fa fa-star-o"></i></li>
-        </ul>
-    </div>
+    <small class="project-tag">
+        <i class="fa fa-tag"></i>
+        <a id="checking_works_des" href="javascript:void(0)"></a>
+    </small>
+    <p class="checking_works-remarks"></p>
+
+
 </div>
 <div class="col-sm-6" id="draftWorks" style="display: none">
     <div class="easy-block-v1">
-        <img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg" alt="">
-        <div class="easy-block-v1-badge rgba-red">Web Design</div>
+        <a id="draft_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg" alt=""></a>
+        <#--<div class="easy-block-v1-badge rgba-red">Web Design</div>-->
     </div>
-    <div class="projects">
-        <h2><a class="color-dark" href="page_profile_projects.html#">Getting Started Photography</a></h2>
-        <ul class="list-unstyled list-inline blog-info-v2">
-            <li>By: <a class="color-green" href="page_profile_projects.html#">Edward Rooster</a></li>
-            <li><i class="fa fa-clock-o"></i> Jan 07, 2013</li>
-        </ul>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing. Donec non dignissim eros.
-            Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
-        <br>
+    <div class="headline-left margin-bottom-10">
+        <h3 id="draft_works_name" class="headline-brd works-name"></h3>
     </div>
-    <div class="project-share">
-        <ul class="list-inline comment-list-v2 pull-left">
-            <li><i class="fa fa-eye"></i> <a href="page_profile_projects.html#">25</a></li>
-            <li><i class="fa fa-comments"></i> <a href="page_profile_projects.html#">32</a></li>
-            <li><i class="fa fa-retweet"></i> <a href="page_profile_projects.html#">77</a></li>
-        </ul>
-        <ul class="list-inline star-vote pull-right">
-            <li><i class="color-green fa fa-star"></i></li>
-            <li><i class="color-green fa fa-star"></i></li>
-            <li><i class="color-green fa fa-star"></i></li>
-            <li><i class="color-green fa fa-star-half-o"></i></li>
-            <li><i class="color-green fa fa-star-o"></i></li>
-        </ul>
-    </div>
+    <small class="project-tag">
+        <i class="fa fa-tag"></i>
+        <a id="draft_works_des" href="javascript:void(0)"></a>
+    </small>
+    <p class="draft_works-remarks"></p>
+    <#--<div class="projects">-->
+        <#--<h2><a class="color-dark" href="page_profile_projects.html#">Getting Started Photography</a></h2>-->
+        <#--<ul class="list-unstyled list-inline blog-info-v2">-->
+            <#--<li>By: <a class="color-green" href="page_profile_projects.html#">Edward Rooster</a></li>-->
+            <#--<li><i class="fa fa-clock-o"></i> Jan 07, 2013</li>-->
+        <#--</ul>-->
+        <#--<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing. Donec non dignissim eros.-->
+            <#--Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>-->
+        <#--<br>-->
+    <#--</div>-->
+    <#--<div class="project-share">-->
+        <#--<ul class="list-inline comment-list-v2 pull-left">-->
+            <#--<li><i class="fa fa-eye"></i> <a href="page_profile_projects.html#">25</a></li>-->
+            <#--<li><i class="fa fa-comments"></i> <a href="page_profile_projects.html#">32</a></li>-->
+            <#--<li><i class="fa fa-retweet"></i> <a href="page_profile_projects.html#">77</a></li>-->
+        <#--</ul>-->
+        <#--<ul class="list-inline star-vote pull-right">-->
+            <#--<li><i class="color-green fa fa-star"></i></li>-->
+            <#--<li><i class="color-green fa fa-star"></i></li>-->
+            <#--<li><i class="color-green fa fa-star"></i></li>-->
+            <#--<li><i class="color-green fa fa-star-half-o"></i></li>-->
+            <#--<li><i class="color-green fa fa-star-o"></i></li>-->
+        <#--</ul>-->
+    <#--</div>-->
 </div>
 
 </@htmlBody>
 <@footerJS>
 <script>
     //作品通过
-    pagePassIndex = 0;
+    pagePassIndex = 1;
     passHasMore = true;
     //审核失败
-    pageUnPassIndex = 0;
+    pageUnPassIndex = 1;
     unPassHasMore = true;
     //审核中
-    checkingIndex = 0;
+    checkingIndex = 1;
     checkingHasMore = true;
     //草稿
-    draftsIndex = 0;
+    draftsIndex = 1;
     draftsHasMore =true;
 
     $(document).ready(function () {
@@ -243,6 +206,9 @@
                     var $li = $("#passWorks").clone();
                     $li.removeAttr("id").css("display", "block");
                     $li.find(".img-responsive").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
+                    $li.find("#pass_works_des").html(this.breed);
+                    $li.find("#pass_works_name").html(this.name);
+                    $li.find("#pass_works_img").attr("href","${staticPath}/works/detail/" + this.id);
                     $("#passWorks-content").append($li);
                 });
 
@@ -268,6 +234,9 @@
                     var $li = $("#unPassWorks").clone();
                     $li.removeAttr("id").css("display", "block");
                     $li.find(".img-responsive").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
+                    $li.find("#unPass_works_des").html(this.breed);
+                    $li.find("#unPass_works_name").html(this.name);
+                    $li.find("#unPass_works_img").attr("href","${staticPath}/works/detail/" + this.id);
                     $("#unPassWorks-content").append($li);
                 });
             });
@@ -292,6 +261,9 @@
                     var $li = $("#checkingWorks").clone();
                     $li.removeAttr("id").css("display", "block");
                     $li.find(".img-responsive").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
+                    $li.find("#checking_works_des").html(this.breed);
+                    $li.find("#checking_works_name").html(this.name);
+                    $li.find("#checking_works_img").attr("href","${staticPath}/works/detail/" + this.id);
                     $("#checkingWorks-content").append($li);
                 });
             });
@@ -299,7 +271,7 @@
         $("#checkingBtn").on("click", function () {
             if (checkingHasMore) {
                 checkingIndex++;
-                loadUnPass(checkingIndex);
+                loadChecking(checkingIndex);
             }
         });
 
@@ -315,6 +287,9 @@
                     var $li = $("#draftWorks").clone();
                     $li.removeAttr("id").css("display", "block");
                     $li.find(".img-responsive").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
+                    $li.find("#draft_works_des").html(this.breed);
+                    $li.find("#draft_works_name").html(this.name);
+                    $li.find("#draft_works_img").attr("href","${staticPath}/works/detail/" + this.id);
                     $("#draftsWorks-content").append($li);
                 });
             });
@@ -322,7 +297,7 @@
         $("#draftsBtn").on("click", function () {
             if (draftsHasMore) {
                 draftsIndex++;
-                loadUnPass(draftsIndex);
+                loadDrafts(draftsIndex);
             }
         });
     });

@@ -85,6 +85,10 @@ public class UserController extends BaseController {
         Page<Works> page = new Page<>(pageIndex, pageSize);
         Page<Works> worksPage = worksService.selectPage(page, getMyWorksEw(type));
         for (Works work : worksPage.getRecords()) {
+            //品种
+            if(StringUtils.isNotEmpty(work.getBreed())){
+                work.setBreed(dictService.getLabelByValue(work.getBreed(), "dd_pinzhong"));
+            }
             Images images = imagesService.selectOne(new EntityWrapper<>(new Images(work.getId(), Const.IMAGES_WORKS)));
             if (images != null && !StringUtils.isEmpty(images.getUrl())) {
                 work.setImages(images.getUrl());
@@ -374,7 +378,7 @@ public class UserController extends BaseController {
         AppUser user = getCurrentUser();
         Works works = new Works();
         EntityWrapper<Works> ew = new EntityWrapper<>(works);
-        ew.setSqlSelect("name,type,remarks");
+        ew.setSqlSelect("id,name,type,remarks,breed");
         ew.orderBy("id", false);
         ew.where("status = " + status);
         ew.where("create_by = " + user.getId());
