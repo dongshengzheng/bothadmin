@@ -277,4 +277,11 @@ public class AppUser implements Serializable {
     public void setCollectionCount(Integer collectionCount) {
         this.collectionCount = collectionCount;
     }
+
+    public AppUser() {
+    }
+    public AppUser(Integer id, String headImgUrl) {
+        this.id = id;
+        this.headImgUrl = headImgUrl;
+    }
 }

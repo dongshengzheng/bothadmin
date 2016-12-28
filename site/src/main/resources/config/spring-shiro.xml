@@ -25,9 +25,12 @@
                 /works/add/** = user
                 /works/edit/** = user
                 /works/delete/** = user
+                /interpretation/add/** = user
             </value>
         </property>
     </bean>
+
+
 
     <!-- 会话Cookie模板 似乎不管用-->
     <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">

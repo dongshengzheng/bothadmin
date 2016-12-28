@@ -105,7 +105,7 @@
             $.get("/user/collect_load", {pageIndex: pageIndex}, function (data) {
                 if (pageIndex >= data.pages) {
                     // 数据加载完毕了
-                    $("#collectBtn").html("客观，这次真没了");
+                    $("#collectBtn").html("客官，这次真没了");
                     hasMore = false;
                 }
                 $.each(data.records, function () {

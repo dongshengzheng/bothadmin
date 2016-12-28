@@ -48,8 +48,8 @@
     </bean>
 
     <!-- 配置freeMarker模板加载地址 -->
-    <bean id="freeMarkerConfigurer"
-          class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+    <bean id="freemakerCongfig"
+          class="com.fish.idle.site.shiro.ShiroTagFreeMarkerConfigurer">
         <property name="templateLoaderPath" value="WEB-INF/ftl/"/>
         <property name="defaultEncoding" value="UTF-8"/>
         <property name="freemarkerSettings">
@@ -68,7 +68,6 @@
             </map>
         </property>
     </bean>
-
     <bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape"/>
 
     <!--视图解析器-->

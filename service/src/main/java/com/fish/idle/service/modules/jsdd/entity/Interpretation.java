@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.fish.idle.service.modules.sys.entity.AppUser;
+import com.fish.idle.service.util.BaseEntity;
 
 /**
  *
@@ -17,14 +18,10 @@ import com.fish.idle.service.modules.sys.entity.AppUser;
  *
  */
 @TableName("dd_interpretation")
-public class Interpretation implements Serializable {
+public class Interpretation  extends BaseEntity {
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
-
-    /**  */
-    @TableId(type = IdType.AUTO)
-    private Integer id;
 
     /**  */
     @TableField(value = "works_id")
@@ -51,7 +48,6 @@ public class Interpretation implements Serializable {
     @TableField(value = "score_demanded")
     private Integer scoreDemanded;
 
-
     /**
      * 诠释文字说明
      */
@@ -72,58 +68,16 @@ public class Interpretation implements Serializable {
     /**  */
     @TableField(value = "follow_count")
     private Integer followCount;
-
-    /**
-     * 创建时间
-     */
-    @TableField(value = "create_date")
-    private Date createDate;
-
-    /**
-     * 更新时间
-     */
-    @TableField(value = "update_date")
-    private Date updateDate;
-
-    /**
-     * 创建者
-     */
-    @TableField(value = "create_by")
-    private Integer createBy;
-
-    /**
-     * 更新者
-     */
-    @TableField(value = "update_by")
-    private Integer updateBy;
-
-    /**
-     * 逻辑删除标记（0：显示；1：隐藏）
-     */
-    @TableField(value = "del_flag")
-    private Integer delFlag = 0;
-
     /**
      * 诠释的图片
      */
     @TableField(exist = false)
     private List<Images> imagesList;
-
     /**
      * 诠释者
      */
     @TableField(exist = false)
     private AppUser appUser;
-
-
-    public Integer getId() {
-        return this.id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public Integer getWorksId() {
         return this.worksId;
     }
@@ -196,46 +150,6 @@ public class Interpretation implements Serializable {
         this.followCount = followCount;
     }
 
-    public Date getCreateDate() {
-        return this.createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
-    public Date getUpdateDate() {
-        return this.updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
-    }
-
-    public Integer getCreateBy() {
-        return this.createBy;
-    }
-
-    public void setCreateBy(Integer createBy) {
-        this.createBy = createBy;
-    }
-
-    public Integer getUpdateBy() {
-        return this.updateBy;
-    }
-
-    public void setUpdateBy(Integer updateBy) {
-        this.updateBy = updateBy;
-    }
-
-    public Integer getDelFlag() {
-        return this.delFlag;
-    }
-
-    public void setDelFlag(Integer delFlag) {
-        this.delFlag = delFlag;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -259,4 +173,5 @@ public class Interpretation implements Serializable {
     public void setAppUser(AppUser appUser) {
         this.appUser = appUser;
     }
+
 }
