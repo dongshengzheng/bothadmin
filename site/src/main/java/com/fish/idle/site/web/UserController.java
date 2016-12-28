@@ -195,6 +195,30 @@ public class UserController extends BaseController {
         return "user/user_follow";
     }
 
+    @RequestMapping(value = "follow_load",method = RequestMethod.GET)
+    @ResponseBody
+    public Page<FollowHistory> loadFollow(@RequestParam(required = false, defaultValue = "0") Integer pageIndex,
+                                    @RequestParam(required = false, defaultValue = "6") Integer pageSize){
+        Page<FollowHistory> page = new Page<>(pageIndex, pageSize);
+        EntityWrapper<FollowHistory> ew = new EntityWrapper<>(new FollowHistory());
+        ew.setSqlSelect("target_id");
+        ew.addFilter("type = 1 and target_id = {0}", getCurrentUser().getId());
+        Page<FollowHistory> followHistoryPage = followHistoryService.selectPage(page,ew);
+        for (FollowHistory f:followHistoryPage.getRecords()){
+            AppUser user = new AppUser();
+            user.setId(f.getTargetId());
+            user = userService.selectOne(user);
+            EntityWrapper<FollowHistory> followEw = new EntityWrapper<>(new FollowHistory());
+            followEw.addFilter("type = 1 and target_id = {0}",user.getId());
+            user.setFollowCount(followHistoryService.selectCount(followEw));
+            EntityWrapper<Works> worksEw = new EntityWrapper<>(new Works());
+            worksEw.addFilter("create_by={0}",user.getId());
+            user.setWorksCount(worksService.selectCount(worksEw));
+            f.setAppUser(user);
+        }
+        return followHistoryPage;
+    }
+
     /**
      * 积分中心
      *

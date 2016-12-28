@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.annotations.IdType;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.fish.idle.service.modules.sys.entity.AppUser;
 
 /**
  *
@@ -72,6 +73,17 @@ public class FollowHistory implements Serializable {
     @TableField(exist = false)
     private Works works;
 
+    @TableField(exist = false)
+    private AppUser appUser;
+
+
+    public AppUser getAppUser() {
+        return appUser;
+    }
+
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
+    }
 
     public Works getWorks() {
         return works;

@@ -11,7 +11,8 @@
     <div class="row">
         <!--Left Sidebar-->
         <div class="col-md-3 md-margin-bottom-40">
-            <img class="img-responsive profile-img margin-bottom-20" src="${staticPath}/assets/img/team/img32-md.jpg" alt="">
+            <img class="img-responsive profile-img margin-bottom-20" src="${staticPath}/assets/img/team/img32-md.jpg"
+                 alt="">
 
             <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
                 <li class="list-group-item ">
@@ -50,210 +51,72 @@
         <div class="col-md-9">
             <div class="profile-body margin-bottom-20">
                 <!--Profile Blog-->
-                <div class="row margin-bottom-20">
-                    <div class="col-sm-6 sm-margin-bottom-20">
-                        <div class="profile-blog">
-                            <img class="rounded-x" src="${staticPath}/assets/img/testimonials/img1.jpg" alt="">
-                            <div class="name-location">
-                                <strong>Mikel Andrews</strong>
-                                <span><i class="fa fa-map-marker"></i><a href="page_profile_users.html#">California,</a> <a href="page_profile_users.html#">US</a></span>
-                            </div>
-                            <div class="clearfix margin-bottom-20"></div>
-                            <p>Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
-                            <hr>
-                            <ul class="list-inline share-list">
-                                <li><i class="fa fa-bell"></i><a href="page_profile_users.html#">12 Notifications</a></li>
-                                <li><i class="fa fa-group"></i><a href="page_profile_users.html#">54 Followers</a></li>
-                                <li><i class="fa fa-share"></i><a href="page_profile_users.html#">Share</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                <div id="user_content" class="row margin-bottom-20">
 
-                    <div class="col-sm-6">
-                        <div class="profile-blog">
-                            <img class="rounded-x" src="${staticPath}/assets/img/testimonials/user.jpg" alt="">
-                            <div class="name-location">
-                                <strong>Natasha Kolnikova</strong>
-                                <span><i class="fa fa-map-marker"></i><a href="page_profile_users.html#">Moscow,</a> <a href="page_profile_users.html#">Russia</a></span>
-                            </div>
-                            <div class="clearfix margin-bottom-20"></div>
-                            <p>Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
-                            <hr>
-                            <ul class="list-inline share-list">
-                                <li><i class="fa fa-bell"></i><a href="page_profile_users.html#">37 Notifications</a></li>
-                                <li><i class="fa fa-group"></i><a href="page_profile_users.html#">46 Followers</a></li>
-                                <li><i class="fa fa-share"></i><a href="page_profile_users.html#">Share</a></li>
-                            </ul>
-                        </div>
-                    </div>
                 </div><!--/end row-->
-                <!--End Profile Blog-->
-
-                <!--Profile Blog-->
-                <div class="row margin-bottom-20">
-                    <div class="col-sm-6 sm-margin-bottom-20">
-                        <div class="profile-blog">
-                            <img class="rounded-x" src="${staticPath}/assets/img/testimonials/img2.jpg" alt="">
-                            <div class="name-location">
-                                <strong>Sasha Elli</strong>
-                                <span><i class="fa fa-map-marker"></i><a href="page_profile_users.html#">California,</a> <a href="page_profile_users.html#">US</a></span>
-                            </div>
-                            <div class="clearfix margin-bottom-20"></div>
-                            <p>Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
-                            <hr>
-                            <ul class="list-inline share-list">
-                                <li><i class="fa fa-bell"></i><a href="page_profile_users.html#">3 Notifications</a></li>
-                                <li><i class="fa fa-group"></i><a href="page_profile_users.html#">25 Followers</a></li>
-                                <li><i class="fa fa-share"></i><a href="page_profile_users.html#">Share</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="profile-blog">
-                            <img class="rounded-x" src="${staticPath}/assets/img/testimonials/img3.jpg" alt="">
-                            <div class="name-location">
-                                <strong>Frank Heller</strong>
-                                <span><i class="fa fa-map-marker"></i><a href="page_profile_users.html#">Moscow,</a> <a href="page_profile_users.html#">Russia</a></span>
-                            </div>
-                            <div class="clearfix margin-bottom-20"></div>
-                            <p>Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
-                            <hr>
-                            <ul class="list-inline share-list">
-                                <li><i class="fa fa-bell"></i><a href="page_profile_users.html#">7 Notifications</a></li>
-                                <li><i class="fa fa-group"></i><a href="page_profile_users.html#">77 Followers</a></li>
-                                <li><i class="fa fa-share"></i><a href="page_profile_users.html#">Share</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!--/end row-->
-                <!--End Profile Blog-->
-
-                <!--Profile Blog-->
-                <div class="row margin-bottom-20">
-                    <div class="col-sm-6 sm-margin-bottom-20">
-                        <div class="profile-blog">
-                            <img class="rounded-x" src="${staticPath}/assets/img/testimonials/user.jpg" alt="">
-                            <div class="name-location">
-                                <strong>John W.A</strong>
-                                <span><i class="fa fa-map-marker"></i><a href="page_profile_users.html#">California,</a> <a href="page_profile_users.html#">US</a></span>
-                            </div>
-                            <div class="clearfix margin-bottom-20"></div>
-                            <p>Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
-                            <hr>
-                            <ul class="list-inline share-list">
-                                <li><i class="fa fa-bell"></i><a href="page_profile_users.html#">0 Notifications</a></li>
-                                <li><i class="fa fa-group"></i><a href="page_profile_users.html#">9 Followers</a></li>
-                                <li><i class="fa fa-share"></i><a href="page_profile_users.html#">Share</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="profile-blog">
-                            <img class="rounded-x" src="${staticPath}/assets/img/testimonials/img5.jpg" alt="">
-                            <div class="name-location">
-                                <strong>Natalia J.</strong>
-                                <span><i class="fa fa-map-marker"></i><a href="page_profile_users.html#">Moscow,</a> <a href="page_profile_users.html#">Russia</a></span>
-                            </div>
-                            <div class="clearfix margin-bottom-20"></div>
-                            <p>Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
-                            <hr>
-                            <ul class="list-inline share-list">
-                                <li><i class="fa fa-bell"></i><a href="page_profile_users.html#">56 Notifications</a></li>
-                                <li><i class="fa fa-group"></i><a href="page_profile_users.html#">125 Followers</a></li>
-                                <li><i class="fa fa-share"></i><a href="page_profile_users.html#">Share</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!--/end row-->
-
-                <!--Profile Blog-->
-                <div class="row margin-bottom-20">
-                    <div class="col-sm-6 sm-margin-bottom-20">
-                        <div class="profile-blog">
-                            <img class="rounded-x" src="${staticPath}/assets/img/testimonials/img4.jpg" alt="">
-                            <div class="name-location">
-                                <strong>Pavel Kolnikov</strong>
-                                <span><i class="fa fa-map-marker"></i><a href="page_profile_users.html#">Moscow,</a> <a href="page_profile_users.html#">Russia</a></span>
-                            </div>
-                            <div class="clearfix margin-bottom-20"></div>
-                            <p>Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
-                            <hr>
-                            <ul class="list-inline share-list">
-                                <li><i class="fa fa-bell"></i><a href="page_profile_users.html#">37 Notifications</a></li>
-                                <li><i class="fa fa-group"></i><a href="page_profile_users.html#">46 Followers</a></li>
-                                <li><i class="fa fa-share"></i><a href="page_profile_users.html#">Share</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="profile-blog">
-                            <img class="rounded-x" src="${staticPath}/assets/img/testimonials/img6.jpg" alt="">
-                            <div class="name-location">
-                                <strong>Taylor Lee</strong>
-                                <span><i class="fa fa-map-marker"></i><a href="page_profile_users.html#">California,</a> <a href="page_profile_users.html#">US</a></span>
-                            </div>
-                            <div class="clearfix margin-bottom-20"></div>
-                            <p>Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
-                            <hr>
-                            <ul class="list-inline share-list">
-                                <li><i class="fa fa-bell"></i><a href="page_profile_users.html#">0 Notifications</a></li>
-                                <li><i class="fa fa-group"></i><a href="page_profile_users.html#">9 Followers</a></li>
-                                <li><i class="fa fa-share"></i><a href="page_profile_users.html#">Share</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!--/end row-->
-                <!--End Profile Blog-->
-
-                <!--Profile Blog-->
-                <div class="row margin-bottom-20">
-                    <div class="col-sm-6 sm-margin-bottom-20">
-                        <div class="profile-blog">
-                            <img class="rounded-x" src="${staticPath}/assets/img/testimonials/img3.jpg" alt="">
-                            <div class="name-location">
-                                <strong>Frank Heller</strong>
-                                <span><i class="fa fa-map-marker"></i><a href="page_profile_users.html#">Moscow,</a> <a href="page_profile_users.html#">Russia</a></span>
-                            </div>
-                            <div class="clearfix margin-bottom-20"></div>
-                            <p>Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
-                            <hr>
-                            <ul class="list-inline share-list">
-                                <li><i class="fa fa-bell"></i><a href="page_profile_users.html#">7 Notifications</a></li>
-                                <li><i class="fa fa-group"></i><a href="page_profile_users.html#">77 Followers</a></li>
-                                <li><i class="fa fa-share"></i><a href="page_profile_users.html#">Share</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="profile-blog">
-                            <img class="rounded-x" src="${staticPath}/assets/img/testimonials/img2.jpg" alt="">
-                            <div class="name-location">
-                                <strong>Sasha Elli</strong>
-                                <span><i class="fa fa-map-marker"></i><a href="page_profile_users.html#">California,</a> <a href="page_profile_users.html#">US</a></span>
-                            </div>
-                            <div class="clearfix margin-bottom-20"></div>
-                            <p>Donec non dignissim eros. Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
-                            <hr>
-                            <ul class="list-inline share-list">
-                                <li><i class="fa fa-bell"></i><a href="page_profile_users.html#">3 Notifications</a></li>
-                                <li><i class="fa fa-group"></i><a href="page_profile_users.html#">25 Followers</a></li>
-                                <li><i class="fa fa-share"></i><a href="page_profile_users.html#">Share</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!--/end row-->
-
-                <button type="button" class="btn-u btn-u-default btn-block text-center">Load More</button>
-                <!--End Profile Blog-->
             </div>
+            <button type="button" class="btn-u btn-u-default btn-block text-center btn-more">加载更多</button>
         </div>
+    </div>
+</div>
+
+
+<div id="user_temp" class="col-sm-6">
+    <div class="profile-blog">
+        <img class="rounded-x" src="${staticPath}/assets/img/testimonials/user.jpg" alt="">
+        <div class="name-location">
+            <strong id="user_name">Natasha Kolnikova</strong>
+            <span> <i class="fa fa-map-marker"></i>
+                <span id="user_address" href="page_profile_users.html#">江苏省苏州市</span>
+            </span>
+        </div>
+        <div class="clearfix margin-bottom-20"></div>
+        <hr>
+        <ul class="list-inline share-list">
+            <li><p>作品<span id="works_count" style="margin-left: 5px;color: #E05E3F">223</span></p></li>
+            <li><p>粉丝<span id="follower_count" style="margin-left: 5px;color: #E05E3F;">223</span></p></li>
+            <li><i class="fa fa-share"></i><a href="page_profile_users.html#">关注</a></li>
+        </ul>
     </div>
 </div>
 
 </@htmlBody>
 <@footerJS>
+
+<script>
+    pageIndex = 1;
+    hasMore = true;
+
+    $(document).ready(function () {
+        load(1);
+        function load(pageIndex) {
+            $.get("/user/follow_load", {pageIndex: pageIndex}, function (data) {
+                if (pageIndex >= data.pages) {
+                    // 数据加载完毕了
+                    $(".btn-more").html("客观，这次真没了");
+                    hasMore = false;
+                }
+                $.each(data.records, function () {
+                    var $li = $("#user_temp").clone();
+                    $li.removeAttr("id").css("display", "block");
+                    $li.find(".works-image").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.appUser.headImgUrl + "?x-oss-process=image/resize,m_fill,h_331,w_525");
+                    $li.find("#follower_count").html(this.appUser.followCount);
+                    $li.find("#works_count").html(this.appUser.worksCount);
+                    $li.find("#user_address").html(this.appUser.address);
+                    $li.find("#user_name").html(this.appUser.loginName);
+                    $("#user_content").append($li);
+                });
+            });
+        }
+        $(".btn-more").on("click", function () {
+            if (hasMore) {
+                pageIndex++;
+                load(pageIndex);
+            }
+        })
+    });
+</script>
+
+
+
 </@footerJS>
