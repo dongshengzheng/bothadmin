@@ -16,10 +16,6 @@
     <script src="${ctxStatic}/js/swiper.js"></script>
 
     <style>
-        .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {
-            color: #9F504D;
-        }
-
         .weui-navbar {
             width: 96%;
             margin: 1%;
@@ -87,13 +83,13 @@
 
 <div class="weui-tab">
     <div class="weui-navbar">
-        <div class="weui-navbar__item weui-bar__item_on" id="check-title-success">
+        <div id="defaultTitle" class="weui-navbar__item weui-bar__item_on" id="check-title-success">
             默认排序
         </div>
-        <div class="weui-navbar__item" id="check-title-now">
+        <div id="timeTitle" class="weui-navbar__item" id="check-title-now">
             最新上架
         </div>
-        <div class="weui-navbar__item" id="check-title-failure">
+        <div id="distanceTitle" class="weui-navbar__item" id="check-title-failure">
             离我最近
         </div>
     </div>
@@ -112,9 +108,9 @@
 <!--</div>-->
 <!--</div>-->
 
-<div class="all div-outer">
-    <c:forEach items="${page.records}" var="works">
-        <div class="works-all-outer">
+<div id="defaultList" class="all div-outer div-hide div-on">
+    <c:forEach items="${defaultList}" var="works">
+        <div class="works-all-outer" data-id="${works.id}">
             <div class="works-all">
                 <img class="works-img-all" src="${works.images}"
                      onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
@@ -130,21 +126,95 @@
             </div>
         </div>
     </c:forEach>
-
-    <c:if test="${fn:length(page.records) == 0}">
+    <c:if test="${fn:length(defaultList) == 0}">
         <div style="text-align:center;margin-top:35%">
             <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="" style="width: 50%;">
             <p style="color:#CCCCCC">尚无作品</p>
         </div>
     </c:if>
-    <c:if test="${fn:length(page.records) > 0}">
+    <c:if test="${fn:length(defaultList) > 0}">
         <div class="hr-text ">
             <center>
                 <hr>
                 <span>&nbsp;&nbsp;到底啦&nbsp;&nbsp;</span></center>
         </div>
     </c:if>
+</div>
+<div id="timeList" class="all div-outer div-hide">
+    <c:forEach items="${timeList}" var="works">
+        <div class="works-all-outer" data-id="${works.id}">
+            <div class="works-all">
+                <img class="works-img-all" src="${works.images}"
+                     onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
+                     alt="">
+                <textarea disabled class="works-intro-all">${works.remarks}</textarea>
+            </div>
+            <div class="works-floor-all">
+                <span class="works-floor-name-all">${works.name}</span>
+                <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
+                <span class="works-floor-img-all">${works.type}</span>
+                <span class="works-floor-date-all"><fmt:formatDate value="${works.createDate}"
+                                                                   pattern="yyyy-MM-dd"/></span>
+            </div>
+        </div>
+    </c:forEach>
+    <c:if test="${fn:length(timeList) == 0}">
+        <div style="text-align:center;margin-top:35%">
+            <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="" style="width: 50%;">
+            <p style="color:#CCCCCC">尚无作品</p>
+        </div>
+    </c:if>
+    <c:if test="${fn:length(timeList) > 0}">
+        <div class="hr-text ">
+            <center>
+                <hr>
+                <span>&nbsp;&nbsp;到底啦&nbsp;&nbsp;</span></center>
+        </div>
+    </c:if>
+</div>
+<div id="distanceList" class="all div-outer div-hide">
+    <c:forEach items="${distanceList}" var="works">
+        <div class="works-all-outer" data-id="${works.id}">
+            <div class="works-all">
+                <img class="works-img-all" src="${works.images}"
+                     onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
+                     alt="">
+                <textarea disabled class="works-intro-all">${works.remarks}</textarea>
+            </div>
+            <div class="works-floor-all">
+                <span class="works-floor-name-all">${works.name}</span>
+                <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
+                <span class="works-floor-img-all">${works.type}</span>
+                <span class="works-floor-date-all"><fmt:formatDate value="${works.createDate}"
+                                                                   pattern="yyyy-MM-dd"/></span>
+            </div>
+        </div>
+    </c:forEach>
+    <c:if test="${fn:length(distanceList) == 0}">
+        <div style="text-align:center;margin-top:35%">
+            <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="" style="width: 50%;">
+            <p style="color:#CCCCCC">尚无作品</p>
+        </div>
+    </c:if>
+    <c:if test="${fn:length(distanceList) > 0}">
+        <div class="hr-text ">
+            <center>
+                <hr>
+                <span>&nbsp;&nbsp;到底啦&nbsp;&nbsp;</span></center>
+        </div>
+    </c:if>
+</div>
 
+<div id="dialogs">
+    <div class="js_dialog" id="iosDialog2" style="display: none;">
+        <div class="weui-mask"></div>
+        <div class="weui-dialog">
+            <div class="weui-dialog__bd">收藏成功!</div>
+            <div class="weui-dialog__ft">
+                <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">我知道了</a>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 <script>
@@ -197,13 +267,48 @@
         });
 
         $(function () {
-            $('.weui-tabbar__item').on('click', function () {
-                $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
-            });
-
             $('.weui-navbar__item').on('click', function () {
                 $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
             });
+
+            $('#defaultTitle').on('click', function () {
+                $('#defaultList').addClass('div-on').siblings('.all').removeClass('div-on');
+            });
+
+            $('#timeTitle').on('click', function () {
+                $('#timeList').addClass('div-on').siblings('.all').removeClass('div-on');
+            });
+
+            $('#distanceTitle').on('click', function () {
+                $('#distanceList').addClass('div-on').siblings('.all').removeClass('div-on');
+            });
+
+
+            $('.weui-dialog__btn').on('click', function () {
+                $('#iosDialog2').fadeOut(200);
+            })
+
+            $('.works-floor-btn-all').on('click', function () {
+                var worksid = $(this).parent().parent().attr('data-id')
+                $.ajax({
+                    type: "POST",
+                    url: "${ctx}/mobile/collectWorks",
+                    data: {
+                        worksId: worksid
+                    },
+                    success: function (data) {
+                        $('#iosDialog2 .weui-dialog__bd').html(data);
+                        $('#iosDialog2').fadeIn(200);
+                    }
+                })
+            })
+
+            $('.works-all').on('click', function () {
+                var worksid = $(this).parent().attr('data-id')
+                location.href = '${ctx}/mobile/worksDetail?worksId=' + worksid;
+            })
+
+
         });
     });
 

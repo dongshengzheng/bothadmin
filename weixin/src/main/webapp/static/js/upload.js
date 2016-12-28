@@ -159,7 +159,7 @@ function initUploaders2(bucket, domain) {
                     $('#iosActionsheet').addClass('weui-actionsheet_toggle');
                     $('#iosMask').fadeIn(200);
                 })
-                $('.moxie-shim').remove();
+                $('#removeMoxie .moxie-shim').remove();
             }
         }
     });

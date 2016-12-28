@@ -66,7 +66,7 @@
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">提供者</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="provideName" class="weui-input" type="tel" placeholder="请输入姓名">
+                <input name="providerName" class="weui-input" type="tel" placeholder="请输入姓名">
             </div>
         </div>
         <div class="weui-cell">

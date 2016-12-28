@@ -42,6 +42,10 @@
             padding: 0;
         }
 
+        .hr-text {
+            padding-top: 20px;
+        }
+
 
     </style>
 </head>
@@ -73,12 +77,15 @@
     </div>
 </c:if>
 <c:if test="${fn:length(transferHistoryList) > 0}">
-    <div class="hr-text ">
-        <center>
-            <hr>
-            <span>&nbsp;&nbsp;到底啦&nbsp;&nbsp;</span></center>
+    <div class="div-outer">
+        <div class="hr-text">
+            <center>
+                <hr>
+                <span>&nbsp;&nbsp;到底啦&nbsp;&nbsp;</span></center>
+        </div>
     </div>
 </c:if>
+
 
 </body>
 </html>

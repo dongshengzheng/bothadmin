@@ -109,14 +109,14 @@
 
 <div id="collection-works" class="div-hide div-outer <c:if test="${showwhich=='collection'}">div-on</c:if>">
     <c:forEach items="${fhWorksList}" var="works">
-        <div class="works-all-outer">
+        <div class="works-all-outer" data-id="${works.id}">
             <div class="works-all">
                 <img src="${ctxStatic}/img/swiper/swiper-2.jpg" alt="" class="works-img-all"/>
                 <textarea class="works-intro-all" disabled>${works.remarks}</textarea>
             </div>
             <div class="works-floor-all">
                 <span class="works-floor-name-all">${works.name}</span>
-                <span class="works-floor-btn-all">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span class="works-floor-btn-all">取消收藏</span>
                 <span class="works-floor-img-all">${works.type}</span>
                 <span class="works-floor-date-all"><fmt:formatDate value="${works.createDate}"
                                                                    pattern="yyyy-MM-dd"/></span>
@@ -279,6 +279,29 @@
         $('.go-to-history').on('click', function () {
             var worksId = $(this).parent().parent().attr('data-id');
             location.href = "${ctx}/mobile/transferHistory?worksId=" + worksId;
+        })
+    })
+
+    //取消作品收藏
+    $(function () {
+        $('#collection-works .works-floor-btn-all').on('click', function () {
+            var $notCareDialog = $('#notCareDialog');
+            var thisone = $(this).parent().parent();
+            var targetId = thisone.attr('data-id');
+            $.ajax({
+                type: "POST",
+                url: "${ctx}/mobile/cancelCollect",
+                data: {
+                    targetId: targetId
+                },
+                success: function (data) {
+                    $notCareDialog.find('.weui-dialog__title').html(data);
+                    if (data == '取消收藏成功!') {
+                        thisone.remove()
+                    }
+                    $notCareDialog.fadeIn(200);
+                }
+            })
         })
     })
 

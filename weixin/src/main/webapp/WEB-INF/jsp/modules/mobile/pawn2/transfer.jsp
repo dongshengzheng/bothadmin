@@ -39,6 +39,11 @@
             padding-left: 30px;
         }
 
+        .toUserName {
+            position: absolute;
+            right: 0;
+        }
+
 
     </style>
 </head>
@@ -60,6 +65,7 @@
             <div class="weui-cell__bd weui-cell_primary">
                 <input name="toUserId" id="tags" class="weui-input" type="tel" value=""
                        placeholder="请输入目标用户名称或微信号">
+                <span class="toUserName"></span>
             </div>
         </div>
         <div class="weui-cell">
@@ -94,7 +100,8 @@
             <hr>
             <div class="weui-form-preview__ft">
                 <a class="weui-form-preview__btn weui-form-preview__btn_default" href="javascript:">取消</a>
-                <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">
+                <button id="confirm" type="button" class="weui-form-preview__btn weui-form-preview__btn_primary"
+                        href="javascript:">
                     确认转让
                 </button>
             </div>
@@ -122,6 +129,18 @@
     </a>
 </div>
 
+
+<div class="js_dialog" id="dialog" style="display: none;" date-id="">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog">
+        <div class="weui-dialog__hd"><strong class="weui-dialog__title">确定转让?</strong></div>
+        <%--<div class="weui-dialog__bd">取消关注后将无法看到该用户的相关信息</div>--%>
+        <div class="weui-dialog__ft">
+            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default">取消</a>
+            <a id="trueConfirm" href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">确定</a>
+        </div>
+    </div>
+</div>
 </body>
 <script>
     $(function () {
@@ -163,6 +182,7 @@
                             $tmp.attr('data-id', data[i].id);
                             $tmp.find(".userName").html(data[i].name);
                             $tmp.find(".userId").html(data[i].id);
+                            $tmp.find(".weui-media-box__thumb").attr('src', data[i].headImgUrl);
                             $tmp.removeClass('div-hide');
 
                             $('.weui-panel__bd').on('click', function () {
@@ -193,6 +213,19 @@
                 $('#score').css('color', 'black');
             }
         })
+
+        $('#confirm').on('click', function () {
+            $('#dialog').fadeIn(200);
+        })
+
+        $('.weui-dialog__btn_default').on('click', function () {
+            $('#dialog').fadeOut(200);
+        })
+
+        $('#trueConfirm').on('click', function () {
+            $('form').submit();
+        })
+
     })
 </script>
 </html>

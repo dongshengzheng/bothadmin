@@ -119,18 +119,6 @@ public class MobileController extends BaseController {
         Page<Works> page = new Page<>(1, 4);
         page = worksService.selectPage(page, ew);
 
-
-//        List<Works> records = new ArrayList<>();
-//        for (Works work : page.getRecords()) {
-//            List<Images> images = imagesService.selectList(new EntityWrapper<>(new Images(work.getId(), Const.IMAGES_WORKS)));
-//            if (images != null && images.size() > 0) {
-//                works.setImages(images.get(0).getUrl());
-//            }
-//            records.add(work);
-//        }
-        //        page.setRecords(records);
-
-
         for (int i = 0; i < page.getRecords().size(); i++) {
             List<Images> images = imagesService.selectList(new EntityWrapper<>(new Images(page.getRecords().get(i).getId(), Const.IMAGES_WORKS)));
             if (images != null && images.size() > 0) {
@@ -208,12 +196,59 @@ public class MobileController extends BaseController {
         followHistory.setUserId(appUser.getId());
         followHistory.setTargetId(worksId);
         followHistory.setType(Const.FOLLOW_HISTORY_TYPE_COLLECT);
+        followHistory.setDelFlag(null);
         FollowHistory fh = followHistoryService.selectOne(new EntityWrapper<>(followHistory));
         if (fh == null) {
+            followHistory.setDelFlag(Const.DEL_FLAG_NORMAL);
             followHistoryService.insert(followHistory);
             return "收藏成功!!!";
+        } else {
+            if (fh.getDelFlag() == Const.DEL_FLAG_NORMAL) {
+                return "已在收藏中!";
+            } else {
+                fh.setDelFlag(Const.DEL_FLAG_NORMAL);
+                followHistoryService.updateById(fh);
+                return "收藏成功!!!";
+            }
         }
-        return "已在收藏中!";
+    }
+
+    /**
+     * 取消收藏
+     *
+     * @return
+     */
+    @RequestMapping(value = "cancelCollect", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    @OAuthRequired
+    public String cancelCollect(HttpSession session,
+                                int targetId) {
+        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+        String openId = wxMpUser.getOpenId();
+        AppUser u = new AppUser();
+        u.setOpenId(openId);
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
+            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+        }
+
+        FollowHistory followHistory = new FollowHistory();
+        followHistory.setUserId(appUser.getId());
+        followHistory.setTargetId(targetId);
+        followHistory.setType(Const.FOLLOW_HISTORY_TYPE_COLLECT);
+        FollowHistory fh = followHistoryService.selectOne(new EntityWrapper<>(followHistory));
+        Boolean result;
+        if (fh == null) {
+            followHistory.setDelFlag(Const.DEL_FLAG_DELETE);
+            result = followHistoryService.insert(followHistory);
+        } else {
+            fh.setDelFlag(Const.DEL_FLAG_DELETE);
+            result = followHistoryService.updateById(fh);
+        }
+        if (result) {
+            return "取消收藏成功!";
+        }
+        return "取消收藏失败!请稍后再试";
     }
 
 
@@ -382,12 +417,14 @@ public class MobileController extends BaseController {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
 
-        Page<Works> page = new Page<>(1, 100);
         EntityWrapper<Works> ew = new EntityWrapper<>(new Works());
         ew.like("name", name);
-        page = worksService.selectPage(page, ew);
+        List<Works> defaultList = worksService.selectList(ew);
+        ew.orderBy("createDate");
+        List<Works> timeList = worksService.selectList(ew);
 
-        map.put("page", page);
+        map.put("defaultList", defaultList);
+        map.put("timeList", timeList);
         return "modules/mobile/pawn2/searchWorks";
     }
 
@@ -473,6 +510,7 @@ public class MobileController extends BaseController {
         FollowHistory oldBrowse = followHistoryService.selectOne(new EntityWrapper<>(addBrowse));
         if (oldBrowse == null) {
             addBrowse.setCreateDate(new Date());
+            addBrowse.setUpdateDate(new Date());
             followHistoryService.insert(addBrowse);
         } else {
             oldBrowse.setUpdateDate(new Date());
@@ -483,25 +521,18 @@ public class MobileController extends BaseController {
         //作品
         Works works = worksService.selectById(worksId);
         //作品等级
-        WorksLevel wl = new WorksLevel();
-        wl.setWorksId(worksId);
+        WorksLevel wl = new WorksLevel(worksId);
         WorksLevel worksLevel = worksLevelService.selectOne(new EntityWrapper<>(wl));
         //作品用户
         AppUser appUser1 = appUserService.selectById(works.getCreateBy());
         //作品提供者
-        Consumer provider = new Consumer();
-        provider.setType(Const.CONSUMER_TYPE_PROVIDER);
-        provider.setWorksId(worksId);
+        Consumer provider = new Consumer(Const.CONSUMER_TYPE_PROVIDER, worksId);
         provider = consumerService.selectOne(new EntityWrapper<>(provider));
         //作品收藏者
-        Consumer collecter = new Consumer();
-        collecter.setType(Const.CONSUMER_TYPE_COLLECT);
-        collecter.setWorksId(worksId);
+        Consumer collecter = new Consumer(Const.CONSUMER_TYPE_COLLECT, worksId);
         collecter = consumerService.selectOne(new EntityWrapper<>(collecter));
         //作品图片
-        Images images = new Images();
-        images.setTargetId(worksId);
-        images.setType(Const.IMAGES_WORKS);
+        Images images = new Images(worksId, Const.IMAGES_WORKS);
         List<Images> imagesList = imagesService.selectList(new EntityWrapper<>(images));
 
         //收藏该作品的用户集合
@@ -512,17 +543,24 @@ public class MobileController extends BaseController {
 
         //查看过该作品的用户集合
         List<AppUser> browseList = appUserService.searchFollowHistoryUsers(Const.FOLLOW_HISTORY_TYPE_BROWSE, worksId);
+        Integer browseCount = browseList.size();
         if (browseList.size() > 10) {
             browseList = browseList.subList(0, 9);
         }
 
         //评估报告及图片
-        Report report = new Report();
-        report.setWorksId(worksId);
+        Report report = new Report(worksId);
         report = reportService.selectOne(new EntityWrapper<>(report));
         Images certImage = new Images();
-        certImage.setTargetId(worksId);
-        certImage.setType(Const.IMAGES_REPORT_CERTIFICATE);
+        List<Images> valueImages = new ArrayList<>();
+        if (report != null) {
+            certImage.setTargetId(report.getId());
+            certImage.setType(Const.IMAGES_REPORT_CERTIFICATE);
+            certImage = imagesService.selectOne(certImage);
+
+            Images valueImage = new Images(report.getId(), Const.IMAGES_REPORT_DES);
+            valueImages = imagesService.selectList(new EntityWrapper<>(valueImage));
+        }
 
 
         //诠释详情
@@ -536,8 +574,10 @@ public class MobileController extends BaseController {
         map.put("imagesList", imagesList);
         map.put("collecterList", collecterList);
         map.put("browseList", browseList);
+        map.put("browseCount", browseCount);
         map.put("report", report);
         map.put("certImage", certImage);
+        map.put("valueImages", valueImages);
         map.put("interpretationList", interpretationList);
 
         return "modules/mobile/pawn2/worksDetail";
@@ -698,6 +738,36 @@ public class MobileController extends BaseController {
         appUserService.updateById(appUser);
         return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my";
     }
+
+
+    /**
+     * 更新头像及昵称
+     *
+     * @return
+     */
+    @RequestMapping(value = "updateHeadImgLoginName", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    @OAuthRequired
+    public String updateHeadImgLoginName(HttpSession session) {
+        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+        String openId = wxMpUser.getOpenId();
+        AppUser u = new AppUser();
+        u.setOpenId(openId);
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
+            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+        }
+
+        appUser.setLoginName(wxMpUser.getNickname());
+        appUser.setHeadImgUrl(wxMpUser.getHeadImgUrl());
+        boolean result = appUserService.updateById(appUser);
+        if (result) {
+            return "完成更新,刷新页面后可看到改变!";
+        }
+
+        return "更新失败,请稍后再试...";
+    }
+
 
     /**
      * 跳往个人信息积分中心页面
@@ -1044,13 +1114,24 @@ public class MobileController extends BaseController {
             works.setStatus(Const.WORKS_STATUS_DRAFT);
         }
         worksService.insert(works);
-        consumer.setName(providerName);
-        consumer.setType(Const.CONSUMER_TYPE_PROVIDER);
-        consumer.setWorksId(works.getId());
-        consumer.setNo(providerNo);
-        consumerService.insert(consumer);
 
         Integer worksId = works.getId();
+
+        consumer.setType(Const.CONSUMER_TYPE_PROVIDER);
+        consumer.setWorksId(worksId);
+        consumer.setName(providerName);
+        consumer.setNo(providerNo);
+        Consumer oldConsumer = new Consumer();
+        oldConsumer.setWorksId(worksId);
+        oldConsumer.setType(Const.CONSUMER_TYPE_PROVIDER);
+        oldConsumer = consumerService.selectOne(new EntityWrapper<>(oldConsumer));
+        if (oldConsumer == null) {
+            consumerService.insert(consumer);
+        } else {
+            consumer.setId(oldConsumer.getId());
+            consumerService.updateById(consumer);
+        }
+
 
         insertImage(works.getImages(), worksId, Const.IMAGES_WORKS);
 
@@ -1113,6 +1194,7 @@ public class MobileController extends BaseController {
         }
         worksService.updateById(works);
         if ("yes".equals(draftYN)) {
+            session.removeAttribute("registerWorksId");
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=draft";
         }
         session.setAttribute("registerWorks", works);
@@ -1139,13 +1221,22 @@ public class MobileController extends BaseController {
         }
         int worksId = (int) session.getAttribute("registerWorksId");
         worksLevel.setWorksId(worksId);
-        worksLevelService.insert(worksLevel);
+        WorksLevel oldWorksLevel = new WorksLevel();
+        oldWorksLevel.setWorksId(worksId);
+        oldWorksLevel = worksLevelService.selectOne(new EntityWrapper<>(oldWorksLevel));
+        if (oldWorksLevel == null) {
+            worksLevelService.insert(worksLevel);
+        } else {
+            worksLevel.setId(oldWorksLevel.getId());
+            worksLevelService.updateById(oldWorksLevel);
+        }
 
 
         if ("yes".equals(draftYN)) {
             Works works = (Works) session.getAttribute("registerWorks");
             works.setStatus(Const.WORKS_STATUS_DRAFT);
             worksService.updateById(works);
+            session.removeAttribute("registerWorksId");
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=draft";
         }
 
@@ -1184,17 +1275,18 @@ public class MobileController extends BaseController {
         insertImage(certImage, report.getId(), Const.IMAGES_REPORT_CERTIFICATE);
         insertImage(valueImages, report.getId(), Const.IMAGES_REPORT_DES);
 
-        session.removeAttribute("registerWorksId");
 
         if ("yes".equals(draftYN)) {
             Works works = (Works) session.getAttribute("registerWorks");
             works.setStatus(Const.WORKS_STATUS_DRAFT);
             worksService.updateById(works);
+            session.removeAttribute("registerWorksId");
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=draft";
         } else if ("confirm".equals(draftYN)) {
             Works works = (Works) session.getAttribute("registerWorks");
             works.setStatus(Const.WORKS_STATUS_COMMIT);
             worksService.updateById(works);
+            session.removeAttribute("registerWorksId");
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=now";
         }
 
@@ -1243,6 +1335,7 @@ public class MobileController extends BaseController {
         }
         works.setStatus(Const.WORKS_STATUS_COMMIT);
         worksService.updateById(works);
+        session.removeAttribute("registerWorksId");
         return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=now";
     }
 
@@ -1294,14 +1387,11 @@ public class MobileController extends BaseController {
         Works works = worksService.selectById(worksId);
 
         //作品等级
-        WorksLevel worksLevel = new WorksLevel();
-        worksLevel.setWorksId(worksId);
+        WorksLevel worksLevel = new WorksLevel(worksId);
         worksLevel = worksLevelService.selectOne(new EntityWrapper<>(worksLevel));
 
         //提供者
-        Consumer provider = new Consumer();
-        provider.setWorksId(worksId);
-        provider.setType(Const.CONSUMER_TYPE_PROVIDER);
+        Consumer provider = new Consumer(Const.CONSUMER_TYPE_PROVIDER, worksId);
         provider = consumerService.selectOne(new EntityWrapper<>(provider));
 
         //收藏者
@@ -1317,19 +1407,20 @@ public class MobileController extends BaseController {
         List<Images> worksImagesList = imagesService.selectList(new EntityWrapper<>(images));
 
         //价值报告
-        Report report = new Report();
-        report.setWorksId(worksId);
+        Report report = new Report(worksId);
         report = reportService.selectOne(new EntityWrapper<>(report));
-        Images certImage = new Images();
-        certImage.setTargetId(report.getId());
-        certImage.setType(Const.IMAGES_REPORT_CERTIFICATE);
-        //认证图片
-        certImage = imagesService.selectOne(new EntityWrapper<>(certImage));
-        //评估图片
-        Images valueImage = new Images();
-        valueImage.setTargetId(report.getId());
-        images.setType(Const.IMAGES_REPORT_DES);
-        List<Images> valueImages = imagesService.selectList(new EntityWrapper<>(valueImage));
+        if (report != null) {
+            Images certImage = new Images();
+            certImage.setTargetId(report.getId());
+            certImage.setType(Const.IMAGES_REPORT_CERTIFICATE);
+            //认证图片
+            certImage = imagesService.selectOne(new EntityWrapper<>(certImage));
+            //评估图片
+            Images valueImage = new Images(report.getId(), Const.IMAGES_REPORT_DES);
+            List<Images> valueImages = imagesService.selectList(new EntityWrapper<>(valueImage));
+            map.put("certImage", certImage);
+            map.put("valueImages", valueImages);
+        }
 
 
         map.put("works", works);
@@ -1338,8 +1429,7 @@ public class MobileController extends BaseController {
         map.put("worksImagesList", worksImagesList);
         map.put("collecter", collecter);
         map.put("report", report);
-        map.put("certImage", certImage);
-        map.put("valueImages", valueImages);
+
 
         session.setAttribute("worksIdInSession", worksId);
 
@@ -1437,10 +1527,8 @@ public class MobileController extends BaseController {
         }
 
 
-        Consumer collecter = new Consumer();
-        collecter.setWorksId(worksId);
+        Consumer collecter = new Consumer(Const.CONSUMER_TYPE_COLLECT, worksId);
         collecter.setName(collecterName);
-        collecter.setType(Const.CONSUMER_TYPE_COLLECT);
         collecter.setNo(collecterNo);
         collecter.setAddress(collecterAddress);
         collecter.setNo(collecterNo);
@@ -1454,10 +1542,8 @@ public class MobileController extends BaseController {
             Date collectDate = DateUtil.parseDate(collecterDateTimeString);
             collecter.setDatetime(collectDate);
         }
-        Consumer oldConsumer = new Consumer();
-        oldConsumer.setWorksId(worksId);
-        oldConsumer.setType(Const.CONSUMER_TYPE_COLLECT);
-        oldConsumer = consumerService.selectOne(new EntityWrapper<>(cs));
+        Consumer oldConsumer = new Consumer(Const.CONSUMER_TYPE_COLLECT, worksId);
+        oldConsumer = consumerService.selectOne(oldConsumer);
         if (oldConsumer == null) {
             consumerService.insert(collecter);
         } else {
@@ -1469,9 +1555,9 @@ public class MobileController extends BaseController {
             Date valueTime = DateUtil.parseDate(valueTimeString, "yyyy-MM-dd");
             report.setValidTime(valueTime);
         }
-        Report oldReport = new Report();
-        oldReport.setWorksId(worksId);
-        oldReport = reportService.selectOne(new EntityWrapper<>(oldReport));
+
+        Report oldReport = new Report(worksId);
+        oldReport = reportService.selectOne(oldReport);
         if (oldReport == null) {
             reportService.insert(report);
         } else {
@@ -1479,9 +1565,7 @@ public class MobileController extends BaseController {
             reportService.updateById(report);
         }
 
-        Images oldImg = new Images();
-        oldImg.setTargetId(worksId);
-        oldImg.setType(Const.IMAGES_WORKS);
+        Images oldImg = new Images(worksId, Const.IMAGES_WORKS);
         List<Images> oldImgs = imagesService.selectList(new EntityWrapper<>(oldImg));
         oldImg.setTargetId(report.getId());
         oldImg.setType(Const.IMAGES_REPORT_CERTIFICATE);

@@ -30,6 +30,7 @@
             line-height: 15px;
             font-size: 30px;
             color: #F76301;
+            margin-top: 5px;
         }
 
         #cost-point {
@@ -47,7 +48,7 @@
         }
 
         .search-results-one-info-location {
-            background-image: url(img/cut/积分中心_积分icon.png);
+            background-image: url(${ctxStatic}/img/cut/积分中心_积分icon.png);
             color: #F76301;
         }
 
