@@ -125,11 +125,11 @@ public class UserController extends BaseController {
         EntityWrapper<TransferHistory> ew = new EntityWrapper<>(new TransferHistory());
         ew.setSqlSelect("works_id");
 
-        ew.addFilter("status = {0} ",status,userId);
+        ew.addFilter("status = {0} ",status);
         if(in){
-            ew.addFilter("to_user_id = {1}",userId);
+            ew.addFilter("to_user_id = {0}",userId);
         }else {
-            ew.addFilter("from_user_id = {1}",userId);
+            ew.addFilter("from_user_id = {0}",userId);
         }
         Page<TransferHistory> transferHistoryPage = transferHistoryService.selectPage(page,ew);
         for (TransferHistory t:transferHistoryPage.getRecords()){
@@ -160,7 +160,7 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "collect_load", method = RequestMethod.GET)
     @ResponseBody
-    public Page<Works> loadCollect(@RequestParam(required = false, defaultValue = "0") Integer pageIndex,
+    public Page<FollowHistory> loadCollect(@RequestParam(required = false, defaultValue = "0") Integer pageIndex,
                                    @RequestParam(required = false, defaultValue = "6") Integer pageSize) {
 
         Page<FollowHistory> page = new Page<>(pageIndex, pageSize);
@@ -168,7 +168,6 @@ public class UserController extends BaseController {
         ew.setSqlSelect("target_id");
         ew.addFilter("type = 0 and user_id = {0}", getCurrentUser().getId());
         Page<FollowHistory> followHistoryPage = followHistoryService.selectPage(page,ew);
-        List<Works> followHistoryWorks = new ArrayList<>();
         for (FollowHistory f:followHistoryPage.getRecords()){
             Works works = new Works();
             works.setId(f.getTargetId());
@@ -177,12 +176,9 @@ public class UserController extends BaseController {
             if (images != null && !StringUtils.isEmpty(images.getUrl())) {
                 works.setImages(images.getUrl());
             }
-            followHistoryWorks.add(works);
+            f.setWorks(works);
         }
-        Page<Works> worksPage = new Page<>(pageIndex, pageSize);
-        worksPage.setRecords(followHistoryWorks);
-        worksPage.setTotal(followHistoryPage.getPages());
-        return worksPage;
+        return followHistoryPage;
     }
 
     /**

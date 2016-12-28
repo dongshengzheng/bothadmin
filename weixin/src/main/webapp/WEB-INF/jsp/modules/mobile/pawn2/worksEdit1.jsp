@@ -16,7 +16,7 @@
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">身份证</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input name="providerNo" class="weui-input" type="number" value="${provider.no}" placeholder="可不填写">
+        <input name="providerNo" class="weui-input" value="${provider.no}" placeholder="可不填写">
     </div>
 </div>
 <div class="weui-cell">
@@ -55,7 +55,7 @@
             <!--<div class="weui-uploader__info">0/2</div>-->
             <!--</div>-->
             <div class="weui-uploader__bd">
-                <ul class="weui-uploader__files" id="uploaderFiles">
+                <ul class="weui-uploader__files">
                     <c:forEach items="${worksImagesList}" var="image">
                         <li class="weui-uploader__file worksImages"
                             style="background-image:url(
@@ -71,4 +71,7 @@
     </div>
 </div>
 <script>
+    $(function () {
+        initUploaders("windyeel", "http://steins00gate.s1.758kongbao.com/", "worksImages");
+    })
 </script>

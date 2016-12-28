@@ -69,6 +69,17 @@ public class FollowHistory implements Serializable {
     @TableField(value = "del_flag")
     private Integer delFlag = 0;
 
+    @TableField(exist = false)
+    private Works works;
+
+
+    public Works getWorks() {
+        return works;
+    }
+
+    public void setWorks(Works works) {
+        this.works = works;
+    }
 
     public Integer getId() {
         return this.id;

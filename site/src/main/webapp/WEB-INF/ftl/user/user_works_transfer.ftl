@@ -228,8 +228,8 @@
         loadRollOuting(1);
         //
         function loadRollin(rollinIndex) {
-            $.get("/user/transfer_load/1", {pageIndex: rollinIndex}, function (data) {
-                if (rollinIndex >= data.total) {
+            $.get("/user/transfer_load/false/1", {pageIndex: rollinIndex}, function (data) {
+                if (rollinIndex >= data.pages) {
                     // 数据加载完毕了
                     $("#rollinBtn").html("客观，这次真没了");
                     rollinHasMore = false;
@@ -237,7 +237,7 @@
                 $.each(data.records, function () {
                     var $li = $("#rollin_works").clone();
                     $li.removeAttr("id").css("display", "block");
-                    $li.find(".img-responsive").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
+                    $li.find(".img-responsive").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.works.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
                     $("#rollin_content").append($li);
                 });
 
@@ -253,8 +253,8 @@
 
         //
         function loadRollOut(rollOutIndex) {
-            $.get("/user/transfer_load/1", {pageIndex: rollOutIndex}, function (data) {
-                if (rollOutIndex >= data.total) {
+            $.get("/user/transfer_load/true/1", {pageIndex: rollOutIndex}, function (data) {
+                if (rollOutIndex >= data.pages) {
                     // 数据加载完毕了
                     $("#rollOutBtn").html("客观，这次真没了");
                     rollOutHasMore = false;
@@ -262,7 +262,7 @@
                 $.each(data.records, function () {
                     var $li = $("#rollOut_works").clone();
                     $li.removeAttr("id").css("display", "block");
-                    $li.find(".img-responsive").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
+                    $li.find(".img-responsive").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.works.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
                     $("#rollOut_content").append($li);
                 });
             });
@@ -275,8 +275,8 @@
         });
         //
         function loadRrollInning(rollInningIndex) {
-            $.get("/user/transfer_load/10", {pageIndex: rollInningIndex}, function (data) {
-                if (rollInningIndex >= data.total) {
+            $.get("/user/transfer_load/false/2", {pageIndex: rollInningIndex}, function (data) {
+                if (rollInningIndex >= data.pages) {
                     // 数据加载完毕了
                     $("#rollInningBtn").html("客观，这次真没了");
                     rollInningHasMore = false;
@@ -284,7 +284,7 @@
                 $.each(data.records, function () {
                     var $li = $("#rollInning_works").clone();
                     $li.removeAttr("id").css("display", "block");
-                    $li.find(".img-responsive").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
+                    $li.find(".img-responsive").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.works.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
                     $("#rollInning_content").append($li);
                 });
             });
@@ -298,8 +298,8 @@
 
         //
         function loadRollOuting(rollOutingIndex) {
-            $.get("/user/transfer_load/2", {pageIndex: rollOutingIndex}, function (data) {
-                if (rollOutingIndex >= data.total) {
+            $.get("/user/transfer_load/false/2", {pageIndex: rollOutingIndex}, function (data) {
+                if (rollOutingIndex >= data.pages) {
                     // 数据加载完毕了
                     $("#rollOutingBtn").html("客观，这次真没了");
                     rollOutingHasMore = false;
@@ -307,7 +307,7 @@
                 $.each(data.records, function () {
                     var $li = $("#rollOuting_works").clone();
                     $li.removeAttr("id").css("display", "block");
-                    $li.find(".img-responsive").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
+                    $li.find(".img-responsive").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.works.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
                     $("#rollOuting_content").append($li);
                 });
             });

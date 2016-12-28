@@ -36,6 +36,11 @@
             height: 30px;
         }
 
+        #saveScore {
+            width: 120px;
+            border: none;
+        }
+
     </style>
 </head>
 <body>
@@ -87,7 +92,7 @@
 <div class="weui-cell div-outer">
     <div class="weui-cell__hd"><label class="weui-label">其他积分</label></div>
     <div class="weui-cell__bd">
-        <span>请填写其他积分</span>
+        <input id="saveScore" name="saveScore" placeholder="请填写需要的积分">
     </div>
     <div class="weui-cell__hd"><label class="weui-label go-to-save">充值</label></div>
 </div>

@@ -86,7 +86,8 @@
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">收藏偏好</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="perfer" class="weui-input" ${appUser.prefer} type="tel" placeholder="请选择您的收藏偏好">
+                <input id="prefer" name="perfer" class="weui-input" ${appUser.prefer} type="tel"
+                       placeholder="请选择您的收藏偏好">
             </div>
         </div>
         <div class="weui-cell">
@@ -96,9 +97,8 @@
     </div>
 
     <div class="fixed-footer">
-        <hr>
         <div class="weui-form-preview__ft">
-            <a class="weui-form-preview__btn weui-form-preview__btn_default" href="javascript:">取消</a>
+            <a class="weui-form-preview__btn weui-form-preview__btn_default" onClick="javascript:history.go(-1);">取消</a>
             <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">
                 保存
             </button>
@@ -108,7 +108,45 @@
 
     </div>
 </form>
-
-
+<div id="dialogs">
+    <div class="js_dialog" id="iosDialog2" style="display: none;">
+        <div class="weui-mask"></div>
+        <div class="weui-dialog">
+            <div class="weui-dialog__bd">收藏成功!</div>
+            <div class="weui-dialog__ft">
+                <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">我知道了</a>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
+<script>
+    $(function () {
+        $('#prefer').picker({
+            title: "请选择偏好",
+            cols: [
+                {
+                    textAlign: 'center',
+                    values: ['雕刻', '玉石', '小玩件']
+                }
+            ]
+        });
+
+        $('.weui-dialog__btn').on('click', function () {
+            $('#iosDialog2').fadeOut(200);
+        })
+        $('#update').on('click', function () {
+            $.ajax({
+                type: "POST",
+                url: "${ctx}/mobile/updateHeadImgLoginName",
+                success: function (data) {
+                    $('#iosDialog2 .weui-dialog__bd').html(data);
+                    $('#iosDialog2').fadeIn(200);
+                }
+            })
+        })
+    })
+
+
+</script>
 </html>

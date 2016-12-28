@@ -136,7 +136,7 @@
             </div>
         </div>
         <input id="certImge" name="certImge" type="hidden" value="">
-        <div class="weui-cell certificate-text">
+        <div id="removeMoxie" class="weui-cell certificate-text">
             <span class="certificate-text1">鉴定证书</span>
             <a id="uploaderInput2" class="certificate-text2">未上传</a>
         </div>

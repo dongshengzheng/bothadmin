@@ -99,10 +99,9 @@
 <div class="title div-outer">
     <center>
         <hr>
-        <span>&nbsp;◇&nbsp;JS-A20161205001A&nbsp;◇&nbsp;</span></center>
+        <span>&nbsp;◇&nbsp;${works.no}&nbsp;◇&nbsp;</span></center>
 </div>
 <form action="${ctx}/mobile/worksEditComplete" enctype="multipart/form-data" method="post">
-
     <div class="weui_tab_bd">
         <div id="tab1" class="weui_tab_bd_item weui_tab_bd_item_active ">
             <%@include file="worksEdit1.jsp" %>
@@ -120,7 +119,6 @@
             <%@include file="worksEdit5.jsp" %>
         </div>
     </div>
-
 
     <div class="fixed-footer">
         <div class="weui-form-preview__ft">
@@ -157,13 +155,6 @@
         $('#worksName').on('change', function () {
             $('.worksShowName').val($(this).val());
         })
-
-
-        initUploaders("windyeel", "http://steins00gate.s1.758kongbao.com/", "worksImages");
-
-        initUploaders2("windyeel", "http://steins00gate.s1.758kongbao.com/");
-
-        initUploaders3("windyeel", "http://steins00gate.s1.758kongbao.com/", "valueImages");
 
     });
 </script>

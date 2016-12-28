@@ -90,12 +90,11 @@
         </div>
         <input type="hidden" name="imgUrls" id="imgUrls"/>
         <div class="fixed-footer">
-            <hr>
             <div class="weui-form-preview__ft">
                 <input id="draftYN" name="draftYN" type="hidden" value="NO">
                 <br/>
                 <a class="weui-form-preview__btn weui-form-preview__btn_default"
-                   href="#">取消</a>
+                   onClick="javascript:history.go(-1);">取消</a>
                 <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" id="trueSubmit">
                     诠释
                 </button>

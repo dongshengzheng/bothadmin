@@ -76,7 +76,6 @@
             right: 5px;
             border: 1px solid gray;
             color: gray;
-            line-height: 13px;
         }
 
         #header-right-intro {
@@ -210,7 +209,6 @@
         .info-work {
             font-size: 10px;
             margin-left: 5%;
-            margin-top: 5%;
             margin-bottom: 5%;
         }
 
@@ -303,7 +301,12 @@
         }
 
         .div-outer {
-            padding-top: 15px;
+            padding-top: 10px;
+            padding-bottom: 5px;
+        }
+
+        .certImage {
+            width: 100px;
         }
 
     </style>
@@ -311,15 +314,15 @@
 </head>
 <body>
 <div id="header" class="div-outer">
-    <div id="header-left">
+    <div id="header-left" data-id="${appUser.id}">
         <img src="${appUser.headImgUrl}"
              onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png'" id="header-left-img">
-        <input type="button" value=" +关注 " id="header-left-like">
+        <input type="button" value=" + 关注 " id="header-left-like">
     </div>
     <div id="header-right">
         <div id="header-right-tab">
             <span class="header-right-appUserName">${appUser.loginName}</span>
-            <span class="header-right-workId">JS_A201612050001A</span>
+            <span class="header-right-workId">${works.no}</span>
             <span class="header-right-workName">[${works.name}]</span>
             <span class="header-right-btn">&nbsp;+&nbsp;收藏&nbsp;</span>
         </div>
@@ -346,7 +349,7 @@
             </c:if>
         </div>
         <div id="header-right-footer">
-            <span>浏览次数 588</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span>浏览次数 ${browseCount}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span>2016-11-06&nbsp;12:06:18</span>
         </div>
     </div>
@@ -364,8 +367,6 @@
                      onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img like-people-one'"
                      alt="">
             </c:forEach>
-
-            <img src="${ctxStatic}/img/headImg/1.jpg" class="like-people-one">
             <img src="${ctxStatic}/img/cut/worksDetail-morelikepeople.png" class="like-people-one">
         </div>
     </div>
@@ -375,10 +376,9 @@
         <div id="look-icon">
             <img src="${ctxStatic}/img/cut/worksDetail-lookpeople.png">
         </div>
-
         <div id="look-people">
             <c:forEach items="${browseList}" var="person">
-                <div class="look-people-one">
+                <div class="look-people-one" data-id="${person.id}">
                     <img src="${person.headImgUrl}" class="look-people-one-img"
                          onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
                          alt="">
@@ -398,194 +398,239 @@
                 </div>
             </c:forEach>
 
-            <div class="look-people-one">
-                <img src="${ctxStatic}/img/headImg/16.jpg" class="look-people-one-img"/>
-                <div class="look-people-one-info">
-                    <p class="look-people-one-info-name">
-                        缘溪寻梦
-                    </p>
-                    <p class="look-people-one-info-date">
-                        16-12-05 &nbsp;09:19:27
-                    </p>
-                </div>
-                <div class="look-people-one-care">
-                    <p class="look-people-one-care-text-not">
-                        +关注
-                    </p>
-                </div>
-            </div>
-            <center id="look-people-more">加载更多</center>
+            <%--<center id="look-people-more">加载更多</center>--%>
         </div>
     </div>
 </div>
 
 
 <div class="div-outer">
-    <div id="info">
-        <div class="info-register">
-            <div class="info-register-left">
-                <p class="info-register-left-icon">登记者信息</p>
-            </div>
-            <div class="info-register-right">
-                <p>姓名:${provider.name}</p>
-                <p>联系方式:${provider.phone}</p>
-                <p>地址:${provider.address}</p>
-                <p>身份证:${provider.no}</p>
-            </div>
+    <div class="info-register">
+        <div class="info-register-left">
+            <p class="info-register-left-icon">登记者信息</p>
         </div>
-
-        <div class="info-work">
-            <center>作品信息</center>
-            <div class="each-row-two">
-                <span>品种:</span>${works.breed}
-            </div>
-            <div class="each-row-two">
-                <span>作品类型: </span>${works.type}
-            </div>
-            <div class="each-row-two">
-                <span>尺寸: </span>${works.length}cm*${works.width}cm*${works.height}cm
-            </div>
-            <div class="each-row-two">
-                <span>重量:</span>${works.weight}g
-            </div>
-            <div class="each-row-two">
-                <span>工艺制作: </span>${works.gyType}
-            </div>
-            <div class="each-row-two">
-                <span>篆刻级别:</span>${works.levelZk}
-            </div>
-            <div class="each-row-two">
-                <span>矿区地域:</span>${works.kqdy}
-            </div>
-            <div class="each-row-two">
-                <span>制作人:</span>${works.maker}
-            </div>
-            <div>
-                <span>制作时间:</span><fmt:formatDate value="${works.makeTime}"
-                                                  pattern="yyyy-MM-dd"/>
-            </div>
-            <div>
-                <span>作品诠释:</span>${works.worksMeaning}
-            </div>
+        <div class="info-register-right">
+            <p>姓名:${provider.name}</p>
+            <p>联系方式:${provider.phone}</p>
+            <p>地址:${provider.address}</p>
+            <p>身份证:${provider.no}</p>
         </div>
-
-        <div class="info-work">
-            <center>作品等级</center>
-            <div class="each-row-two">
-                <span>质地一:</span>${worksLevel.zhidi}
-            </div>
-            <div class="each-row-two">
-                <span>质地二: </span>${worksLevel.zhidi2}
-            </div>
-            <div class="each-row-two">
-                <span>感观: </span>${worksLevel.ganguan}
-            </div>
-            <div class="each-row-two">
-                <span>磨氏度: </span>${worksLevel.moshidu}
-            </div>
-            <div class="each-row-two">
-                <span>血量:</span>${worksLevel.xueliang}
-            </div>
-            <div class="each-row-two">
-                <span>血色: </span>${worksLevel.xuese}
-            </div>
-            <div class="each-row-two">
-                <span>血形:</span>${worksLevel.xuexing}
-            </div>
-            <div class="each-row-two">
-                <span>浓艳度:</span>${worksLevel.nongyandu}
-            </div>
-            <div class="each-row-two">
-                <span>纯净度:</span>${worksLevel.chunjingdu}
-            </div>
-            <div class="each-row-two">
-                <span>地色:</span>${worksLevel.dise}
-            </div>
-            <div class="each-row-two">
-                <span>活筋:</span>${worksLevel.liu}
-            </div>
-            <div class="each-row-two">
-                <span>裂:</span>${worksLevel.lie}
-            </div>
-            <div class="each-row-two">
-                <span>印章:</span>${worksLevel.hanxuemian}
-            </div>
-            <div class="each-row-two">
-                <span>含血方式:</span>${worksLevel.hanxuefangshi}
-            </div>
+    </div>
+</div>
+<div class="div-outer">
+    <div class="info-work">
+        <center>作品信息</center>
+        <div class="each-row-two">
+            <span>品种:</span>${works.breed}
         </div>
+        <div class="each-row-two">
+            <span>作品类型: </span>${works.type}
+        </div>
+        <div class="each-row-two">
+            <span>尺寸: </span>${works.length}cm*${works.width}cm*${works.height}cm
+        </div>
+        <div class="each-row-two">
+            <span>重量:</span>${works.weight}g
+        </div>
+        <div class="each-row-two">
+            <span>工艺制作: </span>${works.gyType}
+        </div>
+        <div class="each-row-two">
+            <span>篆刻级别:</span>${works.levelZk}
+        </div>
+        <div class="each-row-two">
+            <span>矿区地域:</span>${works.kqdy}
+        </div>
+        <div class="each-row-two">
+            <span>制作人:</span>${works.maker}
+        </div>
+        <div>
+            <span>制作时间:</span><fmt:formatDate value="${works.makeTime}"
+                                              pattern="yyyy-MM-dd"/>
+        </div>
+        <div>
+            <span>作品诠释:</span>${works.worksMeaning}
+        </div>
+    </div>
 
+    <div class="info-work">
+        <center>作品等级</center>
+        <div class="each-row-two">
+            <span>质地一:</span>${worksLevel.zhidi}
+        </div>
+        <div class="each-row-two">
+            <span>质地二: </span>${worksLevel.zhidi2}
+        </div>
+        <div class="each-row-two">
+            <span>感观: </span>${worksLevel.ganguan}
+        </div>
+        <div class="each-row-two">
+            <span>磨氏度: </span>${worksLevel.moshidu}
+        </div>
+        <div class="each-row-two">
+            <span>血量:</span>${worksLevel.xueliang}
+        </div>
+        <div class="each-row-two">
+            <span>血色: </span>${worksLevel.xuese}
+        </div>
+        <div class="each-row-two">
+            <span>血形:</span>${worksLevel.xuexing}
+        </div>
+        <div class="each-row-two">
+            <span>浓艳度:</span>${worksLevel.nongyandu}
+        </div>
+        <div class="each-row-two">
+            <span>纯净度:</span>${worksLevel.chunjingdu}
+        </div>
+        <div class="each-row-two">
+            <span>地色:</span>${worksLevel.dise}
+        </div>
+        <div class="each-row-two">
+            <span>活筋:</span>${worksLevel.liu}
+        </div>
+        <div class="each-row-two">
+            <span>裂:</span>${worksLevel.lie}
+        </div>
+        <div class="each-row-two">
+            <span>印章:</span>${worksLevel.hanxuemian}
+        </div>
+        <div class="each-row-two">
+            <span>含血方式:</span>${worksLevel.hanxuefangshi}
+        </div>
+    </div>
+</div>
+<c:if test="${!empty report}">
+    <div class="div-outer">
         <div class="info-work">
             <center>评估报告</center>
-            ${report.des}
-        </div>
-
-        <div class="info-register">
-            <div class="info-register-left">
-                <p class="info-register-left-icon">收藏者信息</p>
+            <div>
+                    ${report.des}
             </div>
-            <div class="info-register-right">
-                <p>姓名:${collecter.name}</p>
-                <p>联系方式:${collecter.phone}</p>
-                <p>地址:${collecter.address}</p>
-                <p>身份证:${collecter.no}</p>
-            </div>
+            <c:if test="${(!empty certImage.url)&&(fn:length(certImage.url)>0)}">
+                <img src="http://windyeel.img-cn-shanghai.aliyuncs.com/${certImage.url}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                     alt="" class="certImage">
+            </c:if>
         </div>
-
-        <div class="info-work">
-            <center>作品诠释</center>
-            <img src="${ctxStatic}/img/headImg/3.jpg" class="explain-img">
-            <input type="button" value="点击进行诠释" class="explain-btn"
-                   onclick="location.href='${ctx}/mobile/interpretationPre?worksId=${works.id}'"/>
+    </div>
+</c:if>
+<div class="div-outer">
+    <div class="info-register">
+        <div class="info-register-left">
+            <p class="info-register-left-icon">收藏者信息</p>
         </div>
-
+        <div class="info-register-right">
+            <p>姓名:${collecter.name}</p>
+            <p>联系方式:${collecter.phone}</p>
+            <p>地址:${collecter.address}</p>
+            <p>身份证:${collecter.no}</p>
+        </div>
+    </div>
+</div>
+<div class="div-outer">
+    <div class="info-work">
+        <center>作品诠释</center>
+        <br>
+        <img src="${ctxStatic}/img/headImg/3.jpg" class="explain-img">
+        <input type="button" value="点击进行诠释" class="explain-btn"
+               onclick="location.href='${ctx}/mobile/interpretationPre?worksId=${works.id}'"/>
+    </div>
+    <c:forEach items="${interpretationList}" var="inter">
         <div class="info-work">
             <div class="explains-one">
                 <div class="explains-one-title">
-                    <img src="${ctxStatic}/img/headImg/5.jpg" class="explain-img">
-                    <input type="text" class="explains-one-title-name" value="天**我"/>
+                    <img class="explain-img" src="${inter.appUser.headImgUrl}"
+                         onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png'">
+                    <input type="text" class="explains-one-title-name" value="${inter.appUser.loginName}"/>
                     <input type="text" value="2016-12-05" class="explains-one-title-date"/>
                 </div>
-                <div class="explains-one-text">
-                    这是假的,不要点
+                <div class="explains-one-text" data-id="${inter.id}">
+                    <c:if test="${fn:length(inter.description) >50}">${fn:substring(inter.description,0,50)}</c:if>
+                    <c:if test="${fn:length(inter.description) <=30}">${inter.description}</c:if>
                 </div>
                 <div class="explains-one-imgs">
-                    <img src="${ctxStatic}/img/swiper/swiper-1.jpg" class="explains-one-imgs-one">
                     <img src="${ctxStatic}/img/swiper/swiper-2.jpg" class="explains-one-imgs-one">
+                    <c:forEach items="${inter.imagesList}" var="image">
+                        <img src="http://windyeel.img-cn-shanghai.aliyuncs.com/${image.url}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                             class="explains-one-imgs-one">
+                    </c:forEach>
                 </div>
             </div>
         </div>
-        <c:forEach items="${interpretationList}" var="inter">
-            <div class="info-work">
-                <div class="explains-one">
-                    <div class="explains-one-title">
-                        <img class="explain-img" src="${inter.appUser.headImgUrl}"
-                             onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png'">
-                        <input type="text" class="explains-one-title-name" value="${inter.appUser.loginName}"/>
-                        <input type="text" value="2016-12-05" class="explains-one-title-date"/>
-                    </div>
-                    <div class="explains-one-text" data-id="${inter.id}">
-                        <c:if test="${fn:length(inter.description) >50}">${fn:substring(inter.description,0,50)}</c:if>
-                        <c:if test="${fn:length(inter.description) <=30}">${inter.description}</c:if>
-                    </div>
-                    <div class="explains-one-imgs">
-                        <img src="${ctxStatic}/img/swiper/swiper-2.jpg" class="explains-one-imgs-one">
-                        <c:forEach items="${inter.imagesList}" var="image">
-                            <img src="http://windyeel.img-cn-shanghai.aliyuncs.com/${image.url}?x-oss-process=image/resize,m_fill,h_100,w_100"
-                                 class="explains-one-imgs-one">
-                        </c:forEach>
-                    </div>
-                </div>
-            </div>
-        </c:forEach>
-    </div>
-
+    </c:forEach>
 </div>
+
+<div class="js_dialog" id="notCareDialog" style="display: none;">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog">
+        <div class="weui-dialog__hd"><strong class="weui-dialog__title">成功关注!</strong></div>
+        <div class="weui-dialog__ft">
+            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">确定</a>
+        </div>
+    </div>
+</div>
+
 <script>
     $(function () {
         $('.explains-one-text').on('click', function () {
             location.href = "${ctx}/mobile/interpretationDetail?interId=" + $(this).attr('data-id');
         })
+
+        $('.weui-dialog__btn').on('click', function () {
+            $('.js_dialog').fadeOut(200);
+        })
+
+        $('.look-people-one-care-text-not').on('click', function () {
+            var thisone = $(this);
+            var targetId = thisone.parent().parent().attr('data-id');
+            $.ajax({
+                type: "POST",
+                url: "${ctx}/mobile/notToHave",
+                data: {
+                    targetId: targetId
+                },
+                success: function (data) {
+                    if (data == '关注成功!') {
+                        $('#notCareDialog').find('.weui-dialog__title').html(data);
+                        $('#notCareDialog').fadeIn(200);
+                    }
+                }
+            })
+        })
+
+        $('#header-left-like').on('click', function () {
+            var thisone = $(this);
+            var targetId = thisone.parent().attr('data-id');
+            $.ajax({
+                type: "POST",
+                url: "${ctx}/mobile/notToHave",
+                data: {
+                    targetId: targetId
+                },
+                success: function (data) {
+                    if (data == '关注成功!') {
+                        $('#notCareDialog').find('.weui-dialog__title').html(data);
+                        $('#notCareDialog').fadeIn(200);
+                    }
+                }
+            })
+        })
+
+
+        $('.header-right-btn').on('click', function () {
+            var worksid = ${works.id};
+            $.ajax({
+                type: "POST",
+                url: "${ctx}/mobile/collectWorks",
+                data: {
+                    worksId: worksid
+                },
+                success: function (data) {
+                    $('#notCareDialog').find('.weui-dialog__title').html(data);
+                    $('#notCareDialog').fadeIn(200);
+                }
+            })
+        })
+
     })
 
 </script>

@@ -95,7 +95,7 @@
         load(1);
         function load(pageIndex) {
             $.get("/user/collect_load", {pageIndex: pageIndex}, function (data) {
-                if (pageIndex >= data.total) {
+                if (pageIndex >= data.pages) {
                     // 数据加载完毕了
                     $("#collectBtn").html("客观，这次真没了");
                     hasMore = false;
@@ -103,7 +103,7 @@
                 $.each(data.records, function () {
                     var $li = $("#collect_works").clone();
                     $li.removeAttr("id").css("display", "block");
-                    $li.find(".works-image").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
+                    $li.find(".works-image").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.works.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
                     console.log("11");
                     $("#collect-content").append($li);
                 });

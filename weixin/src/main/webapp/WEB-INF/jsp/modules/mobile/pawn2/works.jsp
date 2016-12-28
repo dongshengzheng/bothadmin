@@ -344,6 +344,7 @@
                         $tmp.find(".works-floor-name-all").html(data.records[i].name);
                         $tmp.find(".works-floor-img-all").html(data.records[i].type);
                         $tmp.find(".works-floor-date-all").html(data.records[i].createDate);
+                        $tmp.find(".works-intro-all").html(data.records[i].remarks)
                         $tmp.children('.works-img-all').attr('src', 'http://windyeel.img-cn-shanghai.aliyuncs.com/' + data.records[i].images + '?x-oss-process=image/resize,m_fill,h_100,w_100');
                         var img = document.createElement('img');
                         var $img = $(img);
