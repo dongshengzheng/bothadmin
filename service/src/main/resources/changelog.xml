@@ -350,4 +350,13 @@
             ALTER TABLE `dd_works` DROP COLUMN `images`;
         </sql>
     </changeSet>
+
+    <changeSet author="SunHan" id="15862614903-024">
+        <sql>
+            ALTER TABLE `dd_interpretation` ADD COLUMN `remarks` varchar(200) COMMENT '备注' AFTER `del_flag`;
+        </sql>
+    </changeSet>
+
+
+
 </databaseChangeLog>
