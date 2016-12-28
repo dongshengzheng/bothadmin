@@ -74,28 +74,25 @@
 </div>
 
 <li class="col-sm-4" style="display: none;" id="worksTemp">
-    <a class="thumbnail fancybox" data-rel="gallery" title="" href="">
+    <a id="works_img" href="" class="thumbnail fancybox" data-rel="gallery" title="" href="">
         <img class="full-width img-responsive works-image" src="" alt="">
-        <span class="portfolio-box-in">
-            <i class="rounded-x icon-magnifier-add"></i>
-        </span>
+        <#--<span class="portfolio-box-in">-->
+            <#--<i class="rounded-x icon-magnifier-add"></i>-->
+        <#--</span>-->
     </a>
-    <div class="headline-left margin-bottom-10"><h3 class="headline-brd works-name">Project Three</h3></div>
+    <div class="headline-left margin-bottom-10">
+        <h3 id="works_name" class="headline-brd works-name"></h3>
+    </div>
     <small class="project-tag">
         <i class="fa fa-tag"></i>
-        <a href="feature_news_blocks.html#">Technology</a>,
-        <a href="feature_news_blocks.html#">Business</a>
+        <a id="works_des" href="javascript:void(0)"></a>
     </small>
     <p class="works-remarks"></p>
 </li>
-
-
-
 </@htmlBody>
 <@footerJS>
 <script>
-    pageIndex = 0;
-
+    pageIndex = 1;
     hasMore = true;
 
     $("#headerHome").addClass("active");
@@ -103,25 +100,22 @@
         load(1);
         function load(pageIndex) {
             $.post("/works", {pageIndex: pageIndex}, function (data) {
-                console.log(data);
                 if (pageIndex >= data.pages) {
                     // 数据加载完毕了
                     $(".btn-more").html("客观，这次真没了");
                     hasMore = false;
                 }
-
                 $.each(data.records, function () {
                     var $li = $("#worksTemp").clone();
                     $li.removeAttr("id").css("display", "block");
                     $li.find(".works-image").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
-                    console.log("11");
+                    $li.find("#works_des").html(this.breed);
+                    $li.find("#works_name").html(this.name);
+                    $li.find("#works_img").attr("href","${staticPath}/works/detail/" + this.id);
                     $("#works-list").append($li);
                 });
-
-
             });
         }
-
         $(".btn-more").on("click", function () {
             if (hasMore) {
                 pageIndex++;
