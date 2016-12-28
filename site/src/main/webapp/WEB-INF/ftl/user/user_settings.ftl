@@ -1,18 +1,26 @@
 <#include "../layout/main.ftl"/>
 
 <@htmlHead title="用户中心">
-<link rel="stylesheet" href="${staticPath}/assets/css/style.css">
+
 <link rel="stylesheet" href="${staticPath}/assets/css/pages/profile.css">
 <link rel="stylesheet" href="${staticPath}/assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css">
 <link rel="stylesheet" href="${staticPath}/assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css">
+<link rel="stylesheet" href="${staticPath}/assets/css/style.css">
+<link rel="stylesheet" href="${staticPath}/static/css/custom.css">
 </@htmlHead>
 <@htmlBody>
+
+
 <!--=== Profile ===-->
 <div class="container content profile">
     <div class="row">
         <!--Left Sidebar-->
         <div class="col-md-3 md-margin-bottom-40">
-            <img class="img-responsive profile-img margin-bottom-20" src="${staticPath}/assets/img/team/img32-md.jpg" alt="">
+            <div class="profile-bio">
+                <img class="img-responsive profile-img margin-bottom-20" src="${staticPath}/assets/img/team/img32-md.jpg" alt="">
+                <a id="upload_header" class="btn-u btn-u-sm" href="javascript:;">Change Picture</a>
+            </div>
+
 
             <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
                 <li class="list-group-item ">
@@ -187,7 +195,14 @@
 
 </@htmlBody>
 <@footerJS>
+<script src="${staticPath}/assets/js/upload/upload.js"></script>
+<script src="${staticPath}/assets/js/plugins/plupload-2.1.2/js/moxie.js"></script>
+<script src="${staticPath}/assets/js/plugins/plupload-2.1.2/js/plupload.dev.js"></script>
 <script type="text/javascript">
+
+    initUploaders_header("upload_header", "windyeel", '${staticPath}/');
+
+
     var $form = $("#userInfo-form");
     $form.validate({
         submitHandler: function (form) {

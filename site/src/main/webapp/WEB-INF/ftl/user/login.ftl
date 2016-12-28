@@ -43,12 +43,12 @@
 
             <p>没有账户？去<a class="color-green" href="register">注册</a>吧。</p>
         </div>
-        <div id="errInfo" class="form-info red">&nbsp;</div>
+        <div id="errInfo" class="form-info error">&nbsp;</div>
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
             <input id="loginName" name="loginName" type="text" class="form-control" placeholder="用户名">
         </div>
-        <div class="form-info red">&nbsp;</div>
+        <div class="form-info error">&nbsp;</div>
         <div class="input-group ">
             <span class="input-group-addon"><i class="fa fa-lock"></i></span>
             <input id="password" name="password" type="password" class="form-control" placeholder="密码">

@@ -257,6 +257,17 @@ public class UserController extends BaseController {
 
     }
 
+
+    @RequestMapping(value = "/header",method = RequestMethod.POST)
+    @ResponseBody
+    public Boolean updateHeader(String headerUrl) {
+        Integer userId = getCurrentUser().getId();
+        AppUser appUser = new AppUser(userId, headerUrl);
+        return userService.updateSelectiveById(appUser);
+    }
+
+
+
     /**
      * 根据省份获取城市
      *

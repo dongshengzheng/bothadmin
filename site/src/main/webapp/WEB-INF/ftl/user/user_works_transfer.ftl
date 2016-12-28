@@ -231,7 +231,7 @@
             $.get("/user/transfer_load/false/1", {pageIndex: rollinIndex}, function (data) {
                 if (rollinIndex >= data.pages) {
                     // 数据加载完毕了
-                    $("#rollinBtn").html("客观，这次真没了");
+                    $("#rollinBtn").html("客官，这次真没了");
                     rollinHasMore = false;
                 }
                 $.each(data.records, function () {
@@ -256,7 +256,7 @@
             $.get("/user/transfer_load/true/1", {pageIndex: rollOutIndex}, function (data) {
                 if (rollOutIndex >= data.pages) {
                     // 数据加载完毕了
-                    $("#rollOutBtn").html("客观，这次真没了");
+                    $("#rollOutBtn").html("客官，这次真没了");
                     rollOutHasMore = false;
                 }
                 $.each(data.records, function () {
@@ -278,7 +278,7 @@
             $.get("/user/transfer_load/false/2", {pageIndex: rollInningIndex}, function (data) {
                 if (rollInningIndex >= data.pages) {
                     // 数据加载完毕了
-                    $("#rollInningBtn").html("客观，这次真没了");
+                    $("#rollInningBtn").html("客官，这次真没了");
                     rollInningHasMore = false;
                 }
                 $.each(data.records, function () {
@@ -301,7 +301,7 @@
             $.get("/user/transfer_load/false/2", {pageIndex: rollOutingIndex}, function (data) {
                 if (rollOutingIndex >= data.pages) {
                     // 数据加载完毕了
-                    $("#rollOutingBtn").html("客观，这次真没了");
+                    $("#rollOutingBtn").html("客官，这次真没了");
                     rollOutingHasMore = false;
                 }
                 $.each(data.records, function () {

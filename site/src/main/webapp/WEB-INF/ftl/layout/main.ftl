@@ -147,6 +147,16 @@ description="金石典当"
 </body>
 <script>
 
+    $.ajaxSetup({
+        complete:function(XMLHttpRequest,textStatus){
+            if(textStatus=="parsererror"){
+
+            } else if(textStatus=="error"){
+
+            }
+        }
+    });
+
     jQuery(document).ready(function () {
         App.init();
         App.initScrollBar();

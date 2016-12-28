@@ -2,11 +2,13 @@
 
 <@htmlHead title="作品详情">
 <link rel="stylesheet" href="${staticPath}/assets/css/jsdd/work/work_detail.css">
-<!-- CSS Page Style -->
-<link rel="stylesheet" href="${staticPath}/assets/css/pages/profile.css">
+<link rel="stylesheet" href="${staticPath}/assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css">
+<link rel="stylesheet" href="${staticPath}/assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css">
+
 <link rel="stylesheet" href="${staticPath}/assets/css/pages/shortcode_timeline2.css">
 <link rel="stylesheet"
       href="${staticPath}/static/plugins/master-slider/quick-start/masterslider/style/masterslider.css">
+<link rel="stylesheet" href="${staticPath}/assets/css/pages/profile.css">
 <link rel='stylesheet'
       href="${staticPath}/static/plugins/master-slider/quick-start/masterslider/skins/default/style.css">
 </@htmlHead>
@@ -20,7 +22,7 @@
         </ul>
     </div>
 </div>
-<div class="container margin-bottom-40 margin-top-20">
+<div class="container margin-bottom-40 margin-top-20 " >
     <div class="row">
         <!--left start-->
         <div class="col-sm-9">
@@ -139,7 +141,7 @@
                                     <a href="shortcode_accordion_and_tabs.html#detail" data-toggle="tab">作品详情</a>
                                 </li>
                                 <li>
-                                    <a href="shortcode_accordion_and_tabs.html#quanshi" data-toggle="tab">作品诠释</a>
+                                    <a href="shortcode_accordion_and_tabs.html#interpretation" data-toggle="tab">作品诠释</a>
                                 </li>
                                 <li>
                                     <a href="shortcode_accordion_and_tabs.html#history" data-toggle="tab">转让历史</a>
@@ -215,7 +217,7 @@
                                     <pre>${(report.des)!}</pre>
                                     <div>
                                         <#if reportImage?exists>
-                                            <img width="500px;"
+                                            <img style="width: 80%;"
                                                  src="http://windyeel.img-cn-shanghai.aliyuncs.com/${reportImage.url}?x-oss-process=image/resize,m_fill,h_500,w_500"
                                                  alt="评估报告">
                                         </#if>
@@ -237,178 +239,77 @@
                                 </div>
 
                                 <!--作品诠释-->
-                                <div class="tab-pane fade in" id="quanshi">
-                                    <!--<div class="container">-->
-                                    <div class="row">
-                                        <!--头像-->
-                                        <div class="col-sm-1" style="">
-                                            <div style="margin-top: 5px;margin-bottom: 5px; margin-left: 15px;">
-                                                <img style="height: 50px;width: 50px;-webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px;overflow:hidden"
-                                                     class="" src="${staticPath}/assets/img/testimonials/img5.jpg"
-                                                     alt=""/>
-                                            </div>
-                                        </div>
-                                        <!--文本-->
-                                        <div class="col-sm-10" style="margin-left: 25px;background:rgb(246,237,236)">
-                                            <form action="" method="post">
+                                <div class="tab-pane fade in profile" id="interpretation">
+                                    <div class="media media-v2 margin-bottom-20">
+                                        <a class="pull-left" href="#">
+                                            <img class="media-object rounded-x" src="${staticPath}/assets/img/testimonials/img6.jpg" alt="">
+                                        </a>
+                                        <div class="media-body">
+                                            <form id="form_interpretation" class="sky-form" action="/interpretation/add" method="post">
+                                                <div class="row">
+                                                    <span class="col-sm-2"  for="scoreDemanded">选择价格:</span>
+                                                    <div class="col-sm-10">
+                                                        <div class="inline-group">
+                                                            <label class="radio">
+                                                                <input type="radio" value="20" name="scoreDemanded" checked>
+                                                                <i class="rounded-x"></i>20</label>
+                                                            <label class="radio">
+                                                                <input type="radio" value="50" name="scoreDemanded">
+                                                                <i class="rounded-x"></i>50</label>
+                                                            <label class="radio">
+                                                                <input type="radio" value="100" name="scoreDemanded">
+                                                                <i class="rounded-x"></i>100</label>
+                                                            <label class="radio">
+                                                                <input type="radio" value="200" name="scoreDemanded">
+                                                                <i class="rounded-x"></i>200</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 margin-bottom-10">
+                                                        <input type="hidden" name="worksId" value="${works.id}">
+                                                        <textarea rows="8" name="description" id="description" placeholder="输入具体诠释详细(建议先在本地编辑好之后，复制到本输入框)" class="form-control" style="border-color: #ddd"></textarea>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <button id="btn-interpretation" class="btn btn-sm btn-info pull-left "><i class="glyphicon glyphicon-picture"></i>上传图片</button>
 
-                                                <label class="textarea" style="margin-top: 10px">
-                                        <textarea style="resize: none;width: 700px;height: 200px" rows="3">
+                                                        <@shiro.user><button class="btn btn-sm btn-u btn-u-red pull-right" type="submit">确认诠释</button></@shiro.user>
+                                                        <@shiro.guest><a class="btn btn-sm btn-u btn-u-red pull-right" href="/login">请先登录</a></@shiro.guest>
 
-                                        </textarea>
-                                                </label>
-                                                <span>
-                                        <button class="btn btn-sm btn-info"><i class="glyphicon glyphicon-picture"></i>上传图片</button>
-                                        <span style="float: right;"><button class="btn btn-sm btn-u btn-u-red"
-                                                                            type="submit">确认诠释</button></span>
-                                    </span>
-                                                <div style="border: solid 1px gainsboro;height: 50px;margin: 10px 0px"></div>
+                                                        <div class="clearfix"></div>
+                                                        <div id="container-interpretation" style="margin: 10px 0px"></div> </div>
+                                                </div>
                                             </form>
+
                                         </div>
                                     </div>
                                     <!--</div>-->
-
-                                    <!--诠释列表-->
-                                    <div class="row">
-                                        <!--头像-->
-                                        <div class="col-sm-1" style="margin-top: 15px">
-                                            <div style="margin-top: 5px;margin-bottom: 5px; margin-left: 15px;">
-                                                <img style="height: 50px;width: 50px;-webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px;overflow:hidden"
-                                                     class="" src="${staticPath}/assets/img/testimonials/img5.jpg"
-                                                     alt=""/>
-                                            </div>
+                                    <div class="media media-v2 margin-bottom-20">
+                                        <a class="pull-left" href="page_profile_comments.html#">
+                                            <img class="media-object rounded-x" src="${staticPath}/assets/img/testimonials/img6.jpg" alt="">
+                                        </a>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">
+                                                <strong><a href="page_profile_comments.html#">Lee Parker</a></strong> @LeePark
+                                                <small>12 hours ago</small>
+                                            </h4>
+                                            <p>Pellentesque scelerisque vitae mi quis sollicitudin. Sed pellentesque nulla eleifend hendrerit rhoncus. Aenean rhoncus imperdiet pretium. Nunc vitae egestas eros, vel fringilla arcu. Duis vel libero sit amet metus faucibus venenatis in sit amet nisl. Fusce imperdiet enim risus. Cras orci velit, tempor dignissim ante eget, rhoncus hendrerit nisi. </p>
+                                            <ul class="list-inline img-uploaded">
+                                                <li><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg" alt=""></li>
+                                                <li><img class="img-responsive" src="${staticPath}/assets/img/main/img3.jpg" alt=""></li>
+                                                <li><img class="img-responsive" src="${staticPath}/assets/img/main/img16.jpg" alt=""></li>
+                                            </ul>
+                                            <ul class="list-inline results-list pull-left">
+                                                <li><a href="page_profile_comments.html#">7 Likes</a></li>
+                                                <li><a href="page_profile_comments.html#">2 Share</a></li>
+                                            </ul>
+                                            <ul class="list-inline pull-right">
+                                                <li><a href="page_profile_comments.html#"><i class="expand-list rounded-x fa fa-reply"></i></a></li>
+                                                <li><a href="page_profile_comments.html#"><i class="expand-list rounded-x fa fa-heart"></i></a></li>
+                                                <li><a href="page_profile_comments.html#"><i class="expand-list rounded-x fa fa-retweet"></i></a></li>
+                                            </ul>
+                                            <div class="clearfix"></div>
                                         </div>
-                                        <!--文本-->
-                                        <div class="col-sm-10" style="margin-left: 25px;margin-top: 15px">
-                                            <p>jssss**被 <span style="float: right;">2013年10月25日</span></p>
-                                            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-                                                啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-                                                啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-                                                啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-                                                啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
-                                            <div class="img-list-quanshi"><!-- 图片列表-->
-                                                <ul style="margin-top: -15px">
-                                                    <li style="padding-left: 0px"><img class=""
-                                                                                       src="${staticPath}/assets/img/team/img2-sm.jpg"
-                                                                                       alt=""/></li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
-                                                    </li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
-                                                    </li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
-                                                    </li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <!--头像-->
-                                        <div class="col-sm-1" style="margin-top: 15px">
-                                            <div style="margin-top: 5px;margin-bottom: 5px; margin-left: 15px;">
-                                                <img style="height: 50px;width: 50px;-webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px;overflow:hidden"
-                                                     class="" src="${staticPath}/assets/img/testimonials/img5.jpg"
-                                                     alt=""/>
-                                            </div>
-                                        </div>
-                                        <!--文本-->
-                                        <div class="col-sm-10" style="margin-left: 25px;margin-top: 15px">
-                                            <p>jssss**被 <span style="float: right;">2013年10月25日</span></p>
-                                            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-                                                啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-                                                啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-                                                啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-                                                啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
-                                            <div class="img-list-quanshi"><!-- 图片列表-->
-                                                <ul style="margin-top: -15px">
-                                                    <li style="padding-left: 0px"><img class=""
-                                                                                       src="${staticPath}/assets/img/team/img2-sm.jpg"
-                                                                                       alt=""/></li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
-                                                    </li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
-                                                    </li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
-                                                    </li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="row">
-                                        <!--头像-->
-                                        <div class="col-sm-1" style="margin-top: 15px">
-                                            <div style="margin-top: 5px;margin-bottom: 5px; margin-left: 15px;">
-                                                <img style="height: 50px;width: 50px;-webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px;overflow:hidden"
-                                                     class="" src="${staticPath}/assets/img/testimonials/img5.jpg"
-                                                     alt=""/>
-                                            </div>
-                                        </div>
-                                        <!--文本-->
-                                        <div class="col-sm-10" style="margin-left: 25px;margin-top: 15px">
-                                            <p>jssss**被 <span style="float: right;">2013年10月25日</span></p>
-                                            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-                                                啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-                                                啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-                                                啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-                                                啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
-                                            <div class="img-list-quanshi"><!-- 图片列表-->
-                                                <ul style="margin-top: -15px">
-                                                    <li style="padding-left: 0px"><img class=""
-                                                                                       src="${staticPath}/assets/img/team/img2-sm.jpg"
-                                                                                       alt=""/></li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
-                                                    </li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
-                                                    </li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
-                                                    </li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <!--头像-->
-                                        <div class="col-sm-1" style="margin-top: 15px">
-                                            <div style="margin-top: 5px;margin-bottom: 5px; margin-left: 15px;">
-                                                <img style="height: 50px;width: 50px;-webkit-border-radius: 50px;-moz-border-radius: 50px;border-radius: 50px;overflow:hidden"
-                                                     class="" src="${staticPath}/assets/img/testimonials/img5.jpg"
-                                                     alt=""/>
-                                            </div>
-                                        </div>
-                                        <!--文本-->
-                                        <div class="col-sm-10" style="margin-left: 25px;margin-top: 15px">
-                                            <p>jssss**被 <span style="float: right;">2013年10月25日</span></p>
-                                            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-                                                啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-                                                啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-                                                啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-                                                啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
-                                            <div class="img-list-quanshi"><!-- 图片列表-->
-                                                <ul style="margin-top: -15px">
-                                                    <li style="padding-left: 0px"><img class=""
-                                                                                       src="${staticPath}/assets/img/team/img2-sm.jpg"
-                                                                                       alt=""/></li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
-                                                    </li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
-                                                    </li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
-                                                    </li>
-                                                    <li><img src="${staticPath}/assets/img/team/img2-sm.jpg" alt=""/>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </div><!--/end media media v2-->
+                                    <button type="button" class="btn-u btn-u-default btn-block">Load More</button>
                                 </div>
 
                                 <!--转让历史-->
@@ -601,11 +502,15 @@
 <script src="${staticPath}/static/plugins/master-slider/quick-start/masterslider/masterslider.min.js"></script>
 <script src="${staticPath}/static/plugins/master-slider/quick-start/masterslider/jquery.easing.min.js"></script>
 <script src="${staticPath}/static/js/plugins/master-slider.js"></script>
+<script src="${staticPath}/assets/js/upload/upload.js"></script>
+<script src="${staticPath}/assets/js/plugins/plupload-2.1.2/js/moxie.js"></script>
+<script src="${staticPath}/assets/js/plugins/plupload-2.1.2/js/plupload.dev.js"></script>
+
 <script>
     jQuery(document).ready(function () {
 
         MasterSliderShowcase2.initMasterSliderShowcase2();
-
+        initUploaders_interpretation("btn-interpretation", "windyeel", '${staticPath}/');
         //获取要操作的元素
         var smallimg = $('.small-box img');
         var square = $('.square');
@@ -655,6 +560,24 @@
         } else {
             $(this).find("i").attr("class", "fa fa-heart-o");
             $(this).find("span").html("添加收藏")
+        }
+    });
+
+
+    // 提交诠释
+
+    var $form = $("#form_interpretation");
+    $form.validate({
+        rules:{
+            description:"required"
+        },
+        messages:{
+            description:{
+                required:"诠释详情必填"
+            }
+        },
+        submitHandler: function (form) {
+            form.submit();
         }
     });
 </script>

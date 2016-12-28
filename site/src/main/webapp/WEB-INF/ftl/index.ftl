@@ -106,7 +106,7 @@
                 console.log(data);
                 if (pageIndex >= data.pages) {
                     // 数据加载完毕了
-                    $(".btn-more").html("客观，这次真没了");
+                    $(".btn-more").html("客官，这次真没了");
                     hasMore = false;
                 }
 

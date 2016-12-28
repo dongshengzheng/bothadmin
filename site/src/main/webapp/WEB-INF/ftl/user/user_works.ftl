@@ -236,7 +236,7 @@
             $.get("/user/works_load/3", {pageIndex: pagePassIndex}, function (data) {
                 if (pagePassIndex >= data.pages) {
                     // 数据加载完毕了
-                    $("#passBtn").html("客观，这次真没了");
+                    $("#passBtn").html("客官，这次真没了");
                     passHasMore = false;
                 }
                 $.each(data.records, function () {
@@ -261,7 +261,7 @@
             $.get("/user/works_load/2", {pageIndex: pageUnPassIndex}, function (data) {
                 if (pageUnPassIndex >= data.pages) {
                     // 数据加载完毕了
-                    $("#unPassBtn").html("客观，这次真没了");
+                    $("#unPassBtn").html("客官，这次真没了");
                     unPassHasMore = false;
                 }
                 $.each(data.records, function () {
@@ -285,7 +285,7 @@
             $.get("/user/works_load/1", {pageIndex: checkingIndex}, function (data) {
                 if (checkingIndex >= data.pages) {
                     // 数据加载完毕了
-                    $("#checkingBtn").html("客观，这次真没了");
+                    $("#checkingBtn").html("客官，这次真没了");
                     checkingHasMore = false;
                 }
                 $.each(data.records, function () {
@@ -308,7 +308,7 @@
             $.get("/user/works_load/0", {pageIndex: draftsIndex}, function (data) {
                 if (draftsIndex >= data.pages) {
                     // 数据加载完毕了
-                    $("#draftsBtn").html("客观，这次真没了");
+                    $("#draftsBtn").html("客官，这次真没了");
                     draftsHasMore = false;
                 }
                 $.each(data.records, function () {
