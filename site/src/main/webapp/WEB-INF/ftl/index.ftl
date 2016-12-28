@@ -75,10 +75,7 @@
 
 <li class="col-sm-4" style="display: none;" id="worksTemp">
     <a id="works_img" href="" class="thumbnail fancybox" data-rel="gallery" title="" href="">
-        <img class="full-width img-responsive works-image" src="" alt="">
-        <#--<span class="portfolio-box-in">-->
-            <#--<i class="rounded-x icon-magnifier-add"></i>-->
-        <#--</span>-->
+        <img onerror="nofind(1)" class="full-width img-responsive works-image" src="" alt="">
     </a>
     <div class="headline-left margin-bottom-10">
         <h3 id="works_name" class="headline-brd works-name"></h3>

@@ -41,6 +41,18 @@ description="金石典当"
     <link rel="stylesheet" href="${staticPath}/static/plugins/revolution-slider/rs-plugin/css/settings.css">
     <link rel="stylesheet" href="${staticPath}/assets/css/blocks.css">
     <link rel="stylesheet" href="${staticPath}/static/css/custom.css">
+    <script src="${staticPath}/assets/plugins/jquery/jquery.min.js"></script>
+    <script src="${staticPath}/assets/plugins/jquery/jquery-migrate.min.js"></script>
+    <script type="text/javascript">
+        function nofind(type){
+            var img=event.srcElement;
+            //1 作品 2 用户头像
+            if(type == '1'){
+                img.src="http://windyeel.oss-cn-shanghai.aliyuncs.com/global/img/default.png";
+            }
+            img.onerror=null;
+        }
+    </script>
     <#nested/>
 </head>
 </#macro>
@@ -122,8 +134,7 @@ description="金石典当"
 </div>
 </#macro>
 <#macro footerJS>
-<script src="${staticPath}/assets/plugins/jquery/jquery.min.js"></script>
-<script src="${staticPath}/assets/plugins/jquery/jquery-migrate.min.js"></script>
+
 <script src="${staticPath}/assets/plugins/jquery/jquery.validate.min.js"></script>
 <script src="${staticPath}/assets/plugins/jquery/jquery.form.min.js"></script>
 <script src="${staticPath}/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
