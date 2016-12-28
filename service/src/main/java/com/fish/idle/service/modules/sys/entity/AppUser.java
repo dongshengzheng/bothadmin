@@ -280,6 +280,11 @@ public class AppUser implements Serializable {
 
     public AppUser() {
     }
+
+    public AppUser(Integer id) {
+        this.id = id;
+    }
+
     public AppUser(Integer id, String headImgUrl) {
         this.id = id;
         this.headImgUrl = headImgUrl;

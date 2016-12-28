@@ -9,6 +9,6 @@ import com.baomidou.framework.service.ISuperService;
  *
  */
 public interface IImagesService extends ISuperService<Images> {
-
+    void insertImage(String images, Integer targetId, String types);
 
 }

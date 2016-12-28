@@ -106,7 +106,7 @@ public class WorksController extends BaseController {
             jsonObject.put("msg", "保存提供者信息出错");
             return jsonObject;
         }
-        insertImage(works.getImages(), works.getId(), Const.IMAGES_WORKS);
+        imagesService.insertImage(works.getImages(), works.getId(), Const.IMAGES_WORKS);
 
 
         jsonObject.put("suc", true);
@@ -232,9 +232,9 @@ public class WorksController extends BaseController {
             return jsonObject;
         }
         // 保存评估报告
-        insertImage(desImage, report.getId(), Const.IMAGES_REPORT_DES);
+        imagesService.insertImage(desImage, report.getId(), Const.IMAGES_REPORT_DES);
         // 保存作品认证图片
-        insertImage(certifyImage, report.getId(), Const.IMAGES_REPORT_CERTIFICATE);
+        imagesService.insertImage(certifyImage, report.getId(), Const.IMAGES_REPORT_CERTIFICATE);
 
         jsonObject.put("suc", true);
         return jsonObject;
@@ -363,11 +363,11 @@ public class WorksController extends BaseController {
         consumerService.updateSelectiveById(worksBo.getCollect());
 
         // 保存图片信息
-        insertImage(worksBo.getWorksImages(), worksBo.getWorks().getId(), Const.IMAGES_WORKS);
+        imagesService.insertImage(worksBo.getWorksImages(), worksBo.getWorks().getId(), Const.IMAGES_WORKS);
         // 保存评估报告
-        insertImage(worksBo.getDesImage(), worksBo.getReport().getId(), Const.IMAGES_REPORT_DES);
+        imagesService.insertImage(worksBo.getDesImage(), worksBo.getReport().getId(), Const.IMAGES_REPORT_DES);
         // 保存作品认证图片
-        insertImage(worksBo.getCertifyImage(), worksBo.getReport().getId(), Const.IMAGES_REPORT_CERTIFICATE);
+        imagesService.insertImage(worksBo.getCertifyImage(), worksBo.getReport().getId(), Const.IMAGES_REPORT_CERTIFICATE);
 
         jsonObject.put("suc", true);
         return jsonObject;
@@ -401,20 +401,6 @@ public class WorksController extends BaseController {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
     }
 
-    private void insertImage(String images, Integer targetId, String types) {
-        // 保存图片信息
-        if (images != null && images.trim().length() > 0) {
-            String[] urls = images.split(",");
-            List<Images> list = new ArrayList<>();
-            for (String url : urls) {
-                Images img = new Images();
-                img.setTargetId(targetId);
-                img.setUrl(url);
-                img.setType(types);
-                list.add(img);
-            }
-            imagesService.insertBatch(list);
-        }
-    }
+
 
 }

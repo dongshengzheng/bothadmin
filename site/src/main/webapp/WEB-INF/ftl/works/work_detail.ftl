@@ -240,7 +240,7 @@
 
                                 <!--作品诠释-->
                                 <div class="tab-pane fade in profile" id="interpretation">
-                                    <div class="media media-v2 margin-bottom-20">
+                                    <div  class="media media-v2 margin-bottom-20">
                                         <a class="pull-left" href="#">
                                             <img class="media-object rounded-x" src="${staticPath}/assets/img/testimonials/img6.jpg" alt="">
                                         </a>
@@ -281,35 +281,9 @@
 
                                         </div>
                                     </div>
-                                    <!--</div>-->
-                                    <div class="media media-v2 margin-bottom-20">
-                                        <a class="pull-left" href="page_profile_comments.html#">
-                                            <img class="media-object rounded-x" src="${staticPath}/assets/img/testimonials/img6.jpg" alt="">
-                                        </a>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">
-                                                <strong><a href="page_profile_comments.html#">Lee Parker</a></strong> @LeePark
-                                                <small>12 hours ago</small>
-                                            </h4>
-                                            <p>Pellentesque scelerisque vitae mi quis sollicitudin. Sed pellentesque nulla eleifend hendrerit rhoncus. Aenean rhoncus imperdiet pretium. Nunc vitae egestas eros, vel fringilla arcu. Duis vel libero sit amet metus faucibus venenatis in sit amet nisl. Fusce imperdiet enim risus. Cras orci velit, tempor dignissim ante eget, rhoncus hendrerit nisi. </p>
-                                            <ul class="list-inline img-uploaded">
-                                                <li><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg" alt=""></li>
-                                                <li><img class="img-responsive" src="${staticPath}/assets/img/main/img3.jpg" alt=""></li>
-                                                <li><img class="img-responsive" src="${staticPath}/assets/img/main/img16.jpg" alt=""></li>
-                                            </ul>
-                                            <ul class="list-inline results-list pull-left">
-                                                <li><a href="page_profile_comments.html#">7 Likes</a></li>
-                                                <li><a href="page_profile_comments.html#">2 Share</a></li>
-                                            </ul>
-                                            <ul class="list-inline pull-right">
-                                                <li><a href="page_profile_comments.html#"><i class="expand-list rounded-x fa fa-reply"></i></a></li>
-                                                <li><a href="page_profile_comments.html#"><i class="expand-list rounded-x fa fa-heart"></i></a></li>
-                                                <li><a href="page_profile_comments.html#"><i class="expand-list rounded-x fa fa-retweet"></i></a></li>
-                                            </ul>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                    </div><!--/end media media v2-->
-                                    <button type="button" class="btn-u btn-u-default btn-block">Load More</button>
+                                    <div id="interpretation_contain">
+                                    </div>
+                                    <button type="button" class="btn-u btn-u-default btn-block btn-more">加载更多</button>
                                 </div>
 
                                 <!--转让历史-->
@@ -496,6 +470,35 @@
 
 
 <!---作品详情 作品诠释 转让历史-->
+
+
+
+
+<div id="temp_interpretation" class="media media-v2 margin-bottom-20" style="display: none;">
+    <a class="pull-left" href="page_profile_comments.html#">
+        <img class="media-object rounded-x headImgUrl" src="" alt="">
+    </a>
+    <div class="media-body">
+        <h4 class="media-heading">
+            <strong><a class="name" href="javascript:;"></a></strong>
+            <small></small>
+        </h4>
+        <p class="description"></p>
+        <ul class="list-inline img-uploaded">
+        </ul>
+        <ul class="list-inline results-list pull-left">
+            <li><a href="page_profile_comments.html#">7 Likes</a></li>
+            <li><a href="page_profile_comments.html#">2 Share</a></li>
+        </ul>
+        <ul class="list-inline pull-right">
+            <li><a href="page_profile_comments.html#"><i class="expand-list rounded-x fa fa-reply"></i></a></li>
+            <li><a href="page_profile_comments.html#"><i class="expand-list rounded-x fa fa-heart"></i></a></li>
+            <li><a href="page_profile_comments.html#"><i class="expand-list rounded-x fa fa-retweet"></i></a></li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
 </@htmlBody>
 <@footerJS>
 <!-- Master Slider -->
@@ -507,6 +510,9 @@
 <script src="${staticPath}/assets/js/plugins/plupload-2.1.2/js/plupload.dev.js"></script>
 
 <script>
+    pageIndex = 1;
+    hasMore = true;
+
     jQuery(document).ready(function () {
 
         MasterSliderShowcase2.initMasterSliderShowcase2();
@@ -565,7 +571,6 @@
 
 
     // 提交诠释
-
     var $form = $("#form_interpretation");
     $form.validate({
         rules:{
@@ -577,9 +582,53 @@
             }
         },
         submitHandler: function (form) {
-            form.submit();
+            $(form).ajaxSubmit({
+                success: function (data) {
+                    if (data) {
+                        alert("成功");
+                    } else {
+                        alert("失败");
+                    }
+                },
+                error: function () {
+                    alert("error");
+                    return;
+                }
+            });
         }
     });
+
+
+    loadInterpretation(1);
+    function loadInterpretation(pageIndex) {
+        $.post("/interpretation", {pageIndex: pageIndex,worksId:'${works.id}'}, function (data) {
+            if (pageIndex >= data.pages) {
+                // 数据加载完毕了
+                $(".btn-more").html("客官，这次真没了");
+                hasMore = false;
+            }
+            $.each(data.records, function () {
+                var $li = $("#temp_interpretation").clone();
+                $li.removeAttr("id").css("display", "block");
+                $li.find(".description").html(this.description);
+                $li.find(".name").html(this.appUser.name);
+                $li.find(".headImgUrl").attr("src","http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.appUser.headImgUrl + "?x-oss-process=image/resize,m_fill,h_80,w_80");
+                $li.find("small").html(this.createDate);
+                $.each(this.imagesList, function () {
+                    $li.find(".img-uploaded").append('<li><img class="img-responsive" src="http://windyeel.img-cn-shanghai.aliyuncs.com/' + this.url + '?x-oss-process=image/resize,m_fill,h_80,w_80" alt=""></li>');
+                });
+                $("#interpretation_contain").append($li);
+            });
+        });
+    }
+    $(".btn-more").on("click", function () {
+        if (hasMore) {
+            pageIndex++;
+            load(pageIndex);
+        }
+    })
+
+
 </script>
 
 </@footerJS>

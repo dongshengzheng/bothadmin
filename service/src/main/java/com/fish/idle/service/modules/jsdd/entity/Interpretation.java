@@ -63,6 +63,7 @@ public class Interpretation  extends BaseEntity {
     private Date dealDate;
 
     /**  */
+    @TableField(exist = false)
     private String picture;
 
     /**  */

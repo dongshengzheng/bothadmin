@@ -157,6 +157,12 @@ description="金石典当"
         }
     });
 
+
+    $('img').error(function () {
+        $(this).attr('src', "http://windyeel.oss-cn-shanghai.aliyuncs.com/global/img/default.png");
+    });
+
+
     jQuery(document).ready(function () {
         App.init();
         App.initScrollBar();
