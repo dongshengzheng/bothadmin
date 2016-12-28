@@ -4,6 +4,12 @@
 <link rel="stylesheet" href="${staticPath}/assets/css/style.css">
 <link rel="stylesheet" href="${staticPath}/assets/css/pages/profile.css">
 <link rel="stylesheet" href="${staticPath}/assets/plugins/line-icons/line-icons.css">
+<script type="text/javascript">
+//    function imgError() {
+//        $(this).attr("src","http://windyeel.oss-cn-shanghai.aliyuncs.com/global/img/default.png")
+//    }
+
+</script>
 </@htmlHead>
 <@htmlBody>
 <!--=== Profile ===-->
@@ -63,7 +69,7 @@
 
 <div id="user_temp" class="col-sm-6">
     <div class="profile-blog">
-        <img class="rounded-x" src="${staticPath}/assets/img/testimonials/user.jpg" alt="">
+        <img id="user_avatar" onerror="nofind()" class="rounded-x" src="" alt="">
         <div class="name-location">
             <strong id="user_name">Natasha Kolnikova</strong>
             <span> <i class="fa fa-map-marker"></i>
@@ -97,9 +103,10 @@
                     hasMore = false;
                 }
                 $.each(data.records, function () {
+                    console.log(this.appUser.headImgUrl);
                     var $li = $("#user_temp").clone();
                     $li.removeAttr("id").css("display", "block");
-                    $li.find(".works-image").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.appUser.headImgUrl + "?x-oss-process=image/resize,m_fill,h_331,w_525");
+                    $li.find("#user_avatar").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.appUser.headImgUrl + "?x-oss-process=image/resize,m_fill,h_331,w_525");
                     $li.find("#follower_count").html(this.appUser.followCount);
                     $li.find("#works_count").html(this.appUser.worksCount);
                     $li.find("#user_address").html(this.appUser.address);
