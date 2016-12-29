@@ -86,11 +86,6 @@ public class Works extends BaseEntity {
      */
     private String status;
 
-    /**
-     * 图片
-     */
-    @TableField(exist = false)
-    private String images;
 
     /**  */
     private String recommend;
@@ -125,17 +120,7 @@ public class Works extends BaseEntity {
     @TableField(value = "browser_count")
     private Integer browserCount;
 
-    /**
-     * 关注数量，冗余字段
-     */
-    @TableField(exist = false)
-    private Integer followCount;
 
-    /**
-     * 作品数量，冗余字段
-     */
-    @TableField(exist = false)
-    private Integer worksCount;
 
     /**
      * 价值
@@ -159,6 +144,37 @@ public class Works extends BaseEntity {
     @TableField(value = "working_status")
     private Integer workingStatus;
 
+
+    /**
+     * 关注数量，冗余字段
+     */
+    @TableField(exist = false)
+    private Integer followCount;
+
+    /**
+     * 作品数量，冗余字段
+     */
+    @TableField(exist = false)
+    private Integer worksCount;
+
+    /**
+     * 图片
+     */
+    @TableField(exist = false)
+    private String images;
+    /**
+     * 收藏者
+     */
+    @TableField(exist = false)
+    private String collector;
+
+    public String getCollector() {
+        return collector;
+    }
+
+    public void setCollector(String collector) {
+        this.collector = collector;
+    }
 
     public String getNo() {
         return this.no;
@@ -385,4 +401,16 @@ public class Works extends BaseEntity {
         this.worksCount = worksCount;
     }
 
+    public Works(Integer id,String status) {
+        super.setId(id);
+        this.status = status;
+    }
+
+
+    public Works(Integer id,Integer slide) {
+        super.setId(id);
+        this.slide = slide;
+    }
+    public Works() {
+    }
 }
