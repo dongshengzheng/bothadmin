@@ -40,7 +40,7 @@
         <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
             <div class="weui-media-box__hd">
                 <img class="weui-media-box__thumb"
-                     src="${ctxStatic}/img/headImg/3.jpg"
+                     src="${appUser.headImgUrl}"
                      alt="">
             </div>
             <div class="weui-media-box__bd">
@@ -143,6 +143,19 @@
                 </div>
             </div>
         </c:forEach>
+        <c:if test="${fn:length(worksList) == 0}">
+            <div style="text-align:center;margin-top:35%">
+                <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="" style="width: 50%;">
+                <p style="color:#CCCCCC">尚无作品</p>
+            </div>
+        </c:if>
+        <c:if test="${fn:length(worksList) > 0}">
+            <div class="hr-text ">
+                <center>
+                    <hr>
+                    <span>&nbsp;&nbsp;到底啦&nbsp;&nbsp;</span></center>
+            </div>
+        </c:if>
     </div>
 
     <div id="fans" class="div-hide">
@@ -186,7 +199,7 @@
                         <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
                             <div class="weui-media-box__hd">
                                 <img class="weui-media-box__thumb"
-                                     src="${ctxStatic}/img/headImg/4.jpg"
+                                     src="${person.headImgUrl}"
                                      alt="">
                             </div>
                             <div class="weui-media-box__bd">
@@ -260,20 +273,22 @@
 </body>
 <script>
     $(function () {
+        $('.weui-navbar__item').on('click', function () {
+            $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
+        });
+
         $("#detail-title-info").click(function () {
             $("#info").attr("class", "div-on");
             $("#works").attr("class", "div-hide");
             $("#fans").attr("class", "div-hide");
         })
-    })
-    $(function () {
+
         $("#detail-title-works").click(function () {
             $("#works").attr("class", "div-on");
             $("#info").attr("class", "div-hide");
             $("#fans").attr("class", "div-hide");
         })
-    })
-    $(function () {
+
         $("#detail-title-fans").click(function () {
             $("#fans").attr("class", "div-on");
             $("#works").attr("class", "div-hide");
@@ -282,7 +297,6 @@
     })
 
     $(function () {
-
         // 关注与取消关注
         var $haveCareDialog = $('#haveCareDialog');
         var $notCareDialog = $('#notCareDialog');

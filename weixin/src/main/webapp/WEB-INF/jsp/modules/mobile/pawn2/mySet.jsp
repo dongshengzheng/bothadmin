@@ -68,31 +68,33 @@
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">联系方式</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="phone" class="weui-input" ${appUser.phone} type="tel" placeholder="必填">
+                <input name="phone" class="weui-input" value="${appUser.phone}" type="tel" placeholder="必填">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">Email</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="email" class="weui-input" ${appUser.email} type="tel" placeholder="可不填">
+                <input name="email" class="weui-input" value="${appUser.email}" type="tel" placeholder="可不填">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">身份证</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="identification" class="weui-input" ${appUser.identification} type="tel" placeholder="可不填">
+                <input name="identification" class="weui-input" value="${appUser.identification}" type="tel"
+                       placeholder="可不填">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">收藏偏好</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input id="prefer" name="perfer" class="weui-input" ${appUser.prefer} type="tel"
+                <input id="prefer" name="prefer" class="weui-input" value="${appUser.prefer}" type="tel"
                        placeholder="请选择您的收藏偏好">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">信息公开</label></div>
-            <input name="ifpublic" class="weui-switch" type="checkbox"/>
+            <input name="ifpublic" class="weui-switch"
+                   <c:if test="${appUser.pub}">checked</c:if> type="checkbox"/>
         </div>
     </div>
 

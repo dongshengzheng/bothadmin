@@ -244,7 +244,7 @@
             color: white;
             border: 2px solid white;
             height: 32px;
-            width: 100px;
+            width: 110px;
             text-align: center;
             font-size: 14px;
             font-weight: bold;
@@ -540,15 +540,14 @@
                 <div class="explains-one-title">
                     <img class="explain-img" src="${inter.appUser.headImgUrl}"
                          onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png'">
-                    <input type="text" class="explains-one-title-name" value="${inter.appUser.loginName}"/>
-                    <input type="text" value="2016-12-05" class="explains-one-title-date"/>
+                    <input disabled type="text" class="explains-one-title-name" value="${inter.appUser.loginName}"/>
+                    <input disabled type="text" value="2016-12-05" class="explains-one-title-date"/>
                 </div>
                 <div class="explains-one-text" data-id="${inter.id}">
                     <c:if test="${fn:length(inter.description) >50}">${fn:substring(inter.description,0,50)}</c:if>
                     <c:if test="${fn:length(inter.description) <=30}">${inter.description}</c:if>
                 </div>
                 <div class="explains-one-imgs">
-                    <img src="${ctxStatic}/img/swiper/swiper-2.jpg" class="explains-one-imgs-one">
                     <c:forEach items="${inter.imagesList}" var="image">
                         <img src="http://windyeel.img-cn-shanghai.aliyuncs.com/${image.url}?x-oss-process=image/resize,m_fill,h_100,w_100"
                              class="explains-one-imgs-one">

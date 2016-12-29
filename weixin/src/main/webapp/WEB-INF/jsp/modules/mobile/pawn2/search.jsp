@@ -24,6 +24,9 @@
 
     #searchwhich {
         border: lightgray;
+        width: 60px;
+        text-align: center;
+        padding-left: 10px;
     }
 
     #history-serach-delete {
@@ -39,9 +42,10 @@
         background-color: white;
         padding-left: 5px;
         padding-right: 5px;
+        margin-bottom: 5px;
     }
 
-    .history-search-value-work {
+    .history-search-value-works {
     }
 
     .history-search-value-person {
@@ -49,7 +53,8 @@
         background-size: 15px 15px;
         background-repeat: no-repeat;
         background-position-y: center;
-        padding-left: 18px;
+        background-position-x: 3px;
+        padding-left: 19px;
     }
 
     #confirm {
@@ -78,40 +83,16 @@
     </form>
     <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
 </div>
-<!--<div class="weui-cells searchbar-result" id="searchResult">-->
-<!--<div class="weui-cell weui-cell_access">-->
-<!--<div class="weui-cell__bd weui-cell_primary">-->
-<!--<p>实时搜索文本</p>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="weui-cell weui-cell_access">-->
-<!--<div class="weui-cell__bd weui-cell_primary">-->
-<!--<p>实时搜索文本</p>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="weui-cell weui-cell_access">-->
-<!--<div class="weui-cell__bd weui-cell_primary">-->
-<!--<p>实时搜索文本</p>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="weui-cell weui-cell_access">-->
-<!--<div class="weui-cell__bd weui-cell_primary">-->
-<!--<p>实时搜索文本</p>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
 
 <div class="history-serach">
     <span id="first-text">历史搜索</span>
     <img src="${ctxStatic}/img/cut/search-delete.png" id="history-serach-delete"/>
-    <span class="history-serach-value history-search-value-work">田黄鸡血石</span>
-    <span class="history-serach-value history-search-value-person">测试用户ABCDEFG</span>
-    <span class="history-serach-value history-search-value-person">用户A</span>
-    <span class="history-serach-value history-search-value-work">田黄鸡血石</span>
-    <span class="history-serach-value history-search-value-work">田黄鸡血石</span>
-    <span class="history-serach-value history-search-value-person">用户ABCD</span>
-    <span class="history-serach-value history-search-value-work">田黄鸡血石</span>
+    <c:forEach items="${searchPerson}" var="person">
+        <span class="history-serach-value history-search-value-person">${person}</span>
+    </c:forEach>
+    <c:forEach items="${searchWorks}" var="works">
+        <span class="history-serach-value history-search-value-works">${works}</span>
+    </c:forEach>
 </div>
 
 <div class="js_dialog" id="androidDialog2" style="display: none;">
@@ -148,6 +129,12 @@
 
         $("#delete-yes").on('click', function () {
             $androidDialog2.fadeOut(200);
+            $.ajax({
+                type: "POST",
+                url: "${ctx}/mobile/delSearch",
+                success: function (data) {
+                }
+            })
             $("span.history-serach-value").remove()
         });
 
@@ -166,6 +153,7 @@
             $searchBar.addClass('weui-search-bar_focusing');
             $searchInput.focus();
         });
+
         $searchInput
                 .on('blur', function () {
                     if (!this.value.length) cancelSearch();
@@ -196,6 +184,23 @@
             cancelSearch();
             $searchInput.blur();
         });
+
+
+        $('.history-search-value-person').on('click', function () {
+            $searchBar.addClass('weui-search-bar_focusing');
+            $searchInput.focus();
+            $searchInput.val($(this).html());
+            $('#searchwhich').val('searchperson');
+        })
+
+        $('.history-search-value-works').on('click', function () {
+            $searchBar.addClass('weui-search-bar_focusing');
+            $searchInput.focus();
+            $searchInput.val($(this).html());
+            $('#searchwhich').val('searchworks');
+        })
+
+
     });
 </script>
 </html>

@@ -42,18 +42,11 @@
 <div class="weui-cell">
     <div class="weui-cell__bd weui-cell_primary">
         <textarea name="worksRemarks" class="weui-textarea" placeholder="我的作品描述" rows="3">${works.remarks}</textarea>
-        <!--<div class="weui-textarea-counter">-->
-        <!--<span>0</span>/200-->
-        <!--</div>-->
     </div>
 </div>
 <div class="weui-cell">
     <div class="weui-cell__bd">
         <div class="weui-uploader">
-            <!--<div class="weui-uploader__hd">-->
-            <!--<p class="weui-uploader__title">图片上传</p>-->
-            <!--<div class="weui-uploader__info">0/2</div>-->
-            <!--</div>-->
             <div class="weui-uploader__bd">
                 <ul class="weui-uploader__files">
                     <c:forEach items="${worksImagesList}" var="image">
@@ -73,5 +66,7 @@
 <script>
     $(function () {
         initUploaders("windyeel", "http://steins00gate.s1.758kongbao.com/", "worksImages");
+        initUploaders2("windyeel", "http://steins00gate.s1.758kongbao.com/");
+        initUploaders3("windyeel", "http://steins00gate.s1.758kongbao.com/", "valueImages");
     })
 </script>

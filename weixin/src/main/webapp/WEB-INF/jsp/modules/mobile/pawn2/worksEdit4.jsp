@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="include/taglib.jsp" %>
 <style>
-
     #confirmSubmit {
         color: #54AAE2;
     }
@@ -60,8 +59,6 @@
         width: 100px;
         border: none;
     }
-
-
 </style>
 <div class="div-outer">
     <p class="report">昌化鸡血石鉴定评估报告</p>
@@ -95,18 +92,20 @@
                       rows="5">${report.certify}</textarea>
         </div>
     </div>
-    <div class="weui-cell">
-        <ul class="weui-uploader__files" id="uploaderFiles">
-            <c:forEach items="${valueImages}" var="image">
-                <li class="weui-uploader__file valueImages"
-                    style="background-image:url(
-                            http://windyeel.img-cn-shanghai.aliyuncs.com/${image.url}?x-oss-process=image/resize,m_fill,h_100,w_100)">
-                    <input name="valueImages" type="hidden" value="${image.url}">
-                </li>
-            </c:forEach>
-            <a id="uploaderInput3" class="weui-uploader__input-box">
-            </a>
-        </ul>
+    <div class="weui-uploader">
+        <div class="weui-uploader__bd">
+            <ul class="weui-uploader__files" id="uploaderFiles">
+                <c:forEach items="${valueImages}" var="image">
+                    <li class="weui-uploader__file valueImages"
+                        style="background-image:url(
+                                http://windyeel.img-cn-shanghai.aliyuncs.com/${image.url}?x-oss-process=image/resize,m_fill,h_100,w_100)">
+                        <input name="valueImages" type="hidden" value="${image.url}">
+                    </li>
+                </c:forEach>
+                <a id="uploaderInput3" class="weui-uploader__input-box">
+                </a>
+            </ul>
+        </div>
     </div>
 
     <div class="weui-cell certificate-text">
@@ -116,8 +115,6 @@
                placeholder="选择有效时间">
     </div>
 </div>
-
-
 <div>
     <div class="weui-mask" id="iosMask" style="display: none"></div>
     <div class="weui-actionsheet" id="iosActionsheet">
@@ -135,7 +132,7 @@
     <span class="weui-gallery__img" id="galleryImg"></span>
 </div>
 
-<script type="text/javascript">
+<script>
     $(function () {
         var $iosActionsheet = $('#iosActionsheet');
         var $iosMask = $('#iosMask');
@@ -180,7 +177,5 @@
             $('#iosMask').fadeIn(200);
         })
 
-        initUploaders2("windyeel", "http://steins00gate.s1.758kongbao.com/");
-        initUploaders3("windyeel", "http://steins00gate.s1.758kongbao.com/", "valueImages");
     });
 </script>

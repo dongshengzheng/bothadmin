@@ -2,7 +2,6 @@
 <%@ include file="include/taglib.jsp" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
-
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0"/>
@@ -10,7 +9,6 @@
     <link rel="stylesheet" href="${ctxStatic}/css/custom.css"/>
     <link rel="stylesheet" href="${ctxStatic}/css/weui.min.css"/>
     <link rel="stylesheet" href="${ctxStatic}/css/jquery-weui.min.css"/>
-
     <script src="${ctxStatic}/js/jquery-2.1.4.js"></script>
     <script src="${ctxStatic}/js/jquery-weui.js"></script>
     <script src="${ctxStatic}/js/swiper.js"></script>
@@ -152,8 +150,6 @@
         </div>
 
         <div class="fixed-footer">
-            <!--<p>下一步即表示同意<a href="#">《金石典当登记申请记录》</a></p>-->
-            <hr>
             <div class="weui-form-preview__ft">
                 <input id="draftYN" name="draftYN" type="hidden" value="NO">
                 <br/>
@@ -166,7 +162,6 @@
             </div>
         </div>
         <div class="fixed-footer-blank">
-
         </div>
     </form>
 </div>
