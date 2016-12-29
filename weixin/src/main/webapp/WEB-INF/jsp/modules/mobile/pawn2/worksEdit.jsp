@@ -136,18 +136,15 @@
 </form>
 <script>
     $(function () {
-        $(function () {
-            $('.weui-navbar__item').on('click', function () {
-                $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
-                var tab = $(this).attr('id').charAt(4);
-                $('#tab' + tab).addClass('weui_tab_bd_item_active').siblings('.weui_tab_bd_item_active').removeClass('weui_tab_bd_item_active');
-            });
+
+        $('.weui-navbar__item').on('click', function () {
+            $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
+            var tab = $(this).attr('id').charAt(4);
+            $('#tab' + tab).addClass('weui_tab_bd_item_active').siblings('.weui_tab_bd_item_active').removeClass('weui_tab_bd_item_active');
         });
 
-        $(function () {
-            $('.weui-navbar__item').on('click', function () {
-                $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
-            });
+        $('.weui-navbar__item').on('click', function () {
+            $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
         });
 
         $("#showDatePicker").calendar();

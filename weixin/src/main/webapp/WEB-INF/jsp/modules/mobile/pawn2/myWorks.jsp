@@ -244,6 +244,26 @@
     </div>
 </div>
 
+<div class="js_dialog" id="confirmDelWorks" style="display: none;" date-id="">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog">
+        <div class="weui-dialog__hd"><strong class="weui-dialog__title">确认删除?</strong></div>
+        <div class="weui-dialog__ft">
+            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default">取消</a>
+            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">确定</a>
+        </div>
+    </div>
+</div>
+
+<div class="js_dialog" id="notCareDialog" style="display: none;">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog">
+        <div class="weui-dialog__hd"><strong class="weui-dialog__title">成功关注!</strong></div>
+        <div class="weui-dialog__ft">
+            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">确定</a>
+        </div>
+    </div>
+</div>
 
 <script>
     $(function () {
@@ -300,6 +320,7 @@
             var thisId = $(this).parent().siblings('.worksId').val();
             $('#nowWorksId').val(thisId);
             $iosMask.fadeIn(200);
+//            $(this).parent().parent().addClass('be-marked').siblings();
         });
 
         $(".failure-do,.draft-do").on("click", function () {
@@ -315,6 +336,34 @@
             var worksId = $('#nowWorksId').val();
             location.href = "${ctx}/mobile/worksEdit?worksId=" + worksId;
         });
+
+        $('#delete').on('click', function () {
+            $iosActionsheet.removeClass('weui-actionsheet_toggle');
+            $iosMask.fadeOut(200);
+            $('#confirmDelWorks').fadeIn(200);
+        })
+
+        $('#confirmDelWorks .weui-dialog__btn_primary').on('click', function () {
+            var worksId = $('#nowWorksId').val();
+            $.ajax({
+                type: "POST",
+                url: "${ctx}/mobile/delWorks",
+                data: {
+                    worksId: worksId
+                },
+                success: function (data) {
+                    $('#notCareDialog').find('.weui-dialog__title').html(data);
+                    $('#notCareDialog').fadeIn(200);
+                    if (data == '删除成功!') {
+                        $('input[value=' + worksId + ']').parent().remove();
+                    }
+                }
+            })
+        })
+
+        $('.weui-dialog__btn').on('click', function () {
+            $('.js_dialog').fadeOut(200);
+        })
 
 
     });

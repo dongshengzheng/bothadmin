@@ -81,7 +81,7 @@
                 <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
                     <div class="weui-media-box__hd">
                         <img class="weui-media-box__thumb"
-                             src="${ctxStatic}/img/headImg/4.jpg"
+                             src="${person.headImgUrl}"
                              alt="">
                     </div>
                     <div class="weui-media-box__bd">
@@ -252,7 +252,7 @@
 
 
         $('.weui-media-box__thumb').on('click', function () {
-            location.href = '${ctx}/mobile/appUserInfo?userId=' + $(this).parent().parent().parent().attr('id');
+            location.href = '${ctx}/mobile/appUserInfo?appUserId=' + $(this).parent().parent().parent().attr('id');
         })
 
 

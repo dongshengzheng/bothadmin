@@ -49,6 +49,14 @@
             padding-top: 10px;
         }
 
+        .weui-grid:after {
+            border-bottom: none;
+        }
+
+        .weui-grid:before {
+            border-right: none;
+        }
+
 
     </style>
 </head>

@@ -15,7 +15,7 @@
 
 /*一行两个作品的展示*/
 .works-all-outer {
-    width: 47%;
+    width: 47.5%;
     margin: 0.5%;
     display: inline-block;
     position: relative;
@@ -55,7 +55,7 @@
 
 .works-floor-name-all {
     position: absolute;
-    font-size: 6px;
+    font-size: 12px;
     margin-top: 3px;
 }
 
@@ -65,19 +65,19 @@
     margin-top: 3px;
     display: inline-block;
     border: 1px solid gray;
-    font-size: 6px;
+    font-size: 12px;
     color: gray;
-    background-color: lightgray;
+    background-color: white;
 }
 
 .works-floor-img-all {
     position: absolute;
     left: 0;
-    bottom: 0;
-    font-size: 6px;
+    bottom: 0px;
+    font-size: 12px;
     background-image: url(../img/cut/works-floor-img.png);
     background-position-y: center;
-    background-size: 11px 11px;
+    background-size: 8px 8px;
     background-repeat: no-repeat;
     border: none;
     padding-left: 15px;
@@ -87,8 +87,8 @@
 .works-floor-date-all {
     position: absolute;
     right: 0;
-    bottom: 0;
-    font-size: 6px;
+    bottom: 0px;
+    font-size: 12px;
 }
 
 /*div的隐藏和显示*/

@@ -10,6 +10,7 @@ import com.fish.idle.service.util.Const;
 import com.fish.idle.service.util.DateUtil;
 import com.fish.idle.weixin.interceptor.OAuthRequired;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -80,9 +81,9 @@ public class MobileController extends BaseController {
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             appUser = new AppUser();
-            appUser.setLoginName(wxMpUser.getNickname());
+            appUser.setLoginName(filterEmoji(wxMpUser.getNickname()));
             appUser.setPassword("iLoveMoney");
-            appUser.setName(wxMpUser.getNickname());
+            appUser.setName(filterEmoji(wxMpUser.getNickname()));
             appUser.setDelFlag(Const.DEL_FLAG_NORMAL);
             appUser.setOpenId(wxMpUser.getOpenId());
             appUser.setLastLogin(new Date());
@@ -126,8 +127,22 @@ public class MobileController extends BaseController {
             }
         }
 
+        works.setSlide(1);
+        List<Works> slideList = worksService.selectList(new EntityWrapper<>(works));
+        if (slideList.size() > 3) {
+            slideList = slideList.subList(0, 3);
+        }
+
+        for (int i = 0; i < slideList.size(); i++) {
+            List<Images> images = imagesService.selectList(new EntityWrapper<>(new Images(slideList.get(i).getId(), Const.IMAGES_WORKS)));
+            if (images != null && images.size() > 0) {
+                slideList.get(i).setImages(images.get(0).getUrl());
+            }
+        }
+
 
         map.put("page", page);
+        map.put("slideList", slideList);
         return "modules/mobile/pawn2/works";
     }
 
@@ -161,15 +176,6 @@ public class MobileController extends BaseController {
             }
         }
 
-//        List<Works> records = new ArrayList<>();
-//        for (Works work : page.getRecords()) {
-//            List<Images> images = imagesService.selectList(new EntityWrapper<>(new Images(work.getId(), Const.IMAGES_WORKS)));
-//            if (images != null && images.size() > 0) {
-//                works.setImages(images.get(0).getUrl());
-//            }
-//            records.add(work);
-//        }
-//        page.setRecords(records);
         return page;
     }
 
@@ -259,7 +265,8 @@ public class MobileController extends BaseController {
      */
     @RequestMapping(value = "search", method = RequestMethod.GET)
     @OAuthRequired
-    public String search(HttpSession session) {
+    public String search(HttpSession session,
+                         ModelMap map) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
         AppUser u = new AppUser();
@@ -268,8 +275,37 @@ public class MobileController extends BaseController {
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
+
+        List<String> searchPerson = (List<String>) session.getAttribute("searchPerson");
+        List<String> searchWorks = (List<String>) session.getAttribute("searchWorks");
+        map.put("searchPerson", searchPerson);
+        map.put("searchWorks", searchWorks);
         return "modules/mobile/pawn2/search";
     }
+
+    /**
+     * 删除历史搜寻记录
+     *
+     * @return
+     */
+    @RequestMapping(value = "delSearch", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    @OAuthRequired
+    public String delSearch(HttpSession session) {
+        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+        String openId = wxMpUser.getOpenId();
+        AppUser u = new AppUser();
+        u.setOpenId(openId);
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
+            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+        }
+        session.removeAttribute("searchPerson");
+        session.removeAttribute("searchWorks");
+
+        return "成功删除";
+    }
+
 
     /**
      * 跳往搜寻用户页面
@@ -289,6 +325,15 @@ public class MobileController extends BaseController {
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
+
+        List<String> searchPerson = (List<String>) session.getAttribute("searchPerson");
+        if (searchPerson == null) {
+            searchPerson = new ArrayList<>();
+        }
+        if (!searchPerson.contains(name)) {
+            searchPerson.add(name);
+        }
+        session.setAttribute("searchPerson", searchPerson);
 
         List<AppUser> appUserList = appUserService.searchUsersByName(name, appUser.getId());
 
@@ -416,6 +461,15 @@ public class MobileController extends BaseController {
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
+
+        List<String> searchWorks = (List<String>) session.getAttribute("searchWorks");
+        if (searchWorks == null) {
+            searchWorks = new ArrayList<>();
+        }
+        if (!searchWorks.contains(name)) {
+            searchWorks.add(name);
+        }
+        session.setAttribute("searchWorks", searchWorks);
 
         EntityWrapper<Works> ew = new EntityWrapper<>(new Works());
         ew.like("name", name);
@@ -676,7 +730,6 @@ public class MobileController extends BaseController {
         }
 
         map.put("appUser", appUserService.searchMyInfo(appUser.getId()));
-
         return "modules/mobile/pawn2/my";
     }
 
@@ -961,6 +1014,40 @@ public class MobileController extends BaseController {
 
         return "modules/mobile/pawn2/transferCollectionFocus";
     }
+
+    /**
+     * 删除作品
+     *
+     * @return
+     */
+    @RequestMapping(value = "delWorks", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    @OAuthRequired
+    public String delWorks(HttpSession session,
+                           @RequestParam(required = false) int worksId) {
+        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+        String openId = wxMpUser.getOpenId();
+        AppUser u = new AppUser();
+        u.setOpenId(openId);
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
+            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+        }
+        Boolean result = false;
+
+        Works works = worksService.selectById(worksId);
+        if (works != null) {
+            works.setDelFlag(Const.DEL_FLAG_DELETE);
+            result = worksService.updateById(works);
+        }
+
+        if (result) {
+            return "删除成功!";
+        }
+
+        return "删除失败,请稍后再试...";
+    }
+
 
     /**
      * 跳往转让页面
@@ -1604,4 +1691,15 @@ public class MobileController extends BaseController {
             imagesService.insertBatch(list);
         }
     }
+
+
+    public static String filterEmoji(String source) {
+        if (StringUtils.isNotBlank(source)) {
+            return source.replaceAll("[\\ud800\\udc00-\\udbff\\udfff\\ud800-\\udfff]", "*");
+        } else {
+            return source;
+        }
+    }
+
+
 }

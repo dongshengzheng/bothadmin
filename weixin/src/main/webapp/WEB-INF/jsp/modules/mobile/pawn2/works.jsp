@@ -24,7 +24,7 @@
 
     .works-img {
         width: 100%;
-        height: 100%;
+        height: 300px;
     }
 
     .works {
@@ -70,17 +70,17 @@
 
     .works-floor-name {
         position: absolute;
-        top: 0;
+        top: 3px;
         left: 0;
-        font-size: 10px;
+        font-size: 12px;
     }
 
     .works-floor-btn {
         position: absolute;
-        top: 0;
+        top: 3px;
         right: 15px;
         border: 1px solid gray;
-        font-size: 10px;
+        font-size: 12px;
         color: gray;
         background-color: lightgray;
     }
@@ -89,7 +89,7 @@
         position: absolute;
         bottom: 20px;
         left: 0;
-        font-size: 10px;
+        font-size: 12px;
         background-image: url(${ctxStatic}/img/cut/index-icon.png);
         background-position-y: center;
         background-position-x: 2px;
@@ -105,7 +105,7 @@
         position: absolute;
         bottom: 20px;
         right: 15px;
-        font-size: 10px;
+        font-size: 12px;
     }
 
     .all-title {
@@ -122,6 +122,11 @@
         border: none;
         bottom: 10px;
         background-color: white;
+    }
+
+    .works-outer {
+        width: 100%;
+        height: 100%;
     }
 
     .works-floor {
@@ -152,57 +157,34 @@
         -webkit-align-items: center;
         align-items: center;
     }
+
 </style>
 <body>
 <div class="swiper-container div-outer">
     <div class="swiper-wrapper">
-        <div class="swiper-slide">
-            <div class="header">
-                <div class="works">
-                    <a href="${ctx}/mobile/search" class="works-search">
-                        输入你正在找的作品/用户</a>
-                    <img src="${ctxStatic}/img/swiper/swiper-1.jpg" alt="" class="works-img"/>
-                    <textarea disabled class="works-intro">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
-                </div>
-                <div class="works-floor">
-                    <span class="works-floor-name">冰阳绿树叶吊坠</span>
-                    <span class="works-floor-btn">&nbsp;+&nbsp;收藏&nbsp;</span>
-                    <span class="works-floor-img">田黄鸡血石</span>
-                    <span class="works-floor-date">2016-12-4</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="swiper-slide">
-            <div class="header">
-                <div class="works">
-                    <a href="search.jsp" class="works-search">输入你正在找的作品/用户</a>
-                    <img src="${ctxStatic}/img/swiper/swiper-2.jpg" alt="" class="works-img"/>
-                    <textarea disabled class="works-intro">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
-                </div>
-                <div class="works-floor">
-                    <span class="works-floor-name">冰阳绿树叶吊坠</span>
-                    <span class="works-floor-btn">&nbsp;+&nbsp;收藏&nbsp;</span>
-                    <span class="works-floor-img">田黄鸡血石</span>
-                    <span class="works-floor-date">2016-12-4</span>
+        <c:forEach items="${slideList}" var="works">
+            <div class="swiper-slide">
+                <div class="works-outer">
+                    <input class="worksId" style="display:none" value="${works.id}">
+                    <div class="works">
+                        <a href="${ctx}/mobile/search" class="works-search">
+                            输入你正在找的作品/用户</a>
+                        <img class="works-img"
+                             src="http://windyeel.img-cn-shanghai.aliyuncs.com/${works.images}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                             onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png'"
+                             alt="">
+                        <textarea disabled class="works-intro">${works.remarks}</textarea>
+                    </div>
+                    <div class="works-floor">
+                        <span class="works-floor-name">${works.name}</span>
+                        <span class="works-floor-btn">&nbsp;+&nbsp;收藏&nbsp;</span>
+                        <span class="works-floor-img">${works.breed}</span>
+                        <span class="works-floor-date"><fmt:formatDate value="${works.createDate}"
+                                                                       pattern="yyyy-MM-dd"/></span>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="swiper-slide">
-            <div class="header">
-                <div class="works">
-                    <a href="search.jsp" class="works-search">输入你正在找的作品/用户</a>
-                    <img src="${ctxStatic}/img/swiper/swiper-3.jpg" alt="" class="works-img"/>
-                    <textarea disabled class="works-intro">新疆和田玉籽料,原皮原色,可玩可做,底部带一块僵,宽33毫米,厚15毫米,高53毫米,重41克.</textarea>
-                </div>
-                <div class="works-floor">
-                    <span class="works-floor-name">冰阳绿树叶吊坠</span>
-                    <span class="works-floor-btn">&nbsp;+&nbsp;收藏&nbsp;</span>
-                    <span class="works-floor-img">田黄鸡血石</span>
-                    <span class="works-floor-date">2016-12-4</span>
-                </div>
-            </div>
-        </div>
+        </c:forEach>
     </div>
     <!--小圆点-->
     <div class="swiper-pagination"></div>
