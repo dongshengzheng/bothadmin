@@ -477,6 +477,20 @@ public class MobileController extends BaseController {
         ew.orderBy("createDate");
         List<Works> timeList = worksService.selectList(ew);
 
+        for (int i = 0; i < defaultList.size(); i++) {
+            List<Images> images = imagesService.selectList(new EntityWrapper<>(new Images(defaultList.get(i).getId(), Const.IMAGES_WORKS)));
+            if (images != null && images.size() > 0) {
+                defaultList.get(i).setImages(images.get(0).getUrl());
+            }
+        }
+        for (int i = 0; i < timeList.size(); i++) {
+            List<Images> images = imagesService.selectList(new EntityWrapper<>(new Images(timeList.get(i).getId(), Const.IMAGES_WORKS)));
+            if (images != null && images.size() > 0) {
+                timeList.get(i).setImages(images.get(0).getUrl());
+            }
+        }
+
+
         map.put("defaultList", defaultList);
         map.put("timeList", timeList);
         return "modules/mobile/pawn2/searchWorks";
@@ -507,6 +521,13 @@ public class MobileController extends BaseController {
         works.setCreateBy(appUserId);
         List<Works> worksList = worksService.selectList(new EntityWrapper<>(works));
         appUser1.setWorksCount(worksList.size());
+
+        for (int i = 0; i < worksList.size(); i++) {
+            List<Images> images = imagesService.selectList(new EntityWrapper<>(new Images(worksList.get(i).getId(), Const.IMAGES_WORKS)));
+            if (images != null && images.size() > 0) {
+                worksList.get(i).setImages(images.get(0).getUrl());
+            }
+        }
 
         List<AppUser> appUserList = appUserService.searchFollowUsersByUserId(appUserId);
         appUser1.setFollowCount(appUserList.size());
@@ -952,6 +973,13 @@ public class MobileController extends BaseController {
         EntityWrapper ew = new EntityWrapper(works);
         List<Works> worksList = worksService.selectList(ew);
 
+        for (int i = 0; i < worksList.size(); i++) {
+            List<Images> images = imagesService.selectList(new EntityWrapper<>(new Images(worksList.get(i).getId(), Const.IMAGES_WORKS)));
+            if (images != null && images.size() > 0) {
+                worksList.get(i).setImages(images.get(0).getUrl());
+            }
+        }
+
         List<Works> worksSuccessList = new ArrayList<>();
         List<Works> worksFailureList = new ArrayList<>();
         List<Works> worksNowList = new ArrayList<>();
@@ -1006,6 +1034,20 @@ public class MobileController extends BaseController {
 
         //关注用户集合
         List<AppUser> fhPeopleList = appUserService.searchFocusById(appUserId);
+
+        for (int i = 0; i < transferWorksList.size(); i++) {
+            List<Images> images = imagesService.selectList(new EntityWrapper<>(new Images(transferWorksList.get(i).getId(), Const.IMAGES_WORKS)));
+            if (images != null && images.size() > 0) {
+                transferWorksList.get(i).setImages(images.get(0).getUrl());
+            }
+        }
+        for (int i = 0; i < fhWorksList.size(); i++) {
+            List<Images> images = imagesService.selectList(new EntityWrapper<>(new Images(fhWorksList.get(i).getId(), Const.IMAGES_WORKS)));
+            if (images != null && images.size() > 0) {
+                fhWorksList.get(i).setImages(images.get(0).getUrl());
+            }
+        }
+
 
         map.put("showwhich", showwhich);
         map.put("transferWorksList", transferWorksList);

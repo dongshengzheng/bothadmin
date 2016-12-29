@@ -37,28 +37,8 @@
             color: #2698DE;
         }
 
-        .relation-btn {
-            padding: 3px;
-            border-radius: 3px;
-            background-color: white;
-            color: gray;
-            width: 20%;
-            margin: 1%;
-        }
-
-        .relation-btn-on {
-            background-color: #2698DE;
-            border: none;
-            color: white;
-        }
-
-        #reason {
-            resize: none;
-
-        }
-
         .works-floor-btn-all {
-            border: 1px dashed;
+            border: 1px solid gray;
         }
     </style>
 
@@ -94,8 +74,9 @@
         <div class="works-all-outer">
             <input class="worksId" style="display:none" value="${works.id}">
             <div class="works-all">
-                <img class="works-img-all" src="${works.images}"
-                     onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
+                <img class="works-img-all"
+                     src="http://windyeel.img-cn-shanghai.aliyuncs.com/${works.images}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                     onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png'"
                      alt="">
                 <textarea disabled class="works-intro-all">${works.remarks}</textarea>
             </div>
@@ -128,8 +109,9 @@
         <div class="works-all-outer">
             <input class="worksId" style="display:none" value="${works.id}">
             <div class="works-all">
-                <img class="works-img-all" src="${works.images}"
-                     onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
+                <img class="works-img-all"
+                     src="http://windyeel.img-cn-shanghai.aliyuncs.com/${works.images}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                     onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png'"
                      alt="">
                 <textarea disabled class="works-intro-all">${works.remarks}</textarea>
             </div>
@@ -162,8 +144,9 @@
         <div class="works-all-outer">
             <input class="worksId" style="display:none" value="${works.id}">
             <div class="works-all">
-                <img class="works-img-all" src="${works.images}"
-                     onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
+                <img class="works-img-all"
+                     src="http://windyeel.img-cn-shanghai.aliyuncs.com/${works.images}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                     onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png'"
                      alt="">
                 <textarea disabled class="works-intro-all">${works.remarks}</textarea>
             </div>
@@ -197,8 +180,9 @@
         <div class="works-all-outer">
             <input class="worksId" style="display:none" value="${works.id}">
             <div class="works-all">
-                <img class="works-img-all" src="${works.images}"
-                     onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
+                <img class="works-img-all"
+                     src="http://windyeel.img-cn-shanghai.aliyuncs.com/${works.images}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                     onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png'"
                      alt="">
                 <textarea disabled class="works-intro-all">${works.remarks}</textarea>
             </div>

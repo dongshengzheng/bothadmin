@@ -116,6 +116,11 @@
             border: none;
         }
 
+        .fixed-footer {
+            z-index: 100;
+            border-top: 1px solid;
+        }
+
 
     </style>
 </head>
@@ -149,12 +154,16 @@
                 <textarea name="certify" class="weui-textarea" placeholder="详细价值报告" rows="5"></textarea>
             </div>
         </div>
-        <div class="weui-uploader__bd">
-            <ul class="weui-uploader__files" id="uploaderFiles">
-                <a id="uploaderInput" class="weui-uploader__input-box">
-                </a>
-            </ul>
+        <div class="weui-cell">
+            <div class="weui-uploader__bd">
+                <ul class="weui-uploader__files" id="uploaderFiles">
+                    <a id="uploaderInput" class="weui-uploader__input-box">
+                    </a>
+                </ul>
+            </div>
         </div>
+
+
         <div class="weui-cell certificate-text">
             <span class="certificate-text1">价值有效时间</span>
             <input name="valueTimeString" id="valueTime" placeholder="选择有效时间">
@@ -163,7 +172,6 @@
 
     <div class="fixed-footer">
         <p>下一步即表示同意为收藏者信息,可不填写直接提交</p>
-        <hr>
         <div class="weui-form-preview__ft">
             <br/>
             <input id="draftYN" name="draftYN" type="hidden" value="NO">

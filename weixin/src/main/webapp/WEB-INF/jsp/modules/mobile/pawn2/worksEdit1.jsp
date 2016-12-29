@@ -42,9 +42,6 @@
 <div class="weui-cell">
     <div class="weui-cell__bd weui-cell_primary">
         <textarea name="worksRemarks" class="weui-textarea" placeholder="我的作品描述" rows="3">${works.remarks}</textarea>
-        <!--<div class="weui-textarea-counter">-->
-        <!--<span>0</span>/200-->
-        <!--</div>-->
     </div>
 </div>
 <div class="weui-cell">

@@ -58,6 +58,7 @@
 
         .fixed-footer {
             height: 8%;
+            z-index: 100;
         }
 
         .fixed-footer p {

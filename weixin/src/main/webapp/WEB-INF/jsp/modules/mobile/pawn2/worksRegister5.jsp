@@ -46,6 +46,12 @@
             color: #A2D2EF;
         }
 
+        .fixed-footer-blank {
+            height: 40%;
+            background-color: #F0EFF5;
+        }
+
+
     </style>
 </head>
 <body>
@@ -60,14 +66,14 @@
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input class="weui-input" type="tel" value="${sessionScope.registerWorksName}"
+                    <input class="weui-input" value="${sessionScope.registerWorksName}"
                            disabled>
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">收藏者</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input name="name" class="weui-input" type="tel" placeholder="请输入姓名">
+                    <input name="name" class="weui-input" placeholder="请输入姓名">
                 </div>
             </div>
             <div class="weui-cell">
@@ -79,7 +85,7 @@
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">联系地址</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input name="address" class="weui-input" type="tel" placeholder="请输入详细地址">
+                    <input name="address" class="weui-input" placeholder="请输入详细地址">
                 </div>
             </div>
             <div class="weui-cell">
@@ -102,9 +108,8 @@
         </div>
 
         <div class="fixed-footer">
-            <!--<p>下一步即表示同意<a href="#">《金石典当登记申请记录》</a></p>-->
             <div class="weui-form-preview__ft">
-                <br/>
+                <br>
                 <input id="draftYN" name="draftYN" type="hidden" value="NO">
                 <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" id="draftSubmit">
                     存为草稿
@@ -115,7 +120,6 @@
             </div>
         </div>
         <div class="fixed-footer-blank">
-
         </div>
     </form>
 </div>

@@ -76,9 +76,10 @@
     <c:forEach items="${transferWorksList}" var="works">
         <div class="works-all-outer" data-id="${works.id}">
             <div class="works-all">
-                <img src="${ctxStatic}/img/cut/已转出.png" class="transfer-img">
-                <img class="works-img-all" src="${works.images}"
-                     onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
+                <img src="${ctxStatic}/img/cut/带确认.png" class="transfer-img">
+                <img class="works-img-all"
+                     src="http://windyeel.img-cn-shanghai.aliyuncs.com/${works.images}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                     onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png'"
                      alt="">
                 <textarea class="works-intro-all" disabled>${works.remarks}</textarea>
             </div>
@@ -111,7 +112,10 @@
     <c:forEach items="${fhWorksList}" var="works">
         <div class="works-all-outer" data-id="${works.id}">
             <div class="works-all">
-                <img src="${ctxStatic}/img/swiper/swiper-2.jpg" alt="" class="works-img-all"/>
+                <img class="works-img-all"
+                     src="http://windyeel.img-cn-shanghai.aliyuncs.com/${works.images}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                     onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png'"
+                     alt="">
                 <textarea class="works-intro-all" disabled>${works.remarks}</textarea>
             </div>
             <div class="works-floor-all">
@@ -146,7 +150,7 @@
             <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
                 <div class="weui-media-box__hd">
                     <img class="weui-media-box__thumb"
-                         src="${ctxStatic}/img/headImg/4.jpg"
+                         src="${person.headImgUrl}"
                          alt="">
                 </div>
                 <div class="weui-media-box__bd">

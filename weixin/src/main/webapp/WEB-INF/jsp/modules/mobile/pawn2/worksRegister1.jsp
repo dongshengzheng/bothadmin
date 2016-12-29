@@ -34,16 +34,18 @@
         }
 
         .fixed-footer {
+            border-top: 1px solid;
             height: 12%;
+            z-index: 100;
         }
 
         .fixed-footer p {
             font-size: 10px;
-            padding-left: 30%;
+            margin-left: 40%;
         }
 
         .fixed-footer a {
-            color: #A2D2EF;
+            color: #3A9FDE;
         }
 
 
@@ -60,13 +62,13 @@
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="worksName" class="weui-input" type="tel" placeholder="请输入作品名称">
+                <input name="worksName" class="weui-input" placeholder="请输入作品名称">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">提供者</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="providerName" class="weui-input" type="tel" placeholder="请输入姓名">
+                <input name="providerName" class="weui-input" placeholder="请输入姓名">
             </div>
         </div>
         <div class="weui-cell">
@@ -112,7 +114,6 @@
         </div>
         <div class="fixed-footer">
             <p>下一步即表示同意<a href="javascript:;" id="register-rule">《金石典当登记申请记录》</a></p>
-            <hr>
             <div class="weui-form-preview__ft">
                 <input id="draftYN" name="draftYN" type="hidden" value="NO">
                 <br/>

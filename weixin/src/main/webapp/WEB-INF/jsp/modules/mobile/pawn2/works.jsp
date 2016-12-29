@@ -82,7 +82,7 @@
         border: 1px solid gray;
         font-size: 12px;
         color: gray;
-        background-color: lightgray;
+        background-color: white;
     }
 
     .works-floor-img {
@@ -201,7 +201,7 @@
             <div class="works-all">
                 <img class="works-img-all"
                      src="http://windyeel.img-cn-shanghai.aliyuncs.com/${works.images}?x-oss-process=image/resize,m_fill,h_100,w_100"
-                     onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
+                     onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png'"
                      alt="">
                 <textarea disabled class="works-intro-all">${works.remarks}</textarea>
             </div>
