@@ -585,7 +585,7 @@
             $(form).ajaxSubmit({
                 success: function (data) {
                     if (data) {
-                        alert("成功");
+                        loadInterpretation(1);
                     } else {
                         alert("失败");
                     }

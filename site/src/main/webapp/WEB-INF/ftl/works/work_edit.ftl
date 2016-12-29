@@ -15,7 +15,7 @@
     <div class="container">
         <h1 class="pull-left">作品编辑</h1>
         <ul class="pull-right breadcrumb">
-            <li><a href="index.html">首页</a></li>
+            <li><a href="/">首页</a></li>
             <li class="active">作品编辑</li>
         </ul>
     </div>
@@ -593,7 +593,7 @@
                             <label class="col-sm-2 control-label" for="pub"></label>
                             <div class="col-sm-10">
                                 <label class="checkbox text-left" style="padding-top:0px;">
-                                    <input type="checkbox" name="provider.pub" <#if provider.pub == "1">checked</#if>/>
+                                    <input type="checkbox" name="provider.pub" <#if provider?exists && provider.pub?exists && provider.pub == "1">checked</#if>/>
                                     <i></i>是否公开
                                 </label>
                             </div>
