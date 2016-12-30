@@ -3,7 +3,7 @@
 <#--全部作品分页-->
 <#import "layout/partPagingRefresh.ftl" as pagination />
 
-<@htmlHead title="金石典当">
+<@htmlHead>
 <link rel="stylesheet" href="${staticPath}/assets/css/style.css">
 <link rel="stylesheet" href="${staticPath}/assets/plugins/line-icons/line-icons.css">
 </@htmlHead>

@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <link rel="shortcut icon" href="${staticPath}/static/img/favicon.ico" type="image/png">
     <!-- CSS Global Compulsory -->
     <link rel="stylesheet" href="${staticPath}/assets/plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="${staticPath}/assets/css/style.css">
