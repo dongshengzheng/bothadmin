@@ -20,7 +20,7 @@
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="utf-8" />
-    <title>闲鱼科技管理后台登录</title>
+    <title>每石文化管理后台登录</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <base href="<%=basePath%>">
@@ -77,7 +77,7 @@
 </div>
 <!-- END LOGIN -->
 <!-- BEGIN COPYRIGHT -->
-<div class="copyright"> 2016 &copy; <a href="http://www.xianyutec.com/">苏州闲鱼信息科技有限公司</a> 版权保留. </div>
+<div class="copyright"> 2016 &copy; <a href="http://www.mschuangyi.com/">每石文化</a> 版权保留. </div>
 
 <script src="${global}/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="${global}/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>

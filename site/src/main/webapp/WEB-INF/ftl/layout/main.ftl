@@ -19,7 +19,7 @@ description="金石典当"
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <link rel="shortcut icon" href="${ctxStatic}/static/img/favicon.ico" type="image/png">
     <!-- Web Fonts -->
     <link rel='stylesheet' type='text/css'
           href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800&subset=cyrillic,latin'>

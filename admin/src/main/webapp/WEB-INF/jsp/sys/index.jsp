@@ -17,7 +17,7 @@
 
 <head>
     <meta charset="utf-8"/>
-    <title>闲鱼科技后台管理系统</title>
+    <title>每石文化后台管理系统</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <meta content="#1 selling multi-purpose bootstrap admin theme sold in themeforest marketplace packed with angularjs, material design, rtl support with over thausands of templates and ui elements and plugins to power any type of web applications including saas and admin dashboards. Preview page of Theme #4 for loading content via ajax"
@@ -76,8 +76,8 @@
 </div>
 <div class="page-footer">
     <div class="page-footer-inner"> 2016 &copy;
-        <a href="http://www.xianyutec.com/" style="color:#337ab7"
-           title="苏州闲鱼信息科技有限公司" target="_blank">苏州闲鱼信息科技有限公司</a>版权保留
+        <a href="http://www.mschuangyi.com/" style="color:#337ab7"
+           title="每石文化" target="_blank">每石文化</a>版权保留
     </div>
     <div class="scroll-to-top">
         <i class="icon-arrow-up"></i>

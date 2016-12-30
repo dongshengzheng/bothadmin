@@ -122,7 +122,7 @@
             $(form).ajaxSubmit({
                 success: function (data) {
                     if(data.suc){
-                        alert("注册成功，跳转页面")
+                        window.location.href = "/"
                     }else {}
                     $("#errInfo").html(data.message);
                 },
