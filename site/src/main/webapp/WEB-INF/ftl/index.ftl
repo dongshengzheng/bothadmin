@@ -17,7 +17,7 @@
                 <li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000"
                     data-title="Slide 1">
                     <!-- MAIN IMAGE -->
-                    <img src="${staticPath}/assets/img/index/1.jpg" alt="darkblurbg" data-bgfit="cover"
+                    <img src="${staticPath}/static/img/banner.jpeg" alt="darkblurbg" data-bgfit="cover"
                          data-bgposition="left top" data-bgrepeat="no-repeat">
                 </li>
                 <!-- END SLIDE -->
@@ -26,7 +26,7 @@
                 <li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000"
                     data-title="Slide 2">
                     <!-- MAIN IMAGE -->
-                    <img src="${staticPath}/assets/img/index/5.jpg" alt="darkblurbg" data-bgfit="cover"
+                    <img src="${staticPath}/static/img/banner1.jpeg" alt="darkblurbg" data-bgfit="cover"
                          data-bgposition="left top" data-bgrepeat="no-repeat">
                 </li>
                 <!-- END SLIDE -->
@@ -35,25 +35,7 @@
                 <li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000"
                     data-title="Slide 3">
                     <!-- MAIN IMAGE -->
-                    <img src="${staticPath}/assets/img/index/3.jpg" alt="darkblurbg" data-bgfit="cover"
-                         data-bgposition="right top" data-bgrepeat="no-repeat">
-                </li>
-                <!-- END SLIDE -->
-
-                <!-- SLIDE -->
-                <li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000"
-                    data-title="Slide 4">
-                    <!-- MAIN IMAGE -->
-                    <img src="${staticPath}/assets/img/index/2.jpg" alt="darkblurbg" data-bgfit="cover"
-                         data-bgposition="left top" data-bgrepeat="no-repeat">
-                </li>
-                <!-- END SLIDE -->
-
-                <!-- SLIDE -->
-                <li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000"
-                    data-title="Slide 5">
-                    <!-- MAIN IMAGE -->
-                    <img src="${staticPath}/assets/img/index/4.jpg" alt="darkblurbg" data-bgfit="cover"
+                    <img src="${staticPath}/static/img/banner2.jpeg" alt="darkblurbg" data-bgfit="cover"
                          data-bgposition="right top" data-bgrepeat="no-repeat">
                 </li>
                 <!-- END SLIDE -->

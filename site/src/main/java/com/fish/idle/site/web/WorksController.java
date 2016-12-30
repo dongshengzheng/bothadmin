@@ -70,10 +70,6 @@ public class WorksController extends BaseController {
     }
 
 
-
-
-
-
     /**
      * 第一步：登记物品信息
      *
@@ -91,6 +87,7 @@ public class WorksController extends BaseController {
         // 保存作品信息
         wrapInsertEntity(works);
         works.setRemarks(worksRemarks);
+        works.setStatus(Const.WORKS_STATUS_DRAFT);
         if (!worksService.insert(works)) {
             jsonObject.put("suc", false);
             jsonObject.put("msg", "保存作品信息出错");
@@ -142,6 +139,7 @@ public class WorksController extends BaseController {
     @ResponseBody
     public JSONObject saveInfo(Works works) {
         wrapUpdateEntity(works);
+        works.setStatus(Const.WORKS_STATUS_DRAFT);
         JSONObject jsonObject = new JSONObject();
         if (!worksService.updateSelectiveById(works)) {
             jsonObject.put("suc", false);
@@ -223,7 +221,8 @@ public class WorksController extends BaseController {
     @ResponseBody
     public JSONObject saveReport(Report report,
                                  @RequestParam(required = false) String certifyImage,
-                                 @RequestParam(required = false) String desImage) {
+                                 @RequestParam(required = false) String desImage,
+                                 Integer status) {
         wrapInsertEntity(report);
         JSONObject jsonObject = new JSONObject();
         if (!reportService.insert(report)) {
@@ -261,9 +260,9 @@ public class WorksController extends BaseController {
      */
     @RequestMapping(value = "/add/collect", method = RequestMethod.POST)
     @ResponseBody
-    public JSONObject saveCollect(Consumer consumer) {
+    public JSONObject saveCollect(Consumer consumer, String status) {
         JSONObject jsonObject = new JSONObject();
-
+        status = Const.WORKS_STATUS_COMMIT;
 
         wrapInsertEntity(consumer);
         if (!StringUtils.isEmpty(consumer.getPub())) {
@@ -277,6 +276,8 @@ public class WorksController extends BaseController {
             return jsonObject;
         }
         jsonObject.put("suc", true);
+
+        worksService.updateSelectiveById(new Works(consumer.getWorksId(),status));
         return jsonObject;
     }
 
@@ -374,7 +375,6 @@ public class WorksController extends BaseController {
     }
 
 
-
     /**
      * 根据Id删除图片消息
      *
@@ -400,7 +400,6 @@ public class WorksController extends BaseController {
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
     }
-
 
 
 }

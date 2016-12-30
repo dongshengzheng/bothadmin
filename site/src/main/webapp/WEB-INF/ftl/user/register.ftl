@@ -138,9 +138,8 @@
         App.init();
     });
     $.backstretch([
-      "assets/img/bg/19.jpg",
-      "assets/img/bg/18.jpg",
-      ], {
+        "${staticPath}/static/img/login.jpeg"
+    ], {
         fade: 1000,
         duration: 7000
     });
