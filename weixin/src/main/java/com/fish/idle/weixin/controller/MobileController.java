@@ -12,6 +12,7 @@ import com.fish.idle.weixin.interceptor.OAuthRequired;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -71,6 +72,13 @@ public class MobileController extends BaseController {
     @Autowired
     private WxMpService wxMpService;
 
+    @Value("#{wxProperties.bucket}")
+    private String bucket;
+
+    @Value("#{wxProperties.redirect_url}")
+    private String redirectUrl;
+
+
     @RequestMapping(method = RequestMethod.GET)
     @OAuthRequired
     public String toLogin(HttpSession session, ModelMap map) {
@@ -93,6 +101,10 @@ public class MobileController extends BaseController {
             appUser.setLastLogin(new Date());
             appUserService.updateSelectiveById(appUser);
         }
+
+        session.setAttribute("redirectUrl", redirectUrl);
+        session.setAttribute("bucket", bucket);
+
         return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/works";
     }
 
@@ -383,6 +395,10 @@ public class MobileController extends BaseController {
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+        }
+
+        if (targetId == appUser.getId()) {
+            return "自己不要关注自己哟";
         }
 
         FollowHistory followHistory = new FollowHistory();
@@ -1026,8 +1042,8 @@ public class MobileController extends BaseController {
 
         Integer appUserId = appUser.getId();
 
-        //转让作品集合
-        List<Works> transferWorksList = worksService.transferWorksList(appUserId);
+        //转让历史集合
+        List<TransferHistory> transferHistoryList = transferHistoryService.containWorks(appUserId);
 
         //收藏作品集合
         List<Works> fhWorksList = worksService.collectionWorksList(appUserId);
@@ -1035,10 +1051,10 @@ public class MobileController extends BaseController {
         //关注用户集合
         List<AppUser> fhPeopleList = appUserService.searchFocusById(appUserId);
 
-        for (int i = 0; i < transferWorksList.size(); i++) {
-            List<Images> images = imagesService.selectList(new EntityWrapper<>(new Images(transferWorksList.get(i).getId(), Const.IMAGES_WORKS)));
+        for (int i = 0; i < transferHistoryList.size(); i++) {
+            List<Images> images = imagesService.selectList(new EntityWrapper<>(new Images(transferHistoryList.get(i).getWorksId(), Const.IMAGES_WORKS)));
             if (images != null && images.size() > 0) {
-                transferWorksList.get(i).setImages(images.get(0).getUrl());
+                transferHistoryList.get(i).getWorks().setImages(images.get(0).getUrl());
             }
         }
         for (int i = 0; i < fhWorksList.size(); i++) {
@@ -1050,9 +1066,10 @@ public class MobileController extends BaseController {
 
 
         map.put("showwhich", showwhich);
-        map.put("transferWorksList", transferWorksList);
+        map.put("transferHistoryList", transferHistoryList);
         map.put("fhWorksList", fhWorksList);
         map.put("fhPeopleList", fhPeopleList);
+        map.put("appUserId", appUserId);
 
         return "modules/mobile/pawn2/transferCollectionFocus";
     }
@@ -1183,13 +1200,47 @@ public class MobileController extends BaseController {
 
 
     /**
+     * 确认转入
+     *
+     * @return
+     */
+    @RequestMapping(value = "confirmTransfer", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    @OAuthRequired
+    public String confirmTransfer(HttpSession session,
+                                  @RequestParam(required = false) int thId) {
+        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+        String openId = wxMpUser.getOpenId();
+        AppUser u = new AppUser();
+        u.setOpenId(openId);
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
+            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+        }
+
+        TransferHistory transferHistory = transferHistoryService.selectById(thId);
+        Works works = worksService.selectById(transferHistory.getWorksId());
+        works.setStatus(Const.WORKS_STATUS_PASS);
+        works.setCreateBy(appUser.getId());
+        worksService.updateById(works);
+        transferHistory.setStatus(Const.TRANSFER_STATUS_HAVE);
+        boolean result = transferHistoryService.updateById(transferHistory);
+        if (result) {
+            return "已转入!";
+        }
+        return "转入失败!请稍后再试";
+    }
+
+
+    /**
      * 作品注册页面1
      *
      * @return
      */
     @RequestMapping(value = "worksRegister1", method = RequestMethod.GET)
     @OAuthRequired
-    public String worksRegister1(HttpSession session) {
+    public String worksRegister1(HttpSession session,
+                                 ModelMap map) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
         String openId = wxMpUser.getOpenId();
         AppUser u = new AppUser();

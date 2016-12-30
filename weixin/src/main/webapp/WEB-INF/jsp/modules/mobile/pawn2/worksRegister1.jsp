@@ -34,7 +34,6 @@
         }
 
         .fixed-footer {
-            border-top: 1px solid;
             height: 12%;
             z-index: 100;
         }
@@ -48,6 +47,9 @@
             color: #3A9FDE;
         }
 
+        .imageDiv {
+            background-color: #F0EFF5;
+        }
 
     </style>
 </head>
@@ -100,7 +102,7 @@
                 <textarea name="worksRemarks" class="weui-textarea" placeholder="我的作品描述" rows="3"></textarea>
             </div>
         </div>
-        <div class="weui-cell">
+        <div class="weui-cell imageDiv">
             <div class="weui-cell__bd">
                 <div class="weui-uploader">
                     <div class="weui-uploader__bd">
@@ -149,8 +151,8 @@
         </a>
     </div>
 </div>
-
-
+<input id="bucket" type="hidden" value="${sessionScope.bucket}">
+<input id="redirectUrl" type="hidden" value="${sessionScope.redirectUrl}">
 <script src="${ctxStatic}/js/jquery-2.1.4.js"></script>
 <script src="${ctxStatic}/js/jquery-weui.js"></script>
 <script src="${ctxStatic}/js/upload.js"></script>
@@ -167,7 +169,7 @@
 
         $("#showDatePicker").calendar();
 
-        initUploaders("windyeel", "http://steins00gate.s1.758kongbao.com/", "images");
+        initUploaders($('#bucket').val(), $('#redirectUrl').val());
 
         $('#draftSubmit').on('click', function () {
             $('#draftYN').val('yes');

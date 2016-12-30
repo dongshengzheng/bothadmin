@@ -1,16 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="include/taglib.jsp" %>
 <style>
-    #confirmSubmit {
-        color: #54AAE2;
-    }
-
     .report {
         padding-top: 5px;
         padding-bottom: 5px;
         text-align: center;
         color: gray;
-        font-size: 10px;
+        font-size: 15px;
     }
 
     .report:before {
@@ -61,7 +57,7 @@
     }
 </style>
 <div class="div-outer">
-    <p class="report">昌化鸡血石鉴定评估报告</p>
+    <p class="report">&nbsp;昌化鸡血石鉴定评估报告&nbsp;</p>
     <div class="div-outer">
         <div class="weui-cell">
             <div class="weui-cell__bd weui-cell_primary">
@@ -85,7 +81,7 @@
     </div>
 </div>
 <div class="div-outer">
-    <p class="report">金石典当认证价值报告</p>
+    <p class="report">&nbsp;金石典当认证价值报告&nbsp;</p>
     <div class="weui-cell">
         <div class="weui-cell__bd weui-cell_primary">
             <textarea name="certify" class="weui-textarea" placeholder="详细价值报告"
@@ -168,7 +164,7 @@
         $('#del').on('click', function () {
             $('#removeMoxie .weui-uploader__file').remove();
             $('.certificate-text2').html("未上传").attr('id', 'uploaderInput2');
-            initUploaders2("windyeel", "http://steins00gate.s1.758kongbao.com/");
+            initUploaders2($('#bucket').val(), $('#redirectUrl').val());
             hideActionSheet();
         })
 

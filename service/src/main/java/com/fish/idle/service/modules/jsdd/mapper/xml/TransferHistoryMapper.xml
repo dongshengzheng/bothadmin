@@ -14,5 +14,16 @@
         where t.works_id=#{0}
     </select>
 
+    <select id="containWorks" resultMap="transferMap">
+        select t.* from dd_transfer_history t
+        where t.to_user_id=#{0} or t.from_user_id=#{0}
+    </select>
+    <resultMap id="transferMap" type="TransferHistory">
+        <result property="id" column="id"></result>
+        <result property="worksId" column="works_id"></result>
+        <association property="works" column="works_id"
+                     select="com.fish.idle.service.modules.jsdd.mapper.WorksMapper.selectById"/>
+    </resultMap>
+
 
 </mapper>

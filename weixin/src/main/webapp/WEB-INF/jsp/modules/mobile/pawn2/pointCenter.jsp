@@ -52,6 +52,7 @@
             padding-left: 25px;
             font-size: 15px;
             color: gray;
+            background-color: white;
         }
 
         #point-rule {
