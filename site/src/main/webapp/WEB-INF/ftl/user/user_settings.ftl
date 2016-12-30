@@ -18,7 +18,7 @@
         <div class="col-md-3 md-margin-bottom-40">
             <div class="profile-bio">
                 <img class="img-responsive profile-img margin-bottom-20" src="${staticPath}/assets/img/team/img32-md.jpg" alt="">
-                <a id="upload_header" class="btn-u btn-u-sm" href="javascript:;">Change Picture</a>
+                <a id="upload_header" class="btn-u btn-u-sm" href="javascript:;">更改头像</a>
             </div>
 
 

@@ -188,6 +188,7 @@
                                 window.location.href = "/works/add/" + data.id + "/info";
                             } else {
                                 // 跳转到个人中心-> 我的作品->草稿里面
+                                window.location.href = "/user";
                             }
                         } else {
                             alert(data.msg);

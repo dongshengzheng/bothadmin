@@ -20,6 +20,8 @@ rm site.war
 rm admin.war
 rm weixin.war
 # cp properties/db connection info
-# cp /root/workspace/override/pawn.properties /opt/tomcat/webapps/weixin/WEB-INF/classes/jeeplus.properties
+cp /opt/override/override.properties /opt/tomcat/webapps/weixin/ROOT/WEB-INF/classes/override.properties
+cp /opt/override/override.properties /opt/tomcat/webapps/site/ROOT/WEB-INF/classes/override.properties
+cp /opt/override/override.properties /opt/tomcat/webapps/admin/ROOT/WEB-INF/classes/override.properties
 sh /opt/tomcat/bin/startup.sh
 

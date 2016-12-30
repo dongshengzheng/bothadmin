@@ -46,9 +46,6 @@ public class ShiroRealm extends AuthorizingRealm {
             Subject subject = SecurityUtils.getSubject();
             User user = (User) subject.getSession().getAttribute(Const.SESSION_USER);
             return new SimpleAuthenticationInfo(user, password, getName());// TODO:
-            // 要用login_name
-            // ,
-            // 待验证。
 
         } else {
             return null;
@@ -86,67 +83,6 @@ public class ShiroRealm extends AuthorizingRealm {
                 info.addRoles((List<String>) session.getAttribute(Const.SESSION_ROLES_NAME));
             if (session.getAttribute(Const.SESSION_ALL_RIGHTS_URL) != null)
                 info.addStringPermissions((List<String>) session.getAttribute(Const.SESSION_ALL_RIGHTS_URL));
-
-            // 添加角色信息
-
-            // TODO:貌似每次鉴权都会操作一次数据库，待验证
-
-            // try {
-            //
-            // //当前用户下的所有menu
-            // List<Menu> menuList=new ArrayList<>();
-            // //当前用户下的所有button
-            // List<Button> buttonList=new ArrayList<>();
-            //
-            // List<String> roles = (List<String>)
-            // dao.findForList("RoleMapper.findRolesNameByUserId",
-            // sysUser.getUserId());
-            //
-            // info.addRoles(roles);// TODO change to roleCode
-            //
-            // // 添加菜单权限信息（含分类菜单）
-            // List<Menu> menus = (List<Menu>)
-            // dao.findForList("MenuMapper.findParentMenusByUserId",
-            // sysUser.getUserId());
-            // menuList.addAll(menus);
-            // for (Menu menu : menus) {
-            // info.addStringPermission(menu.getMenuUrl());
-            //
-            // Map<String, Integer> params=new HashMap<>();
-            // params.put("userId", sysUser.getUserId());
-            // params.put("menuId", menu.getMenuId());
-            // List<Menu> subMenus = (List<Menu>)
-            // dao.findForList("MenuMapper.findMenusByUserIdAndParent", params);
-            // menu.setSubMenu(subMenus);
-            //
-            // for (Menu subMenu : subMenus) {
-            // info.addStringPermission(subMenu.getMenuUrl());
-            // }
-            //
-            // }
-            //
-            // // 添加按钮权限信息
-            // List<Button> buttons = (List<Button>)
-            // dao.findForList("ButtonMapper.findMenusByUserId",
-            // sysUser.getUserId());
-            // buttonList.addAll(buttons);
-            // for (Button button : buttons) {
-            // info.addStringPermission(button.getButtonUrl());
-            // }
-            //
-            //
-            // Subject subject = SecurityUtils.getSubject();
-            // //菜单和按钮数据，用于登陆成功后生成菜单树
-            // subject.getSession().setAttribute(Const.SESSION_ALLMENULIST,
-            // menus);
-            // subject.getSession().setAttribute(Const.SESSION_ALLBUTTONLIST,
-            // buttonList);
-            //
-            // } catch (Exception e) {
-            // e.printStackTrace();
-            // return null;
-            // }
-
             return info;
         }
         return null;

@@ -58,14 +58,14 @@ public class WorksDetailController extends BaseController {
                             @RequestParam(required = false, defaultValue = "6") Integer pageSize,
                             Works works) {
         Page<Works> page = new Page<>(pageIndex, pageSize);
-
+        works.setStatus(Const.WORKS_STATUS_PASS);
         EntityWrapper<Works> ew = new EntityWrapper<>(works);
         ew.setSqlSelect("id,name,type,remarks,breed");
         ew.orderBy("id", false);
         Page<Works> worksPage = worksService.selectPage(page, ew);
         for (Works work : worksPage.getRecords()) {
             //品种
-            if(StringUtils.isNotEmpty(work.getBreed())){
+            if(!StringUtils.isEmpty(work.getBreed())){
                 work.setBreed(dictService.getLabelByValue(work.getBreed(), "dd_pinzhong"));
             }
             Images images = imagesService.selectOne(new EntityWrapper<>(new Images(work.getId(), Const.IMAGES_WORKS)));
