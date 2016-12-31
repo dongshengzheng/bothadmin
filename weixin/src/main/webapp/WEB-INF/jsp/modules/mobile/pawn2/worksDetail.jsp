@@ -52,6 +52,10 @@
             color: #98CCEB;
             top: 0;
             left: 0;
+            width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         .header-right-workId {
@@ -63,9 +67,12 @@
         }
 
         .header-right-workName {
+            border: none;
             position: absolute;
             bottom: 0px;
             left: 0;
+            resize: none;
+            vertical-align: bottom;
 
         }
 
@@ -323,12 +330,15 @@
         <div id="header-right-tab">
             <span class="header-right-appUserName">${appUser.loginName}</span>
             <span class="header-right-workId">${works.no}</span>
-            <span class="header-right-workName">[${works.name}]</span>
+            <%--<span class="header-right-workName">[${works.name}]</span>--%>
+            <textarea
+                    <c:if test="${fn:length(works.name) > 15}">rows="2"</c:if>
+                    <c:if test="${fn:length(works.name) < 14}">rows="1"</c:if>
+                    cols="30" class="header-right-workName">[${works.name}]</textarea>
             <span class="header-right-btn">&nbsp;+&nbsp;收藏&nbsp;</span>
         </div>
         <div id="header-right-intro">
-            测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字
-            测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字
+            ${works.remarks}
         </div>
         <div class="weui-grids">
             <c:forEach items="${imagesList}" var="image">
@@ -628,6 +638,11 @@
                     $('#notCareDialog').fadeIn(200);
                 }
             })
+        })
+
+        $('#header-left-img').on('click', function () {
+            var appUserId = $('#header-left').attr('data-id');
+            location.href = '${ctx}/mobile/appUserInfo?appUserId=' + appUserId;
         })
 
     })

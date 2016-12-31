@@ -65,7 +65,7 @@
             padding-bottom: 5px;
             text-align: center;
             color: gray;
-            font-size: 10px;
+            font-size: 15px;
         }
 
         .report:before {
@@ -134,7 +134,7 @@
 </div>
 <form action="${ctx}/mobile/worksRegister5" enctype="multipart/form-data" method="post">
     <div class="div-outer">
-        <p class="report">昌化鸡血石鉴定评估报告</p>
+        <p class="report">&nbsp;昌化鸡血石鉴定评估报告&nbsp;</p>
         <div class="weui-cell">
             <div class="weui-cell__bd weui-cell_primary">
                 <textarea name="des" class="weui-textarea" placeholder="详细鉴定报告..." rows="5"></textarea>
@@ -148,7 +148,7 @@
     </div>
 
     <div class="div-outer">
-        <p class="report">金石典当认证价值报告</p>
+        <p class="report">&nbsp;金石典当认证价值报告&nbsp;</p>
         <div class="weui-cell">
             <div class="weui-cell__bd weui-cell_primary">
                 <textarea name="certify" class="weui-textarea" placeholder="详细价值报告" rows="5"></textarea>
@@ -222,7 +222,8 @@
 <div class="weui-gallery" id="gallery">
     <span class="weui-gallery__img" id="galleryImg"></span>
 </div>
-
+<input id="bucket" type="hidden" value="${sessionScope.bucket}">
+<input id="redirectUrl" type="hidden" value="${sessionScope.redirectUrl}">
 <script type="text/javascript">
     $(function () {
 
@@ -271,7 +272,7 @@
         $('#del').on('click', function () {
             $('.certImageUpload').remove();
             $('.certificate-text2').html("未上传").attr('id', 'uploaderInput2');
-            initUploaders2("windyeel", "http://steins00gate.s1.758kongbao.com/");
+            initUploaders2($('#bucket').val(), $('#redirectUrl').val());
             hideActionSheet();
         })
 
@@ -286,8 +287,8 @@
 
         $('#valueTime').calendar();
 
-        initUploaders2("windyeel", "http://steins00gate.s1.758kongbao.com/");
-        initUploaders("windyeel", "http://steins00gate.s1.758kongbao.com/", "valueImages");
+        initUploaders2($('#bucket').val(), $('#redirectUrl').val());
+        initUploaders($('#bucket').val(), $('#redirectUrl').val(), "valueImages");
 
     });
 </script>

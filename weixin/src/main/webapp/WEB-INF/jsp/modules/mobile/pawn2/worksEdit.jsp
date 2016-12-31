@@ -135,6 +135,10 @@
     <div class="fixed-footer-blank">
     </div>
 </form>
+
+
+<input id="bucket" type="hidden" value="${sessionScope.bucket}">
+<input id="redirectUrl" type="hidden" value="${sessionScope.redirectUrl}">
 <script>
     $(function () {
 
@@ -143,6 +147,11 @@
             var tab = $(this).attr('id').charAt(4);
             $('#tab' + tab).addClass('weui_tab_bd_item_active').siblings('.weui_tab_bd_item_active').removeClass('weui_tab_bd_item_active');
         });
+
+        $('#tab4').on('click', function () {
+            initUploaders2($('#bucket').val(), $('#redirectUrl').val());
+            initUploaders3($('#bucket').val(), $('#redirectUrl').val(), "valueImages");
+        })
 
         $('.weui-navbar__item').on('click', function () {
             $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');

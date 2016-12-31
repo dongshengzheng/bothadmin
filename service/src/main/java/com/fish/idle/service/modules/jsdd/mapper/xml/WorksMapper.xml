@@ -21,5 +21,9 @@
         where f.user_id=#{0}
     </select>
 
+    <select id="selectById" resultType="Works">
+        SELECT w.* FROM dd_works w WHERE  w.id=#{0}
+    </select>
+
 
 </mapper>

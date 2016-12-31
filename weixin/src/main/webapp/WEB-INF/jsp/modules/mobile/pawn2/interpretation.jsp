@@ -113,7 +113,8 @@
         </a>
     </div>
 </div>
-
+<input id="bucket" type="hidden" value="${sessionScope.bucket}">
+<input id="redirectUrl" type="hidden" value="${sessionScope.redirectUrl}">
 
 <script src="${ctxStatic}/js/jquery-2.1.4.js"></script>
 <script src="${ctxStatic}/js/jquery-weui.js"></script>
@@ -139,7 +140,7 @@
 
         $("#showDatePicker").calendar();
 
-        initUploaders("windyeel", "http://steins00gate.s1.758kongbao.com/", "interImages");
+        initUploaders($('#bucket').val(), $('#redirectUrl').val(), "interImages");
 
 
         $('#trueSubmit').on('click', function () {

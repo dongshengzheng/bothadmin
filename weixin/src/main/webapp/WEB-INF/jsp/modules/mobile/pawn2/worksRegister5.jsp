@@ -37,11 +37,6 @@
             color: red;
         }
 
-        .fixed-footer p {
-            font-size: 10px;
-            padding-left: 30%;
-        }
-
         .fixed-footer a {
             color: #A2D2EF;
         }

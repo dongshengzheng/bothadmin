@@ -119,16 +119,18 @@
         <button class="btn btn_primary" id="chooseWXPay">chooseWXPay</button>
     </div>
 </div>
+<input id="redirectUrl" type="hidden" value="${sessionScope.redirectUrl}">
 </body>
 <script src="${ctxStatic}/jquery/jquery-1.8.3.min.js" type="text/javascript"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script src="${ctxStatic}/common/wx-sdk.js" type="text/javascript"></script>
 <script>
+    var redirectUrl = $('#redirectUrl').val();
     $.ajax({
-        url: "http://steins00gate.s1.758kongbao.com /ticket",
+        url: redirectUrl + " /ticket",
         success: function (data) {
             var time = new Date().getTime();
-            $.get("http://steins00gate.s1.758kongbao.com /sign",
+            $.get(redirectUrl + " /sign",
                     {
                         noncestr: "Wm3WZYTPz0wzccnW",
                         jsapi_ticket: data,//获取的jsapi_ticket

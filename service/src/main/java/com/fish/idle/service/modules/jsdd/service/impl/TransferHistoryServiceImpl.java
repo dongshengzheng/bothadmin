@@ -22,4 +22,9 @@ public class TransferHistoryServiceImpl extends SuperServiceImpl<TransferHistory
     public List<TransferHistory> thContainUsersInfo(Integer worksId) {
         return transferHistoryMapper.thContainUsersInfo(worksId);
     }
+
+    @Override
+    public List<TransferHistory> containWorks(Integer userId) {
+        return transferHistoryMapper.containWorks(userId);
+    }
 }

@@ -21,6 +21,7 @@
             border-radius: 3px;
             border: none;
             position: relative;
+            margin-top: 5px;
         }
 
         .weui-cells {
@@ -166,7 +167,7 @@
                         <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
                             <div class="weui-media-box__hd">
                                 <img class="weui-media-box__thumb"
-                                     src="${ctxStatic}/img/headImg/4.jpg"
+                                     src="${person.headImgUrl}"
                                      alt="">
                             </div>
                             <div class="weui-media-box__bd">

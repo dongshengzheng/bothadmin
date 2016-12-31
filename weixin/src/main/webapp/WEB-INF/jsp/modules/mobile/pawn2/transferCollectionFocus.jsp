@@ -73,27 +73,42 @@
 
 
 <div id="tranfer-works" class="div-hide div-outer <c:if test="${showwhich=='transfer'}">div-on</c:if>">
-    <c:forEach items="${transferWorksList}" var="works">
-        <div class="works-all-outer" data-id="${works.id}">
+    <c:forEach items="${transferHistoryList}" var="th">
+        <div class="works-all-outer" data-id="${th.id}">
             <div class="works-all">
-                <img src="${ctxStatic}/img/cut/带确认.png" class="transfer-img">
+                <c:if test="${th.status==2}">
+                    <c:if test="${th.toUserId==appUserId}">
+                        <img src="${ctxStatic}/img/cut/待确认.png" class="transfer-img confirmTransfer">
+                    </c:if>
+                    <c:if test="${th.fromUserId==appUserId}">
+                        <img src="${ctxStatic}/img/cut/待对方确认.png" class="transfer-img">
+                    </c:if>
+                </c:if>
+                <c:if test="${th.status==1}">
+                    <c:if test="${th.toUserId==appUserId}">
+                        <img src="${ctxStatic}/img/cut/已转入.png" class="transfer-img">
+                    </c:if>
+                    <c:if test="${th.fromUserId==appUserId}">
+                        <img src="${ctxStatic}/img/cut/已转出.png" class="transfer-img">
+                    </c:if>
+                </c:if>
                 <img class="works-img-all"
-                     src="http://windyeel.img-cn-shanghai.aliyuncs.com/${works.images}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                     src="http://windyeel.img-cn-shanghai.aliyuncs.com/${th.works.images}?x-oss-process=image/resize,m_fill,h_100,w_100"
                      onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png'"
                      alt="">
-                <textarea class="works-intro-all" disabled>${works.remarks}</textarea>
+                <textarea class="works-intro-all" disabled>${th.works.remarks}</textarea>
             </div>
             <div class="works-floor-all">
-                <span class="works-floor-name-all">${works.name}</span>
+                <span class="works-floor-name-all">${th.works.name}</span>
                 <span class="works-floor-btn-all go-to-history">转让历史</span>
-                <span class="works-floor-img-all">${works.breed}</span>
-                <span class="works-floor-date-all"><fmt:formatDate value="${works.createDate}"
+                <span class="works-floor-img-all">${th.works.breed}</span>
+                <span class="works-floor-date-all"><fmt:formatDate value="${th.works.createDate}"
                                                                    pattern="yyyy-MM-dd"/></span>
             </div>
         </div>
     </c:forEach>
 
-    <c:if test="${fn:length(transferWorksList) == 0}">
+    <c:if test="${fn:length(transferHistoryList) == 0}">
         <div style="text-align:center;margin-top:35%">
             <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="" style="width: 50%;">
             <p style="color:#CCCCCC">尚无作品</p>
@@ -212,6 +227,17 @@
     </div>
 </div>
 
+<div class="js_dialog" id="confirmTransfer" style="display: none;" data-id="">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog">
+        <div class="weui-dialog__hd"><strong class="weui-dialog__title">确定转入该作品吗</strong></div>
+        <div class="weui-dialog__ft">
+            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_default">取消</a>
+            <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary">确定</a>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="ctxStatic" value="${ctxStatic}">
 <script>
     $(function () {
         $("#transfer-title").click(function () {
@@ -307,6 +333,37 @@
                 }
             })
         })
+    })
+
+
+    //确认转入作品
+    $('.confirmTransfer').on('click', function () {
+        $('#confirmTransfer').attr('data-id', $(this).parent().parent().attr('data-id'));
+        $('#confirmTransfer').fadeIn(200);
+    })
+
+    $('#confirmTransfer .weui-dialog__btn_primary').on('click', function () {
+        var $notCareDialog = $('#notCareDialog');
+        var thId = $('#confirmTransfer').attr('data-id');
+        $.ajax({
+            type: "POST",
+            url: "${ctx}/mobile/confirmTransfer",
+            data: {
+                thId: thId
+            },
+            success: function (data) {
+                $notCareDialog.find('.weui-dialog__title').html(data);
+                if (data == '已转入!') {
+                    $notCareDialog.find('.weui-dialog__title').html(data + "作品详情可到审核通过作品中查看!");
+                    var works = $('.works-all-outer[data-id=' + thId + ']').find('.confirmTransfer')
+                    works.attr('src', $('#ctxStatic').val() + '/img/cut/已转入.png');
+                    works.removeClass('confirmTransfer');
+                    works.unbind('click');
+                }
+                $notCareDialog.fadeIn(200);
+            }
+        })
+
     })
 
 

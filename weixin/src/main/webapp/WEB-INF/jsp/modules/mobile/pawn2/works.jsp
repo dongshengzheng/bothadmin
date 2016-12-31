@@ -69,10 +69,15 @@
     }
 
     .works-floor-name {
+        text-align: left;
         position: absolute;
         top: 3px;
         left: 0;
         font-size: 12px;
+        width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .works-floor-btn {
@@ -189,7 +194,6 @@
     <!--小圆点-->
     <div class="swiper-pagination"></div>
 </div>
-
 <div class="all div-outer">
     <div class="all-title">
         <input value="全部作品" disabled/>

@@ -63,10 +63,11 @@
         </div>
     </div>
 </div>
+
 <script>
     $(function () {
-        initUploaders("windyeel", "http://steins00gate.s1.758kongbao.com/", "worksImages");
-        initUploaders2("windyeel", "http://steins00gate.s1.758kongbao.com/");
-        initUploaders3("windyeel", "http://steins00gate.s1.758kongbao.com/", "valueImages");
+        initUploaders($('#bucket').val(), $('#redirectUrl').val(), "worksImages");
+        initUploaders2($('#bucket').val(), $('#redirectUrl').val());
+        initUploaders3($('#bucket').val(), $('#redirectUrl').val(), "valueImages");
     })
 </script>
