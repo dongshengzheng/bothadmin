@@ -17,7 +17,8 @@
         <!--Left Sidebar-->
         <div class="col-md-3 md-margin-bottom-40">
             <div class="profile-bio">
-                <img class="img-responsive profile-img margin-bottom-20" src="${staticPath}/assets/img/team/img32-md.jpg" alt="">
+                <img class="img-responsive profile-img margin-bottom-20" src="${Session.siteSessionUser.headImgUrl!''}"
+                     alt="">
                 <a id="upload_header" class="btn-u btn-u-sm" href="javascript:;">更改头像</a>
             </div>
 
@@ -60,21 +61,24 @@
             <div class="profile-body margin-bottom-20">
                 <div class="tab-v1">
                     <ul class="nav nav-justified nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="page_profile_settings.html#profile">编辑个人资料</a></li>
+                        <li class="active"><a data-toggle="tab" href="page_profile_settings.html#profile">编辑个人资料</a>
+                        </li>
                         <li><a data-toggle="tab" href="page_profile_settings.html#passwordTab">更改密码</a></li>
                     </ul>
                     <div class="tab-content">
                         <div id="profile" class="profile-edit tab-pane fade in active">
                             <h2 class="heading-md">管理你的姓名，身份证，邮箱地址。</h2>
                             <br>
-                            <form id="userInfo-form" class="sky-form" id="sky-form4" action="${staticPath}/user/updateUserInfo/1" method="post">
+                            <form id="userInfo-form" class="sky-form" id="sky-form4"
+                                  action="${staticPath}/user/updateUserInfo/1" method="post">
                                 <dl class="dl-horizontal">
                                     <dt>用户名</dt>
                                     <dd>
                                         <section>
                                             <label class="input">
                                                 <i class="icon-append fa fa-user"></i>
-                                                <input type="text" placeholder="用户名" name="name" value="${(user.name)!}">
+                                                <input type="text" placeholder="用户名" name="name"
+                                                       value="${(user.name)!}">
                                                 <b class="tooltip tooltip-bottom-right">请输入用户名</b>
                                             </label>
                                         </section>
@@ -84,7 +88,8 @@
                                         <section>
                                             <label class="input">
                                                 <i class="icon-append fa fa-envelope"></i>
-                                                <input type="email" name="email" placeholder="邮箱地址" value="${(user.email)!}" >
+                                                <input type="email" name="email" placeholder="邮箱地址"
+                                                       value="${(user.email)!}">
                                             </label>
                                         </section>
                                     </dd>
@@ -93,7 +98,8 @@
                                         <section>
                                             <label class="input">
                                                 <i class="icon-append fa fa-location-arrow"></i>
-                                                <input type="text" name="address" placeholder="请输入详细地址" value="${(user.address)!}">
+                                                <input type="text" name="address" placeholder="请输入详细地址"
+                                                       value="${(user.address)!}">
                                             </label>
                                         </section>
                                     </dd>
@@ -102,7 +108,8 @@
                                         <section>
                                             <label class="input">
                                                 <i class="icon-append fa fa-phone"></i>
-                                                <input type="text" name="phone" placeholder="请输入联系方式" value="${(user.phone)!}">
+                                                <input type="text" name="phone" placeholder="请输入联系方式"
+                                                       value="${(user.phone)!}">
                                             </label>
                                         </section>
                                     </dd>
@@ -111,7 +118,8 @@
                                         <section>
                                             <label class="input">
                                                 <i class="icon-append fa fa-lock"></i>
-                                                <input type="text" name="identification" placeholder="请输入身份证" value="${(user.identification)!}" >
+                                                <input type="text" name="identification" placeholder="请输入身份证"
+                                                       value="${(user.identification)!}">
                                             </label>
                                         </section>
                                     </dd>
@@ -122,11 +130,11 @@
                                                 <#list preference as item>
                                                     <label class="checkbox">
                                                         <input type="checkbox"
-                                                               <#list pre as sel>
-                                                                   <#if sel == item.value>
-                                                                        checked="checked"
-                                                                   </#if>
-                                                               </#list>
+                                                            <#list pre as sel>
+                                                                <#if sel == item.value>
+                                                               checked="checked"
+                                                                </#if>
+                                                            </#list>
                                                                value="${item.value}" name="prefer">
                                                         <i class="rounded-x"></i>${item.label}</label>
                                                 </#list>
@@ -147,7 +155,8 @@
                             <h2 class="heading-md">管理你的安全设置</h2>
                             <p>更改你的密码</p>
                             <br>
-                            <form id="updatePassword" class="sky-form" id="sky-form4" action="${staticPath}/user/updateUserInfo/2" method="post">
+                            <form id="updatePassword" class="sky-form" id="sky-form4"
+                                  action="${staticPath}/user/updateUserInfo/2" method="post">
                                 <dl class="dl-horizontal">
                                     <dt>登录名</dt>
                                     <dd>
@@ -165,7 +174,8 @@
                                         <section>
                                             <label class="input">
                                                 <i class="icon-append fa fa-lock"></i>
-                                                <input type="password" id="password" name="password" placeholder="请输入密码">
+                                                <input type="password" id="password" name="password"
+                                                       placeholder="请输入密码">
                                                 <b class="tooltip tooltip-bottom-right">不要忘记了您的密码</b>
                                             </label>
                                         </section>

@@ -409,6 +409,7 @@ public class MobileController extends BaseController {
         followHistory.setUserId(appUser.getId());
         followHistory.setTargetId(targetId);
         followHistory.setType(Const.FOLLOW_HISTORY_TYPE_FOCUS);
+        followHistory.setDelFlag(null);
         FollowHistory fh = followHistoryService.selectOne(new EntityWrapper<>(followHistory));
         Boolean result;
         if (fh == null) {
@@ -447,6 +448,7 @@ public class MobileController extends BaseController {
         followHistory.setUserId(appUser.getId());
         followHistory.setTargetId(targetId);
         followHistory.setType(Const.FOLLOW_HISTORY_TYPE_FOCUS);
+        followHistory.setDelFlag(null);
         FollowHistory fh = followHistoryService.selectOne(new EntityWrapper<>(followHistory));
         Boolean result;
         if (fh == null) {

@@ -11,8 +11,8 @@
     <div class="row">
         <!--Left Sidebar-->
         <div class="col-md-3 md-margin-bottom-40">
-            <img class="img-responsive profile-img margin-bottom-20" src="${staticPath}/assets/img/team/img32-md.jpg" alt="">
-
+            <img class="img-responsive profile-img margin-bottom-20" src="${Session.siteSessionUser.headImgUrl!''}"
+                 alt="">
             <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
                 <li class="list-group-item ">
                     <a href="/user"><i class="fa fa-tachometer"></i>面板</a>
@@ -57,28 +57,34 @@
                             <div id="rollin_content" class="row">
 
                             </div>
-                            <button id="rollinBtn" type="button" class="btn-u btn-u-default btn-u-sm btn-block">加载更多</button>
+                            <button id="rollinBtn" type="button" class="btn-u btn-u-default btn-u-sm btn-block">加载更多
+                            </button>
                         </div>
 
                         <div id="rollOut" class="profile-edit tab-pane fade">
                             <div id="rollOut_content" class="row">
 
                             </div>
-                            <button id="rollOutBtn" type="button" class="btn-u btn-u-default btn-u-sm btn-block">加载更多</button>
+                            <button id="rollOutBtn" type="button" class="btn-u btn-u-default btn-u-sm btn-block">加载更多
+                            </button>
                         </div>
 
                         <div id="rollInning" class="profile-edit tab-pane fade">
                             <div id="rollInning_content" class="row">
 
                             </div>
-                            <button id="rollInningBtn" type="button" class="btn-u btn-u-default btn-u-sm btn-block">加载更多</button>
+                            <button id="rollInningBtn" type="button" class="btn-u btn-u-default btn-u-sm btn-block">
+                                加载更多
+                            </button>
                         </div>
 
                         <div id="rollOuting" class="profile-edit tab-pane fade">
                             <div id="rollOuting_content" class="row">
 
                             </div>
-                            <button id="rollOutingBtn" type="button" class="btn-u btn-u-default btn-u-sm btn-block">加载更多</button>
+                            <button id="rollOutingBtn" type="button" class="btn-u btn-u-default btn-u-sm btn-block">
+                                加载更多
+                            </button>
                         </div>
 
                     </div>
@@ -90,7 +96,8 @@
 
 <div id="rollin_works" style="display: none" class="col-sm-6">
     <div class="easy-block-v1">
-        <a id="rollin_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg" alt=""></a>
+        <a id="rollin_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg"
+                                              alt=""></a>
     <#--<div class="easy-block-v1-badge rgba-red">Web Design</div>-->
     </div>
     <div class="headline-left margin-bottom-10">
@@ -102,9 +109,10 @@
     </small>
     <p class="rollin_works-remarks"></p>
 </div>
-<div id="rollOut_works" style="display: none"  class="col-sm-6">
+<div id="rollOut_works" style="display: none" class="col-sm-6">
     <div class="easy-block-v1">
-        <a id="rollOut_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg" alt=""></a>
+        <a id="rollOut_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg"
+                                               alt=""></a>
     <#--<div class="easy-block-v1-badge rgba-red">Web Design</div>-->
     </div>
     <div class="headline-left margin-bottom-10">
@@ -116,9 +124,10 @@
     </small>
     <p class="rollOut_works-remarks"></p>
 </div>
-<div id="rollInning_works" style="display: none"  class="col-sm-6">
+<div id="rollInning_works" style="display: none" class="col-sm-6">
     <div class="easy-block-v1">
-        <a id="rollInning_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg" alt=""></a>
+        <a id="rollInning_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg"
+                                                  alt=""></a>
     <#--<div class="easy-block-v1-badge rgba-red">Web Design</div>-->
     </div>
     <div class="headline-left margin-bottom-10">
@@ -130,9 +139,10 @@
     </small>
     <p class="rollInning_works-remarks"></p>
 </div>
-<div id="rollOuting_works" style="display: none"  class="col-sm-6">
+<div id="rollOuting_works" style="display: none" class="col-sm-6">
     <div class="easy-block-v1">
-        <a id="rollOuting_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg" alt=""></a>
+        <a id="rollOuting_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg"
+                                                  alt=""></a>
     <#--<div class="easy-block-v1-badge rgba-red">Web Design</div>-->
     </div>
     <div class="headline-left margin-bottom-10">
@@ -159,7 +169,7 @@
     rollInningHasMore = true;
     // 待确认转出
     rollOutingIndex = 1;
-    rollOutingHasMore =true;
+    rollOutingHasMore = true;
 
     $(document).ready(function () {
         loadRollin(1);
@@ -180,13 +190,14 @@
                     $li.find(".img-responsive").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.works.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
                     $li.find("#rollin_works_des").html(this.works.breed);
                     $li.find("#rollin_works_name").html(this.works.name);
-                    $li.find("#rollin_works_img").attr("href","${staticPath}/works/detail/" + this.works.id);
+                    $li.find("#rollin_works_img").attr("href", "${staticPath}/works/detail/" + this.works.id);
                     $("#rollin_content").append($li);
                 });
 
 
             });
         }
+
         $("#rollinBtn").on("click", function () {
             if (rollinHasMore) {
                 rollinIndex++;
@@ -207,11 +218,12 @@
                     $li.find(".img-responsive").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.works.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
                     $li.find("#rollOut_works_des").html(this.works.breed);
                     $li.find("#rollOut_works_name").html(this.works.name);
-                    $li.find("#rollOut_works_img").attr("href","${staticPath}/works/detail/" + this.works.id);
+                    $li.find("#rollOut_works_img").attr("href", "${staticPath}/works/detail/" + this.works.id);
                     $("#rollOut_content").append($li);
                 });
             });
         }
+
         $("#rollOutBtn").on("click", function () {
             if (rollOutHasMore) {
                 rollOutIndex++;
@@ -232,11 +244,12 @@
                     $li.find(".img-responsive").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.works.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
                     $li.find("#rollInning_works_des").html(this.works.breed);
                     $li.find("#rollInning_works_name").html(this.works.name);
-                    $li.find("#rollInning_works_img").attr("href","${staticPath}/works/detail/" + this.works.id);
+                    $li.find("#rollInning_works_img").attr("href", "${staticPath}/works/detail/" + this.works.id);
                     $("#rollInning_content").append($li);
                 });
             });
         }
+
         $("#rollInningBtn").on("click", function () {
             if (rollInningHasMore) {
                 rollInningIndex++;
@@ -258,11 +271,12 @@
                     $li.find(".img-responsive").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.works.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
                     $li.find("#rollOuting_works_des").html(this.works.breed);
                     $li.find("#rollOuting_works_name").html(this.works.name);
-                    $li.find("#rollOuting_works_img").attr("href","${staticPath}/works/detail/" + this.works.id);
+                    $li.find("#rollOuting_works_img").attr("href", "${staticPath}/works/detail/" + this.works.id);
                     $("#rollOuting_content").append($li);
                 });
             });
         }
+
         $("#rollOutingBtn").on("click", function () {
             if (rollOutingHasMore) {
                 rollOutingIndex++;

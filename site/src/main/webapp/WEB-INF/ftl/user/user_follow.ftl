@@ -5,9 +5,9 @@
 <link rel="stylesheet" href="${staticPath}/assets/css/pages/profile.css">
 <link rel="stylesheet" href="${staticPath}/assets/plugins/line-icons/line-icons.css">
 <script type="text/javascript">
-//    function imgError() {
-//        $(this).attr("src","http://windyeel.oss-cn-shanghai.aliyuncs.com/global/img/default.png")
-//    }
+    //    function imgError() {
+    //        $(this).attr("src","http://windyeel.oss-cn-shanghai.aliyuncs.com/global/img/default.png")
+    //    }
 
 </script>
 </@htmlHead>
@@ -17,7 +17,7 @@
     <div class="row">
         <!--Left Sidebar-->
         <div class="col-md-3 md-margin-bottom-40">
-            <img class="img-responsive profile-img margin-bottom-20" src="${staticPath}/assets/img/team/img32-md.jpg"
+            <img class="img-responsive profile-img margin-bottom-20" src="${Session.siteSessionUser.headImgUrl!''}"
                  alt="">
 
             <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
@@ -115,6 +115,7 @@
                 });
             });
         }
+
         $(".btn-more").on("click", function () {
             if (hasMore) {
                 pageIndex++;

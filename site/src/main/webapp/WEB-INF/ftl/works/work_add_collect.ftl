@@ -170,10 +170,10 @@
                         if (data.suc) {
                             if ($("#status").val() == 0) {
                                 // 跳转到下一步
-                                window.location.href="/user";
+                                window.location.href = "/user";
                             } else {
                                 // 跳转到个人中心-> 我的作品->草稿里面
-                                window.location.href="/user";
+                                window.location.href = "/user";
                             }
                         } else {
                             alert(data.msg);

@@ -274,10 +274,10 @@ public class UserController extends BaseController {
     }
 
 
-    @RequestMapping(value = "/userPage", method = RequestMethod.GET)
+    @RequestMapping(value = "/userPage", method = RequestMethod.POST)
     @ResponseBody
     public List<AppUser> userPage(@RequestParam(required = false, defaultValue = "1") Integer pageIndex,
-                                  @RequestParam(required = false, defaultValue = "6") Integer pageSize,
+                                  @RequestParam(required = false, defaultValue = "10") Integer pageSize,
                                   @RequestParam(required = false) String keywords) {
         List<AppUser> appUserList = appUserService.siteSearchUsersByName(keywords, pageSize, (pageIndex - 1) * pageSize, getCurrentUser().getId());
         return appUserList;
@@ -291,16 +291,16 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/notToHave", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
     @ResponseBody
     public String notToHave(HttpSession session,
-                            int targetId) {
+                            @RequestParam(required = false) int targetId) {
         AppUser appUser = getCurrentUser();
         if (targetId == appUser.getId()) {
             return "自己不要关注自己哟";
         }
-
         FollowHistory followHistory = new FollowHistory();
         followHistory.setUserId(appUser.getId());
         followHistory.setTargetId(targetId);
         followHistory.setType(Const.FOLLOW_HISTORY_TYPE_FOCUS);
+        followHistory.setDelFlag(null);
         FollowHistory fh = followHistoryService.selectOne(new EntityWrapper<>(followHistory));
         Boolean result;
         if (fh == null) {
@@ -313,8 +313,36 @@ public class UserController extends BaseController {
         if (result) {
             return "关注成功!";
         }
-
         return "关注失败!请稍后再试";
+    }
+
+    /**
+     * 关注--取关
+     *
+     * @return
+     */
+    @RequestMapping(value = "haveToNot", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String haveToNot(@RequestParam(required = false) int targetId) {
+        AppUser appUser = getCurrentUser();
+        FollowHistory followHistory = new FollowHistory();
+        followHistory.setUserId(appUser.getId());
+        followHistory.setTargetId(targetId);
+        followHistory.setType(Const.FOLLOW_HISTORY_TYPE_FOCUS);
+        FollowHistory fh = followHistoryService.selectOne(new EntityWrapper<>(followHistory));
+        followHistory.setDelFlag(null);
+        Boolean result;
+        if (fh == null) {
+            followHistory.setDelFlag(Const.DEL_FLAG_DELETE);
+            result = followHistoryService.insert(followHistory);
+        } else {
+            fh.setDelFlag(Const.DEL_FLAG_DELETE);
+            result = followHistoryService.updateById(fh);
+        }
+        if (result) {
+            return "取关成功!";
+        }
+        return "取关失败!请稍后再试";
     }
 
     /**

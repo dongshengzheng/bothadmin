@@ -11,9 +11,8 @@
     <div class="row">
         <!--Left Sidebar-->
         <div class="col-md-3 md-margin-bottom-40">
-            <img class="img-responsive profile-img margin-bottom-20" src="${staticPath}/assets/img/team/img32-md.jpg"
+            <img class="img-responsive profile-img margin-bottom-20" src="${Session.siteSessionUser.headImgUrl!''}"
                  alt="">
-
             <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
                 <li class="list-group-item ">
                     <a href="/user"><i class="fa fa-tachometer"></i>面板</a>
@@ -62,25 +61,29 @@
                             <div class="row" id="passWorks-content">
 
                             </div>
-                            <button id="passBtn" type="button" class="btn-u btn-u-default btn-u-sm btn-block">加载更多</button>
+                            <button id="passBtn" type="button" class="btn-u btn-u-default btn-u-sm btn-block">加载更多
+                            </button>
                         </div>
                         <div id="unpass" class="profile-edit tab-pane fade">
                             <div class="row" id="unPassWorks-content">
 
                             </div>
-                            <button id="unPassBtn" type="button" class="btn-u btn-u-default btn-u-sm btn-block">加载更多</button>
+                            <button id="unPassBtn" type="button" class="btn-u btn-u-default btn-u-sm btn-block">加载更多
+                            </button>
                         </div>
                         <div id="checking" class="profile-edit tab-pane fade">
                             <div class="row" id="checkingWorks-content">
 
                             </div>
-                            <button id="checkingBtn" type="button" class="btn-u btn-u-default btn-u-sm btn-block">加载更多</button>
+                            <button id="checkingBtn" type="button" class="btn-u btn-u-default btn-u-sm btn-block">加载更多
+                            </button>
                         </div>
                         <div id="drafts" class="profile-edit tab-pane fade">
                             <div class="row" id="draftsWorks-content">
 
                             </div>
-                            <button id="draftsBtn" type="button" class="btn-u btn-u-default btn-u-sm btn-block">加载更多</button>
+                            <button id="draftsBtn" type="button" class="btn-u btn-u-default btn-u-sm btn-block">加载更多
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -105,7 +108,8 @@
 </div>
 <div class="col-sm-6" id="unPassWorks" style="display: none">
     <div class="easy-block-v1">
-        <a id="unPass_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg" alt=""></a>
+        <a id="unPass_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg"
+                                              alt=""></a>
     <#--<div class="easy-block-v1-badge rgba-red">Web Design</div>-->
     </div>
     <div class="headline-left margin-bottom-10">
@@ -120,7 +124,8 @@
 
 <div class="col-sm-6" id="checkingWorks" style="display: none">
     <div class="easy-block-v1">
-        <a id="checking_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg" alt=""></a>
+        <a id="checking_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg"
+                                                alt=""></a>
     <#--<div class="easy-block-v1-badge rgba-red">Web Design</div>-->
     </div>
     <div class="headline-left margin-bottom-10">
@@ -136,8 +141,9 @@
 </div>
 <div class="col-sm-6" id="draftWorks" style="display: none">
     <div class="easy-block-v1">
-        <a id="draft_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg" alt=""></a>
-        <#--<div class="easy-block-v1-badge rgba-red">Web Design</div>-->
+        <a id="draft_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg"
+                                             alt=""></a>
+    <#--<div class="easy-block-v1-badge rgba-red">Web Design</div>-->
     </div>
     <div class="headline-left margin-bottom-10">
         <h3 id="draft_works_name" class="headline-brd works-name"></h3>
@@ -147,30 +153,30 @@
         <a id="draft_works_des" href="javascript:void(0)"></a>
     </small>
     <p class="draft_works-remarks"></p>
-    <#--<div class="projects">-->
-        <#--<h2><a class="color-dark" href="page_profile_projects.html#">Getting Started Photography</a></h2>-->
-        <#--<ul class="list-unstyled list-inline blog-info-v2">-->
-            <#--<li>By: <a class="color-green" href="page_profile_projects.html#">Edward Rooster</a></li>-->
-            <#--<li><i class="fa fa-clock-o"></i> Jan 07, 2013</li>-->
-        <#--</ul>-->
-        <#--<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing. Donec non dignissim eros.-->
-            <#--Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>-->
-        <#--<br>-->
-    <#--</div>-->
-    <#--<div class="project-share">-->
-        <#--<ul class="list-inline comment-list-v2 pull-left">-->
-            <#--<li><i class="fa fa-eye"></i> <a href="page_profile_projects.html#">25</a></li>-->
-            <#--<li><i class="fa fa-comments"></i> <a href="page_profile_projects.html#">32</a></li>-->
-            <#--<li><i class="fa fa-retweet"></i> <a href="page_profile_projects.html#">77</a></li>-->
-        <#--</ul>-->
-        <#--<ul class="list-inline star-vote pull-right">-->
-            <#--<li><i class="color-green fa fa-star"></i></li>-->
-            <#--<li><i class="color-green fa fa-star"></i></li>-->
-            <#--<li><i class="color-green fa fa-star"></i></li>-->
-            <#--<li><i class="color-green fa fa-star-half-o"></i></li>-->
-            <#--<li><i class="color-green fa fa-star-o"></i></li>-->
-        <#--</ul>-->
-    <#--</div>-->
+<#--<div class="projects">-->
+<#--<h2><a class="color-dark" href="page_profile_projects.html#">Getting Started Photography</a></h2>-->
+<#--<ul class="list-unstyled list-inline blog-info-v2">-->
+<#--<li>By: <a class="color-green" href="page_profile_projects.html#">Edward Rooster</a></li>-->
+<#--<li><i class="fa fa-clock-o"></i> Jan 07, 2013</li>-->
+<#--</ul>-->
+<#--<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing. Donec non dignissim eros.-->
+<#--Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>-->
+<#--<br>-->
+<#--</div>-->
+<#--<div class="project-share">-->
+<#--<ul class="list-inline comment-list-v2 pull-left">-->
+<#--<li><i class="fa fa-eye"></i> <a href="page_profile_projects.html#">25</a></li>-->
+<#--<li><i class="fa fa-comments"></i> <a href="page_profile_projects.html#">32</a></li>-->
+<#--<li><i class="fa fa-retweet"></i> <a href="page_profile_projects.html#">77</a></li>-->
+<#--</ul>-->
+<#--<ul class="list-inline star-vote pull-right">-->
+<#--<li><i class="color-green fa fa-star"></i></li>-->
+<#--<li><i class="color-green fa fa-star"></i></li>-->
+<#--<li><i class="color-green fa fa-star"></i></li>-->
+<#--<li><i class="color-green fa fa-star-half-o"></i></li>-->
+<#--<li><i class="color-green fa fa-star-o"></i></li>-->
+<#--</ul>-->
+<#--</div>-->
 </div>
 
 </@htmlBody>
@@ -187,7 +193,7 @@
     checkingHasMore = true;
     //草稿
     draftsIndex = 1;
-    draftsHasMore =true;
+    draftsHasMore = true;
 
     $(document).ready(function () {
         loadPass(1);
@@ -208,13 +214,14 @@
                     $li.find(".img-responsive").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
                     $li.find("#pass_works_des").html(this.breed);
                     $li.find("#pass_works_name").html(this.name);
-                    $li.find("#pass_works_img").attr("href","${staticPath}/works/detail/" + this.id);
+                    $li.find("#pass_works_img").attr("href", "${staticPath}/works/detail/" + this.id);
                     $("#passWorks-content").append($li);
                 });
 
 
             });
         }
+
         $("#passBtn").on("click", function () {
             if (passHasMore) {
                 pagePassIndex++;
@@ -236,11 +243,12 @@
                     $li.find(".img-responsive").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
                     $li.find("#unPass_works_des").html(this.breed);
                     $li.find("#unPass_works_name").html(this.name);
-                    $li.find("#unPass_works_img").attr("href","${staticPath}/works/detail/" + this.id);
+                    $li.find("#unPass_works_img").attr("href", "${staticPath}/works/detail/" + this.id);
                     $("#unPassWorks-content").append($li);
                 });
             });
         }
+
         $("#unPassBtn").on("click", function () {
             if (unPassHasMore) {
                 pageUnPassIndex++;
@@ -263,11 +271,12 @@
                     $li.find(".img-responsive").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
                     $li.find("#checking_works_des").html(this.breed);
                     $li.find("#checking_works_name").html(this.name);
-                    $li.find("#checking_works_img").attr("href","${staticPath}/works/detail/" + this.id);
+                    $li.find("#checking_works_img").attr("href", "${staticPath}/works/detail/" + this.id);
                     $("#checkingWorks-content").append($li);
                 });
             });
         }
+
         $("#checkingBtn").on("click", function () {
             if (checkingHasMore) {
                 checkingIndex++;
@@ -289,11 +298,12 @@
                     $li.find(".img-responsive").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
                     $li.find("#draft_works_des").html(this.breed);
                     $li.find("#draft_works_name").html(this.name);
-                    $li.find("#draft_works_img").attr("href","${staticPath}/works/detail/" + this.id);
+                    $li.find("#draft_works_img").attr("href", "${staticPath}/works/detail/" + this.id);
                     $("#draftsWorks-content").append($li);
                 });
             });
         }
+
         $("#draftsBtn").on("click", function () {
             if (draftsHasMore) {
                 draftsIndex++;

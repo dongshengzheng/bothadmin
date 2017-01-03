@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
+
 
 @Controller
-public class LoginController extends BaseController{
+public class LoginController extends BaseController {
 
     @Autowired
     private IAppUserService appUserService;
@@ -57,7 +59,8 @@ public class LoginController extends BaseController{
         } else {
             errInfo = "用户名或密码有误";
         }
-        jsonObject.put("result",errInfo);
+        jsonObject.put("result", errInfo);
+
         return jsonObject;
     }
 
@@ -95,7 +98,6 @@ public class LoginController extends BaseController{
     }
 
 
-
     @RequestMapping(value = "/terms", method = RequestMethod.GET)
     public String terms() {
         return "user/terms";
@@ -103,14 +105,14 @@ public class LoginController extends BaseController{
 
     @RequestMapping(value = "/loginStatus", method = RequestMethod.GET)
     @ResponseBody
-    public JSONObject loginStatus(){
+    public JSONObject loginStatus() {
         JSONObject jsonObject = new JSONObject();
         AppUser user = getCurrentUser();
-        if (user == null){
-            jsonObject.put("suc",false);
-        }else {
-            jsonObject.put("suc",true);
-            jsonObject.put("loginName",user.getLoginName());
+        if (user == null) {
+            jsonObject.put("suc", false);
+        } else {
+            jsonObject.put("suc", true);
+            jsonObject.put("loginName", user.getLoginName());
         }
         return jsonObject;
     }
