@@ -90,11 +90,12 @@
                     $li.find(".works-image").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
                     $li.find("#works_des").html(this.breed);
                     $li.find("#works_name").html(this.name);
-                    $li.find("#works_img").attr("href","${staticPath}/works/detail/" + this.id);
+                    $li.find("#works_img").attr("href", "${staticPath}/works/detail/" + this.id);
                     $("#works-list").append($li);
                 });
             });
         }
+
         $(".btn-more").on("click", function () {
             if (hasMore) {
                 pageIndex++;

@@ -287,8 +287,8 @@
 
         $('#valueTime').calendar();
 
-        initUploaders2($('#bucket').val(), $('#redirectUrl').val());
-        initUploaders($('#bucket').val(), $('#redirectUrl').val(), "valueImages");
+        initUploaders2($('#bucket').val(), $('#redirectUrl').val() + "/");
+        initUploaders($('#bucket').val(), $('#redirectUrl').val() + "/", "valueImages");
 
     });
 </script>

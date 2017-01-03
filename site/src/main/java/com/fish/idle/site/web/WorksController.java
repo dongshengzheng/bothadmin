@@ -231,7 +231,7 @@ public class WorksController extends BaseController {
             return jsonObject;
         }
         status = Const.WORKS_STATUS_COMMIT;
-        worksService.updateSelectiveById(new Works(report.getWorksId(),status));
+        worksService.updateSelectiveById(new Works(report.getWorksId(), status));
 
         // 保存评估报告
         imagesService.insertImage(desImage, report.getId(), Const.IMAGES_REPORT_DES);
@@ -280,7 +280,7 @@ public class WorksController extends BaseController {
         }
         jsonObject.put("suc", true);
 
-        worksService.updateSelectiveById(new Works(consumer.getWorksId(),status));
+        worksService.updateSelectiveById(new Works(consumer.getWorksId(), status));
         return jsonObject;
     }
 
@@ -375,6 +375,17 @@ public class WorksController extends BaseController {
 
         jsonObject.put("suc", true);
         return jsonObject;
+    }
+
+    /**
+     * 查找作品
+     *
+     * @return
+     */
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public String searchWorks(ModelMap map,
+                              @RequestParam(required = false) String keywords) {
+        return "search/search_works_result";
     }
 
 

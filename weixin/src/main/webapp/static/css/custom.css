@@ -172,3 +172,16 @@ body {
     /*先使用灰色 较显眼*/
     /*background-color: lightgray;*/
 }
+
+select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    background-color: white;
+    width: 100%;
+    background-image: url("../img/cut/箭头.png");
+    background-position-x: right;
+    background-repeat: no-repeat;
+    background-size: 10px 10px;
+}

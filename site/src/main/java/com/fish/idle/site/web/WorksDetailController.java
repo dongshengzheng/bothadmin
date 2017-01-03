@@ -56,20 +56,25 @@ public class WorksDetailController extends BaseController {
     @ResponseBody
     public Page<Works> list(@RequestParam(required = false, defaultValue = "0") Integer pageIndex,
                             @RequestParam(required = false, defaultValue = "6") Integer pageSize,
+                            @RequestParam(required = false) String keywords,
                             Works works) {
         Page<Works> page = new Page<>(pageIndex, pageSize);
         works.setStatus(Const.WORKS_STATUS_PASS);
         EntityWrapper<Works> ew = new EntityWrapper<>(works);
         ew.setSqlSelect("id,name,type,remarks,breed");
         ew.orderBy("id", false);
+        if (keywords != null && keywords.trim().length() > 0) {
+            ew.like("name", keywords);
+        }
+
         Page<Works> worksPage = worksService.selectPage(page, ew);
         for (Works work : worksPage.getRecords()) {
             //品种
-            if(!StringUtils.isEmpty(work.getBreed())){
+            if (!StringUtils.isEmpty(work.getBreed())) {
                 work.setBreed(dictService.getLabelByValue(work.getBreed(), "dd_pinzhong"));
             }
             Images images = imagesService.selectOne(new EntityWrapper<>(new Images(work.getId(), Const.IMAGES_WORKS)));
-            if(images != null && !StringUtils.isEmpty(images.getUrl())){
+            if (images != null && !StringUtils.isEmpty(images.getUrl())) {
                 work.setImages(images.getUrl());
             }
         }

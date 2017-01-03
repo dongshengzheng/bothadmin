@@ -22,7 +22,7 @@
         </ul>
     </div>
 </div>
-<div class="container margin-bottom-40 margin-top-20 " >
+<div class="container margin-bottom-40 margin-top-20 ">
     <div class="row">
         <!--left start-->
         <div class="col-sm-9">
@@ -141,7 +141,8 @@
                                     <a href="shortcode_accordion_and_tabs.html#detail" data-toggle="tab">作品详情</a>
                                 </li>
                                 <li>
-                                    <a href="shortcode_accordion_and_tabs.html#interpretation" data-toggle="tab">作品诠释</a>
+                                    <a href="shortcode_accordion_and_tabs.html#interpretation"
+                                       data-toggle="tab">作品诠释</a>
                                 </li>
                                 <li>
                                     <a href="shortcode_accordion_and_tabs.html#history" data-toggle="tab">转让历史</a>
@@ -240,18 +241,21 @@
 
                                 <!--作品诠释-->
                                 <div class="tab-pane fade in profile" id="interpretation">
-                                    <div  class="media media-v2 margin-bottom-20">
+                                    <div class="media media-v2 margin-bottom-20">
                                         <a class="pull-left" href="#">
-                                            <img class="media-object rounded-x" src="${staticPath}/assets/img/testimonials/img6.jpg" alt="">
+                                            <img class="media-object rounded-x"
+                                                 src="${staticPath}/assets/img/testimonials/img6.jpg" alt="">
                                         </a>
                                         <div class="media-body">
-                                            <form id="form_interpretation" class="sky-form" action="/interpretation/add" method="post">
+                                            <form id="form_interpretation" class="sky-form" action="/interpretation/add"
+                                                  method="post">
                                                 <div class="row">
-                                                    <span class="col-sm-2"  for="scoreDemanded">选择价格:</span>
+                                                    <span class="col-sm-2" for="scoreDemanded">选择价格:</span>
                                                     <div class="col-sm-10">
                                                         <div class="inline-group">
                                                             <label class="radio">
-                                                                <input type="radio" value="20" name="scoreDemanded" checked>
+                                                                <input type="radio" value="20" name="scoreDemanded"
+                                                                       checked>
                                                                 <i class="rounded-x"></i>20</label>
                                                             <label class="radio">
                                                                 <input type="radio" value="50" name="scoreDemanded">
@@ -266,16 +270,28 @@
                                                     </div>
                                                     <div class="col-sm-12 margin-bottom-10">
                                                         <input type="hidden" name="worksId" value="${works.id}">
-                                                        <textarea rows="8" name="description" id="description" placeholder="输入具体诠释详细(建议先在本地编辑好之后，复制到本输入框)" class="form-control" style="border-color: #ddd"></textarea>
+                                                        <textarea rows="8" name="description" id="description"
+                                                                  placeholder="输入具体诠释详细(建议先在本地编辑好之后，复制到本输入框)"
+                                                                  class="form-control"
+                                                                  style="border-color: #ddd"></textarea>
                                                     </div>
                                                     <div class="col-sm-12">
-                                                        <button id="btn-interpretation" class="btn btn-sm btn-info pull-left "><i class="glyphicon glyphicon-picture"></i>上传图片</button>
+                                                        <button id="btn-interpretation"
+                                                                class="btn btn-sm btn-info pull-left "><i
+                                                                class="glyphicon glyphicon-picture"></i>上传图片
+                                                        </button>
 
-                                                        <@shiro.user><button class="btn btn-sm btn-u btn-u-red pull-right" type="submit">确认诠释</button></@shiro.user>
-                                                        <@shiro.guest><a class="btn btn-sm btn-u btn-u-red pull-right" href="/login">请先登录</a></@shiro.guest>
+                                                        <@shiro.user>
+                                                            <button class="btn btn-sm btn-u btn-u-red pull-right"
+                                                                    type="submit">确认诠释
+                                                            </button></@shiro.user>
+                                                        <@shiro.guest><a class="btn btn-sm btn-u btn-u-red pull-right"
+                                                                         href="/login">请先登录</a></@shiro.guest>
 
                                                         <div class="clearfix"></div>
-                                                        <div id="container-interpretation" style="margin: 10px 0px"></div> </div>
+                                                        <div id="container-interpretation"
+                                                             style="margin: 10px 0px"></div>
+                                                    </div>
                                                 </div>
                                             </form>
 
@@ -472,8 +488,6 @@
 <!---作品详情 作品诠释 转让历史-->
 
 
-
-
 <div id="temp_interpretation" class="media media-v2 margin-bottom-20" style="display: none;">
     <a class="pull-left" href="page_profile_comments.html#">
         <img class="media-object rounded-x headImgUrl" src="" alt="">
@@ -573,12 +587,12 @@
     // 提交诠释
     var $form = $("#form_interpretation");
     $form.validate({
-        rules:{
-            description:"required"
+        rules: {
+            description: "required"
         },
-        messages:{
-            description:{
-                required:"诠释详情必填"
+        messages: {
+            description: {
+                required: "诠释详情必填"
             }
         },
         submitHandler: function (form) {
@@ -601,7 +615,7 @@
 
     loadInterpretation(1);
     function loadInterpretation(pageIndex) {
-        $.post("/interpretation", {pageIndex: pageIndex,worksId:'${works.id}'}, function (data) {
+        $.post("/interpretation", {pageIndex: pageIndex, worksId: '${works.id}'}, function (data) {
             if (pageIndex >= data.pages) {
                 // 数据加载完毕了
                 $(".btn-more").html("客官，这次真没了");
@@ -612,7 +626,7 @@
                 $li.removeAttr("id").css("display", "block");
                 $li.find(".description").html(this.description);
                 $li.find(".name").html(this.appUser.name);
-                $li.find(".headImgUrl").attr("src","http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.appUser.headImgUrl + "?x-oss-process=image/resize,m_fill,h_80,w_80");
+                $li.find(".headImgUrl").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.appUser.headImgUrl + "?x-oss-process=image/resize,m_fill,h_80,w_80");
                 $li.find("small").html(this.createDate);
                 $.each(this.imagesList, function () {
                     $li.find(".img-uploaded").append('<li><img class="img-responsive" src="http://windyeel.img-cn-shanghai.aliyuncs.com/' + this.url + '?x-oss-process=image/resize,m_fill,h_80,w_80" alt=""></li>');

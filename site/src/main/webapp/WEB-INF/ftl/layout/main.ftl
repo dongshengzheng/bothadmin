@@ -44,13 +44,13 @@ description="金石典当"
     <script src="${staticPath}/assets/plugins/jquery/jquery.min.js"></script>
     <script src="${staticPath}/assets/plugins/jquery/jquery-migrate.min.js"></script>
     <script type="text/javascript">
-        function nofind(type){
-            var img=event.srcElement;
+        function nofind(type) {
+            var img = event.srcElement;
             //1 作品 2 用户头像
-            if(type == '1'){
-                img.src="http://windyeel.oss-cn-shanghai.aliyuncs.com/global/img/default.png";
+            if (type == '1') {
+                img.src = "http://windyeel.oss-cn-shanghai.aliyuncs.com/global/img/default.png";
             }
-            img.onerror=null;
+            img.onerror = null;
         }
     </script>
     <#nested/>
@@ -100,7 +100,7 @@ description="金石典当"
                                     <span class="input-group-btn">
                                         <button id="searchworksbtn" class="btn" type="button"
                                                 style="color: white;background: #D70016">搜作品</button>
-                                        <button class="btn" type="button"
+                                        <button id="searchpersonbtn" class="btn" type="button"
                                                 style="color: white;background: #FB591D;margin-left: 3px">
                                             搜用户
                                         </button>
@@ -159,10 +159,10 @@ description="金石典当"
 <script>
 
     $.ajaxSetup({
-        complete:function(XMLHttpRequest,textStatus){
-            if(textStatus=="parsererror"){
+        complete: function (XMLHttpRequest, textStatus) {
+            if (textStatus == "parsererror") {
 
-            } else if(textStatus=="error"){
+            } else if (textStatus == "error") {
 
             }
         }
@@ -193,13 +193,25 @@ description="金石典当"
                 search_form.submit();
             }
         });
+
+        $("#searchpersonbtn").bind("click", function () {
+            var key = $("#keywords").val();
+            if (!key) {
+                alert("请输入搜索用户关键字");
+            } else {
+                search_form.attr("action", "${staticPath}/user/search?keywords=" + key);
+                search_form.submit();
+            }
+        });
+
+
         $.ajax({
             type: "GET",
             url: '${staticPath}/loginStatus',
             dataType: 'json',
             success: function (result) {
                 if (result.suc) {
-                    $("#login")[0].innerHTML = '<a href="${staticPath}/user">'+result.loginName+'</a>';
+                    $("#login")[0].innerHTML = '<a href="${staticPath}/user">' + result.loginName + '</a>';
                 } else {
                     $("#login")[0].innerHTML = '<a href="${staticPath}/login">登录</a> | <a href="${staticPath}/register">注册</a>';
                 }

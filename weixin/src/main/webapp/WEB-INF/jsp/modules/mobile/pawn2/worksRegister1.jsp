@@ -169,7 +169,7 @@
 
         $("#showDatePicker").calendar();
 
-        initUploaders($('#bucket').val(), $('#redirectUrl').val());
+        initUploaders($('#bucket').val(), $('#redirectUrl').val() + "/");
 
         $('#draftSubmit').on('click', function () {
             $('#draftYN').val('yes');

@@ -149,8 +149,8 @@
         });
 
         $('#tab4').on('click', function () {
-            initUploaders2($('#bucket').val(), $('#redirectUrl').val());
-            initUploaders3($('#bucket').val(), $('#redirectUrl').val(), "valueImages");
+            initUploaders2($('#bucket').val(), $('#redirectUrl').val() + "/");
+            initUploaders3($('#bucket').val(), $('#redirectUrl').val() + "/", "valueImages");
         })
 
         $('.weui-navbar__item').on('click', function () {

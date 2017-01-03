@@ -65,86 +65,155 @@
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">质地一</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input name="zhidi" id="works-zhidiyi" class="weui-input " type="tel" placeholder="请选择质地一">
+                    <select name="zhidi">
+                        <option value="" selected>请选择质地一</option>
+                        <c:forEach items="${zhidi1}" var="item">
+                            <option value="${item.value}">${item.label}</option>
+                        </c:forEach>
+                    </select>
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">质地二</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input name="zhidi2" id="works-zhidier" class="weui-input " type="tel" placeholder="请选择质地二">
+                    <select name="zhidi2">
+                        <option value="" selected>请选择质地二</option>
+                        <c:forEach items="${zhidi2}" var="item">
+                            <option value="${item.value}">${item.label}</option>
+                        </c:forEach>
+                    </select>
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">感观</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input name="ganguan" id="works-ganguan" class="weui-input " type="tel" placeholder="请选择感观">
+                    <select name="ganguan">
+                        <option value="" selected>请选择感观</option>
+                        <c:forEach items="${ganguan}" var="item">
+                            <option value="${item.value}">${item.label}</option>
+                        </c:forEach>
+                    </select>
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">磨氏度</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input name="moshidu" id="works-moshidu" class="weui-input " type="tel" placeholder="请选择磨氏度">
+                    <select name="moshidu">
+                        <option value="" selected>请选择磨氏度</option>
+                        <c:forEach items="${moshidu}" var="item">
+                            <option value="${item.value}">${item.label}</option>
+                        </c:forEach>
+                    </select>
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">血量</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input name="xueliang" id="works-xueliang" class="weui-input " type="tel" placeholder="请选择血量">
+                    <select name="xueliang">
+                        <option value="" selected>请选择血量</option>
+                        <c:forEach items="${xueliang}" var="item">
+                            <option value="${item.value}">${item.label}</option>
+                        </c:forEach>
+                    </select>
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">血色</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input name="xuese" id="works-xuese" class="weui-input " type="tel" placeholder="请选择血色">
+                    <select name="xuese">
+                        <option value="" selected>请选择血色</option>
+                        <c:forEach items="${xuese}" var="item">
+                            <option value="${item.value}">${item.label}</option>
+                        </c:forEach>
+                    </select>
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">血形</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input name="xuexing" id="works-xuexing" class="weui-input " type="tel" placeholder="请选择血形">
+                    <select name="xuexing">
+                        <option value="" selected>请选择血形</option>
+                        <c:forEach items="${xuexing}" var="item">
+                            <option value="${item.value}">${item.label}</option>
+                        </c:forEach>
+                    </select>
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">浓艳度</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input name="nongyandu" id="works-nongyandu" class="weui-input " type="tel" placeholder="请选择浓艳度">
+                    <select name="nongyandu">
+                        <option value="" selected>请选择浓艳度</option>
+                        <c:forEach items="${nongyandu}" var="item">
+                            <option value="${item.value}">${item.label}</option>
+                        </c:forEach>
+                    </select>
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">纯净度</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input name="chunjingdu" id="works-chunjingdu" class="weui-input " type="tel" placeholder="请选择纯净度">
+                    <select name="chunjingdu">
+                        <option value="" selected>请选择纯净度</option>
+                        <c:forEach items="${chunjingdu}" var="item">
+                            <option value="${item.value}">${item.label}</option>
+                        </c:forEach>
+                    </select>
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">地色</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input name="dise" id="works-dise" class="weui-input " type="tel" placeholder="请选择地色">
+                    <select name="dise">
+                        <option value="" selected>请选择地色</option>
+                        <c:forEach items="${dise}" var="item">
+                            <option value="${item.value}">${item.label}</option>
+                        </c:forEach>
+                    </select>
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">活筋</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input name="liu" id="works-huojin" class="weui-input " type="tel" placeholder="请选择活筋">
+                    <select name="liu">
+                        <option value="" selected>请选择活筋</option>
+                        <c:forEach items="${liu}" var="item">
+                            <option value="${item.value}">${item.label}</option>
+                        </c:forEach>
+                    </select>
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">裂</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input name="lie" id="works-lie" class="weui-input " type="tel" placeholder="请选择裂">
+                    <select name="lie">
+                        <option value="" selected>请选择裂</option>
+                        <c:forEach items="${lie}" var="item">
+                            <option value="${item.value}">${item.label}</option>
+                        </c:forEach>
+                    </select>
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">印章</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input name="hanxuemian" id="works-yinzhang" class="weui-input " type="tel" placeholder="请选择印章">
+                    <select name="hanxuemian">
+                        <option value="" selected>请选择印章</option>
+                        <c:forEach items="${mian}" var="item">
+                            <option value="${item.value}">${item.label}</option>
+                        </c:forEach>
+                    </select>
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__hd"><label class="weui-label">含血方式</label></div>
                 <div class="weui-cell__bd weui-cell_primary">
-                    <input name="hanxuefangshi" id="works-hanxuefangshi" class="weui-input " type="tel"
-                           placeholder="请选择含血方式">
+                    <select name="hanxuefangshi">
+                        <option value="" selected>请选择含血方式</option>
+                        <c:forEach items="${hanxuefangshi}" var="item">
+                            <option value="${item.value}">${item.label}</option>
+                        </c:forEach>
+                    </select>
                 </div>
             </div>
         </div>
@@ -169,145 +238,6 @@
 
 <script>
     $(function () {
-        $('#works-zhidiyi').picker({
-            title: "请选择质地一",
-            cols: [
-                {
-                    textAlign: 'center',
-                    values: ['冻', '软', '刚', '硬']
-                }
-            ]
-        });
-        $('#works-zhidier').picker({
-            title: "请选择质地二",
-            cols: [
-                {
-                    textAlign: 'center',
-                    values: ['冻地', '冻软地', '软地', '冻软刚地', '冻软硬地', '灰刚板地', '活刚板地', '刚硬地', '硬地']
-                }
-            ]
-        });
-
-        $('#works-ganguan').picker({
-            title: "请选择感观",
-            cols: [
-                {
-                    textAlign: 'center',
-                    values: ['透、细腻、温润', '微透、细腻、温润', '透、细腻、干', '不透、细腻、温润', '不透、细腻、干', '不透、粗糙、干']
-                }
-            ]
-        });
-
-        $('#works-moshidu').picker({
-            title: "请选择磨氏度",
-            cols: [
-                {
-                    textAlign: 'center',
-                    values: ['2-2.5', '2-4', '2-6', '4-5', '4-6', '5-6']
-                }
-            ]
-        });
-
-        $('#works-xueliang').picker({
-            title: "请选择血量",
-            cols: [
-                {
-                    textAlign: 'center',
-                    values: ['>50%', '>30%', '>15%', '>5%', '>0%']
-                }
-            ]
-        });
-
-        $('#works-xuese').picker({
-            title: "请选择血色",
-            cols: [
-                {
-                    textAlign: 'center',
-                    values: ['鲜红', '红', '淡红', '暗红']
-                }
-            ]
-        });
-
-        $('#works-xuexing').picker({
-            title: "请选择血形",
-            cols: [
-                {
-                    textAlign: 'center',
-                    values: ['团块状', '片状', '条状', '云雾状', '网脉状', '细脉状', '星点状', '其他']
-                }
-            ]
-        });
-
-        $('#works-nongyandu').picker({
-            title: "请选择浓艳度",
-            cols: [
-                {
-                    textAlign: 'center',
-                    values: ['浓艳', '艳', '淡', '稀']
-                }
-            ]
-        });
-
-        $('#works-chunjingdu').picker({
-            title: "请选择纯净度",
-            cols: [
-                {
-                    textAlign: 'center',
-                    values: ['净', '略净', '花', '杂']
-                }
-            ]
-        });
-
-        $('#works-dise').picker({
-            title: "请选择地色",
-            cols: [
-                {
-                    textAlign: 'center',
-                    values: ['黄', '白', '黑', '灰', '褐', '青', '混合', '其他']
-                }
-            ]
-        });
-
-        $('#works-huojin').picker({
-            title: "请选择活筋",
-            cols: [
-                {
-                    textAlign: 'center',
-                    values: ['无', '绺', '绺、裂', '绺、格、裂', '绺、格、裂、复位粘结']
-                }
-            ]
-        });
-
-        $('#works-lie').picker({
-            title: "请选择裂",
-            cols: [
-                {
-                    textAlign: 'center',
-                    values: ['无', '微裂', '裂', '裂缝（裂隙注胶）', '复位粘结']
-                }
-            ]
-        });
-
-        $('#works-yinzhang').picker({
-            title: "请选择印章",
-            cols: [
-                {
-                    textAlign: 'center',
-                    values: ['6面', '5面', '4面', '3面', '2面', '1面']
-                }
-            ]
-        });
-
-        $('#works-hanxuefangshi').picker({
-            title: "请选择含血方式",
-            cols: [
-                {
-                    textAlign: 'center',
-                    values: ['表面含血', '内在含血', '表面及内在含血']
-                }
-            ]
-        });
-
 
         $('#draftSubmit').on('click', function () {
             $('#draftYN').val('yes');

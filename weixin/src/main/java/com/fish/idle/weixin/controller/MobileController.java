@@ -6,6 +6,7 @@ import com.fish.idle.service.modules.jsdd.entity.*;
 import com.fish.idle.service.modules.jsdd.service.*;
 import com.fish.idle.service.modules.sys.entity.AppUser;
 import com.fish.idle.service.modules.sys.service.IAppUserService;
+import com.fish.idle.service.modules.sys.service.IDictService;
 import com.fish.idle.service.util.Const;
 import com.fish.idle.service.util.DateUtil;
 import com.fish.idle.weixin.interceptor.OAuthRequired;
@@ -68,6 +69,9 @@ public class MobileController extends BaseController {
 
     @Autowired
     private WxMpConfigStorage configStorage;
+
+    @Autowired
+    private IDictService dictService;
 
     @Autowired
     private WxMpService wxMpService;
@@ -1263,6 +1267,7 @@ public class MobileController extends BaseController {
     public String worksRegister2(HttpSession session,
                                  Works works,
                                  Consumer consumer,
+                                 ModelMap map,
                                  @RequestParam(required = false) String createDateString,
                                  @RequestParam(required = false) String worksName,
                                  @RequestParam(required = false) String providerName,
@@ -1321,6 +1326,14 @@ public class MobileController extends BaseController {
         session.setAttribute("registerWorksName", works.getName());
         session.setAttribute("registerWorksId", worksId);
         session.setAttribute("registerWorks", works);
+
+        map.put("kqdy", dictService.getWorksLevelDicByType("dd_kqdy"));
+        map.put("level", dictService.getWorksLevelDicByType("dd_level"));
+        map.put("pinzhong", dictService.getWorksLevelDicByType("dd_pinzhong"));
+        map.put("zuopinleixing", dictService.getWorksLevelDicByType("dd_zuopinleixing"));
+        map.put("gyType", dictService.getWorksLevelDicByType("dd_level"));
+
+
         return "modules/mobile/pawn2/worksRegister2";
     }
 
@@ -1332,6 +1345,7 @@ public class MobileController extends BaseController {
     @RequestMapping(value = "worksRegister3", method = RequestMethod.POST)
     @OAuthRequired
     public String worksRegister3(HttpSession session,
+                                 ModelMap map,
                                  @RequestParam(required = false) String breed,
                                  @RequestParam(required = false) String type,
                                  @RequestParam(required = false) BigDecimal length,
@@ -1378,6 +1392,21 @@ public class MobileController extends BaseController {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=draft";
         }
         session.setAttribute("registerWorks", works);
+
+        map.put("zhidi1", dictService.getWorksLevelDicByType("dd_zhidi"));
+        map.put("zhidi2", dictService.getWorksLevelDicByType("dd_zhidi2"));
+        map.put("ganguan", dictService.getWorksLevelDicByType("dd_ganguan"));
+        map.put("moshidu", dictService.getWorksLevelDicByType("dd_moshidu"));
+        map.put("xueliang", dictService.getWorksLevelDicByType("dd_xueliang"));
+        map.put("xuese", dictService.getWorksLevelDicByType("dd_xuese"));
+        map.put("xuexing", dictService.getWorksLevelDicByType("dd_xuexing"));
+        map.put("nongyandu", dictService.getWorksLevelDicByType("dd_nongyandu"));
+        map.put("chunjingdu", dictService.getWorksLevelDicByType("dd_jingdu"));
+        map.put("dise", dictService.getWorksLevelDicByType("dd_dise"));
+        map.put("liu", dictService.getWorksLevelDicByType("dd_liu"));
+        map.put("lie", dictService.getWorksLevelDicByType("dd_lie"));
+        map.put("mian", dictService.getWorksLevelDicByType("dd_mian"));
+        map.put("hanxuefangshi", dictService.getWorksLevelDicByType("dd_hanxuefangshi"));
         return "modules/mobile/pawn2/worksRegister3";
     }
 
@@ -1612,6 +1641,27 @@ public class MobileController extends BaseController {
 
 
         session.setAttribute("worksIdInSession", worksId);
+
+        map.put("kqdy", dictService.getWorksLevelDicByType("dd_kqdy"));
+        map.put("level", dictService.getWorksLevelDicByType("dd_level"));
+        map.put("pinzhong", dictService.getWorksLevelDicByType("dd_pinzhong"));
+        map.put("zuopinleixing", dictService.getWorksLevelDicByType("dd_zuopinleixing"));
+        map.put("gyType", dictService.getWorksLevelDicByType("dd_level"));
+
+        map.put("zhidi1", dictService.getWorksLevelDicByType("dd_zhidi"));
+        map.put("zhidi2", dictService.getWorksLevelDicByType("dd_zhidi2"));
+        map.put("ganguan", dictService.getWorksLevelDicByType("dd_ganguan"));
+        map.put("moshidu", dictService.getWorksLevelDicByType("dd_moshidu"));
+        map.put("xueliang", dictService.getWorksLevelDicByType("dd_xueliang"));
+        map.put("xuese", dictService.getWorksLevelDicByType("dd_xuese"));
+        map.put("xuexing", dictService.getWorksLevelDicByType("dd_xuexing"));
+        map.put("nongyandu", dictService.getWorksLevelDicByType("dd_nongyandu"));
+        map.put("chunjingdu", dictService.getWorksLevelDicByType("dd_jingdu"));
+        map.put("dise", dictService.getWorksLevelDicByType("dd_dise"));
+        map.put("liu", dictService.getWorksLevelDicByType("dd_liu"));
+        map.put("lie", dictService.getWorksLevelDicByType("dd_lie"));
+        map.put("mian", dictService.getWorksLevelDicByType("dd_mian"));
+        map.put("hanxuefangshi", dictService.getWorksLevelDicByType("dd_hanxuefangshi"));
 
         return "modules/mobile/pawn2/worksEdit";
     }

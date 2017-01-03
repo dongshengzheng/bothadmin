@@ -140,7 +140,7 @@
 
         $("#showDatePicker").calendar();
 
-        initUploaders($('#bucket').val(), $('#redirectUrl').val(), "interImages");
+        initUploaders($('#bucket').val(), $('#redirectUrl').val() + "/", "interImages");
 
 
         $('#trueSubmit').on('click', function () {

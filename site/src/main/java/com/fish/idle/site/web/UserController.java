@@ -12,12 +12,14 @@ import com.fish.idle.service.modules.sys.service.IDictService;
 import com.fish.idle.service.util.Const;
 import com.fish.idle.service.util.StringUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -56,6 +58,9 @@ public class UserController extends BaseController {
     @Autowired
     private IFollowHistoryService followHistoryService;
 
+    @Autowired
+    private IAppUserService appUserService;
+
 
     /**
      * 用户详情
@@ -70,6 +75,7 @@ public class UserController extends BaseController {
     /**
      * 我的作品
      * 草稿 审核中 未通过 已通过
+     *
      * @return
      */
     @RequestMapping(value = "works", method = RequestMethod.GET)
@@ -86,7 +92,7 @@ public class UserController extends BaseController {
         Page<Works> worksPage = worksService.selectPage(page, getMyWorksEw(type));
         for (Works work : worksPage.getRecords()) {
             //品种
-            if(StringUtils.isNotEmpty(work.getBreed())){
+            if (StringUtils.isNotEmpty(work.getBreed())) {
                 work.setBreed(dictService.getLabelByValue(work.getBreed(), "dd_pinzhong"));
             }
             Images images = imagesService.selectOne(new EntityWrapper<>(new Images(work.getId(), Const.IMAGES_WORKS)));
@@ -112,8 +118,9 @@ public class UserController extends BaseController {
 
     /**
      * 转让作品列表
+     *
      * @param status    状态--  1：转入转出已完成  2：正在进行
-     * @param in 是否是转入  参数传 true/false  比如：transfer_load/false/1
+     * @param in        是否是转入  参数传 true/false  比如：transfer_load/false/1
      * @param pageIndex
      * @param pageSize
      * @return
@@ -129,27 +136,25 @@ public class UserController extends BaseController {
         EntityWrapper<TransferHistory> ew = new EntityWrapper<>(new TransferHistory());
         ew.setSqlSelect("works_id");
 
-        ew.addFilter("status = {0} ",status);
-        if(in){
-            ew.addFilter("to_user_id = {0}",userId);
-        }else {
-            ew.addFilter("from_user_id = {0}",userId);
+        ew.addFilter("status = {0} ", status);
+        if (in) {
+            ew.addFilter("to_user_id = {0}", userId);
+        } else {
+            ew.addFilter("from_user_id = {0}", userId);
         }
-        Page<TransferHistory> transferHistoryPage = transferHistoryService.selectPage(page,ew);
-        for (TransferHistory t:transferHistoryPage.getRecords()){
+        Page<TransferHistory> transferHistoryPage = transferHistoryService.selectPage(page, ew);
+        for (TransferHistory t : transferHistoryPage.getRecords()) {
             Works works = new Works();
             works.setId(t.getWorksId());
             works = worksService.selectOne(works);
             Images images = imagesService.selectOne(new EntityWrapper<>(new Images(works.getId(), Const.IMAGES_WORKS)));
-            if(images != null && !StringUtils.isEmpty(images.getUrl())){
+            if (images != null && !StringUtils.isEmpty(images.getUrl())) {
                 works.setImages(images.getUrl());
             }
             t.setWorks(works);
         }
         return transferHistoryPage;
     }
-
-
 
 
     /**
@@ -165,14 +170,14 @@ public class UserController extends BaseController {
     @RequestMapping(value = "collect_load", method = RequestMethod.GET)
     @ResponseBody
     public Page<FollowHistory> loadCollect(@RequestParam(required = false, defaultValue = "0") Integer pageIndex,
-                                   @RequestParam(required = false, defaultValue = "6") Integer pageSize) {
+                                           @RequestParam(required = false, defaultValue = "6") Integer pageSize) {
 
         Page<FollowHistory> page = new Page<>(pageIndex, pageSize);
         EntityWrapper<FollowHistory> ew = new EntityWrapper<>(new FollowHistory());
         ew.setSqlSelect("target_id");
         ew.addFilter("type = 0 and user_id = {0}", getCurrentUser().getId());
-        Page<FollowHistory> followHistoryPage = followHistoryService.selectPage(page,ew);
-        for (FollowHistory f:followHistoryPage.getRecords()){
+        Page<FollowHistory> followHistoryPage = followHistoryService.selectPage(page, ew);
+        for (FollowHistory f : followHistoryPage.getRecords()) {
             Works works = new Works();
             works.setId(f.getTargetId());
             works = worksService.selectOne(works);
@@ -195,24 +200,24 @@ public class UserController extends BaseController {
         return "user/user_follow";
     }
 
-    @RequestMapping(value = "follow_load",method = RequestMethod.GET)
+    @RequestMapping(value = "follow_load", method = RequestMethod.GET)
     @ResponseBody
     public Page<FollowHistory> loadFollow(@RequestParam(required = false, defaultValue = "0") Integer pageIndex,
-                                    @RequestParam(required = false, defaultValue = "6") Integer pageSize){
+                                          @RequestParam(required = false, defaultValue = "6") Integer pageSize) {
         Page<FollowHistory> page = new Page<>(pageIndex, pageSize);
         EntityWrapper<FollowHistory> ew = new EntityWrapper<>(new FollowHistory());
         ew.setSqlSelect("target_id");
         ew.addFilter("type = 1 and target_id = {0}", getCurrentUser().getId());
-        Page<FollowHistory> followHistoryPage = followHistoryService.selectPage(page,ew);
-        for (FollowHistory f:followHistoryPage.getRecords()){
+        Page<FollowHistory> followHistoryPage = followHistoryService.selectPage(page, ew);
+        for (FollowHistory f : followHistoryPage.getRecords()) {
             AppUser user = new AppUser();
             user.setId(f.getTargetId());
             user = userService.selectOne(user);
             EntityWrapper<FollowHistory> followEw = new EntityWrapper<>(new FollowHistory());
-            followEw.addFilter("type = 1 and target_id = {0}",user.getId());
+            followEw.addFilter("type = 1 and target_id = {0}", user.getId());
             user.setFollowCount(followHistoryService.selectCount(followEw));
             EntityWrapper<Works> worksEw = new EntityWrapper<>(new Works());
-            worksEw.addFilter("create_by={0}",user.getId());
+            worksEw.addFilter("create_by={0}", user.getId());
             user.setWorksCount(worksService.selectCount(worksEw));
             f.setAppUser(user);
         }
@@ -261,7 +266,21 @@ public class UserController extends BaseController {
      * @return
      */
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public String search(HttpServletRequest request) {
+    public String search(HttpSession session,
+                         @RequestParam(required = false) String keywords,
+                         ModelMap map) {
+        AppUser appUser = getCurrentUser();
+        List<AppUser> appUserList;
+
+        if (appUser != null) {
+            appUserList = appUserService.searchUsersByName(keywords, appUser.getId());
+        } else {
+            EntityWrapper<AppUser> ew = new EntityWrapper<>(new AppUser());
+            ew.like("name", keywords);
+            appUserList = appUserService.selectList(ew);
+        }
+
+        map.put("appUserList", appUserList);
         return "search/search_user_result";
     }
 
@@ -286,14 +305,13 @@ public class UserController extends BaseController {
     }
 
 
-    @RequestMapping(value = "/header",method = RequestMethod.POST)
+    @RequestMapping(value = "/header", method = RequestMethod.POST)
     @ResponseBody
     public Boolean updateHeader(String headerUrl) {
         Integer userId = getCurrentUser().getId();
         AppUser appUser = new AppUser(userId, headerUrl);
         return userService.updateSelectiveById(appUser);
     }
-
 
 
     /**

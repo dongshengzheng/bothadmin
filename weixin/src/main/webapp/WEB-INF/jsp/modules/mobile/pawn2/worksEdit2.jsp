@@ -9,14 +9,25 @@
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">品种</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input name="breed" id="works-pinzhong" class="weui-input " type="tel" value="${works.breed}">
+        <select name="breed">
+            <option value="">请选择品种</option>
+            <c:forEach items="${pinzhong}" var="item">
+                <option value="${item.value}"
+                        <c:if test="${item.value==works.breed}">selected</c:if>  >${item.label}</option>
+            </c:forEach>
+        </select>
     </div>
 </div>
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">作品类型</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input name="worksType" id="works-zuopinleixing" class="weui-input " type="tel" value="${works.type}"
-               placeholder="请选择作品类型">
+        <select name="type">
+            <option value="">请选择作品类型</option>
+            <c:forEach items="${zuopinleixing}" var="item">
+                <option value="${item.value}"
+                        <c:if test="${item.value==works.breed}">selected</c:if> >${item.label}</option>
+            </c:forEach>
+        </select>
     </div>
 </div>
 <div class="weui-cell">
@@ -52,21 +63,37 @@
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">工艺制作</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input name="gyType" id="works-gongyizhizuo" class="weui-input" value="${works.gyType}"
-               placeholder="请选择工艺制作">
+        <select name="gyType">
+            <option value="">请选择工艺制作</option>
+            <c:forEach items="${gyType}" var="item">
+                <option value="${item.value}"
+                        <c:if test="${item.value==works.gyType}">selected</c:if> >${item.label}</option>
+            </c:forEach>
+        </select>
     </div>
 </div>
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">篆刻级别</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input name="levelZk" id="works-zhuankejibie" class="weui-input" value="${works.levelZk}"
-               placeholder="请选择篆刻级别">
+        <select name="levelZk">
+            <option value="">请选择篆刻级别</option>
+            <c:forEach items="${level}" var="item">
+                <option value="${item.value}"
+                        <c:if test="${item.value==works.levelZk}">selected</c:if>>${item.label}</option>
+            </c:forEach>
+        </select>
     </div>
 </div>
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">矿区地域</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input name="kqdy" id="works-kuangqudiyu" class="weui-input" value="${works.kqdy}" placeholder="请选择矿区地域">
+        <select name="kqdy">
+            <option value="">请选择矿区地域</option>
+            <c:forEach items="${kqdy}" var="item">
+                <option value="${item.value}"
+                        <c:if test="${item.value==works.kqdy}">selected</c:if>>${item.label}</option>
+            </c:forEach>
+        </select>
     </div>
 </div>
 <div class="weui-cell">
@@ -87,70 +114,12 @@
     <div class="weui-cell__bd weui-cell_primary">
                     <textarea name="worksMeaning" id="works-zuopinquanshi" class="weui-textarea" placeholder="作品诠释..."
                               rows="3">${works.worksMeaning}</textarea>
-        <!--<div class="weui-textarea-counter">-->
-        <!--<span>0</span>/200-->
-        <!--</div>-->
     </div>
 </div>
 
 
 <script>
     $(function () {
-        $('.weui-navbar__item').on('click', function () {
-            $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
-        });
-        $('#works-pinzhong').picker({
-            title: "请选择品种",
-            cols: [
-                {
-                    textAlign: 'center',
-                    values: ['昌化田黄鸡血石', '昌化田黄石', '昌化鸡血石', '昌化冻石', '昌化彩石', '昌化奇石']
-                }
-            ]
-        });
-
-
-        $('#works-zuopinleixing').picker({
-            title: "请选择作品类型",
-            cols: [
-                {
-                    textAlign: 'center',
-                    values: ['原石', '印章', '雕件', '小玩件', '组合套件', '其他']
-                }
-            ]
-        });
-
-        $('#works-gongyizhizuo').picker({
-            title: "请选择工艺制作",
-            cols: [
-                {
-                    textAlign: 'center',
-                    values: ['一级', '二级', '三级', '四级']
-                }
-            ]
-        });
-
-        $('#works-zhuankejibie').picker({
-            title: "请选择篆刻级别",
-            cols: [
-                {
-                    textAlign: 'center',
-                    values: ['一级', '二级', '三级', '四级']
-                }
-            ]
-        });
-
-        $('#works-kuangqudiyu').picker({
-            title: "请选择矿区地域",
-            cols: [
-                {
-                    textAlign: 'center',
-                    values: ['纤岭', '核桃岭', '粗糠坞', '老鹰岩', '红硐岩', '红硐湾',
-                        '康山岭', '冷水湾', '仰天荡', '蚱蜢脚盘', '笔架石', '灰石岭', '鸡冠岩']
-                }
-            ]
-        });
-
         $('#works-zhizuoshijian').calendar();
     });
 </script>

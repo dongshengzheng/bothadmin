@@ -66,8 +66,8 @@
 
 <script>
     $(function () {
-        initUploaders($('#bucket').val(), $('#redirectUrl').val(), "worksImages");
-        initUploaders2($('#bucket').val(), $('#redirectUrl').val());
-        initUploaders3($('#bucket').val(), $('#redirectUrl').val(), "valueImages");
+        initUploaders($('#bucket').val(), $('#redirectUrl').val() + "/", "worksImages");
+        initUploaders2($('#bucket').val(), $('#redirectUrl').val() + "/");
+        initUploaders3($('#bucket').val(), $('#redirectUrl').val() + "/", "valueImages");
     })
 </script>
