@@ -2,15 +2,11 @@ package com.fish.idle.site.web;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.plugins.Page;
 import com.fish.idle.service.modules.jsdd.entity.*;
 import com.fish.idle.service.modules.jsdd.service.*;
-import com.fish.idle.service.modules.sys.entity.Dict;
 import com.fish.idle.service.modules.sys.service.IDictService;
 import com.fish.idle.service.util.Const;
 import com.fish.idle.service.util.StringUtils;
-import com.fish.idle.site.entity.Paging;
-import com.fish.idle.site.entity.WorkInfoRequest;
 import com.fish.idle.site.entity.WorksBo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
