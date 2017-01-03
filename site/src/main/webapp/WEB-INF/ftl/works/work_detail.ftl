@@ -17,7 +17,7 @@
     <div class="container">
         <h1 class="pull-left">作品详情</h1>
         <ul class="pull-right breadcrumb">
-            <li><a href="index.html">首页</a></li>
+            <li><a href="/l">首页</a></li>
             <li class="active">作品详情</li>
         </ul>
     </div>

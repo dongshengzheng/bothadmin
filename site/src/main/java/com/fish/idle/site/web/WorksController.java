@@ -222,7 +222,7 @@ public class WorksController extends BaseController {
     public JSONObject saveReport(Report report,
                                  @RequestParam(required = false) String certifyImage,
                                  @RequestParam(required = false) String desImage,
-                                 Integer status) {
+                                 @RequestParam(required = false) String status) {
         wrapInsertEntity(report);
         JSONObject jsonObject = new JSONObject();
         if (!reportService.insert(report)) {
@@ -230,6 +230,9 @@ public class WorksController extends BaseController {
             jsonObject.put("msg", "保存评估报告出错");
             return jsonObject;
         }
+        status = Const.WORKS_STATUS_COMMIT;
+        worksService.updateSelectiveById(new Works(report.getWorksId(),status));
+
         // 保存评估报告
         imagesService.insertImage(desImage, report.getId(), Const.IMAGES_REPORT_DES);
         // 保存作品认证图片
