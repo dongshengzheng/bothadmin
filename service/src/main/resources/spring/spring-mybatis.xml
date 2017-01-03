@@ -9,7 +9,7 @@
 						http://www.springframework.org/schema/context/spring-context.xsd
 						http://www.springframework.org/schema/tx
 						http://www.springframework.org/schema/tx/spring-tx.xsd">
-    <context:property-placeholder location="classpath:override.properties" />
+    <context:property-placeholder location="classpath:override.properties"/>
     <context:component-scan base-package="com.fish.idle.service.modules.*.service"/>
 
 
@@ -50,7 +50,7 @@
     <!-- 注意：这里使用的是MP的MybatisSqlSessionFactoryBean，而不是Mybatis的，因为MP需要进行相应代理 -->
     <bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean">
         <!-- 配置数据源 -->
-        <property name="dataSource" ref="dataSource" />
+        <property name="dataSource" ref="dataSource"/>
         <!-- 配置Mybatis配置文件 -->
         <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
         <!-- 配置别名包路径 -->
@@ -62,11 +62,11 @@
             <array>
                 <!-- 分页插件配置 -->
                 <bean id="paginationInterceptor" class="com.baomidou.mybatisplus.plugins.PaginationInterceptor">
-                    <property name="dialectType" value="mysql" />
+                    <property name="dialectType" value="mysql"/>
                 </bean>
             </array>
         </property>
-         <property name="dbColumnUnderline" value="true" />
+        <property name="dbColumnUnderline" value="true"/>
     </bean>
 
 
@@ -77,8 +77,6 @@
         <!-- 给出需要扫描的Dao接口-->
         <property name="basePackage" value="com.fish.idle.service.**.mapper"/>
     </bean>
-
-
 
 
     <bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
