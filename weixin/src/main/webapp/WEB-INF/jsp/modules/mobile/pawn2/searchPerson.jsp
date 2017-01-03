@@ -241,6 +241,7 @@
                         thisOne.removeClass('div-on').siblings('.search-results-one-care').addClass('div-on');
                         thisOne.removeClass('div-on').siblings('.search-results-one-care').addClass('div-on');
                         var outer = $(thisOne).parent().parent().parent();
+                        outer.sub8
                         var haveCareOuter = outer.parent();
                         var notCareOuter = haveCareOuter.siblings('#not-care-people');
                         notCareOuter.append(outer);
