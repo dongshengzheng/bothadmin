@@ -36,8 +36,6 @@
 </div>
 
 
-<input id="keywords" type="hidden" value="${RequestParameters.keywords}">
-
 <li class="col-sm-4 md-margin-bottom-50" style="display: none;" id="worksTemp">
     <a id="works_img" href="" class="thumbnail fancybox" data-rel="gallery" title="" href="">
         <img onerror="nofind(1)" class="full-width img-responsive works-image" src="" alt="">
@@ -61,12 +59,11 @@
 
     pageIndex = 1;
     hasMore = true;
-
+    var keywords = "${RequestParameters.keywords!''}";
 
     $("#headerHome").addClass("active");
     $(document).ready(function () {
-        var keywords = $('#keywords').val();
-        alert(keywords);
+
         load(1, keywords);
         function load(pageIndex, keywords) {
             $.post("/works", {pageIndex: pageIndex, keywords: keywords}, function (data) {

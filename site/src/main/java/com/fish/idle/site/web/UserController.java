@@ -11,6 +11,7 @@ import com.fish.idle.service.modules.sys.service.IAppUserService;
 import com.fish.idle.service.modules.sys.service.IDictService;
 import com.fish.idle.service.util.Const;
 import com.fish.idle.service.util.StringUtils;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -266,24 +267,55 @@ public class UserController extends BaseController {
      * @return
      */
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public String search(HttpSession session,
-                         @RequestParam(required = false) String keywords,
+    public String search(@RequestParam(required = false) String keywords,
                          ModelMap map) {
-        AppUser appUser = getCurrentUser();
-        List<AppUser> appUserList;
 
-        if (appUser != null) {
-            appUserList = appUserService.searchUsersByName(keywords, appUser.getId());
-        } else {
-            EntityWrapper<AppUser> ew = new EntityWrapper<>(new AppUser());
-            ew.like("name", keywords);
-            appUserList = appUserService.selectList(ew);
-        }
-
-        map.put("appUserList", appUserList);
         return "search/search_user_result";
     }
 
+
+    @RequestMapping(value = "/userPage", method = RequestMethod.GET)
+    @ResponseBody
+    public List<AppUser> userPage(@RequestParam(required = false, defaultValue = "1") Integer pageIndex,
+                                  @RequestParam(required = false, defaultValue = "6") Integer pageSize,
+                                  @RequestParam(required = false) String keywords) {
+        List<AppUser> appUserList = appUserService.siteSearchUsersByName(keywords, pageSize, (pageIndex - 1) * pageSize, getCurrentUser().getId());
+        return appUserList;
+    }
+
+    /**
+     * 未关注--关注
+     *
+     * @return
+     */
+    @RequestMapping(value = "/notToHave", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String notToHave(HttpSession session,
+                            int targetId) {
+        AppUser appUser = getCurrentUser();
+        if (targetId == appUser.getId()) {
+            return "自己不要关注自己哟";
+        }
+
+        FollowHistory followHistory = new FollowHistory();
+        followHistory.setUserId(appUser.getId());
+        followHistory.setTargetId(targetId);
+        followHistory.setType(Const.FOLLOW_HISTORY_TYPE_FOCUS);
+        FollowHistory fh = followHistoryService.selectOne(new EntityWrapper<>(followHistory));
+        Boolean result;
+        if (fh == null) {
+            followHistory.setDelFlag(Const.DEL_FLAG_NORMAL);
+            result = followHistoryService.insert(followHistory);
+        } else {
+            fh.setDelFlag(Const.DEL_FLAG_NORMAL);
+            result = followHistoryService.updateById(fh);
+        }
+        if (result) {
+            return "关注成功!";
+        }
+
+        return "关注失败!请稍后再试";
+    }
 
     /**
      * 用户中心

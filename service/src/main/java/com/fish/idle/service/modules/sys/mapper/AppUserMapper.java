@@ -23,4 +23,7 @@ public interface AppUserMapper extends AutoMapper<AppUser> {
 
     List<AppUser> searchFollowHistoryUsers(Integer followHistoryType, Integer targetId);
 
+    //site端使用
+    List<AppUser> siteSearchUsersByName(String name, int size, int from, int myId);
+
 }

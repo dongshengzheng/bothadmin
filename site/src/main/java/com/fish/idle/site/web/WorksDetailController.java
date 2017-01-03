@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.fish.idle.service.modules.jsdd.entity.*;
 import com.fish.idle.service.modules.jsdd.service.*;
+import com.fish.idle.service.modules.sys.entity.AppUser;
 import com.fish.idle.service.modules.sys.service.IDictService;
 import com.fish.idle.service.util.Const;
 import com.fish.idle.service.util.StringUtils;

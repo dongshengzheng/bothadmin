@@ -125,6 +125,10 @@ public class AppUser implements Serializable {
     @TableField(exist = false)
     private Integer collectionCount;
 
+    //判断'我'是否关注了该用户
+    @TableField(exist = false)
+    private int follow;
+
 
     public Integer getId() {
         return this.id;
@@ -288,5 +292,13 @@ public class AppUser implements Serializable {
     public AppUser(Integer id, String headImgUrl) {
         this.id = id;
         this.headImgUrl = headImgUrl;
+    }
+
+    public int getFollow() {
+        return follow;
+    }
+
+    public void setFollow(int follow) {
+        this.follow = follow;
     }
 }

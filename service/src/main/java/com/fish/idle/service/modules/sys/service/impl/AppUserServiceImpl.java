@@ -57,4 +57,9 @@ public class AppUserServiceImpl extends SuperServiceImpl<AppUserMapper, AppUser>
         int count = appUserMapper.selectCount(appUser);
         return count > 0;
     }
+
+    @Override
+    public List<AppUser> siteSearchUsersByName(String name, int size, int from, int myId) {
+        return appUserMapper.siteSearchUsersByName(name, size, from, myId);
+    }
 }

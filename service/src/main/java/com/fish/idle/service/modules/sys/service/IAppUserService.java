@@ -24,4 +24,6 @@ public interface IAppUserService extends ISuperService<AppUser> {
     List<AppUser> searchFollowHistoryUsers(Integer followHistoryType, Integer targetId);
 
     boolean isNameExist(String loginName);
+
+    List<AppUser> siteSearchUsersByName(String name, int size, int from, int myId);
 }
