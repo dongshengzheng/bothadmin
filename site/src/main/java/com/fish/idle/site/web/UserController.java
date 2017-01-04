@@ -273,7 +273,11 @@ public class UserController extends BaseController {
         return "search/search_user_result";
     }
 
-
+    /**
+     * 搜索用户分页
+     *
+     * @return
+     */
     @RequestMapping(value = "/userPage", method = RequestMethod.POST)
     @ResponseBody
     public List<AppUser> userPage(@RequestParam(required = false, defaultValue = "1") Integer pageIndex,

@@ -7,6 +7,11 @@
 		id, login_name AS loginName, `password`, `name`, email, phone, identification, pub, score, open_id AS openId, prefer, address, head_img_url AS headImgUrl
 	</sql>
 
+    <select id="ById" resultType="AppUser">
+		SELECT u.* FROM sys_app_user u WHERE u.id=#{0}
+	</select>
+
+
     <!--根据姓名模糊匹配用户,且带有粉丝数目和作品数目(去除用户自己)-->
     <select id="searchUsersByName" resultType="AppUser">
 		SELECT inner_.*,COUNT(w.id) works_count from
@@ -59,7 +64,7 @@
     <!--根据target_id和type查找followHistory中的user_id对应的user集合-->
     <select id="searchFollowHistoryUsers" resultType="AppUser">
 		SELECT u.* from sys_app_user u where u.id in (
-		select f.user_id from dd_follow_history f where f.type=#{0} and f.target_id=#{1})
+		select f.user_id from dd_follow_history f where f.type=#{0} and f.target_id=#{1} and f.del_flag=0)
 	</select>
 
 
