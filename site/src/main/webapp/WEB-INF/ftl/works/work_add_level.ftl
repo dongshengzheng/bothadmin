@@ -65,7 +65,7 @@
                 <h2 class="title-type">作品等级</h2>
                 <div class="billing-info-inputs checkbox-list">
                     <form id="works_level" action="${staticPath}/works/add/level" method="post" class="form-horizontal">
-                        <input type="hidden" name="worksId" id="worksId" value="${works.id}">
+                        <input type="hidden" name="id" id="worksId" value="${works.id}">
                         <input type="hidden" id="status" name="status"/>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="name">作品名称</label>
@@ -225,7 +225,7 @@
                             <label class="col-sm-2 control-label"></label>
                             <div class=" col-sm-4">
                                 <button data-type="0" class="btn btn-u btn-u-red info_btn">下一步</button>
-                                <button data-type="1" class="btn btn-u btn-u-default info_btn" style="margin-left: 20px">存为草稿
+                                <button data-type="0" class="btn btn-u btn-u-default info_btn" style="margin-left: 20px">存为草稿
                                 </button>
                             </div>
                         </div>
