@@ -17,7 +17,7 @@
     <div class="container">
         <h1 class="pull-left">作品详情</h1>
         <ul class="pull-right breadcrumb">
-            <li><a href="/l">首页</a></li>
+            <li><a href="/">首页</a></li>
             <li class="active">作品详情</li>
         </ul>
     </div>
@@ -531,6 +531,10 @@
             $(form).ajaxSubmit({
                 success: function (data) {
                     if (data) {
+                        alert("诠释成功!");
+                        $('#description').val('');
+                        $('#container-interpretation').html('');
+                        $('#interpretation_contain .media').remove();
                         loadInterpretation(1);
                     } else {
                         alert("失败");
@@ -558,12 +562,15 @@
                 $li.removeAttr("id").css("display", "block");
                 $li.find(".description").html(this.description);
                 $li.find(".name").html(this.appUser.name);
+                $li.find(".headImgUrl").parent().attr('href', "${staticPath}/user/detail?userId=" + this.appUser.id);
                 if (this.appUser.headImgUrl.indexOf('http') != -1) {
                     $li.find(".headImgUrl").attr("src", this.appUser.headImgUrl);
                 } else {
                     $li.find(".headImgUrl").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.appUser.headImgUrl + "?x-oss-process=image/resize,m_fill,h_80,w_80");
                 }
-                $li.find("small").html(this.createDate);
+                var t = this.createDate;
+                var d = new Date(parseInt(t)).Format("yyyy-MM-dd hh:mm:ss");
+                $li.find("small").html(d);
                 $.each(this.imagesList, function () {
                     $li.find(".img-uploaded").append('<li><img class="img-responsive" src="http://windyeel.img-cn-shanghai.aliyuncs.com/' + this.url + '?x-oss-process=image/resize,m_fill,h_80,w_80" alt=""></li>');
                 });
@@ -582,6 +589,22 @@
     $('.headImg').on('click', function () {
         location.href = "${staticPath}/user/detail?userId=" + $(this).attr('data-id');
     })
+
+    Date.prototype.Format = function (fmt) { //author: meizz
+        var o = {
+            "M+": this.getMonth() + 1, //月份
+            "d+": this.getDate(), //日
+            "h+": this.getHours(), //小时
+            "m+": this.getMinutes(), //分
+            "s+": this.getSeconds(), //秒
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+            "S": this.getMilliseconds() //毫秒
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    }
 
 
 </script>

@@ -69,15 +69,34 @@
 
 
     <!--site端使用-->
-    <!--根据姓名模糊匹配用户,且带有粉丝数目和作品数目(去除用户自己)-->
+    <!--根据姓名模糊匹配用户(按照'我'是否关注排序),且带有粉丝数目和作品数目(去除用户自己)-->
     <select id="siteSearchUsersByName" resultType="AppUser">
 		select au.*,
-		(select count(fh.id) from dd_follow_history fh where fh.user_id= #{3} and type =1 and fh.target_id=au.id) as follow,
-		(select count(fh2.id) from dd_follow_history fh2 where type =1 and fh2.target_id=au.id) as follow_count,
+		(select count(fh.id) from dd_follow_history fh where fh.user_id= #{3} and type =1 and fh.target_id=au.id and fh.del_flag=0) as follow,
+		(select count(fh2.id) from dd_follow_history fh2 where type =1 and fh2.target_id=au.id and fh2.del_flag=0) as follow_count,
 		(select count(w.id) from dd_works w where w.status =3 and w.create_by=au.id) as works_count
 		from sys_app_user au
 		where au.login_name like CONCAT('%',#{0},'%') and au.id!= #{3} order by follow desc
 		LIMIT #{1} OFFSET #{2};
     </select>
+
+    <select id="siteByIdContainWorksFocusCount" resultType="AppUser">
+		select au.*,
+		(select count(fh.id) from dd_follow_history fh where fh.type =1 and fh.target_id=#{0} and fh.del_flag=0) as follow_count,
+		(select count(w.id) from dd_works w where w.status =3 and w.create_by=#{0} and w.del_flag=0 ) as works_count
+		from sys_app_user au where au.id=#{0}
+    </select>
+
+    <!--根据id查询用户的粉丝(按照'我'是否关注排序)且带有粉丝数目和作品数目-->
+    <select id="siteSearchFansByUserId" resultType="AppUser">
+		select au.*,
+		(select count(fh.id) from dd_follow_history fh where fh.user_id= #{3} and type =1 and fh.target_id=au.id and fh.del_flag=0) as follow,
+		(select count(fh2.id) from dd_follow_history fh2 where type =1 and fh2.target_id=au.id and fh2.del_flag=0) as follow_count,
+		(select count(w.id) from dd_works w where w.status =3 and w.create_by=au.id) as works_count
+		from sys_app_user au where au.id
+		in(select fh3.user_id from dd_follow_history fh3 where fh3.target_id=#{0} and fh3.type=1 and fh3.del_flag=0)
+	    order by follow desc
+		LIMIT #{1} OFFSET #{2};
+	</select>
 
 </mapper>

@@ -26,4 +26,8 @@ public interface AppUserMapper extends AutoMapper<AppUser> {
     //site端使用
     List<AppUser> siteSearchUsersByName(String name, int size, int from, int myId);
 
+    AppUser siteByIdContainWorksFocusCount(int userId);
+
+    List<AppUser> siteSearchFansByUserId(int userId, int size, int from, int myId);
+
 }
