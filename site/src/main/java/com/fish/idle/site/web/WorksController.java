@@ -105,7 +105,6 @@ public class WorksController extends BaseController {
         }
         imagesService.insertImage(works.getImages(), works.getId(), Const.IMAGES_WORKS);
 
-
         jsonObject.put("suc", true);
         jsonObject.put("id", works.getId());
         return jsonObject;
@@ -185,11 +184,20 @@ public class WorksController extends BaseController {
      */
     @RequestMapping(value = "/add/level", method = RequestMethod.POST)
     @ResponseBody
-    public JSONObject saveLevel(WorksLevel worksLevel) {
+    public JSONObject saveLevel(WorksLevel worksLevel,Works works) {
         JSONObject jsonObject = new JSONObject();
-
+        wrapInsertEntity(works);
         wrapInsertEntity(worksLevel);
 
+        //保存作品信息
+        works.setStatus(Const.WORKS_STATUS_DRAFT);
+        if (!worksService.updateSelectiveById(works)) {
+            jsonObject.put("suc", false);
+            jsonObject.put("msg", "保存作品信息出错");
+            return jsonObject;
+        }
+
+        //保存作品等级信息
         if (!worksLevelService.insert(worksLevel)) {
             jsonObject.put("suc", false);
             jsonObject.put("msg", "保存作品等级出错");
@@ -230,7 +238,6 @@ public class WorksController extends BaseController {
             jsonObject.put("msg", "保存评估报告出错");
             return jsonObject;
         }
-        status = Const.WORKS_STATUS_COMMIT;
         worksService.updateSelectiveById(new Works(report.getWorksId(), status));
 
         // 保存评估报告
@@ -265,7 +272,6 @@ public class WorksController extends BaseController {
     @ResponseBody
     public JSONObject saveCollect(Consumer consumer, String status) {
         JSONObject jsonObject = new JSONObject();
-        status = Const.WORKS_STATUS_COMMIT;
 
         wrapInsertEntity(consumer);
         if (!StringUtils.isEmpty(consumer.getPub())) {

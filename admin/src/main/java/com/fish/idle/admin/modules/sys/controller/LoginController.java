@@ -71,7 +71,7 @@ public class LoginController extends BaseController {
         if (null != keyDatas && keyDatas.length == 3) {
             // shiro管理的session
             Subject currentUser = SecurityUtils.getSubject();
-            Session session = currentUser.getSession();
+              Session session = currentUser.getSession();
             String sessionCode = (String) session.getAttribute(Const.SESSION_SECURITY_CODE); // 获取session中的验证码
             // TODO: 29/11/2016 此处明显有问题，后续进行逻辑修复：登录超过三次才显示验证码
             String code = keyDatas[2];

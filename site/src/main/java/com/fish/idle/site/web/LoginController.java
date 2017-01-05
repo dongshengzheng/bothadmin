@@ -61,7 +61,7 @@ public class LoginController extends BaseController {
         }
         jsonObject.put("result", errInfo);
 
-        return jsonObject;
+            return jsonObject;
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
