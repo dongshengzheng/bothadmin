@@ -17,8 +17,14 @@
         <!--Left Sidebar-->
         <div class="col-md-3 md-margin-bottom-40">
             <div class="profile-bio">
-                <img class="img-responsive profile-img margin-bottom-20" src="${Session.siteSessionUser.headImgUrl!''}"
-                     alt="">
+                <#if Session.siteSessionUser.headImgUrl?index_of('http')!=-1>
+                    <img class="img-responsive profile-img margin-bottom-20" src="${Session.siteSessionUser.headImgUrl!''}"
+                         alt="">
+                <#else>
+                    <img class="img-responsive profile-img margin-bottom-20"
+                         src="http://windyeel.img-cn-shanghai.aliyuncs.com/${Session.siteSessionUser.headImgUrl}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                         alt="">
+                </#if>
                 <a id="upload_header" class="btn-u btn-u-sm" href="javascript:;">更改头像</a>
             </div>
 

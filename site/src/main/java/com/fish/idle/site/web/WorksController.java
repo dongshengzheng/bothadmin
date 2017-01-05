@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.fish.idle.service.modules.jsdd.entity.*;
 import com.fish.idle.service.modules.jsdd.service.*;
+import com.fish.idle.service.modules.sys.entity.AppUser;
 import com.fish.idle.service.modules.sys.service.IDictService;
 import com.fish.idle.service.util.Const;
 import com.fish.idle.service.util.StringUtils;
@@ -16,6 +17,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -53,6 +55,9 @@ public class WorksController extends BaseController {
 
     @Autowired
     private IReportService reportService;
+
+    @Autowired
+    private IFollowHistoryService followHistoryService;
 
     /**
      * 第一步：登记物品信息
@@ -387,6 +392,67 @@ public class WorksController extends BaseController {
     public String searchWorks(ModelMap map,
                               @RequestParam(required = false) String keywords) {
         return "search/search_works_result";
+    }
+
+
+    /**
+     * 点击收藏按钮,收藏作品
+     *
+     * @return
+     */
+    @RequestMapping(value = "collectWorks", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String collectWorks(@RequestParam(required = false) int worksId) {
+        AppUser appUser = getCurrentUser();
+
+        FollowHistory followHistory = new FollowHistory();
+        followHistory.setUserId(appUser.getId());
+        followHistory.setTargetId(worksId);
+        followHistory.setType(Const.FOLLOW_HISTORY_TYPE_COLLECT);
+        followHistory.setDelFlag(null);
+        FollowHistory fh = followHistoryService.selectOne(new EntityWrapper<>(followHistory));
+        if (fh == null) {
+            followHistory.setDelFlag(Const.DEL_FLAG_NORMAL);
+            followHistoryService.insert(followHistory);
+            return "收藏成功!!!";
+        } else {
+            if (fh.getDelFlag() == Const.DEL_FLAG_NORMAL) {
+                return "已在收藏中!";
+            } else {
+                fh.setDelFlag(Const.DEL_FLAG_NORMAL);
+                followHistoryService.updateById(fh);
+                return "收藏成功!!!";
+            }
+        }
+    }
+
+    /**
+     * 取消收藏
+     *
+     * @return
+     */
+    @RequestMapping(value = "cancelCollect", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String cancelCollect(@RequestParam(required = false) int worksId) {
+        AppUser appUser = getCurrentUser();
+        FollowHistory followHistory = new FollowHistory();
+        followHistory.setUserId(appUser.getId());
+        followHistory.setTargetId(worksId);
+        followHistory.setType(Const.FOLLOW_HISTORY_TYPE_COLLECT);
+        followHistory.setDelFlag(null);
+        FollowHistory fh = followHistoryService.selectOne(new EntityWrapper<>(followHistory));
+        Boolean result;
+        if (fh == null) {
+            followHistory.setDelFlag(Const.DEL_FLAG_DELETE);
+            result = followHistoryService.insert(followHistory);
+        } else {
+            fh.setDelFlag(Const.DEL_FLAG_DELETE);
+            result = followHistoryService.updateById(fh);
+        }
+        if (result) {
+            return "取消收藏成功!";
+        }
+        return "取消收藏失败!请稍后再试";
     }
 
 

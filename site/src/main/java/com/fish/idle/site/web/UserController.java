@@ -206,9 +206,10 @@ public class UserController extends BaseController {
     public Page<FollowHistory> loadFollow(@RequestParam(required = false, defaultValue = "0") Integer pageIndex,
                                           @RequestParam(required = false, defaultValue = "6") Integer pageSize) {
         Page<FollowHistory> page = new Page<>(pageIndex, pageSize);
-        EntityWrapper<FollowHistory> ew = new EntityWrapper<>(new FollowHistory());
-        ew.setSqlSelect("target_id");
-        ew.addFilter("type = 1 and target_id = {0}", getCurrentUser().getId());
+        FollowHistory followHistory = new FollowHistory();
+        followHistory.setUserId(getCurrentUser().getId());
+        followHistory.setType(Const.FOLLOW_HISTORY_TYPE_FOCUS);
+        EntityWrapper<FollowHistory> ew = new EntityWrapper<>(followHistory);
         Page<FollowHistory> followHistoryPage = followHistoryService.selectPage(page, ew);
         for (FollowHistory f : followHistoryPage.getRecords()) {
             AppUser user = new AppUser();
@@ -257,8 +258,93 @@ public class UserController extends BaseController {
      * @return
      */
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
-    public String detail() {
+    public String detail(ModelMap map, @RequestParam(required = false) int userId) {
+        AppUser appUser = appUserService.siteByIdContainWorksFocusCount(userId);
+        map.put("appUser", appUser);
         return "user/user_detail";
+    }
+
+    /**
+     * 用户详情:Ta的资料
+     *
+     * @return
+     */
+    @RequestMapping(value = "/detail/info", method = RequestMethod.GET)
+    public String detailInfo(ModelMap map, @RequestParam(required = false) int userId) {
+        AppUser appUser = appUserService.siteByIdContainWorksFocusCount(userId);
+        map.put("appUser", appUser);
+        List<Dict> list = getWorksLevelDicByType("dd_preference");
+        map.put("preference", list);
+        map.put("pre", appUser.getPrefer() != null ? appUser.getPrefer().split(",") : new String[0]);
+        return "user/user_detail_info";
+    }
+
+    /**
+     * 用户详情:Ta的作品
+     *
+     * @return
+     */
+    @RequestMapping(value = "/detail/works", method = RequestMethod.GET)
+    public String detailWorks(ModelMap map, @RequestParam(required = false) int userId) {
+        AppUser appUser = appUserService.siteByIdContainWorksFocusCount(userId);
+        map.put("appUser", appUser);
+        return "user/user_detail_works";
+    }
+
+    /**
+     * 用户详情:Ta的作品 load
+     *
+     * @return
+     */
+    @RequestMapping(value = "/detail/works_load", method = RequestMethod.GET)
+    @ResponseBody
+    public Page<Works> detailWorksLoad(@RequestParam(required = false, defaultValue = "1") Integer pageIndex,
+                                       @RequestParam(required = false, defaultValue = "6") Integer pageSize,
+                                       @RequestParam(required = false) Integer userId) {
+
+        Page<Works> page = new Page<>(pageIndex, pageSize);
+        Works works = new Works();
+        works.setCreateBy(userId);
+        works.setStatus(Const.WORKS_STATUS_PASS);
+        EntityWrapper<Works> ew = new EntityWrapper<>(works);
+        Page<Works> worksPage = worksService.selectPage(page, ew);
+        for (Works work : worksPage.getRecords()) {
+            //品种
+            if (StringUtils.isNotEmpty(work.getBreed())) {
+                work.setBreed(dictService.getLabelByValue(work.getBreed(), "dd_pinzhong"));
+            }
+            Images images = imagesService.selectOne(new EntityWrapper<>(new Images(work.getId(), Const.IMAGES_WORKS)));
+            if (images != null && !StringUtils.isEmpty(images.getUrl())) {
+                work.setImages(images.getUrl());
+            }
+        }
+        return worksPage;
+    }
+
+    /**
+     * 用户详情:Ta的粉丝
+     *
+     * @return
+     */
+    @RequestMapping(value = "/detail/fans", method = RequestMethod.GET)
+    public String detailFans(ModelMap map, @RequestParam(required = false) int userId) {
+        AppUser appUser = appUserService.siteByIdContainWorksFocusCount(userId);
+        map.put("appUser", appUser);
+        return "user/user_detail_fans";
+    }
+
+    /**
+     * 用户详情:Ta的粉丝 load
+     *
+     * @return
+     */
+    @RequestMapping(value = "/detail/fans_load", method = RequestMethod.GET)
+    @ResponseBody
+    public List<AppUser> detailFansLoad(@RequestParam(required = false, defaultValue = "1") Integer pageIndex,
+                                        @RequestParam(required = false, defaultValue = "6") Integer pageSize,
+                                        @RequestParam(required = false) Integer userId) {
+        List<AppUser> focusList = appUserService.siteSearchFansByUserId(userId, pageSize, (pageIndex - 1) * pageSize, getCurrentUser().getId());
+        return focusList;
     }
 
     /**
@@ -273,7 +359,11 @@ public class UserController extends BaseController {
         return "search/search_user_result";
     }
 
-
+    /**
+     * 搜索用户分页
+     *
+     * @return
+     */
     @RequestMapping(value = "/userPage", method = RequestMethod.POST)
     @ResponseBody
     public List<AppUser> userPage(@RequestParam(required = false, defaultValue = "1") Integer pageIndex,

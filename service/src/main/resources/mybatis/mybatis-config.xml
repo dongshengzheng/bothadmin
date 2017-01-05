@@ -22,6 +22,7 @@
         <typeAlias type="com.fish.idle.service.modules.jsdd.entity.Consumer" alias="Consumer"/>
         <typeAlias type="com.fish.idle.service.modules.jsdd.entity.Works" alias="Works"/>
         <typeAlias type="com.fish.idle.service.modules.jsdd.entity.TransferHistory" alias="TransferHistory"/>
+        <typeAlias type="com.fish.idle.service.modules.jsdd.entity.FollowHistory" alias="FollowHistory"/>
         <typeAlias type="com.fish.idle.service.modules.jsdd.entity.Interpretation" alias="Interpretation"/>
         <typeAlias type="com.fish.idle.service.modules.jsdd.entity.Images" alias="Images"/>
     </typeAliases>

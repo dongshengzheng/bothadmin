@@ -17,7 +17,7 @@
     <div class="container">
         <h1 class="pull-left">作品详情</h1>
         <ul class="pull-right breadcrumb">
-            <li><a href="/l">首页</a></li>
+            <li><a href="/">首页</a></li>
             <li class="active">作品详情</li>
         </ul>
     </div>
@@ -89,7 +89,7 @@
                                 浏览次数
                             </div>
                             <div class="col-sm-6" style="margin-top: 10px">
-                                11
+                            ${(works.browserCount)!}
                             </div>
                         </div>
 
@@ -107,13 +107,15 @@
                             <div class="media">
                                 <div class="pull-left">
                                     <div style="margin: 12px 10px;height: 50px;width: 50px;border-radius: 50px;overflow:hidden">
-                                        <img class="" src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
+                                        <img data-id="${appUser.id}" class="headImg" src="${appUser.headImgUrl!}"
+                                             style="width: 100%" alt=""/>
                                     </div>
                                 </div>
                                 <div class="media-body">
                                     <p style="margin-top: 25px">
                                         <span style="float:  right;">
-                                            <button id="addFocus" class="btn btn-default btn-sm"
+                                            <button data-id="${appUser.id}" id="addFocus"
+                                                    class="btn btn-default btn-sm addFocus"
                                                     style="margin-right: 6px">
                                                 <i class="fa fa-plus" style="margin-right: 3px"></i>
                                                 <span>关注</span>
@@ -126,7 +128,7 @@
                     </div>
 
                     <div class="margin-top-20 text-center">
-                        <button id="addCollect" class="btn btn-lg btn-u btn-u-red">
+                        <button data-id="${works.id}" id="addCollect" class="btn btn-lg btn-u btn-u-red">
                             <i class="fa fa-heart-o"></i>&nbsp;<span>添加收藏</span>
                         </button>
                     </div>
@@ -243,8 +245,14 @@
                                 <div class="tab-pane fade in profile" id="interpretation">
                                     <div class="media media-v2 margin-bottom-20">
                                         <a class="pull-left" href="#">
-                                            <img class="media-object rounded-x"
-                                                 src="${staticPath}/assets/img/testimonials/img6.jpg" alt="">
+                                            <#if currentUser.headImgUrl?index_of('http')!=-1>
+                                                <img data-id="${currentUser.id}" class="media-object rounded-x headImg"
+                                                     src="${currentUser.headImgUrl}" alt=""/>
+                                            <#else>
+                                                <img data-id="${currentUser.id}" class="media-object rounded-x headImg"
+                                                     src="http://windyeel.img-cn-shanghai.aliyuncs.com/${currentUser.headImgUrl}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                                                     alt=""/>
+                                            </#if>
                                         </a>
                                         <div class="media-body">
                                             <form id="form_interpretation" class="sky-form" action="/interpretation/add"
@@ -309,40 +317,14 @@
                                         <!--Timeline-->
                                         <ul class="timeline-v2">
                                             <li>
-                                                <time class="cbp_tmtime" datetime=""><span>12:16:06</span> <span>2016-05-26</span>
+                                                <time class="cbp_tmtime" datetime=""><span>12:16:06</span>
+                                                    <span>2016-05-26</span>
                                                 </time>
                                                 <i class="cbp_tmicon rounded-x hidden-xs"></i>
                                                 <div class="cbp_tmlabel">
-
-                                                    <!--todo transfer-->
-
-
                                                 </div>
                                             </li>
 
-                                            <li>
-                                                <time class="cbp_tmtime" datetime=""><span>12:16:06</span> <span>2016-05-26</span>
-                                                </time>
-                                                <i class="cbp_tmicon rounded-x hidden-xs"></i>
-                                                <div class="cbp_tmlabel">
-
-                                                    <!--todo transfer-->
-
-
-                                                </div>
-                                            </li>
-
-                                            <li>
-                                                <time class="cbp_tmtime" datetime=""><span>12:16:06</span> <span>2016-05-26</span>
-                                                </time>
-                                                <i class="cbp_tmicon rounded-x hidden-xs"></i>
-                                                <div class="cbp_tmlabel">
-
-                                                    <!--todo transfer-->
-
-
-                                                </div>
-                                            </li>
                                         </ul>
                                         <!--End Timeline-->
                                     </div>
@@ -364,42 +346,20 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-4" style="padding-right: 0px;width: 75px">
-                    <img class="" style="margin: 10px 0px 10px 10px;height: 50px;width: 50px"
-                         src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
-                </div>
-
-                <div class="col-sm-4" style="padding-right: 0px;width: 75px">
-                    <img class="" style="margin: 10px 0px 10px 10px;height: 50px;width: 50px"
-                         src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
-                </div>
-
-                <div class="col-sm-4" style="padding-right: 0px;width: 75px">
-                    <img class="" style="margin: 10px 0px 10px 10px;height: 50px;width: 50px"
-                         src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
-                </div>
-
-                <div class="col-sm-4" style="padding-right: 0px;width: 75px">
-                    <img class="" style="margin: 10px 0px 10px 10px;height: 50px;width: 50px"
-                         src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
-                </div>
-
-                <div class="col-sm-4" style="padding-right: 0px;width: 75px">
-                    <img class="" style="margin: 10px 0px 10px 10px;height: 50px;width: 50px"
-                         src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
-                </div>
-
-                <div class="col-sm-4" style="padding-right: 0px;width: 75px">
-                    <img class="" style="margin: 10px 0px 10px 10px;height: 50px;width: 50px"
-                         src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
-                </div>
-
-                <div class="col-sm-4" style="padding-right: 0px;width: 75px">
-                    <img class="" style="margin: 10px 0px 10px 10px;height: 50px;width: 50px"
-                         src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
-                </div>
-
-
+                <#list collecterList as user>
+                    <div class="col-sm-4" style="padding-right: 0px;width: 75px">
+                        <#if user.headImgUrl?index_of('http')!=-1>
+                            <img data-id="${user.id}" class="headImg"
+                                 style="margin: 10px 0px 10px 10px;height: 50px;width: 50px"
+                                 src="${user.headImgUrl}" alt=""/>
+                        <#else>
+                            <img data-id="${user.id}" class="headImg"
+                                 style="margin: 10px 0px 10px 10px;height: 50px;width: 50px"
+                                 src="http://windyeel.img-cn-shanghai.aliyuncs.com/${user.headImgUrl}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                                 alt=""/>
+                        </#if>
+                    </div>
+                </#list>
             </div>
 
             <div class="row margin-bottom-15" style="margin-top: 15px;border-bottom: solid 1px #eee;margin-left: 10px">
@@ -407,75 +367,33 @@
             </div>
 
             <div class="row">
-                <div class="media">
-                    <div class="pull-left">
-                        <div style="height: 50px;width: 50px;border-radius: 50px;overflow:hidden;margin-left: 15px">
-                            <img class="" src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
+                <#list browserPeopleList as browse>
+                    <div class="media">
+                        <div class="pull-left">
+                            <div style="height: 50px;width: 50px;border-radius: 50px;overflow:hidden;margin-left: 15px">
+                                <#if browse.appUser.headImgUrl?index_of('http')!=-1>
+                                    <img data-id="${browse.appUser.id}" class="headImg" style="width:100%"
+                                         src="${browse.appUser.headImgUrl}" alt=""/>
+                                <#else>
+                                    <img data-id="${browse.appUser.id}" class="headImg" style="width:100%"
+                                         src="http://windyeel.img-cn-shanghai.aliyuncs.com/${browse.appUser.headImgUrl}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                                         alt=""/>
+                                </#if>
+                            </div>
+                        </div>
+                        <div class="media-body">
+                            <h6 class="media-heading" style="margin-top: 5px">${(browse.appUser.name)!}&nbsp;<span
+                                    style="float:right;margin-top: 8px"><button class="btn btn-default btn-sm addFocus"
+                                                                                style="font-size: 8px"
+                                                                                data-id="${(browse.appUser.id)!}">
+                            <i class="fa fa-plus" style="margin-right: 3px"></i>
+                                                <span>关注</span>
+                        </span></h6>
+                            <p style="font-size: 10px">${browse.updateDate?string("yyyy-MM-dd HH:mm:ss")}
+                            </p>
                         </div>
                     </div>
-                    <div class="media-body">
-                        <h6 class="media-heading" style="margin-top: 5px">M小路痴M_7132<span
-                                style="float:right;margin-top: 8px"><button class="btn btn-default btn-sm"
-                                                                            style="font-size: 8px">
-                            <i class="glyphicon glyphicon-plus" style="margin-right: 3px"></i>关注</button>
-                        </span></h6>
-                        <p style="font-size: 10px">2016-1-5 12:15:50
-                        </p>
-                    </div>
-                </div>
-
-                <div class="media">
-                    <div class="pull-left">
-                        <div style="height: 50px;width: 50px;border-radius: 50px;overflow:hidden;margin-left: 15px">
-                            <img class="" src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
-                        </div>
-                    </div>
-                    <div class="media-body">
-                        <h6 class="media-heading" style="margin-top: 5px">M小路痴M_7132<span
-                                style="float:right;margin-top: 8px"><button class="btn btn-default btn-sm"
-                                                                            style="font-size: 8px">
-                            <i class="glyphicon glyphicon-plus" style="margin-right: 3px"></i>关注</button>
-                        </span></h6>
-                        <p style="font-size: 10px">2016-1-5 12:15:50
-                        </p>
-                    </div>
-                </div>
-
-
-                <div class="media">
-                    <div class="pull-left">
-                        <div style="height: 50px;width: 50px;border-radius: 50px;overflow:hidden;margin-left: 15px">
-                            <img class="" src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
-                        </div>
-                    </div>
-                    <div class="media-body">
-                        <h6 class="media-heading" style="margin-top: 5px">M小路痴M_7132<span
-                                style="float:right;margin-top: 8px"><button class="btn btn-default btn-sm"
-                                                                            style="font-size: 8px">
-                            <i class="glyphicon glyphicon-plus" style="margin-right: 3px"></i>关注</button>
-                        </span></h6>
-                        <p style="font-size: 10px">2016-1-5 12:15:50
-                        </p>
-                    </div>
-                </div>
-
-                <div class="media">
-                    <div class="pull-left">
-                        <div style="height: 50px;width: 50px;border-radius: 50px;overflow:hidden;margin-left: 15px">
-                            <img class="" src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
-                        </div>
-                    </div>
-                    <div class="media-body">
-                        <h6 class="media-heading" style="margin-top: 5px">M小路痴M_7132<span
-                                style="float:right;margin-top: 8px"><button class="btn btn-default btn-sm"
-                                                                            style="font-size: 8px">
-                            <i class="glyphicon glyphicon-plus" style="margin-right: 3px"></i>关注</button>
-                        </span></h6>
-                        <p style="font-size: 10px">2016-1-5 12:15:50
-                        </p>
-                    </div>
-                </div>
-
+                </#list>
             </div>
 
         </div>
@@ -560,26 +478,40 @@
     });
 
     //关注
-    $("#addFocus").bind("click", function () {
-
-        if ($(this).find("span").html() == "关注") {
-            $(this).find("i").attr("class", "fa fa-check");
-            $(this).find("span").html("已关注")
+    $(".addFocus").bind("click", function () {
+        var thisone = $(this);
+        var targetId = thisone.attr('data-id');
+        if (thisone.find("span").html() == "关注") {
+            $.post("/user/notToHave", {targetId: targetId}, function (data) {
+                thisone.find("i").attr("class", "fa fa-check");
+                thisone.find("span").html("已关注")
+                alert(data);
+            });
         } else {
-            $(this).find("i").attr("class", "fa fa-plus");
-            $(this).find("span").html("关注")
+            $.post("/user/haveToNot", {targetId: targetId}, function (data) {
+                thisone.find("i").attr("class", "fa fa-plus");
+                thisone.find("span").html("关注")
+                alert(data);
+            });
         }
-
     });
 
-    //关注
+    //收藏
     $("#addCollect").bind("click", function () {
-        if ($(this).find("span").html() == "添加收藏") {
-            $(this).find("i").attr("class", "fa fa-heart");
-            $(this).find("span").html("已收藏")
+        var thisone = $(this);
+        var worksId = thisone.attr('data-id');
+        if (thisone.find("span").html() == "添加收藏") {
+            $.post("/works/collectWorks", {worksId: worksId}, function (data) {
+                thisone.find("i").attr("class", "fa fa-heart");
+                thisone.find("span").html("已收藏")
+                alert(data);
+            });
         } else {
-            $(this).find("i").attr("class", "fa fa-heart-o");
-            $(this).find("span").html("添加收藏")
+            $.post("/works/cancelCollect", {worksId: worksId}, function (data) {
+                thisone.find("i").attr("class", "fa fa-heart-o");
+                thisone.find("span").html("添加收藏")
+                alert(data);
+            });
         }
     });
 
@@ -599,6 +531,10 @@
             $(form).ajaxSubmit({
                 success: function (data) {
                     if (data) {
+                        alert("诠释成功!");
+                        $('#description').val('');
+                        $('#container-interpretation').html('');
+                        $('#interpretation_contain .media').remove();
                         loadInterpretation(1);
                     } else {
                         alert("失败");
@@ -626,8 +562,15 @@
                 $li.removeAttr("id").css("display", "block");
                 $li.find(".description").html(this.description);
                 $li.find(".name").html(this.appUser.name);
-                $li.find(".headImgUrl").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.appUser.headImgUrl + "?x-oss-process=image/resize,m_fill,h_80,w_80");
-                $li.find("small").html(this.createDate);
+                $li.find(".headImgUrl").parent().attr('href', "${staticPath}/user/detail?userId=" + this.appUser.id);
+                if (this.appUser.headImgUrl.indexOf('http') != -1) {
+                    $li.find(".headImgUrl").attr("src", this.appUser.headImgUrl);
+                } else {
+                    $li.find(".headImgUrl").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.appUser.headImgUrl + "?x-oss-process=image/resize,m_fill,h_80,w_80");
+                }
+                var t = this.createDate;
+                var d = new Date(parseInt(t)).Format("yyyy-MM-dd hh:mm:ss");
+                $li.find("small").html(d);
                 $.each(this.imagesList, function () {
                     $li.find(".img-uploaded").append('<li><img class="img-responsive" src="http://windyeel.img-cn-shanghai.aliyuncs.com/' + this.url + '?x-oss-process=image/resize,m_fill,h_80,w_80" alt=""></li>');
                 });
@@ -641,6 +584,27 @@
             load(pageIndex);
         }
     })
+
+
+    $('.headImg').on('click', function () {
+        location.href = "${staticPath}/user/detail?userId=" + $(this).attr('data-id');
+    })
+
+    Date.prototype.Format = function (fmt) { //author: meizz
+        var o = {
+            "M+": this.getMonth() + 1, //月份
+            "d+": this.getDate(), //日
+            "h+": this.getHours(), //小时
+            "m+": this.getMinutes(), //分
+            "s+": this.getSeconds(), //秒
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+            "S": this.getMilliseconds() //毫秒
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    }
 
 
 </script>

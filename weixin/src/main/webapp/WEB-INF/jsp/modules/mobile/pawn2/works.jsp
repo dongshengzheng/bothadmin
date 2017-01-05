@@ -329,7 +329,11 @@
                         $tmp.find(".worksId").val(data.records[i].id);
                         $tmp.find(".works-floor-name-all").html(data.records[i].name);
                         $tmp.find(".works-floor-img-all").html(data.records[i].type);
-                        $tmp.find(".works-floor-date-all").html(data.records[i].createDate);
+
+                        var t = data.records[i].createDate;
+                        var d = new Date(parseInt(t)).Format("yyyy-MM-dd hh:mm:ss");
+                        $tmp.find(".works-floor-date-all").html(t);
+
                         $tmp.find(".works-intro-all").html(data.records[i].remarks)
                         $tmp.children('.works-img-all').attr('src', 'http://windyeel.img-cn-shanghai.aliyuncs.com/' + data.records[i].images + '?x-oss-process=image/resize,m_fill,h_100,w_100');
                         var img = document.createElement('img');
@@ -359,6 +363,23 @@
         });
         </c:if>
     });
+
+
+    Date.prototype.Format = function (fmt) { //author: meizz
+        var o = {
+            "M+": this.getMonth() + 1, //月份
+            "d+": this.getDate(), //日
+            "h+": this.getHours(), //小时
+            "m+": this.getMinutes(), //分
+            "s+": this.getSeconds(), //秒
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+            "S": this.getMilliseconds() //毫秒
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    }
 
 </script>
 </body>

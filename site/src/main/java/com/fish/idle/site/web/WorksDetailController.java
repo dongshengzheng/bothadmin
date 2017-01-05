@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.fish.idle.service.modules.jsdd.entity.*;
 import com.fish.idle.service.modules.jsdd.service.*;
 import com.fish.idle.service.modules.sys.entity.AppUser;
+import com.fish.idle.service.modules.sys.service.IAppUserService;
 import com.fish.idle.service.modules.sys.service.IDictService;
 import com.fish.idle.service.util.Const;
 import com.fish.idle.service.util.StringUtils;
@@ -49,9 +50,21 @@ public class WorksDetailController extends BaseController {
     @Autowired
     private IImagesService imagesService;
 
+    @Autowired
+    private IFollowHistoryService followHistoryService;
 
     @Autowired
     private IReportService reportService;
+
+    @Autowired
+    private IAppUserService appUserService;
+
+    @Autowired
+    private IInterpretationService interpretationService;
+
+    @Autowired
+    private ITransferHistoryService transferHistoryService;
+
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
@@ -92,6 +105,23 @@ public class WorksDetailController extends BaseController {
         if (works == null) {
             return "redirect:/404";
         }
+
+        //增加浏览记录
+        FollowHistory addBrowse = new FollowHistory();
+        addBrowse.setTargetId(id);
+        addBrowse.setUserId(getCurrentUser().getId());
+        addBrowse.setType(Const.FOLLOW_HISTORY_TYPE_BROWSE);
+        FollowHistory oldBrowse = followHistoryService.selectOne(new EntityWrapper<>(addBrowse));
+        if (oldBrowse == null) {
+            addBrowse.setCreateDate(new Date());
+            addBrowse.setUpdateDate(new Date());
+            followHistoryService.insert(addBrowse);
+        } else {
+            oldBrowse.setUpdateDate(new Date());
+            followHistoryService.updateById(oldBrowse);
+        }
+
+
         //矿区地域
         if (StringUtils.isNotEmpty(works.getKqdy())) {
             works.setKqdy(dictService.getLabelByValue(works.getKqdy(), "dd_kqdy"));
@@ -116,8 +146,6 @@ public class WorksDetailController extends BaseController {
         map.put("worksImage", worksImage);
         WorksLevel worksLevel = worksLevelService.selectOne(new EntityWrapper<>(new WorksLevel(id)));
         if (worksLevel != null) {
-
-
             if (StringUtils.isNotEmpty(worksLevel.getZhidi())) {
                 worksLevel.setZhidi(dictService.getLabelByValue(worksLevel.getZhidi(), "dd_zhidi"));
             }
@@ -184,10 +212,36 @@ public class WorksDetailController extends BaseController {
         }
 
 
-        //todo 转让历史列表
-        //todo 诠释列表
-        //todo 收藏者列表
-        //todo 最近浏览的人
+        // 转让历史列表
+        List<TransferHistory> transferHistoryList = transferHistoryService.thContainUsersInfo(id);
+        map.put("transferHistoryList", transferHistoryList);
+
+        // 诠释列表
+        List<Interpretation> interpretationList = interpretationService.interpretationContainImages(id);
+        map.put("interpretationList", interpretationList);
+
+        // 收藏者列表
+        List<AppUser> collecterList = appUserService.searchFollowHistoryUsers(Const.FOLLOW_HISTORY_TYPE_COLLECT, id);
+        if (collecterList.size() > 9) {
+            collecterList = collecterList.subList(0, 9);
+        }
+        map.put("collecterList", collecterList);
+
+        // 最近浏览的人
+        List<FollowHistory> browserPeopleList = followHistoryService.browserPeopleList(id);
+        works.setBrowserCount(browserPeopleList.size());
+        if (collecterList.size() > 9) {
+            browserPeopleList = browserPeopleList.subList(0, 9);
+        }
+        map.put("browserPeopleList", browserPeopleList);
+
+
+        AppUser appUser = appUserService.selectById(works.getCreateBy());
+        map.put("appUser", appUser);
+
+        AppUser currentUser = getCurrentUser();
+        map.put("currentUser", currentUser);
+
 
         return "works/work_detail";
     }

@@ -4,12 +4,6 @@
 <link rel="stylesheet" href="${staticPath}/assets/css/style.css">
 <link rel="stylesheet" href="${staticPath}/assets/css/pages/profile.css">
 <link rel="stylesheet" href="${staticPath}/assets/plugins/line-icons/line-icons.css">
-<script type="text/javascript">
-    //    function imgError() {
-    //        $(this).attr("src","http://windyeel.oss-cn-shanghai.aliyuncs.com/global/img/default.png")
-    //    }
-
-</script>
 </@htmlHead>
 <@htmlBody>
 <!--=== Profile ===-->
@@ -17,37 +11,27 @@
     <div class="row">
         <!--Left Sidebar-->
         <div class="col-md-3 md-margin-bottom-40">
-
-            <#if Session.siteSessionUser.headImgUrl?index_of('http')!=-1>
-                <img class="img-responsive profile-img margin-bottom-20" src="${Session.siteSessionUser.headImgUrl!''}"
+            <#if appUser.headImgUrl?index_of('http')!=-1>
+                <img class="img-responsive profile-img margin-bottom-20" src="${appUser.headImgUrl!''}"
                      alt="">
             <#else>
                 <img class="img-responsive profile-img margin-bottom-20"
-                     src="http://windyeel.img-cn-shanghai.aliyuncs.com/${Session.siteSessionUser.headImgUrl}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                     src="http://windyeel.img-cn-shanghai.aliyuncs.com/${appUser.headImgUrl}?x-oss-process=image/resize,m_fill,h_100,w_100"
                      alt="">
             </#if>
 
             <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
-                <li class="list-group-item ">
-                    <a href="/user"><i class="fa fa-tachometer"></i>面板</a>
+                <li class="list-group-item">
+                    <a href="/user/detail?userId=${appUser.id}"><i class="fa fa-tachometer"></i>面板</a>
                 </li>
                 <li class="list-group-item">
-                    <a href="/user/works"><i class="fa fa-user"></i> 我的作品</a>
+                    <a href="/user/detail/info?userId=${appUser.id}"><i class="fa fa-user"></i>Ta的资料</a>
                 </li>
                 <li class="list-group-item">
-                    <a href="/user/transfer"><i class="fa fa-group"></i> 转让作品</a>
-                </li>
-                <li class="list-group-item">
-                    <a href="/user/collect"><i class="fa fa-cubes"></i>收藏作品</a>
+                    <a href="/user/detail/works?userId=${appUser.id}"><i class="fa fa-group"></i>Ta的作品</a>
                 </li>
                 <li class="list-group-item active">
-                    <a href="/user/follow"><i class="fa fa-comments"></i>关注用户</a>
-                </li>
-                <li class="list-group-item">
-                    <a href="/user/integral"><i class="fa fa-history"></i> 积分中心</a>
-                </li>
-                <li class="list-group-item">
-                    <a href="/user/settings"><i class="fa fa-cog"></i> 个人设置</a>
+                    <a href="/user/detail/fans?userId=${appUser.id}"><i class="fa fa-cubes"></i>Ta的粉丝</a>
                 </li>
             </ul>
 
@@ -68,11 +52,11 @@
 
                 </div><!--/end row-->
             </div>
-            <button type="button" class="btn-u btn-u-default btn-block text-center btn-more">加载更多</button>
+            <button id="fansButton" type="button" class="btn-u btn-u-default btn-block text-center btn-more">加载更多
+            </button>
         </div>
     </div>
 </div>
-
 
 <div id="user_temp" style="display: none;" class="col-sm-6">
     <div class="profile-blog">
@@ -98,39 +82,43 @@
 
 <script>
     pageIndex = 1;
+    pageSize = 6;
     hasMore = true;
 
     $(document).ready(function () {
-        load(1);
-        function load(pageIndex) {
-            $.get("/user/follow_load", {pageIndex: pageIndex}, function (data) {
-                if (pageIndex >= data.pages) {
+        load(1, 6);
+        function load(pageIndex, pageSize) {
+            $.get("/user/detail/fans_load", {
+                userId:${appUser.id},
+                pageIndex: pageIndex,
+                pageSize: pageSize
+            }, function (data) {
+                if (pageSize > data.length) {
                     // 数据加载完毕了
-                    $(".btn-more").html("客观，这次真没了");
+                    $("#fansButton").html("客观，这次真没了");
                     hasMore = false;
                 }
-                $.each(data.records, function () {
+                $.each(data, function () {
                     var $li = $("#user_temp").clone();
                     $li.removeAttr("id").css("display", "block");
-
-                    if (this.appUser.headImgUrl.indexOf('http') != -1) {
-                        $li.find("#user_avatar").attr("src", this.appUser.headImgUrl);
+                    if (this.headImgUrl.indexOf('http') != -1) {
+                        $li.find("#user_avatar").attr("src", this.headImgUrl);
                     } else {
-                        $li.find("#user_avatar").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.appUser.headImgUrl + "?x-oss-process=image/resize,m_fill,h_331,w_525");
+                        $li.find("#user_avatar").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.headImgUrl + "?x-oss-process=image/resize,m_fill,h_331,w_525");
                     }
-                    $li.find("#follower_count").html(this.appUser.followCount);
-                    $li.find("#works_count").html(this.appUser.worksCount);
-                    $li.find("#user_address").html(this.appUser.address);
-                    $li.find("#user_name").html(this.appUser.loginName);
+                    $li.find("#follower_count").html(this.followCount);
+                    $li.find("#works_count").html(this.worksCount);
+                    $li.find("#user_address").html(this.address);
+                    $li.find("#user_name").html(this.loginName);
                     $("#user_content").append($li);
                 });
             });
         }
 
-        $(".btn-more").on("click", function () {
+        $("#fanButton").on("click", function () {
             if (hasMore) {
                 pageIndex++;
-                load(pageIndex);
+                load(pageIndex, pageSize);
             }
         })
     });

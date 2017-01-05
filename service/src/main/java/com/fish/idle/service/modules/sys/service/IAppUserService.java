@@ -26,4 +26,8 @@ public interface IAppUserService extends ISuperService<AppUser> {
     boolean isNameExist(String loginName);
 
     List<AppUser> siteSearchUsersByName(String name, int size, int from, int myId);
+
+    AppUser siteByIdContainWorksFocusCount(int userId);
+
+    List<AppUser> siteSearchFansByUserId(int userId, int size, int from, int myId);
 }
