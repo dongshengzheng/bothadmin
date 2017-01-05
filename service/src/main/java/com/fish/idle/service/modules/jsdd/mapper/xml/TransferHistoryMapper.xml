@@ -8,10 +8,11 @@
 	</sql>
 
     <select id="thContainUsersInfo" resultType="TransferHistory">
-        select t.*,u1.name from_user_name,u2.name to_user_name from dd_transfer_history t
+        select t.*,u1.name from_user_name,u1.head_img_url from_user_img,u2.name to_user_name,u2.head_img_url to_user_img from dd_transfer_history t
         join sys_app_user u1 on t.from_user_id=u1.id
         join sys_app_user u2 on t.to_user_id=u2.id
-        where t.works_id=#{0}
+        where t.works_id=#{0} and t.del_flag=0
+        order by t.update_date desc
     </select>
 
     <select id="containWorks" resultMap="transferMap">

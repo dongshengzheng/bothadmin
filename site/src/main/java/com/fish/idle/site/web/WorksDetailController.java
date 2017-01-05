@@ -235,13 +235,11 @@ public class WorksDetailController extends BaseController {
         }
         map.put("browserPeopleList", browserPeopleList);
 
-
         AppUser appUser = appUserService.selectById(works.getCreateBy());
         map.put("appUser", appUser);
 
         AppUser currentUser = getCurrentUser();
         map.put("currentUser", currentUser);
-
 
         return "works/work_detail";
     }

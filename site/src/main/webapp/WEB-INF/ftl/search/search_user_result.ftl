@@ -61,7 +61,7 @@
     <div class="media">
         <div class="pull-left">
             <div style="height: 80px;width: 80px;border-radius: 50px;overflow:hidden">
-                <img class="headImg" src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
+                <img data-id="" class="headImg" src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
             </div>
         </div>
         <div class="media-body">
@@ -109,7 +109,7 @@
                 $.each(data, function () {
                     var $li = $("#userTemp").clone();
                     $li.removeAttr('id').css("display", "block");
-                    $li.find(".headImg").attr("src", this.headImgUrl);
+                    $li.find(".headImg").attr("src", this.headImgUrl).attr('data-id', this.id).on('click', go_to_detail);
                     if (this.follow == 1) {
                         $li.find(".focus").html("已经关注").parent().attr('data-id', this.id).on('click', haveToNot);
                     } else {
@@ -151,7 +151,9 @@
             });
         }
 
-
+        function go_to_detail() {
+            location.href = "${staticPath}/user/detail?userId=" + $(this).attr('data-id');
+        }
     });
 
 </script>

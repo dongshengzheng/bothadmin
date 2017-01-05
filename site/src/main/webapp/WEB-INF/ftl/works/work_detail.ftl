@@ -316,14 +316,77 @@
                                     <div class="profile-body">
                                         <!--Timeline-->
                                         <ul class="timeline-v2">
-                                            <li>
-                                                <time class="cbp_tmtime" datetime=""><span>12:16:06</span>
-                                                    <span>2016-05-26</span>
-                                                </time>
+                                            <li class="equal-height-columns">
+                                                <div class="cbp_tmtime equal-height-column"><span>18/7/13</span> <span>June</span>
+                                                </div>
                                                 <i class="cbp_tmicon rounded-x hidden-xs"></i>
-                                                <div class="cbp_tmlabel">
+                                                <div class="cbp_tmlabel equal-height-column">
+                                                    <h2>售卖:100</h2>
+                                                    <div class="margin-bottom-20"></div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-2 col-xs-6">
+
+                                                            <img class="img-responsive md-margin-bottom-10"
+                                                                 src="${staticPath}/static/img/head1.jpg" alt="">
+                                                        </div>
+                                                        <div class="col-md-2 col-xs-6">
+                                                            <img class="img-responsive md-margin-bottom-10"
+                                                                 src="${staticPath}/static/img/转让历史_箭头.png" alt="">
+                                                        </div>
+                                                        <div class="col-md-2 col-xs-6">
+                                                            <img class="img-responsive md-margin-bottom-10"
+                                                                 src="${staticPath}/static/img/head3.jpg" alt="">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </li>
+
+                                            <#list transferHistoryList as transfer>
+                                                <li class="equal-height-columns">
+                                                    <div class="cbp_tmtime equal-height-column">
+                                                        <span>${(transfer.updateDate)?string("HH:mm:ss")}</span>
+                                                        <span>${(transfer.updateDate)?string("yyyy-MM-dd")}</span>
+                                                    </div>
+                                                    <i class="cbp_tmicon rounded-x hidden-xs"></i>
+                                                    <div class="cbp_tmlabel equal-height-column">
+                                                        <h2>
+                                                            <#if transfer.transferType==1>售卖:${(transfer.score)!}
+                                                            <#else>
+                                                                赠送
+                                                            </#if>
+
+                                                        </h2>
+                                                        <div class="margin-bottom-20"></div>
+                                                        <div class="row">
+                                                            <div class="col-md-2 col-xs-6">
+                                                                <img data-id="${transfer.fromUserId}"
+                                                                     class="img-responsive md-margin-bottom-10 headImg"
+                                                                    <#if (transfer.fromUserImg)!?index_of('http')!=-1>
+                                                                     src="${(transfer.fromUserImg)!}"
+                                                                    <#else>
+                                                                     src="http://windyeel.img-cn-shanghai.aliyuncs.com/${(transfer.fromUserImg)!}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                                                                    </#if>
+                                                                     alt=""/>
+                                                            </div>
+                                                            <div class="col-md-2 col-xs-6">
+                                                                <img class="img-responsive md-margin-bottom-10"
+                                                                     src="${staticPath}/static/img/转让历史_箭头.png" alt="">
+                                                            </div>
+                                                            <div class="col-md-2 col-xs-6">
+                                                                <img data-id="${transfer.toUserId}"
+                                                                     class="img-responsive md-margin-bottom-10 headImg"
+                                                                    <#if (transfer.toUserImg)!?index_of('http')!=-1>
+                                                                     src="${(transfer.toUserImg)!}"
+                                                                    <#else>
+                                                                     src="http://windyeel.img-cn-shanghai.aliyuncs.com/${(transfer.toUserImg)!}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                                                                    </#if>
+                                                                     alt=""/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </#list>
 
                                         </ul>
                                         <!--End Timeline-->
@@ -581,7 +644,7 @@
     $(".btn-more").on("click", function () {
         if (hasMore) {
             pageIndex++;
-            load(pageIndex);
+            loadInterpretation(pageIndex);
         }
     })
 
