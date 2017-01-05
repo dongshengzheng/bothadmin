@@ -53,7 +53,7 @@
             <div class="profile-body margin-bottom-20">
                 <div class="tab-v1">
                     <ul class="nav nav-justified nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="page_profile_settings.html#profile">用户资料</a>
+                        <li class="active"><a data-toggle="tab" href="page_profile_settings.html#profile">Ta的资料</a>
                         </li>
                     </ul>
                     <div class="tab-content">

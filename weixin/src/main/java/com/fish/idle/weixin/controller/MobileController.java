@@ -11,6 +11,9 @@ import com.fish.idle.service.util.Const;
 import com.fish.idle.service.util.DateUtil;
 import com.fish.idle.weixin.interceptor.OAuthRequired;
 
+import me.chanjar.weixin.common.exception.WxErrorException;
+import me.chanjar.weixin.mp.bean.template.WxMpTemplateData;
+import me.chanjar.weixin.mp.bean.template.WxMpTemplateMessage;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -105,6 +108,22 @@ public class MobileController extends BaseController {
             appUser.setLastLogin(new Date());
             appUserService.updateSelectiveById(appUser);
         }
+
+//        WxMpTemplateMessage templateMessage = new WxMpTemplateMessage();
+//        templateMessage.setToUser(appUser.getOpenId());
+//        templateMessage.setTemplateId("91rHnZrpS6OeFQAXH7MsBd4Z1shqryDcB2jsvwqFG0Q");
+////        templateMessage.setUrl(configStorage.getOauth2redirectUri() + "/f/boxi/handle/" + boxiGuarantee.getId());
+//        templateMessage.setTopColor("#000000");
+//        templateMessage.getData().add(new WxMpTemplateData("first", "您收到一条报修通知", "#000000"));
+//        templateMessage.getData().add(new WxMpTemplateData("keyword1", "试试发送一下", "#000000"));
+//        templateMessage.getData().add(new WxMpTemplateData("keyword2", "啦啦啦\\n换行", "#000000"));
+//        templateMessage.getData().add(new WxMpTemplateData("remark", "请尽快处理", "#000000"));
+//        try {
+//            wxMpService.templateSend(templateMessage);
+//        } catch (WxErrorException e) {
+//            e.printStackTrace();
+//        }
+
 
         session.setAttribute("redirectUrl", redirectUrl);
         session.setAttribute("bucket", bucket);
