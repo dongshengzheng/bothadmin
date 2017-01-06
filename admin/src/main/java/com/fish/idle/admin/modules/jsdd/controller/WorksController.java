@@ -18,6 +18,7 @@ import com.fish.idle.service.modules.sys.entity.Role;
 import com.fish.idle.service.util.Const;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
@@ -44,6 +45,9 @@ public class WorksController  extends BaseController {
 
     @Autowired
     private IWorksService worksService;
+
+    @Value("${site_path}")
+    private String sitePath;
 
     @RequestMapping
     public String page() {
