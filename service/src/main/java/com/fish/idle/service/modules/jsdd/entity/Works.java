@@ -121,7 +121,6 @@ public class Works extends BaseEntity {
     private Integer browserCount;
 
 
-
     /**
      * 价值
      */
@@ -401,16 +400,17 @@ public class Works extends BaseEntity {
         this.worksCount = worksCount;
     }
 
-    public Works(Integer id,String status) {
+    public Works(Integer id, String status) {
         super.setId(id);
         this.status = status;
     }
 
 
-    public Works(Integer id,Integer slide) {
+    public Works(Integer id, Integer slide) {
         super.setId(id);
         this.slide = slide;
     }
+
     public Works() {
     }
 }

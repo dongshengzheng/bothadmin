@@ -245,13 +245,20 @@
                                 <div class="tab-pane fade in profile" id="interpretation">
                                     <div class="media media-v2 margin-bottom-20">
                                         <a class="pull-left" href="#">
-                                            <#if currentUser.headImgUrl?index_of('http')!=-1>
-                                                <img data-id="${currentUser.id}" class="media-object rounded-x headImg"
-                                                     src="${currentUser.headImgUrl}" alt=""/>
+                                            <#if currentUser??>
+                                                <#if currentUser.headImgUrl?index_of('http')!=-1>
+                                                    <img data-id="${currentUser.id}"
+                                                         class="media-object rounded-x headImg"
+                                                         src="${currentUser.headImgUrl}" alt=""/>
+                                                <#else>
+                                                    <img data-id="${currentUser.id}"
+                                                         class="media-object rounded-x headImg"
+                                                         src="http://windyeel.img-cn-shanghai.aliyuncs.com/${currentUser.headImgUrl}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                                                         alt=""/>
+                                                </#if>
                                             <#else>
-                                                <img data-id="${currentUser.id}" class="media-object rounded-x headImg"
-                                                     src="http://windyeel.img-cn-shanghai.aliyuncs.com/${currentUser.headImgUrl}?x-oss-process=image/resize,m_fill,h_100,w_100"
-                                                     alt=""/>
+                                                <img data-id="" class="media-object rounded-x headImg"
+                                                     src="${staticPath}/static/img/head1.jpg" alt=""/>
                                             </#if>
                                         </a>
                                         <div class="media-body">
@@ -316,31 +323,31 @@
                                     <div class="profile-body">
                                         <!--Timeline-->
                                         <ul class="timeline-v2">
-                                            <li class="equal-height-columns">
-                                                <div class="cbp_tmtime equal-height-column"><span>18/7/13</span> <span>June</span>
-                                                </div>
-                                                <i class="cbp_tmicon rounded-x hidden-xs"></i>
-                                                <div class="cbp_tmlabel equal-height-column">
-                                                    <h2>售卖:100</h2>
-                                                    <div class="margin-bottom-20"></div>
+                                        <#--<li class="equal-height-columns">-->
+                                        <#--<div class="cbp_tmtime equal-height-column"><span>18/7/13</span> <span>June</span>-->
+                                        <#--</div>-->
+                                        <#--<i class="cbp_tmicon rounded-x hidden-xs"></i>-->
+                                        <#--<div class="cbp_tmlabel equal-height-column">-->
+                                        <#--<h2>售卖:100</h2>-->
+                                        <#--<div class="margin-bottom-20"></div>-->
 
-                                                    <div class="row">
-                                                        <div class="col-md-2 col-xs-6">
+                                        <#--<div class="row">-->
+                                        <#--<div class="col-md-2 col-xs-6">-->
 
-                                                            <img class="img-responsive md-margin-bottom-10"
-                                                                 src="${staticPath}/static/img/head1.jpg" alt="">
-                                                        </div>
-                                                        <div class="col-md-2 col-xs-6">
-                                                            <img class="img-responsive md-margin-bottom-10"
-                                                                 src="${staticPath}/static/img/转让历史_箭头.png" alt="">
-                                                        </div>
-                                                        <div class="col-md-2 col-xs-6">
-                                                            <img class="img-responsive md-margin-bottom-10"
-                                                                 src="${staticPath}/static/img/head3.jpg" alt="">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                        <#--<img class="img-responsive md-margin-bottom-10"-->
+                                        <#--src="${staticPath}/static/img/head1.jpg" alt="">-->
+                                        <#--</div>-->
+                                        <#--<div class="col-md-2 col-xs-6">-->
+                                        <#--<img class="img-responsive md-margin-bottom-10"-->
+                                        <#--src="${staticPath}/static/img/转让历史_箭头.png" alt="">-->
+                                        <#--</div>-->
+                                        <#--<div class="col-md-2 col-xs-6">-->
+                                        <#--<img class="img-responsive md-margin-bottom-10"-->
+                                        <#--src="${staticPath}/static/img/head3.jpg" alt="">-->
+                                        <#--</div>-->
+                                        <#--</div>-->
+                                        <#--</div>-->
+                                        <#--</li>-->
 
                                             <#list transferHistoryList as transfer>
                                                 <li class="equal-height-columns">

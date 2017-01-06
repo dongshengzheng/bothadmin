@@ -11,14 +11,18 @@ import com.fish.idle.service.modules.sys.service.IDictService;
 import com.fish.idle.service.util.Const;
 import com.fish.idle.service.util.StringUtils;
 import com.fish.idle.site.entity.WorksBo;
+import org.apache.shiro.web.session.HttpServletSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.awt.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -97,7 +101,10 @@ public class WorksDetailController extends BaseController {
 
 
     @RequestMapping(value = "detail/{id}", method = RequestMethod.GET)
-    public String detail(@PathVariable Integer id, ModelMap map) {
+    public String detail(@PathVariable Integer id,
+                         ModelMap map,
+                         HttpServletRequest request,
+                         HttpSession session) {
         if (id == null) {
             return "redirect:/";
         }
@@ -106,6 +113,7 @@ public class WorksDetailController extends BaseController {
             return "redirect:/404";
         }
 
+<<<<<<< HEAD
         //增加浏览记录
        FollowHistory addBrowse = new FollowHistory();
         addBrowse.setTargetId(id);
@@ -119,8 +127,46 @@ public class WorksDetailController extends BaseController {
         } else {
             oldBrowse.setUpdateDate(new Date());
             followHistoryService.updateById(oldBrowse);
+=======
+        session.setMaxInactiveInterval(2 * 60 * 60);
+        List<String> ipBrowse = (List<String>) session.getAttribute("ipBrowse");
+        if (ipBrowse == null) {
+            ipBrowse = new ArrayList<>();
+>>>>>>> 53cdb1b6e9ba38c3590908f7def75c9d4df7829a
         }
 
+        String ip = request.getRemoteAddr();
+        if (!ipBrowse.contains(ip)) {
+            Integer browseCount = works.getBrowserCount();
+            if (browseCount == null) {
+                works.setBrowserCount(1);
+            } else {
+                works.setBrowserCount(browseCount + 1);
+            }
+            worksService.updateById(works);
+            ipBrowse.add(ip);
+            session.setAttribute("ipBrowse", ipBrowse);
+        }
+
+
+        AppUser currentUser = getCurrentUser();
+        if (currentUser != null) {
+            //增加浏览记录
+            FollowHistory addBrowse = new FollowHistory();
+            addBrowse.setTargetId(id);
+            addBrowse.setUserId(getCurrentUser().getId());
+            addBrowse.setType(Const.FOLLOW_HISTORY_TYPE_BROWSE);
+            FollowHistory oldBrowse = followHistoryService.selectOne(new EntityWrapper<>(addBrowse));
+            if (oldBrowse == null) {
+                addBrowse.setCreateDate(new Date());
+                addBrowse.setUpdateDate(new Date());
+                followHistoryService.insert(addBrowse);
+            } else {
+                oldBrowse.setUpdateDate(new Date());
+                followHistoryService.updateById(oldBrowse);
+            }
+            map.put("currentUser", currentUser);
+        }
 
         //矿区地域
         if (StringUtils.isNotEmpty(works.getKqdy())) {
@@ -229,7 +275,6 @@ public class WorksDetailController extends BaseController {
 
         // 最近浏览的人
         List<FollowHistory> browserPeopleList = followHistoryService.browserPeopleList(id);
-        works.setBrowserCount(browserPeopleList.size());
         if (collecterList.size() > 9) {
             browserPeopleList = browserPeopleList.subList(0, 9);
         }
@@ -238,8 +283,6 @@ public class WorksDetailController extends BaseController {
         AppUser appUser = appUserService.selectById(works.getCreateBy());
         map.put("appUser", appUser);
 
-        AppUser currentUser = getCurrentUser();
-        map.put("currentUser", currentUser);
 
         return "works/work_detail";
     }
