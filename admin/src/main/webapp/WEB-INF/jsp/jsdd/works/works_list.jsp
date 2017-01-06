@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%@ taglib prefix="xianyu" uri="http://www.xianyu.com.cn/jsp/jstl/common" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
 <xianyu:navigater path="works"></xianyu:navigater>
 <div class="row">
+    <input type="hidden" value='<fmt:message key="sys.site.url"/>' id="siteUrl">
     <div class="col-md-12">
         <div class="portlet light bordered">
             <div class="portlet-body">
@@ -56,7 +58,12 @@
             "lengthMenu": [[5, 40, 60], [5, 40, 60]],
             "columns": [
                 {"data": "id"},
-                {"data": "name"},
+                {
+                    "data": "name",
+                    "render": function (data,type,row) {
+                        return  '<a href="javascript:;" onclick="goIntoWorkInfo('+row.id+')" >' + row.name + '</a>'
+                    }
+                },
                 {
                     "data": "createDate", "type": "date",
                     "render": function (data) {
@@ -124,6 +131,14 @@
             defTable.draw();
         } else {//表格重绘，保持在当前页
             defTable.draw(false);
+        }
+    }
+
+    function goIntoWorkInfo(id){
+        console.log(id);
+        console.log($("#siteUrl").val()+"1111111111111");
+        if(id !=null){
+            window.open($("#siteUrl").val()+"works/detail/"+id,"_self");
         }
     }
 </script>

@@ -107,7 +107,7 @@ public class WorksDetailController extends BaseController {
         }
 
         //增加浏览记录
-        FollowHistory addBrowse = new FollowHistory();
+       FollowHistory addBrowse = new FollowHistory();
         addBrowse.setTargetId(id);
         addBrowse.setUserId(getCurrentUser().getId());
         addBrowse.setType(Const.FOLLOW_HISTORY_TYPE_BROWSE);
