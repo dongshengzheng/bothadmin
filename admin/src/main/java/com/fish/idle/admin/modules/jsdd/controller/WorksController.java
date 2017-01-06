@@ -46,8 +46,7 @@ public class WorksController  extends BaseController {
     @Autowired
     private IWorksService worksService;
 
-    @Value("${site_path}")
-    private String sitePath;
+
 
     @RequestMapping
     public String page() {
