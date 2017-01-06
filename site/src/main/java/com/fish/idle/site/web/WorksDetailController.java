@@ -113,26 +113,10 @@ public class WorksDetailController extends BaseController {
             return "redirect:/404";
         }
 
-<<<<<<< HEAD
-        //增加浏览记录
-       FollowHistory addBrowse = new FollowHistory();
-        addBrowse.setTargetId(id);
-        addBrowse.setUserId(getCurrentUser().getId());
-        addBrowse.setType(Const.FOLLOW_HISTORY_TYPE_BROWSE);
-        FollowHistory oldBrowse = followHistoryService.selectOne(new EntityWrapper<>(addBrowse));
-        if (oldBrowse == null) {
-            addBrowse.setCreateDate(new Date());
-            addBrowse.setUpdateDate(new Date());
-            followHistoryService.insert(addBrowse);
-        } else {
-            oldBrowse.setUpdateDate(new Date());
-            followHistoryService.updateById(oldBrowse);
-=======
         session.setMaxInactiveInterval(2 * 60 * 60);
         List<String> ipBrowse = (List<String>) session.getAttribute("ipBrowse");
         if (ipBrowse == null) {
             ipBrowse = new ArrayList<>();
->>>>>>> 53cdb1b6e9ba38c3590908f7def75c9d4df7829a
         }
 
         String ip = request.getRemoteAddr();
