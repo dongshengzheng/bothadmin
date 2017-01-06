@@ -157,7 +157,7 @@
     <div class="easy-block-v1">
         <a id="rollInning_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg"
                                                   alt=""></a>
-        <a class="rollInConfirm">
+        <a data-id="" class="rollInConfirm">
             <div class="easy-block-v1-badge rgba-red">确认转入</div>
         </a>
     </div>
@@ -276,6 +276,7 @@
                     $li.find("#rollInning_works_des").html(this.works.breed);
                     $li.find("#rollInning_works_name").html(this.works.name);
                     $li.find("#rollInning_works_img").attr("href", "${staticPath}/works/detail/" + this.works.id);
+                    $li.find('.rollInConfirm').attr("data-id", this.id).on("click", confirmRollin);
                     $("#rollInning_content").append($li);
                 });
             });
@@ -303,7 +304,6 @@
                     $li.find("#rollOuting_works_des").html(this.works.breed);
                     $li.find("#rollOuting_works_name").html(this.works.name);
                     $li.find("#rollOuting_works_img").attr("href", "${staticPath}/works/detail/" + this.works.id);
-                    $li.find('.rollInConfirm').attr("data-id", this.id).on("click", confirmRollin);
                     $("#rollOuting_content").append($li);
                 });
             });
@@ -318,11 +318,15 @@
 
         function confirmRollin() {
             var thisone = $(this);
-            $.get("${staticPath}/works/confimRollin/" + thisone.attr('data-id'), function (data) {
+
+            $.get("${staticPath}/works/transfer/confimRollin/" + thisone.attr('data-id'), function (data) {
                 if (data.suc) {
                     alert("转入成功");
                     var xx = thisone.parent().parent();
+                    thisone.unbind('click');
+                    thisone.find('.easy-block-v1-badge').html("新转入");
                     $("#rollin_content").append(xx);
+
                 } else {
                     alert("转入失败");
                 }

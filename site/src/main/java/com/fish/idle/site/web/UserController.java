@@ -135,7 +135,6 @@ public class UserController extends BaseController {
         Page<TransferHistory> page = new Page<>(pageIndex, pageSize);
         Integer userId = getCurrentUser().getId();
         EntityWrapper<TransferHistory> ew = new EntityWrapper<>(new TransferHistory());
-        ew.setSqlSelect("works_id");
 
         ew.addFilter("status = {0} ", status);
         if (in) {
