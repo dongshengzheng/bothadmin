@@ -330,6 +330,5 @@
 
         }
     });
-
 </script>
 </@footerJS>
