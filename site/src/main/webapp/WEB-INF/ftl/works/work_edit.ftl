@@ -69,9 +69,9 @@
             <hr class="devider devider-dotted">
         </div>
         <form id="works_info" class="tab-content margin-bottom-30 shopping-cart" style="background: rgb(254,255,255)"
-              action="/works/edit" method="post">
+              action="${staticPath}/works/edit" method="post">
             <input type="hidden" name="worksId" id="worksId" value="${(works.id)!}">
-            <input type="hidden" id="status" name="works.status"/>
+            <input type="hidden" id="status" name="works.status" value="1"/>
             <input type="hidden" name="works.id" value="${(works.id)!}"/>
             <input type="hidden" name="report.id" value="${(report.id)!}"/>
             <input type="hidden" name="collect.id" value="${(collect.id)!}"/>
@@ -309,7 +309,7 @@
                                     <option value="">请选择</option>
                                     <#list zhidi1 as zd1>
                                         <option value="${zd1.value}"
-                                                <#if worksLevel.zhidi == zd1.value>selected</#if>>${zd1.label}</option>
+                                                <#if (worksLevel.zhidi)! == zd1.value>selected</#if>>${zd1.label}</option>
                                     </#list>
                                 </select>
                             </div>
@@ -319,7 +319,7 @@
                                     <option value="">请选择</option>
                                     <#list zhidi2 as zd2>
                                         <option value="${zd2.value}"
-                                                <#if worksLevel.zhidi2 == zd2.value>selected</#if>>${zd2.label}</option>
+                                                <#if (worksLevel.zhidi2)! == zd2.value>selected</#if>>${zd2.label}</option>
                                     </#list>
                                 </select>
                             </div>
@@ -332,7 +332,7 @@
                                     <option value="">请选择</option>
                                     <#list ganguan as gg>
                                         <option value="${gg.value}"
-                                                <#if worksLevel.ganguan == gg.value>selected</#if>>${gg.label}</option>
+                                                <#if (worksLevel.ganguan)! == gg.value>selected</#if>>${gg.label}</option>
                                     </#list>
                                 </select>
                             </div>
@@ -342,7 +342,7 @@
                                     <option value="">请选择</option>
                                     <#list moshidu as msd>
                                         <option value="${msd.value}"
-                                                <#if worksLevel.moshidu == msd.value>selected</#if>>${msd.label}</option>
+                                                <#if (worksLevel.moshidu)! == msd.value>selected</#if>>${msd.label}</option>
                                     </#list>
                                 </select>
                             </div>
@@ -355,7 +355,7 @@
                                     <option value="">请选择</option>
                                     <#list xueliang as xl>
                                         <option value="${xl.value}"
-                                                <#if worksLevel.xueliang == xl.value>selected</#if>>${xl.label}</option>
+                                                <#if (worksLevel.xueliang)! == xl.value>selected</#if>>${xl.label}</option>
                                     </#list>
                                 </select>
                             </div>
@@ -365,7 +365,7 @@
                                     <option value="">请选择</option>
                                     <#list xuese as xs>
                                         <option value="${xs.value}"
-                                                <#if worksLevel.xuese == xs.value>selected</#if>>${xs.label}</option>
+                                                <#if (worksLevel.xuese)! == xs.value>selected</#if>>${xs.label}</option>
                                     </#list>
                                 </select>
                             </div>
@@ -378,7 +378,7 @@
                                     <option value="">请选择</option>
                                     <#list xuexing as xx>
                                         <option value="${xx.value}"
-                                                <#if worksLevel.xuexing == xx.value>selected</#if>>${xx.label}</option>
+                                                <#if (worksLevel.xuexing)! == xx.value>selected</#if>>${xx.label}</option>
                                     </#list>
                                 </select>
                             </div>
@@ -388,7 +388,7 @@
                                     <option value="">请选择</option>
                                     <#list nongyandu as nyd>
                                         <option value="${nyd.value}"
-                                                <#if worksLevel.nongyandu == nyd.value>selected</#if>>${nyd.label}</option>
+                                                <#if (worksLevel.nongyandu)! == nyd.value>selected</#if>>${nyd.label}</option>
                                     </#list>
                                 </select>
                             </div>
@@ -401,7 +401,7 @@
                                     <option value="">请选择</option>
                                     <#list jingdu as jd>
                                         <option value="${jd.value}"
-                                                <#if worksLevel.chunjingdu == jd.value>selected</#if>>${jd.label}</option>
+                                                <#if (worksLevel.chunjingdu)! == jd.value>selected</#if>>${jd.label}</option>
                                     </#list>
                                 </select>
                             </div>
@@ -411,7 +411,7 @@
                                     <option value="">请选择</option>
                                     <#list dise as ds>
                                         <option value="${ds.value}"
-                                                <#if worksLevel.dise == ds.value>selected</#if>>${ds.label}</option>
+                                                <#if (worksLevel.dise)! == ds.value>selected</#if>>${ds.label}</option>
                                     </#list>
                                 </select>
                             </div>
@@ -424,7 +424,7 @@
                                     <option value="">请选择</option>
                                     <#list liu as lu>
                                         <option value="${lu.value}"
-                                                <#if worksLevel.liu == lu.value>selected</#if>>${lu.label}</option>
+                                                <#if (worksLevel.liu)! == lu.value>selected</#if>>${lu.label}</option>
                                     </#list>
                                 </select>
                             </div>
@@ -434,7 +434,7 @@
                                     <option value="">请选择</option>
                                     <#list lie as le>
                                         <option value="${le.value}"
-                                                <#if worksLevel.lie == le.value>selected</#if>>${le.label}</option>
+                                                <#if (worksLevel.lie)! == le.value>selected</#if>>${le.label}</option>
                                     </#list>
                                 </select>
                             </div>
@@ -448,7 +448,7 @@
                                     <option value="">请选择</option>
                                     <#list mian as ma>
                                         <option value="${ma.value}"
-                                                <#if worksLevel.inithanxueliang == ma.value>selected</#if>>${ma.label}</option>
+                                                <#if (worksLevel.inithanxueliang)! == ma.value>selected</#if>>${ma.label}</option>
                                     </#list>
                                 </select>
                             </div>
@@ -459,7 +459,7 @@
                                     <option value="">请选择</option>
                                     <#list hanxuefangshi as hxfs>
                                         <option value="${hxfs.value}"
-                                                <#if worksLevel.hanxuefangshi == hxfs.value>selected</#if>>${hxfs.label}</option>
+                                                <#if (worksLevel.hanxuefangshi)! == hxfs.value>selected</#if>>${hxfs.label}</option>
                                     </#list>
                                 </select>
                             </div>
@@ -516,13 +516,15 @@
                         <div class="form-group">
                             <label class="col-sm-2" for=""></label>
                             <div class="col-sm-10">
-                                <#list certifyImage as image>
-                                    <div class="upload-container" data='${image.id}'>
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                        <img src="http://windyeel.img-cn-shanghai.aliyuncs.com/${image.url}?x-oss-process=image/resize,m_fill,h_100,w_100"
-                                             class="min-img">
-                                    </div>
-                                </#list>
+                                <#if certifyImage??>
+                                    <#list certifyImage as image>
+                                        <div class="upload-container" data='${image.id}'>
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                            <img src="http://windyeel.img-cn-shanghai.aliyuncs.com/${image.url}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                                                 class="min-img">
+                                        </div>
+                                    </#list>
+                                </#if>
 
                                 <div id="upload_certify" class=""
                                      style="border: dotted 1px #bbb;height: 100px;width: 100px;overflow: hidden">
@@ -584,8 +586,8 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="datetime">收藏时间</label>
                             <div class="col-sm-10">
-                                <input class="form-control date-picker" name="provider.datetime" id="datetime"
-                                       type="text" value="${(provider.datetime?string("yyyy-MM-dd"))!}"
+                                <input class="form-control date-picker" name="collect.datetime" id="datetime"
+                                       type="text" value="${(collect.datetime?string("yyyy-MM-dd"))!}"
                                        placeholder="请选择收藏时间" readonly/>
                             </div>
                         </div>
@@ -658,11 +660,11 @@
                     success: function (data) {
                         if (data.suc) {
                             if ($("#status").val() == 0) {
-                                // 跳转到下一步
-                                window.location.href = window.location.href;
-                            } else {
                                 // 跳转到个人中心-> 我的作品->草稿里面
-                                window.location.href = window.location.href;
+                                window.location.href = "${staticPath}/user"
+                            } else {
+                                //跳转到个人中心-> 我的作品->审核里面
+                                window.location.href = "${staticPath}/user"
                             }
                         } else {
                             alert(data.msg);
