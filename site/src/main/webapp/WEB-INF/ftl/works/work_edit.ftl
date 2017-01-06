@@ -593,7 +593,8 @@
                             <label class="col-sm-2 control-label" for="pub"></label>
                             <div class="col-sm-10">
                                 <label class="checkbox text-left" style="padding-top:0px;">
-                                    <input type="checkbox" name="provider.pub" <#if provider?exists && provider.pub?exists && provider.pub == "1">checked</#if>/>
+                                    <input type="checkbox" name="provider.pub"
+                                           <#if provider?exists && provider.pub?exists && provider.pub == "1">checked</#if>/>
                                     <i></i>是否公开
                                 </label>
                             </div>

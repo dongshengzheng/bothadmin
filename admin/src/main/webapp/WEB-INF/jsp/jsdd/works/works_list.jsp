@@ -76,8 +76,8 @@
                     "data": "status",
                     "render": function (data, type, row) {
                         if (data == 1) {
-                            return '<a href="javascript:;" onclick="check('+row.id+',3)" class="btn btn-success btn-xs">通过</a>'
-                                + '<a href="javascript:;" onclick="check('+row.id+',2)" class="btn btn-danger btn-xs">不通过</a>';
+                            return '<a href="javascript:;" onclick="check(' + row.id + ',3)" class="btn btn-success btn-xs">通过</a>'
+                                    + '<a href="javascript:;" onclick="check(' + row.id + ',2)" class="btn btn-danger btn-xs">不通过</a>';
                         } else if (data == 3) {
                             return "通过"
                         } else {
@@ -87,11 +87,11 @@
                 },
                 {
                     "data": "slide",
-                    "render": function (data,type,row) {
+                    "render": function (data, type, row) {
                         if (data == 0 || typeof data == 'undefined') {
-                            return '<a href="javascript:;" onclick="slide('+row.id+',1)" class="btn btn-success btn-xs">轮播</a>'
+                            return '<a href="javascript:;" onclick="slide(' + row.id + ',1)" class="btn btn-success btn-xs">轮播</a>'
                         } else {
-                            return '<a href="javascript:;" onclick="slide('+row.id+',0)" class="btn btn-danger btn-xs">不轮播</a>';
+                            return '<a href="javascript:;" onclick="slide(' + row.id + ',0)" class="btn btn-danger btn-xs">不轮播</a>';
                         }
                     }
                 },
@@ -107,7 +107,7 @@
     });
 
     function check(id, status) {
-        if (confirm("确定审核？")){
+        if (confirm("确定审核？")) {
             $.post("/works/check", {id: id, status: status}, function () {
                 refreshTable();
             });
@@ -117,7 +117,7 @@
     }
 
     function slide(id, slide) {
-        if (confirm("确定提交？")){
+        if (confirm("确定提交？")) {
             $.post("/works/slide", {id: id, slide: slide}, function () {
                 refreshTable();
             });

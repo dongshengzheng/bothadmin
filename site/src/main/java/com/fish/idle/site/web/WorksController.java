@@ -59,6 +59,9 @@ public class WorksController extends BaseController {
     @Autowired
     private IFollowHistoryService followHistoryService;
 
+    @Autowired
+    private ITransferHistoryService transferHistoryService;
+
     /**
      * 第一步：登记物品信息
      *
@@ -184,7 +187,7 @@ public class WorksController extends BaseController {
      */
     @RequestMapping(value = "/add/level", method = RequestMethod.POST)
     @ResponseBody
-    public JSONObject saveLevel(WorksLevel worksLevel,Works works) {
+    public JSONObject saveLevel(WorksLevel worksLevel, Works works) {
         JSONObject jsonObject = new JSONObject();
         wrapInsertEntity(works);
         wrapInsertEntity(worksLevel);
@@ -316,8 +319,11 @@ public class WorksController extends BaseController {
         List<Images> reportImage = imagesService.selectList(new EntityWrapper<>(new Images(id, Const.IMAGES_REPORT_DES)));
         map.put("reportImage", reportImage);
         //评估价值认证照片
-        List<Images> certifyImage = imagesService.selectList(new EntityWrapper<>(new Images(report.getId(), Const.IMAGES_REPORT_CERTIFICATE)));
-        map.put("certifyImage", certifyImage);
+        if (report != null) {
+            List<Images> certifyImage = imagesService.selectList(new EntityWrapper<>(new Images(report.getId(), Const.IMAGES_REPORT_CERTIFICATE)));
+            map.put("certifyImage", certifyImage);
+        }
+
 
         // 矿区地域
         map.put("kqdy", dictService.getWorksLevelDicByType("dd_kqdy"));
@@ -382,6 +388,64 @@ public class WorksController extends BaseController {
         jsonObject.put("suc", true);
         return jsonObject;
     }
+
+    /**
+     * 作品转让
+     *
+     * @return
+     */
+    @RequestMapping(value = "/transfer/{id}", method = RequestMethod.GET)
+    public String transfer(@PathVariable Integer id, ModelMap map) {
+        map.put("works", worksService.selectById(id));
+        return "works/work_transfer";
+    }
+
+    /**
+     * 添加转让历史
+     *
+     * @return
+     */
+    @RequestMapping(value = "/transfer/complete/{id}", method = RequestMethod.GET)
+    public String transferComplete(@PathVariable Integer id, ModelMap map) {
+        return "user/user_works_transfer";
+    }
+
+    /**
+     * 确认转让
+     *
+     * @return
+     */
+    @RequestMapping(value = "/transfer/confimRollin/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public JSONObject confimRollin(@PathVariable Integer id, ModelMap map) {
+        JSONObject jsonObject = new JSONObject();
+        TransferHistory transferHistory = transferHistoryService.selectById(id);
+        transferHistory.setStatus(Const.TRANSFER_STATUS_HAVE);
+        boolean result1 = transferHistoryService.updateById(transferHistory);
+        Works works = worksService.selectById(transferHistory.getWorksId());
+        works.setStatus(Const.WORKS_STATUS_PASS);
+        boolean result2 = worksService.updateById(works);
+        jsonObject.put("suc", result1 && result2);
+        return jsonObject;
+    }
+
+
+    /**
+     * 作品删除
+     *
+     * @return
+     */
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public JSONObject delete(@PathVariable Integer id, ModelMap map) {
+        JSONObject jsonObject = new JSONObject();
+        Works works = worksService.selectById(id);
+        works.setDelFlag(Const.DEL_FLAG_DELETE);
+        boolean result = worksService.updateById(works);
+        jsonObject.put("suc", result);
+        return jsonObject;
+    }
+
 
     /**
      * 查找作品

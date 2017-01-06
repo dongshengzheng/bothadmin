@@ -220,7 +220,7 @@
                                     <pre>${(report.des)!}</pre>
                                     <div>
                                         <#if reportImage?exists>
-                                            <img style="width: 80%;"
+                                            <img style="width: 100%;"
                                                  src="http://windyeel.img-cn-shanghai.aliyuncs.com/${reportImage.url}?x-oss-process=image/resize,m_fill,h_500,w_500"
                                                  alt="评估报告">
                                         </#if>

@@ -4,6 +4,29 @@
 <link rel="stylesheet" href="${staticPath}/assets/css/style.css">
 <link rel="stylesheet" href="${staticPath}/assets/css/pages/profile.css">
 <link rel="stylesheet" href="${staticPath}/assets/plugins/line-icons/line-icons.css">
+<style>
+    .easy-block-v2-badge {
+        left: 0px;
+        top: 46px;
+        z-index: 1;
+        color: #fff;
+        padding: 4px 10px;
+        position: absolute;
+    }
+
+    .easy-block-v3-badge {
+        left: 0px;
+        top: 82px;
+        z-index: 1;
+        color: #fff;
+        padding: 4px 10px;
+        position: absolute;
+    }
+
+    a {
+        cursor: pointer;
+    }
+</style>
 </@htmlHead>
 <@htmlBody>
 <!--=== Profile ===-->
@@ -53,21 +76,13 @@
             <div class="profile-body margin-bottom-20">
                 <div class="tab-v1">
                     <ul class="nav nav-justified nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#rollin">已转出</a></li>
-                        <li><a data-toggle="tab" href="#rollOut">已转入</a></li>
-                        <li><a data-toggle="tab" href="#rollInning">待转出</a></li>
-                        <li><a data-toggle="tab" href="#rollOuting">待确认</a></li>
+                        <li class="active"><a data-toggle="tab" href="#rollOut">已转出</a></li>
+                        <li><a data-toggle="tab" href="#rollin">已转入</a></li>
+                        <li><a data-toggle="tab" href="#rollOuting">待转出</a></li>
+                        <li><a data-toggle="tab" href="#rollInning">待确认</a></li>
                     </ul>
                     <div class="tab-content">
-                        <div id="rollin" class="profile-edit tab-pane fade in active">
-                            <div id="rollin_content" class="row">
-
-                            </div>
-                            <button id="rollinBtn" type="button" class="btn-u btn-u-default btn-u-sm btn-block">加载更多
-                            </button>
-                        </div>
-
-                        <div id="rollOut" class="profile-edit tab-pane fade">
+                        <div id="rollOut" class="profile-edit tab-pane fade in active">
                             <div id="rollOut_content" class="row">
 
                             </div>
@@ -75,12 +90,11 @@
                             </button>
                         </div>
 
-                        <div id="rollInning" class="profile-edit tab-pane fade">
-                            <div id="rollInning_content" class="row">
+                        <div id="rollin" class="profile-edit tab-pane fade">
+                            <div id="rollin_content" class="row">
 
                             </div>
-                            <button id="rollInningBtn" type="button" class="btn-u btn-u-default btn-u-sm btn-block">
-                                加载更多
+                            <button id="rollinBtn" type="button" class="btn-u btn-u-default btn-u-sm btn-block">加载更多
                             </button>
                         </div>
 
@@ -89,6 +103,15 @@
 
                             </div>
                             <button id="rollOutingBtn" type="button" class="btn-u btn-u-default btn-u-sm btn-block">
+                                加载更多
+                            </button>
+                        </div>
+
+                        <div id="rollInning" class="profile-edit tab-pane fade">
+                            <div id="rollInning_content" class="row">
+
+                            </div>
+                            <button id="rollInningBtn" type="button" class="btn-u btn-u-default btn-u-sm btn-block">
                                 加载更多
                             </button>
                         </div>
@@ -134,7 +157,9 @@
     <div class="easy-block-v1">
         <a id="rollInning_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg"
                                                   alt=""></a>
-    <#--<div class="easy-block-v1-badge rgba-red">Web Design</div>-->
+        <a class="rollInConfirm">
+            <div class="easy-block-v1-badge rgba-red">确认转入</div>
+        </a>
     </div>
     <div class="headline-left margin-bottom-10">
         <h3 id="rollInning_works_name" class="headline-brd works-name"></h3>
@@ -184,7 +209,7 @@
         loadRollOuting(1);
         //
         function loadRollin(rollinIndex) {
-            $.get("/user/transfer_load/false/1", {pageIndex: rollinIndex}, function (data) {
+            $.get("/user/transfer_load/true/1", {pageIndex: rollinIndex}, function (data) {
                 if (rollinIndex >= data.pages) {
                     // 数据加载完毕了
                     $("#rollinBtn").html("客官，这次真没了");
@@ -212,7 +237,7 @@
         });
 
         function loadRollOut(rollOutIndex) {
-            $.get("/user/transfer_load/true/1", {pageIndex: rollOutIndex}, function (data) {
+            $.get("/user/transfer_load/false/1", {pageIndex: rollOutIndex}, function (data) {
                 if (rollOutIndex >= data.pages) {
                     // 数据加载完毕了
                     $("#rollOutBtn").html("客官，这次真没了");
@@ -238,7 +263,7 @@
         });
         //
         function loadRrollInning(rollInningIndex) {
-            $.get("/user/transfer_load/false/2", {pageIndex: rollInningIndex}, function (data) {
+            $.get("/user/transfer_load/true/2", {pageIndex: rollInningIndex}, function (data) {
                 if (rollInningIndex >= data.pages) {
                     // 数据加载完毕了
                     $("#rollInningBtn").html("客官，这次真没了");
@@ -278,6 +303,7 @@
                     $li.find("#rollOuting_works_des").html(this.works.breed);
                     $li.find("#rollOuting_works_name").html(this.works.name);
                     $li.find("#rollOuting_works_img").attr("href", "${staticPath}/works/detail/" + this.works.id);
+                    $li.find('.rollInConfirm').attr("data-id", this.id).on("click", confirmRollin);
                     $("#rollOuting_content").append($li);
                 });
             });
@@ -289,7 +315,20 @@
                 loadRollOuting(rollOutingIndex);
             }
         });
-    });
 
+        function confirmRollin() {
+            var thisone = $(this);
+            $.get("${staticPath}/works/confimRollin/" + thisone.attr('data-id'), function (data) {
+                if (data.suc) {
+                    alert("转入成功");
+                    var xx = thisone.parent().parent();
+                    $("#rollin_content").append(xx);
+                } else {
+                    alert("转入失败");
+                }
+            });
+
+        }
+    });
 </script>
 </@footerJS>
