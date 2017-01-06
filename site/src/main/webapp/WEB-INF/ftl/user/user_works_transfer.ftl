@@ -303,6 +303,7 @@
                     $li.find("#rollOuting_works_des").html(this.works.breed);
                     $li.find("#rollOuting_works_name").html(this.works.name);
                     $li.find("#rollOuting_works_img").attr("href", "${staticPath}/works/detail/" + this.works.id);
+                    $li.find('.rollInConfirm').attr("data-id", this.id).on("click", confirmRollin);
                     $("#rollOuting_content").append($li);
                 });
             });
@@ -314,6 +315,20 @@
                 loadRollOuting(rollOutingIndex);
             }
         });
+
+        function confirmRollin() {
+            var thisone = $(this);
+            $.get("${staticPath}/works/confimRollin/" + thisone.attr('data-id'), function (data) {
+                if (data.suc) {
+                    alert("转入成功");
+                    var xx = thisone.parent().parent();
+                    $("#rollin_content").append(xx);
+                } else {
+                    alert("转入失败");
+                }
+            });
+
+        }
     });
 
 </script>

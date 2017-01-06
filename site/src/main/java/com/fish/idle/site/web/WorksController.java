@@ -59,6 +59,9 @@ public class WorksController extends BaseController {
     @Autowired
     private IFollowHistoryService followHistoryService;
 
+    @Autowired
+    private ITransferHistoryService transferHistoryService;
+
     /**
      * 第一步：登记物品信息
      *
@@ -398,7 +401,7 @@ public class WorksController extends BaseController {
     }
 
     /**
-     * 完成作品转让
+     * 添加转让历史
      *
      * @return
      */
@@ -406,6 +409,26 @@ public class WorksController extends BaseController {
     public String transferComplete(@PathVariable Integer id, ModelMap map) {
         return "user/user_works_transfer";
     }
+
+    /**
+     * 确认转让
+     *
+     * @return
+     */
+    @RequestMapping(value = "/transfer/confimRollin/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public JSONObject confimRollin(@PathVariable Integer id, ModelMap map) {
+        JSONObject jsonObject = new JSONObject();
+        TransferHistory transferHistory = transferHistoryService.selectById(id);
+        transferHistory.setStatus(Const.TRANSFER_STATUS_HAVE);
+        boolean result1 = transferHistoryService.updateById(transferHistory);
+        Works works = worksService.selectById(transferHistory.getWorksId());
+        works.setStatus(Const.WORKS_STATUS_PASS);
+        boolean result2 = worksService.updateById(works);
+        jsonObject.put("suc", result1 && result2);
+        return jsonObject;
+    }
+
 
     /**
      * 作品删除
