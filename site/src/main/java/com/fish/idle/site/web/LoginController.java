@@ -31,6 +31,14 @@ public class LoginController extends BaseController {
         return "user/login";
     }
 
+    @RequestMapping(value = "/loginOut", method = RequestMethod.GET)
+    public String loginOut() {
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        return "redirect:/";
+    }
+
+
     /**
      * 请求登录，验证用户
      */
@@ -61,7 +69,7 @@ public class LoginController extends BaseController {
         }
         jsonObject.put("result", errInfo);
 
-            return jsonObject;
+        return jsonObject;
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
