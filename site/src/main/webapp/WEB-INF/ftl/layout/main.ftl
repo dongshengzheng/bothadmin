@@ -211,7 +211,7 @@ description="金石典当"
             dataType: 'json',
             success: function (result) {
                 if (result.suc) {
-                    $("#login")[0].innerHTML = '<a href="${staticPath}/user">' + result.loginName + '</a>';
+                    $("#login")[0].innerHTML = '<a href="${staticPath}/user">' + result.loginName + '</a> | <a href="${staticPath}/loginOut">注销</a>';
                 } else {
                     $("#login")[0].innerHTML = '<a href="${staticPath}/login">登录</a> | <a href="${staticPath}/register">注册</a>';
                 }
