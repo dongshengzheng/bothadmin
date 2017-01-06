@@ -152,6 +152,9 @@ public class UserController extends BaseController {
             if (images != null && !StringUtils.isEmpty(images.getUrl())) {
                 works.setImages(images.getUrl());
             }
+            if (StringUtils.isNotEmpty(works.getBreed())) {
+                works.setBreed(dictService.getLabelByValue(works.getBreed(), "dd_pinzhong"));
+            }
             t.setWorks(works);
         }
         return transferHistoryPage;

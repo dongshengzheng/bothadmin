@@ -5,6 +5,29 @@
 <link rel="stylesheet" href="${staticPath}/assets/css/app.css">
 <link rel="stylesheet" href="${staticPath}/assets/css/pages/profile.css">
 <link rel="stylesheet" href="${staticPath}/assets/plugins/line-icons/line-icons.css">
+<style>
+    .easy-block-v2-badge {
+        left: 0px;
+        top: 46px;
+        z-index: 1;
+        color: #fff;
+        padding: 4px 10px;
+        position: absolute;
+    }
+
+    .easy-block-v3-badge {
+        left: 0px;
+        top: 82px;
+        z-index: 1;
+        color: #fff;
+        padding: 4px 10px;
+        position: absolute;
+    }
+
+    a {
+        cursor: pointer;
+    }
+</style>
 </@htmlHead>
 <@htmlBody>
 <!--=== Profile ===-->
@@ -102,7 +125,15 @@
 <div class="col-sm-6" id="passWorks" style="display: none">
     <div class="easy-block-v1">
         <a id="pass_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg" alt=""></a>
-        <div class="easy-block-v1-badge rgba-red">Web Design</div>
+        <a class="works-transfer">
+            <div class="easy-block-v1-badge rgba-red">转让</div>
+        </a>
+        <a class="works-edit">
+            <div class="easy-block-v2-badge rgba-red">编辑</div>
+        </a>
+        <a class="works-delete">
+            <div class="easy-block-v3-badge rgba-red">删除</div>
+        </a>
     </div>
     <div class="headline-left margin-bottom-10">
         <h3 id="pass_works_name" class="headline-brd works-name"></h3>
@@ -111,36 +142,42 @@
         <i class="fa fa-tag"></i>
         <a id="pass_works_des" href="javascript:void(0)"></a>
     </small>
-    <p class="pass_works-remarks"></p>
-    <div class="projects">
-        <h2><a class="color-dark" href="page_profile_projects.html#">Getting Started Photography</a></h2>
-        <ul class="list-unstyled list-inline blog-info-v2">
-            <li>By: <a class="color-green" href="page_profile_projects.html#">Edward Rooster</a></li>
-            <li><i class="fa fa-clock-o"></i> Jan 07, 2013</li>
-        </ul>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing. Donec non dignissim eros.
-            Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>
-        <br>
-    </div>
-    <div class="project-share">
-        <ul class="list-inline comment-list-v2 pull-left">
-            <li><i class="fa fa-eye"></i> <a href="page_profile_projects.html#">25</a></li>
-            <li><i class="fa fa-comments"></i> <a href="page_profile_projects.html#">32</a></li>
-            <li><i class="fa fa-retweet"></i> <a href="page_profile_projects.html#">77</a></li>
-        </ul>
-        <ul class="list-inline star-vote pull-right">
-            <li><i class="color-green fa fa-star"></i></li>
-            <li><i class="color-green fa fa-star"></i></li>
-            <li><i class="color-green fa fa-star"></i></li>
-            <li><i class="color-green fa fa-star-half-o"></i></li>
-            <li><i class="color-green fa fa-star-o"></i></li>
-        </ul>
-    </div>
+<#--<p class="pass_works-remarks"></p>-->
+<#--<div class="projects">-->
+<#--<h2><a class="color-dark" href="page_profile_projects.html#">Getting Started Photography</a></h2>-->
+<#--<ul class="list-unstyled list-inline blog-info-v2">-->
+<#--<li>By: <a class="color-green" href="page_profile_projects.html#">Edward Rooster</a></li>-->
+<#--<li><i class="fa fa-clock-o"></i> Jan 07, 2013</li>-->
+<#--</ul>-->
+<#--<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry printing. Donec non dignissim eros.-->
+<#--Mauris faucibus turpis volutpat sagittis rhoncus. Pellentesque et rhoncus sapien, sed ullamcorper justo.</p>-->
+<#--<br>-->
+<#--</div>-->
+<#--<div class="project-share">-->
+<#--<ul class="list-inline comment-list-v2 pull-left">-->
+<#--<li><i class="fa fa-eye"></i> <a href="page_profile_projects.html#">25</a></li>-->
+<#--<li><i class="fa fa-comments"></i> <a href="page_profile_projects.html#">32</a></li>-->
+<#--<li><i class="fa fa-retweet"></i> <a href="page_profile_projects.html#">77</a></li>-->
+<#--</ul>-->
+<#--<ul class="list-inline star-vote pull-right">-->
+<#--<li><i class="color-green fa fa-star"></i></li>-->
+<#--<li><i class="color-green fa fa-star"></i></li>-->
+<#--<li><i class="color-green fa fa-star"></i></li>-->
+<#--<li><i class="color-green fa fa-star-half-o"></i></li>-->
+<#--<li><i class="color-green fa fa-star-o"></i></li>-->
+<#--</ul>-->
+<#--</div>-->
 </div>
 <div class="col-sm-6" id="unPassWorks" style="display: none">
     <div class="easy-block-v1">
         <a id="unPass_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg"
                                               alt=""></a>
+        <a class="works-edit">
+            <div class="easy-block-v2-badge rgba-red">编辑</div>
+        </a>
+        <a class="works-delete">
+            <div class="easy-block-v3-badge rgba-red">删除</div>
+        </a>
     <#--<div class="easy-block-v1-badge rgba-red">Web Design</div>-->
     </div>
     <div class="headline-left margin-bottom-10">
@@ -174,6 +211,12 @@
     <div class="easy-block-v1">
         <a id="draft_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg"
                                              alt=""></a>
+        <a class="works-edit">
+            <div class="easy-block-v2-badge rgba-red">编辑</div>
+        </a>
+        <a class="works-delete">
+            <div class="easy-block-v3-badge rgba-red">删除</div>
+        </a>
     <#--<div class="easy-block-v1-badge rgba-red">Web Design</div>-->
     </div>
     <div class="headline-left margin-bottom-10">
@@ -246,6 +289,9 @@
                     $li.find("#pass_works_des").html(this.breed);
                     $li.find("#pass_works_name").html(this.name);
                     $li.find("#pass_works_img").attr("href", "${staticPath}/works/detail/" + this.id);
+                    $li.find('.works-transfer').attr("href", "${staticPath}/works/transfer/" + this.id);
+                    $li.find('.works-edit').attr("href", "${staticPath}/works/edit/" + this.id);
+                    $li.find('.works-delete').attr('data-id', this.id).on('click', deleteWorks);
                     $("#passWorks-content").append($li);
                 });
 
@@ -275,6 +321,8 @@
                     $li.find("#unPass_works_des").html(this.breed);
                     $li.find("#unPass_works_name").html(this.name);
                     $li.find("#unPass_works_img").attr("href", "${staticPath}/works/detail/" + this.id);
+                    $li.find('.works-edit').attr("href", "${staticPath}/works/edit/" + this.id);
+                    $li.find('.works-delete').attr('data-id', this.id).on('click', deleteWorks);
                     $("#unPassWorks-content").append($li);
                 });
             });
@@ -330,8 +378,22 @@
                     $li.find("#draft_works_des").html(this.breed);
                     $li.find("#draft_works_name").html(this.name);
                     $li.find("#draft_works_img").attr("href", "${staticPath}/works/detail/" + this.id);
+                    $li.find('.works-edit').attr("href", "${staticPath}/works/edit/" + this.id);
+                    $li.find('.works-delete').attr('data-id', this.id).on('click', deleteWorks);
                     $("#draftsWorks-content").append($li);
                 });
+            });
+        }
+
+        function deleteWorks() {
+            var thisone = $(this);
+            $.get("${staticPath}/works/delete/" + thisone.attr('data-id'), function (data) {
+                if (data.suc) {
+                    thisone.parent().parent().remove();
+                    alert("删除成功");
+                } else {
+                    alert("删除失败");
+                }
             });
         }
 
