@@ -78,18 +78,18 @@
             <div class="works-all">
                 <c:if test="${th.status==2}">
                     <c:if test="${th.toUserId==appUserId}">
-                        <img src="${ctxStatic}/img/cut/待确认.png" class="transfer-img confirmTransfer">
+                        <img src="${ctxStatic}/img/cut/waitin.png" class="transfer-img confirmTransfer">
                     </c:if>
                     <c:if test="${th.fromUserId==appUserId}">
-                        <img src="${ctxStatic}/img/cut/待对方确认.png" class="transfer-img">
+                        <img src="${ctxStatic}/img/cut/waitout.png" class="transfer-img">
                     </c:if>
                 </c:if>
                 <c:if test="${th.status==1}">
                     <c:if test="${th.toUserId==appUserId}">
-                        <img src="${ctxStatic}/img/cut/已转入.png" class="transfer-img">
+                        <img src="${ctxStatic}/img/cut/havein.png" class="transfer-img">
                     </c:if>
                     <c:if test="${th.fromUserId==appUserId}">
-                        <img src="${ctxStatic}/img/cut/已转出.png" class="transfer-img">
+                        <img src="${ctxStatic}/img/cut/haveout.png" class="transfer-img">
                     </c:if>
                 </c:if>
                 <img class="works-img-all"
@@ -356,7 +356,7 @@
                 if (data == '已转入!') {
                     $notCareDialog.find('.weui-dialog__title').html(data + "作品详情可到审核通过作品中查看!");
                     var works = $('.works-all-outer[data-id=' + thId + ']').find('.confirmTransfer')
-                    works.attr('src', $('#ctxStatic').val() + '/img/cut/已转入.png');
+                    works.attr('src', $('#ctxStatic').val() + '/img/cut/havein.png');
                     works.removeClass('confirmTransfer');
                     works.unbind('click');
                 }

@@ -160,6 +160,11 @@ public class MobileController extends BaseController {
             if (images != null && images.size() > 0) {
                 page.getRecords().get(i).setImages(images.get(0).getUrl());
             }
+
+            if (!StringUtils.isEmpty(page.getRecords().get(i).getBreed())) {
+                page.getRecords().get(i).setBreed(dictService.getLabelByValue(page.getRecords().get(i).getBreed(), "dd_pinzhong"));
+            }
+
         }
 
         works.setSlide(1);
@@ -172,6 +177,9 @@ public class MobileController extends BaseController {
             List<Images> images = imagesService.selectList(new EntityWrapper<>(new Images(slideList.get(i).getId(), Const.IMAGES_WORKS)));
             if (images != null && images.size() > 0) {
                 slideList.get(i).setImages(images.get(0).getUrl());
+            }
+            if (!StringUtils.isEmpty(slideList.get(i).getBreed())) {
+                slideList.get(i).setBreed(dictService.getLabelByValue(slideList.get(i).getBreed(), "dd_pinzhong"));
             }
         }
 
@@ -208,6 +216,9 @@ public class MobileController extends BaseController {
             List<Images> images = imagesService.selectList(new EntityWrapper<>(new Images(page.getRecords().get(i).getId(), Const.IMAGES_WORKS)));
             if (images != null && images.size() > 0) {
                 page.getRecords().get(i).setImages(images.get(0).getUrl());
+            }
+            if (!StringUtils.isEmpty(page.getRecords().get(i).getBreed())) {
+                page.getRecords().get(i).setBreed(dictService.getLabelByValue(page.getRecords().get(i).getBreed(), "dd_pinzhong"));
             }
         }
 
@@ -523,11 +534,18 @@ public class MobileController extends BaseController {
             if (images != null && images.size() > 0) {
                 defaultList.get(i).setImages(images.get(0).getUrl());
             }
+            if (!StringUtils.isEmpty(defaultList.get(i).getBreed())) {
+                defaultList.get(i).setBreed(dictService.getLabelByValue(defaultList.get(i).getBreed(), "dd_pinzhong"));
+            }
+
         }
         for (int i = 0; i < timeList.size(); i++) {
             List<Images> images = imagesService.selectList(new EntityWrapper<>(new Images(timeList.get(i).getId(), Const.IMAGES_WORKS)));
             if (images != null && images.size() > 0) {
                 timeList.get(i).setImages(images.get(0).getUrl());
+            }
+            if (!StringUtils.isEmpty(timeList.get(i).getBreed())) {
+                timeList.get(i).setBreed(dictService.getLabelByValue(timeList.get(i).getBreed(), "dd_pinzhong"));
             }
         }
 
@@ -567,6 +585,9 @@ public class MobileController extends BaseController {
             List<Images> images = imagesService.selectList(new EntityWrapper<>(new Images(worksList.get(i).getId(), Const.IMAGES_WORKS)));
             if (images != null && images.size() > 0) {
                 worksList.get(i).setImages(images.get(0).getUrl());
+            }
+            if (!StringUtils.isEmpty(worksList.get(i).getBreed())) {
+                worksList.get(i).setBreed(dictService.getLabelByValue(worksList.get(i).getBreed(), "dd_pinzhong"));
             }
         }
 
@@ -636,9 +657,79 @@ public class MobileController extends BaseController {
 
         //作品
         Works works = worksService.selectById(worksId);
+        //矿区地域
+        if (StringUtils.isNotEmpty(works.getKqdy())) {
+            works.setKqdy(dictService.getLabelByValue(works.getKqdy(), "dd_kqdy"));
+        }
+        //作品品种
+        if (StringUtils.isNotEmpty(works.getBreed())) {
+            works.setBreed(dictService.getLabelByValue(works.getBreed(), "dd_pinzhong"));
+        }
+        //作品类型
+        if (StringUtils.isNotEmpty(works.getType())) {
+            works.setType(dictService.getLabelByValue(works.getType(), "dd_zuopinleixing"));
+        }
+        if (StringUtils.isNotEmpty(works.getGyType())) {
+            works.setGyType(dictService.getLabelByValue(works.getGyType(), "dd_level"));
+        }
+        if (StringUtils.isNotEmpty(works.getLevelZk())) {
+            works.setLevelZk(dictService.getLabelByValue(works.getLevelZk(), "dd_level"));
+        }
+
+
         //作品等级
         WorksLevel wl = new WorksLevel(worksId);
         WorksLevel worksLevel = worksLevelService.selectOne(new EntityWrapper<>(wl));
+
+        if (worksLevel != null) {
+            if (StringUtils.isNotEmpty(worksLevel.getZhidi())) {
+                worksLevel.setZhidi(dictService.getLabelByValue(worksLevel.getZhidi(), "dd_zhidi"));
+            }
+            if (StringUtils.isNotEmpty(worksLevel.getZhidi2())) {
+                worksLevel.setZhidi2(dictService.getLabelByValue(worksLevel.getZhidi2(), "dd_zhidi2"));
+            }
+            if (StringUtils.isNotEmpty(worksLevel.getGanguan())) {
+                worksLevel.setGanguan(dictService.getLabelByValue(worksLevel.getGanguan(), "dd_ganguan"));
+            }
+            if (StringUtils.isNotEmpty(worksLevel.getMoshidu())) {
+                worksLevel.setMoshidu(dictService.getLabelByValue(worksLevel.getMoshidu(), "dd_moshidu"));
+            }
+            if (StringUtils.isNotEmpty(worksLevel.getXueliang())) {
+                worksLevel.setXueliang(dictService.getLabelByValue(worksLevel.getXueliang(), "dd_xueliang"));
+            }
+            if (StringUtils.isNotEmpty(worksLevel.getXuese())) {
+                worksLevel.setXuese(dictService.getLabelByValue(worksLevel.getXuese(), "dd_xuese"));
+            }
+            if (StringUtils.isNotEmpty(worksLevel.getXuexing())) {
+                worksLevel.setXuexing(dictService.getLabelByValue(worksLevel.getXuexing(), "dd_xuexing"));
+            }
+            if (StringUtils.isNotEmpty(worksLevel.getNongyandu())) {
+                worksLevel.setNongyandu(dictService.getLabelByValue(worksLevel.getNongyandu(), "dd_nongyandu"));
+            }
+            if (StringUtils.isNotEmpty(worksLevel.getChunjingdu())) {
+                worksLevel.setChunjingdu(dictService.getLabelByValue(worksLevel.getChunjingdu(), "dd_jingdu"));
+            }
+            if (StringUtils.isNotEmpty(worksLevel.getDise())) {
+                worksLevel.setDise(dictService.getLabelByValue(worksLevel.getDise(), "dd_dise"));
+            }
+            if (StringUtils.isNotEmpty(worksLevel.getLie())) {
+                worksLevel.setLie(dictService.getLabelByValue(worksLevel.getLie(), "dd_lie"));
+            }
+            if (StringUtils.isNotEmpty(worksLevel.getLiu())) {
+                worksLevel.setLiu(dictService.getLabelByValue(worksLevel.getLiu(), "dd_liu"));
+            }
+            if (StringUtils.isNotEmpty(worksLevel.getInithanxueliang())) {
+                worksLevel.setInithanxueliang(dictService.getLabelByValue(worksLevel.getInithanxueliang(), "dd_mian"));
+            }
+            if (StringUtils.isNotEmpty(worksLevel.getHanxueliang())) {
+                worksLevel.setHanxueliang(dictService.getLabelByValue(worksLevel.getHanxueliang(), "dd_hanxuefangshi"));
+            }
+            if (StringUtils.isNotEmpty(worksLevel.getHanxuefangshi())) {
+                worksLevel.setHanxuefangshi(dictService.getLabelByValue(worksLevel.getHanxuefangshi(), "dd_hanxuefangshi"));
+            }
+        }
+
+
         //作品用户
         AppUser appUser1 = appUserService.selectById(works.getCreateBy());
         //作品提供者
@@ -1081,11 +1172,18 @@ public class MobileController extends BaseController {
             if (images != null && images.size() > 0) {
                 transferHistoryList.get(i).getWorks().setImages(images.get(0).getUrl());
             }
+            if (!StringUtils.isEmpty(transferHistoryList.get(i).getWorks().getBreed())) {
+                transferHistoryList.get(i).getWorks().setBreed(dictService.getLabelByValue(transferHistoryList.get(i).getWorks().getBreed(), "dd_pinzhong"));
+            }
+
         }
         for (int i = 0; i < fhWorksList.size(); i++) {
             List<Images> images = imagesService.selectList(new EntityWrapper<>(new Images(fhWorksList.get(i).getId(), Const.IMAGES_WORKS)));
             if (images != null && images.size() > 0) {
                 fhWorksList.get(i).setImages(images.get(0).getUrl());
+            }
+            if (!StringUtils.isEmpty(fhWorksList.get(i).getBreed())) {
+                fhWorksList.get(i).setBreed(dictService.getLabelByValue(fhWorksList.get(i).getBreed(), "dd_pinzhong"));
             }
         }
 

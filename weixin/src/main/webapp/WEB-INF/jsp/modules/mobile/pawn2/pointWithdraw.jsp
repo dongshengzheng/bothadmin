@@ -64,7 +64,7 @@
         <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
             <div class="weui-media-box__hd">
                 <img class="weui-media-box__thumb"
-                     src="${ctxStatic}/img/cut/积分中心_10元现金券.png"
+                     src="${ctxStatic}/img/cut/pointcenter10.png"
                      alt="">
             </div>
             <div class="weui-media-box__bd">
@@ -85,7 +85,7 @@
         <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
             <div class="weui-media-box__hd">
                 <img class="weui-media-box__thumb"
-                     src="${ctxStatic}/img/cut/积分中心_100元现金券.png"
+                     src="${ctxStatic}/img/cut/pointcenter100.png"
                      alt="">
             </div>
             <div class="weui-media-box__bd">

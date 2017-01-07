@@ -21,7 +21,7 @@
         }
 
         #update {
-            background-image: url("${ctxStatic}/img/cut/设置_更新.png");
+            background-image: url("${ctxStatic}/img/cut/mysetUpdate.png");
             background-size: 15px 15px;
             background-repeat: no-repeat;
             background-position-x: 3px;

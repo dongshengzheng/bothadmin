@@ -27,14 +27,15 @@
         }
 
         .weui-navbar__item.weui-bar__item_on {
-            background-color: #2698DE;
-            color: white;
+            background-color: white;
+            color: #2698DE;
+            border-bottom: 1px solid #2698DE;
         }
 
         .weui-navbar__item {
-            border: 1px solid #2698DE;
+            border: none;
             background-color: white;
-            color: #2698DE;
+            color: black;
         }
 
         .works-floor-btn-all {

@@ -29,7 +29,7 @@
             margin-left: 35%;
             margin-right: 35%;
             height: 100px;
-            background-image: url("${ctxStatic}/img/cut/积分中心_积分.png");
+            background-image: url("${ctxStatic}/img/cut/pointcenterPoint.png");
             background-repeat: no-repeat;
             background-size: 100px 100px;
             background-position: center center;
@@ -61,7 +61,7 @@
             padding-left: 25px;
             width: 100px;
             border: none;
-            background-image: url(${ctxStatic}/img/cut/积分中心_积分规则.png);
+            background-image: url(${ctxStatic}/img/cut/pointcenterRule.png);
             position: absolute;
             top: 0px;
             right: 0px;
@@ -74,7 +74,7 @@
             border: 1px solid lightgray;
             border-radius: 3px;
             width: 75px;
-            background-image: url(${ctxStatic}/img/cut/积分中心_充值.png);
+            background-image: url(${ctxStatic}/img/cut/pointcenterSave.png);
             position: absolute;
             left: 20px;
 
@@ -87,7 +87,7 @@
             border: 1px solid lightgray;
             border-radius: 3px;
             width: 75px;
-            background-image: url(${ctxStatic}/img/cut/积分中心_提现.png);
+            background-image: url(${ctxStatic}/img/cut/pointcenterWithdraw.png);
             position: absolute;
             right: 20px;
         }
