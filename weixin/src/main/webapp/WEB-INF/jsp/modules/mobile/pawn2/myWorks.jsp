@@ -22,7 +22,6 @@
         .weui-navbar {
             width: 96%;
             margin: 1%;
-            border: 1px solid #2698DE;
             border-radius: 5px;
         }
 

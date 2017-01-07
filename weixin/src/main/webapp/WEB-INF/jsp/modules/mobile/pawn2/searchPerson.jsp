@@ -49,8 +49,9 @@
             <div class="weui-panel__bd" id="${person.id}">
                 <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
                     <div class="weui-media-box__hd">
-                        <img class="weui-media-box__thumb"
-                             src="${ctxStatic}/img/headImg/4.jpg"
+                        <img onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default-man.jpg'"
+                             class="weui-media-box__thumb"
+                             src="${person.headImgUrl}"
                              alt="">
                     </div>
                     <div class="weui-media-box__bd">
@@ -81,6 +82,7 @@
                 <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
                     <div class="weui-media-box__hd">
                         <img class="weui-media-box__thumb"
+                             onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default-man.jpg'"
                              src="${person.headImgUrl}"
                              alt="">
                     </div>

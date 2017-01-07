@@ -323,7 +323,7 @@
 <div id="header" class="div-outer">
     <div id="header-left" data-id="${appUser.id}">
         <img src="${appUser.headImgUrl}"
-             onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png'" id="header-left-img">
+             onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default-man.jpg'" id="header-left-img">
         <input type="button" value=" + 关注 " id="header-left-like">
     </div>
     <div id="header-right">
@@ -345,7 +345,7 @@
                 <a href="javascript:;" class="weui-grid">
                     <div class="weui-grid__icon">
                         <img src="http://windyeel.img-cn-shanghai.aliyuncs.com/${image.url}?x-oss-process=image/resize,m_fill,h_100,w_100"
-                             onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
+                             onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default-man.jpg'"
                              alt="">
                     </div>
                 </a>
@@ -359,7 +359,7 @@
             </c:if>
         </div>
         <div id="header-right-footer">
-            <span>浏览次数 ${browseCount}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span>浏览次数 ${works.browserCount}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span>2016-11-06&nbsp;12:06:18</span>
         </div>
     </div>
@@ -374,7 +374,7 @@
         <div id="like-people">
             <c:forEach items="${collecterList}" var="person">
                 <img class="like-people-one" src="${person.headImgUrl}"
-                     onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img like-people-one'"
+                     onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default-man.jpg'"
                      alt="">
             </c:forEach>
             <img src="${ctxStatic}/img/cut/worksDetail-morelikepeople.png" class="like-people-one">
@@ -387,17 +387,18 @@
             <img src="${ctxStatic}/img/cut/worksDetail-lookpeople.png">
         </div>
         <div id="look-people">
-            <c:forEach items="${browseList}" var="person">
-                <div class="look-people-one" data-id="${person.id}">
-                    <img src="${person.headImgUrl}" class="look-people-one-img"
-                         onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
+            <c:forEach items="${browserPeopleList}" var="browse">
+                <div class="look-people-one" data-id="${browse.appUser.id}">
+                    <img src="${browse.appUser.headImgUrl}" class="look-people-one-img"
+                         onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default-man.jgp'"
                          alt="">
                     <div class="look-people-one-info">
                         <p class="look-people-one-info-name">
-                                ${person.name}
+                                ${browse.appUser.name}
                         </p>
                         <p class="look-people-one-info-date">
-                            16-12-05 &nbsp;09:19:27
+                            <fmt:formatDate value="${browse.updateDate}"
+                                            pattern="yyyy-MM-dd hh:mm:ss"/>
                         </p>
                     </div>
                     <div class="look-people-one-care">

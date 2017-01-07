@@ -331,8 +331,8 @@
                         $tmp.find(".works-floor-img-all").html(data.records[i].type);
 
                         var t = data.records[i].createDate;
-                        var d = new Date(parseInt(t)).Format("yyyy-MM-dd hh:mm:ss");
-                        $tmp.find(".works-floor-date-all").html(t);
+                        var d = new Date(parseInt(t)).Format("yyyy-MM-dd");
+                        $tmp.find(".works-floor-date-all").html(d);
 
                         $tmp.find(".works-intro-all").html(data.records[i].remarks)
                         $tmp.children('.works-img-all').attr('src', 'http://windyeel.img-cn-shanghai.aliyuncs.com/' + data.records[i].images + '?x-oss-process=image/resize,m_fill,h_100,w_100');

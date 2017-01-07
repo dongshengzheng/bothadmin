@@ -34,14 +34,13 @@
     <div class="row">
         <!--Left Sidebar-->
         <div class="col-md-3 md-margin-bottom-40">
-            <#if Session.siteSessionUser.headImgUrl?index_of('http')!=-1>
-                <img class="img-responsive profile-img margin-bottom-20" src="${Session.siteSessionUser.headImgUrl!''}"
-                     alt="">
-            <#else>
-                <img class="img-responsive profile-img margin-bottom-20"
-                     src="http://windyeel.img-cn-shanghai.aliyuncs.com/${Session.siteSessionUser.headImgUrl}?x-oss-process=image/resize,m_fill,h_100,w_100"
-                     alt="">
-            </#if>
+            <img onerror="nofind(2)" class="img-responsive profile-img margin-bottom-20"
+                <#if Session.siteSessionUser.headImgUrl?index_of('http')!=-1>
+                 src="${Session.siteSessionUser.headImgUrl!''}"
+                <#else>
+                 src="http://windyeel.img-cn-shanghai.aliyuncs.com/${Session.siteSessionUser.headImgUrl}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                </#if>
+                 alt="">
             <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
                 <li class="list-group-item ">
                     <a href="/user"><i class="fa fa-tachometer"></i>面板</a>
@@ -125,7 +124,8 @@
 
 <div id="rollin_works" style="display: none" class="col-sm-6">
     <div class="easy-block-v1">
-        <a id="rollin_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg"
+        <a id="rollin_works_img" href=""><img onerror="nofind(1)" class="img-responsive"
+                                              src="${staticPath}/assets/img/main/img12.jpg"
                                               alt=""></a>
     <#--<div class="easy-block-v1-badge rgba-red">Web Design</div>-->
     </div>
@@ -140,7 +140,8 @@
 </div>
 <div id="rollOut_works" style="display: none" class="col-sm-6">
     <div class="easy-block-v1">
-        <a id="rollOut_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg"
+        <a id="rollOut_works_img" href=""><img onerror="nofind(1)" class="img-responsive"
+                                               src="${staticPath}/assets/img/main/img12.jpg"
                                                alt=""></a>
     <#--<div class="easy-block-v1-badge rgba-red">Web Design</div>-->
     </div>
@@ -155,7 +156,8 @@
 </div>
 <div id="rollInning_works" style="display: none" class="col-sm-6">
     <div class="easy-block-v1">
-        <a id="rollInning_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg"
+        <a id="rollInning_works_img" href=""><img onerror="nofind(1)" class="img-responsive"
+                                                  src="${staticPath}/assets/img/main/img12.jpg"
                                                   alt=""></a>
         <a data-id="" class="rollInConfirm">
             <div class="easy-block-v1-badge rgba-red">确认转入</div>
@@ -172,7 +174,8 @@
 </div>
 <div id="rollOuting_works" style="display: none" class="col-sm-6">
     <div class="easy-block-v1">
-        <a id="rollOuting_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg"
+        <a id="rollOuting_works_img" href=""><img onerror="nofind(1)" class="img-responsive"
+                                                  src="${staticPath}/assets/img/main/img12.jpg"
                                                   alt=""></a>
     <#--<div class="easy-block-v1-badge rgba-red">Web Design</div>-->
     </div>

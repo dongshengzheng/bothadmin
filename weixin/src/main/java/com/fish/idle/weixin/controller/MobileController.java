@@ -749,10 +749,9 @@ public class MobileController extends BaseController {
         }
 
         //查看过该作品的用户集合
-        List<AppUser> browseList = appUserService.searchFollowHistoryUsers(Const.FOLLOW_HISTORY_TYPE_BROWSE, worksId);
-        Integer browseCount = browseList.size();
-        if (browseList.size() > 10) {
-            browseList = browseList.subList(0, 9);
+        List<FollowHistory> browserPeopleList = followHistoryService.browserPeopleList(worksId);
+        if (collecterList.size() > 9) {
+            browserPeopleList = browserPeopleList.subList(0, 9);
         }
 
         //评估报告及图片
@@ -780,8 +779,7 @@ public class MobileController extends BaseController {
         map.put("collecter", collecter);
         map.put("imagesList", imagesList);
         map.put("collecterList", collecterList);
-        map.put("browseList", browseList);
-        map.put("browseCount", browseCount);
+        map.put("browserPeopleList", browserPeopleList);
         map.put("report", report);
         map.put("certImage", certImage);
         map.put("valueImages", valueImages);

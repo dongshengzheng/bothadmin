@@ -57,7 +57,7 @@
 
 <li class="col-sm-4" style="display: none;" id="worksTemp">
     <a id="works_img" href="" class="thumbnail fancybox" data-rel="gallery" title="" href="">
-        <img onerror="nofind(1)" class="full-width img-responsive works-image" src="" alt="">
+        <img onerror="nofind(3)" class="full-width img-responsive works-image" src="" alt="">
     </a>
     <div class="headline-left margin-bottom-10">
         <h3 id="works_name" class="headline-brd works-name"></h3>

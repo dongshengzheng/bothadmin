@@ -61,7 +61,8 @@
     <div class="media">
         <div class="pull-left">
             <div style="height: 80px;width: 80px;border-radius: 50px;overflow:hidden">
-                <img data-id="" class="headImg" src="${staticPath}/assets/img/testimonials/img5.jpg" alt=""/>
+                <img data-id="" onerror="nofind(2)" class="headImg" src="${staticPath}/assets/img/testimonials/img5.jpg"
+                     alt=""/>
             </div>
         </div>
         <div class="media-body">
@@ -109,12 +110,16 @@
                 $.each(data, function () {
                     var $li = $("#userTemp").clone();
                     $li.removeAttr('id').css("display", "block");
-                    $li.find(".headImg").attr("src", this.headImgUrl).attr('data-id', this.id).on('click', go_to_detail);
+                    if (this.headImgUrl.substr(0, 4) == "http") {
+                        $li.find(".headImg").attr("src", this.headImgUrl).attr('data-id', this.id).on('click', go_to_detail);
+                    } else {
+                        $li.find(".headImg").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.headImgUrl + "?x-oss-process=image/resize,m_fill,h_100,w_100").attr('data-id', this.id).on('click', go_to_detail);
+                    }
+
                     if (this.follow == 1) {
                         $li.find(".focus").html("已经关注").parent().attr('data-id', this.id).on('click', haveToNot);
                     } else {
                         $li.find(".focus").removeClass("glyphicon-ok").addClass("glyphicon-plus").html("添加关注").parent().attr('data-id', this.id).on('click', notToHave);
-
                     }
                     $li.find(".media-heading").html(this.loginName);
                     $li.find(".worksCount").html(this.worksCount);

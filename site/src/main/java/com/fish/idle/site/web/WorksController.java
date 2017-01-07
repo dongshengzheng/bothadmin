@@ -405,13 +405,21 @@ public class WorksController extends BaseController {
      *
      * @return
      */
-    @RequestMapping(value = "/transfer/complete/{id}", method = RequestMethod.GET)
-    public String transferComplete(@PathVariable Integer id, ModelMap map) {
+    @RequestMapping(value = "/transfer/complete", method = RequestMethod.GET)
+    public String transferComplete(TransferHistory transferHistory) {
+        AppUser currentUser = getCurrentUser();
+        if (currentUser == null) {
+            return "user/login";
+        }
+        transferHistory.setFromUserId(getCurrentUser().getId());
+        transferHistory.setCreateDate(new Date());
+        transferHistory.setUpdateDate(new Date());
+        transferHistoryService.insert(transferHistory);
         return "user/user_works_transfer";
     }
 
     /**
-     * 确认转让
+     * 被转入用户确认转入
      *
      * @return
      */
@@ -419,12 +427,16 @@ public class WorksController extends BaseController {
     @ResponseBody
     public JSONObject confimRollin(@PathVariable Integer id, ModelMap map) {
         JSONObject jsonObject = new JSONObject();
+
         TransferHistory transferHistory = transferHistoryService.selectById(id);
         transferHistory.setStatus(Const.TRANSFER_STATUS_HAVE);
+        transferHistory.setUpdateDate(new Date());
         boolean result1 = transferHistoryService.updateById(transferHistory);
+
         Works works = worksService.selectById(transferHistory.getWorksId());
         works.setStatus(Const.WORKS_STATUS_PASS);
         boolean result2 = worksService.updateById(works);
+
         jsonObject.put("suc", result1 && result2);
         return jsonObject;
     }

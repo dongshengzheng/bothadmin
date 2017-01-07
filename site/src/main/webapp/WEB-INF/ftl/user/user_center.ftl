@@ -13,7 +13,7 @@
     <div class="col-sm-3">
         <div class="margin-bottom-40 margin-top-20"
              style="text-align:center;display: table;width: auto;margin-left: auto;margin-right: auto;">
-            <img style="height: 140px ;width: 140px;" src="${staticPath}/assets/img/main/img10.jpg">
+            <img onerror="nofind(2)" style="height: 140px ;width: 140px;" src="${staticPath}/assets/img/main/img10.jpg">
             <p id="editAvatr"
                style=" background:rgba(0,0,0,.5); position:relative; top:-19px; color:whitesmoke; font-size:12px;">
                 点击修头像</p>
@@ -847,6 +847,8 @@
 
 
 
+
+
 </script>
 
 <script id="cz_jf" type="mustache">
@@ -893,6 +895,8 @@
 
 
 
+
+
 </script>
 
 <script id="tx_jf" type="mustache">
@@ -915,6 +919,8 @@
 
 
 
+
+
 </script>
 
 <script id="qt_jf" type="mustache">
@@ -934,6 +940,8 @@
                             </div>
                             <hr style="height: 0px ;margin: 0px;"/>
                         </div>
+
+
 
 
 

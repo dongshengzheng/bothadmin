@@ -46,11 +46,14 @@ description="金石典当"
     <script type="text/javascript">
         function nofind(type) {
             var img = event.srcElement;
-            //1 作品 2 用户头像
+            //1 详情作品 2 用户头像 3 首页作品
             if (type == '1') {
                 img.src = "http://windyeel.oss-cn-shanghai.aliyuncs.com/global/img/default.png";
+            } else if (type == '2') {
+                img.src = "http://windyeel.oss-cn-shanghai.aliyuncs.com/global/img/default-man.jpg";
+            } else if (type == '3') {
+                img.src = "http://windyeel.oss-cn-shanghai.aliyuncs.com/global/img/default-site-index.png";
             }
-            img.onerror = null;
         }
     </script>
     <#nested/>
@@ -166,11 +169,6 @@ description="金石典当"
 
             }
         }
-    });
-
-
-    $('img').error(function () {
-        $(this).attr('src', "http://windyeel.oss-cn-shanghai.aliyuncs.com/global/img/default.png");
     });
 
 

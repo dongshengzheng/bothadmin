@@ -11,15 +11,13 @@
     <div class="row">
         <!--Left Sidebar-->
         <div class="col-md-3 md-margin-bottom-40">
-            <#if appUser.headImgUrl?index_of('http')!=-1>
-                <img class="img-responsive profile-img margin-bottom-20" src="${appUser.headImgUrl!''}"
-                     alt="">
-            <#else>
-                <img class="img-responsive profile-img margin-bottom-20"
-                     src="http://windyeel.img-cn-shanghai.aliyuncs.com/${appUser.headImgUrl}?x-oss-process=image/resize,m_fill,h_100,w_100"
-                     alt="">
-            </#if>
-
+            <img onerror="nofind(2)" class="img-responsive profile-img margin-bottom-20"
+                <#if Session.siteSessionUser.headImgUrl?index_of('http')!=-1>
+                 src="${Session.siteSessionUser.headImgUrl!''}"
+                <#else>
+                 src="http://windyeel.img-cn-shanghai.aliyuncs.com/${Session.siteSessionUser.headImgUrl}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                </#if>
+                 alt="">
             <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
                 <li class="list-group-item">
                     <a href="/user/detail?userId=${appUser.id}"><i class="fa fa-tachometer"></i>面板</a>
@@ -67,7 +65,7 @@
 
 <div id="works-temp" style="display: none" class="col-sm-6">
     <div class="service-or easy-block-v2 no-margin-bottom">
-        <a id="works_img" href=""><img class="img-responsive works-image" src="" alt=""></a>
+        <a id="works_img" href=""><img onerror="nofind(1)" class="img-responsive works-image" src="" alt=""></a>
     <#--<div id="works_name" class="easy-bg-v2 rgba-blue">Nokia</div>-->
     </div>
     <div class="headline-left margin-bottom-10">

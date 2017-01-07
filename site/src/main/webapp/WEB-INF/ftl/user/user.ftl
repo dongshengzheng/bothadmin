@@ -11,16 +11,13 @@
     <div class="row">
         <!--Left Sidebar-->
         <div class="col-md-3 md-margin-bottom-40">
-            <#if (Session.siteSessionUser.headImgUrl)!?index_of('http')!=-1>
-                <img class="img-responsive profile-img margin-bottom-20"
-                     src="${(Session.siteSessionUser.headImgUrl)!}"
-                     alt="">
-            <#else>
-                <img class="img-responsive profile-img margin-bottom-20"
-                     src="http://windyeel.img-cn-shanghai.aliyuncs.com/${(Session.siteSessionUser.headImgUrl)!}?x-oss-process=image/resize,m_fill,h_100,w_100"
-                     alt="">
-            </#if>
-
+            <img onerror="nofind(2)" class="img-responsive profile-img margin-bottom-20"
+                <#if Session.siteSessionUser.headImgUrl?index_of('http')!=-1>
+                 src="${Session.siteSessionUser.headImgUrl!''}"
+                <#else>
+                 src="http://windyeel.img-cn-shanghai.aliyuncs.com/${Session.siteSessionUser.headImgUrl}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                </#if>
+                 alt="">
             <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
                 <li class="list-group-item active">
                     <a href="/user"><i class="fa fa-tachometer"></i>面板</a>
