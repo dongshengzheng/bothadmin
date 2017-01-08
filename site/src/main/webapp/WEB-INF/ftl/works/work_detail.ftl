@@ -250,21 +250,13 @@
                                 <div class="tab-pane fade in profile" id="interpretation">
                                     <div class="media media-v2 margin-bottom-20">
                                         <a class="pull-left" href="#">
-                                            <#if currentUser??>
-                                                <#if currentUser.headImgUrl?index_of('http')!=-1>
-                                                    <img data-id="${currentUser.id}"
-                                                         class="media-object rounded-x headImg"
-                                                         src="${currentUser.headImgUrl}" alt=""/>
+                                            <img onerror="nofind(2)" class="media-object rounded-x headImg"
+                                                <#if Session.siteSessionUser.headImgUrl!?index_of('http')!=-1>
+                                                 src="${Session.siteSessionUser.headImgUrl!}"
                                                 <#else>
-                                                    <img data-id="${currentUser.id}"
-                                                         class="media-object rounded-x headImg"
-                                                         src="http://windyeel.img-cn-shanghai.aliyuncs.com/${currentUser.headImgUrl}?x-oss-process=image/resize,m_fill,h_100,w_100"
-                                                         alt=""/>
+                                                 src="http://windyeel.img-cn-shanghai.aliyuncs.com/${Session.siteSessionUser.headImgUrl!}?x-oss-process=image/resize,m_fill,h_100,w_100"
                                                 </#if>
-                                            <#else>
-                                                <img data-id="" class="media-object rounded-x headImg"
-                                                     src="${staticPath}/static/img/head1.jpg" alt=""/>
-                                            </#if>
+                                                 alt="">
                                         </a>
                                         <div class="media-body">
                                             <form id="form_interpretation" class="sky-form" action="/interpretation/add"

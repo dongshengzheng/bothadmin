@@ -17,7 +17,7 @@
         <!--Left Sidebar-->
         <div class="col-md-3 md-margin-bottom-40">
             <div class="profile-bio">
-                <img class="img-responsive profile-img margin-bottom-20"
+                <img onerror="nofind(2)" class="img-responsive profile-img margin-bottom-20"
                     <#if Session.siteSessionUser.headImgUrl?index_of('http')!=-1>
                      src="${Session.siteSessionUser.headImgUrl!''}"
                     <#else>
