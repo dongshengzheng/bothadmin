@@ -436,7 +436,8 @@
                     <div class="media">
                         <div class="pull-left">
                             <div style="height: 50px;width: 50px;border-radius: 50px;overflow:hidden;margin-left: 15px">
-                                <img onerror="find(2)" data-id="${browse.appUser.id}" class="headImg" style="width:100%"
+                                <img onerror="nofind(2)" data-id="${browse.appUser.id}" class="headImg"
+                                     style="width:100%"
                                     <#if browse.appUser.headImgUrl!?index_of('http')!=-1>
                                      src="${browse.appUser.headImgUrl!}"
                                     <#else>

@@ -46,10 +46,10 @@
         <!--Left Sidebar-->
         <div class="col-md-3 md-margin-bottom-40">
             <img onerror="nofind(2)" class="img-responsive profile-img margin-bottom-20"
-                <#if Session.siteSessionUser.headImgUrl?index_of('http')!=-1>
-                 src="${Session.siteSessionUser.headImgUrl!''}"
+                <#if Session.siteSessionUser.headImgUrl!?index_of('http')!=-1>
+                 src="${Session.siteSessionUser.headImgUrl!}"
                 <#else>
-                 src="http://windyeel.img-cn-shanghai.aliyuncs.com/${Session.siteSessionUser.headImgUrl}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                 src="http://windyeel.img-cn-shanghai.aliyuncs.com/${Session.siteSessionUser.headImgUrl!}?x-oss-process=image/resize,m_fill,h_100,w_100"
                 </#if>
                  alt="">
             <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
@@ -541,7 +541,7 @@
         }
 
         $('#target-user-name').on('keyup', function () {
-            var keywords = $(this).val().trim()
+            var keywords = $(this).val().trim();
             if (keywords.length > 0) {
                 $.post("/user/userPage", {
                     pageIndex: 1,
