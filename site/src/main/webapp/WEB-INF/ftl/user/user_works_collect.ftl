@@ -54,7 +54,6 @@
         <div class="col-md-9">
             <div class="profile-body">
                 <div id="collect-content" class="row">
-
                 </div>
                 <button id="collectBtn" type="button" class="btn-u btn-u-default btn-u-sm btn-block">加载更多</button>
             </div>

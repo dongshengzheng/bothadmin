@@ -390,32 +390,23 @@ public class WorksController extends BaseController {
     }
 
     /**
-     * 作品转让
-     *
-     * @return
-     */
-    @RequestMapping(value = "/transfer/{id}", method = RequestMethod.GET)
-    public String transfer(@PathVariable Integer id, ModelMap map) {
-        map.put("works", worksService.selectById(id));
-        return "works/work_transfer";
-    }
-
-    /**
      * 添加转让历史
      *
      * @return
      */
-    @RequestMapping(value = "/transfer/complete", method = RequestMethod.GET)
+    @RequestMapping(value = "/transfer/complete", method = RequestMethod.POST)
     public String transferComplete(TransferHistory transferHistory) {
         AppUser currentUser = getCurrentUser();
         if (currentUser == null) {
             return "user/login";
         }
-        transferHistory.setFromUserId(getCurrentUser().getId());
+        Works works = worksService.selectById(transferHistory.getWorksId());
+        works.setStatus(Const.WORKS_STATUS_TRANSFER);
+        worksService.updateById(works);
         transferHistory.setCreateDate(new Date());
         transferHistory.setUpdateDate(new Date());
         transferHistoryService.insert(transferHistory);
-        return "user/user_works_transfer";
+        return "redirect:/user/transfer";
     }
 
     /**

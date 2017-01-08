@@ -462,6 +462,7 @@ public class UserController extends BaseController {
     public Boolean updateHeader(String headerUrl) {
         Integer userId = getCurrentUser().getId();
         AppUser appUser = new AppUser(userId, headerUrl);
+        getCurrentUser().setHeadImgUrl(headerUrl);
         return userService.updateSelectiveById(appUser);
     }
 

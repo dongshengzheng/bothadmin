@@ -23,9 +23,6 @@
         position: absolute;
     }
 
-    a {
-        cursor: pointer;
-    }
 </style>
 </@htmlHead>
 <@htmlBody>
@@ -63,6 +60,10 @@
                 <li class="list-group-item">
                     <a href="/user/settings"><i class="fa fa-cog"></i> 个人设置</a>
                 </li>
+                <li class="list-group-item">
+                    <a class="cd-signin" href="javascript:void(0);">Login</a>
+                </li>
+
             </ul>
 
             <hr>
@@ -336,6 +337,7 @@
             });
 
         }
+
     });
 </script>
 </@footerJS>

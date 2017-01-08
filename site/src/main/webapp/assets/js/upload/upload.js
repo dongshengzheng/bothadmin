@@ -122,8 +122,7 @@ function initUploaders(buttonId, bucket, domain) {
                 $("#" + buttonId).before('<div class="" onclick=""  style="float:left;position:relative;padding: 0px;margin-bottom: 5px;"><input name="images" type="hidden" value="' + g_object_name + '" >' +
                     '<span onclick="javascript:this.parentNode.remove();" class="glyphicon glyphicon-remove" style="background: rgba(0,0,0,.5);color:white;position:absolute;top:0px;right:5px;z-index: 999;"></span>' +
                     '<img src="http://' + bucket + '.img-cn-shanghai.aliyuncs.com/' + g_object_name + '?x-oss-process=image/resize,m_fill,h_100,w_100" ' +
-                    'style="max-height: 100px;margin-right:5px;" onclick="" class="min-img" data-url="'+g_object_name+'" >' + '</div>');
-
+                    'style="max-height: 100px;margin-right:5px;" onclick="" class="min-img" data-url="' + g_object_name + '" >' + '</div>');
 
 
             }
@@ -155,7 +154,7 @@ function initUploaders_inner(buttonId, bucket, domain, inputName) {
                 set_upload_param(up, file.name, true, domain);
             },
             FileUploaded: function () {
-                $("#" + buttonId).before('<div class="upload-container"><input name="'+inputName+'" type="hidden" value="' + g_object_name + '" >' +
+                $("#" + buttonId).before('<div class="upload-container"><input name="' + inputName + '" type="hidden" value="' + g_object_name + '" >' +
                     '<span onclick="javascript:this.parentNode.remove();" class="glyphicon glyphicon-remove"></span>' +
                     '<img src="http://' + bucket + '.img-cn-shanghai.aliyuncs.com/' + g_object_name + '?x-oss-process=image/resize,m_fill,h_100,w_100" ' +
                     'class="min-img"></div>');
@@ -189,14 +188,19 @@ function initUploaders_header(buttonId, bucket, domain) {
                 set_upload_param(up, file.name, true, domain);
             },
             FileUploaded: function () {
-                $("#" + buttonId).prev().attr("src","http://" + bucket + ".img-cn-shanghai.aliyuncs.com/" + g_object_name + "?x-oss-process=image/resize,m_fill,h_100,w_100");
-                $.post("/user/header",{headerUrl:g_object_name});
+                $("#" + buttonId).prev().attr("src", "http://" + bucket + ".img-cn-shanghai.aliyuncs.com/" + g_object_name + "?x-oss-process=image/resize,m_fill,h_100,w_100");
+                $.post("/user/header", {headerUrl: g_object_name}, function (data) {
+                    if (data) {
+                        alert("更新成功!")
+                    } else {
+                        alert("更新失败,请稍后再试!")
+                    }
+                });
             }
         }
     });
     uploader.init();
 }
-
 
 
 function initUploaders_interpretation(buttonId, bucket, domain, inputName) {

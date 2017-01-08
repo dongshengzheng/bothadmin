@@ -33,10 +33,10 @@
                         <div class="master-slider ms-skin-default" id="masterslider">
                             <#list worksImage as imgs>
                                 <div class="ms-slide">
-                                    <img class="ms-brd"
+                                    <img onerror="nofind(2)" class="ms-brd"
                                          src="http://windyeel.img-cn-shanghai.aliyuncs.com/${imgs.url}?x-oss-process=image/resize,m_fill,h_550,w_550"
                                          data-src="http://windyeel.img-cn-shanghai.aliyuncs.com/${imgs.url}">
-                                    <img class="ms-thumb"
+                                    <img onerror="nofind(2)" class="ms-thumb"
                                          src="http://windyeel.img-cn-shanghai.aliyuncs.com/${imgs.url}?x-oss-process=image/resize,m_fill,h_80,w_80"
                                          alt="thumb">
                                 </div>
@@ -107,7 +107,12 @@
                             <div class="media">
                                 <div class="pull-left">
                                     <div style="margin: 12px 10px;height: 50px;width: 50px;border-radius: 50px;overflow:hidden">
-                                        <img data-id="${appUser.id}" class="headImg" src="${appUser.headImgUrl!}"
+                                        <img onerror="nofind(2)" data-id="${appUser.id}" class="headImg"
+                                            <#if appUser.headImgUrl!?index_of('http')!=-1>
+                                             src="${appUser.headImgUrl!}"
+                                            <#else>
+                                             src="http://windyeel.img-cn-shanghai.aliyuncs.com/${appUser.headImgUrl!}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                                            </#if>
                                              style="width: 100%" alt=""/>
                                     </div>
                                 </div>
@@ -418,16 +423,14 @@
             <div class="row">
                 <#list collecterList as user>
                     <div class="col-sm-4" style="padding-right: 0px;width: 75px">
-                        <#if user.headImgUrl?index_of('http')!=-1>
-                            <img data-id="${user.id}" class="headImg"
-                                 style="margin: 10px 0px 10px 10px;height: 50px;width: 50px"
-                                 src="${user.headImgUrl}" alt=""/>
-                        <#else>
-                            <img data-id="${user.id}" class="headImg"
-                                 style="margin: 10px 0px 10px 10px;height: 50px;width: 50px"
-                                 src="http://windyeel.img-cn-shanghai.aliyuncs.com/${user.headImgUrl}?x-oss-process=image/resize,m_fill,h_100,w_100"
-                                 alt=""/>
-                        </#if>
+                        <img onerror="nofind(2)" data-id="${user.id}" class="headImg"
+                             style="margin: 10px 0px 10px 10px;height: 50px;width: 50px"
+                            <#if user.headImgUrl!?index_of('http')!=-1>
+                             src="${user.headImgUrl!}"
+                            <#else>
+                             src="http://windyeel.img-cn-shanghai.aliyuncs.com/${user.headImgUrl!}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                            </#if>
+                             alt=""/>
                     </div>
                 </#list>
             </div>
@@ -441,14 +444,13 @@
                     <div class="media">
                         <div class="pull-left">
                             <div style="height: 50px;width: 50px;border-radius: 50px;overflow:hidden;margin-left: 15px">
-                                <#if browse.appUser.headImgUrl?index_of('http')!=-1>
-                                    <img data-id="${browse.appUser.id}" class="headImg" style="width:100%"
-                                         src="${browse.appUser.headImgUrl}" alt=""/>
-                                <#else>
-                                    <img data-id="${browse.appUser.id}" class="headImg" style="width:100%"
-                                         src="http://windyeel.img-cn-shanghai.aliyuncs.com/${browse.appUser.headImgUrl}?x-oss-process=image/resize,m_fill,h_100,w_100"
-                                         alt=""/>
-                                </#if>
+                                <img onerror="find(2)" data-id="${browse.appUser.id}" class="headImg" style="width:100%"
+                                    <#if browse.appUser.headImgUrl!?index_of('http')!=-1>
+                                     src="${browse.appUser.headImgUrl!}"
+                                    <#else>
+                                     src="http://windyeel.img-cn-shanghai.aliyuncs.com/${browse.appUser.headImgUrl!}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                                    </#if>
+                                     alt=""/>
                             </div>
                         </div>
                         <div class="media-body">

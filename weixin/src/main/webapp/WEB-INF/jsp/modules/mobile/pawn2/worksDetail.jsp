@@ -345,7 +345,7 @@
                 <a href="javascript:;" class="weui-grid">
                     <div class="weui-grid__icon">
                         <img src="http://windyeel.img-cn-shanghai.aliyuncs.com/${image.url}?x-oss-process=image/resize,m_fill,h_100,w_100"
-                             onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default-man.jpg'"
+                             onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.jpg'"
                              alt="">
                     </div>
                 </a>
@@ -390,7 +390,7 @@
             <c:forEach items="${browserPeopleList}" var="browse">
                 <div class="look-people-one" data-id="${browse.appUser.id}">
                     <img src="${browse.appUser.headImgUrl}" class="look-people-one-img"
-                         onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default-man.jgp'"
+                         onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default-man.jpg'"
                          alt="">
                     <div class="look-people-one-info">
                         <p class="look-people-one-info-name">
@@ -398,7 +398,7 @@
                         </p>
                         <p class="look-people-one-info-date">
                             <fmt:formatDate value="${browse.updateDate}"
-                                            pattern="yyyy-MM-dd hh:mm:ss"/>
+                                            pattern="yyyy-MM-dd HH:mm:ss"/>
                         </p>
                     </div>
                     <div class="look-people-one-care">
@@ -524,19 +524,21 @@
         </div>
     </div>
 </c:if>
-<div class="div-outer">
-    <div class="info-register">
-        <div class="info-register-left">
-            <p class="info-register-left-icon">收藏者信息</p>
-        </div>
-        <div class="info-register-right">
-            <p>姓名:${collecter.name}</p>
-            <p>联系方式:${collecter.phone}</p>
-            <p>地址:${collecter.address}</p>
-            <p>身份证:${collecter.no}</p>
+<c:if test="${empty collecter}">
+    <div class="div-outer">
+        <div class="info-register">
+            <div class="info-register-left">
+                <p class="info-register-left-icon">收藏者信息</p>
+            </div>
+            <div class="info-register-right">
+                <p>姓名:${collecter.name}</p>
+                <p>联系方式:${collecter.phone}</p>
+                <p>地址:${collecter.address}</p>
+                <p>身份证:${collecter.no}</p>
+            </div>
         </div>
     </div>
-</div>
+</c:if>
 <div class="div-outer">
     <div class="info-work">
         <center>作品诠释</center>
