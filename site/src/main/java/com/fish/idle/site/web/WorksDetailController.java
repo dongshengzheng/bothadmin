@@ -285,5 +285,17 @@ public class WorksDetailController extends BaseController {
         return "works/work_detail";
     }
 
+    @RequestMapping(value = "/checkDetails/{id}", method = RequestMethod.GET)
+    public String getCheckDetails(@PathVariable Integer id,
+                                  ModelMap map){
+        if (id == null) {
+            return "redirect:/";
+        }
+        Works works = worksService.selectById(id);
+        if (works == null) {
+            return "redirect:/404";
+        }
+        return "";
+    }
 
 }

@@ -14,30 +14,30 @@
         <div class="tp-banner">
             <ul>
                 <!-- SLIDE -->
-                <li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000"
-                    data-title="Slide 1">
+                <#--<li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000"
+                    data-title="Slide 1">-->
                     <!-- MAIN IMAGE -->
-                    <img src="${staticPath}/static/img/banner.jpeg" alt="darkblurbg" data-bgfit="cover"
+                    <#--<img src="${staticPath}/static/img/banner.jpeg" alt="darkblurbg" data-bgfit="cover"
                          data-bgposition="left top" data-bgrepeat="no-repeat">
-                </li>
+                </li>-->
                 <!-- END SLIDE -->
 
                 <!-- SLIDE -->
-                <li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000"
-                    data-title="Slide 2">
+                <#--<li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000"
+                    data-title="Slide 2">-->
                     <!-- MAIN IMAGE -->
-                    <img src="${staticPath}/static/img/banner1.jpeg" alt="darkblurbg" data-bgfit="cover"
+                    <#--<img src="${staticPath}/static/img/banner1.jpeg" alt="darkblurbg" data-bgfit="cover"
                          data-bgposition="left top" data-bgrepeat="no-repeat">
-                </li>
+                </li>-->
                 <!-- END SLIDE -->
 
                 <!-- SLIDE -->
-                <li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000"
-                    data-title="Slide 3">
+                <#--<li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000"-->
+                    <#--data-title="Slide 3">-->
                     <!-- MAIN IMAGE -->
-                    <img src="${staticPath}/static/img/banner2.jpeg" alt="darkblurbg" data-bgfit="cover"
-                         data-bgposition="right top" data-bgrepeat="no-repeat">
-                </li>
+                    <#--<img src="${staticPath}/static/img/banner2.jpeg" alt="darkblurbg" data-bgfit="cover"-->
+                         <#--data-bgposition="right top" data-bgrepeat="no-repeat">-->
+                <#--</li>-->
                 <!-- END SLIDE -->
             </ul>
             <div class="tp-bannertimer tp-bottom"></div>
@@ -106,7 +106,7 @@
                             "<img src='http://windyeel.img-cn-shanghai.aliyuncs.com/"+b.images +"?x-oss-process=image/resize,m_fill,h_331,w_525' alt='darkblurbg' data-bgfit='cover' data-bgposition='left top' data-bgrepeat='no-repeat'/> "+
                             "</li>"
                 })
-                $("ul").append(image);
+                $(".tp-banner ul").append(image);
                 RevolutionSlider.initRSfullWidth();
             });
         }
@@ -117,6 +117,13 @@
                 load(pageIndex);
             }
         })
+
+        $(".current-sr-slide-visible").on("click",function(e){
+            console.log(e);
+            var id = this.getAttribute("id");
+            $.get("/works/detail/"+id);
+        })
     });
+
 </script>
 </@footerJS>

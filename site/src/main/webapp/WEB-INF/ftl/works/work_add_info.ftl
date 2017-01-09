@@ -253,5 +253,11 @@
                 });
             }
         })
+
+        $(".step").on("click",function(){
+            var id = this.getAttribute("id");
+
+        })
     });
+
 </script>

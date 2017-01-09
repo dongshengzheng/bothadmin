@@ -549,7 +549,7 @@ public class WorksController extends BaseController {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
     }
 
-    @RequestMapping(value="/works/slideImage")
+    @RequestMapping(value="/slideImage")
     @ResponseBody
     public JSONObject getSlideImage(){
         JSONObject json = new JSONObject();
