@@ -188,6 +188,9 @@ public class UserController extends BaseController {
             if (images != null && !StringUtils.isEmpty(images.getUrl())) {
                 works.setImages(images.getUrl());
             }
+            if (StringUtils.isNotEmpty(works.getBreed())) {
+                works.setBreed(dictService.getLabelByValue(works.getBreed(), "dd_pinzhong"));
+            }
             f.setWorks(works);
         }
         return followHistoryPage;
@@ -274,6 +277,11 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/detail/info", method = RequestMethod.GET)
     public String detailInfo(ModelMap map, @RequestParam(required = false) int userId) {
         AppUser appUser = appUserService.siteByIdContainWorksFocusCount(userId);
+        String identification = appUser.getIdentification();
+        if (identification != null && identification.length() > 8) {
+            identification = identification.substring(0, 4) + "**********" + identification.substring(identification.length() - 4);
+        }
+        appUser.setIdentification(identification);
         map.put("appUser", appUser);
         List<Dict> list = getWorksLevelDicByType("dd_preference");
         map.put("preference", list);

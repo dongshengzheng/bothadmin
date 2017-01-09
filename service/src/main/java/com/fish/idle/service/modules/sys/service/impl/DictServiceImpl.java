@@ -12,9 +12,7 @@ import com.fish.idle.service.modules.sys.service.IDictService;
 import java.util.List;
 
 /**
- *
  * Dict 表数据服务层接口实现类
- *
  */
 @Service
 public class DictServiceImpl extends SuperServiceImpl<DictMapper, Dict> implements IDictService {
@@ -33,6 +31,7 @@ public class DictServiceImpl extends SuperServiceImpl<DictMapper, Dict> implemen
     public List<Dict> getWorksLevelDicByType(String type) {
         EntityWrapper entityWrapper = new EntityWrapper();
         entityWrapper.addFilter("type={0}", type);
+        entityWrapper.orderBy("value");
         List<Dict> list = selectList(entityWrapper);
         return list;
     }

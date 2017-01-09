@@ -5,7 +5,15 @@
 <link rel="stylesheet" href="${staticPath}/static/css/plugins.css">
 <link rel="stylesheet" href="${staticPath}/assets/plugins/bootstrap-select/css/bootstrap-select.css">
 <link rel="stylesheet" href="${staticPath}/static/css/shop.style.css">
+<style>
+    .form-wizard .steps > li.active > a.step .desc {
+        color: #18ba9b;
+    }
 
+    .form-wizard .steps > li > a.step {
+        color: gray;
+    }
+</style>
 </@htmlHead>
 <@htmlBody>
 <div class="breadcrumbs">

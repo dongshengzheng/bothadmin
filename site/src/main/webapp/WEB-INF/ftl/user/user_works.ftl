@@ -133,7 +133,8 @@
 
 <div class="col-sm-6" id="passWorks" style="display: none">
     <div class="easy-block-v1">
-        <a id="pass_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg" alt=""></a>
+        <a id="pass_works_img" href=""><img onerror="nofind(1)" class="img-responsive"
+                                            src="${staticPath}/assets/img/main/img12.jpg" alt=""></a>
         <a class="works-transfer">
             <div class="easy-block-v1-badge rgba-red">转让</div>
         </a>
@@ -179,7 +180,8 @@
 </div>
 <div class="col-sm-6" id="unPassWorks" style="display: none">
     <div class="easy-block-v1">
-        <a id="unPass_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg"
+        <a id="unPass_works_img" href=""><img onerror="nofind(1)" class="img-responsive"
+                                              src="${staticPath}/assets/img/main/img12.jpg"
                                               alt=""></a>
         <a class="works-edit">
             <div class="easy-block-v2-badge rgba-red">编辑</div>
@@ -201,7 +203,8 @@
 
 <div class="col-sm-6" id="checkingWorks" style="display: none">
     <div class="easy-block-v1">
-        <a id="checking_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg"
+        <a id="checking_works_img" href=""><img onerror="nofind(1)" class="img-responsive"
+                                                src="${staticPath}/assets/img/main/img12.jpg"
                                                 alt=""></a>
     <#--<div class="easy-block-v1-badge rgba-red">Web Design</div>-->
     </div>
@@ -218,7 +221,8 @@
 </div>
 <div class="col-sm-6" id="draftWorks" style="display: none">
     <div class="easy-block-v1">
-        <a id="draft_works_img" href=""><img class="img-responsive" src="${staticPath}/assets/img/main/img12.jpg"
+        <a id="draft_works_img" href=""><img onerror="nofind(1)" class="img-responsive"
+                                             src="${staticPath}/assets/img/main/img12.jpg"
                                              alt=""></a>
         <a class="works-edit">
             <div class="easy-block-v2-badge rgba-red">编辑</div>

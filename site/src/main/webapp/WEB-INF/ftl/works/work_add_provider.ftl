@@ -8,7 +8,15 @@
 <link rel="stylesheet" href="${staticPath}/assets/js/chosen/chosen.min.css">
 <link rel="stylesheet" href="${staticPath}/static/css/plugins.css">
 <link rel="stylesheet" href="${staticPath}/static/css/shop.style.css">
+<style>
+    .form-wizard .steps > li.active > a.step .desc {
+        color: #18ba9b;
+    }
 
+    .form-wizard .steps > li > a.step {
+        color: gray;
+    }
+</style>
 </@htmlHead>
 <@htmlBody>
 <div class="breadcrumbs">
@@ -98,7 +106,7 @@
                             <label class="col-sm-2 control-label" for="cardNo">身份证</label>
                             <div class="col-sm-10">
                                 <input class="form-control" name="no" id="no" type="text"
-                                        placeholder="请输入身份证"/>
+                                       placeholder="请输入身份证"/>
                             </div>
                         </div>
 
@@ -106,7 +114,7 @@
                             <label class="col-sm-2 control-label" for="address">联系地址</label>
                             <div class="col-sm-10">
                                 <input class="form-control" name="address" id="address" type="text"
-                                        placeholder="请输入联系地址"/>
+                                       placeholder="请输入联系地址"/>
                             </div>
                         </div>
 
@@ -114,7 +122,7 @@
                             <label class="col-sm-2 control-label" for="contact">手机号码</label>
                             <div class="col-sm-10">
                                 <input class="form-control" name="phone" id="phone" type="text"
-                                        placeholder="请输入手机号码"/>
+                                       placeholder="请输入手机号码"/>
                             </div>
                         </div>
 

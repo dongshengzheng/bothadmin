@@ -117,9 +117,9 @@
                     var $li = $("#collect_works").clone();
                     $li.removeAttr("id").css("display", "block");
                     $li.find(".works-image").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.works.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
-                    $li.find("#works_des").html(this.breed);
-                    $li.find("#works_name").html(this.name);
-                    $li.find("#works_img").attr("href", "${staticPath}/works/detail/" + this.id);
+                    $li.find("#works_des").html(this.works.breed);
+                    $li.find("#works_name").html(this.works.name);
+                    $li.find("#works_img").attr("href", "${staticPath}/works/detail/" + this.works.id);
                     $("#collect-content").append($li);
                 });
             });

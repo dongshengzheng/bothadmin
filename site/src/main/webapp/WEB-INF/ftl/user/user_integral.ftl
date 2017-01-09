@@ -53,7 +53,36 @@
         <!--End Left Sidebar-->
         <!-- Profile Content -->
         <div class="col-md-9">
-            <div class="profile-body"></div>
+            <div class="profile-body">
+                <div class="profile-body margin-bottom-20">
+                    <div class="tab-v1">
+                        <ul class="nav nav-justified nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#all">全部</a>
+                            </li>
+                            <li><a data-toggle="tab" href="#save">充值</a>
+                            </li>
+                            <li><a data-toggle="tab" href="#withdraw">提现</a>
+                            </li>
+                            <li><a data-toggle="tab" href="#other">其他</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="all" class="profile-edit tab-pane fade in active">
+                                全部
+                            </div>
+                            <div id="save" class="profile-edit tab-pane fade">
+                                充值
+                            </div>
+                            <div id="withdraw" class="profile-edit tab-pane fade">
+                                提现
+                            </div>
+                            <div id="other" class="profile-edit tab-pane fade">
+                                其他
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

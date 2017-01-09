@@ -575,6 +575,11 @@ public class MobileController extends BaseController {
         }
 
         AppUser appUser1 = appUserService.selectById(appUserId);
+        String identification = appUser1.getIdentification();
+        if (identification != null && identification.length() > 8) {
+            identification = identification.substring(0, 4) + "**********" + identification.substring(identification.length() - 4);
+        }
+        appUser1.setIdentification(identification);
 
         Works works = new Works();
         works.setCreateBy(appUserId);
@@ -735,9 +740,23 @@ public class MobileController extends BaseController {
         //作品提供者
         Consumer provider = new Consumer(Const.CONSUMER_TYPE_PROVIDER, worksId);
         provider = consumerService.selectOne(new EntityWrapper<>(provider));
+        if (provider != null) {
+            String identification = provider.getNo();
+            if (identification != null && identification.length() > 8) {
+                identification = identification.substring(0, 4) + "**********" + identification.substring(identification.length() - 4);
+            }
+            provider.setNo(identification);
+        }
         //作品收藏者
         Consumer collecter = new Consumer(Const.CONSUMER_TYPE_COLLECT, worksId);
         collecter = consumerService.selectOne(new EntityWrapper<>(collecter));
+        if (collecter != null) {
+            String identification = collecter.getNo();
+            if (identification != null && identification.length() > 8) {
+                identification = identification.substring(0, 4) + "**********" + identification.substring(identification.length() - 4);
+            }
+            collecter.setNo(identification);
+        }
         //作品图片
         Images images = new Images(worksId, Const.IMAGES_WORKS);
         List<Images> imagesList = imagesService.selectList(new EntityWrapper<>(images));

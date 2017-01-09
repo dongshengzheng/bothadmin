@@ -224,8 +224,22 @@ public class WorksDetailController extends BaseController {
         }
         map.put("worksLevel", worksLevel);
         Consumer provider = consumerService.selectOne(new EntityWrapper<>(new Consumer(Const.CONSUMER_TYPE_PROVIDER, id)));
+        if (provider != null) {
+            String identification = provider.getNo();
+            if (identification != null && identification.length() > 8) {
+                identification = identification.substring(0, 4) + "**********" + identification.substring(identification.length() - 4);
+            }
+            provider.setNo(identification);
+        }
         map.put("provider", provider);
         Consumer collect = consumerService.selectOne(new EntityWrapper<>(new Consumer(Const.CONSUMER_TYPE_COLLECT, id)));
+        if (collect != null) {
+            String identification = collect.getNo();
+            if (identification != null && identification.length() > 8) {
+                identification = identification.substring(0, 4) + "**********" + identification.substring(identification.length() - 4);
+            }
+            collect.setNo(identification);
+        }
         map.put("collect", collect);
         Report report = reportService.selectOne(new EntityWrapper<>(new Report(id)));
         map.put("report", report);

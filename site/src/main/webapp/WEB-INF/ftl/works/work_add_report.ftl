@@ -5,7 +5,15 @@
 <link rel="stylesheet" href="${staticPath}/static/css/plugins.css">
 <link rel="stylesheet" href="${staticPath}/assets/plugins/bootstrap-select/css/bootstrap-select.css">
 <link rel="stylesheet" href="${staticPath}/static/css/shop.style.css">
+<style>
+    .form-wizard .steps > li.active > a.step .desc {
+        color: #18ba9b;
+    }
 
+    .form-wizard .steps > li > a.step {
+        color: gray;
+    }
+</style>
 </@htmlHead>
 <@htmlBody>
 <div class="breadcrumbs">
@@ -43,7 +51,7 @@
                         <span class="desc"><i class="fa fa-check"></i>作品等级</span>
                     </a>
                 </li>
-                <li  class="active">
+                <li class="active">
                     <a href="javascript:;" class="step">
                         <span class="number">4</span>
                         <span class="desc"><i class="fa fa-check"></i>评估报告</span>
@@ -88,7 +96,7 @@
                             <div class="col-sm-10">
                                 <div id="upload_des" class=""
                                      style="border: dotted 1px #bbb;height: 100px;width: 100px;overflow: hidden">
-                                    <img src="${staticPath}/static/img/upload.png" style="width: 100%;" alt="" />
+                                    <img src="${staticPath}/static/img/upload.png" style="width: 100%;" alt=""/>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +114,7 @@
                             <div class="col-sm-10">
                                 <div id="upload_certify" class=""
                                      style="border: dotted 1px #bbb;height: 100px;width: 100px;overflow: hidden">
-                                    <img src="${staticPath}/static/img/upload.png" style="width: 100%;" alt="" />
+                                    <img src="${staticPath}/static/img/upload.png" style="width: 100%;" alt=""/>
                                 </div>
                             </div>
                         </div>
@@ -124,9 +132,11 @@
                             <label class="col-sm-2 control-label"></label>
                             <div class="col-sm-10">
                                 <button data-type="0" class="btn btn-u btn-u-red info_btn">下一步</button>
-                                <button data-type="0" class="btn btn-u btn-u-default info_btn" style="margin-left: 20px">存为草稿
-                                <button data-type="1" class="btn btn-u btn-u btn-u-orange info_btn" style="margin-left: 20px">提交审核
-                                </button>
+                                <button data-type="0" class="btn btn-u btn-u-default info_btn"
+                                        style="margin-left: 20px">存为草稿
+                                    <button data-type="1" class="btn btn-u btn-u btn-u-orange info_btn"
+                                            style="margin-left: 20px">提交审核
+                                    </button>
                             </div>
                         </div>
                     </form>
@@ -150,7 +160,6 @@
         initUploaders_inner("upload_des", "windyeel", '${staticPath}/', "desImage");
 
 
-
         $('.date-picker').datepicker({autoclose: true, todayHighlight: true, format: 'yyyy-mm-dd'});
         $(".info_btn").bind("click", function () {
             $("#status").val($(this).attr("data-type"))
@@ -167,7 +176,7 @@
                                 window.location.href = "/works/add/${works.id}/collect";
                             } else {
                                 // 跳转到个人中心-> 我的作品->草稿里面
-                                window.location.href="/user";
+                                window.location.href = "/user";
                             }
                         } else {
                             alert(data.msg);
