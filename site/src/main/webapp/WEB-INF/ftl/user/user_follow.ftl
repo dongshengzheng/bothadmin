@@ -60,10 +60,16 @@
         <!-- Profile Content -->
         <div class="col-md-9">
             <div class="profile-body margin-bottom-20">
-                <!--Profile Blog-->
-                <div id="user_content" class="row margin-bottom-20">
+                <div class="tab-v1">
+                    <ul class="nav nav-justified nav-tabs">
+                        <li class="active"><a data-toggle="tab">关注用户</a></li>
+                    </ul>
 
-                </div><!--/end row-->
+                    <!--Profile Blog-->
+                    <div id="user_content" class="row margin-bottom-20">
+
+                    </div><!--/end row-->
+                </div>
             </div>
             <button type="button" class="btn-u btn-u-default btn-block text-center btn-more">加载更多</button>
         </div>

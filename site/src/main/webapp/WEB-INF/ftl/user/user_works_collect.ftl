@@ -52,10 +52,18 @@
         <!--End Left Sidebar-->
         <!-- Profile Content -->
         <div class="col-md-9">
-            <div class="profile-body">
-                <div id="collect-content" class="row">
+            <div class="profile-body margin-bottom-20">
+                <div class="tab-v1">
+                    <ul class="nav nav-justified nav-tabs">
+                        <li class="active"><a data-toggle="tab">收藏作品</a></li>
+                    </ul>
+                    <div class="profile-edit tab-pane fade in active">
+                        <div id="collect-content" class="row">
+                        </div>
+                    </div>
+                    <button id="collectBtn" type="button" class="btn-u btn-u-default btn-u-sm btn-block">加载更多
+                    </button>
                 </div>
-                <button id="collectBtn" type="button" class="btn-u btn-u-default btn-u-sm btn-block">加载更多</button>
             </div>
         </div>
     </div>
@@ -63,7 +71,7 @@
 
 <div id="collect_works" style="display: none" class="col-sm-6">
     <div class="service-or easy-block-v2 no-margin-bottom">
-        <a id="" href=""><img onerror="nofind(1)" class="img-responsive" src="" alt=""></a>
+        <a id="" href=""><img onerror="nofind(1)" class="works-image img-responsive" src="" alt=""></a>
     <#--<div id="works_name" class="easy-bg-v2 rgba-blue">Nokia</div>-->
     </div>
     <div class="headline-left margin-bottom-10">

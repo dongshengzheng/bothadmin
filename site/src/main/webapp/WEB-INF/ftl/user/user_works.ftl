@@ -266,6 +266,8 @@
 <#--</div>-->
 </div>
 
+
+<#--转让弹出框-->
 <div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
     <div class="cd-user-modal-container"> <!-- this is the container wrapper -->
         <ul class="cd-switcher">
@@ -292,7 +294,6 @@
                 </div>
             </form>
         </div>
-
 
         <div id="cd-signup" class="cd-user-modal-content ">
             <form class="cd-form form-horizontal" action="${staticPath}/works/transfer/complete" method="post">
@@ -352,7 +353,6 @@
                 <br>
             </form>
         </div>
-
     </div> <!-- cd-user-modal-container -->
 </div>
 
@@ -508,14 +508,16 @@
 
         function deleteWorks() {
             var thisone = $(this);
-            $.get("${staticPath}/works/delete/" + thisone.attr('data-id'), function (data) {
-                if (data.suc) {
-                    thisone.parent().parent().remove();
-                    alert("删除成功");
-                } else {
-                    alert("删除失败");
-                }
-            });
+            if (confirm("确认删除吗?")) {
+                $.get("${staticPath}/works/delete/" + thisone.attr('data-id'), function (data) {
+                    if (data.suc) {
+                        thisone.parent().parent().remove();
+                        alert("删除成功");
+                    } else {
+                        alert("删除失败");
+                    }
+                });
+            }
         }
 
         $("#draftsBtn").on("click", function () {
