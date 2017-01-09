@@ -177,7 +177,7 @@ description="金石典当"
         App.initScrollBar();
         App.initParallaxBg();
         OwlCarousel.initOwlCarousel();
-        RevolutionSlider.initRSfullWidth();
+
         StyleSwitcher.initStyleSwitcher();
 
         var search_form = $("#search_form");
