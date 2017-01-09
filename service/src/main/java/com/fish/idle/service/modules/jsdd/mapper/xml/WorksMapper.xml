@@ -25,5 +25,8 @@
         SELECT w.* FROM dd_works w WHERE  w.id=#{0}
     </select>
 
-
+    <select id="getSlideImage" resultType="Works">
+        SELECT w.id,m.url images from dd_works w ,dd_images m
+        WHERE w.id = m.target_id AND w.slide =1
+    </select>
 </mapper>

@@ -8,6 +8,9 @@ import com.fish.idle.service.modules.jsdd.entity.Works;
 import com.fish.idle.service.modules.jsdd.service.IWorksService;
 import com.baomidou.framework.service.impl.SuperServiceImpl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.List;
 
 /**
@@ -26,5 +29,20 @@ public class WorksServiceImpl extends SuperServiceImpl<WorksMapper, Works> imple
     @Override
     public List<Works> collectionWorksList(Integer userId) {
         return worksMapper.collectionWorksList(userId);
+    }
+
+    @Override
+    public  List<Works> getSlideImage(){
+        List<Works> list = worksMapper.getSlideImage();
+        Map<String,Works> map = new HashMap<>();
+        List<Works> images = new ArrayList<>();
+        for(int i=0;list!=null&&i<list.size();i++){
+            Works work = list.get(i);
+            if(!map.containsKey(work.getId()+"")){
+                map.put(work.getId()+"",work);
+                images.add(work);
+            }
+        }
+        return images;
     }
 }

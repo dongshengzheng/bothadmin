@@ -16,4 +16,7 @@ public interface WorksMapper extends AutoMapper<Works> {
     //    根据用户id查询收藏的作品
     List<Works> collectionWorksList(Integer userId);
 
+    //获取首页展示图片
+    List<Works> getSlideImage();
+
 }

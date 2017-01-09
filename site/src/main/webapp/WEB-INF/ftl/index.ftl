@@ -77,6 +77,7 @@
     $("#headerHome").addClass("active");
     $(document).ready(function () {
         load(1);
+        showImages();
         function load(pageIndex) {
             $.post("/works", {pageIndex: pageIndex}, function (data) {
                 if (pageIndex >= data.pages) {
@@ -93,6 +94,20 @@
                     $li.find("#works_img").attr("href", "${staticPath}/works/detail/" + this.id);
                     $("#works-list").append($li);
                 });
+            });
+        }
+
+        function showImages(){
+            $.get("/works/slideImage",function(data){
+                var image = "";
+                $.each(data.images,function(a,b){
+                    image += "<li class='revolution-mch-1' data-transition='fade' data-slotamount='5' data-masterspeed='1000' data-title='Slide "+ (a+1) +"'> " +
+                            "<!-- MAIN IMAGE --> " +
+                            "<img src='http://windyeel.img-cn-shanghai.aliyuncs.com/"+b.images +"?x-oss-process=image/resize,m_fill,h_331,w_525' alt='darkblurbg' data-bgfit='cover' data-bgposition='left top' data-bgrepeat='no-repeat'/> "+
+                            "</li>"
+                })
+                $("ul").append(image);
+                RevolutionSlider.initRSfullWidth();
             });
         }
 
