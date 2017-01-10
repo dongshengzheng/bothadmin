@@ -34,7 +34,7 @@
         <div class="form-wizard ">
             <ul class="nav nav-pills nav-justified steps">
                 <li class="active">
-                    <a href="javascript:;" class="step" id="1">
+                    <a href="javascript:;" class="step" id="providerDetails">
                         <span class="number">1</span>
                         <span class="desc"><i class="fa fa-check"></i>物品信息</span>
                     </a>
@@ -254,7 +254,7 @@
             }
         })
 
-        $("#1").on("click",function(){
+        $("#providerDetails").on("click",function(){
             var id = $("#id").val();
             window.location.href = "/works/providerDetails/"+id;
 //            $.get("/works/providerDetails/"+id);

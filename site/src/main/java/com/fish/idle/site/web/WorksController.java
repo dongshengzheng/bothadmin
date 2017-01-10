@@ -94,13 +94,13 @@ public class WorksController extends BaseController {
         //保存提供者
         wrapInsertEntity(consumer);
         consumer.setName(provider);
-        consumer.setWorksId(works.getId());
         if(works.getId() == null){
             if (!worksService.insert(works)) {
                 jsonObject.put("suc", false);
                 jsonObject.put("msg", "保存作品信息出错");
                 return jsonObject;
             }
+            consumer.setWorksId(works.getId());
             if (!consumerService.insert(consumer)) {
                 jsonObject.put("suc", false);
                 jsonObject.put("msg", "保存提供者信息出错");
@@ -110,12 +110,21 @@ public class WorksController extends BaseController {
         } else {
             if (!worksService.updateById(works)) {
                 jsonObject.put("suc", false);
-                jsonObject.put("msg", "保存作品信息出错");
+                jsonObject.put("msg", "修改作品信息出错");
                 return jsonObject;
             }
-            if (!consumerService.insertOrUpdate(consumer)) {
+            consumer.setWorksId(works.getId());
+            boolean boo1 =consumerService.updateSelectiveById(consumer);
+            System.out.println(boo1);
+            boolean boo2 =consumerService.updateById(consumer);
+            System.out.println(boo2);
+            boolean boo3 =consumerService.insertOrUpdate(consumer);
+            System.out.println(boo3);
+            boolean boo4 =consumerService.insertOrUpdateSelective(consumer);
+            System.out.println(boo4);
+            if (!consumerService.updateSelectiveById(consumer)) {
                 jsonObject.put("suc", false);
-                jsonObject.put("msg", "保存提供者信息出错");
+                jsonObject.put("msg", "修改提供者信息出错");
                 return jsonObject;
             }
             imagesService.deleteByTargetId(works.getId());
