@@ -23,7 +23,7 @@ public class Dict implements Serializable {
 
 	/** 编号 */
 	@TableId(type = IdType.AUTO)
-	private String id;
+	private Integer id;
 
 	/** 数据值 */
 	private String value;
@@ -54,11 +54,11 @@ public class Dict implements Serializable {
 	private Integer delFlag;
 
 
-	public String getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

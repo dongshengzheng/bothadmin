@@ -115,20 +115,14 @@ public class WorksController extends BaseController {
             }
             imagesService.insertImage(works.getImages(), works.getId(), Const.IMAGES_WORKS);
         } else {
+            works.setUpdateDate(new Date());
             if (!worksService.updateById(works)) {
                 jsonObject.put("suc", false);
                 jsonObject.put("msg", "修改作品信息出错");
                 return jsonObject;
             }
             consumer.setWorksId(works.getId());
-            boolean boo1 =consumerService.updateSelectiveById(consumer);
-            System.out.println(boo1);
-            boolean boo2 =consumerService.updateById(consumer);
-            System.out.println(boo2);
-            boolean boo3 =consumerService.insertOrUpdate(consumer);
-            System.out.println(boo3);
-            boolean boo4 =consumerService.insertOrUpdateSelective(consumer);
-            System.out.println(boo4);
+            consumer.setUpdateDate(new Date());
             if (!consumerService.updateSelectiveById(consumer)) {
                 jsonObject.put("suc", false);
                 jsonObject.put("msg", "修改提供者信息出错");

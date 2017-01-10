@@ -367,6 +367,18 @@
             ALTER TABLE `sys_dict` ADD COLUMN `points` int(11) COMMENT '具体积分' AFTER `del_flag`;
         </sql>
     </changeSet>
+
+    <changeSet author="SunHan" id="15862614903-026">
+        <sql>
+            ALTER TABLE `sys_dict` DROP COLUMN `id`, DROP PRIMARY KEY;
+        </sql>
+    </changeSet>
+
+    <changeSet author="SunHan" id="15862614903-027">
+        <sql>
+            ALTER TABLE `sys_dict` ADD COLUMN `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键' FIRST, ADD PRIMARY KEY (`id`);
+        </sql>
+    </changeSet>
     <changeSet author="WangShun" id="15950097942-030">
         <sql>
             INSERT INTO sys_dict(value,label,type,description,sort,parent_id,remarks,del_flag,points) VALUES (1,'作品被浏览','score_type','积分类型',10,'0','',0,1);

@@ -44,6 +44,7 @@ public class DictController extends BaseController {
         EntityWrapper<Dict> ew = getEntityWrapper();
         if (!StringUtils.isEmpty(keyword))
             ew.addFilter("type={0}", keyword);
+        ew.orderBy("id",false);
         return jsonPage(dictService.selectPage(getPage(), ew));
     }
 

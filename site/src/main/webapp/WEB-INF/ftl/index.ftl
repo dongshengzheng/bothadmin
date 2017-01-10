@@ -14,30 +14,30 @@
         <div class="tp-banner">
             <ul>
                 <!-- SLIDE -->
-                <#--<li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000"
-                    data-title="Slide 1">-->
-                    <!-- MAIN IMAGE -->
-                    <#--<img src="${staticPath}/static/img/banner.jpeg" alt="darkblurbg" data-bgfit="cover"
-                         data-bgposition="left top" data-bgrepeat="no-repeat">
-                </li>-->
+            <#--<li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000"
+                data-title="Slide 1">-->
+                <!-- MAIN IMAGE -->
+            <#--<img src="${staticPath}/static/img/banner.jpeg" alt="darkblurbg" data-bgfit="cover"
+                 data-bgposition="left top" data-bgrepeat="no-repeat">
+        </li>-->
                 <!-- END SLIDE -->
 
                 <!-- SLIDE -->
-                <#--<li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000"
-                    data-title="Slide 2">-->
-                    <!-- MAIN IMAGE -->
-                    <#--<img src="${staticPath}/static/img/banner1.jpeg" alt="darkblurbg" data-bgfit="cover"
-                         data-bgposition="left top" data-bgrepeat="no-repeat">
-                </li>-->
+            <#--<li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000"
+                data-title="Slide 2">-->
+                <!-- MAIN IMAGE -->
+            <#--<img src="${staticPath}/static/img/banner1.jpeg" alt="darkblurbg" data-bgfit="cover"
+                 data-bgposition="left top" data-bgrepeat="no-repeat">
+        </li>-->
                 <!-- END SLIDE -->
 
                 <!-- SLIDE -->
-                <#--<li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000"-->
-                    <#--data-title="Slide 3">-->
-                    <!-- MAIN IMAGE -->
-                    <#--<img src="${staticPath}/static/img/banner2.jpeg" alt="darkblurbg" data-bgfit="cover"-->
-                         <#--data-bgposition="right top" data-bgrepeat="no-repeat">-->
-                <#--</li>-->
+            <#--<li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000"-->
+            <#--data-title="Slide 3">-->
+                <!-- MAIN IMAGE -->
+            <#--<img src="${staticPath}/static/img/banner2.jpeg" alt="darkblurbg" data-bgfit="cover"-->
+            <#--data-bgposition="right top" data-bgrepeat="no-repeat">-->
+            <#--</li>-->
                 <!-- END SLIDE -->
             </ul>
             <div class="tp-bannertimer tp-bottom"></div>
@@ -88,7 +88,9 @@
                 $.each(data.records, function () {
                     var $li = $("#worksTemp").clone();
                     $li.removeAttr("id").css("display", "block");
-                    $li.find(".works-image").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
+                    if (typeof this.images != 'undefined') {
+                        $li.find(".works-image").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
+                    }
                     $li.find("#works_des").html(this.breed);
                     $li.find("#works_name").html(this.name);
                     $li.find("#works_img").attr("href", "${staticPath}/works/detail/" + this.id);
@@ -97,15 +99,16 @@
             });
         }
 
-        function showImages(){
-            $.get("/works/slideImage",function(data){
+        function showImages() {
+            $.get("/works/slideImage", function (data) {
                 var image = "";
-                $.each(data.images,function(a,b){
-                    image += "<li class='revolution-mch-1' data-transition='fade' data-slotamount='5' onclick='worksDetail("+b.id+");' data-masterspeed='1000' data-title='Slide "+ (a+1) +"'> " +
-                            "<!-- MAIN IMAGE --> " +
-                            "<img src='http://windyeel.img-cn-shanghai.aliyuncs.com/"+b.images +"?x-oss-process=image/resize,m_fill,h_331,w_525' alt='darkblurbg' data-bgfit='cover' data-bgposition='left top' data-bgrepeat='no-repeat'/> "+
-                            "</li>"
-                })
+                $.each(data.images, function (a, b) {
+                    if (typeof b.images != 'undefined') {
+                        image += "<li class='revolution-mch-1' data-transition='fade' data-slotamount='5' onclick='worksDetail(" + b.id + ");' data-masterspeed='1000' data-title='Slide " + (a + 1) + "'> " +
+                                "<img src='http://windyeel.img-cn-shanghai.aliyuncs.com/" + b.images + "?x-oss-process=image/resize,m_fill,h_331,w_525' alt='darkblurbg' data-bgfit='cover' data-bgposition='left top' data-bgrepeat='no-repeat'/> " +
+                                "</li>"
+                    }
+                });
                 $(".tp-banner ul").append(image);
                 RevolutionSlider.initRSfullWidth();
             });
@@ -119,14 +122,14 @@
         })
     });
 
-//    $(".revolution-mch-1").on("click",function(e){
-//        console.log();
-//        var id = this.getAttribute("id");
-//    })
-        function worksDetail(id){
-            console.log("11111  ");
-            window.location.href= "/works/detail/" + id ;
-        }
+    //    $(".revolution-mch-1").on("click",function(e){
+    //        console.log();
+    //        var id = this.getAttribute("id");
+    //    })
+    function worksDetail(id) {
+        console.log("11111  ");
+        window.location.href = "/works/detail/" + id;
+    }
 
 </script>
 </@footerJS>
