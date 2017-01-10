@@ -277,9 +277,7 @@ public class WorksController extends BaseController {
         JSONObject jsonObject = new JSONObject();
 
         wrapInsertEntity(consumer);
-        if (!StringUtils.isEmpty(consumer.getPub())) {
-            consumer.setPub("1");
-        } else {
+        if (StringUtils.isEmpty(consumer.getPub())) {
             consumer.setPub("0");
         }
         if (!consumerService.insert(consumer)) {
@@ -549,7 +547,7 @@ public class WorksController extends BaseController {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
     }
 
-    @RequestMapping(value="/works/slideImage")
+    @RequestMapping(value="/slideImage")
     @ResponseBody
     public JSONObject getSlideImage(){
         JSONObject json = new JSONObject();

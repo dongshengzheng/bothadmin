@@ -135,7 +135,11 @@
                             <div class="col-sm-10">
                                 <label class="checkbox text-left" style="padding-top:0px;">
                                     <input type="checkbox" name="pub"/>
-                                    <i></i>是否公开
+                                    <i></i>公&nbsp;&nbsp;&nbsp;&nbsp;开
+                                </label>
+                                <label class="checkbox text-left" style="padding-top:0px;">
+                                    <input type="checkbox" name="pub"/>
+                                    <i></i>不公开
                                 </label>
                             </div>
                         </div>
