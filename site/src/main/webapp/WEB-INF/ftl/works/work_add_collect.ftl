@@ -34,7 +34,7 @@
         <div class="form-wizard">
             <ul class="nav nav-pills nav-justified steps">
                 <li class="active">
-                    <a href="javascript:;" class="step">
+                    <a href="javascript:;" class="step" >
                         <span class="number">1</span>
                         <span class="desc">
                             <i class="fa fa-check"></i>物品信息

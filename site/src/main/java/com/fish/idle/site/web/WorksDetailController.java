@@ -308,9 +308,9 @@ public class WorksDetailController extends BaseController {
         return "works/work_detail";
     }
 
-    @RequestMapping(value = "/checkDetails/{id}", method = RequestMethod.GET)
-    public String getCheckDetails(@PathVariable Integer id,
-                                  ModelMap map) {
+    @RequestMapping(value = "providerDetails/{id}", method = RequestMethod.GET)
+    public String getProviderDetails(@PathVariable Integer id,
+                                  ModelMap map){
         if (id == null) {
             return "redirect:/";
         }
@@ -318,28 +318,60 @@ public class WorksDetailController extends BaseController {
         if (works == null) {
             return "redirect:/404";
         }
-        //矿区地域
-        if (StringUtils.isNotEmpty(works.getKqdy())) {
-            works.setKqdy(dictService.getLabelByValue(works.getKqdy(), "dd_kqdy"));
-        }
-        //作品品种
-        if (StringUtils.isNotEmpty(works.getBreed())) {
-            works.setBreed(dictService.getLabelByValue(works.getBreed(), "dd_pinzhong"));
-        }
-        //作品类型
-        if (StringUtils.isNotEmpty(works.getType())) {
-            works.setType(dictService.getLabelByValue(works.getType(), "dd_zuopinleixing"));
-        }
-        if (StringUtils.isNotEmpty(works.getGyType())) {
-            works.setGyType(dictService.getLabelByValue(works.getGyType(), "dd_level"));
-        }
-        if (StringUtils.isNotEmpty(works.getLevelZk())) {
-            works.setLevelZk(dictService.getLabelByValue(works.getLevelZk(), "dd_level"));
-        }
         map.put("works", works);
         List<Images> worksImage = imagesService.selectList(new EntityWrapper<>(new Images(id, Const.IMAGES_WORKS)));
         //作品信息图片列表
         map.put("worksImage", worksImage);
+        Consumer provider = consumerService.selectOne(new EntityWrapper<>(new Consumer(Const.CONSUMER_TYPE_PROVIDER, id)));
+        map.put("provider", provider);
+        return "works/work_add_provider";
+    }
+
+    @RequestMapping(value = "infoDetails/{id}", method = RequestMethod.GET)
+    public String getInfoDetails(@PathVariable Integer id,
+                                     ModelMap map){
+        if (id == null) {
+            return "redirect:/";
+        }
+        Works works = worksService.selectById(id);
+        if (works == null) {
+            return "redirect:/404";
+        }
+        map.put("works", works);
+        //矿区地域
+        map.put("kqdy", dictService.getWorksLevelDicByType("dd_kqdy"));
+        map.put("level", dictService.getWorksLevelDicByType("dd_level"));
+        map.put("pinzhong", dictService.getWorksLevelDicByType("dd_pinzhong"));
+        map.put("zuopinleixing", dictService.getWorksLevelDicByType("dd_zuopinleixing"));
+        map.put("gyType", dictService.getWorksLevelDicByType("dd_level"));
+        return "works/work_add_info";
+    }
+
+    @RequestMapping(value = "levelDetails/{id}", method = RequestMethod.GET)
+    public String getLevelDetails(@PathVariable Integer id,
+                                     ModelMap map){
+        if (id == null) {
+            return "redirect:/";
+        }
+        Works works = worksService.selectById(id);
+        if (works == null) {
+            return "redirect:/404";
+        }
+        map.put("works", works);
+        map.put("zhidi1", dictService.getWorksLevelDicByType("dd_zhidi"));
+        map.put("zhidi2", dictService.getWorksLevelDicByType("dd_zhidi2"));
+        map.put("ganguan", dictService.getWorksLevelDicByType("dd_ganguan"));
+        map.put("moshidu", dictService.getWorksLevelDicByType("dd_moshidu"));
+        map.put("xueliang", dictService.getWorksLevelDicByType("dd_xueliang"));
+        map.put("xuese", dictService.getWorksLevelDicByType("dd_xuese"));
+        map.put("xuexing", dictService.getWorksLevelDicByType("dd_xuexing"));
+        map.put("nongyandu", dictService.getWorksLevelDicByType("dd_nongyandu"));
+        map.put("jingdu", dictService.getWorksLevelDicByType("dd_jingdu"));
+        map.put("dise", dictService.getWorksLevelDicByType("dd_dise"));
+        map.put("liu", dictService.getWorksLevelDicByType("dd_liu"));
+        map.put("lie", dictService.getWorksLevelDicByType("dd_lie"));
+        map.put("mian", dictService.getWorksLevelDicByType("dd_mian"));
+        map.put("hanxuefangshi", dictService.getWorksLevelDicByType("dd_hanxuefangshi"));
         WorksLevel worksLevel = worksLevelService.selectOne(new EntityWrapper<>(new WorksLevel(id)));
         if (worksLevel != null) {
             if (StringUtils.isNotEmpty(worksLevel.getZhidi())) {
@@ -389,24 +421,20 @@ public class WorksDetailController extends BaseController {
             }
         }
         map.put("worksLevel", worksLevel);
-        Consumer provider = consumerService.selectOne(new EntityWrapper<>(new Consumer(Const.CONSUMER_TYPE_PROVIDER, id)));
-        if (provider != null) {
-            String identification = provider.getNo();
-            if (identification != null && identification.length() > 8) {
-                identification = identification.substring(0, 4) + "**********" + identification.substring(identification.length() - 4);
-            }
-            provider.setNo(identification);
+        return "works/work_add_level";
+    }
+
+    @RequestMapping(value = "reportDetails/{id}", method = RequestMethod.GET)
+    public String getReportDetails(@PathVariable Integer id,
+                                     ModelMap map){
+        if (id == null) {
+            return "redirect:/";
         }
-        map.put("provider", provider);
-        Consumer collect = consumerService.selectOne(new EntityWrapper<>(new Consumer(Const.CONSUMER_TYPE_COLLECT, id)));
-        if (collect != null) {
-            String identification = collect.getNo();
-            if (identification != null && identification.length() > 8) {
-                identification = identification.substring(0, 4) + "**********" + identification.substring(identification.length() - 4);
-            }
-            collect.setNo(identification);
+        Works works = worksService.selectById(id);
+        if (works == null) {
+            return "redirect:/404";
         }
-        map.put("collect", collect);
+        map.put("works", works);
         Report report = reportService.selectOne(new EntityWrapper<>(new Report(id)));
         map.put("report", report);
 
@@ -423,7 +451,6 @@ public class WorksDetailController extends BaseController {
         // 诠释列表
         List<Interpretation> interpretationList = interpretationService.interpretationContainImages(id);
         map.put("interpretationList", interpretationList);
-        return "";
+        return "works/work_add_report";
     }
-
 }

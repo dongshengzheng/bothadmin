@@ -1,6 +1,6 @@
 <#include "../layout/main.ftl"/>
 
-<@htmlHead title="作品登记_作品信息">
+<@htmlHead title="作品详情">
 <link rel="stylesheet" href="${staticPath}/assets/css/datepicker.css">
 <link rel="stylesheet" href="${staticPath}/static/css/plugins.css">
 <link rel="stylesheet" href="${staticPath}/assets/plugins/bootstrap-select/css/bootstrap-select.css">
@@ -34,7 +34,7 @@
         <div class="form-wizard ">
             <ul class="nav nav-pills nav-justified steps">
                 <li class="active">
-                    <a href="javascript:;" class="step">
+                    <a href="javascript:;" class="step" id="providerDetails">
                         <span class="number">1</span>
                         <span class="desc"><i class="fa fa-check"></i>物品信息</span>
                     </a>
@@ -86,7 +86,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="breed">品种</label>
                             <div class="col-sm-10">
-                                <select id="breed" name="breed" class="form-control selectpicker">
+                                <select id="breed" name="breed" class="form-control selectpicker" value="<#if (works.breed)??>${works.breed}</#if>">
                                     <option value="">请选择</option>
                                     <#list pinzhong as pz>
                                         <option value="${pz.value}">${pz.label}</option>
@@ -98,7 +98,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="name">作品类型</label>
                             <div class="col-sm-10">
-                                <select id="type" class="form-control selectpicker"
+                                <select id="type" class="form-control selectpicker" value="<#if (works.type)??>${works.type}</#if>"
                                         name="type">
                                     <option value="">请选择</option>
                                     <#list zuopinleixing as zplx>
@@ -112,13 +112,13 @@
                             <label class="col-sm-2 control-label" for="">尺寸(cm)</label>
                             <div class="col-sm-10">
                                 <div class="row">
-                                    <div class="col-sm-4"><input class="form-control" id="length" name="length"
+                                    <div class="col-sm-4"><input class="form-control" id="length" name="length" value="<#if (works.length)??>${works.length}</#if>"
                                                                  type="text"
                                                                  placeholder="长"/></div>
-                                    <div class="col-sm-4"><input class="form-control" name="width" id="width"
+                                    <div class="col-sm-4"><input class="form-control" name="width" id="width" value="<#if (works.width)??>${works.width}</#if>"
                                                                  type="text"
                                                                  placeholder="宽"/></div>
-                                    <div class="col-sm-4"><input class="form-control" name="height" id="height"
+                                    <div class="col-sm-4"><input class="form-control" name="height" id="height" value="<#if (works.height)??>${works.height}</#if>"
                                                                  type="text"
                                                                  placeholder="高"/></div>
                                 </div>
@@ -128,14 +128,14 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="weight">重量(g)</label>
                             <div class="col-sm-10">
-                                <input class="form-control" name="weight" id="weight" type="text"
+                                <input class="form-control" name="weight" id="weight" type="text" value="<#if (works.weight)??>${works.weight}</#if>"
                                        placeholder="请输入重量"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="gyType">工艺制作</label>
                             <div class="col-sm-10">
-                                <select class="form-control selectpicker"
+                                <select class="form-control selectpicker" value="<#if (works.gyType)??>${works.gyType}</#if>"
                                         id="gyType" name="gyType">
                                     <option value="">请选择</option>
                                     <#list gyType as gy>
@@ -148,7 +148,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="levelZk">篆刻级别</label>
                             <div class="col-sm-10">
-                                <select class="form-control selectpicker"
+                                <select class="form-control selectpicker" value="<#if (works.levelZk)??>${works.levelZk}</#if>"
                                         id="levelZk" name="levelZk">
                                     <option value="">请选择</option>
                                     <#list level as lvl>
@@ -161,7 +161,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="kqdy">矿区地域</label>
                             <div class="col-sm-10">
-                                <select class="form-control selectpicker" id="kqdy"
+                                <select class="form-control selectpicker" id="kqdy" value="<#if (works.kqdy)??>${works.kqdy}</#if>"
                                         name="kqdy">
                                     <option value="">请选择</option>
                                     <#list kqdy as kq>
@@ -174,7 +174,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="maker">制作人</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="maker" id="maker"
+                                <input type="text" class="form-control" name="maker" id="maker" value="<#if (works.maker)??>${works.maker}</#if>"
                                        placeholder="请输入制作人">
                             </div>
                         </div>
@@ -183,7 +183,7 @@
                             <label class="col-sm-2 control-label" for="makeTime">制作时间</label>
                             <div class="col-sm-10">
                                 <input readonly type="text" class="form-control date-picker" id="makeTime"
-                                       name="makeTime"
+                                       name="makeTime" value="<#if (works.makeTime)??>${works.makeTime}</#if>"
                                        placeholder="请输入制作时间">
                             </div>
                         </div>
@@ -192,7 +192,7 @@
                             <label class="col-sm-2 control-label" for="worksMeaning">作品诠释</label>
                             <div class="col-sm-10">
                                 <textarea class="form-control" style="resize: none;height: 150px"
-                                          name="worksMeaning"
+                                          name="worksMeaning" value="<#if (works.worksMeaning)??>${works.worksMeaning}</#if>"
                                           id="worksMeaning" type="text" placeholder="请输入作品诠释"></textarea>
                             </div>
                         </div>
@@ -236,13 +236,7 @@
                         if (data.suc) {
                             if ($("#status").val() == 0) {
                                 // 跳转到下一步
-                                var type = $('#type').val();
-                                console.log(type);
-                                if (type == 5 || type == 6) {
-                                    window.location.href = "/works/add/${works.id}/report";
-                                } else {
-                                    window.location.href = "/works/add/${works.id}/level";
-                                }
+                                window.location.href = "/works/add/${works.id}/level";
                             } else {
                                 // 跳转到个人中心-> 我的作品->草稿里面
                                 window.location.href = "/user";
@@ -260,9 +254,10 @@
             }
         })
 
-        $(".step").on("click", function () {
-            var id = this.getAttribute("id");
-
+        $("#providerDetails").on("click",function(){
+            var id = $("#id").val();
+            window.location.href = "/works/providerDetails/"+id;
+//            $.get("/works/providerDetails/"+id);
         })
     });
 

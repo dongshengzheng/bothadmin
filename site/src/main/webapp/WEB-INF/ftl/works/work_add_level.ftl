@@ -33,7 +33,7 @@
         <div class="form-wizard ">
             <ul class="nav nav-pills nav-justified steps">
                 <li class="active">
-                    <a href="javascript:;" class="step">
+                    <a href="javascript:;" class="step" id="providerDetails">
                         <span class="number">1</span>
                         <span class="desc"><i class="fa fa-check"></i>物品信息</span>
                     </a>
@@ -84,7 +84,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="zhidi">质地一</label>
                             <div class="col-sm-4">
-                                <select class="form-control selectpicker" name="zhidi">
+                                <select class="form-control selectpicker" name="zhidi" value="<#if (worksLevel.zhidi)??>${worksLevel.zhidi}</#if>">
                                     <option value="">请选择</option>
                                     <#list zhidi1 as zd1>
                                         <option value="${zd1.value}">${zd1.label}</option>
@@ -93,7 +93,7 @@
                             </div>
                             <label class="col-sm-2 control-label" for="zhidi2">质地二</label>
                             <div class="col-sm-4">
-                                <select class="form-control selectpicker" name="zhidi2">
+                                <select class="form-control selectpicker" name="zhidi2" value="<#if (worksLevel.zhidi2)??>${worksLevel.zhidi2}</#if>">
                                     <option value="">请选择</option>
                                     <#list zhidi2 as zd2>
                                         <option value="${zd2.value}">${zd2.label}</option>
@@ -105,7 +105,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="ganguan">感官</label>
                             <div class=" col-sm-4">
-                                <select class="form-control selectpicker" name="ganguan">
+                                <select class="form-control selectpicker" name="ganguan" value="<#if (worksLevel.ganguan)??>${worksLevel.ganguan}</#if>">
                                     <option value="">请选择</option>
                                     <#list ganguan as gg>
                                         <option value="${gg.value}">${gg.label}</option>
@@ -114,7 +114,7 @@
                             </div>
                             <label class="col-sm-2 control-label" for="moshidu">磨氏度</label>
                             <div class=" col-sm-4">
-                                <select class="form-control selectpicker" name="moshidu">
+                                <select class="form-control selectpicker" name="moshidu" value="<#if (worksLevel.moshidu)??>${worksLevel.moshidu}</#if>">
                                     <option value="">请选择</option>
                                     <#list moshidu as msd>
                                         <option value="${msd.value}">${msd.label}</option>
@@ -126,7 +126,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="xueliang">血量</label>
                             <div class=" col-sm-4">
-                                <select class="form-control selectpicker" name="xueliang">
+                                <select class="form-control selectpicker" name="xueliang" value="<#if (worksLevel.xueliang)??>${worksLevel.xueliang}</#if>">
                                     <option value="">请选择</option>
                                     <#list xueliang as xl>
                                         <option value="${xl.value}">${xl.label}</option>
@@ -135,7 +135,7 @@
                             </div>
                             <label class="col-sm-2 control-label" for="xuese">血色</label>
                             <div class=" col-sm-4">
-                                <select class="form-control selectpicker" name="xuese">
+                                <select class="form-control selectpicker" name="xuese" value="<#if (worksLevel.xuese)??>${worksLevel.xuese}</#if>">
                                     <option value="">请选择</option>
                                     <#list xuese as xs>
                                         <option value="${xs.value}">${xs.label}</option>
@@ -147,7 +147,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="xuexing">血形</label>
                             <div class=" col-sm-4">
-                                <select class="form-control selectpicker" name="xuexing">
+                                <select class="form-control selectpicker" name="xuexing" value="<#if (worksLevel.xuexing)??>${worksLevel.xuexing}</#if>">
                                     <option value="">请选择</option>
                                     <#list xuexing as xx>
                                         <option value="${xx.value}">${xx.label}</option>
@@ -156,7 +156,7 @@
                             </div>
                             <label class="col-sm-2 control-label" for="nongyandu">浓艳度</label>
                             <div class=" col-sm-4">
-                                <select class="form-control selectpicker" name="nongyandu">
+                                <select class="form-control selectpicker" name="nongyandu" value="<#if (worksLevel.nongyandu)??>${worksLevel.nongyandu}</#if>">
                                     <option value="">请选择</option>
                                     <#list nongyandu as nyd>
                                         <option value="${nyd.value}">${nyd.label}</option>
@@ -168,7 +168,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="chunjingdu">纯净度</label>
                             <div class=" col-sm-4">
-                                <select class="form-control selectpicker" name="chunjingdu">
+                                <select class="form-control selectpicker" name="chunjingdu" value="<#if (worksLevel.chunjingdu)??>${worksLevel.chunjingdu}</#if>">
                                     <option value="">请选择</option>
                                     <#list jingdu as jd>
                                         <option value="${jd.value}">${jd.label}</option>
@@ -177,7 +177,7 @@
                             </div>
                             <label class="col-sm-2 control-label" for="dise">地色</label>
                             <div class=" col-sm-4">
-                                <select class="form-control selectpicker" name="dise">
+                                <select class="form-control selectpicker" name="dise" value="<#if (worksLevel.dise)??>${worksLevel.dise}</#if>">
                                     <option value="">请选择</option>
                                     <#list dise as ds>
                                         <option value="${ds.value}">${ds.label}</option>
@@ -189,7 +189,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="liu">活筋</label>
                             <div class=" col-sm-4">
-                                <select class="form-control selectpicker" name="liu">
+                                <select class="form-control selectpicker" name="liu" value="<#if (worksLevel.liu)??>${worksLevel.liu}</#if>">
                                     <option value="">请选择</option>
                                     <#list liu as lu>
                                         <option value="${lu.value}">${lu.label}</option>
@@ -198,7 +198,7 @@
                             </div>
                             <label class="col-sm-2 control-label" for="lie">裂</label>
                             <div class=" col-sm-4">
-                                <select class="form-control selectpicker" name="lie">
+                                <select class="form-control selectpicker" name="lie" value="<#if (worksLevel.lie)??>${worksLevel.lie}</#if>">
                                     <option value="">请选择</option>
                                     <#list lie as le>
                                         <option value="${le.value}">${le.label}</option>
@@ -210,7 +210,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="inithanxueliang">印章含血面</label>
                             <div class=" col-sm-4">
-                                <select class="form-control selectpicker"
+                                <select class="form-control selectpicker" value="<#if (worksLevel.inithanxueliang)??>${worksLevel.inithanxueliang}</#if>"
                                         name="inithanxueliang">
                                     <option value="">请选择</option>
                                     <#list mian as ma>
@@ -220,7 +220,7 @@
                             </div>
                             <label class="col-sm-2 control-label" for="hanxuefangshi">含血方式</label>
                             <div class=" col-sm-4">
-                                <select class="form-control selectpicker"
+                                <select class="form-control selectpicker" value="<#if (worksLevel.hanxuefangshi)??>${worksLevel.hanxuefangshi}</#if>"
                                         name="hanxuefangshi">
                                     <option value="">请选择</option>
                                     <#list hanxuefangshi as hxfs>
