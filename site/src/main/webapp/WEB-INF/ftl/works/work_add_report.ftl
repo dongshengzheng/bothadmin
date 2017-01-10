@@ -86,7 +86,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="description">作品详细评估报告</label>
                             <div class="col-sm-10">
-                                    <textarea class="form-control" style="resize: none;height: 150px" name="des"
+                                    <textarea class="form-control" style="resize: none;height: 150px" name="des"  value="<#if (report.des)??>${worksLevel.des}</#if>
                                               id="des" type="text" placeholder="作品详细评估报告"></textarea>
                             </div>
                         </div>
@@ -104,7 +104,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="description">作品价值认证报告</label>
                             <div class="col-sm-10">
-                                    <textarea class="form-control" style="resize: none;height: 150px" name="certify"
+                                    <textarea class="form-control" style="resize: none;height: 150px" name="certify"  value="<#if (worksLevel.certify)??>${worksLevel.certify}</#if>
                                               id="certify" type="text" placeholder="作品价值认证报告"></textarea>
                             </div>
                         </div>
@@ -122,7 +122,7 @@
                             <label class="col-sm-2 control-label" for="datetime">价值有效时间</label>
                             <div class="col-sm-10">
                                 <input class="form-control date-picker" name="validTime" id="validTime"
-                                       type="text"
+                                       type="text" value="<#if (worksLevel.validTime)??>${worksLevel.validTime}</#if>
                                        placeholder="请选择价值有效时间" readonly/>
                             </div>
 

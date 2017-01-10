@@ -1,5 +1,6 @@
 package com.fish.idle.service.modules.jsdd.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fish.idle.service.modules.jsdd.mapper.ImagesMapper;
@@ -17,6 +18,9 @@ import java.util.List;
  */
 @Service
 public class ImagesServiceImpl extends SuperServiceImpl<ImagesMapper, Images> implements IImagesService {
+
+    @Autowired
+    ImagesMapper imagesMapper;
     public void insertImage(String images, Integer targetId, String types) {
         // 保存图片信息
         if (images != null && images.trim().length() > 0) {
@@ -33,4 +37,9 @@ public class ImagesServiceImpl extends SuperServiceImpl<ImagesMapper, Images> im
         }
     }
 
+
+    public Boolean deleteByTargetId(Integer targetId) {
+        // 删除图片信息
+        return imagesMapper.deleteByTargetId(targetId);
+    }
 }

@@ -87,17 +87,18 @@
                     <form id="works_info" action="${staticPath}/works/add/provider" method="post"
                           class="form-horizontal">
                         <input type="hidden" id="type" name="type" value="1"/>
+                        <input type="hidden" name="id" value="<#if (works.id)??>${works.id}</#if>"/>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="name">作品名称</label>
                             <div class="col-sm-10">
-                                <input class="form-control" name="name" id="name" type="text"
+                                <input class="form-control" name="name" id="name" type="text" value="<#if (works.name)??>${works.name}</#if>"
                                        placeholder="请输入作品名称"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="provideBy">提供者</label>
                             <div class="col-sm-10">
-                                <input class="form-control" name="provider" id="provider" type="text"
+                                <input class="form-control" name="provider" id="provider" type="text" value="<#if (provider.name)??>${provider.name}</#if>"
                                        placeholder="请输入提供者"/>
                             </div>
                         </div>
@@ -105,7 +106,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="cardNo">身份证</label>
                             <div class="col-sm-10">
-                                <input class="form-control" name="no" id="no" type="text"
+                                <input class="form-control" name="no" id="no" type="text" value="<#if (provider.no)??>${provider.no}</#if>"
                                        placeholder="请输入身份证"/>
                             </div>
                         </div>
@@ -113,7 +114,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="address">联系地址</label>
                             <div class="col-sm-10">
-                                <input class="form-control" name="address" id="address" type="text"
+                                <input class="form-control" name="address" id="address" type="text" value="<#if (provider.address)??>${provider.address}</#if>"
                                        placeholder="请输入联系地址"/>
                             </div>
                         </div>
@@ -121,7 +122,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="contact">手机号码</label>
                             <div class="col-sm-10">
-                                <input class="form-control" name="phone" id="phone" type="text"
+                                <input class="form-control" name="phone" id="phone" type="text" value="<#if (provider.phone)??>${provider.phone}</#if>"
                                        placeholder="请输入手机号码"/>
                             </div>
                         </div>
@@ -129,7 +130,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="datetime">登记时间</label>
                             <div class="col-sm-10">
-                                <input class="form-control date-picker" name="datetime" id="datetime"
+                                <input class="form-control date-picker" name="datetime" id="datetime" value ="<#if (provider.datetime)??>${(provider.datetime?string("yyyy-MM-dd"))!""} </#if>"
                                        type="text"
                                        placeholder="请选择登记时间" readonly/>
                             </div>
@@ -141,7 +142,7 @@
                             <div class="col-sm-10">
                                     <textarea class="form-control" style="resize: none;height: 150px"
                                               name="worksRemarks"
-                                              id="worksRemarks" type="text" placeholder="请输入作品描述"></textarea>
+                                              id="worksRemarks" type="text" placeholder="请输入作品描述"><#if (works.remarks)??>${works.remarks}</#if></textarea>
                                 <input type="hidden" id="status" name="status"/>
                             </div>
                         </div>

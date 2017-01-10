@@ -91,23 +91,36 @@ public class WorksController extends BaseController {
         wrapInsertEntity(works);
         works.setRemarks(worksRemarks);
         works.setStatus(Const.WORKS_STATUS_DRAFT);
-        if (!worksService.insert(works)) {
-            jsonObject.put("suc", false);
-            jsonObject.put("msg", "保存作品信息出错");
-            return jsonObject;
-        }
-
         //保存提供者
         wrapInsertEntity(consumer);
         consumer.setName(provider);
         consumer.setWorksId(works.getId());
-        if (!consumerService.insert(consumer)) {
-            jsonObject.put("suc", false);
-            jsonObject.put("msg", "保存提供者信息出错");
-            return jsonObject;
+        if(works.getId() == null){
+            if (!worksService.insert(works)) {
+                jsonObject.put("suc", false);
+                jsonObject.put("msg", "保存作品信息出错");
+                return jsonObject;
+            }
+            if (!consumerService.insert(consumer)) {
+                jsonObject.put("suc", false);
+                jsonObject.put("msg", "保存提供者信息出错");
+                return jsonObject;
+            }
+            imagesService.insertImage(works.getImages(), works.getId(), Const.IMAGES_WORKS);
+        } else {
+            if (!worksService.updateById(works)) {
+                jsonObject.put("suc", false);
+                jsonObject.put("msg", "保存作品信息出错");
+                return jsonObject;
+            }
+            if (!consumerService.insertOrUpdate(consumer)) {
+                jsonObject.put("suc", false);
+                jsonObject.put("msg", "保存提供者信息出错");
+                return jsonObject;
+            }
+            imagesService.deleteByTargetId(works.getId());
+            imagesService.insertImage(works.getImages(), works.getId(), Const.IMAGES_WORKS);
         }
-        imagesService.insertImage(works.getImages(), works.getId(), Const.IMAGES_WORKS);
-
         jsonObject.put("suc", true);
         jsonObject.put("id", works.getId());
         return jsonObject;
@@ -278,6 +291,7 @@ public class WorksController extends BaseController {
 
         wrapInsertEntity(consumer);
         if (StringUtils.isEmpty(consumer.getPub())) {
+
             consumer.setPub("0");
         }
         if (!consumerService.insert(consumer)) {
