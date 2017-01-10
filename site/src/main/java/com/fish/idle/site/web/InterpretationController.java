@@ -77,6 +77,7 @@ public class InterpretationController extends BaseController {
             imagesService.insertImage(interpretation.getPicture(), interpretation.getId(), Const.IMAGES_INTERPRETATION);
         }
 
+
         return result;
     }
 }

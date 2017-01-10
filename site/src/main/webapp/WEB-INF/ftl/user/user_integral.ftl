@@ -128,108 +128,12 @@
                         </ul>
                         <div class="tab-content">
                             <div id="all" class="profile-edit tab-pane fade in active">
-                                <div>
-                                    <div class="col-md-3">
-                                        <span>2012-11-11 21:10:23</span>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <span>作品被浏览</span>
-                                    </div>
-                                    <div class="col-md-3" style="text-align: right">
-                                        <span class="fa fa-plus"> 1</span>
-                                    </div>
-                                </div>
-                                <hr/>
-                                <div>
-                                    <div class="col-md-3">
-                                        <span>2012-11-11 21:10:23</span>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <span>作品被浏览</span>
-                                    </div>
-                                    <div class="col-md-3" style="text-align: right">
-                                        <span class="fa fa-minus"> 1</span>
-                                    </div>
-                                </div>
-                                <hr/>
                             </div>
                             <div id="save" class="profile-edit tab-pane fade">
-                                <div>
-                                    <div class="col-md-3">
-                                        <span>2012-11-11 21:10:23</span>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <span>充值</span>
-                                    </div>
-                                    <div class="col-md-3" style="text-align: right">
-                                        <span class="fa fa-plus"> 100</span>
-                                    </div>
-                                </div>
-                                <hr/>
-                                <div>
-                                    <div class="col-md-3">
-                                        <span>2012-11-11 21:10:23</span>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <span>充值</span>
-                                    </div>
-                                    <div class="col-md-3" style="text-align: right">
-                                        <span class="fa fa-plus"> 100</span>
-                                    </div>
-                                </div>
-                                <hr/>
                             </div>
                             <div id="withdraw" class="profile-edit tab-pane fade">
-                                <div>
-                                    <div class="col-md-3">
-                                        <span>2012-11-11 21:10:23</span>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <span>提现</span>
-                                    </div>
-                                    <div class="col-md-3" style="text-align: right">
-                                        <span class="fa fa-minus"> 50</span>
-                                    </div>
-                                </div>
-                                <hr/>
-                                <div>
-                                    <div class="col-md-3">
-                                        <span>2012-11-11 21:10:23</span>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <span>作品被浏览</span>
-                                    </div>
-                                    <div class="col-md-3" style="text-align: right">
-                                        <span class="fa fa-minus"> 100</span>
-                                    </div>
-                                </div>
-                                <hr/>
                             </div>
                             <div id="other" class="profile-edit tab-pane fade">
-                                <div>
-                                    <div class="col-md-3">
-                                        <span>2012-11-11 21:10:23</span>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <span>其他2333</span>
-                                    </div>
-                                    <div class="col-md-3" style="text-align: right">
-                                        <span class="fa fa-plus"> 1</span>
-                                    </div>
-                                </div>
-                                <hr/>
-                                <div>
-                                    <div class="col-md-3">
-                                        <span>2012-11-11 21:10:23</span>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <span>其他2333</span>
-                                    </div>
-                                    <div class="col-md-3" style="text-align: right">
-                                        <span class="fa fa-minus"> 1</span>
-                                    </div>
-                                </div>
-                                <hr/>
                             </div>
                         </div>
                     </div>
@@ -326,6 +230,18 @@
     </div>
 </div>
 
+<div id="score-history-temp" class="row margin-bottom-5">
+    <div class="col-md-3">
+        <span class="date">2012-11-11 21:10:23</span>
+    </div>
+    <div class="col-md-6">
+        <span class="type"></span>
+    </div>
+    <div class="col-md-3" style="text-align: right">
+        <span class="fa fa-plus"> 1</span>
+    </div>
+</div>
+
 </@htmlBody>
 <@footerJS>
 <script>
@@ -355,6 +271,50 @@
         $('.score-value').removeClass('selected');
         $(this).addClass('selected');
     })
+
+
+    $(document).ready(function () {
+        $.get("/user/integral_load", function (data) {
+            $.each(data, function () {
+                var $li = $('#score-history-temp').clone();
+                $li.find('.date').text(new Date(parseInt(this.updateDate)).Format("yyyy-MM-dd hh:mm:ss"));
+                $li.find('.type').text(this.type);
+                if (this.fromUserId ==${Session.siteSessionUser.id}) {
+                    $li.find('.fa').removeClass('fa-plus').addClass('fa-minus').text(" " + this.value);
+                } else {
+                    $li.find('.fa').text(" " + this.value);
+                }
+                $li.removeAttr('id');
+                $('#all').append($li);
+                if (this.type == '充值') {
+                    $('#save').append($li.clone());
+                } else if (this.type == '提现') {
+                    $('#withdraw').append($li.clone());
+                } else {
+                    $('#other').append($li.clone());
+                }
+            });
+        });
+    });
+
+
+    Date.prototype.Format = function (fmt) { //author: meizz
+        var o = {
+            "M+": this.getMonth() + 1, //月份
+            "d+": this.getDate(), //日
+            "h+": this.getHours(), //小时
+            "m+": this.getMinutes(), //分
+            "s+": this.getSeconds(), //秒
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+            "S": this.getMilliseconds() //毫秒
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    }
+
+</script>
 
 
 </script>

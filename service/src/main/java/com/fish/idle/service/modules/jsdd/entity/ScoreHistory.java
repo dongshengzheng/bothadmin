@@ -43,7 +43,7 @@ public class ScoreHistory implements Serializable {
     /**
      * (字典表)(如果是交易类型的，标注to,from)
      */
-    private Integer type;
+    private String type;
 
     /**
      * 创建时间
@@ -62,6 +62,7 @@ public class ScoreHistory implements Serializable {
      */
     @TableField(value = "create_by")
     private Integer createBy;
+
 
     /**
      * 更新者
@@ -108,11 +109,11 @@ public class ScoreHistory implements Serializable {
         this.value = value;
     }
 
-    public Integer getType() {
+    public String getType() {
         return this.type;
     }
 
-    public void setType(Integer type) {
+    public void setType(String type) {
         this.type = type;
     }
 

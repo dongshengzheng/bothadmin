@@ -37,6 +37,9 @@ public class Dict implements Serializable {
 	/** 描述 */
 	private String description;
 
+    /** 具体积分 */
+	private int points;
+
 	/** 排序（升序） */
 	private BigDecimal sort;
 
@@ -123,4 +126,11 @@ public class Dict implements Serializable {
 		this.delFlag = delFlag;
 	}
 
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
 }

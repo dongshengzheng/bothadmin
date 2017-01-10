@@ -122,5 +122,15 @@ public class Const {
 
     public static final String SITE_SESSION_USER = "siteSessionUser";
 
+    //积分历史类型
+    public static final String SCORE_WORKS_BE_BROWSED = "1";
+    public static final String SCORE_WORKS_BE_SHARED = "2";
+    public static final String SCORE_WORKS_BE_INTERPRETATION = "3";
+    public static final String SCORE_WORKS_SHARE = "4";
+    public static final String SCORE_WORKS_INTERPRETATION = "5";
+    public static final String SCORE_WITHDRAW = "6";
+    public static final String SCORE_SAVE = "7";
+    public static final String SCORE_BE_FOCUSED = "8";
+    public static final String SCORE_WORKS_TRANSFER = "9";
 
 }

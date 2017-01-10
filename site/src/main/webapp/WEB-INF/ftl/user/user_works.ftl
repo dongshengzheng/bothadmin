@@ -37,6 +37,10 @@
         border: 2px solid red;
     }
 
+    #target-temp {
+        display: none;
+    }
+
 </style>
 </@htmlHead>
 <@htmlBody>

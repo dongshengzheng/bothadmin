@@ -69,6 +69,9 @@ public class WorksDetailController extends BaseController {
     @Autowired
     private ITransferHistoryService transferHistoryService;
 
+    @Autowired
+    private IScoreHistoryService scoreHistoryService;
+
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
@@ -130,6 +133,7 @@ public class WorksDetailController extends BaseController {
             worksService.updateById(works);
             ipBrowse.add(ip);
             session.setAttribute("ipBrowse", ipBrowse);
+
         }
 
 
@@ -145,6 +149,25 @@ public class WorksDetailController extends BaseController {
                 addBrowse.setCreateDate(new Date());
                 addBrowse.setUpdateDate(new Date());
                 followHistoryService.insert(addBrowse);
+
+                //作品被浏览时增加积分(第一次被该用户浏览)
+                Integer targetId = works.getCreateBy();
+                Integer detailScore = dictService.getPointsByValue(Const.SCORE_WORKS_BE_BROWSED, "score_type");
+                ScoreHistory scoreHistory = new ScoreHistory();
+                scoreHistory.setType(Const.SCORE_WORKS_BE_BROWSED);
+                scoreHistory.setToUserId(targetId);
+                scoreHistory.setValue(detailScore);
+                scoreHistory.setCreateDate(new Date());
+                scoreHistory.setUpdateDate(new Date());
+                scoreHistory.setCreateBy(currentUser.getId());
+                scoreHistory.setUpdateBy(currentUser.getId());
+                scoreHistoryService.insert(scoreHistory);
+                AppUser targetUser = appUserService.selectById(targetId);
+                Integer score = targetUser.getScore() != null ? targetUser.getScore() : 0;
+                targetUser.setScore(score + detailScore);
+                appUserService.updateById(targetUser);
+
+
             } else {
                 oldBrowse.setUpdateDate(new Date());
                 followHistoryService.updateById(oldBrowse);
@@ -287,7 +310,7 @@ public class WorksDetailController extends BaseController {
 
     @RequestMapping(value = "/checkDetails/{id}", method = RequestMethod.GET)
     public String getCheckDetails(@PathVariable Integer id,
-                                  ModelMap map){
+                                  ModelMap map) {
         if (id == null) {
             return "redirect:/";
         }

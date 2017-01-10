@@ -21,10 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by szy on 29/11/2016.
@@ -242,6 +239,26 @@ public class UserController extends BaseController {
     }
 
     /**
+     * @return
+     */
+    @RequestMapping(value = "integral_load", method = RequestMethod.GET)
+    @ResponseBody
+    public List<ScoreHistory> loadIntegral() {
+        EntityWrapper<ScoreHistory> ew = new EntityWrapper<>(new ScoreHistory());
+        ew.setSqlSelect("value,update_date,from_user_id,to_user_id,type");
+        ew.addFilter("from_user_id = {0} or to_user_id = {0}", getCurrentUser().getId());
+        ew.orderBy("update_date", false);
+        List<ScoreHistory> scoreHistoryList = scoreHistoryService.selectList(ew);
+        for (ScoreHistory s : scoreHistoryList) {
+            if (s.getType() != null && s.getType().trim().length() > 0) {
+                s.setType(dictService.getLabelByValue(s.getType(), "score_type"));
+            }
+        }
+        return scoreHistoryList;
+    }
+
+
+    /**
      * 个人设置
      *
      * @return
@@ -406,6 +423,23 @@ public class UserController extends BaseController {
         if (fh == null) {
             followHistory.setDelFlag(Const.DEL_FLAG_NORMAL);
             result = followHistoryService.insert(followHistory);
+
+            //用户被关注时增加积分(第一次被该用户关注)
+            Integer detailScore = dictService.getPointsByValue(Const.SCORE_BE_FOCUSED, "score_type");
+            ScoreHistory scoreHistory = new ScoreHistory();
+            scoreHistory.setType(Const.SCORE_BE_FOCUSED);
+            scoreHistory.setToUserId(targetId);
+            scoreHistory.setValue(detailScore);
+            scoreHistory.setCreateDate(new Date());
+            scoreHistory.setUpdateDate(new Date());
+            scoreHistory.setCreateBy(appUser.getId());
+            scoreHistory.setUpdateBy(appUser.getId());
+            scoreHistoryService.insert(scoreHistory);
+            AppUser targetUser = appUserService.selectById(targetId);
+            Integer score = targetUser.getScore() != null ? targetUser.getScore() : 0;
+            targetUser.setScore(score + detailScore);
+            appUserService.updateById(targetUser);
+
         } else {
             fh.setDelFlag(Const.DEL_FLAG_NORMAL);
             result = followHistoryService.updateById(fh);

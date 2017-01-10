@@ -362,5 +362,30 @@
         </sql>
     </changeSet>
 
+    <changeSet author="WangShun" id="15950097942-029">
+        <sql>
+            ALTER TABLE `sys_dict` ADD COLUMN `points` int(11) COMMENT '具体积分' AFTER `del_flag`;
+        </sql>
+    </changeSet>
+    <changeSet author="WangShun" id="15950097942-030">
+        <sql>
+            INSERT INTO sys_dict(value,label,type,description,sort,parent_id,remarks,del_flag,points) VALUES (1,'作品被浏览','score_type','积分类型',10,'0','',0,1);
+            INSERT INTO sys_dict(value,label,type,description,sort,parent_id,remarks,del_flag,points) VALUES (2,'作品被分享','score_type','积分类型',20,'0','',0,2);
+            INSERT INTO sys_dict(value,label,type,description,sort,parent_id,remarks,del_flag,points) VALUES (3,'作品被诠释','score_type','积分类型',30,'0','',0,0);
+            INSERT INTO sys_dict(value,label,type,description,sort,parent_id,remarks,del_flag,points) VALUES (4,'分享他人作品','score_type','积分类型',40,'0','',0,1);
+            INSERT INTO sys_dict(value,label,type,description,sort,parent_id,remarks,del_flag,points) VALUES (5,'诠释他人作品','score_type','积分类型',50,'0','',0,0);
+            INSERT INTO sys_dict(value,label,type,description,sort,parent_id,remarks,del_flag,points) VALUES (6,'提现','score_type','积分类型',60,'0','',0,0);
+            INSERT INTO sys_dict(value,label,type,description,sort,parent_id,remarks,del_flag,points) VALUES (7,'充值','score_type','积分类型',70,'0','',0,0);
+            INSERT INTO sys_dict(value,label,type,description,sort,parent_id,remarks,del_flag,points) VALUES (8,'被他人关注','score_type','积分类型',80,'0','',0,2);
+            INSERT INTO sys_dict(value,label,type,description,sort,parent_id,remarks,del_flag,points) VALUES (9,'作品转让','score_type','积分类型',90,'0','',0,0);
+        </sql>
+    </changeSet>
+    <changeSet author="WangShun" id="15950097942-031">
+        <sql>
+            ALTER TABLE `dd_score_history` CHANGE COLUMN `type` `type` varchar(50) DEFAULT NULL COMMENT
+            '积分历史类型';
+        </sql>
+    </changeSet>
+
 
 </databaseChangeLog>

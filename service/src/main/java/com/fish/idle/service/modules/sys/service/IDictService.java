@@ -15,4 +15,7 @@ public interface IDictService extends ISuperService<Dict> {
     String getLabelByValue(String value, String type);
 
     List<Dict> getWorksLevelDicByType(String type);
+
+    //获取积分具体数值
+    int getPointsByValue(String value, String type);
 }

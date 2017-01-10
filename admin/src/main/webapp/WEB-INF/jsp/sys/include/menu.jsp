@@ -20,7 +20,7 @@
                                         <a href="${sub.menuUrl}" class="ajaxify nav-link">
                                             <c:if test="${not empty sub.menuIcon }"><i
                                                     class="${sub.menuIcon}"></i></c:if>
-                                            </i>${sub.menuName}<input type="hidden" value="${sub.menuName}"> </a>
+                                            </i>${sub.menuName}</a>
                                     </li>
                                 </c:when>
                                 <c:otherwise>
@@ -41,5 +41,4 @@
     $('.ajaxify').on('click', function () {
         document.title = $(this).text();
     })
-
 </script>

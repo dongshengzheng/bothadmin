@@ -35,4 +35,13 @@ public class DictServiceImpl extends SuperServiceImpl<DictMapper, Dict> implemen
         List<Dict> list = selectList(entityWrapper);
         return list;
     }
+
+    //获取积分具体数值
+    public int getPointsByValue(String value, String type) {
+        EntityWrapper entityWrapper = new EntityWrapper();
+
+        entityWrapper.addFilter("value={0} and type={1}", value, type);
+
+        return selectOne(entityWrapper).getPoints();
+    }
 }
