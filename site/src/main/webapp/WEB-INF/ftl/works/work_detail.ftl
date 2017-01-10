@@ -145,14 +145,14 @@
                         <div class="tab-v1" style="margin-top: 30px">
                             <ul class="nav nav-tabs" style="background: rgb(244,244,244)">
                                 <li class="active" style="">
-                                    <a href="shortcode_accordion_and_tabs.html#detail" data-toggle="tab">作品详情</a>
+                                    <a href="#detail" data-toggle="tab">作品详情</a>
                                 </li>
                                 <li>
-                                    <a href="shortcode_accordion_and_tabs.html#interpretation"
+                                    <a href="#interpretation"
                                        data-toggle="tab">作品诠释</a>
                                 </li>
                                 <li>
-                                    <a href="shortcode_accordion_and_tabs.html#history" data-toggle="tab">转让历史</a>
+                                    <a href="#history" data-toggle="tab">转让历史</a>
                                 </li>
                             </ul>
                             <div class="tab-content" style="background: rgb(254,255,255)">
@@ -251,10 +251,10 @@
                                     <div class="media media-v2 margin-bottom-20">
                                         <a class="pull-left" href="#">
                                             <img onerror="nofind(2)" class="media-object rounded-x headImg"
-                                                <#if Session.siteSessionUser.headImgUrl!?index_of('http')!=-1>
-                                                 src="${Session.siteSessionUser.headImgUrl!}"
+                                                <#if (Session.siteSessionUser.headImgUrl)!?index_of('http')!=-1>
+                                                 src="${(Session.siteSessionUser.headImgUrl)!}"
                                                 <#else>
-                                                 src="http://windyeel.img-cn-shanghai.aliyuncs.com/${Session.siteSessionUser.headImgUrl!}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                                                 src="http://windyeel.img-cn-shanghai.aliyuncs.com/${(Session.siteSessionUser.headImgUrl)!}?x-oss-process=image/resize,m_fill,h_100,w_100"
                                                 </#if>
                                                  alt="">
                                         </a>
