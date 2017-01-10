@@ -10,7 +10,7 @@
 <@htmlBody>
 
 <!--content start-->
-<div class="container">
+<div class="container" id="set-height">
     <!--<div class="row">-->
 
     <!--</div>-->
@@ -88,9 +88,10 @@
 
 
 <script>
-    $('img').error(function () {
-        $(this).attr('src', "http://windyeel.oss-cn-shanghai.aliyuncs.com/global/img/default.png");
-    });
+    $(function () {
+        var height = document.documentElement.clientHeight;
+        $('#set-height').css('min-height', height * 0.75);
+    })
 
     pageIndex = 1;
     pageSize = 10;

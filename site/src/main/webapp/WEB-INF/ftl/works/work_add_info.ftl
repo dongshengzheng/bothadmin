@@ -1,6 +1,6 @@
 <#include "../layout/main.ftl"/>
 
-<@htmlHead title="作品详情">
+<@htmlHead title="作品登记_作品信息">
 <link rel="stylesheet" href="${staticPath}/assets/css/datepicker.css">
 <link rel="stylesheet" href="${staticPath}/static/css/plugins.css">
 <link rel="stylesheet" href="${staticPath}/assets/plugins/bootstrap-select/css/bootstrap-select.css">
@@ -236,7 +236,13 @@
                         if (data.suc) {
                             if ($("#status").val() == 0) {
                                 // 跳转到下一步
-                                window.location.href = "/works/add/${works.id}/level";
+                                var type = $('#type').val();
+                                console.log(type);
+                                if (type == 5 || type == 6) {
+                                    window.location.href = "/works/add/${works.id}/report";
+                                } else {
+                                    window.location.href = "/works/add/${works.id}/level";
+                                }
                             } else {
                                 // 跳转到个人中心-> 我的作品->草稿里面
                                 window.location.href = "/user";
@@ -254,7 +260,7 @@
             }
         })
 
-        $(".step").on("click",function(){
+        $(".step").on("click", function () {
             var id = this.getAttribute("id");
 
         })

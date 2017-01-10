@@ -1,6 +1,6 @@
 <#include "../layout/main.ftl"/>
 
-<@htmlHead title="作品详情">
+<@htmlHead title="作品登记_收藏者信息">
 <link rel="stylesheet" href="${staticPath}/assets/css/pages/profile.css">
 <link rel="stylesheet" href="${staticPath}/assets/css/pages/shortcode_timeline2.css">
 <link rel="stylesheet" href="${staticPath}/assets/css/datepicker.css">
@@ -11,7 +11,7 @@
         color: #18ba9b;
     }
 
-    .form-wizard .steps > li > a.step  {
+    .form-wizard .steps > li > a.step {
         color: gray;
     }
 </style>

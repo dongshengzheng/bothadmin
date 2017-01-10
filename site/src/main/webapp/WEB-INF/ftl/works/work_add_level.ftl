@@ -1,6 +1,6 @@
 <#include "../layout/main.ftl"/>
 
-<@htmlHead title="作品详情">
+<@htmlHead title="作品登记_作品等级">
 <link rel="stylesheet" href="${staticPath}/static/css/plugins.css">
 <link rel="stylesheet" href="${staticPath}/assets/plugins/bootstrap-select/css/bootstrap-select.css">
 <link rel="stylesheet" href="${staticPath}/static/css/shop.style.css">

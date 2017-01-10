@@ -1529,6 +1529,9 @@ public class MobileController extends BaseController {
         }
         session.setAttribute("registerWorks", works);
 
+        if (type != null && (type == "5" || type == "6")) {
+            return "modules/mobile/pawn2/worksRegister4";
+        }
         map.put("zhidi1", dictService.getWorksLevelDicByType("dd_zhidi"));
         map.put("zhidi2", dictService.getWorksLevelDicByType("dd_zhidi2"));
         map.put("ganguan", dictService.getWorksLevelDicByType("dd_ganguan"));

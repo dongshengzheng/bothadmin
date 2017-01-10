@@ -547,12 +547,12 @@ public class WorksController extends BaseController {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
     }
 
-    @RequestMapping(value="/slideImage")
+    @RequestMapping(value = "/slideImage")
     @ResponseBody
-    public JSONObject getSlideImage(){
+    public JSONObject getSlideImage() {
         JSONObject json = new JSONObject();
         List<Works> works = worksService.getSlideImage();
-        json.put("images",works);
+        json.put("images", works);
         return json;
     }
 }

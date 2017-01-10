@@ -1,5 +1,4 @@
 <#include "../layout/main.ftl"/>
-全部作品分页
 <#import "../layout/partPagingRefresh.ftl" as pagination />
 
 <@htmlHead title="搜索作品结果">
@@ -7,7 +6,7 @@
 <@htmlBody>
 
 <!--content start-->
-<div class="container">
+<div class="container" id="set-height">
 
     <div class="row">
         <div class="col-sm-9 col-sm-offset-1 text-left"
@@ -30,15 +29,13 @@
         <#--</ul>-->
         <#--</div>-->
         </div>
-
-
     </div>
 </div>
 
 
 <li class="col-sm-4 md-margin-bottom-50" style="display: none;" id="worksTemp">
     <a id="works_img" href="" class="thumbnail fancybox" data-rel="gallery" title="" href="">
-        <img onerror="nofind(1)" class="full-width img-responsive works-image" src="" alt="">
+        <img onerror="nofind(3)" class="full-width img-responsive works-image" src="" alt="">
     </a>
     <div class="headline-left margin-bottom-10">
         <h3 id="works_name" class="headline-brd works-name"></h3>
@@ -52,14 +49,15 @@
 
 </div>
 <script>
-    $('img').error(function () {
-        $(this).attr('src', "http://windyeel.oss-cn-shanghai.aliyuncs.com/global/img/default.png");
-    });
-
-
     pageIndex = 1;
     hasMore = true;
-    var keywords = "${RequestParameters.keywords!''}";
+    keywords = "${(RequestParameters.keywords)!}";
+
+    $(function () {
+        var height = document.documentElement.clientHeight;
+        $('#set-height').css('min-height', height * 0.75);
+    })
+
 
     $("#headerHome").addClass("active");
     $(document).ready(function () {
@@ -87,7 +85,7 @@
         $(".btn-more").on("click", function () {
             if (hasMore) {
                 pageIndex++;
-                load(pageIndex);
+                load(pageIndex, keywords);
             }
         })
 

@@ -1,6 +1,6 @@
 <#include "../layout/main.ftl"/>
 
-<@htmlHead title="作品详情">
+<@htmlHead title="作品登记_物品信息">
 <link rel="stylesheet" href="${staticPath}/assets/css/jsdd/work/work_detail.css">
 <link rel="stylesheet" href="${staticPath}/assets/css/pages/profile.css">
 <link rel="stylesheet" href="${staticPath}/assets/css/pages/shortcode_timeline2.css">

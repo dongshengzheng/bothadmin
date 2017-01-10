@@ -18,8 +18,9 @@
                                 <c:when test="${not empty sub.menuUrl}">
                                     <li class="nav-item">
                                         <a href="${sub.menuUrl}" class="ajaxify nav-link">
-                                            <c:if test="${not empty sub.menuIcon }"><i class="${sub.menuIcon}"></i></c:if>
-                                            </i>${sub.menuName}</a>
+                                            <c:if test="${not empty sub.menuIcon }"><i
+                                                    class="${sub.menuIcon}"></i></c:if>
+                                            </i>${sub.menuName}<input type="hidden" value="${sub.menuName}"> </a>
                                     </li>
                                 </c:when>
                                 <c:otherwise>
@@ -34,3 +35,11 @@
         </ul>
     </div>
 </div>
+<c:set var="global" value="http://windyeel.oss-cn-shanghai.aliyuncs.com/global"/>
+<script src="${global}/plugins/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $('.ajaxify').on('click', function () {
+        document.title = $(this).text();
+    })
+
+</script>

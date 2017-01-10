@@ -99,7 +99,7 @@ description="金石典当"
                             <form id="search_form" action="" method="get" style="padding: 25px 18px 22px;">
                                 <div class="input-group">
                                     <input id="keywords" name="keywords" type="text" class="form-control"
-                                           placeholder="搜索作品/用户">
+                                           value="${(RequestParameters.keywords)!}" placeholder="搜索作品/用户">
                                     <span class="input-group-btn">
                                         <button id="searchworksbtn" class="btn" type="button"
                                                 style="color: white;background: #D70016">搜作品</button>
@@ -199,6 +199,13 @@ description="金石典当"
             } else {
                 search_form.attr("action", "${staticPath}/user/search?keywords=" + key);
                 search_form.submit();
+            }
+        });
+
+
+        $("#keywords").on('keydown', function () {
+            if (event.keyCode == 13) {
+                $("#searchworksbtn").click();
             }
         });
 
