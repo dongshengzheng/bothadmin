@@ -101,7 +101,7 @@
             $.get("/works/slideImage",function(data){
                 var image = "";
                 $.each(data.images,function(a,b){
-                    image += "<li class='revolution-mch-1' data-transition='fade' data-slotamount='5' data-masterspeed='1000' data-title='Slide "+ (a+1) +"'> " +
+                    image += "<li class='revolution-mch-1' data-transition='fade' data-slotamount='5' onclick='worksDetail("+b.id+");' data-masterspeed='1000' data-title='Slide "+ (a+1) +"'> " +
                             "<!-- MAIN IMAGE --> " +
                             "<img src='http://windyeel.img-cn-shanghai.aliyuncs.com/"+b.images +"?x-oss-process=image/resize,m_fill,h_331,w_525' alt='darkblurbg' data-bgfit='cover' data-bgposition='left top' data-bgrepeat='no-repeat'/> "+
                             "</li>"
@@ -117,13 +117,16 @@
                 load(pageIndex);
             }
         })
-
-        $(".current-sr-slide-visible").on("click",function(e){
-            console.log(e);
-            var id = this.getAttribute("id");
-            $.get("/works/detail/"+id);
-        })
     });
+
+//    $(".revolution-mch-1").on("click",function(e){
+//        console.log();
+//        var id = this.getAttribute("id");
+//    })
+        function worksDetail(id){
+            console.log("11111  ");
+            window.location.href= "/works/detail/" + id ;
+        }
 
 </script>
 </@footerJS>

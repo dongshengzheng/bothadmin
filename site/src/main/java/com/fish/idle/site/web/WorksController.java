@@ -277,9 +277,7 @@ public class WorksController extends BaseController {
         JSONObject jsonObject = new JSONObject();
 
         wrapInsertEntity(consumer);
-        if (!StringUtils.isEmpty(consumer.getPub())) {
-            consumer.setPub("1");
-        } else {
+        if (StringUtils.isEmpty(consumer.getPub())) {
             consumer.setPub("0");
         }
         if (!consumerService.insert(consumer)) {
