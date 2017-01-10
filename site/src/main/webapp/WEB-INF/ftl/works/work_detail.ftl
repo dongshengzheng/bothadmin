@@ -251,10 +251,10 @@
                                     <div class="media media-v2 margin-bottom-20">
                                         <a class="pull-left" href="#">
                                             <img onerror="nofind(2)" class="media-object rounded-x headImg"
-                                                <#if Session.siteSessionUser.headImgUrl!?index_of('http')!=-1>
+                                                <#if (Session.siteSessionUser.headImgUrl)!?index_of('http')!=-1>
                                                  src="${Session.siteSessionUser.headImgUrl!}"
                                                 <#else>
-                                                 src="http://windyeel.img-cn-shanghai.aliyuncs.com/${Session.siteSessionUser.headImgUrl!}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                                                 src="http://windyeel.img-cn-shanghai.aliyuncs.com/${(Session.siteSessionUser.headImgUrl)!}?x-oss-process=image/resize,m_fill,h_100,w_100"
                                                 </#if>
                                                  alt="">
                                         </a>
