@@ -83,35 +83,6 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" for="zhidi">质地一</label>
-                            <div class="col-sm-4">
-                                <select class="form-control selectpicker" name="zhidi" value="<#if (worksLevel.zhidi)??>${worksLevel.zhidi}</#if>">
-                                    <option value="">请选择</option>
-                                    <#list zhidi1 as zd1>
-                                        <#if ((worksLevel.zhidi)??)&&("${zd1.value}"=(worksLevel.zhidi))>
-                                            <option value="${zd1.value}" selected="selected">${zd1.label}</option>
-                                        <#else>
-                                            <option value="${zd1.value}">${zd1.label}</option>
-                                        </#if>
-                                    </#list>
-                                </select>
-                            </div>
-                            <label class="col-sm-2 control-label" for="zhidi2">质地二</label>
-                            <div class="col-sm-4">
-                                <select class="form-control selectpicker" name="zhidi2">
-                                    <option value="">请选择</option>
-                                    <#list zhidi2 as zd2>
-                                        <#if ((worksLevel.zhidi2)??)&&("${zd2.value}"=(worksLevel.zhidi2))>
-                                            <option value="${zd2.value}" selected="selected">${zd2.label}</option>
-                                        <#else>
-                                            <option value="${zd2.value}">${zd2.label}</option>
-                                        </#if>
-                                    </#list>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
                             <label class="col-sm-2 control-label" for="ganguan">感官</label>
                             <div class=" col-sm-4">
                                 <select class="form-control selectpicker" name="ganguan">
@@ -134,64 +105,6 @@
                                             <option value="${msd.value}" selected="selected">${msd.label}</option>
                                         <#else>
                                             <option value="${msd.value}">${msd.label}</option>
-                                        </#if>
-                                    </#list>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label" for="xueliang">血量</label>
-                            <div class=" col-sm-4">
-                                <select class="form-control selectpicker" name="xueliang">
-                                    <option value="">请选择</option>
-                                    <#list xueliang as xl>
-                                        <#if ((worksLevel.xueliang)??)&&("${xl.value}"==(worksLevel.xueliang))>
-                                            <option value="${xl.value}" selected="selected">${xl.label}</option>
-                                        <#else>
-                                            <option value="${xl.value}">${xl.label}</option>
-                                        </#if>
-                                    </#list>
-                                </select>
-                            </div>
-                            <label class="col-sm-2 control-label" for="xuese">血色</label>
-                            <div class=" col-sm-4">
-                                <select class="form-control selectpicker" name="xuese">
-                                    <option value="">请选择</option>
-                                    <#list xuese as xs>
-                                        <#if ((worksLevel.xuese)??)&&("${xs.value}"==(worksLevel.xuese))>
-                                            <option value="${xs.value}" selected="selected">${xs.label}</option>
-                                        <#else>
-                                            <option value="${xs.value}">${xs.label}</option>
-                                        </#if>
-                                    </#list>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label" for="xuexing">血形</label>
-                            <div class=" col-sm-4">
-                                <select class="form-control selectpicker" name="xuexing">
-                                    <option value="">请选择</option>
-                                    <#list xuexing as xx>
-                                        <#if ((worksLevel.xuexing)??)&&("${xx.value}"==(worksLevel.xuexing))>
-                                            <option value="${xx.value}" selected="selected">${xx.label}</option>
-                                        <#else>
-                                            <option value="${xx.value}">${xx.label}</option>
-                                        </#if>
-                                    </#list>
-                                </select>
-                            </div>
-                            <label class="col-sm-2 control-label" for="nongyandu">浓艳度</label>
-                            <div class=" col-sm-4">
-                                <select class="form-control selectpicker" name="nongyandu">
-                                    <option value="">请选择</option>
-                                    <#list nongyandu as nyd>
-                                        <#if ((worksLevel.nongyandu)??)&&("${nyd.value}"==(worksLevel.nongyandu))>
-                                            <option value="${nyd.value}" selected="selected">${nyd.label}</option>
-                                        <#else>
-                                            <option value="${nyd.value}">${nyd.label}</option>
                                         </#if>
                                     </#list>
                                 </select>
@@ -256,21 +169,94 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label" for="inithanxueliang">印章含血面</label>
+                        <div class="form-group dscsqs chths">
+                            <label class="col-sm-2 control-label" for="xueliang">血量</label>
                             <div class=" col-sm-4">
-                                <select class="form-control selectpicker"
-                                        name="inithanxueliang">
+                                <select class="form-control selectpicker" name="xueliang">
                                     <option value="">请选择</option>
-                                    <#list mian as ma>
-                                        <#if ((worksLevel.inithanxueliang)??)&&("${ma.value}"==(worksLevel.inithanxueliang))>
-                                            <option value="${ma.value}" selected="selected">${ma.label}</option>
+                                    <#list xueliang as xl>
+                                        <#if ((worksLevel.xueliang)??)&&("${xl.value}"==(worksLevel.xueliang))>
+                                            <option value="${xl.value}" selected="selected">${xl.label}</option>
                                         <#else>
-                                            <option value="${ma.value}">${ma.label}</option>
+                                            <option value="${xl.value}">${xl.label}</option>
                                         </#if>
                                     </#list>
                                 </select>
                             </div>
+                            <label class="col-sm-2 control-label" for="xuese">血色</label>
+                            <div class=" col-sm-4">
+                                <select class="form-control selectpicker" name="xuese">
+                                    <option value="">请选择</option>
+                                    <#list xuese as xs>
+                                        <#if ((worksLevel.xuese)??)&&("${xs.value}"==(worksLevel.xuese))>
+                                            <option value="${xs.value}" selected="selected">${xs.label}</option>
+                                        <#else>
+                                            <option value="${xs.value}">${xs.label}</option>
+                                        </#if>
+                                    </#list>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label dscsqs chths" for="zhidi">质地一</label>
+                            <div class="col-sm-4 dscsqs chths">
+                                <select class="form-control selectpicker" name="zhidi">
+                                    <option value="">请选择</option>
+                                    <#list zhidi1 as zd1>
+                                        <#if ((worksLevel.zhidi)??)&&("${zd1.value}"=(worksLevel.zhidi))>
+                                            <option value="${zd1.value}" selected="selected">${zd1.label}</option>
+                                        <#else>
+                                            <option value="${zd1.value}">${zd1.label}</option>
+                                        </#if>
+                                    </#list>
+                                </select>
+                            </div>
+                            <label class="col-sm-2 control-label" for="zhidi2">质地二</label>
+                            <div class="col-sm-4">
+                                <select class="form-control selectpicker" name="zhidi2">
+                                    <option value="">请选择</option>
+                                    <#list zhidi2 as zd2>
+                                        <#if ((worksLevel.zhidi2)??)&&("${zd2.value}"=(worksLevel.zhidi2))>
+                                            <option value="${zd2.value}" selected="selected">${zd2.label}</option>
+                                        <#else>
+                                            <option value="${zd2.value}">${zd2.label}</option>
+                                        </#if>
+                                    </#list>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group dscsqs chths">
+                            <label class="col-sm-2 control-label" for="xuexing">血形</label>
+                            <div class=" col-sm-4">
+                                <select class="form-control selectpicker" name="xuexing">
+                                    <option value="">请选择</option>
+                                    <#list xuexing as xx>
+                                        <#if ((worksLevel.xuexing)??)&&("${xx.value}"==(worksLevel.xuexing))>
+                                            <option value="${xx.value}" selected="selected">${xx.label}</option>
+                                        <#else>
+                                            <option value="${xx.value}">${xx.label}</option>
+                                        </#if>
+                                    </#list>
+                                </select>
+                            </div>
+                            <label class="col-sm-2 control-label" for="nongyandu">浓艳度</label>
+                            <div class=" col-sm-4">
+                                <select class="form-control selectpicker" name="nongyandu">
+                                    <option value="">请选择</option>
+                                    <#list nongyandu as nyd>
+                                        <#if ((worksLevel.nongyandu)??)&&("${nyd.value}"==(worksLevel.nongyandu))>
+                                            <option value="${nyd.value}" selected="selected">${nyd.label}</option>
+                                        <#else>
+                                            <option value="${nyd.value}">${nyd.label}</option>
+                                        </#if>
+                                    </#list>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group dscsqs chths">
                             <label class="col-sm-2 control-label" for="hanxuefangshi">含血方式</label>
                             <div class=" col-sm-4">
                                 <select class="form-control selectpicker" value="<#if (worksLevel.hanxuefangshi)??>${worksLevel.hanxuefangshi}</#if>"
@@ -285,7 +271,41 @@
                                     </#list>
                                 </select>
                             </div>
+                            <label class="col-sm-2 control-label" for="inithanxueliang">印章含血面</label>
+                            <div class=" col-sm-4">
+                                <select class="form-control selectpicker"
+                                        name="inithanxueliang">
+                                    <option value="">请选择</option>
+                                    <#list mian as ma>
+                                        <#if ((worksLevel.inithanxueliang)??)&&("${ma.value}"==(worksLevel.inithanxueliang))>
+                                            <option value="${ma.value}" selected="selected">${ma.label}</option>
+                                        <#else>
+                                            <option value="${ma.value}">${ma.label}</option>
+                                        </#if>
+                                    </#list>
+                                </select>
+                            </div>
                         </div>
+
+                        <div class="form-group dscsqs chjxs">
+                            <label class="col-sm-2 control-label dscsqs" for="ziranshipi">自然石皮</label>
+                            <div class="col-sm-4">
+                                <select class="form-control selectpicker" name="zrsp">
+                                    <option value="">请选择</option>
+                                    <#list ziranshipi as zr>
+                                        <#if ((worksLevel.ziranshipi)??)&&("${zd1.value}"=(worksLevel.ziranshipi))>
+                                            <option value="${zr.value}" selected="selected">${zr.label}</option>
+                                        <#else>
+                                            <option value="${zr.value}">${zr.label}</option>
+                                        </#if>
+                                    </#list>
+                                </select>
+                            </div>
+                            <label class="col-sm-2 control-label dscsqs" for="ziranshipi"></label>
+                            <div class="col-sm-4">
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <label class="col-sm-2 control-label"></label>
                             <div class=" col-sm-4">
@@ -310,6 +330,16 @@
 
     $("#headerWorks").addClass("active");
     $(document).ready(function () {
+        hiddenSelect();
+        function hiddenSelect() {
+            if( ${works.breed} =="4"|| ${works.breed} =="5"){
+                $(".dscsqs").hide();
+            } else if(${works.breed}=="2"){
+                $(".chths").hide();
+            } else if(${works.breed}=="3"){
+                $(".chjxs").hide();
+            }
+        }
 
         $(".info_btn").bind("click", function () {
             $("#status").val($(this).attr("data-type"))
@@ -341,13 +371,11 @@
             }
         })
         $("#providerDetails").on("click",function(){
-            var id = $("#worksId").val();
-            window.location.href = "/works/providerDetails/"+id;
+            window.location.href = "/works/providerDetails/${works.id}";
         })
 
         $("#infoDetails").on("click",function(){
-            var id = $("#worksId").val();
-            window.location.href = "/works/infoDetails/"+id;
+            window.location.href = "/works/infoDetails/${works.id}";
         })
     });
 </script>

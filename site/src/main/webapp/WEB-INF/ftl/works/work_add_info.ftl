@@ -255,7 +255,8 @@
                         if (data.suc) {
                             if ($("#status").val() == 0) {
                                 // 跳转到下一步
-                                window.location.href = "/works/add/${works.id}/level";
+                                var breed = $("#breed").val();
+                                window.location.href = "/works/add/${works.id}/level/"+breed;
                             } else {
                                 // 跳转到个人中心-> 我的作品->草稿里面
                                 window.location.href = "/user";
@@ -274,8 +275,7 @@
         })
 
         $("#providerDetails").on("click",function(){
-            var id = $("#id").val();
-            window.location.href = "/works/providerDetails/"+id;
+            window.location.href = "/works/providerDetails/${works.id}";
         })
     });
 

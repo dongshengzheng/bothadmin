@@ -153,7 +153,7 @@ public class WorksController extends BaseController {
         map.put("level", dictService.getWorksLevelDicByType("dd_level"));
         map.put("pinzhong", dictService.getWorksLevelDicByType("dd_pinzhong"));
         map.put("zuopinleixing", dictService.getWorksLevelDicByType("dd_zuopinleixing"));
-        map.put("gyType", dictService.getWorksLevelDicByType("dd_level"));
+                map.put("gyType", dictService.getWorksLevelDicByType("dd_level"));
         map.put("works", works);
         return "works/work_add_info";
     }
@@ -187,23 +187,24 @@ public class WorksController extends BaseController {
      *
      * @return
      */
-    @RequestMapping(value = "/add/{id}/level", method = RequestMethod.GET)
-    public String level(ModelMap map, @PathVariable Integer id) {
+    @RequestMapping(value = "/add/{id}/level/{breed}", method = RequestMethod.GET)
+    public String level(ModelMap map, @PathVariable Integer id,@PathVariable String breed) {
         Works works = worksService.selectById(id);
-        map.put("zhidi1", dictService.getWorksLevelDicByType("dd_zhidi"));
-        map.put("zhidi2", dictService.getWorksLevelDicByType("dd_zhidi2"));
-        map.put("ganguan", dictService.getWorksLevelDicByType("dd_ganguan"));
-        map.put("moshidu", dictService.getWorksLevelDicByType("dd_moshidu"));
-        map.put("xueliang", dictService.getWorksLevelDicByType("dd_xueliang"));
-        map.put("xuese", dictService.getWorksLevelDicByType("dd_xuese"));
-        map.put("xuexing", dictService.getWorksLevelDicByType("dd_xuexing"));
-        map.put("nongyandu", dictService.getWorksLevelDicByType("dd_nongyandu"));
-        map.put("jingdu", dictService.getWorksLevelDicByType("dd_jingdu"));
-        map.put("dise", dictService.getWorksLevelDicByType("dd_dise"));
-        map.put("liu", dictService.getWorksLevelDicByType("dd_liu"));
-        map.put("lie", dictService.getWorksLevelDicByType("dd_lie"));
-        map.put("mian", dictService.getWorksLevelDicByType("dd_mian"));
-        map.put("hanxuefangshi", dictService.getWorksLevelDicByType("dd_hanxuefangshi"));
+        map.put("zhidi1", dictService.getWorksLevelDicByType("dd_zhidi",breed));
+        map.put("zhidi2", dictService.getWorksLevelDicByType("dd_zhidi2",breed));
+        map.put("ganguan", dictService.getWorksLevelDicByType("dd_ganguan",breed));
+        map.put("moshidu", dictService.getWorksLevelDicByType("dd_moshidu",breed));
+        map.put("xueliang", dictService.getWorksLevelDicByType("dd_xueliang",breed));
+        map.put("xuese", dictService.getWorksLevelDicByType("dd_xuese",breed));
+        map.put("xuexing", dictService.getWorksLevelDicByType("dd_xuexing",breed));
+        map.put("nongyandu", dictService.getWorksLevelDicByType("dd_nongyandu",breed));
+        map.put("jingdu", dictService.getWorksLevelDicByType("dd_jingdu",breed));
+        map.put("dise", dictService.getWorksLevelDicByType("dd_dise",breed));
+        map.put("liu", dictService.getWorksLevelDicByType("dd_liu",breed));
+        map.put("lie", dictService.getWorksLevelDicByType("dd_lie",breed));
+        map.put("mian", dictService.getWorksLevelDicByType("dd_mian",breed));
+        map.put("hanxuefangshi", dictService.getWorksLevelDicByType("dd_hanxuefangshi",breed));
+        map.put("ziranshipi", dictService.getWorksLevelDicByType("dd_ziranshipi",breed));
         map.put("works", works);
         WorksLevel worksLevel = worksLevelService.selectOne(new EntityWrapper<>(new WorksLevel(id)));
         map.put("worksLevel", worksLevel);

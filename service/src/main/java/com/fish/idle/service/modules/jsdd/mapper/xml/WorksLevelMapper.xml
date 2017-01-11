@@ -4,7 +4,7 @@
 
 	<!-- 通用查询结果列-->
 	<sql id="Base_Column_List">
-		id, create_by AS createBy, create_date AS createDate, update_by AS updateBy, update_date AS updateDate, remarks, del_flag AS delFlag, works_id AS worksId, zhidi, zhidi2, ganguan, moshidu, xueliang, xuese, xuexing, nongyandu, jingdu, dise, liu, lie, inithanxueliang, hanxuemian, hanxueliang, hanxuefangshi
+		id, create_by AS createBy, create_date AS createDate, update_by AS updateBy, update_date AS updateDate, remarks, del_flag AS delFlag, works_id AS worksId, zhidi, zhidi2, ganguan, moshidu, xueliang, xuese, xuexing, nongyandu, jingdu, dise, liu, lie, inithanxueliang, hanxuemian, hanxueliang, hanxuefangshi, ziranshipi
 	</sql>
 
 	

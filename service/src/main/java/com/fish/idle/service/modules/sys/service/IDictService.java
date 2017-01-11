@@ -14,6 +14,8 @@ public interface IDictService extends ISuperService<Dict> {
     // 获取作品登记字典表
     String getLabelByValue(String value, String type);
 
+    List<Dict> getWorksLevelDicByType(String type,String breed);
+
     List<Dict> getWorksLevelDicByType(String type);
 
     //获取积分具体数值

@@ -6,4 +6,8 @@
 	<sql id="Base_Column_List">
 		id, `value`, `label`, `type`, description, sort, parent_id AS parentId, remarks, del_flag AS delFlag
 	</sql>
+
+	<select id="findPinZhongIdByValue" resultType="int">
+		SELECT id FROM sys_dict WHERE type= 'dd_pinzhong' AND value = #{breed}
+	</select>
 </mapper>

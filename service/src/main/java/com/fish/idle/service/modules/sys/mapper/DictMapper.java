@@ -9,4 +9,6 @@ import com.baomidou.mybatisplus.mapper.AutoMapper;
  *
  */
 public interface DictMapper extends AutoMapper<Dict> {
+
+    int findPinZhongIdByValue(String breed);
 }

@@ -192,18 +192,15 @@
             }
         })
         $("#providerDetails").on("click",function(){
-            var id = $("#worksId").val();
             window.location.href = "/works/providerDetails/${works.id}";
         })
 
         $("#infoDetails").on("click",function(){
-            var id = $("#worksId").val();
             window.location.href = "/works/infoDetails/${works.id}";
         })
 
         $("#levelDetails").on("click",function(){
-            var id = $("#worksId").val();
-            window.location.href = "/works/levelDetails/${works.id}";
+            window.location.href = "/works/levelDetails/${works.id}/${works.breed}";
         })
     });
 </script>
