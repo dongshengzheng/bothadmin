@@ -442,40 +442,7 @@ public class WorksController extends BaseController {
         JSONObject jsonObject = new JSONObject();
 
         TransferHistory transferHistory = transferHistoryService.selectById(id);
-        transferHistory.setStatus(Const.TRANSFER_STATUS_HAVE);
-        transferHistory.setUpdateDate(new Date());
-        boolean result1 = transferHistoryService.updateById(transferHistory);
 
-        Works works = worksService.selectById(transferHistory.getWorksId());
-        works.setStatus(Const.WORKS_STATUS_PASS);
-        boolean result2 = worksService.updateById(works);
-
-
-        int minusUserId = transferHistory.getToUserId();
-        int plusUserId = transferHistory.getFromUserId();
-        AppUser minusUser = getCurrentUser();
-        AppUser plusUser = appUserService.selectById(plusUserId);
-
-        //转让完成  添加积分历史
-        ScoreHistory scoreHistory = new ScoreHistory();
-        scoreHistory.setType(Const.SCORE_BE_FOCUSED);
-        scoreHistory.setToUserId(transferHistory.getFromUserId());
-        scoreHistory.setFromUserId(transferHistory.getToUserId());
-        int detailScore = transferHistory.getScore() != null ? transferHistory.getScore().intValue() : 0;
-        scoreHistory.setValue(detailScore);
-        scoreHistory.setCreateDate(new Date());
-        scoreHistory.setUpdateDate(new Date());
-        scoreHistory.setCreateBy(minusUserId);
-        scoreHistory.setUpdateBy(minusUserId);
-        scoreHistoryService.insert(scoreHistory);
-        Integer minusUserScore = minusUser.getScore() != null ? minusUser.getScore() : 0;
-        minusUser.setScore(minusUserScore - detailScore);
-        Integer plusUserScore = plusUser.getScore() != null ? plusUser.getScore() : 0;
-        plusUser.setScore(plusUserScore - detailScore);
-        appUserService.updateById(minusUser);
-        appUserService.updateById(plusUser);
-
-        jsonObject.put("suc", result1 && result2);
         return jsonObject;
     }
 

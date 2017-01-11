@@ -18,10 +18,10 @@
         <div class="col-md-3 md-margin-bottom-40">
             <div class="profile-bio">
                 <img onerror="nofind(2)" class="img-responsive profile-img margin-bottom-20"
-                    <#if Session.siteSessionUser.headImgUrl!?index_of('http')!=-1>
-                     src="${Session.siteSessionUser.headImgUrl!}"
+                    <#if (Session.siteSessionUser.headImgUrl)!?index_of('http')!=-1>
+                     src="${(Session.siteSessionUser.headImgUrl)!}"
                     <#else>
-                     src="http://windyeel.img-cn-shanghai.aliyuncs.com/${Session.siteSessionUser.headImgUrl!}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                     src="http://windyeel.img-cn-shanghai.aliyuncs.com/${(Session.siteSessionUser.headImgUrl)!}?x-oss-process=image/resize,m_fill,h_100,w_100"
                     </#if>
                      alt="">
                 <a id="upload_header" class="btn-u btn-u-sm" href="javascript:;">更改头像</a>
@@ -66,9 +66,9 @@
             <div class="profile-body margin-bottom-20">
                 <div class="tab-v1">
                     <ul class="nav nav-justified nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="page_profile_settings.html#profile">编辑个人资料</a>
+                        <li class="active"><a data-toggle="tab" href="#profile">编辑个人资料</a>
                         </li>
-                        <li><a data-toggle="tab" href="page_profile_settings.html#passwordTab">更改密码</a></li>
+                        <li><a data-toggle="tab" href="#passwordTab">更改密码</a></li>
                     </ul>
                     <div class="tab-content">
                         <div id="profile" class="profile-edit tab-pane fade in active">
@@ -136,12 +136,12 @@
                                                     <label class="checkbox">
                                                         <input type="checkbox"
                                                             <#list pre as sel>
-                                                                <#if sel == item.value>
+                                                                <#if sel == (item.value)!>
                                                                checked="checked"
                                                                 </#if>
                                                             </#list>
-                                                               value="${item.value}" name="prefer">
-                                                        <i class="rounded-x"></i>${item.label}</label>
+                                                               value="${(item.value)!}" name="prefer">
+                                                        <i class="rounded-x"></i>${(item.label)!}</label>
                                                 </#list>
                                             </div>
                                         </section>

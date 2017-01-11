@@ -1,5 +1,6 @@
 package com.fish.idle.service.modules.jsdd.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.fish.idle.service.modules.jsdd.entity.TransferHistory;
 import com.baomidou.framework.service.ISuperService;
 
@@ -15,4 +16,9 @@ public interface ITransferHistoryService extends ISuperService<TransferHistory> 
 
     //根据用户id查找转让历史(含有Works信息),包括转入和转出
     List<TransferHistory> containWorks(Integer userId);
+
+    //完成转让
+    JSONObject transferComplete(Integer transferHistoryId);
+
+
 }
