@@ -29,9 +29,9 @@
 
 
             <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
-                <li class="list-group-item ">
-                    <a href="/user"><i class="fa fa-tachometer"></i>面板</a>
-                </li>
+                <#--<li class="list-group-item ">-->
+                    <#--<a href="/user"><i class="fa fa-tachometer"></i>面板</a>-->
+                <#--</li>-->
                 <li class="list-group-item">
                     <a href="/user/works"><i class="fa fa-user"></i> 我的作品</a>
                 </li>

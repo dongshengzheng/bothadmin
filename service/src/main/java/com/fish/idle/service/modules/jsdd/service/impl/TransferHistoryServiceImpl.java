@@ -49,48 +49,41 @@ public class TransferHistoryServiceImpl extends SuperServiceImpl<TransferHistory
     @Override
     public JSONObject transferComplete(Integer transferHistoryId) {
         JSONObject jsonObject = new JSONObject();
-//        TransferHistory transferHistory = transferHistoryMapper.selectById(transferHistoryId);
-//        transferHistory.setStatus(Const.TRANSFER_STATUS_HAVE);
-//        transferHistory.setUpdateDate(new Date());
-//        boolean result1 = transferHistoryService.updateById(transferHistory);
-//
-//        Works works = worksService.selectById(transferHistory.getWorksId());
-//        works.setStatus(Const.WORKS_STATUS_PASS);
-//        boolean result2 = worksService.updateById(works);
-//
-//
-//        int minusUserId = transferHistory.getToUserId();
-//        int plusUserId = transferHistory.getFromUserId();
-//        AppUser minusUser = getCurrentUser();
-//        AppUser plusUser = appUserService.selectById(plusUserId);
-//
-//        //转让完成  添加积分历史
-//        //1.判断被转让方积分是否足够
-//        int detailScore = transferHistory.getScore() != null ? transferHistory.getScore().intValue() : 0;
-//        Integer minusUserScore = minusUser.getScore() != null ? minusUser.getScore() : 0;
-//
-//        Integer plusUserScore = plusUser.getScore() != null ? plusUser.getScore() : 0;
-//        minusUser.setScore(minusUserScore - detailScore);
-//        plusUser.setScore(plusUserScore - detailScore);
-//        appUserService.updateById(minusUser);
-//        appUserService.updateById(plusUser);
-//
-//
-//        ScoreHistory scoreHistory = new ScoreHistory();
-//        scoreHistory.setType(Const.SCORE_BE_FOCUSED);
-//        scoreHistory.setToUserId(transferHistory.getFromUserId());
-//        scoreHistory.setFromUserId(transferHistory.getToUserId());
-//
-//        scoreHistory.setValue(detailScore);
-//        scoreHistory.setCreateDate(new Date());
-//        scoreHistory.setUpdateDate(new Date());
-//        scoreHistory.setCreateBy(minusUserId);
-//        scoreHistory.setUpdateBy(minusUserId);
-//        scoreHistoryService.insert(scoreHistory);
+        TransferHistory transferHistory = transferHistoryMapper.selectById(transferHistoryId);
 
+        int minusUserId = transferHistory.getToUserId();
+        int plusUserId = transferHistory.getFromUserId();
+        AppUser minusUser = appUserMapper.selectById(minusUserId);
+        AppUser plusUser = appUserMapper.selectById(plusUserId);
 
-//        jsonObject.put("suc", result1 && result2);
-
+        //判断被转让方积分是否足够
+        int detailScore = transferHistory.getScore() != null ? transferHistory.getScore().intValue() : 0;
+        int minusUserScore = minusUser.getScore();
+        int plusUserScore = plusUser.getScore();
+        if (detailScore > minusUserScore) {
+            //被转让方积分不足
+            jsonObject.put("suc", false);
+            jsonObject.put("msg", "您的积分不足,本次转让需要" + detailScore + "积分...");
+        } else {
+            //被转让放积分足够
+            //更新双方积分
+            minusUser.setScore(minusUserScore - detailScore);
+            plusUser.setScore(plusUserScore + detailScore);
+            appUserMapper.updateById(minusUser);
+            appUserMapper.updateById(plusUser);
+            //插入积分记录
+            ScoreHistory scoreHistory = new ScoreHistory(minusUserId, plusUserId, detailScore, Const.SCORE_WORKS_TRANSFER, new Date(), new Date(), minusUserId, minusUserId);
+            scoreHistoryMapper.insert(scoreHistory);
+            //更新转让历史状态
+            transferHistory.setStatus(Const.TRANSFER_STATUS_HAVE);
+            transferHistory.setUpdateDate(new Date());
+            transferHistoryMapper.updateById(transferHistory);
+            //更新作品状态
+            Works works = worksMapper.selectById(transferHistory.getWorksId());
+            works.setStatus(Const.WORKS_STATUS_PASS);
+            worksMapper.updateById(works);
+            jsonObject.put("suc", true);
+        }
         return jsonObject;
     }
 }

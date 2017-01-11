@@ -157,4 +157,17 @@ public class ScoreHistory implements Serializable {
         this.delFlag = delFlag;
     }
 
+    public ScoreHistory() {
+    }
+
+    public ScoreHistory(Integer fromUserId, Integer toUserId, Integer value, String type, Date createDate, Date updateDate, Integer createBy, Integer updateBy) {
+        this.fromUserId = fromUserId;
+        this.toUserId = toUserId;
+        this.value = value;
+        this.type = type;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
+        this.createBy = createBy;
+        this.updateBy = updateBy;
+    }
 }

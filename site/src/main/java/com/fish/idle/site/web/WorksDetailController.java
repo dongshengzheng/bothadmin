@@ -153,20 +153,7 @@ public class WorksDetailController extends BaseController {
                 //作品被浏览时增加积分(第一次被该用户浏览)
                 Integer targetId = works.getCreateBy();
                 Integer detailScore = dictService.getPointsByValue(Const.SCORE_WORKS_BE_BROWSED, "score_type");
-                ScoreHistory scoreHistory = new ScoreHistory();
-                scoreHistory.setType(Const.SCORE_WORKS_BE_BROWSED);
-                scoreHistory.setToUserId(targetId);
-                scoreHistory.setValue(detailScore);
-                scoreHistory.setCreateDate(new Date());
-                scoreHistory.setUpdateDate(new Date());
-                scoreHistory.setCreateBy(currentUser.getId());
-                scoreHistory.setUpdateBy(currentUser.getId());
-                scoreHistoryService.insert(scoreHistory);
-                AppUser targetUser = appUserService.selectById(targetId);
-                Integer score = targetUser.getScore() != null ? targetUser.getScore() : 0;
-                targetUser.setScore(score + detailScore);
-                appUserService.updateById(targetUser);
-
+                scoreHistoryService.saveScoreHistory(null, targetId, detailScore, Const.SCORE_WORKS_BE_BROWSED, currentUser.getId(), currentUser.getId());
 
             } else {
                 oldBrowse.setUpdateDate(new Date());
@@ -310,7 +297,7 @@ public class WorksDetailController extends BaseController {
 
     @RequestMapping(value = "providerDetails/{id}", method = RequestMethod.GET)
     public String getProviderDetails(@PathVariable Integer id,
-                                  ModelMap map){
+                                     ModelMap map) {
         if (id == null) {
             return "redirect:/";
         }
@@ -329,7 +316,7 @@ public class WorksDetailController extends BaseController {
 
     @RequestMapping(value = "infoDetails/{id}", method = RequestMethod.GET)
     public String getInfoDetails(@PathVariable Integer id,
-                                     ModelMap map){
+                                 ModelMap map) {
         if (id == null) {
             return "redirect:/";
         }
@@ -349,7 +336,7 @@ public class WorksDetailController extends BaseController {
 
     @RequestMapping(value = "levelDetails/{id}", method = RequestMethod.GET)
     public String getLevelDetails(@PathVariable Integer id,
-                                     ModelMap map){
+                                  ModelMap map) {
         if (id == null) {
             return "redirect:/";
         }
@@ -426,7 +413,7 @@ public class WorksDetailController extends BaseController {
 
     @RequestMapping(value = "reportDetails/{id}", method = RequestMethod.GET)
     public String getReportDetails(@PathVariable Integer id,
-                                     ModelMap map){
+                                   ModelMap map) {
         if (id == null) {
             return "redirect:/";
         }

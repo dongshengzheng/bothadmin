@@ -409,12 +409,12 @@ public class UserController extends BaseController {
     @ResponseBody
     public String notToHave(HttpSession session,
                             @RequestParam(required = false) int targetId) {
-        AppUser appUser = getCurrentUser();
-        if (targetId == appUser.getId()) {
+        AppUser currentUser = getCurrentUser();
+        if (targetId == currentUser.getId()) {
             return "自己不要关注自己哟";
         }
         FollowHistory followHistory = new FollowHistory();
-        followHistory.setUserId(appUser.getId());
+        followHistory.setUserId(currentUser.getId());
         followHistory.setTargetId(targetId);
         followHistory.setType(Const.FOLLOW_HISTORY_TYPE_FOCUS);
         followHistory.setDelFlag(null);
@@ -426,19 +426,7 @@ public class UserController extends BaseController {
 
             //用户被关注时增加积分(第一次被该用户关注)
             Integer detailScore = dictService.getPointsByValue(Const.SCORE_BE_FOCUSED, "score_type");
-            ScoreHistory scoreHistory = new ScoreHistory();
-            scoreHistory.setType(Const.SCORE_BE_FOCUSED);
-            scoreHistory.setToUserId(targetId);
-            scoreHistory.setValue(detailScore);
-            scoreHistory.setCreateDate(new Date());
-            scoreHistory.setUpdateDate(new Date());
-            scoreHistory.setCreateBy(appUser.getId());
-            scoreHistory.setUpdateBy(appUser.getId());
-            scoreHistoryService.insert(scoreHistory);
-            AppUser targetUser = appUserService.selectById(targetId);
-            Integer score = targetUser.getScore() != null ? targetUser.getScore() : 0;
-            targetUser.setScore(score + detailScore);
-            appUserService.updateById(targetUser);
+            scoreHistoryService.saveScoreHistory(null, targetId, detailScore, Const.SCORE_BE_FOCUSED, currentUser.getId(), currentUser.getId());
 
         } else {
             fh.setDelFlag(Const.DEL_FLAG_NORMAL);

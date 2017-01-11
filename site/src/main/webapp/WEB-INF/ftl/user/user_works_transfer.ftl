@@ -23,6 +23,10 @@
         position: absolute;
     }
 
+    a {
+        cursor: pointer;
+    }
+
 </style>
 </@htmlHead>
 <@htmlBody>
@@ -39,9 +43,9 @@
                 </#if>
                  alt="">
             <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
-                <li class="list-group-item ">
-                    <a href="/user"><i class="fa fa-tachometer"></i>面板</a>
-                </li>
+                <#--<li class="list-group-item ">-->
+                    <#--<a href="/user"><i class="fa fa-tachometer"></i>面板</a>-->
+                <#--</li>-->
                 <li class="list-group-item">
                     <a href="/user/works"><i class="fa fa-user"></i> 我的作品</a>
                 </li>
@@ -318,7 +322,6 @@
 
         function confirmRollin() {
             var thisone = $(this);
-
             $.get("${staticPath}/works/transfer/confimRollin/" + thisone.attr('data-id'), function (data) {
                 if (data.suc) {
                     alert("转入成功");
@@ -326,14 +329,11 @@
                     thisone.unbind('click');
                     thisone.find('.easy-block-v1-badge').html("新转入");
                     $("#rollin_content").append(xx);
-
                 } else {
-                    alert("转入失败");
+                    alert(data.msg);
                 }
             });
-
         }
-
     });
 </script>
 </@footerJS>

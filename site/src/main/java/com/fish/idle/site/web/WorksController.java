@@ -101,7 +101,7 @@ public class WorksController extends BaseController {
         //保存提供者
         wrapInsertEntity(consumer);
         consumer.setName(provider);
-        if(works.getId() == null){
+        if (works.getId() == null) {
             if (!worksService.insert(works)) {
                 jsonObject.put("suc", false);
                 jsonObject.put("msg", "保存作品信息出错");
@@ -438,12 +438,8 @@ public class WorksController extends BaseController {
      */
     @RequestMapping(value = "/transfer/confimRollin/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public JSONObject confimRollin(@PathVariable Integer id, ModelMap map) {
-        JSONObject jsonObject = new JSONObject();
-
-        TransferHistory transferHistory = transferHistoryService.selectById(id);
-
-        return jsonObject;
+    public JSONObject confimRollin(@PathVariable Integer id) {
+        return transferHistoryService.transferComplete(id);
     }
 
 

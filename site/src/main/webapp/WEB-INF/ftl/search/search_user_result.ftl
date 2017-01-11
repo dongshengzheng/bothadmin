@@ -158,7 +158,7 @@
         }
 
         function go_to_detail() {
-            location.href = "${staticPath}/user/detail?userId=" + $(this).attr('data-id');
+            location.href = "${staticPath}/user/detail/works?userId=" + $(this).attr('data-id');
         }
     });
 

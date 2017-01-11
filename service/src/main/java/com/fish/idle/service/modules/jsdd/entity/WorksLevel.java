@@ -97,7 +97,9 @@ public class WorksLevel extends BaseEntity {
      */
     private String hanxueliang;
 
-    /** 含血方式 */
+    /**
+     * 含血方式
+     */
     private String hanxuefangshi;
 
 

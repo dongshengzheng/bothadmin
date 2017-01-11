@@ -627,7 +627,7 @@
                 $li.removeAttr("id").css("display", "block");
                 $li.find(".description").html(this.description);
                 $li.find(".name").html(this.appUser.name);
-                $li.find(".headImgUrl").parent().attr('href', "${staticPath}/user/detail?userId=" + this.appUser.id);
+                $li.find(".headImgUrl").parent().attr('href', "${staticPath}/user/detail/works?userId=" + this.appUser.id);
                 if (this.appUser.headImgUrl.indexOf('http') != -1) {
                     $li.find(".headImgUrl").attr("src", this.appUser.headImgUrl);
                 } else {
@@ -652,7 +652,7 @@
 
 
     $('.headImg').on('click', function () {
-        location.href = "${staticPath}/user/detail?userId=" + $(this).attr('data-id');
+        location.href = "${staticPath}/user/detail/works?userId=" + $(this).attr('data-id');
     })
 
     Date.prototype.Format = function (fmt) { //author: meizz

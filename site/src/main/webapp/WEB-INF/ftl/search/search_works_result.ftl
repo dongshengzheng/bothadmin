@@ -88,8 +88,6 @@
                 load(pageIndex, keywords);
             }
         })
-
-
     });
 
 </script>
