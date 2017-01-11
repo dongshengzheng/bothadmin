@@ -11,7 +11,7 @@
         SELECT * FROM dd_images i WHERE i.type='3' and i.target_id=#{target_id}
     </select>
 
-    <delete id="deleteByTargetId" parameterType="Boolean">
-        DELETE FROM dd_images i WHERE i.target_id = #{targetId}
+    <delete id="deleteByTargetId" parameterType="int">
+        DELETE FROM dd_images WHERE target_id = #{targetId}
     </delete>
 </mapper>

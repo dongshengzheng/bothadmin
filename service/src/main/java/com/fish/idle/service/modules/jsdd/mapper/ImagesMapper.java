@@ -10,6 +10,6 @@ import com.baomidou.mybatisplus.mapper.AutoMapper;
  */
 public interface ImagesMapper extends AutoMapper<Images> {
     //根据目标Id删除图片
-    boolean deleteByTargetId(Integer targetId);
+    int deleteByTargetId(Integer targetId);
 
 }

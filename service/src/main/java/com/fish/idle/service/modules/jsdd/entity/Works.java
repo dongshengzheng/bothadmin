@@ -215,7 +215,6 @@ public class Works extends BaseEntity {
         this.type = type;
     }
 
-
     public String getGyType() {
         return this.gyType;
     }

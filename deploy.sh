@@ -8,6 +8,9 @@ rm -rf /opt/tomcat/webapps/weixin/ROOT
 # 在目录/root/workspace/jsdd 执行
 git pull origin master
 mvn clean install
+cd service
+mvn liquibase:clearCheckSums
+mvn liquibase:update
 # move site, admin & weixin
 cd /opt/tomcat/webapps/
 cp /root/workspace/jsdd/site/target/site.war  .

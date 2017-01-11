@@ -360,53 +360,6 @@ public class WorksDetailController extends BaseController {
         map.put("mian", dictService.getWorksLevelDicByType("dd_mian"));
         map.put("hanxuefangshi", dictService.getWorksLevelDicByType("dd_hanxuefangshi"));
         WorksLevel worksLevel = worksLevelService.selectOne(new EntityWrapper<>(new WorksLevel(id)));
-        if (worksLevel != null) {
-            if (StringUtils.isNotEmpty(worksLevel.getZhidi())) {
-                worksLevel.setZhidi(dictService.getLabelByValue(worksLevel.getZhidi(), "dd_zhidi"));
-            }
-            if (StringUtils.isNotEmpty(worksLevel.getZhidi2())) {
-                worksLevel.setZhidi2(dictService.getLabelByValue(worksLevel.getZhidi2(), "dd_zhidi2"));
-            }
-            if (StringUtils.isNotEmpty(worksLevel.getGanguan())) {
-                worksLevel.setGanguan(dictService.getLabelByValue(worksLevel.getGanguan(), "dd_ganguan"));
-            }
-            if (StringUtils.isNotEmpty(worksLevel.getMoshidu())) {
-                worksLevel.setMoshidu(dictService.getLabelByValue(worksLevel.getMoshidu(), "dd_moshidu"));
-            }
-            if (StringUtils.isNotEmpty(worksLevel.getXueliang())) {
-                worksLevel.setXueliang(dictService.getLabelByValue(worksLevel.getXueliang(), "dd_xueliang"));
-            }
-            if (StringUtils.isNotEmpty(worksLevel.getXuese())) {
-                worksLevel.setXuese(dictService.getLabelByValue(worksLevel.getXuese(), "dd_xuese"));
-            }
-            if (StringUtils.isNotEmpty(worksLevel.getXuexing())) {
-                worksLevel.setXuexing(dictService.getLabelByValue(worksLevel.getXuexing(), "dd_xuexing"));
-            }
-            if (StringUtils.isNotEmpty(worksLevel.getNongyandu())) {
-                worksLevel.setNongyandu(dictService.getLabelByValue(worksLevel.getNongyandu(), "dd_nongyandu"));
-            }
-            if (StringUtils.isNotEmpty(worksLevel.getChunjingdu())) {
-                worksLevel.setChunjingdu(dictService.getLabelByValue(worksLevel.getChunjingdu(), "dd_jingdu"));
-            }
-            if (StringUtils.isNotEmpty(worksLevel.getDise())) {
-                worksLevel.setDise(dictService.getLabelByValue(worksLevel.getDise(), "dd_dise"));
-            }
-            if (StringUtils.isNotEmpty(worksLevel.getLie())) {
-                worksLevel.setLie(dictService.getLabelByValue(worksLevel.getLie(), "dd_lie"));
-            }
-            if (StringUtils.isNotEmpty(worksLevel.getLiu())) {
-                worksLevel.setLiu(dictService.getLabelByValue(worksLevel.getLiu(), "dd_liu"));
-            }
-            if (StringUtils.isNotEmpty(worksLevel.getInithanxueliang())) {
-                worksLevel.setInithanxueliang(dictService.getLabelByValue(worksLevel.getInithanxueliang(), "dd_mian"));
-            }
-            if (StringUtils.isNotEmpty(worksLevel.getHanxueliang())) {
-                worksLevel.setHanxueliang(dictService.getLabelByValue(worksLevel.getHanxueliang(), "dd_hanxuefangshi"));
-            }
-            if (StringUtils.isNotEmpty(worksLevel.getHanxuefangshi())) {
-                worksLevel.setHanxuefangshi(dictService.getLabelByValue(worksLevel.getHanxuefangshi(), "dd_hanxuefangshi"));
-            }
-        }
         map.put("worksLevel", worksLevel);
         return "works/work_add_level";
     }

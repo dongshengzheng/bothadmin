@@ -19,6 +19,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.lang.reflect.Field;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -45,6 +46,8 @@ public class WorksController extends BaseController {
     @Autowired
     private IWorksService worksService;
 
+    @Autowired
+    private IInterpretationService interpretationService;
 
     @Autowired
     private IDictService dictService;
@@ -89,6 +92,7 @@ public class WorksController extends BaseController {
     @ResponseBody
     public JSONObject saveProvider(Works works, Consumer consumer,
                                    @RequestParam(required = false) String worksRemarks,
+                                   @RequestParam(required = false) String consumerType,
                                    @RequestParam(required = false) String provider
     ) {
 
@@ -98,9 +102,11 @@ public class WorksController extends BaseController {
         wrapInsertEntity(works);
         works.setRemarks(worksRemarks);
         works.setStatus(Const.WORKS_STATUS_DRAFT);
+
         //保存提供者
         wrapInsertEntity(consumer);
         consumer.setName(provider);
+        consumer.setType(consumerType);
         if (works.getId() == null) {
             if (!worksService.insert(works)) {
                 jsonObject.put("suc", false);
@@ -113,24 +119,21 @@ public class WorksController extends BaseController {
                 jsonObject.put("msg", "保存提供者信息出错");
                 return jsonObject;
             }
-            imagesService.insertImage(works.getImages(), works.getId(), Const.IMAGES_WORKS);
         } else {
-            works.setUpdateDate(new Date());
-            if (!worksService.updateById(works)) {
+            works.setId(consumer.getWorksId());
+            if (!worksService.updateSelectiveById(works)) {
                 jsonObject.put("suc", false);
                 jsonObject.put("msg", "修改作品信息出错");
                 return jsonObject;
             }
-            consumer.setWorksId(works.getId());
-            consumer.setUpdateDate(new Date());
-            if (!consumerService.updateSelectiveById(consumer)) {
+            if (!consumerService.updateById(consumer)) {
                 jsonObject.put("suc", false);
                 jsonObject.put("msg", "修改提供者信息出错");
                 return jsonObject;
             }
-            imagesService.deleteByTargetId(works.getId());
-            imagesService.insertImage(works.getImages(), works.getId(), Const.IMAGES_WORKS);
         }
+        imagesService.deleteByTargetId(works.getId());
+        imagesService.insertImage(works.getImages(), works.getId(), Const.IMAGES_WORKS);
         jsonObject.put("suc", true);
         jsonObject.put("id", works.getId());
         return jsonObject;
@@ -162,9 +165,12 @@ public class WorksController extends BaseController {
      */
     @RequestMapping(value = "/add/info", method = RequestMethod.POST)
     @ResponseBody
-    public JSONObject saveInfo(Works works) {
+    public JSONObject saveInfo(Works works,
+                               @RequestParam(required = false) String worksType
+    ) {
         wrapUpdateEntity(works);
         works.setStatus(Const.WORKS_STATUS_DRAFT);
+        works.setType(worksType);
         JSONObject jsonObject = new JSONObject();
         if (!worksService.updateSelectiveById(works)) {
             jsonObject.put("suc", false);
@@ -199,6 +205,8 @@ public class WorksController extends BaseController {
         map.put("mian", dictService.getWorksLevelDicByType("dd_mian"));
         map.put("hanxuefangshi", dictService.getWorksLevelDicByType("dd_hanxuefangshi"));
         map.put("works", works);
+        WorksLevel worksLevel = worksLevelService.selectOne(new EntityWrapper<>(new WorksLevel(id)));
+        map.put("worksLevel", worksLevel);
         return "works/work_add_level";
     }
 
@@ -212,22 +220,26 @@ public class WorksController extends BaseController {
     @ResponseBody
     public JSONObject saveLevel(WorksLevel worksLevel, Works works) {
         JSONObject jsonObject = new JSONObject();
+
         wrapInsertEntity(works);
         wrapInsertEntity(worksLevel);
-
+//        worksLevel.setWorksId(works.getId());
         //保存作品信息
         works.setStatus(Const.WORKS_STATUS_DRAFT);
-        if (!worksService.updateSelectiveById(works)) {
-            jsonObject.put("suc", false);
-            jsonObject.put("msg", "保存作品信息出错");
-            return jsonObject;
-        }
-
-        //保存作品等级信息
-        if (!worksLevelService.insert(worksLevel)) {
-            jsonObject.put("suc", false);
-            jsonObject.put("msg", "保存作品等级出错");
-            return jsonObject;
+        if (worksLevel.getId() == null) {
+            //保存作品等级信息
+            if (!worksLevelService.insert(worksLevel)) {
+                jsonObject.put("suc", false);
+                jsonObject.put("msg", "保存作品等级出错");
+                return jsonObject;
+            }
+        } else {
+            //修改作品等级信息
+            if (!worksLevelService.updateSelectiveById(worksLevel)) {
+                jsonObject.put("suc", false);
+                jsonObject.put("msg", "修改作品等级出错");
+                return jsonObject;
+            }
         }
         jsonObject.put("suc", true);
         return jsonObject;
@@ -242,6 +254,22 @@ public class WorksController extends BaseController {
     @RequestMapping(value = "/add/{id}/report", method = RequestMethod.GET)
     public String report(ModelMap map, @PathVariable Integer id) {
         Works works = worksService.selectById(id);
+        Report report = reportService.selectOne(new EntityWrapper<>(new Report(id)));
+        map.put("report", report);
+
+        //评估报告图片
+        List<Images> reportImage = imagesService.selectList(new EntityWrapper<>(new Images(id, Const.IMAGES_REPORT_DES)));
+        if (reportImage.size() > 0) {
+            map.put("reportImage", reportImage.get(0));
+        }
+        //评估价值认证照片
+        if (report != null) {
+            List<Images> certifyImage = imagesService.selectList(new EntityWrapper<>(new Images(report.getId(), Const.IMAGES_REPORT_CERTIFICATE)));
+            map.put("certifyImage", certifyImage);
+        }
+        // 诠释列表
+        List<Interpretation> interpretationList = interpretationService.interpretationContainImages(id);
+        map.put("interpretationList", interpretationList);
         map.put("works", works);
         return "works/work_add_report";
     }
@@ -259,14 +287,23 @@ public class WorksController extends BaseController {
                                  @RequestParam(required = false) String status) {
         wrapInsertEntity(report);
         JSONObject jsonObject = new JSONObject();
-        if (!reportService.insert(report)) {
-            jsonObject.put("suc", false);
-            jsonObject.put("msg", "保存评估报告出错");
-            return jsonObject;
+        if (report.getId() == null) {
+            if (!reportService.insert(report)) {
+                jsonObject.put("suc", false);
+                jsonObject.put("msg", "保存评估报告出错");
+                return jsonObject;
+            }
+        } else {
+            if (!reportService.updateSelectiveById(report)) {
+                jsonObject.put("suc", false);
+                jsonObject.put("msg", "修改评估报告出错");
+                return jsonObject;
+            }
         }
         worksService.updateSelectiveById(new Works(report.getWorksId(), status));
 
         // 保存评估报告
+        imagesService.deleteByTargetId(report.getId());
         imagesService.insertImage(desImage, report.getId(), Const.IMAGES_REPORT_DES);
         // 保存作品认证图片
         imagesService.insertImage(certifyImage, report.getId(), Const.IMAGES_REPORT_CERTIFICATE);
@@ -567,4 +604,5 @@ public class WorksController extends BaseController {
         json.put("images", works);
         return json;
     }
+
 }

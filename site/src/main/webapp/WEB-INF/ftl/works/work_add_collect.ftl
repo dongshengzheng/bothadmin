@@ -34,7 +34,7 @@
         <div class="form-wizard">
             <ul class="nav nav-pills nav-justified steps">
                 <li class="active">
-                    <a href="javascript:;" class="step" >
+                    <a href="javascript:;" class="step" id="providerDetails">
                         <span class="number">1</span>
                         <span class="desc">
                             <i class="fa fa-check"></i>物品信息
@@ -42,7 +42,7 @@
                     </a>
                 </li>
                 <li class="active">
-                    <a href="javascript:;" class="step">
+                    <a href="javascript:;" class="step" id="infoDetails">
                         <span class="number">2</span>
                         <span class="desc">
                             <i class="fa fa-check"></i>作品信息
@@ -50,7 +50,7 @@
                     </a>
                 </li>
                 <li class="active">
-                    <a href="javascript:;" class="step active">
+                    <a href="javascript:;" class="step active" id="levelDetails">
                         <span class="number">3</span>
                         <span class="desc">
                             <i class="fa fa-check"></i>作品等级
@@ -58,7 +58,7 @@
                     </a>
                 </li>
                 <li class="active">
-                    <a href="javascript:;" class="step">
+                    <a href="javascript:;" class="step" id="reportDetails">
                         <span class="number">4</span>
                         <span class="desc">
                             <i class="fa fa-check"></i>评估报告
@@ -133,12 +133,15 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="pub"></label>
                             <div class="col-sm-10">
-                                <label class="checkbox text-left" style="padding-top:0px;">
-                                    <input type="checkbox" name="pub"/>
-                                    <i></i>公&nbsp;&nbsp;&nbsp;&nbsp;开
+                                <label class="checkbox text-left levelfloat" style="padding-top:0px;">
+                                    是否公开:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 </label>
-                                <label class="checkbox text-left" style="padding-top:0px;">
-                                    <input type="checkbox" name="pub"/>
+                                <label class="checkbox text-left levelfloat" style="padding-top:0px;">
+                                    <input type="radio" name="pub"/>
+                                    <i></i>公&nbsp;&nbsp;&nbsp;&nbsp;开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </label>
+                                <label class="checkbox text-left levelfloat" style="padding-top:0px;">
+                                    <input type="radio" name="pub"/>
                                     <i></i>不公开
                                 </label>
                             </div>
@@ -166,7 +169,11 @@
 <script src="${staticPath}/assets/js/plugins/plupload-2.1.2/js/plupload.dev.js"></script>
 <script src="${staticPath}/assets/js/plugins/date-time/bootstrap-datepicker.js"></script>
 </@footerJS>
-
+<style type="text/css">
+    .levelfloat{
+        float: left;
+    }
+</style>
 <script>
 
     $("#headerWorks").addClass("active");
@@ -205,6 +212,24 @@
             $("#status").val($(this).attr("data-type"))
         });
 
+        $("#providerDetails").on("click",function(){
+            var id = $("#worksId").val();
+            window.location.href = "/works/providerDetails/"+id;
+        })
 
+        $("#infoDetails").on("click",function(){
+            var id = $("#worksId").val();
+            window.location.href = "/works/infoDetails/"+id;
+        })
+
+        $("#levelDetails").on("click",function(){
+            var id = $("#worksId").val();
+            window.location.href = "/works/levelDetails/"+id;
+        })
+
+        $("#reportDetails").on("click",function(){
+            var id = $("#worksId").val();
+            window.location.href = "/works/reportDetails/"+id;
+        })
     });
 </script>

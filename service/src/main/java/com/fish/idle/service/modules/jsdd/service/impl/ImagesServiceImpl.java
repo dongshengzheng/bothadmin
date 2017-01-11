@@ -38,7 +38,7 @@ public class ImagesServiceImpl extends SuperServiceImpl<ImagesMapper, Images> im
     }
 
 
-    public Boolean deleteByTargetId(Integer targetId) {
+    public int deleteByTargetId(Integer targetId) {
         // 删除图片信息
         return imagesMapper.deleteByTargetId(targetId);
     }

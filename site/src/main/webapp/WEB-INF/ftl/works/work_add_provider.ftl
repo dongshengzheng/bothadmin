@@ -86,8 +86,9 @@
                 <div class="billing-info-inputs checkbox-list">
                     <form id="works_info" action="${staticPath}/works/add/provider" method="post"
                           class="form-horizontal">
-                        <input type="hidden" id="type" name="type" value="1"/>
-                        <input type="hidden" name="id" value="<#if (works.id)??>${works.id}</#if>"/>
+                        <input type="hidden" id="type" name="consumerType" value="1"/>
+                        <input type="hidden" name="id" value="<#if (provider.id)??>${provider.id}</#if>"/>
+                        <input type="hidden" name="worksId" value="<#if (works.id)??>${works.id}</#if>"/>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="name">作品名称</label>
                             <div class="col-sm-10">
