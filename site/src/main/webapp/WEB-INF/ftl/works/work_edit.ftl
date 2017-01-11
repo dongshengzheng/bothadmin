@@ -176,7 +176,7 @@
                                     <option value="">请选择</option>
                                     <#list pinzhong as pz>
                                         <option value="${pz.value}"
-                                                <#if works.breed == pz.value>selected</#if>>${pz.label}</option>
+                                                <#if (works.breed)! == pz.value>selected</#if>>${pz.label}</option>
                                     </#list>
 
                                 </select>
@@ -190,7 +190,7 @@
                                     <option value="">请选择</option>
                                     <#list zuopinleixing as zplx>
                                         <option value="${zplx.value}"
-                                                <#if works.type == zplx.value>selected</#if>>${zplx.label}</option>
+                                                <#if (works.type)! == zplx.value>selected</#if>>${zplx.label}</option>
                                     </#list>
                                 </select>
                             </div>
@@ -229,7 +229,7 @@
                                     <option value="">请选择</option>
                                     <#list gyType as gy>
                                         <option value="${gy.value}"
-                                                <#if works.gyType == gy.value>selected</#if>>${gy.label}</option>
+                                                <#if (works.gyType)! == gy.value>selected</#if>>${gy.label}</option>
                                     </#list>
                                 </select>
                             </div>
@@ -243,7 +243,7 @@
                                     <option value="">请选择</option>
                                     <#list level as lvl>
                                         <option value="${lvl.value}"
-                                                <#if works.levelZk == lvl.value>selected</#if>>${lvl.label}</option>
+                                                <#if (works.levelZk)! == lvl.value>selected</#if>>${lvl.label}</option>
                                     </#list>
                                 </select>
                             </div>
@@ -257,7 +257,7 @@
                                     <option value="">请选择</option>
                                     <#list kqdy as kq>
                                         <option value="${kq.value}"
-                                                <#if works.kqdy == kq.value>selected</#if>>${kq.label}</option>
+                                                <#if (works.kqdy)! == kq.value>selected</#if>>${kq.label}</option>
                                     </#list>
                                 </select>
                             </div>
@@ -592,12 +592,19 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" for="pub"></label>
+                            <label class="col-sm-2 control-label" for="pub">是否公开</label>
                             <div class="col-sm-10">
-                                <label class="checkbox text-left" style="padding-top:0px;">
-                                    <input type="checkbox" name="provider.pub"
-                                           <#if provider?exists && provider.pub?exists && provider.pub == "1">checked</#if>/>
-                                    <i></i>是否公开
+                                <label class="checkbox text-left col-sm-2" style="padding-top:0px;">
+                                    <input type="radio"
+                                           <#if !(provider?exists && provider.pub?exists &&  provider.pub == "2")>checked</#if>
+                                           name="pub"/>
+                                    <i></i>公&nbsp;&nbsp;&nbsp;&nbsp;开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </label>
+                                <label class="checkbox text-left col-sm-2" style="padding-top:0px;">
+                                    <input type="radio"
+                                           <#if provider?exists && provider.pub?exists && provider.pub == "2" >checked</#if>
+                                           name="pub"/>
+                                    <i></i>不公开
                                 </label>
                             </div>
                         </div>

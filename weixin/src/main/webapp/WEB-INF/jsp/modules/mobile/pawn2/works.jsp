@@ -341,7 +341,6 @@
                         $img.addClass('works-img-all');
                         $img.on('error', function () {
                             this.src = '${ctxStatic}/modules/pawn/img/default.png';
-                            this.className = 'error-img';
                         })
                         $img.attr('src', 'http://windyeel.img-cn-shanghai.aliyuncs.com/' + data.records[i].images + '?x-oss-process=image/resize,m_fill,h_100,w_100');
 

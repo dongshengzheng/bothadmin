@@ -84,13 +84,13 @@
                 <div class="billing-info-inputs checkbox-list">
                     <form id="works_info" action="${staticPath}/works/add/collect" method="post"
                           class="form-horizontal">
-                        <input type="hidden" name="worksId" id="worksId" value="${works.id}">
+                        <input type="hidden" name="worksId" id="worksId" value="${(works.id)!}">
                         <input type="hidden" id="status" name="status"/>
                         <input type="hidden" id="type" name="type" value="2"/>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="name">作品名称</label>
                             <div class=" col-sm-10">
-                                <input class="form-control" type="text" value="${works.name}" disabled="disabled"/>
+                                <input class="form-control" type="text" value="${(works.name)!}" disabled="disabled"/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -128,19 +128,15 @@
                                        type="text"
                                        placeholder="请选择收藏时间" readonly/>
                             </div>
-
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" for="pub"></label>
+                            <label class="col-sm-2 control-label" for="pub">是否公开</label>
                             <div class="col-sm-10">
-                                <label class="checkbox text-left levelfloat" style="padding-top:0px;">
-                                    是否公开:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                </label>
-                                <label class="checkbox text-left levelfloat" style="padding-top:0px;">
-                                    <input type="radio" name="pub"/>
+                                <label class="checkbox text-left col-sm-2" style="padding-top:0px;">
+                                    <input type="radio" checked name="pub"/>
                                     <i></i>公&nbsp;&nbsp;&nbsp;&nbsp;开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 </label>
-                                <label class="checkbox text-left levelfloat" style="padding-top:0px;">
+                                <label class="checkbox text-left col-sm-2" style="padding-top:0px;">
                                     <input type="radio" name="pub"/>
                                     <i></i>不公开
                                 </label>
@@ -169,11 +165,6 @@
 <script src="${staticPath}/assets/js/plugins/plupload-2.1.2/js/plupload.dev.js"></script>
 <script src="${staticPath}/assets/js/plugins/date-time/bootstrap-datepicker.js"></script>
 </@footerJS>
-<style type="text/css">
-    .levelfloat{
-        float: left;
-    }
-</style>
 <script>
 
     $("#headerWorks").addClass("active");
@@ -212,24 +203,24 @@
             $("#status").val($(this).attr("data-type"))
         });
 
-        $("#providerDetails").on("click",function(){
+        $("#providerDetails").on("click", function () {
             var id = $("#worksId").val();
-            window.location.href = "/works/providerDetails/"+id;
+            window.location.href = "/works/providerDetails/" + id;
         })
 
-        $("#infoDetails").on("click",function(){
+        $("#infoDetails").on("click", function () {
             var id = $("#worksId").val();
-            window.location.href = "/works/infoDetails/"+id;
+            window.location.href = "/works/infoDetails/" + id;
         })
 
-        $("#levelDetails").on("click",function(){
+        $("#levelDetails").on("click", function () {
             var id = $("#worksId").val();
-            window.location.href = "/works/levelDetails/"+id;
+            window.location.href = "/works/levelDetails/" + id;
         })
 
-        $("#reportDetails").on("click",function(){
+        $("#reportDetails").on("click", function () {
             var id = $("#worksId").val();
-            window.location.href = "/works/reportDetails/"+id;
+            window.location.href = "/works/reportDetails/" + id;
         })
     });
 </script>
