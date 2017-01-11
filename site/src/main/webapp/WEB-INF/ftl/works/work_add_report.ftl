@@ -40,13 +40,13 @@
                     </a>
                 </li>
                 <li class="active">
-                    <a href="javascript:;" class="step">
+                    <a href="javascript:;" class="step" id="infoDetails">
                         <span class="number">2</span>
                         <span class="desc"><i class="fa fa-check"></i>作品信息</span>
                     </a>
                 </li>
                 <li class="active">
-                    <a href="javascript:;" class="step ">
+                    <a href="javascript:;" class="step " id ="levelDetails">
                         <span class="number">3</span>
                         <span class="desc"><i class="fa fa-check"></i>作品等级</span>
                     </a>
@@ -74,6 +74,7 @@
                 <h2 class="title-type">评估报告</h2>
                 <div class="billing-info-inputs checkbox-list">
                     <form id="works_info" action="${staticPath}/works/add/report" method="post" class="form-horizontal">
+                        <input type="hidden" name="id" id="id" value="<#if (report.id)??>${report.id}</#if>">
                         <input type="hidden" name="worksId" id="worksId" value="${works.id}">
                         <input type="hidden" id="status" name="status"/>
                         <div class="form-group">
@@ -86,8 +87,8 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="description">作品详细评估报告</label>
                             <div class="col-sm-10">
-                                    <textarea class="form-control" style="resize: none;height: 150px" name="des"  value="<#if (report.des)??>${worksLevel.des}</#if>
-                                              id="des" type="text" placeholder="作品详细评估报告"></textarea>
+                                    <textarea class="form-control" style="resize: none;height: 150px" name="des"
+                                              id="des" type="text" placeholder="作品详细评估报告"><#if (report.des)??>${report.des}</#if></textarea>
                             </div>
                         </div>
                         <!--上传图片-->
@@ -104,8 +105,8 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="description">作品价值认证报告</label>
                             <div class="col-sm-10">
-                                    <textarea class="form-control" style="resize: none;height: 150px" name="certify"  value="<#if (worksLevel.certify)??>${worksLevel.certify}</#if>
-                                              id="certify" type="text" placeholder="作品价值认证报告"></textarea>
+                                    <textarea class="form-control" style="resize: none;height: 150px" name="certify"
+                                              id="certify" type="text" placeholder="作品价值认证报告"><#if (report.certify)??>${report.certify}</#if></textarea>
                             </div>
                         </div>
                         <!--上传图片-->
@@ -122,7 +123,7 @@
                             <label class="col-sm-2 control-label" for="datetime">价值有效时间</label>
                             <div class="col-sm-10">
                                 <input class="form-control date-picker" name="validTime" id="validTime"
-                                       type="text" value="<#if (worksLevel.validTime)??>${worksLevel.validTime}</#if>
+                                       type="text" value="<#if (report.validTime)??>${(report.validTime?string("yyyy-MM-dd"))!""}</#if>"
                                        placeholder="请选择价值有效时间" readonly/>
                             </div>
 
@@ -189,6 +190,20 @@
                     }
                 });
             }
+        })
+        $("#providerDetails").on("click",function(){
+            var id = $("#worksId").val();
+            window.location.href = "/works/providerDetails/${works.id}";
+        })
+
+        $("#infoDetails").on("click",function(){
+            var id = $("#worksId").val();
+            window.location.href = "/works/infoDetails/${works.id}";
+        })
+
+        $("#levelDetails").on("click",function(){
+            var id = $("#worksId").val();
+            window.location.href = "/works/levelDetails/${works.id}";
         })
     });
 </script>

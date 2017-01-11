@@ -86,10 +86,14 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="breed">品种</label>
                             <div class="col-sm-10">
-                                <select id="breed" name="breed" class="form-control selectpicker" value="<#if (works.breed)??>${works.breed}</#if>">
+                                <select id="breed" name="breed" class="form-control selectpicker">
                                     <option value="">请选择</option>
                                     <#list pinzhong as pz>
-                                        <option value="${pz.value}">${pz.label}</option>
+                                        <#if ((works.breed)??)&&("${pz.value}"==(works.breed))>
+                                            <option value="${pz.value}" selected="selected">${pz.label}</option>
+                                        <#else >
+                                            <option value="${pz.value}">${pz.label}</option>
+                                        </#if>
                                     </#list>
 
                                 </select>
@@ -98,11 +102,14 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="name">作品类型</label>
                             <div class="col-sm-10">
-                                <select id="type" class="form-control selectpicker" value="<#if (works.type)??>${works.type}</#if>"
-                                        name="type">
+                                <select id="type" class="form-control selectpicker" name="worksType">
                                     <option value="">请选择</option>
                                     <#list zuopinleixing as zplx>
-                                        <option value="${zplx.value}">${zplx.label}</option>
+                                        <#if ((works.type)??)&& ("${zplx.value}"==(works.type))>
+                                            <option value="${zplx.value}" selected="selected">${zplx.label}</option>
+                                        <#else>
+                                            <option value="${zplx.value}">${zplx.label}</option>
+                                        </#if>
                                     </#list>
                                 </select>
                             </div>
@@ -135,11 +142,15 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="gyType">工艺制作</label>
                             <div class="col-sm-10">
-                                <select class="form-control selectpicker" value="<#if (works.gyType)??>${works.gyType}</#if>"
+                                <select class="form-control selectpicker"
                                         id="gyType" name="gyType">
                                     <option value="">请选择</option>
                                     <#list gyType as gy>
-                                        <option value="${gy.value}">${gy.label}</option>
+                                        <#if ((works.gyType)??)&&("${gy.value}"=(works.gyType))>
+                                            <option value="${gy.value}" selected="selected">${gy.label}</option>
+                                        <#else>
+                                            <option value="${gy.value}">${gy.label}</option>
+                                        </#if>
                                     </#list>
                                 </select>
                             </div>
@@ -148,11 +159,15 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="levelZk">篆刻级别</label>
                             <div class="col-sm-10">
-                                <select class="form-control selectpicker" value="<#if (works.levelZk)??>${works.levelZk}</#if>"
+                                <select class="form-control selectpicker"
                                         id="levelZk" name="levelZk">
                                     <option value="">请选择</option>
                                     <#list level as lvl>
-                                        <option value="${lvl.value}">${lvl.label}</option>
+                                        <#if ((works.levelZk)??)&&("${lvl.value}"=(works.levelZk))>
+                                            <option value="${lvl.value}" selected="selected">${lvl.label}</option>
+                                        <#else>
+                                            <option value="${lvl.value}">${lvl.label}</option>
+                                        </#if>
                                     </#list>
                                 </select>
                             </div>
@@ -161,11 +176,15 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="kqdy">矿区地域</label>
                             <div class="col-sm-10">
-                                <select class="form-control selectpicker" id="kqdy" value="<#if (works.kqdy)??>${works.kqdy}</#if>"
+                                <select class="form-control selectpicker" id="kqdy"
                                         name="kqdy">
                                     <option value="">请选择</option>
                                     <#list kqdy as kq>
-                                        <option value="${kq.value}">${kq.label}</option>
+                                        <#if (works.kqdy)??&&("${kq.value}"=(works.kqdy))>
+                                            <option value="${kq.value}" selected="selected">${kq.label}</option>
+                                        <#else>
+                                            <option value="${kq.value}">${kq.label}</option>
+                                        </#if>
                                     </#list>
                                 </select>
                             </div>
@@ -183,7 +202,7 @@
                             <label class="col-sm-2 control-label" for="makeTime">制作时间</label>
                             <div class="col-sm-10">
                                 <input readonly type="text" class="form-control date-picker" id="makeTime"
-                                       name="makeTime" value="<#if (works.makeTime)??>${works.makeTime}</#if>"
+                                       name="makeTime" value="<#if (works.makeTime)??>${(works.makeTime?string("yyyy-MM-dd"))!""}</#if>"
                                        placeholder="请输入制作时间">
                             </div>
                         </div>
@@ -192,8 +211,8 @@
                             <label class="col-sm-2 control-label" for="worksMeaning">作品诠释</label>
                             <div class="col-sm-10">
                                 <textarea class="form-control" style="resize: none;height: 150px"
-                                          name="worksMeaning" value="<#if (works.worksMeaning)??>${works.worksMeaning}</#if>"
-                                          id="worksMeaning" type="text" placeholder="请输入作品诠释"></textarea>
+                                          name="worksMeaning"
+                                          id="worksMeaning" type="text" placeholder="请输入作品诠释"><#if (works.worksMeaning)??>${works.worksMeaning}</#if></textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -257,7 +276,6 @@
         $("#providerDetails").on("click",function(){
             var id = $("#id").val();
             window.location.href = "/works/providerDetails/"+id;
-//            $.get("/works/providerDetails/"+id);
         })
     });
 
