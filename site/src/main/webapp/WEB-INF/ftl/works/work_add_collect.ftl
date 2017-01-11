@@ -133,12 +133,15 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="pub"></label>
                             <div class="col-sm-10">
-                                <label class="checkbox text-left" style="padding-top:0px;">
-                                    <input type="checkbox" name="pub"/>
-                                    <i></i>公&nbsp;&nbsp;&nbsp;&nbsp;开
+                                <label class="checkbox text-left levelfloat" style="padding-top:0px;">
+                                    是否公开:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 </label>
-                                <label class="checkbox text-left" style="padding-top:0px;">
-                                    <input type="checkbox" name="pub"/>
+                                <label class="checkbox text-left levelfloat" style="padding-top:0px;">
+                                    <input type="radio" name="pub"/>
+                                    <i></i>公&nbsp;&nbsp;&nbsp;&nbsp;开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </label>
+                                <label class="checkbox text-left levelfloat" style="padding-top:0px;">
+                                    <input type="radio" name="pub"/>
                                     <i></i>不公开
                                 </label>
                             </div>
@@ -166,7 +169,11 @@
 <script src="${staticPath}/assets/js/plugins/plupload-2.1.2/js/plupload.dev.js"></script>
 <script src="${staticPath}/assets/js/plugins/date-time/bootstrap-datepicker.js"></script>
 </@footerJS>
-
+<style type="text/css">
+    .levelfloat{
+        float: left;
+    }
+</style>
 <script>
 
     $("#headerWorks").addClass("active");
