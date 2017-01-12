@@ -83,7 +83,7 @@
         id: "login_container",
         appid: "wx91ad0b554aceca98",
         scope: "snsapi_login",
-        redirect_uri: "https%3A%2F%2F${staticPath}/wx_login",
+        redirect_uri: "https%3A%2F%2Fwww.mschuangyi.com/wx_login",
         state: "111",
         style: "",
         href: ""
