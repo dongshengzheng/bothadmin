@@ -55,7 +55,7 @@ public class LoginController extends BaseController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/wx_login", method = RequestMethod.POST)
+    @RequestMapping(value = "/wx_login", method = RequestMethod.GET)
     public String wxLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String code = request.getParameter("code");
         String resultUrl = request.getRequestURL().toString();
