@@ -5,6 +5,11 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.fish.idle.service.modules.sys.entity.AppUser;
 import com.fish.idle.service.modules.sys.service.IAppUserService;
 import com.fish.idle.service.util.Const;
+import me.chanjar.weixin.common.api.WxConsts;
+import me.chanjar.weixin.common.exception.WxErrorException;
+import me.chanjar.weixin.mp.api.WxMpService;
+import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
+import me.chanjar.weixin.mp.bean.result.WxMpUser;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -13,11 +18,16 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.Date;
 
 
 @Controller
@@ -25,6 +35,9 @@ public class LoginController extends BaseController {
 
     @Autowired
     private IAppUserService appUserService;
+
+    @Autowired
+    private WxMpService wxMpService;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String detail() {
@@ -38,8 +51,60 @@ public class LoginController extends BaseController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/wx_login", method = RequestMethod.GET)
-    public String wxLogin() {
+    @RequestMapping(value = "/wx_login", method = RequestMethod.POST)
+    public String wxLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String code = request.getParameter("code");
+        String resultUrl = request.getRequestURL().toString();
+        String param = request.getQueryString();
+        if (param != null) {
+            resultUrl += "?" + param;
+        }
+        WxMpUser wxMpUser = new WxMpUser();
+        if (StringUtils.isEmpty(code)) {
+            response.sendRedirect(wxMpService.oauth2buildAuthorizationUrl(resultUrl, WxConsts.OAUTH2_SCOPE_USER_INFO, null));
+        } else {
+            WxMpOAuth2AccessToken accessToken = null;
+            try {
+                accessToken = wxMpService.oauth2getAccessToken(code);
+                wxMpUser = wxMpService.oauth2getUserInfo(accessToken, null);
+            } catch (WxErrorException e) {
+                response.sendRedirect(wxMpService.oauth2buildAuthorizationUrl(resultUrl, WxConsts.OAUTH2_SCOPE_USER_INFO, null));
+            }
+        }
+
+        AppUser user = new AppUser();
+        user.setOpenId(wxMpUser.getOpenId());
+        AppUser appUser = appUserService.selectOne(user);
+        if (appUser == null) {
+            appUser = new AppUser();
+            appUser.setLoginName(filterEmoji(wxMpUser.getNickname()));
+            appUser.setPassword("iLoveMoney");
+            appUser.setName(filterEmoji(wxMpUser.getNickname()));
+            appUser.setDelFlag(Const.DEL_FLAG_NORMAL);
+            appUser.setOpenId(wxMpUser.getOpenId());
+            appUser.setLastLogin(new Date());
+            appUser.setHeadImgUrl(wxMpUser.getHeadImgUrl());
+            appUserService.insert(appUser);
+        } else {
+            appUser.setLastLogin(new Date());
+            appUserService.updateSelectiveById(appUser);
+        }
+        appUserService.insert(user);
+        Subject subject = SecurityUtils.getSubject();
+        Session session = subject.getSession();
+        session.setAttribute(Const.SITE_SESSION_USER, user);
+        session.setAttribute("wxMpUser", wxMpUser);
+        UsernamePasswordToken token = new UsernamePasswordToken(user.getLoginName(), user.getPassword());
+        JSONObject jsonObject = new JSONObject();
+        try {
+            subject.login(token);
+        } catch (AuthenticationException e) {
+            jsonObject.put("suc", false);
+        }
+        jsonObject.put("suc", true);
+
+        session.setAttribute(Const.SITE_SESSION_USER, user);
+
         return "redirect:/";
     }
 
@@ -128,6 +193,15 @@ public class LoginController extends BaseController {
             jsonObject.put("loginName", user.getLoginName());
         }
         return jsonObject;
+    }
+
+
+    public static String filterEmoji(String source) {
+        if (org.apache.commons.lang.StringUtils.isNotBlank(source)) {
+            return source.replaceAll("[\\ud800\\udc00-\\udbff\\udfff\\ud800-\\udfff]", "*");
+        } else {
+            return source;
+        }
     }
 
 }

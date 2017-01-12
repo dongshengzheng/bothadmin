@@ -147,6 +147,12 @@
             <version>0.0.5</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>weixin-java-mp</artifactId>
+            <version>${weixin-java-mp.version}</version>
+        </dependency>
+
     </dependencies>
     <build>
         <finalName>site</finalName>
