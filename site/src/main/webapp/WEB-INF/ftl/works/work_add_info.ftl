@@ -254,14 +254,21 @@
                     success: function (data) {
                         if (data.suc) {
                             if ($("#status").val() == 0) {
-                                // 跳转到下一步
-                                var breed = $("#breed").val();
-                                if(breed == ""){
-                                    alert("品种不能为空！");
+                                var type = $("#type").val();
+                                if(type=="5"||type=="6"){
+                                    window.location.href ="/works/add/${works.id}/report";
                                 } else {
-                                    window.location.href = "/works/add/${works.id}/"+breed+"/level/";
+                                    // 跳转到下一步
+                                    var breed = $("#breed").val();
+                                    if(breed == ""){
+                                        alert("品种不能为空！");
+                                    } else {
+                                        window.location.href = "/works/add/${works.id}/"+breed+"/level/";
+                                    }
                                 }
-                            } else {
+                                console.log("11111");
+
+                             } else {
                                 // 跳转到个人中心-> 我的作品->草稿里面
                                 window.location.href = "/user";
                             }

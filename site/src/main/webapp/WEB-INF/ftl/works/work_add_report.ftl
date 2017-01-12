@@ -46,7 +46,7 @@
                     </a>
                 </li>
                 <li class="active">
-                    <a href="javascript:;" class="step " id ="levelDetails">
+                    <a href="javascript:;" class="step levelDetails" id ="levelDetails">
                         <span class="number">3</span>
                         <span class="desc"><i class="fa fa-check"></i>作品等级</span>
                     </a>
@@ -157,6 +157,12 @@
 <script>
     $("#headerWorks").addClass("active");
     $(document).ready(function () {
+        removeId();
+        function removeId() {
+            if(${works.type}=="5"||${works.type}=="6"){
+                $("#levelDetails").removeClass("levelDetails");
+            }
+        }
         initUploaders_inner("upload_certify", "windyeel", '${staticPath}/', "certifyImage");
         initUploaders_inner("upload_des", "windyeel", '${staticPath}/', "desImage");
 
@@ -199,7 +205,7 @@
             window.location.href = "/works/infoDetails/${works.id}";
         })
 
-        $("#levelDetails").on("click",function(){
+        $(".levelDetails").on("click",function(){
             window.location.href = "/works/levelDetails/${works.id}/${works.breed}";
         })
     });

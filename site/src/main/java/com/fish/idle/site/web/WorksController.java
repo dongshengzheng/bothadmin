@@ -208,7 +208,16 @@ public class WorksController extends BaseController {
         map.put("works", works);
         WorksLevel worksLevel = worksLevelService.selectOne(new EntityWrapper<>(new WorksLevel(id)));
         map.put("worksLevel", worksLevel);
-        return "works/work_add_level";
+        if("1".equals(breed)){
+            return "works/work_add_level1";
+        } else if("2".equals(breed)){
+            return "works/work_add_level2";
+        } else if("3".equals(breed)){
+            return "works/work_add_level3";
+        } else if("4".equals(breed)||"5".equals(breed)){
+            return "works/work_add_level4";
+        }
+        return "works/work_add_level1";
     }
 
 

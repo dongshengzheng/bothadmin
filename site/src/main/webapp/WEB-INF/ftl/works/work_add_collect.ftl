@@ -50,7 +50,7 @@
                     </a>
                 </li>
                 <li class="active">
-                    <a href="javascript:;" class="step active" id="levelDetails">
+                    <a href="javascript:;" class="step active levelDetails" id="levelDetails">
                         <span class="number">3</span>
                         <span class="desc">
                             <i class="fa fa-check"></i>作品等级
@@ -169,6 +169,14 @@
 
     $("#headerWorks").addClass("active");
     $(document).ready(function () {
+
+        removeId();
+        function removeId() {
+            if(${works.type}=="5"||${works.type}=="6"){
+                $("#levelDetails").removeClass("levelDetails");
+            }
+        }
+
         $('.date-picker').datepicker({autoclose: true, todayHighlight: true, format: 'yyyy-mm-dd'});
         initUploaders("upload_works_info", "windyeel", '${staticPath}/');
         var $form = $("#works_info");
@@ -204,23 +212,19 @@
         });
 
         $("#providerDetails").on("click", function () {
-            var id = $("#worksId").val();
-            window.location.href = "/works/providerDetails/" + id;
+            window.location.href = "/works/providerDetails/${works.id}";
         })
 
         $("#infoDetails").on("click", function () {
-            var id = $("#worksId").val();
-            window.location.href = "/works/infoDetails/" + id;
+            window.location.href = "/works/infoDetails/${works.id}";
         })
 
-        $("#levelDetails").on("click", function () {
-            var id = $("#worksId").val();
-            window.location.href = "/works/levelDetails/" + id;
+        $(".levelDetails").on("click", function () {
+            window.location.href = "/works/levelDetails/${works.id}";
         })
 
         $("#reportDetails").on("click", function () {
-            var id = $("#worksId").val();
-            window.location.href = "/works/reportDetails/" + id;
+            window.location.href = "/works/reportDetails/${works.id}";
         })
     });
 </script>
