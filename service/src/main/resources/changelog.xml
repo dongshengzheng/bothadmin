@@ -420,7 +420,7 @@
             update `sys_dict` set parent_id ='101,220' where id =2;
             update `sys_dict` set parent_id ='101,220' where id =3;
             update `sys_dict` set parent_id ='101,209' where id =6;
-            update `sys_dict` set parent_id ='101,220',value=30 where id =8
+            update `sys_dict` set parent_id ='101,220',value=30 where id =8;
             update `sys_dict` set parent_id ='101,220' where id =9;
             update `sys_dict` set parent_id ='101,209' where id =10;
             update `sys_dict` set parent_id ='101,220',value=2 ,sort=20 where id =12;
