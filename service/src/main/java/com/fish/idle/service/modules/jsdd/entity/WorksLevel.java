@@ -102,6 +102,8 @@ public class WorksLevel extends BaseEntity {
      */
     private String hanxuefangshi;
 
+    /** 自然石皮 */
+    private String ziranshipi;
 
     public Integer getWorksId() {
         return worksId;
@@ -239,6 +241,13 @@ public class WorksLevel extends BaseEntity {
         this.hanxuefangshi = hanxuefangshi;
     }
 
+    public String getZiranshipi() {
+        return ziranshipi;
+    }
+
+    public void setZiranshipi(String ziranshipi) {
+        this.ziranshipi = ziranshipi;
+    }
 
     public WorksLevel() {
     }
@@ -246,4 +255,6 @@ public class WorksLevel extends BaseEntity {
     public WorksLevel(Integer worksId) {
         this.worksId = worksId;
     }
+
+
 }

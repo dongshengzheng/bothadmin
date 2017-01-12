@@ -1,5 +1,7 @@
 package com.fish.idle.service.modules.sys.service.impl;
 
+import com.fish.idle.service.util.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.framework.service.impl.SuperServiceImpl;
@@ -17,6 +19,8 @@ import java.util.List;
 @Service
 public class DictServiceImpl extends SuperServiceImpl<DictMapper, Dict> implements IDictService {
 
+    @Autowired
+    DictMapper dictMapper;
     // 获取作品登记字典表
     public String getLabelByValue(String value, String type) {
         EntityWrapper entityWrapper = new EntityWrapper();
@@ -28,6 +32,19 @@ public class DictServiceImpl extends SuperServiceImpl<DictMapper, Dict> implemen
 
 
     // 获取作品登记字典表
+    public List<Dict> getWorksLevelDicByType(String type,String breed) {
+        EntityWrapper entityWrapper = new EntityWrapper();
+        entityWrapper.addFilter("type={0}", type);
+        if(StringUtils.isNotEmpty(breed)){
+            Integer id = dictMapper.findPinZhongIdByValue(breed);
+            entityWrapper.like("parent_id",id+"");
+        }
+        entityWrapper.orderBy("value");
+        List<Dict> list = selectList(entityWrapper);
+        return list;
+    }
+
+    // 获取作品登记字典表
     public List<Dict> getWorksLevelDicByType(String type) {
         EntityWrapper entityWrapper = new EntityWrapper();
         entityWrapper.addFilter("type={0}", type);
@@ -35,6 +52,7 @@ public class DictServiceImpl extends SuperServiceImpl<DictMapper, Dict> implemen
         List<Dict> list = selectList(entityWrapper);
         return list;
     }
+
 
     //获取积分具体数值
     public int getPointsByValue(String value, String type) {

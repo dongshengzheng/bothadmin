@@ -255,7 +255,12 @@
                         if (data.suc) {
                             if ($("#status").val() == 0) {
                                 // 跳转到下一步
-                                window.location.href = "/works/add/${works.id}/level";
+                                var breed = $("#breed").val();
+                                if(breed == ""){
+                                    alert("品种不能为空！");
+                                } else {
+                                    window.location.href = "/works/add/${works.id}/"+breed+"/level/";
+                                }
                             } else {
                                 // 跳转到个人中心-> 我的作品->草稿里面
                                 window.location.href = "/user";
@@ -274,8 +279,7 @@
         })
 
         $("#providerDetails").on("click",function(){
-            var id = $("#id").val();
-            window.location.href = "/works/providerDetails/"+id;
+            window.location.href = "/works/providerDetails/${works.id}";
         })
     });
 
