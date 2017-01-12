@@ -120,6 +120,10 @@
             text-align: right;
         }
 
+        #point-temp {
+            display: none;
+        }
+
     </style>
 </head>
 <body>
@@ -289,6 +293,18 @@
     </div>
 </div>
 
+<div id="point-temp" class="point-one">
+    <table>
+        <tr>
+            <td class="type">作品被浏览</td>
+            <td rowspan="2" class="point-one-detail"> + 1</td>
+        </tr>
+        <tr>
+            <td class="point-one-time">2016-12-07 11:50:01</td>
+        </tr>
+    </table>
+</div>
+<input id="myId" type="hidden" value="${myId}">
 <script>
     $(function () {
         $('.weui-navbar__item').on('click', function () {
@@ -315,6 +331,48 @@
             $(".js_dialog").fadeOut(200);
         })
     });
+
+
+    $(document).ready(function () {
+        $.get("${ctx}/mobile/my/pointCenter/point_load", function (data) {
+            $.each(data, function () {
+                var $li = $('#point-temp').clone();
+                $li.find('.point-one-time').text(new Date(parseInt(this.updateDate)).Format("yyyy-MM-dd hh:mm:ss"));
+                $li.find('.type').text(this.type);
+                if (this.fromUserId == $('#myId').val()) {
+                    $li.find('.point-one-detail').text("- " + this.value);
+                } else {
+                    $li.find('.point-one-detail').text("+ " + this.value);
+                }
+                $li.removeAttr('id');
+                $('#div-hide-all').append($li);
+                if (this.type == '充值') {
+                    $('#div-hide-save').append($li.clone());
+                } else if (this.type == '提现') {
+                    $('#div-hide-withdraw').append($li.clone());
+                } else {
+                    $('#div-hide-other').append($li.clone());
+                }
+            });
+        });
+    });
+
+
+    Date.prototype.Format = function (fmt) { //author: meizz
+        var o = {
+            "M+": this.getMonth() + 1, //月份
+            "d+": this.getDate(), //日
+            "h+": this.getHours(), //小时
+            "m+": this.getMinutes(), //分
+            "s+": this.getSeconds(), //秒
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+            "S": this.getMilliseconds() //毫秒
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    }
 
 </script>
 </body>

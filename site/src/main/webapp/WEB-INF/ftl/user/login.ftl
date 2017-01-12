@@ -60,6 +60,9 @@
             </div>
         </div>
     </form>
+    <div id="login_container">
+        微信登录
+    </div>
 </div>
 <!-- JS Global Compulsory -->
 <script type="text/javascript" src="${staticPath}/assets/plugins/jquery/jquery.min.js"></script>
@@ -74,7 +77,19 @@
 <script type="text/javascript" src="${staticPath}/assets/js/custom.js"></script>
 <!-- JS Page Level -->
 <script type="text/javascript" src="${staticPath}/assets/js/app.js"></script>
+<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
 <script type="text/javascript">
+    //    var obj = new WxLogin({
+    //        id: "login_container",
+    //        appid: "",
+    //        scope: "",
+    //        redirect_uri: "",
+    //        state: "",
+    //        style: "",
+    //        href: ""
+    //    });
+
+
     $("#loginForm").validate({
         errorPlacement: function (error, element) {
             element.parent().prev().html(error.html());
@@ -90,13 +105,13 @@
         submitHandler: function (form) {
             $(form).ajaxSubmit({
                 success: function (data) {
-                   if(data.result == ''){
-                       window.location.href = "/"
-                   }else {
-                       $("#errInfo").html(data.result);
-                   }
+                    if (data.result == '') {
+                        window.location.href = "/"
+                    } else {
+                        $("#errInfo").html(data.result);
+                    }
                 },
-                error:function () {
+                error: function () {
                     alert("error");
                     return;
                 }

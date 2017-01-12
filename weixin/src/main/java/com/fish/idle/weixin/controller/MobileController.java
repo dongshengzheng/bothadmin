@@ -79,6 +79,9 @@ public class MobileController extends BaseController {
     @Autowired
     private WxMpService wxMpService;
 
+    @Autowired
+    private IScoreHistoryService scoreHistoryService;
+
     @Value("#{wxProperties.bucket}")
     private String bucket;
 
@@ -1009,10 +1012,37 @@ public class MobileController extends BaseController {
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
-
         map.put("appUser", appUser);
 
         return "modules/mobile/pawn2/pointCenter";
+    }
+
+    /**
+     * @return
+     */
+    @RequestMapping(value = "my/pointCenter/point_load", method = RequestMethod.GET)
+    @ResponseBody
+    public List<ScoreHistory> loadIntegral(HttpSession session, ModelMap map) {
+        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+        String openId = wxMpUser.getOpenId();
+        AppUser u = new AppUser();
+        u.setOpenId(openId);
+        AppUser appUser = appUserService.selectOne(u);
+//        if (appUser == null) {
+//            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+//        }
+        EntityWrapper<ScoreHistory> ew = new EntityWrapper<>(new ScoreHistory());
+        ew.setSqlSelect("value,update_date,from_user_id,to_user_id,type");
+        ew.addFilter("from_user_id = {0} or to_user_id = {0}", appUser.getId());
+        ew.orderBy("update_date", false);
+        List<ScoreHistory> scoreHistoryList = scoreHistoryService.selectList(ew);
+        for (ScoreHistory s : scoreHistoryList) {
+            if (s.getType() != null && s.getType().trim().length() > 0) {
+                s.setType(dictService.getLabelByValue(s.getType(), "score_type"));
+            }
+        }
+        map.put("myId", appUser.getId());
+        return scoreHistoryList;
     }
 
     /**
