@@ -116,27 +116,26 @@ public class MobileController extends BaseController {
             appUserService.updateSelectiveById(appUser);
         }
 
+        session.setAttribute("redirectUrl", redirectUrl);
+        session.setAttribute("bucket", bucket);
+
         AppUser targetUser = appUserService.selectById(16);
         if (targetUser != null && targetUser.getOpenId() != null) {
             WxMpTemplateMessage templateMessage = new WxMpTemplateMessage();
             templateMessage.setToUser(targetUser.getOpenId());
             templateMessage.setTemplateId("PxVoRl3uWH5ph927H_Qg9DM0B3HKNMYF_IBo48WrJ9c");
-//              templateMessage.setUrl(configStorage.getOauth2redirectUri() + "/f/boxi/handle/" + boxiGuarantee.getId());
+            templateMessage.setUrl(configStorage.getOauth2redirectUri() + "/mobile/appUserInfo?appUserId" + appUser.getId());
             templateMessage.setTopColor("#000000");
-            templateMessage.getData().add(new WxMpTemplateData("first", "有人登录了", "#000000"));
-            templateMessage.getData().add(new WxMpTemplateData("keyword1", "有人登录了"));
-            templateMessage.getData().add(new WxMpTemplateData("keyword2", "试着发一条试试"));
-            templateMessage.getData().add(new WxMpTemplateData("remark", "试着发一条试试", "#000000"));
+            templateMessage.getData().add(new WxMpTemplateData("first", "您好，您收到一条新的通知！", "#000000"));
+            templateMessage.getData().add(new WxMpTemplateData("keyword1", "您被其他用户关注了\r\n用户名称:" + appUser.getLoginName()));
+            templateMessage.getData().add(new WxMpTemplateData("keyword2", DateUtil.formatDate(new Date(), "yyyy-MM-dd HH:mm:ss")));
+            templateMessage.getData().add(new WxMpTemplateData("remark", "点击查看用户详情", "#000000"));
             try {
                 wxMpTemplateMsgService.sendTemplateMsg(templateMessage);
             } catch (WxErrorException e) {
                 e.printStackTrace();
             }
         }
-
-
-        session.setAttribute("redirectUrl", redirectUrl);
-        session.setAttribute("bucket", bucket);
 
         return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/works";
     }
@@ -190,24 +189,6 @@ public class MobileController extends BaseController {
             }
             if (!StringUtils.isEmpty(slideList.get(i).getBreed())) {
                 slideList.get(i).setBreed(dictService.getLabelByValue(slideList.get(i).getBreed(), "dd_pinzhong"));
-            }
-        }
-
-        AppUser targetUser = appUserService.selectById(16);
-        if (targetUser != null && targetUser.getOpenId() != null) {
-            WxMpTemplateMessage templateMessage = new WxMpTemplateMessage();
-            templateMessage.setToUser(targetUser.getOpenId());
-            templateMessage.setTemplateId("PxVoRl3uWH5ph927H_Qg9DM0B3HKNMYF_IBo48WrJ9c");
-//              templateMessage.setUrl(configStorage.getOauth2redirectUri() + "/f/boxi/handle/" + boxiGuarantee.getId());
-            templateMessage.setTopColor("#000000");
-            templateMessage.getData().add(new WxMpTemplateData("first", "进入首页了", "#000000"));
-            templateMessage.getData().add(new WxMpTemplateData("keyword1", "试着发一条试试"));
-            templateMessage.getData().add(new WxMpTemplateData("keyword2", "试着发一条试试"));
-            templateMessage.getData().add(new WxMpTemplateData("remark", "试着发一条试试", "#000000"));
-            try {
-                wxMpTemplateMsgService.sendTemplateMsg(templateMessage);
-            } catch (WxErrorException e) {
-                e.printStackTrace();
             }
         }
 
@@ -478,6 +459,23 @@ public class MobileController extends BaseController {
             result = followHistoryService.updateById(fh);
         }
         if (result) {
+            AppUser targetUser = appUserService.selectById(targetId);
+            if (targetUser != null && targetUser.getOpenId() != null) {
+                WxMpTemplateMessage templateMessage = new WxMpTemplateMessage();
+                templateMessage.setToUser(targetUser.getOpenId());
+                templateMessage.setTemplateId("PxVoRl3uWH5ph927H_Qg9DM0B3HKNMYF_IBo48WrJ9c");
+                templateMessage.setUrl(configStorage.getOauth2redirectUri() + "/mobile/appUserInfo?appUserId" + appUser.getId());
+                templateMessage.setTopColor("#000000");
+                templateMessage.getData().add(new WxMpTemplateData("first", "您好，您收到一条新的通知！", "#000000"));
+                templateMessage.getData().add(new WxMpTemplateData("keyword1", "您被其他用户关注了\r\n用户名称:" + appUser.getLoginName()));
+                templateMessage.getData().add(new WxMpTemplateData("keyword2", DateUtil.formatDate(new Date(), "yyyy-MM-dd HH:mm:ss")));
+                templateMessage.getData().add(new WxMpTemplateData("remark", "点击查看用户详情", "#000000"));
+                try {
+                    wxMpTemplateMsgService.sendTemplateMsg(templateMessage);
+                } catch (WxErrorException e) {
+                    e.printStackTrace();
+                }
+            }
 
             return "关注成功!";
         }
