@@ -187,7 +187,7 @@ public class WorksController extends BaseController {
      *
      * @return
      */
-    @RequestMapping(value = "/add/{id}/level/{breed}", method = RequestMethod.GET)
+    @RequestMapping(value = "/add/{id}/{breed}/level/", method = RequestMethod.GET)
     public String level(ModelMap map, @PathVariable Integer id,@PathVariable String breed) {
         Works works = worksService.selectById(id);
         map.put("zhidi1", dictService.getWorksLevelDicByType("dd_zhidi",breed));

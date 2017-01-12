@@ -256,7 +256,11 @@
                             if ($("#status").val() == 0) {
                                 // 跳转到下一步
                                 var breed = $("#breed").val();
-                                window.location.href = "/works/add/${works.id}/level/"+breed;
+                                if(breed == ""){
+                                    alert("品种不能为空！");
+                                } else {
+                                    window.location.href = "/works/add/${works.id}/"+breed+"/level/";
+                                }
                             } else {
                                 // 跳转到个人中心-> 我的作品->草稿里面
                                 window.location.href = "/user";
