@@ -529,7 +529,7 @@ public class MobileController extends BaseController {
         EntityWrapper<Works> ew = new EntityWrapper<>(new Works());
         ew.like("name", name);
         List<Works> defaultList = worksService.selectList(ew);
-        ew.orderBy("createDate");
+        ew.orderBy("createDate", false);
         List<Works> timeList = worksService.selectList(ew);
 
         for (int i = 0; i < defaultList.size(); i++) {
