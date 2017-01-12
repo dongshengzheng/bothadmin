@@ -1,5 +1,7 @@
 package com.fish.idle.weixin.config;
 
+import me.chanjar.weixin.mp.api.WxMpTemplateMsgService;
+import me.chanjar.weixin.mp.api.impl.WxMpTemplateMsgServiceImpl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +14,7 @@ import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
 /**
  * Created by FirenzesEagle on 2016/5/30 0030.
  * Email:liumingbo2008@gmail.com
- * 
+ *
  * @author FirenzesEagle
  * @author BinaryWang
  */
@@ -58,6 +60,12 @@ public class MainConfig {
         WxMpService wxMpService = new WxMpServiceImpl();
         wxMpService.setWxMpConfigStorage(wxMpConfigStorage());
         return wxMpService;
+    }
+
+    @Bean
+    public WxMpTemplateMsgService wxMpTemplateMsgService() {
+        WxMpTemplateMsgService wxMpTemplateMsgService = new WxMpTemplateMsgServiceImpl(wxMpService());
+        return wxMpTemplateMsgService;
     }
 
 }

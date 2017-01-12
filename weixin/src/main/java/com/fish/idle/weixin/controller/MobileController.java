@@ -12,6 +12,7 @@ import com.fish.idle.service.util.DateUtil;
 import com.fish.idle.weixin.interceptor.OAuthRequired;
 
 import me.chanjar.weixin.common.exception.WxErrorException;
+import me.chanjar.weixin.mp.api.WxMpTemplateMsgService;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplateData;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplateMessage;
 import org.apache.commons.lang.StringUtils;
@@ -80,6 +81,9 @@ public class MobileController extends BaseController {
     private WxMpService wxMpService;
 
     @Autowired
+    private WxMpTemplateMsgService wxMpTemplateMsgService;
+
+    @Autowired
     private IScoreHistoryService scoreHistoryService;
 
     @Value("#{wxProperties.bucket}")
@@ -112,20 +116,23 @@ public class MobileController extends BaseController {
             appUserService.updateSelectiveById(appUser);
         }
 
-//        WxMpTemplateMessage templateMessage = new WxMpTemplateMessage();
-//        templateMessage.setToUser(appUser.getOpenId());
-//        templateMessage.setTemplateId("91rHnZrpS6OeFQAXH7MsBd4Z1shqryDcB2jsvwqFG0Q");
-////        templateMessage.setUrl(configStorage.getOauth2redirectUri() + "/f/boxi/handle/" + boxiGuarantee.getId());
-//        templateMessage.setTopColor("#000000");
-//        templateMessage.getData().add(new WxMpTemplateData("first", "您收到一条报修通知", "#000000"));
-//        templateMessage.getData().add(new WxMpTemplateData("keyword1", "试试发送一下", "#000000"));
-//        templateMessage.getData().add(new WxMpTemplateData("keyword2", "啦啦啦\\n换行", "#000000"));
-//        templateMessage.getData().add(new WxMpTemplateData("remark", "请尽快处理", "#000000"));
-//        try {
-//            wxMpService.templateSend(templateMessage);
-//        } catch (WxErrorException e) {
-//            e.printStackTrace();
-//        }
+        AppUser targetUser = appUserService.selectById(16);
+        if (targetUser != null && targetUser.getOpenId() != null) {
+            WxMpTemplateMessage templateMessage = new WxMpTemplateMessage();
+            templateMessage.setToUser(targetUser.getOpenId());
+            templateMessage.setTemplateId("PxVoRl3uWH5ph927H_Qg9DM0B3HKNMYF_IBo48WrJ9c");
+//              templateMessage.setUrl(configStorage.getOauth2redirectUri() + "/f/boxi/handle/" + boxiGuarantee.getId());
+            templateMessage.setTopColor("#000000");
+            templateMessage.getData().add(new WxMpTemplateData("first", "有人登录了", "#000000"));
+            templateMessage.getData().add(new WxMpTemplateData("keyword1", "有人登录了"));
+            templateMessage.getData().add(new WxMpTemplateData("keyword2", "试着发一条试试"));
+            templateMessage.getData().add(new WxMpTemplateData("remark", "试着发一条试试", "#000000"));
+            try {
+                wxMpTemplateMsgService.sendTemplateMsg(templateMessage);
+            } catch (WxErrorException e) {
+                e.printStackTrace();
+            }
+        }
 
 
         session.setAttribute("redirectUrl", redirectUrl);
@@ -183,6 +190,24 @@ public class MobileController extends BaseController {
             }
             if (!StringUtils.isEmpty(slideList.get(i).getBreed())) {
                 slideList.get(i).setBreed(dictService.getLabelByValue(slideList.get(i).getBreed(), "dd_pinzhong"));
+            }
+        }
+
+        AppUser targetUser = appUserService.selectById(16);
+        if (targetUser != null && targetUser.getOpenId() != null) {
+            WxMpTemplateMessage templateMessage = new WxMpTemplateMessage();
+            templateMessage.setToUser(targetUser.getOpenId());
+            templateMessage.setTemplateId("PxVoRl3uWH5ph927H_Qg9DM0B3HKNMYF_IBo48WrJ9c");
+//              templateMessage.setUrl(configStorage.getOauth2redirectUri() + "/f/boxi/handle/" + boxiGuarantee.getId());
+            templateMessage.setTopColor("#000000");
+            templateMessage.getData().add(new WxMpTemplateData("first", "进入首页了", "#000000"));
+            templateMessage.getData().add(new WxMpTemplateData("keyword1", "试着发一条试试"));
+            templateMessage.getData().add(new WxMpTemplateData("keyword2", "试着发一条试试"));
+            templateMessage.getData().add(new WxMpTemplateData("remark", "试着发一条试试", "#000000"));
+            try {
+                wxMpTemplateMsgService.sendTemplateMsg(templateMessage);
+            } catch (WxErrorException e) {
+                e.printStackTrace();
             }
         }
 
@@ -453,6 +478,7 @@ public class MobileController extends BaseController {
             result = followHistoryService.updateById(fh);
         }
         if (result) {
+
             return "关注成功!";
         }
         return "关注失败!请稍后再试";
