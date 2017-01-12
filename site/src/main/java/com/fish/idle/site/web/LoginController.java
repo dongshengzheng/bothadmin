@@ -38,6 +38,11 @@ public class LoginController extends BaseController {
         return "redirect:/";
     }
 
+    @RequestMapping(value = "/wx_login", method = RequestMethod.GET)
+    public String wxLogin() {
+        return "redirect:/";
+    }
+
 
     /**
      * 请求登录，验证用户

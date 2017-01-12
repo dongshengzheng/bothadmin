@@ -79,15 +79,15 @@
 <script type="text/javascript" src="${staticPath}/assets/js/app.js"></script>
 <script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
 <script type="text/javascript">
-    //    var obj = new WxLogin({
-    //        id: "login_container",
-    //        appid: "",
-    //        scope: "",
-    //        redirect_uri: "",
-    //        state: "",
-    //        style: "",
-    //        href: ""
-    //    });
+    var obj = new WxLogin({
+        id: "login_container",
+        appid: "wx91ad0b554aceca98",
+        scope: "snsapi_login",
+        redirect_uri: "https%3A%2F%2F${staticPath}/wx_login",
+        state: "111",
+        style: "",
+        href: ""
+    });
 
 
     $("#loginForm").validate({
@@ -128,6 +128,8 @@
         fade: 1000,
         duration: 7000
     });
+
+
 </script>
 <!--[if lt IE 9]>
 <script src="${staticPath}/assets/plugins/respond.js"></script>
