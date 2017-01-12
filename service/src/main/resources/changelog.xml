@@ -407,8 +407,8 @@
             INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`, `del_flag`, `points`) VALUES ('40', '乌金皮（黑色）', 'dd_ziranshipi', '自然皮石', 40, '11,101', '', 0, NULL);
             INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`, `del_flag`, `points`) VALUES ('50', '混合色', 'dd_ziranshipi', '自然皮石', 50, '11,101', '', 0, NULL);
             INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`, `del_flag`, `points`) VALUES ('60', '无', 'dd_ziranshipi', '自然皮石', 60, '11,101', '', 0, NULL);
-            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`, `del_flag`, `points`) VALUES ('6', '透明至微透明\r\n细腻、温润、凝结\r\n', 'dd_ganguan', '感官', 60, '11,172,202', '', 0, NULL);
-            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`, `del_flag`, `points`) VALUES ('7', '微透明至不透明\r\n细腻、温润、凝结\r\n', 'dd_ganguan', '感官', 70, '11,172,202', '', 0, NULL);
+            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`, `del_flag`, `points`) VALUES ('6', '透明至微透明,细腻、温润、凝结', 'dd_ganguan', '感官', 60, '11,172,202', '', 0, NULL);
+            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`, `del_flag`, `points`) VALUES ('7', '微透明至不透明,细腻、温润、凝结', 'dd_ganguan', '感官', 70, '11,172,202', '', 0, NULL);
             INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`, `del_flag`, `points`) VALUES ('8', '不透明、发干', 'dd_ganguan', '感官', 80, '11,172,202', '', 0, NULL);
             INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`, `del_flag`, `points`) VALUES ('80', '金黄色', 'dd_dise', '地色', 80, '11,172,202', '', 0, NULL);
             INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`, `del_flag`, `points`) VALUES ('90', '橘黄色', 'dd_dise', '地色', 83, '11,172,202', '', 0, NULL);
@@ -491,6 +491,11 @@
             update `sys_dict` set parent_id ='101,220' where id =227;
             update `sys_dict` set parent_id ='101,220' where id =228;
             update `sys_dict` set parent_id ='101,220' where id =229;
+        </sql>
+    </changeSet>
+    <changeSet author="WangGuoCheng" id="18817711870-33">
+        <sql>
+            ALTER TABLE `dd_works_level` ADD COLUMN `ziranshipi` VARCHAR(64) NULL COMMENT '自然石皮';
         </sql>
     </changeSet>
 
