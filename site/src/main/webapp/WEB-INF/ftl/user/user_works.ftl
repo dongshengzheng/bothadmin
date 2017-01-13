@@ -92,12 +92,12 @@
         <!-- Profile Content -->
         <div class="col-md-9">
             <div class="profile-body margin-bottom-20">
-                <div class="tab-v1">
+                <div class="ab-v1">
                     <ul class="nav nav-justified nav-tabs">
-                        <li class="active1"><a data-toggle="tab" href="#pass">审核通过</a></li>
-                        <li><a data-toggle="tab" href="#unpass">审核失败</a></li>
-                        <li><a data-toggle="tab" href="#checking">审核中</a></li>
-                        <li><a data-toggle="tab" href="#drafts">草稿箱</a></li>
+                        <li class="active" id="pass"><a data-toggle="tab" href="#pass">审核通过</a></li>
+                        <li id="unpass"><a data-toggle="tab" href="#unpass">审核失败</a></li>
+                        <li id="checking"><a data-toggle="tab" href="#checking">审核中</a></li>
+                        <li id="drafts"><a data-toggle="tab" href="#drafts">草稿箱</a></li>
                     </ul>
                     <div class="tab-content">
                         <div id="pass" class="profile-edit tab-pane fade in active">
@@ -429,7 +429,7 @@
                 $("#checking").addClass("in active")
                 $("#pass").removeClass("in active")
             } else if (${type}=="4"){
-                $("#drafts").addClass("in active")
+                    $("#drafts").addClass("in active")
                 $("#pass").removeClass("in active")
             }
         }

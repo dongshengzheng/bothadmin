@@ -7,4 +7,5 @@
 **/rebel.xml
 **/gen.xml
 **/.DS_Store
+weixin/src/main/resources/wx.properties
 commons/
