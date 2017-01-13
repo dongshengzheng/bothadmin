@@ -73,8 +73,6 @@ public class LoginController extends BaseController {
             try {
                 accessToken = wxMpService.oauth2getAccessToken(code);
                 wxMpUser = wxMpService.oauth2getUserInfo(accessToken, null);
-                System.out.println("accessToken:" + accessToken + "---------");
-                System.out.println("wxMpUser:" + wxMpUser + "---------");
             } catch (WxErrorException e) {
                 response.sendRedirect(wxMpService.oauth2buildAuthorizationUrl(resultUrl, WxConsts.OAUTH2_SCOPE_USER_INFO, null));
             }
@@ -97,12 +95,11 @@ public class LoginController extends BaseController {
             appUser.setLastLogin(new Date());
             appUserService.updateSelectiveById(appUser);
         }
-        appUserService.insert(user);
         Subject subject = SecurityUtils.getSubject();
         Session session = subject.getSession();
-        session.setAttribute(Const.SITE_SESSION_USER, user);
+        session.setAttribute(Const.SITE_SESSION_USER, appUser);
         session.setAttribute("wxMpUser", wxMpUser);
-        UsernamePasswordToken token = new UsernamePasswordToken(user.getLoginName(), user.getPassword());
+        UsernamePasswordToken token = new UsernamePasswordToken(appUser.getLoginName(), appUser.getPassword());
         JSONObject jsonObject = new JSONObject();
         try {
             subject.login(token);
@@ -111,7 +108,7 @@ public class LoginController extends BaseController {
         }
         jsonObject.put("suc", true);
 
-        session.setAttribute(Const.SITE_SESSION_USER, user);
+        session.setAttribute(Const.SITE_SESSION_USER, appUser);
 
         return "redirect:/";
     }
