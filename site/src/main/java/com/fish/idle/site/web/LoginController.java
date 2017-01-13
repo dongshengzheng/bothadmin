@@ -13,6 +13,8 @@ import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
 import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
 import me.chanjar.weixin.mp.bean.result.WxMpUser;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.impl.Log4JLogger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -71,6 +73,9 @@ public class LoginController extends BaseController {
             try {
                 accessToken = wxMpService.oauth2getAccessToken(code);
                 wxMpUser = wxMpService.oauth2getUserInfo(accessToken, null);
+                Log log = new Log4JLogger();
+                log.warn("accessToken:" + accessToken + "---------");
+                log.warn("wxMpUser:" + wxMpUser + "---------");
             } catch (WxErrorException e) {
                 response.sendRedirect(wxMpService.oauth2buildAuthorizationUrl(resultUrl, WxConsts.OAUTH2_SCOPE_USER_INFO, null));
             }
