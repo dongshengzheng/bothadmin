@@ -19,7 +19,7 @@
     <div class="container">
         <h1 class="pull-left">作品登记</h1>
         <ul class="pull-right breadcrumb">
-            <li><a href="/l">首页</a></li>
+            <li><a href="/">首页</a></li>
             <li class="active">作品等级</li>
         </ul>
     </div>
@@ -171,7 +171,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" for="liu">活筋</label>
+                            <label class="col-sm-2 control-label" for="liu">绺(活筋)</label>
                             <div class=" col-sm-4">
                                 <select class="form-control selectpicker" name="liu">
                                     <option value="">请选择</option>
@@ -201,8 +201,9 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label"></label>
                             <div class=" col-sm-4">
-                                <button data-type="0" class="btn btn-u btn-u-red info_btn">下一步</button>
-                                <button data-type="0" class="btn btn-u btn-u-default info_btn" style="margin-left: 20px">存为草稿
+                                <input type="hidden" id="submit-type" name="submit-type"/>
+                                <button data-type="0" submit-type="0" class="btn btn-u btn-u-red info_btn">下一步</button>
+                                <button data-type="0" submit-type="4" class="btn btn-u btn-u-default info_btn" style="margin-left: 20px">存为草稿
                                 </button>
                             </div>
                         </div>
@@ -224,7 +225,8 @@
     $(document).ready(function () {
 
         $(".info_btn").bind("click", function () {
-            $("#status").val($(this).attr("data-type"))
+            $("#status").val($(this).attr("data-type"));
+            $("#submit-type").val($(this).attr("submit-type"));
         });
 
         var $form = $("#works_level");
@@ -233,7 +235,7 @@
                 $(form).ajaxSubmit({
                     success: function (data) {
                         if (data.suc) {
-                            if ($("#status").val() == 0) {
+                            if ($("#submit-type").val() == 0) {
                                 // 跳转到下一步
                                 window.location.href = "/works/add/${works.id}/report";
                             } else {

@@ -81,6 +81,18 @@ public class UserController extends BaseController {
         return "user/user_works";
     }
 
+    /**
+     * 我的作品/审核中或者草稿
+     * 草稿 审核中 未通过 已通过
+     *
+     * @return
+     */
+    @RequestMapping(value = "works/{type}", method = RequestMethod.GET)
+    public String worksHap(@PathVariable String type, ModelMap map) {
+        map.put("type",type);
+        return "user/user_works";
+    }
+
     //我的作品加载更多
     @RequestMapping(value = "works_load/{type}", method = RequestMethod.GET)
     @ResponseBody

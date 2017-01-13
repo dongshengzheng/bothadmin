@@ -398,6 +398,7 @@
         loadUnPass(1);
         loadChecking(1);
         loadDrafts(1);
+        positioningWorksType();
         //审核通过
         function loadPass(pagePassIndex) {
             $.get("/user/works_load/3", {pageIndex: pagePassIndex}, function (data) {
@@ -423,6 +424,15 @@
             });
         }
 
+        function positioningWorksType() {
+            if(${type}=="3"){
+                $("#checking").addClass("in active")
+                $("#pass").removeClass("in active")
+            } else if (${type}=="4"){
+                $("#drafts").addClass("in active")
+                $("#pass").removeClass("in active")
+            }
+        }
 
         $("#passBtn").on("click", function () {
             if (passHasMore) {

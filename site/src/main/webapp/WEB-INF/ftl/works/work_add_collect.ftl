@@ -21,7 +21,7 @@
     <div class="container">
         <h1 class="pull-left">作品登记</h1>
         <ul class="pull-right breadcrumb">
-            <li><a href="/l">首页</a></li>
+            <li><a href="/">首页</a></li>
             <li class="active">收藏者信息</li>
         </ul>
     </div>
@@ -145,8 +145,9 @@
                         <div class="form-group">
                             <label class="col-sm-2" for=""></label>
                             <div class="col-sm-10">
-                                <button data-type="1" type="submit" class="btn btn-u btn-u-red info_btn">提交审核</button>
-                                <button data-type="0" type="submit" class="btn btn-u btn-u-default info_btn"
+                                <input type="hidden" id="submit-type" name="submit-type"/>
+                                <button data-type="1" submit-type="3" type="submit" class="btn btn-u btn-u-red info_btn">提交审核</button>
+                                <button data-type="0" submit-type="0" type="submit" class="btn btn-u btn-u-default info_btn"
                                         style="margin-left: 20px">存为草稿
                                 </button>
                             </div>
@@ -186,7 +187,7 @@
                 $(form).ajaxSubmit({
                     success: function (data) {
                         if (data.suc) {
-                            if ($("#status").val() == 0) {
+                            if ($("#submit-type").val() == 0) {
                                 // 跳转到下一步
                                 window.location.href = "/user";
                             } else {
@@ -208,7 +209,8 @@
 
         //存为草稿info_btn
         $(".info_btn").bind("click", function () {
-            $("#status").val($(this).attr("data-type"))
+            $("#status").val($(this).attr("data-type"));
+            $("#submit-type").val($(this).attr("submit-type"));
         });
 
         $("#providerDetails").on("click", function () {

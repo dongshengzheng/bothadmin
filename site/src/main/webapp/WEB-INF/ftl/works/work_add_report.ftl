@@ -20,7 +20,7 @@
     <div class="container">
         <h1 class="pull-left">作品登记</h1>
         <ul class="pull-right breadcrumb">
-            <li><a href="/l">首页</a></li>
+            <li><a href="/">首页</a></li>
             <li class="active">评估报告</li>
         </ul>
     </div>
@@ -132,10 +132,11 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label"></label>
                             <div class="col-sm-10">
-                                <button data-type="0" class="btn btn-u btn-u-red info_btn">下一步</button>
-                                <button data-type="0" class="btn btn-u btn-u-default info_btn"
-                                        style="margin-left: 20px">存为草稿
-                                    <button data-type="1" class="btn btn-u btn-u btn-u-orange info_btn"
+                                <input type="hidden" id="submit-type" name="submit-type"/>
+                                <button data-type="0" submit-type="0" class="btn btn-u btn-u-red info_btn">下一步</button>
+                                <button data-type="0" submit-type="3" class="btn btn-u btn-u-default info_btn"
+                                        style="margin-left: 20px">存为草稿</button>
+                                <button data-type="1" submit-type="4" class="btn btn-u btn-u btn-u-orange info_btn"
                                             style="margin-left: 20px">提交审核
                                     </button>
                             </div>
@@ -169,7 +170,8 @@
 
         $('.date-picker').datepicker({autoclose: true, todayHighlight: true, format: 'yyyy-mm-dd'});
         $(".info_btn").bind("click", function () {
-            $("#status").val($(this).attr("data-type"))
+            $("#status").val($(this).attr("data-type"));
+            $("#submit-type").val($(this).attr("submit-type"));
         });
 
         var $form = $("#works_info");
@@ -178,12 +180,12 @@
                 $(form).ajaxSubmit({
                     success: function (data) {
                         if (data.suc) {
-                            if ($("#status").val() == 0) {
+                            if ($("#submit-type").val() == 0) {
                                 // 跳转到下一步
                                 window.location.href = "/works/add/${works.id}/collect";
                             } else {
                                 // 跳转到个人中心-> 我的作品->草稿里面
-                                window.location.href = "/user";
+                                window.location.href = "/user/works/"+$("#submit-type").val();
                             }
                         } else {
                             alert(data.msg);
