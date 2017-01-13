@@ -376,20 +376,30 @@
 
     <changeSet author="SunHan" id="15862614903-027">
         <sql>
-            ALTER TABLE `sys_dict` ADD COLUMN `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键' FIRST, ADD PRIMARY KEY (`id`);
+            ALTER TABLE `sys_dict` ADD COLUMN `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键' FIRST, ADD PRIMARY KEY
+            (`id`);
         </sql>
     </changeSet>
     <changeSet author="WangShun" id="15950097942-030">
         <sql>
-            INSERT INTO sys_dict(value,label,type,description,sort,parent_id,remarks,del_flag,points) VALUES (1,'作品被浏览','score_type','积分类型',10,'0','',0,1);
-            INSERT INTO sys_dict(value,label,type,description,sort,parent_id,remarks,del_flag,points) VALUES (2,'作品被分享','score_type','积分类型',20,'0','',0,2);
-            INSERT INTO sys_dict(value,label,type,description,sort,parent_id,remarks,del_flag,points) VALUES (3,'作品被诠释','score_type','积分类型',30,'0','',0,0);
-            INSERT INTO sys_dict(value,label,type,description,sort,parent_id,remarks,del_flag,points) VALUES (4,'分享他人作品','score_type','积分类型',40,'0','',0,1);
-            INSERT INTO sys_dict(value,label,type,description,sort,parent_id,remarks,del_flag,points) VALUES (5,'诠释他人作品','score_type','积分类型',50,'0','',0,0);
-            INSERT INTO sys_dict(value,label,type,description,sort,parent_id,remarks,del_flag,points) VALUES (6,'提现','score_type','积分类型',60,'0','',0,0);
-            INSERT INTO sys_dict(value,label,type,description,sort,parent_id,remarks,del_flag,points) VALUES (7,'充值','score_type','积分类型',70,'0','',0,0);
-            INSERT INTO sys_dict(value,label,type,description,sort,parent_id,remarks,del_flag,points) VALUES (8,'被他人关注','score_type','积分类型',80,'0','',0,2);
-            INSERT INTO sys_dict(value,label,type,description,sort,parent_id,remarks,del_flag,points) VALUES (9,'作品转让','score_type','积分类型',90,'0','',0,0);
+            INSERT INTO sys_dict(value,label,type,description,sort,parent_id,remarks,del_flag,points) VALUES
+            (1,'作品被浏览','score_type','积分类型',10,'0','',0,1);
+            INSERT INTO sys_dict(value,label,type,description,sort,parent_id,remarks,del_flag,points) VALUES
+            (2,'作品被分享','score_type','积分类型',20,'0','',0,2);
+            INSERT INTO sys_dict(value,label,type,description,sort,parent_id,remarks,del_flag,points) VALUES
+            (3,'作品被诠释','score_type','积分类型',30,'0','',0,0);
+            INSERT INTO sys_dict(value,label,type,description,sort,parent_id,remarks,del_flag,points) VALUES
+            (4,'分享他人作品','score_type','积分类型',40,'0','',0,1);
+            INSERT INTO sys_dict(value,label,type,description,sort,parent_id,remarks,del_flag,points) VALUES
+            (5,'诠释他人作品','score_type','积分类型',50,'0','',0,0);
+            INSERT INTO sys_dict(value,label,type,description,sort,parent_id,remarks,del_flag,points) VALUES
+            (6,'提现','score_type','积分类型',60,'0','',0,0);
+            INSERT INTO sys_dict(value,label,type,description,sort,parent_id,remarks,del_flag,points) VALUES
+            (7,'充值','score_type','积分类型',70,'0','',0,0);
+            INSERT INTO sys_dict(value,label,type,description,sort,parent_id,remarks,del_flag,points) VALUES
+            (8,'被他人关注','score_type','积分类型',80,'0','',0,2);
+            INSERT INTO sys_dict(value,label,type,description,sort,parent_id,remarks,del_flag,points) VALUES
+            (9,'作品转让','score_type','积分类型',90,'0','',0,0);
         </sql>
     </changeSet>
     <changeSet author="WangShun" id="15950097942-031">
@@ -400,22 +410,38 @@
     </changeSet>
     <changeSet author="WangGuoCheng" id="18817711870-032">
         <sql>
-            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`, `del_flag`, `points`) VALUES ('21', '刚地', 'dd_zhidi2', '质地二', 21, '11,172,209', '', 0, NULL);
-            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`, `del_flag`, `points`) VALUES ('10', '黄金皮（黄色）', 'dd_ziranshipi', '自然皮石', 10, '11,101', '', 0, NULL);
-            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`, `del_flag`, `points`) VALUES ('20', '白银皮（白色）', 'dd_ziranshipi', '自然皮石', 20, '11,101', '', 0, NULL);
-            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`, `del_flag`, `points`) VALUES ('30', '金银皮（黄白色）', 'dd_ziranshipi', '自然皮石', 30, '11,101', '', 0, NULL);
-            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`, `del_flag`, `points`) VALUES ('40', '乌金皮（黑色）', 'dd_ziranshipi', '自然皮石', 40, '11,101', '', 0, NULL);
-            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`, `del_flag`, `points`) VALUES ('50', '混合色', 'dd_ziranshipi', '自然皮石', 50, '11,101', '', 0, NULL);
-            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`, `del_flag`, `points`) VALUES ('60', '无', 'dd_ziranshipi', '自然皮石', 60, '11,101', '', 0, NULL);
-            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`, `del_flag`, `points`) VALUES ('6', '透明至微透明,细腻、温润、凝结', 'dd_ganguan', '感官', 60, '11,172,202', '', 0, NULL);
-            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`, `del_flag`, `points`) VALUES ('7', '微透明至不透明,细腻、温润、凝结', 'dd_ganguan', '感官', 70, '11,172,202', '', 0, NULL);
-            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`, `del_flag`, `points`) VALUES ('8', '不透明、发干', 'dd_ganguan', '感官', 80, '11,172,202', '', 0, NULL);
-            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`, `del_flag`, `points`) VALUES ('80', '金黄色', 'dd_dise', '地色', 80, '11,172,202', '', 0, NULL);
-            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`, `del_flag`, `points`) VALUES ('90', '橘黄色', 'dd_dise', '地色', 83, '11,172,202', '', 0, NULL);
-            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`, `del_flag`, `points`) VALUES ('91', '蜜蜡黄色', 'dd_dise', '地色', 86, '11,172,202', '', 0, NULL);
-            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`, `del_flag`, `points`) VALUES ('92', '土黄色', 'dd_dise', '地色', 89, '11,172,202', '', 0, NULL);
-            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`, `del_flag`, `points`) VALUES ('93', '淡黄色', 'dd_dise', '地色', 92, '11,172,202', '', 0, NULL);
-            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`, `del_flag`, `points`) VALUES ('1', '无裂', 'dd_lie', '裂', 10, '11,101,172,202,220', '', 0, NULL);
+            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`,
+            `del_flag`, `points`) VALUES ('21', '刚地', 'dd_zhidi2', '质地二', 21, '11,172,209', '', 0, NULL);
+            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`,
+            `del_flag`, `points`) VALUES ('10', '黄金皮（黄色）', 'dd_ziranshipi', '自然皮石', 10, '11,101', '', 0, NULL);
+            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`,
+            `del_flag`, `points`) VALUES ('20', '白银皮（白色）', 'dd_ziranshipi', '自然皮石', 20, '11,101', '', 0, NULL);
+            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`,
+            `del_flag`, `points`) VALUES ('30', '金银皮（黄白色）', 'dd_ziranshipi', '自然皮石', 30, '11,101', '', 0, NULL);
+            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`,
+            `del_flag`, `points`) VALUES ('40', '乌金皮（黑色）', 'dd_ziranshipi', '自然皮石', 40, '11,101', '', 0, NULL);
+            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`,
+            `del_flag`, `points`) VALUES ('50', '混合色', 'dd_ziranshipi', '自然皮石', 50, '11,101', '', 0, NULL);
+            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`,
+            `del_flag`, `points`) VALUES ('60', '无', 'dd_ziranshipi', '自然皮石', 60, '11,101', '', 0, NULL);
+            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`,
+            `del_flag`, `points`) VALUES ('6', '透明至微透明,细腻、温润、凝结', 'dd_ganguan', '感官', 60, '11,172,202', '', 0, NULL);
+            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`,
+            `del_flag`, `points`) VALUES ('7', '微透明至不透明,细腻、温润、凝结', 'dd_ganguan', '感官', 70, '11,172,202', '', 0, NULL);
+            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`,
+            `del_flag`, `points`) VALUES ('8', '不透明、发干', 'dd_ganguan', '感官', 80, '11,172,202', '', 0, NULL);
+            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`,
+            `del_flag`, `points`) VALUES ('80', '金黄色', 'dd_dise', '地色', 80, '11,172,202', '', 0, NULL);
+            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`,
+            `del_flag`, `points`) VALUES ('90', '橘黄色', 'dd_dise', '地色', 83, '11,172,202', '', 0, NULL);
+            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`,
+            `del_flag`, `points`) VALUES ('91', '蜜蜡黄色', 'dd_dise', '地色', 86, '11,172,202', '', 0, NULL);
+            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`,
+            `del_flag`, `points`) VALUES ('92', '土黄色', 'dd_dise', '地色', 89, '11,172,202', '', 0, NULL);
+            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`,
+            `del_flag`, `points`) VALUES ('93', '淡黄色', 'dd_dise', '地色', 92, '11,172,202', '', 0, NULL);
+            INSERT INTO `sys_dict` ( `value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`,
+            `del_flag`, `points`) VALUES ('1', '无裂', 'dd_lie', '裂', 10, '11,101,172,202,220', '', 0, NULL);
             update `sys_dict` set parent_id ='101,220' where id = 1;
             update `sys_dict` set parent_id ='101,220' where id =2;
             update `sys_dict` set parent_id ='101,220' where id =3;
@@ -501,37 +527,49 @@
 
     <changeSet author="WangGuoCheng" id="18817711870-34">
         <sql>
-            UPDATE `sys_dict` SET `label`='4-4.5' WHERE  `id`=1;
-            UPDATE `sys_dict` SET `parent_id`='101,220' WHERE  `id`=75;
-            UPDATE `sys_dict` SET `label`='绺、格、裂、复位黏结' WHERE  `id`=94;
-            UPDATE `sys_dict` SET `label`='裂缝(裂隙注胶)' WHERE  `id`=198;
-            UPDATE `sys_dict` SET `value`='1' WHERE  `id`=141;
-            UPDATE `sys_dict` SET `label`='内在及表面混合含血' WHERE  `id`=167;
-            UPDATE `sys_dict` SET `label`='透明至微透明、细腻、温润、凝结' WHERE  `id`=247;
-            UPDATE `sys_dict` SET `label`='微透明至不透明、细腻、温润、凝结' WHERE  `id`=248;
-            UPDATE `sys_dict` SET `parent_id`='11,172,209,101,220' WHERE  `id`=170;
-            UPDATE `sys_dict` SET `parent_id`='101,220' WHERE  `id`=203;
-            UPDATE `sys_dict` SET `parent_id`='101,220' WHERE  `id`=6;
-            UPDATE `sys_dict` SET `parent_id`='101,220' WHERE  `id`=10;
-            UPDATE `sys_dict` SET `parent_id`='101,220' WHERE  `id`=186;
-            UPDATE `sys_dict` SET `value`='3',`sort`='30' WHERE  `id`=186;
-            UPDATE `sys_dict` SET `value`='4',`sort`='40' WHERE  `id`=6;
-            UPDATE `sys_dict` SET `value`='7' WHERE  `id`=36;
+            UPDATE `sys_dict` SET `label`='4-4.5' WHERE `id`=1;
+            UPDATE `sys_dict` SET `parent_id`='101,220' WHERE `id`=75;
+            UPDATE `sys_dict` SET `label`='绺、格、裂、复位黏结' WHERE `id`=94;
+            UPDATE `sys_dict` SET `label`='裂缝(裂隙注胶)' WHERE `id`=198;
+            UPDATE `sys_dict` SET `value`='1' WHERE `id`=141;
+            UPDATE `sys_dict` SET `label`='内在及表面混合含血' WHERE `id`=167;
+            UPDATE `sys_dict` SET `label`='透明至微透明、细腻、温润、凝结' WHERE `id`=247;
+            UPDATE `sys_dict` SET `label`='微透明至不透明、细腻、温润、凝结' WHERE `id`=248;
+            UPDATE `sys_dict` SET `parent_id`='11,172,209,101,220' WHERE `id`=170;
+            UPDATE `sys_dict` SET `parent_id`='101,220' WHERE `id`=203;
+            UPDATE `sys_dict` SET `parent_id`='101,220' WHERE `id`=6;
+            UPDATE `sys_dict` SET `parent_id`='101,220' WHERE `id`=10;
+            UPDATE `sys_dict` SET `parent_id`='101,220' WHERE `id`=186;
+            UPDATE `sys_dict` SET `value`='3',`sort`='30' WHERE `id`=186;
+            UPDATE `sys_dict` SET `value`='4',`sort`='40' WHERE `id`=6;
+            UPDATE `sys_dict` SET `value`='7' WHERE `id`=36;
         </sql>
     </changeSet>
 
     <changeSet author="WangGuoCheng" id="18817711870-35">
         <sql>
-            UPDATE `sys_dict` SET `value`='0',`sort`='0',`parent_id`='11,172,209' WHERE  `id`=88;
-            UPDATE `sys_dict` SET parent_id='101,220' WHERE  `id`=294;
-            UPDATE `sys_dict` SET parent_id='11,172,209',label='透明至微透明、细腻、温润、凝结' WHERE  `id`=286;
-            UPDATE `sys_dict` SET parent_id='11,172,209',label='微透明至不透明、细腻、温润、凝结' WHERE  `id`=287;
-            UPDATE `sys_dict` SET parent_id='11,172,209' WHERE  `id`=288;
-            UPDATE `sys_dict` SET parent_id='11,172,209' WHERE  `id`=289;
-            UPDATE `sys_dict` SET parent_id='11,172,209' WHERE  `id`=290;
-            UPDATE `sys_dict` SET parent_id='11,172,209' WHERE  `id`=291;
-            UPDATE `sys_dict` SET parent_id='11,172,209' WHERE  `id`=292;
-            UPDATE `sys_dict` SET parent_id='11,172,209' WHERE  `id`=293;
+            UPDATE `sys_dict` SET `value`='0',`sort`='0',`parent_id`='11,172,209' WHERE `id`=88;
+            UPDATE `sys_dict` SET parent_id='101,220' WHERE `id`=294;
+            UPDATE `sys_dict` SET parent_id='11,172,209',label='透明至微透明、细腻、温润、凝结' WHERE `id`=286;
+            UPDATE `sys_dict` SET parent_id='11,172,209',label='微透明至不透明、细腻、温润、凝结' WHERE `id`=287;
+            UPDATE `sys_dict` SET parent_id='11,172,209' WHERE `id`=288;
+            UPDATE `sys_dict` SET parent_id='11,172,209' WHERE `id`=289;
+            UPDATE `sys_dict` SET parent_id='11,172,209' WHERE `id`=290;
+            UPDATE `sys_dict` SET parent_id='11,172,209' WHERE `id`=291;
+            UPDATE `sys_dict` SET parent_id='11,172,209' WHERE `id`=292;
+            UPDATE `sys_dict` SET parent_id='11,172,209' WHERE `id`=293;
+        </sql>
+    </changeSet>
+    <changeSet author="WangShun" id="15950097942-032">
+        <sql>
+            ALTER TABLE `sys_app_user` ADD COLUMN `union_id` varchar(200) DEFAULT NULL COMMENT
+            'unionId 判断用户唯一性标志';
+        </sql>
+    </changeSet>
+    <changeSet author="WangShun" id="15950097942-033">
+        <sql>
+            ALTER TABLE `sys_app_user` ADD COLUMN `type` int(3) DEFAULT 0 COMMENT
+            '用户类型';
         </sql>
     </changeSet>
 </databaseChangeLog>

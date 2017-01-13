@@ -37,30 +37,30 @@
 
 <body>
 <div class="container">
-    <form id="loginForm" class="reg-block" action="/login" method="post">
-        <div class="reg-block-header" style="margin-bottom: 5px;">
-            <h2>登录</h2>
+<#--<form id="loginForm" class="reg-block" action="/login" method="post">-->
+<#--<div class="reg-block-header" style="margin-bottom: 5px;">-->
+<#--<h2>登录</h2>-->
 
-            <p>没有账户？去<a class="color-green" href="register">注册</a>吧。</p>
-        </div>
-        <div id="errInfo" class="form-info error">&nbsp;</div>
-        <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-            <input id="loginName" name="loginName" type="text" class="form-control" placeholder="用户名">
-        </div>
-        <div class="form-info error">&nbsp;</div>
-        <div class="input-group ">
-            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-            <input id="password" name="password" type="password" class="form-control" placeholder="密码">
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <button type="submit" class="btn-u btn-block">登录</button>
-            </div>
-        </div>
-    </form>
-    <div id="login_container">
+<#--<p>没有账户？去<a class="color-green" href="register">注册</a>吧。</p>-->
+<#--</div>-->
+<#--<div id="errInfo" class="form-info error">&nbsp;</div>-->
+<#--<div class="input-group">-->
+<#--<span class="input-group-addon"><i class="fa fa-envelope"></i></span>-->
+<#--<input id="loginName" name="loginName" type="text" class="form-control" placeholder="用户名">-->
+<#--</div>-->
+<#--<div class="form-info error">&nbsp;</div>-->
+<#--<div class="input-group ">-->
+<#--<span class="input-group-addon"><i class="fa fa-lock"></i></span>-->
+<#--<input id="password" name="password" type="password" class="form-control" placeholder="密码">-->
+<#--</div>-->
+<#--<hr>-->
+<#--<div class="row">-->
+<#--<div class="col-md-10 col-md-offset-1">-->
+<#--<button type="submit" class="btn-u btn-block">登录</button>-->
+<#--</div>-->
+<#--</div>-->
+<#--</form>-->
+    <div id="login_container" style="width: 40%;margin: auto;text-align: center;margin-top: 5%">
         微信登录
     </div>
 </div>
@@ -81,43 +81,43 @@
 <script type="text/javascript">
     var obj = new WxLogin({
         id: "login_container",
-        appid: "wx91ad0b554aceca98",
-        scope: "snsapi_login",
-        redirect_uri: "http%3A%2F%2Fwww.mschuangyi.com/wx_login",
+        appid: "${appId}",
+        scope: "${scope}",
+        redirect_uri: "http%3A%2F%2F${redirectUrl}/wx_login",
         state: "111",
         style: "",
         href: ""
     });
 
 
-    $("#loginForm").validate({
-        errorPlacement: function (error, element) {
-            element.parent().prev().html(error.html());
-        },
-        rules: {
-            loginName: "required",
-            password: "required"
-        },
-        messages: {
-            loginName: {required: "用户名必填"},
-            password: {required: "密码必填"}
-        },
-        submitHandler: function (form) {
-            $(form).ajaxSubmit({
-                success: function (data) {
-                    if (data.result == '') {
-                        window.location.href = "/"
-                    } else {
-                        $("#errInfo").html(data.result);
-                    }
-                },
-                error: function () {
-                    alert("error");
-                    return;
-                }
-            });
-        }
-    });
+    //    $("#loginForm").validate({
+    //        errorPlacement: function (error, element) {
+    //            element.parent().prev().html(error.html());
+    //        },
+    //        rules: {
+    //            loginName: "required",
+    //            password: "required"
+    //        },
+    //        messages: {
+    //            loginName: {required: "用户名必填"},
+    //            password: {required: "密码必填"}
+    //        },
+    //        submitHandler: function (form) {
+    //            $(form).ajaxSubmit({
+    //                success: function (data) {
+    //                    if (data.result == '') {
+    //                        window.location.href = "/"
+    //                    } else {
+    //                        $("#errInfo").html(data.result);
+    //                    }
+    //                },
+    //                error: function () {
+    //                    alert("error");
+    //                    return;
+    //                }
+    //            });
+    //        }
+    //    });
 
     jQuery(document).ready(function () {
         App.init();

@@ -22,8 +22,10 @@ import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,8 +47,21 @@ public class LoginController extends BaseController {
     @Autowired
     private WxMpService wxMpService;
 
+    @Value("${site_appid}")
+    private String appId;
+
+    @Value("${site_redirect_url}")
+    private String redirectUrl;
+
+    @Value("${site_scope}")
+    private String scope;
+
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String detail() {
+    public String detail(ModelMap map) {
+        map.put("appId", appId);
+        map.put("redirectUrl", redirectUrl);
+        map.put("scope", scope);
         return "user/login";
     }
 
@@ -79,7 +94,7 @@ public class LoginController extends BaseController {
         }
 
         AppUser user = new AppUser();
-        user.setOpenId(wxMpUser.getOpenId());
+        user.setUnionId(wxMpUser.getUnionId());
         AppUser appUser = appUserService.selectOne(user);
         if (appUser == null) {
             appUser = new AppUser();
@@ -90,6 +105,8 @@ public class LoginController extends BaseController {
             appUser.setOpenId(wxMpUser.getOpenId());
             appUser.setLastLogin(new Date());
             appUser.setHeadImgUrl(wxMpUser.getHeadImgUrl());
+            appUser.setUnionId(wxMpUser.getUnionId());
+            appUser.setType(Const.APPUSER_TYPE_NORMAL);
             appUserService.insert(appUser);
         } else {
             appUser.setLastLogin(new Date());
@@ -107,9 +124,7 @@ public class LoginController extends BaseController {
             jsonObject.put("suc", false);
         }
         jsonObject.put("suc", true);
-
         session.setAttribute(Const.SITE_SESSION_USER, appUser);
-
         return "redirect:/";
     }
 

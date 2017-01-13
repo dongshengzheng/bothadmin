@@ -82,6 +82,18 @@ public class AppUser implements Serializable {
     private String address;
 
     /**
+     * 用户类型(普通用户 0 鸡血石普通工作人员 1 管理员 2)
+     */
+    private Integer type;
+
+    /**
+     * unionId(判断用户唯一性的标志)
+     */
+    @TableField(value = "union_id")
+    private String unionId;
+
+
+    /**
      * 头像图片地址
      */
     @TableField(value = "head_img_url")
@@ -300,5 +312,21 @@ public class AppUser implements Serializable {
 
     public void setFollow(int follow) {
         this.follow = follow;
+    }
+
+    public String getUnionId() {
+        return unionId;
+    }
+
+    public void setUnionId(String unionId) {
+        this.unionId = unionId;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }

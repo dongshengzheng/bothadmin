@@ -97,9 +97,9 @@ public class MobileController extends BaseController {
     @OAuthRequired
     public String toLogin(HttpSession session, ModelMap map) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             appUser = new AppUser();
@@ -110,6 +110,8 @@ public class MobileController extends BaseController {
             appUser.setOpenId(wxMpUser.getOpenId());
             appUser.setLastLogin(new Date());
             appUser.setHeadImgUrl(wxMpUser.getHeadImgUrl());
+            appUser.setUnionId(unionId);
+            appUser.setType(Const.APPUSER_TYPE_NORMAL);
             appUserService.insert(appUser);
         } else {
             appUser.setLastLogin(new Date());
@@ -124,10 +126,10 @@ public class MobileController extends BaseController {
             WxMpTemplateMessage templateMessage = new WxMpTemplateMessage();
             templateMessage.setToUser(targetUser.getOpenId());
             templateMessage.setTemplateId("PxVoRl3uWH5ph927H_Qg9DM0B3HKNMYF_IBo48WrJ9c");
-            templateMessage.setUrl(configStorage.getOauth2redirectUri() + "/mobile/appUserInfo?appUserId" + appUser.getId());
+            templateMessage.setUrl(configStorage.getOauth2redirectUri() + "/mobile/appUserInfo?appUserId=" + appUser.getId());
             templateMessage.setTopColor("#000000");
             templateMessage.getData().add(new WxMpTemplateData("first", "您好，您收到一条新的通知！", "#000000"));
-            templateMessage.getData().add(new WxMpTemplateData("keyword1", "您被其他用户关注了\r\n用户名称:" + appUser.getLoginName()));
+            templateMessage.getData().add(new WxMpTemplateData("keyword1", "您被其他用户关注了\r\n用户名称 : " + appUser.getLoginName()));
             templateMessage.getData().add(new WxMpTemplateData("keyword2", DateUtil.formatDate(new Date(), "yyyy-MM-dd HH:mm:ss")));
             templateMessage.getData().add(new WxMpTemplateData("remark", "点击查看用户详情", "#000000"));
             try {
@@ -151,9 +153,9 @@ public class MobileController extends BaseController {
     public String works(HttpSession session,
                         ModelMap map) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -209,9 +211,9 @@ public class MobileController extends BaseController {
     public Page<Works> worksPage(HttpSession session,
                                  int pageNo) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
 //        if (appUser == null) {
 //            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -245,9 +247,9 @@ public class MobileController extends BaseController {
     public String collectWorks(HttpSession session,
                                int worksId) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -285,9 +287,9 @@ public class MobileController extends BaseController {
     public String cancelCollect(HttpSession session,
                                 int targetId) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -323,9 +325,9 @@ public class MobileController extends BaseController {
     public String search(HttpSession session,
                          ModelMap map) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -348,9 +350,9 @@ public class MobileController extends BaseController {
     @OAuthRequired
     public String delSearch(HttpSession session) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -373,9 +375,9 @@ public class MobileController extends BaseController {
                                ModelMap map,
                                @RequestParam(required = false) String name) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -432,9 +434,9 @@ public class MobileController extends BaseController {
     public String notToHave(HttpSession session,
                             int targetId) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -464,10 +466,10 @@ public class MobileController extends BaseController {
                 WxMpTemplateMessage templateMessage = new WxMpTemplateMessage();
                 templateMessage.setToUser(targetUser.getOpenId());
                 templateMessage.setTemplateId("PxVoRl3uWH5ph927H_Qg9DM0B3HKNMYF_IBo48WrJ9c");
-                templateMessage.setUrl(configStorage.getOauth2redirectUri() + "/mobile/appUserInfo?appUserId" + appUser.getId());
+                templateMessage.setUrl(configStorage.getOauth2redirectUri() + "/mobile/appUserInfo?appUserId=" + appUser.getId());
                 templateMessage.setTopColor("#000000");
                 templateMessage.getData().add(new WxMpTemplateData("first", "您好，您收到一条新的通知！", "#000000"));
-                templateMessage.getData().add(new WxMpTemplateData("keyword1", "您被其他用户关注了\r\n用户名称:" + appUser.getLoginName()));
+                templateMessage.getData().add(new WxMpTemplateData("keyword1", "您被其他用户关注了\r\n用户名称 : " + appUser.getLoginName()));
                 templateMessage.getData().add(new WxMpTemplateData("keyword2", DateUtil.formatDate(new Date(), "yyyy-MM-dd HH:mm:ss")));
                 templateMessage.getData().add(new WxMpTemplateData("remark", "点击查看用户详情", "#000000"));
                 try {
@@ -493,9 +495,9 @@ public class MobileController extends BaseController {
     public String haveToNot(HttpSession session,
                             int targetId) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -533,9 +535,9 @@ public class MobileController extends BaseController {
                               ModelMap map,
                               @RequestParam(required = false) String name) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -593,9 +595,9 @@ public class MobileController extends BaseController {
                               ModelMap map,
                               @RequestParam(required = false) int appUserId) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -663,9 +665,9 @@ public class MobileController extends BaseController {
                               ModelMap map,
                               @RequestParam int worksId) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -845,9 +847,9 @@ public class MobileController extends BaseController {
                                     @RequestParam(required = false) int worksId,
                                     ModelMap map) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -868,9 +870,9 @@ public class MobileController extends BaseController {
                                          Interpretation interpretation,
                                          @RequestParam(required = false) String interImages) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -895,9 +897,9 @@ public class MobileController extends BaseController {
                                      @RequestParam(required = false) int interId,
                                      ModelMap map) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -918,9 +920,9 @@ public class MobileController extends BaseController {
     public String my(HttpSession session,
                      ModelMap map) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -940,9 +942,9 @@ public class MobileController extends BaseController {
     public String mySet(HttpSession session,
                         ModelMap map) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -967,9 +969,9 @@ public class MobileController extends BaseController {
                                 @RequestParam(required = false) String prefer,
                                 @RequestParam(required = false) String ifpublic) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -1000,9 +1002,9 @@ public class MobileController extends BaseController {
     @OAuthRequired
     public String updateHeadImgLoginName(HttpSession session) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -1029,9 +1031,9 @@ public class MobileController extends BaseController {
     public String pointCenter(HttpSession session,
                               ModelMap map) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -1048,9 +1050,9 @@ public class MobileController extends BaseController {
     @ResponseBody
     public List<ScoreHistory> loadIntegral(HttpSession session, ModelMap map) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
 //        if (appUser == null) {
 //            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -1079,9 +1081,9 @@ public class MobileController extends BaseController {
     public String pointSave(HttpSession session,
                             ModelMap map) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -1100,9 +1102,9 @@ public class MobileController extends BaseController {
                                     ModelMap map,
                                     @RequestParam(required = false) int score) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -1121,9 +1123,9 @@ public class MobileController extends BaseController {
     public String pointWithdraw(HttpSession session,
                                 ModelMap map) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -1142,9 +1144,9 @@ public class MobileController extends BaseController {
                                         ModelMap map,
                                         @RequestParam(required = false) int score) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -1164,9 +1166,9 @@ public class MobileController extends BaseController {
                           ModelMap map,
                           @RequestParam String showwhich) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -1219,9 +1221,9 @@ public class MobileController extends BaseController {
                                           ModelMap map,
                                           @RequestParam String showwhich) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -1279,9 +1281,9 @@ public class MobileController extends BaseController {
     public String delWorks(HttpSession session,
                            @RequestParam(required = false) int worksId) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -1313,9 +1315,9 @@ public class MobileController extends BaseController {
                            ModelMap map,
                            @RequestParam(required = false) int worksId) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -1338,9 +1340,9 @@ public class MobileController extends BaseController {
     public List<AppUser> selectTransferPerson(HttpSession session,
                                               @RequestParam(required = false) String info) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
 //        if (appUser == null) {
 //            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -1366,9 +1368,9 @@ public class MobileController extends BaseController {
                                    TransferHistory transferHistory,
                                    @RequestParam(required = false) String transferTypeString) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -1404,9 +1406,9 @@ public class MobileController extends BaseController {
     public String confirmTransfer(HttpSession session,
                                   @RequestParam(required = false) int thId) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -1436,9 +1438,9 @@ public class MobileController extends BaseController {
     public String worksRegister1(HttpSession session,
                                  ModelMap map) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -1465,9 +1467,9 @@ public class MobileController extends BaseController {
                                  @RequestParam(required = false) String worksRemarks,
                                  @RequestParam(required = false) String draftYN) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -1550,9 +1552,9 @@ public class MobileController extends BaseController {
                                  @RequestParam(required = false) String worksMeanning,
                                  @RequestParam(required = false) String draftYN) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -1614,9 +1616,9 @@ public class MobileController extends BaseController {
                                  WorksLevel worksLevel,
                                  @RequestParam(required = false) String draftYN) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -1659,9 +1661,9 @@ public class MobileController extends BaseController {
                                  @RequestParam(required = false) String valueImages,
                                  @RequestParam(required = false) String valueTimeString) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -1708,9 +1710,9 @@ public class MobileController extends BaseController {
                                         @RequestParam(required = false) String collecterDatetimeString,
                                         @RequestParam(required = false) String collecterPub) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -1752,9 +1754,9 @@ public class MobileController extends BaseController {
                                   ModelMap map,
                                   @RequestParam(required = false) Integer worksId) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -1777,9 +1779,9 @@ public class MobileController extends BaseController {
                             ModelMap map,
                             @RequestParam int worksId) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
@@ -1889,9 +1891,9 @@ public class MobileController extends BaseController {
                                     @RequestParam(required = false) String valueImages,
                                     @RequestParam(required = false) String valueTimeString) {
         WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String openId = wxMpUser.getOpenId();
+        String unionId = wxMpUser.getUnionId();
         AppUser u = new AppUser();
-        u.setOpenId(openId);
+        u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
