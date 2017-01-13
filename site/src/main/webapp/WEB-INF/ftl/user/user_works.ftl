@@ -94,7 +94,7 @@
             <div class="profile-body margin-bottom-20">
                 <div class="tab-v1">
                     <ul class="nav nav-justified nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#pass">审核通过</a></li>
+                        <li class="active1"><a data-toggle="tab" href="#pass">审核通过</a></li>
                         <li><a data-toggle="tab" href="#unpass">审核失败</a></li>
                         <li><a data-toggle="tab" href="#checking">审核中</a></li>
                         <li><a data-toggle="tab" href="#drafts">草稿箱</a></li>
@@ -398,6 +398,7 @@
         loadUnPass(1);
         loadChecking(1);
         loadDrafts(1);
+        positioningWorksType();
         //审核通过
         function loadPass(pagePassIndex) {
             $.get("/user/works_load/3", {pageIndex: pagePassIndex}, function (data) {
@@ -423,6 +424,15 @@
             });
         }
 
+        function positioningWorksType() {
+            if(${type}=="3"){
+                $("#checking").addClass("in active")
+                $("#pass").removeClass("in active")
+            } else if (${type}=="4"){
+                $("#drafts").addClass("in active")
+                $("#pass").removeClass("in active")
+            }
+        }
 
         $("#passBtn").on("click", function () {
             if (passHasMore) {
