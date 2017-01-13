@@ -73,9 +73,8 @@ public class LoginController extends BaseController {
             try {
                 accessToken = wxMpService.oauth2getAccessToken(code);
                 wxMpUser = wxMpService.oauth2getUserInfo(accessToken, null);
-                Log log = new Log4JLogger();
-                log.warn("accessToken:" + accessToken + "---------");
-                log.warn("wxMpUser:" + wxMpUser + "---------");
+                System.out.println("accessToken:" + accessToken + "---------");
+                System.out.println("wxMpUser:" + wxMpUser + "---------");
             } catch (WxErrorException e) {
                 response.sendRedirect(wxMpService.oauth2buildAuthorizationUrl(resultUrl, WxConsts.OAUTH2_SCOPE_USER_INFO, null));
             }
