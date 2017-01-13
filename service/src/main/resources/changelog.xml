@@ -520,4 +520,18 @@
         </sql>
     </changeSet>
 
+    <changeSet author="WangGuoCheng" id="18817711870-35">
+        <sql>
+            UPDATE `sys_dict` SET `value`='0',`sort`='0',`parent_id`='11,172,209' WHERE  `id`=88;
+            UPDATE `sys_dict` SET parent_id='101,220' WHERE  `id`=294;
+            UPDATE `sys_dict` SET parent_id='11,172,209',label='透明至微透明、细腻、温润、凝结' WHERE  `id`=286;
+            UPDATE `sys_dict` SET parent_id='11,172,209',label='微透明至不透明、细腻、温润、凝结' WHERE  `id`=287;
+            UPDATE `sys_dict` SET parent_id='11,172,209' WHERE  `id`=288;
+            UPDATE `sys_dict` SET parent_id='11,172,209' WHERE  `id`=289;
+            UPDATE `sys_dict` SET parent_id='11,172,209' WHERE  `id`=290;
+            UPDATE `sys_dict` SET parent_id='11,172,209' WHERE  `id`=291;
+            UPDATE `sys_dict` SET parent_id='11,172,209' WHERE  `id`=292;
+            UPDATE `sys_dict` SET parent_id='11,172,209' WHERE  `id`=293;
+        </sql>
+    </changeSet>
 </databaseChangeLog>

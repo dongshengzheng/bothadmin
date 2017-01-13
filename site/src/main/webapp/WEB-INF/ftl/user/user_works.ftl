@@ -94,7 +94,7 @@
             <div class="profile-body margin-bottom-20">
                 <div class="tab-v1">
                     <ul class="nav nav-justified nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#pass">审核通过</a></li>
+                        <li class="active1"><a data-toggle="tab" href="#pass">审核通过</a></li>
                         <li><a data-toggle="tab" href="#unpass">审核失败</a></li>
                         <li><a data-toggle="tab" href="#checking">审核中</a></li>
                         <li><a data-toggle="tab" href="#drafts">草稿箱</a></li>
