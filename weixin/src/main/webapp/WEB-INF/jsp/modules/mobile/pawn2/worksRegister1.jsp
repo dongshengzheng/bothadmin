@@ -151,8 +151,8 @@
         </a>
     </div>
 </div>
-<input id="bucket" type="hidden" value="${sessionScope.bucket}">
-<input id="redirectUrl" type="hidden" value="${sessionScope.redirectUrl}">
+<input id="bucket" type="hidden" value="${bucket}">
+<input id="redirectUrl" type="hidden" value="${redirectUrl}">
 <script src="${ctxStatic}/js/jquery-2.1.4.js"></script>
 <script src="${ctxStatic}/js/jquery-weui.js"></script>
 <script src="${ctxStatic}/js/upload.js"></script>

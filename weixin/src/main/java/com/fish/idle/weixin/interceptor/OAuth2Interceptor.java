@@ -1,5 +1,8 @@
 package com.fish.idle.weixin.interceptor;
 
+import com.fish.idle.service.modules.sys.entity.AppUser;
+import com.fish.idle.service.modules.sys.service.IAppUserService;
+import com.fish.idle.service.util.Const;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.method.HandlerMethod;
@@ -7,6 +10,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.lang.reflect.Method;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +29,10 @@ public class OAuth2Interceptor implements HandlerInterceptor {
     protected WxMpConfigStorage configStorage;
     @Autowired
     protected WxMpService wxMpService;
+    @Autowired
+    protected IAppUserService appUserService;
+
+
     /**
      * 在DispatcherServlet完全处理完请求后被调用
      * 当有拦截器抛出异常时,会从当前拦截器往回执行所有的拦截器的afterCompletion()
@@ -85,7 +93,39 @@ public class OAuth2Interceptor implements HandlerInterceptor {
                 return false;
             }
         }
+
+        String unionId = wxMpUser.getUnionId();
+        AppUser u = new AppUser();
+        u.setUnionId(unionId);
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
+            appUser = new AppUser();
+            appUser.setLoginName(filterEmoji(wxMpUser.getNickname()));
+            appUser.setPassword("iLoveMoney");
+            appUser.setName(filterEmoji(wxMpUser.getNickname()));
+            appUser.setDelFlag(Const.DEL_FLAG_NORMAL);
+            appUser.setOpenId(wxMpUser.getOpenId());
+            appUser.setLastLogin(new Date());
+            appUser.setHeadImgUrl(wxMpUser.getHeadImgUrl());
+            appUser.setUnionId(unionId);
+            appUser.setType(Const.APPUSER_TYPE_NORMAL);
+            appUserService.insert(appUser);
+        } else {
+            appUser.setLastLogin(new Date());
+            appUserService.updateSelectiveById(appUser);
+        }
+
+        session.setAttribute("currentUser", appUser);
+
         return true;
+    }
+
+    public static String filterEmoji(String source) {
+        if (org.apache.commons.lang.StringUtils.isNotBlank(source)) {
+            return source.replaceAll("[\\ud800\\udc00-\\udbff\\udfff\\ud800-\\udfff]", "*");
+        } else {
+            return source;
+        }
     }
 
 }

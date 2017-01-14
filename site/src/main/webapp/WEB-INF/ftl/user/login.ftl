@@ -77,15 +77,25 @@
 <script type="text/javascript" src="${staticPath}/assets/js/custom.js"></script>
 <!-- JS Page Level -->
 <script type="text/javascript" src="${staticPath}/assets/js/app.js"></script>
-<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+<#--<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>-->
 <script type="text/javascript">
+
+    //微信登录用
+    !function (a, b) {
+        function d(a) {
+            var e, c = b.createElement("iframe"), d = "https://open.weixin.qq.com/connect/qrconnect?appid=" + a.appid + "&scope=" + a.scope + "&redirect_uri=" + a.redirect_uri + "&state=" + a.state + "&login_type=jssdk";
+            d += a.style ? "&style=" + a.style : "", d += a.href ? "&href=" + a.href : "", c.src = d, c.frameBorder = "0", c.allowTransparency = "true", c.scrolling = "no", c.width = "300px", c.height = "400px", e = b.getElementById(a.id), e.innerHTML = "", e.appendChild(c)
+        }
+
+        a.WxLogin = d
+    }(window, document);
     var obj = new WxLogin({
         id: "login_container",
         appid: "${appId}",
         scope: "${scope}",
         redirect_uri: "http%3A%2F%2F${redirectUrl}/wx_login",
-        state: "111",
-        style: "",
+        state: "",
+        style: "white",
         href: ""
     });
 
