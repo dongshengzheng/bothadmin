@@ -7,9 +7,19 @@
 <link rel="stylesheet" href="${staticPath}/assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css">
 <link rel="stylesheet" href="${staticPath}/assets/css/style.css">
 <link rel="stylesheet" href="${staticPath}/static/css/custom.css">
+<style>
+    #upload_header {
+        color: white;
+        background-color: black;
+        opacity: 0.6;
+        bottom: 0;
+        right: 0;
+        margin-left: 0;
+        left: 0;
+    }
+</style>
 </@htmlHead>
 <@htmlBody>
-
 
 <!--=== Profile ===-->
 <div class="container content profile">
@@ -27,11 +37,10 @@
                 <a id="upload_header" class="btn-u btn-u-sm" href="javascript:;">更改头像</a>
             </div>
 
-
             <ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
-                <#--<li class="list-group-item ">-->
-                    <#--<a href="/user"><i class="fa fa-tachometer"></i>面板</a>-->
-                <#--</li>-->
+            <#--<li class="list-group-item ">-->
+            <#--<a href="/user"><i class="fa fa-tachometer"></i>面板</a>-->
+            <#--</li>-->
                 <li class="list-group-item">
                     <a href="/user/works"><i class="fa fa-user"></i> 我的作品</a>
                 </li>

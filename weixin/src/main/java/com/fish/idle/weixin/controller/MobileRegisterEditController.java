@@ -20,6 +20,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
@@ -92,14 +93,6 @@ public class MobileRegisterEditController extends BaseController {
     @OAuthRequired
     public String worksRegister1(HttpSession session,
                                  ModelMap map) {
-        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String unionId = wxMpUser.getUnionId();
-        AppUser u = new AppUser();
-        u.setUnionId(unionId);
-        AppUser appUser = appUserService.selectOne(u);
-        if (appUser == null) {
-            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
-        }
         map.put("bucket", bucket);
         map.put("redirectUrl", redirectUrl);
         return "modules/mobile/pawn2/worksRegister1";
@@ -122,66 +115,37 @@ public class MobileRegisterEditController extends BaseController {
                                  @RequestParam(required = false) String providerNo,
                                  @RequestParam(required = false) String worksRemarks,
                                  @RequestParam(required = false) String draftYN) {
-        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String unionId = wxMpUser.getUnionId();
-        AppUser u = new AppUser();
-        u.setUnionId(unionId);
-        AppUser appUser = appUserService.selectOne(u);
-        if (appUser == null) {
-            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
-        }
-        works.setCreateBy(appUser.getId());
+        AppUser currentUser = getCurrentUser(session);
+        works.setCreateBy(currentUser.getId());
         if (createDateString != null && createDateString.trim().length() > 0) {
             Date createDate = DateUtil.parseDate(createDateString, "yyyy-MM-dd");
             works.setCreateDate(createDate);
         }
         works.setName(worksName);
         works.setRemarks(worksRemarks);
-
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
         Long time = new Date().getTime();
         String no = sdf.format(time);
         works.setNo("JS-A" + no + "A");
-
-        if ("yes".equals(draftYN)) {
-            works.setStatus(Const.WORKS_STATUS_DRAFT);
-        }
-        worksService.insert(works);
-
-        Integer worksId = works.getId();
-
         consumer.setType(Const.CONSUMER_TYPE_PROVIDER);
-        consumer.setWorksId(worksId);
         consumer.setName(providerName);
         consumer.setNo(providerNo);
-        Consumer oldConsumer = new Consumer();
-        oldConsumer.setWorksId(worksId);
-        oldConsumer.setType(Const.CONSUMER_TYPE_PROVIDER);
-        oldConsumer = consumerService.selectOne(new EntityWrapper<>(oldConsumer));
-        if (oldConsumer == null) {
-            consumerService.insert(consumer);
-        } else {
-            consumer.setId(oldConsumer.getId());
-            consumerService.updateById(consumer);
-        }
 
-
-        insertImage(works.getImages(), worksId, Const.IMAGES_WORKS);
+        session.setAttribute("registerWorks", works);
+        session.setAttribute("registerProvider", consumer);
 
         if ("yes".equals(draftYN)) {
+            insertAll(session, Const.WORKS_STATUS_DRAFT);
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=draft";
         }
+
         session.setAttribute("registerWorksName", works.getName());
-        session.setAttribute("registerWorksId", worksId);
-        session.setAttribute("registerWorks", works);
 
         map.put("kqdy", dictService.getWorksLevelDicByType("dd_kqdy"));
         map.put("level", dictService.getWorksLevelDicByType("dd_level"));
         map.put("pinzhong", dictService.getWorksLevelDicByType("dd_pinzhong"));
         map.put("zuopinleixing", dictService.getWorksLevelDicByType("dd_zuopinleixing"));
         map.put("gyType", dictService.getWorksLevelDicByType("dd_level"));
-
-
         return "modules/mobile/pawn2/worksRegister2";
     }
 
@@ -207,14 +171,6 @@ public class MobileRegisterEditController extends BaseController {
                                  @RequestParam(required = false) String makeTimeString,
                                  @RequestParam(required = false) String worksMeanning,
                                  @RequestParam(required = false) String draftYN) {
-        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String unionId = wxMpUser.getUnionId();
-        AppUser u = new AppUser();
-        u.setUnionId(unionId);
-        AppUser appUser = appUserService.selectOne(u);
-        if (appUser == null) {
-            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
-        }
         Works works = (Works) session.getAttribute("registerWorks");
         works.setBreed(breed);
         works.setType(type);
@@ -231,33 +187,36 @@ public class MobileRegisterEditController extends BaseController {
             works.setMakeTime(makeTime);
         }
         works.setWorksMeaning(worksMeanning);
+
+        session.setAttribute("registerWorks", works);
+
         if ("yes".equals(draftYN)) {
-            works.setStatus(Const.WORKS_STATUS_DRAFT);
-        }
-        worksService.updateById(works);
-        if ("yes".equals(draftYN)) {
-            session.removeAttribute("registerWorksId");
+
+            insertAll(session, Const.WORKS_STATUS_DRAFT);
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=draft";
         }
-        session.setAttribute("registerWorks", works);
 
         if (type != null && (type == "5" || type == "6")) {
             return "modules/mobile/pawn2/worksRegister4";
         }
-        map.put("zhidi1", dictService.getWorksLevelDicByType("dd_zhidi"));
-        map.put("zhidi2", dictService.getWorksLevelDicByType("dd_zhidi2"));
-        map.put("ganguan", dictService.getWorksLevelDicByType("dd_ganguan"));
-        map.put("moshidu", dictService.getWorksLevelDicByType("dd_moshidu"));
-        map.put("xueliang", dictService.getWorksLevelDicByType("dd_xueliang"));
-        map.put("xuese", dictService.getWorksLevelDicByType("dd_xuese"));
-        map.put("xuexing", dictService.getWorksLevelDicByType("dd_xuexing"));
-        map.put("nongyandu", dictService.getWorksLevelDicByType("dd_nongyandu"));
-        map.put("chunjingdu", dictService.getWorksLevelDicByType("dd_jingdu"));
-        map.put("dise", dictService.getWorksLevelDicByType("dd_dise"));
-        map.put("liu", dictService.getWorksLevelDicByType("dd_liu"));
-        map.put("lie", dictService.getWorksLevelDicByType("dd_lie"));
-        map.put("mian", dictService.getWorksLevelDicByType("dd_mian"));
-        map.put("hanxuefangshi", dictService.getWorksLevelDicByType("dd_hanxuefangshi"));
+
+        map.put("breed", breed);
+
+        map.put("zhidi1", dictService.getWorksLevelDicByType("dd_zhidi", breed));
+        map.put("zhidi2", dictService.getWorksLevelDicByType("dd_zhidi2", breed));
+        map.put("ganguan", dictService.getWorksLevelDicByType("dd_ganguan", breed));
+        map.put("moshidu", dictService.getWorksLevelDicByType("dd_moshidu", breed));
+        map.put("xueliang", dictService.getWorksLevelDicByType("dd_xueliang", breed));
+        map.put("xuese", dictService.getWorksLevelDicByType("dd_xuese", breed));
+        map.put("xuexing", dictService.getWorksLevelDicByType("dd_xuexing", breed));
+        map.put("nongyandu", dictService.getWorksLevelDicByType("dd_nongyandu", breed));
+        map.put("jingdu", dictService.getWorksLevelDicByType("dd_jingdu", breed));
+        map.put("dise", dictService.getWorksLevelDicByType("dd_dise", breed));
+        map.put("liu", dictService.getWorksLevelDicByType("dd_liu", breed));
+        map.put("lie", dictService.getWorksLevelDicByType("dd_lie", breed));
+        map.put("mian", dictService.getWorksLevelDicByType("dd_mian", breed));
+        map.put("hanxuefangshi", dictService.getWorksLevelDicByType("dd_hanxuefangshi", breed));
+        map.put("ziranshipi", dictService.getWorksLevelDicByType("dd_ziranshipi", breed));
         return "modules/mobile/pawn2/worksRegister3";
     }
 
@@ -271,35 +230,12 @@ public class MobileRegisterEditController extends BaseController {
     public String worksRegister4(HttpSession session,
                                  WorksLevel worksLevel,
                                  @RequestParam(required = false) String draftYN) {
-        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String unionId = wxMpUser.getUnionId();
-        AppUser u = new AppUser();
-        u.setUnionId(unionId);
-        AppUser appUser = appUserService.selectOne(u);
-        if (appUser == null) {
-            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
-        }
-        int worksId = (int) session.getAttribute("registerWorksId");
-        worksLevel.setWorksId(worksId);
-        WorksLevel oldWorksLevel = new WorksLevel();
-        oldWorksLevel.setWorksId(worksId);
-        oldWorksLevel = worksLevelService.selectOne(new EntityWrapper<>(oldWorksLevel));
-        if (oldWorksLevel == null) {
-            worksLevelService.insert(worksLevel);
-        } else {
-            worksLevel.setId(oldWorksLevel.getId());
-            worksLevelService.updateById(oldWorksLevel);
-        }
 
-
+        session.setAttribute("registerWorksLevel", worksLevel);
         if ("yes".equals(draftYN)) {
-            Works works = (Works) session.getAttribute("registerWorks");
-            works.setStatus(Const.WORKS_STATUS_DRAFT);
-            worksService.updateById(works);
-            session.removeAttribute("registerWorksId");
+            insertAll(session, Const.WORKS_STATUS_DRAFT);
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=draft";
         }
-
         return "modules/mobile/pawn2/worksRegister4";
     }
 
@@ -316,37 +252,21 @@ public class MobileRegisterEditController extends BaseController {
                                  @RequestParam(required = false) String certImage,
                                  @RequestParam(required = false) String valueImages,
                                  @RequestParam(required = false) String valueTimeString) {
-        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String unionId = wxMpUser.getUnionId();
-        AppUser u = new AppUser();
-        u.setUnionId(unionId);
-        AppUser appUser = appUserService.selectOne(u);
-        if (appUser == null) {
-            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
-        }
-        Integer worksId = (Integer) session.getAttribute("registerWorksId");
-        report.setWorksId(worksId);
         if (valueTimeString != null && valueTimeString.trim().length() > 0) {
             Date valueTime = DateUtil.parseDate(valueTimeString, "yyyy-MM-dd");
             report.setValidTime(valueTime);
         }
-        reportService.insert(report);
 
-        insertImage(certImage, report.getId(), Const.IMAGES_REPORT_CERTIFICATE);
-        insertImage(valueImages, report.getId(), Const.IMAGES_REPORT_DES);
 
+        session.setAttribute("registerReport", report);
+        session.setAttribute("registerCertImage", certImage);
+        session.setAttribute("registerValueImages", valueImages);
 
         if ("yes".equals(draftYN)) {
-            Works works = (Works) session.getAttribute("registerWorks");
-            works.setStatus(Const.WORKS_STATUS_DRAFT);
-            worksService.updateById(works);
-            session.removeAttribute("registerWorksId");
+            insertAll(session, Const.WORKS_STATUS_DRAFT);
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=draft";
         } else if ("confirm".equals(draftYN)) {
-            Works works = (Works) session.getAttribute("registerWorks");
-            works.setStatus(Const.WORKS_STATUS_COMMIT);
-            worksService.updateById(works);
-            session.removeAttribute("registerWorksId");
+            insertAll(session, Const.WORKS_STATUS_COMMIT);
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=now";
         }
 
@@ -365,17 +285,7 @@ public class MobileRegisterEditController extends BaseController {
                                         Consumer consumer,
                                         @RequestParam(required = false) String collecterDatetimeString,
                                         @RequestParam(required = false) String collecterPub) {
-        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String unionId = wxMpUser.getUnionId();
-        AppUser u = new AppUser();
-        u.setUnionId(unionId);
-        AppUser appUser = appUserService.selectOne(u);
-        if (appUser == null) {
-            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
-        }
 
-        Integer worksId = (Integer) session.getAttribute("registerWorksId");
-        consumer.setWorksId(worksId);
         consumer.setType(Const.CONSUMER_TYPE_COLLECT);
         if (collecterDatetimeString != null && collecterDatetimeString.trim().length() > 0) {
             Date datetime = DateUtil.parseDate(collecterDatetimeString, "yyyy-MM-dd");
@@ -386,34 +296,14 @@ public class MobileRegisterEditController extends BaseController {
         } else {
             consumer.setPub(Const.CONSUMER_PUB_NO);
         }
-        consumerService.insert(consumer);
-        Works works = (Works) session.getAttribute("registerWorks");
+        session.setAttribute("registerCollecter", consumer);
+
         if ("yes".equals(draftYN)) {
-            works.setStatus(Const.WORKS_STATUS_DRAFT);
-            worksService.updateById(works);
+            insertAll(session, Const.WORKS_STATUS_DRAFT);
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=draft";
         }
-        works.setStatus(Const.WORKS_STATUS_COMMIT);
-        worksService.updateById(works);
-        session.removeAttribute("registerWorksId");
+        insertAll(session, Const.WORKS_STATUS_COMMIT);
         return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=now";
-    }
-
-
-    private void insertImage(String images, Integer targetId, String types) {
-        // 保存图片信息
-        if (images != null && images.trim().length() > 0) {
-            String[] urls = images.split(",");
-            List<Images> list = new ArrayList<>();
-            for (String url : urls) {
-                Images img = new Images();
-                img.setTargetId(targetId);
-                img.setUrl(url);
-                img.setType(types);
-                list.add(img);
-            }
-            imagesService.insertBatch(list);
-        }
     }
 
 
@@ -427,38 +317,25 @@ public class MobileRegisterEditController extends BaseController {
     public String worksEdit(HttpSession session,
                             ModelMap map,
                             @RequestParam int worksId) {
-        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String unionId = wxMpUser.getUnionId();
-        AppUser u = new AppUser();
-        u.setUnionId(unionId);
-        AppUser appUser = appUserService.selectOne(u);
-        if (appUser == null) {
-            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
-        }
 
         //作品
         Works works = worksService.selectById(worksId);
-
         //作品等级
         WorksLevel worksLevel = new WorksLevel(worksId);
         worksLevel = worksLevelService.selectOne(new EntityWrapper<>(worksLevel));
-
         //提供者
         Consumer provider = new Consumer(Const.CONSUMER_TYPE_PROVIDER, worksId);
         provider = consumerService.selectOne(new EntityWrapper<>(provider));
-
         //收藏者
         Consumer collecter = new Consumer();
         collecter.setWorksId(worksId);
         collecter.setType(Const.CONSUMER_TYPE_COLLECT);
         collecter = consumerService.selectOne(new EntityWrapper<>(collecter));
-
+        //作品图片
         Images images = new Images();
         images.setTargetId(worksId);
         images.setType(Const.IMAGES_WORKS);
-        //作品图片
         List<Images> worksImagesList = imagesService.selectList(new EntityWrapper<>(images));
-
         //价值报告
         Report report = new Report(worksId);
         report = reportService.selectOne(new EntityWrapper<>(report));
@@ -475,14 +352,12 @@ public class MobileRegisterEditController extends BaseController {
             map.put("valueImages", valueImages);
         }
 
-
         map.put("works", works);
         map.put("provider", provider);
         map.put("worksLevel", worksLevel);
         map.put("worksImagesList", worksImagesList);
         map.put("collecter", collecter);
         map.put("report", report);
-
 
         session.setAttribute("worksIdInSession", worksId);
 
@@ -539,14 +414,7 @@ public class MobileRegisterEditController extends BaseController {
                                     @RequestParam(required = false) String certImage,
                                     @RequestParam(required = false) String valueImages,
                                     @RequestParam(required = false) String valueTimeString) {
-        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String unionId = wxMpUser.getUnionId();
-        AppUser u = new AppUser();
-        u.setUnionId(unionId);
-        AppUser appUser = appUserService.selectOne(u);
-        if (appUser == null) {
-            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
-        }
+        AppUser currentUser = getCurrentUser(session);
 
         Integer worksId = (Integer) session.getAttribute("worksIdInSession");
 
@@ -555,7 +423,7 @@ public class MobileRegisterEditController extends BaseController {
         works.setCreateBy(oldWorks.getCreateBy());
         works.setCreateDate(oldWorks.getCreateDate());
         works.setNo(oldWorks.getNo());
-        works.setUpdateBy(appUser.getId());
+        works.setUpdateBy(currentUser.getId());
         works.setUpdateDate(new Date());
         works.setId(worksId);
         works.setType(worksType);
@@ -660,6 +528,56 @@ public class MobileRegisterEditController extends BaseController {
 
         return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my";
 
+    }
+
+    //获取当前用户
+    public AppUser getCurrentUser(HttpSession session) {
+        return (AppUser) session.getAttribute("currentUser");
+    }
+
+
+    //保存作品
+    public void insertAll(HttpSession session, String worksStatus) {
+        Works works = (Works) session.getAttribute("registerWorks");
+        works.setStatus(worksStatus);
+        Consumer provider = (Consumer) session.getAttribute("registerProvider");
+        WorksLevel worksLevel = (WorksLevel) session.getAttribute("registerWorksLevel");
+        Report report = (Report) session.getAttribute("registerReport");
+        Consumer collecter = (Consumer) session.getAttribute("registerCollecter");
+
+        String certImage = (String) session.getAttribute("registerCertImage");
+        String valueImages = (String) session.getAttribute("registerValueImages");
+
+        insertImage(certImage, report.getId(), Const.IMAGES_REPORT_CERTIFICATE);
+        insertImage(valueImages, report.getId(), Const.IMAGES_REPORT_DES);
+
+        worksService.insert(works);
+        int worksId = works.getId();
+        insertImage(works.getImages(), worksId, Const.IMAGES_WORKS);
+
+
+        session.removeAttribute("registerWorks");
+        session.removeAttribute("registerProvider");
+        session.removeAttribute("registerWorksLevel");
+        session.removeAttribute("registerReport");
+        session.removeAttribute("registerCollecter");
+
+    }
+
+    private void insertImage(String images, Integer targetId, String types) {
+        // 保存图片信息
+        if (images != null && images.trim().length() > 0) {
+            String[] urls = images.split(",");
+            List<Images> list = new ArrayList<>();
+            for (String url : urls) {
+                Images img = new Images();
+                img.setTargetId(targetId);
+                img.setUrl(url);
+                img.setType(types);
+                list.add(img);
+            }
+            imagesService.insertBatch(list);
+        }
     }
 
 }

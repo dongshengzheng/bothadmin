@@ -60,11 +60,11 @@
         <span>&nbsp;◇&nbsp;JS-A20161205001A&nbsp;◇&nbsp;</span></center>
 </div>
 <div>
-    <form action="${ctx}/mobile/worksRegister2" enctype="multipart/form-data" method="post">
+    <form id="works-info" action="${ctx}/mobile/worksRegister2" enctype="multipart/form-data" method="post">
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="worksName" class="weui-input" placeholder="请输入作品名称">
+                <input name="worksName" class="weui-input form-control" placeholder="请输入作品名称">
             </div>
         </div>
         <div class="weui-cell">
@@ -155,26 +155,25 @@
 <input id="redirectUrl" type="hidden" value="${redirectUrl}">
 <script src="${ctxStatic}/js/jquery-2.1.4.js"></script>
 <script src="${ctxStatic}/js/jquery-weui.js"></script>
+<script src="${ctxStatic}/js/jquery.validate.min.js"></script>
 <script src="${ctxStatic}/js/upload.js"></script>
 <script src="${ctxStatic}/js/plupload-2.1.2/js/moxie.js"></script>
 <script src="${ctxStatic}/js/plupload-2.1.2/js/plupload.dev.js"></script>
 <script>
     $(function () {
+        initUploaders($('#bucket').val(), $('#redirectUrl').val() + "/");
         $('#register-rule').on('click', function () {
             $(".js_dialog").fadeIn(200);
         })
         $('.weui-dialog__btn_primary').on('click', function () {
             $(".js_dialog").fadeOut(200);
         })
-
         $("#showDatePicker").calendar();
 
-        initUploaders($('#bucket').val(), $('#redirectUrl').val() + "/");
 
         $('#draftSubmit').on('click', function () {
             $('#draftYN').val('yes');
         })
-
     });
 
 </script>
