@@ -11,10 +11,6 @@
     <div class="weui-cell__hd"><label class="weui-label">质地一</label></div>
     <div class="weui-cell__bd weui-cell_primary">
         <select name="zhidi">
-            <option value="" selected>请选择质地一</option>
-            <c:forEach items="${zhidi1}" var="item">
-                <option value="${item.value}">${item.label}</option>
-            </c:forEach>
         </select>
     </div>
 </div>
@@ -22,10 +18,6 @@
     <div class="weui-cell__hd"><label class="weui-label">质地二</label></div>
     <div class="weui-cell__bd weui-cell_primary">
         <select name="zhidi2">
-            <option value="" selected>请选择质地二</option>
-            <c:forEach items="${zhidi2}" var="item">
-                <option value="${item.value}">${item.label}</option>
-            </c:forEach>
         </select>
     </div>
 </div>
@@ -33,10 +25,6 @@
     <div class="weui-cell__hd"><label class="weui-label">感观</label></div>
     <div class="weui-cell__bd weui-cell_primary">
         <select name="ganguan">
-            <option value="" selected>请选择感观</option>
-            <c:forEach items="${ganguan}" var="item">
-                <option value="${item.value}">${item.label}</option>
-            </c:forEach>
         </select>
     </div>
 </div>
@@ -44,10 +32,6 @@
     <div class="weui-cell__hd"><label class="weui-label">磨氏度</label></div>
     <div class="weui-cell__bd weui-cell_primary">
         <select name="moshidu">
-            <option value="" selected>请选择磨氏度</option>
-            <c:forEach items="${moshidu}" var="item">
-                <option value="${item.value}">${item.label}</option>
-            </c:forEach>
         </select>
     </div>
 </div>
@@ -55,10 +39,6 @@
     <div class="weui-cell__hd"><label class="weui-label">血量</label></div>
     <div class="weui-cell__bd weui-cell_primary">
         <select name="xueliang">
-            <option value="" selected>请选择血量</option>
-            <c:forEach items="${xueliang}" var="item">
-                <option value="${item.value}">${item.label}</option>
-            </c:forEach>
         </select>
     </div>
 </div>
@@ -66,10 +46,6 @@
     <div class="weui-cell__hd"><label class="weui-label">血色</label></div>
     <div class="weui-cell__bd weui-cell_primary">
         <select name="xuese">
-            <option value="" selected>请选择血色</option>
-            <c:forEach items="${xuese}" var="item">
-                <option value="${item.value}">${item.label}</option>
-            </c:forEach>
         </select>
     </div>
 </div>
@@ -77,10 +53,6 @@
     <div class="weui-cell__hd"><label class="weui-label">血形</label></div>
     <div class="weui-cell__bd weui-cell_primary">
         <select name="xuexing">
-            <option value="" selected>请选择血形</option>
-            <c:forEach items="${xuexing}" var="item">
-                <option value="${item.value}">${item.label}</option>
-            </c:forEach>
         </select>
     </div>
 </div>
@@ -88,21 +60,13 @@
     <div class="weui-cell__hd"><label class="weui-label">浓艳度</label></div>
     <div class="weui-cell__bd weui-cell_primary">
         <select name="nongyandu">
-            <option value="" selected>请选择浓艳度</option>
-            <c:forEach items="${nongyandu}" var="item">
-                <option value="${item.value}">${item.label}</option>
-            </c:forEach>
         </select>
     </div>
 </div>
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">净度</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <select name="chunjingdu">
-            <option value="" selected>请选择净度</option>
-            <c:forEach items="${jingdu}" var="item">
-                <option value="${item.value}">${item.label}</option>
-            </c:forEach>
+        <select name="jingdu">
         </select>
     </div>
 </div>
@@ -110,10 +74,6 @@
     <div class="weui-cell__hd"><label class="weui-label">地色</label></div>
     <div class="weui-cell__bd weui-cell_primary">
         <select name="dise">
-            <option value="" selected>请选择地色</option>
-            <c:forEach items="${dise}" var="item">
-                <option value="${item.value}">${item.label}</option>
-            </c:forEach>
         </select>
     </div>
 </div>
@@ -121,10 +81,6 @@
     <div class="weui-cell__hd"><label class="weui-label">活筋</label></div>
     <div class="weui-cell__bd weui-cell_primary">
         <select name="liu">
-            <option value="" selected>请选择活筋</option>
-            <c:forEach items="${liu}" var="item">
-                <option value="${item.value}">${item.label}</option>
-            </c:forEach>
         </select>
     </div>
 </div>
@@ -132,21 +88,13 @@
     <div class="weui-cell__hd"><label class="weui-label">裂</label></div>
     <div class="weui-cell__bd weui-cell_primary">
         <select name="lie">
-            <option value="" selected>请选择裂</option>
-            <c:forEach items="${lie}" var="item">
-                <option value="${item.value}">${item.label}</option>
-            </c:forEach>
         </select>
     </div>
 </div>
 <div class="weui-cell">
-    <div class="weui-cell__hd"><label class="weui-label">印章</label></div>
+    <div class="weui-cell__hd"><label class="weui-label">印章含血面</label></div>
     <div class="weui-cell__bd weui-cell_primary">
         <select name="hanxuemian">
-            <option value="" selected>请选择印章</option>
-            <c:forEach items="${mian}" var="item">
-                <option value="${item.value}">${item.label}</option>
-            </c:forEach>
         </select>
     </div>
 </div>
@@ -154,10 +102,99 @@
     <div class="weui-cell__hd"><label class="weui-label">含血方式</label></div>
     <div class="weui-cell__bd weui-cell_primary">
         <select name="hanxuefangshi">
-            <option value="" selected>请选择含血方式</option>
-            <c:forEach items="${hanxuefangshi}" var="item">
-                <option value="${item.value}">${item.label}</option>
-            </c:forEach>
         </select>
     </div>
 </div>
+<script>
+    $.ajax({
+        type: "GET",
+        url: "${ctx}/mobile/getWorksLevel?breed=1",
+        success: function (data) {
+            var zhidi1 = '<option value="" selected>请选择质地一</option>'
+            $.each(data.zhidi1, function () {
+                zhidi1 += '<option value="' + this.value + '">' + this.label + '</option>'
+            });
+            $('select[name="zhidi"]').html(zhidi1);
+
+            var zhidi2 = '<option value="" selected>请选择质地二</option>'
+            $.each(data.zhidi2, function () {
+                zhidi2 += '<option value="' + this.value + '">' + this.label + '</option>'
+            });
+            $('select[name="zhidi2"]').html(zhidi2);
+
+            var ganguan = '<option value="" selected>请选择感观</option>'
+            $.each(data.ganguan, function () {
+                ganguan += '<option value="' + this.value + '">' + this.label + '</option>'
+            });
+            $('select[name="ganguan"]').html(ganguan);
+
+            var moshidu = '<option value="" selected>请选择磨氏度</option>'
+            $.each(data.moshidu, function () {
+                moshidu += '<option value="' + this.value + '">' + this.label + '</option>'
+            });
+            $('select[name="moshidu"]').html(moshidu);
+
+            var xueliang = '<option value="" selected>请选择血量</option>'
+            $.each(data.xueliang, function () {
+                xueliang += '<option value="' + this.value + '">' + this.label + '</option>'
+            });
+            $('select[name="xueliang"]').html(xueliang);
+
+            var xuese = '<option value="" selected>请选择血色</option>'
+            $.each(data.xuese, function () {
+                xuese += '<option value="' + this.value + '">' + this.label + '</option>'
+            });
+            $('select[name="xuese"]').html(xuese);
+
+            var xuexing = '<option value="" selected>请选择血形</option>'
+            $.each(data.xuexing, function () {
+                xuexing += '<option value="' + this.value + '">' + this.label + '</option>'
+            });
+            $('select[name="xuexing"]').html(xuexing);
+
+            var nongyandu = '<option value="" selected>请选择浓艳度</option>'
+            $.each(data.nongyandu, function () {
+                nongyandu += '<option value="' + this.value + '">' + this.label + '</option>'
+            });
+            $('select[name="nongyandu"]').html(nongyandu);
+
+
+            var jingdu = '<option value="" selected>请选择净度</option>'
+            $.each(data.jingdu, function () {
+                jingdu += '<option value="' + this.value + '">' + this.label + '</option>'
+            });
+            $('select[name="jingdu"]').html(jingdu);
+
+            var dise = '<option value="" selected>请选择地色</option>'
+            $.each(data.dise, function () {
+                dise += '<option value="' + this.value + '">' + this.label + '</option>'
+            });
+            $('select[name="dise"]').html(dise);
+
+
+            var liu = '<option value="" selected>请选择活筋</option>'
+            $.each(data.liu, function () {
+                liu += '<option value="' + this.value + '">' + this.label + '</option>'
+            });
+            $('select[name="liu"]').html(liu);
+
+            var lie = '<option value="" selected>请选择裂</option>'
+            $.each(data.lie, function () {
+                lie += '<option value="' + this.value + '">' + this.label + '</option>'
+            });
+            $('select[name="lie"]').html(lie);
+
+            var mian = '<option value="" selected>请选择印章含血面</option>'
+            $.each(data.mian, function () {
+                mian += '<option value="' + this.value + '">' + this.label + '</option>'
+            });
+            $('select[name="hanxuemian"]').html(mian);
+
+            var hanxuefangshi = '<option value="" selected>请选择含血方式</option>'
+            $.each(data.hanxuefangshi, function () {
+                hanxuefangshi += '<option value="' + this.value + '">' + this.label + '</option>'
+            });
+            $('select[name="hanxuefangshi"]').html(hanxuefangshi);
+        }
+    })
+</script>

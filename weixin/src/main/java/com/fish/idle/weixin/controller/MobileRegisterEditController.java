@@ -1,5 +1,6 @@
 package com.fish.idle.weixin.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.fish.idle.service.modules.jsdd.entity.*;
 import com.fish.idle.service.modules.jsdd.service.*;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
@@ -191,32 +193,16 @@ public class MobileRegisterEditController extends BaseController {
         session.setAttribute("registerWorks", works);
 
         if ("yes".equals(draftYN)) {
-
             insertAll(session, Const.WORKS_STATUS_DRAFT);
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=draft";
         }
 
-        if (type != null && (type == "5" || type == "6")) {
+        if (type != null && ("5".equals(type) || "6".equals(type))) {
             return "modules/mobile/pawn2/worksRegister4";
         }
 
         map.put("breed", breed);
 
-        map.put("zhidi1", dictService.getWorksLevelDicByType("dd_zhidi", breed));
-        map.put("zhidi2", dictService.getWorksLevelDicByType("dd_zhidi2", breed));
-        map.put("ganguan", dictService.getWorksLevelDicByType("dd_ganguan", breed));
-        map.put("moshidu", dictService.getWorksLevelDicByType("dd_moshidu", breed));
-        map.put("xueliang", dictService.getWorksLevelDicByType("dd_xueliang", breed));
-        map.put("xuese", dictService.getWorksLevelDicByType("dd_xuese", breed));
-        map.put("xuexing", dictService.getWorksLevelDicByType("dd_xuexing", breed));
-        map.put("nongyandu", dictService.getWorksLevelDicByType("dd_nongyandu", breed));
-        map.put("jingdu", dictService.getWorksLevelDicByType("dd_jingdu", breed));
-        map.put("dise", dictService.getWorksLevelDicByType("dd_dise", breed));
-        map.put("liu", dictService.getWorksLevelDicByType("dd_liu", breed));
-        map.put("lie", dictService.getWorksLevelDicByType("dd_lie", breed));
-        map.put("mian", dictService.getWorksLevelDicByType("dd_mian", breed));
-        map.put("hanxuefangshi", dictService.getWorksLevelDicByType("dd_hanxuefangshi", breed));
-        map.put("ziranshipi", dictService.getWorksLevelDicByType("dd_ziranshipi", breed));
         return "modules/mobile/pawn2/worksRegister3";
     }
 
@@ -367,21 +353,6 @@ public class MobileRegisterEditController extends BaseController {
         map.put("zuopinleixing", dictService.getWorksLevelDicByType("dd_zuopinleixing"));
         map.put("gyType", dictService.getWorksLevelDicByType("dd_level"));
 
-        map.put("zhidi1", dictService.getWorksLevelDicByType("dd_zhidi"));
-        map.put("zhidi2", dictService.getWorksLevelDicByType("dd_zhidi2"));
-        map.put("ganguan", dictService.getWorksLevelDicByType("dd_ganguan"));
-        map.put("moshidu", dictService.getWorksLevelDicByType("dd_moshidu"));
-        map.put("xueliang", dictService.getWorksLevelDicByType("dd_xueliang"));
-        map.put("xuese", dictService.getWorksLevelDicByType("dd_xuese"));
-        map.put("xuexing", dictService.getWorksLevelDicByType("dd_xuexing"));
-        map.put("nongyandu", dictService.getWorksLevelDicByType("dd_nongyandu"));
-        map.put("chunjingdu", dictService.getWorksLevelDicByType("dd_jingdu"));
-        map.put("dise", dictService.getWorksLevelDicByType("dd_dise"));
-        map.put("liu", dictService.getWorksLevelDicByType("dd_liu"));
-        map.put("lie", dictService.getWorksLevelDicByType("dd_lie"));
-        map.put("mian", dictService.getWorksLevelDicByType("dd_mian"));
-        map.put("hanxuefangshi", dictService.getWorksLevelDicByType("dd_hanxuefangshi"));
-
         return "modules/mobile/pawn2/worksEdit";
     }
 
@@ -530,38 +501,52 @@ public class MobileRegisterEditController extends BaseController {
 
     }
 
-    //获取当前用户
-    public AppUser getCurrentUser(HttpSession session) {
-        return (AppUser) session.getAttribute("currentUser");
-    }
-
 
     //保存作品
     public void insertAll(HttpSession session, String worksStatus) {
         Works works = (Works) session.getAttribute("registerWorks");
-        works.setStatus(worksStatus);
-        Consumer provider = (Consumer) session.getAttribute("registerProvider");
-        WorksLevel worksLevel = (WorksLevel) session.getAttribute("registerWorksLevel");
-        Report report = (Report) session.getAttribute("registerReport");
-        Consumer collecter = (Consumer) session.getAttribute("registerCollecter");
+        if (works != null) {
+            works.setStatus(worksStatus);
+            worksService.insert(works);
+            int worksId = works.getId();
+            insertImage(works.getImages(), worksId, Const.IMAGES_WORKS);
 
-        String certImage = (String) session.getAttribute("registerCertImage");
-        String valueImages = (String) session.getAttribute("registerValueImages");
+            session.removeAttribute("registerWorks");
+            session.removeAttribute("registerWorksName");
 
-        insertImage(certImage, report.getId(), Const.IMAGES_REPORT_CERTIFICATE);
-        insertImage(valueImages, report.getId(), Const.IMAGES_REPORT_DES);
+            Consumer provider = (Consumer) session.getAttribute("registerProvider");
+            if (provider != null) {
+                provider.setWorksId(worksId);
+                consumerService.insert(provider);
+                session.removeAttribute("registerProvider");
+            }
+            WorksLevel worksLevel = (WorksLevel) session.getAttribute("registerWorksLevel");
+            if (worksLevel != null) {
+                worksLevel.setWorksId(worksId);
+                worksLevelService.insert(worksLevel);
+                session.removeAttribute("registerWorksLevel");
+            }
 
-        worksService.insert(works);
-        int worksId = works.getId();
-        insertImage(works.getImages(), worksId, Const.IMAGES_WORKS);
+            Report report = (Report) session.getAttribute("registerReport");
+            if (report != null) {
+                report.setWorksId(worksId);
+                reportService.insert(report);
+                String certImage = (String) session.getAttribute("registerCertImage");
+                String valueImages = (String) session.getAttribute("registerValueImages");
+                insertImage(certImage, report.getId(), Const.IMAGES_REPORT_CERTIFICATE);
+                insertImage(valueImages, report.getId(), Const.IMAGES_REPORT_DES);
+                session.removeAttribute("registerReport");
+                session.removeAttribute("registerCertImage");
+                session.removeAttribute("registerValueImages");
+            }
 
-
-        session.removeAttribute("registerWorks");
-        session.removeAttribute("registerProvider");
-        session.removeAttribute("registerWorksLevel");
-        session.removeAttribute("registerReport");
-        session.removeAttribute("registerCollecter");
-
+            Consumer collecter = (Consumer) session.getAttribute("registerCollecter");
+            if (collecter != null) {
+                collecter.setWorksId(worksId);
+                consumerService.insert(collecter);
+                session.removeAttribute("registerCollecter");
+            }
+        }
     }
 
     private void insertImage(String images, Integer targetId, String types) {
@@ -579,5 +564,33 @@ public class MobileRegisterEditController extends BaseController {
             imagesService.insertBatch(list);
         }
     }
+
+    //获取当前用户
+    public AppUser getCurrentUser(HttpSession session) {
+        return (AppUser) session.getAttribute("currentUser");
+    }
+
+    @RequestMapping(value = "getWorksLevel", method = RequestMethod.GET)
+    @ResponseBody
+    public JSONObject getWorksLevel(@RequestParam(required = false) String breed) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("zhidi1", dictService.getWorksLevelDicByType("dd_zhidi", breed));
+        jsonObject.put("zhidi2", dictService.getWorksLevelDicByType("dd_zhidi2", breed));
+        jsonObject.put("ganguan", dictService.getWorksLevelDicByType("dd_ganguan", breed));
+        jsonObject.put("moshidu", dictService.getWorksLevelDicByType("dd_moshidu", breed));
+        jsonObject.put("xueliang", dictService.getWorksLevelDicByType("dd_xueliang", breed));
+        jsonObject.put("xuese", dictService.getWorksLevelDicByType("dd_xuese", breed));
+        jsonObject.put("xuexing", dictService.getWorksLevelDicByType("dd_xuexing", breed));
+        jsonObject.put("nongyandu", dictService.getWorksLevelDicByType("dd_nongyandu", breed));
+        jsonObject.put("jingdu", dictService.getWorksLevelDicByType("dd_jingdu", breed));
+        jsonObject.put("dise", dictService.getWorksLevelDicByType("dd_dise", breed));
+        jsonObject.put("liu", dictService.getWorksLevelDicByType("dd_liu", breed));
+        jsonObject.put("lie", dictService.getWorksLevelDicByType("dd_lie", breed));
+        jsonObject.put("mian", dictService.getWorksLevelDicByType("dd_mian", breed));
+        jsonObject.put("hanxuefangshi", dictService.getWorksLevelDicByType("dd_hanxuefangshi", breed));
+        jsonObject.put("ziranshipi", dictService.getWorksLevelDicByType("dd_ziranshipi", breed));
+        return jsonObject;
+    }
+
 
 }

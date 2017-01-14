@@ -442,7 +442,6 @@ public class MobileController extends BaseController {
             }
         }
 
-
         map.put("defaultList", defaultList);
         map.put("timeList", timeList);
         return "modules/mobile/pawn2/searchWorks";
@@ -535,7 +534,6 @@ public class MobileController extends BaseController {
             oldBrowse.setUpdateDate(new Date());
             followHistoryService.updateById(oldBrowse);
         }
-
 
         //作品
         Works works = worksService.selectById(worksId);

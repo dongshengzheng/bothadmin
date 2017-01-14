@@ -111,7 +111,7 @@
             <%@include file="worksEdit2.jsp" %>
         </div>
         <div id="tab3" class="weui_tab_bd_item div-hide">
-            <%@include file="worksEdit3.jsp" %>
+
         </div>
         <div id="tab4" class="weui_tab_bd_item div-hide">
             <%@include file="worksEdit4.jsp" %>
@@ -136,6 +136,18 @@
     </div>
 </form>
 
+<div id="worksLevel1" class="div-hide">
+    <%@include file="worksLevel1.jsp" %>
+</div>
+<div id="worksLevel2" class="div-hide">
+    <%@include file="worksLevel2.jsp" %>
+</div>
+<div id="worksLevel3" class="div-hide">
+    <%@include file="worksLevel3.jsp" %>
+</div>
+<div id="worksLevel4" class="div-hide">
+    <%@include file="worksLevel4.jsp" %>
+</div>
 
 <input id="bucket" type="hidden" value="${sessionScope.bucket}">
 <input id="redirectUrl" type="hidden" value="${sessionScope.redirectUrl}">
