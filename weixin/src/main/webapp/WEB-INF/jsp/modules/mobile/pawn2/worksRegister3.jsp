@@ -13,24 +13,23 @@
     <script src="${ctxStatic}/js/jquery-weui.js"></script>
     <script src="${ctxStatic}/js/swiper.js"></script>
     <style>
-        body {
+        .title {
+            height: 40px;
+            text-align: center;
             background-color: white;
         }
 
-        .title {
-            margin-top: 10%;
-            text-align: center;
-        }
-
         .title hr {
+            top: 25px;
+            position: relative;
             width: 80%;
             border-top: 1px solid red;
             color: red;
         }
 
         .title span {
+            top: 10px;
             position: relative;
-            top: -15px;
             background-color: white;
             color: red;
         }
@@ -47,33 +46,32 @@
     </style>
 </head>
 <body>
-<div class="title">
+<div class="title div-outer">
     <center>
         <hr>
         <span>&nbsp;◇&nbsp;JS-A20161205001A&nbsp;◇&nbsp;</span></center>
 </div>
 <div>
     <form action="${ctx}/mobile/worksRegister4" method="post">
-        <div class="weui-cells weui-cells_form">
-            <c:if test="${breed==1}">
-                <%@include file="worksLevel1.jsp" %>
-            </c:if>
-            <c:if test="${breed==2}">
-                <%@include file="worksLevel2.jsp" %>
-            </c:if>
-            <c:if test="${breed==3}">
-                <%@include file="worksLevel3.jsp" %>
-            </c:if>
-            <c:if test="${breed==4||breed==5}">
-                <%@include file="worksLevel4.jsp" %>
-            </c:if>
-        </div>
+        <c:if test="${breed==1}">
+            <%@include file="worksLevel1.jsp" %>
+        </c:if>
+        <c:if test="${breed==2}">
+            <%@include file="worksLevel2.jsp" %>
+        </c:if>
+        <c:if test="${breed==3}">
+            <%@include file="worksLevel3.jsp" %>
+        </c:if>
+        <c:if test="${breed==4||breed==5}">
+            <%@include file="worksLevel4.jsp" %>
+        </c:if>
 
         <div class="fixed-footer">
             <div class="weui-form-preview__ft">
                 <input id="draftYN" name="draftYN" type="hidden" value="NO">
                 <br/>
-                <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" id="draftSubmit">
+                <button type="submit" style="color: #333" class="weui-form-preview__btn weui-form-preview__btn_primary"
+                        id="draftSubmit">
                     存为草稿
                 </button>
                 <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary">

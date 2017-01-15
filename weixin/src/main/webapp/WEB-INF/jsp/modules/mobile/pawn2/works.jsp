@@ -16,8 +16,6 @@
     <script src="${ctxStatic}/js/swiper.js"></script>
 </head>
 <style>
-
-
     .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label {
         color: #9F504D;
     }
@@ -40,7 +38,7 @@
         right: 10%;
         width: 80%;
         position: absolute;
-        border-radius: 8px;
+        border-radius: 6px;
         top: 10px;
         color: gray;
         background-color: white;
@@ -277,7 +275,8 @@
     $(function () {
         $('.works-floor-btn-all,.works-floor-btn').on('click', fun1);
         function fun1() {
-            var worksid = $(this).parent().siblings('.worksId').val();
+            var thisone = $(this);
+            var worksid = thisone.parent().siblings('.worksId').val();
             $.ajax({
                 type: "POST",
                 url: "${ctx}/mobile/collectWorks",
@@ -287,6 +286,7 @@
                 success: function (data) {
                     $('#iosDialog2 .weui-dialog__bd').html(data);
                     $('#iosDialog2').fadeIn(200);
+                    thisone.html("&nbsp;&nbsp;已收藏&nbsp;");
                 }
             })
         }

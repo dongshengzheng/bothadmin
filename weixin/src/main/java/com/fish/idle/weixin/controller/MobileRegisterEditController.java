@@ -514,7 +514,7 @@ public class MobileRegisterEditController extends BaseController {
         session.removeAttribute("oldCollecter");
         session.removeAttribute("oldReport");
 
-        return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my";
+        return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=now";
 
     }
 
@@ -571,21 +571,6 @@ public class MobileRegisterEditController extends BaseController {
         }
     }
 
-    private void insertImage(String images, Integer targetId, String types) {
-        // 保存图片信息
-        if (images != null && images.trim().length() > 0) {
-            String[] urls = images.split(",");
-            List<Images> list = new ArrayList<>();
-            for (String url : urls) {
-                Images img = new Images();
-                img.setTargetId(targetId);
-                img.setUrl(url);
-                img.setType(types);
-                list.add(img);
-            }
-            imagesService.insertBatch(list);
-        }
-    }
 
     //获取作品等级
     @RequestMapping(value = "getWorksLevel", method = RequestMethod.GET)

@@ -23,11 +23,12 @@
     }
 
     #searchwhich {
-        border: lightgray;
-        width: 60px;
-        text-align: center;
+        border-radius: 3px;
+        width: 50px;
+        background-image: none;
         padding-left: 10px;
     }
+
 
     #history-serach-delete {
         width: 5%;
@@ -55,10 +56,6 @@
         background-position-y: center;
         background-position-x: 3px;
         padding-left: 19px;
-    }
-
-    #confirm {
-        display: none;
     }
 </style>
 
@@ -200,7 +197,7 @@
             $('#searchwhich').val('searchworks');
         })
 
-
+        $searchText.click();
     });
 </script>
 </html>

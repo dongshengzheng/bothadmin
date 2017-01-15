@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="include/taglib.jsp" %>
-<div id="load-worksLevel1">
+<div id="load-worksLevel1" class="div-outer">
     <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
         <div class="weui-cell__bd weui-cell_primary">
-            <input name="name" class="weui-input" type="tel" value="${sessionScope.registerWorksName}"
+            <input class="weui-input worksShowName" type="tel" value="${sessionScope.registerWorksName}"
                    disabled>
         </div>
     </div>

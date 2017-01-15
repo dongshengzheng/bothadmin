@@ -537,6 +537,8 @@ public class MobileController extends BaseController {
 
         //作品
         Works works = worksService.selectById(worksId);
+        //获取作品等级的信息还需要breed的值,故先取出
+        String breed = works.getBreed();
         //矿区地域
         if (StringUtils.isNotEmpty(works.getKqdy())) {
             works.setKqdy(dictService.getLabelByValue(works.getKqdy(), "dd_kqdy"));
@@ -558,54 +560,53 @@ public class MobileController extends BaseController {
 
 
         //作品等级
-        WorksLevel wl = new WorksLevel(worksId);
-        WorksLevel worksLevel = worksLevelService.selectOne(new EntityWrapper<>(wl));
+        WorksLevel worksLevel = worksLevelService.selectOne(new EntityWrapper<>(new WorksLevel(worksId)));
 
         if (worksLevel != null) {
             if (StringUtils.isNotEmpty(worksLevel.getZhidi())) {
-                worksLevel.setZhidi(dictService.getLabelByValue(worksLevel.getZhidi(), "dd_zhidi"));
+                worksLevel.setZhidi(dictService.getLabelByBreedAndValue(breed, worksLevel.getZhidi(), "dd_zhidi"));
             }
             if (StringUtils.isNotEmpty(worksLevel.getZhidi2())) {
-                worksLevel.setZhidi2(dictService.getLabelByValue(worksLevel.getZhidi2(), "dd_zhidi2"));
+                worksLevel.setZhidi2(dictService.getLabelByBreedAndValue(breed, worksLevel.getZhidi2(), "dd_zhidi2"));
             }
             if (StringUtils.isNotEmpty(worksLevel.getGanguan())) {
-                worksLevel.setGanguan(dictService.getLabelByValue(worksLevel.getGanguan(), "dd_ganguan"));
+                worksLevel.setGanguan(dictService.getLabelByBreedAndValue(breed, worksLevel.getGanguan(), "dd_ganguan"));
             }
             if (StringUtils.isNotEmpty(worksLevel.getMoshidu())) {
-                worksLevel.setMoshidu(dictService.getLabelByValue(worksLevel.getMoshidu(), "dd_moshidu"));
+                worksLevel.setMoshidu(dictService.getLabelByBreedAndValue(breed, worksLevel.getMoshidu(), "dd_moshidu"));
             }
             if (StringUtils.isNotEmpty(worksLevel.getXueliang())) {
-                worksLevel.setXueliang(dictService.getLabelByValue(worksLevel.getXueliang(), "dd_xueliang"));
+                worksLevel.setXueliang(dictService.getLabelByBreedAndValue(breed, worksLevel.getXueliang(), "dd_xueliang"));
             }
             if (StringUtils.isNotEmpty(worksLevel.getXuese())) {
-                worksLevel.setXuese(dictService.getLabelByValue(worksLevel.getXuese(), "dd_xuese"));
+                worksLevel.setXuese(dictService.getLabelByBreedAndValue(breed, worksLevel.getXuese(), "dd_xuese"));
             }
             if (StringUtils.isNotEmpty(worksLevel.getXuexing())) {
-                worksLevel.setXuexing(dictService.getLabelByValue(worksLevel.getXuexing(), "dd_xuexing"));
+                worksLevel.setXuexing(dictService.getLabelByBreedAndValue(breed, worksLevel.getXuexing(), "dd_xuexing"));
             }
             if (StringUtils.isNotEmpty(worksLevel.getNongyandu())) {
-                worksLevel.setNongyandu(dictService.getLabelByValue(worksLevel.getNongyandu(), "dd_nongyandu"));
+                worksLevel.setNongyandu(dictService.getLabelByBreedAndValue(breed, worksLevel.getNongyandu(), "dd_nongyandu"));
             }
             if (StringUtils.isNotEmpty(worksLevel.getChunjingdu())) {
-                worksLevel.setChunjingdu(dictService.getLabelByValue(worksLevel.getChunjingdu(), "dd_jingdu"));
+                worksLevel.setChunjingdu(dictService.getLabelByBreedAndValue(breed, worksLevel.getChunjingdu(), "dd_jingdu"));
             }
             if (StringUtils.isNotEmpty(worksLevel.getDise())) {
-                worksLevel.setDise(dictService.getLabelByValue(worksLevel.getDise(), "dd_dise"));
+                worksLevel.setDise(dictService.getLabelByBreedAndValue(breed, worksLevel.getDise(), "dd_dise"));
             }
             if (StringUtils.isNotEmpty(worksLevel.getLie())) {
-                worksLevel.setLie(dictService.getLabelByValue(worksLevel.getLie(), "dd_lie"));
+                worksLevel.setLie(dictService.getLabelByBreedAndValue(breed, worksLevel.getLie(), "dd_lie"));
             }
             if (StringUtils.isNotEmpty(worksLevel.getLiu())) {
-                worksLevel.setLiu(dictService.getLabelByValue(worksLevel.getLiu(), "dd_liu"));
+                worksLevel.setLiu(dictService.getLabelByBreedAndValue(breed, worksLevel.getLiu(), "dd_liu"));
             }
             if (StringUtils.isNotEmpty(worksLevel.getInithanxueliang())) {
-                worksLevel.setInithanxueliang(dictService.getLabelByValue(worksLevel.getInithanxueliang(), "dd_mian"));
+                worksLevel.setInithanxueliang(dictService.getLabelByBreedAndValue(breed, worksLevel.getInithanxueliang(), "dd_mian"));
             }
             if (StringUtils.isNotEmpty(worksLevel.getHanxueliang())) {
-                worksLevel.setHanxueliang(dictService.getLabelByValue(worksLevel.getHanxueliang(), "dd_hanxuefangshi"));
+                worksLevel.setHanxueliang(dictService.getLabelByBreedAndValue(breed, worksLevel.getHanxueliang(), "dd_hanxuefangshi"));
             }
             if (StringUtils.isNotEmpty(worksLevel.getHanxuefangshi())) {
-                worksLevel.setHanxuefangshi(dictService.getLabelByValue(worksLevel.getHanxuefangshi(), "dd_hanxuefangshi"));
+                worksLevel.setHanxuefangshi(dictService.getLabelByBreedAndValue(breed, worksLevel.getHanxuefangshi(), "dd_hanxuefangshi"));
             }
         }
 
@@ -732,180 +733,6 @@ public class MobileController extends BaseController {
         return "modules/mobile/pawn2/interpretationDetail";
     }
 
-    /**
-     * 跳往个人信息页面
-     *
-     * @return
-     */
-    @RequestMapping(value = "my", method = RequestMethod.GET)
-    @OAuthRequired
-    public String my(HttpSession session,
-                     ModelMap map) {
-        AppUser currentUser = getCurrentUser();
-        map.put("appUser", appUserService.searchMyInfo(currentUser.getId()));
-        return "modules/mobile/pawn2/my";
-    }
-
-    /**
-     * 跳往个人信息编辑页面
-     *
-     * @return
-     */
-    @RequestMapping(value = "my/mySet", method = RequestMethod.GET)
-    @OAuthRequired
-    public String mySet(HttpSession session,
-                        ModelMap map) {
-        AppUser currentUser = getCurrentUser();
-        map.put("appUser", currentUser);
-        return "modules/mobile/pawn2/mySet";
-    }
-
-    /**
-     * 完成个人信息编辑更新
-     *
-     * @return
-     */
-    @RequestMapping(value = "my/mySetComplete", method = RequestMethod.POST)
-    @OAuthRequired
-    public String mySetComplete(HttpSession session,
-                                @RequestParam(required = false) String name,
-                                @RequestParam(required = false) String address,
-                                @RequestParam(required = false) String phone,
-                                @RequestParam(required = false) String email,
-                                @RequestParam(required = false) String identification,
-                                @RequestParam(required = false) String prefer,
-                                @RequestParam(required = false) String ifpublic) {
-        AppUser currentUser = getCurrentUser();
-        currentUser.setName(name);
-        currentUser.setPhone(phone);
-        currentUser.setEmail(email);
-        currentUser.setAddress(address);
-        currentUser.setIdentification(identification);
-        currentUser.setPrefer(prefer);
-        if (ifpublic == null) {
-            currentUser.setPub(false);
-        } else {
-            currentUser.setPub(true);
-        }
-        appUserService.updateById(currentUser);
-        return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my";
-    }
-
-
-    /**
-     * 更新头像及昵称
-     *
-     * @return
-     */
-    @RequestMapping(value = "updateHeadImgLoginName", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
-    @ResponseBody
-    @OAuthRequired
-    public String updateHeadImgLoginName(HttpSession session) {
-        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        String unionId = wxMpUser.getUnionId();
-        AppUser u = new AppUser();
-        u.setUnionId(unionId);
-        AppUser appUser = appUserService.selectOne(u);
-        if (appUser == null) {
-            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
-        }
-
-        appUser.setLoginName(wxMpUser.getNickname());
-        appUser.setHeadImgUrl(wxMpUser.getHeadImgUrl());
-        boolean result = appUserService.updateById(appUser);
-        if (result) {
-            return "完成更新,刷新页面后可看到改变!";
-        }
-
-        return "更新失败,请稍后再试...";
-    }
-
-
-    /**
-     * 跳往个人信息积分中心页面
-     *
-     * @return
-     */
-    @RequestMapping(value = "my/pointCenter", method = RequestMethod.GET)
-    @OAuthRequired
-    public String pointCenter(HttpSession session,
-                              ModelMap map) {
-        AppUser currentUser = getCurrentUser();
-        map.put("appUser", currentUser);
-
-        return "modules/mobile/pawn2/pointCenter";
-    }
-
-    /**
-     * @return
-     */
-    @RequestMapping(value = "my/pointCenter/point_load", method = RequestMethod.GET)
-    @ResponseBody
-    public List<ScoreHistory> loadIntegral(HttpSession session, ModelMap map) {
-        AppUser currentUser = getCurrentUser();
-        EntityWrapper<ScoreHistory> ew = new EntityWrapper<>(new ScoreHistory());
-        ew.setSqlSelect("value,update_date,from_user_id,to_user_id,type");
-        ew.addFilter("from_user_id = {0} or to_user_id = {0}", currentUser.getId());
-        ew.orderBy("update_date", false);
-        List<ScoreHistory> scoreHistoryList = scoreHistoryService.selectList(ew);
-        for (ScoreHistory s : scoreHistoryList) {
-            if (s.getType() != null && s.getType().trim().length() > 0) {
-                s.setType(dictService.getLabelByValue(s.getType(), "score_type"));
-            }
-        }
-        map.put("myId", currentUser.getId());
-        return scoreHistoryList;
-    }
-
-    /**
-     * 跳往个人信息积分充值页面
-     *
-     * @return
-     */
-    @RequestMapping(value = "my/pointSave", method = RequestMethod.GET)
-    @OAuthRequired
-    public String pointSave(HttpSession session,
-                            ModelMap map) {
-        return "modules/mobile/pawn2/pointSave";
-    }
-
-    /**
-     * 积分充值完成
-     *
-     * @return
-     */
-    @RequestMapping(value = "my/pointSaveComplete", method = RequestMethod.GET)
-    @OAuthRequired
-    public String pointSaveComplete(HttpSession session,
-                                    ModelMap map,
-                                    @RequestParam(required = false) int score) {
-        return "modules/mobile/pawn2/my";
-    }
-
-    /**
-     * 跳往个人信息积分提现页面
-     *
-     * @return
-     */
-    @RequestMapping(value = "my/pointWithdraw", method = RequestMethod.GET)
-    @OAuthRequired
-    public String pointWithdraw(HttpSession session,
-                                ModelMap map) {
-        return "modules/mobile/pawn2/pointWithdraw";
-    }
-
-    /**
-     * 积分提现完成
-     *
-     * @return
-     */
-    @RequestMapping(value = "my/pointWithdrawComplete", method = RequestMethod.GET)
-    @OAuthRequired
-    public String pointWithdrawComplete(HttpSession session,
-                                        ModelMap map,
-                                        @RequestParam(required = false) int score) {
-        return "modules/mobile/pawn2/my";
-    }
 
     /**
      * 跳往个人信息:我的作品页面
@@ -1144,47 +971,4 @@ public class MobileController extends BaseController {
     }
 
 
-    private void insertImage(String images, Integer targetId, String types) {
-        // 保存图片信息
-        if (images != null && images.trim().length() > 0) {
-            String[] urls = images.split(",");
-            List<Images> list = new ArrayList<>();
-            for (String url : urls) {
-                Images img = new Images();
-                img.setTargetId(targetId);
-                img.setUrl(url);
-                img.setType(types);
-                list.add(img);
-            }
-            imagesService.insertBatch(list);
-        }
-    }
-
-    //去除emoji
-    public static String filterEmoji(String source) {
-        if (StringUtils.isNotBlank(source)) {
-            return source.replaceAll("[\\ud800\\udc00-\\udbff\\udfff\\ud800-\\udfff]", "*");
-        } else {
-            return source;
-        }
-    }
-
-    //发送模板消息
-    public void sendTemplateMsg(int targetId, String templateId, String url, String first, String keyword1, String keyword2, String remark) {
-        AppUser targetUser = appUserService.selectById(targetId);
-        WxMpTemplateMessage templateMessage = new WxMpTemplateMessage();
-        templateMessage.setToUser(targetUser.getOpenId());
-        templateMessage.setTemplateId(templateId);
-        templateMessage.setUrl(url);
-        templateMessage.setTopColor("#000000");
-        templateMessage.getData().add(new WxMpTemplateData("first", first, "#000000"));
-        templateMessage.getData().add(new WxMpTemplateData("keyword1", keyword1));
-        templateMessage.getData().add(new WxMpTemplateData("keyword2", keyword2));
-        templateMessage.getData().add(new WxMpTemplateData("remark", remark, "#000000"));
-        try {
-            wxMpTemplateMsgService.sendTemplateMsg(templateMessage);
-        } catch (WxErrorException e) {
-            e.printStackTrace();
-        }
-    }
 }

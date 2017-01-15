@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="include/taglib.jsp" %>
-<div id="load-worksLevel2">
+<div id="load-worksLevel2" class="div-outer">
     <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
         <div class="weui-cell__bd weui-cell_primary">
-            <input name="name" class="weui-input" type="tel" value="${sessionScope.registerWorksName}"
+            <input class="weui-input worksShowName" type="tel" value="${sessionScope.registerWorksName}"
                    disabled>
         </div>
     </div>
@@ -32,7 +32,7 @@
     <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">净度</label></div>
         <div class="weui-cell__bd weui-cell_primary">
-            <select name="jingdu">
+            <select name="chunjingdu">
             </select>
         </div>
     </div>
@@ -93,7 +93,7 @@
             $.each(data.jingdu, function () {
                 jingdu += '<option value="' + this.value + '">' + this.label + '</option>'
             });
-            $('#load-worksLevel2 select[name="jingdu"]').html(jingdu);
+            $('#load-worksLevel2 select[name="chunjingdu"]').html(jingdu);
 
             var moshidu = '<option value="" selected>请选择磨氏度</option>'
             $.each(data.moshidu, function () {

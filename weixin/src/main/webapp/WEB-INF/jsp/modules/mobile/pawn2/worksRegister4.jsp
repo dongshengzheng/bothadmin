@@ -17,30 +17,33 @@
     <script src="${ctxStatic}/js/plupload-2.1.2/js/moxie.js"></script>
     <script src="${ctxStatic}/js/plupload-2.1.2/js/plupload.dev.js"></script>
     <style>
-        body {
+        .title {
+            height: 40px;
+            text-align: center;
             background-color: white;
         }
 
-        .title {
-            margin-top: 10%;
-            text-align: center;
-        }
-
         .title hr {
+            top:25px;
+            position: relative;
             width: 80%;
             border-top: 1px solid red;
             color: red;
         }
 
         .title span {
+            top:10px;
             position: relative;
-            top: -15px;
             background-color: white;
             color: red;
         }
 
         .fixed-footer {
             height: 12%;
+        }
+
+        .fixed-footer-blank{
+            background-color: #F0EFF5;
         }
 
         .fixed-footer p {
@@ -115,19 +118,12 @@
             width: 100px;
             border: none;
         }
-
-        .fixed-footer {
-            z-index: 100;
-            border-top: 1px solid;
-        }
-
-
     </style>
 </head>
 <body>
-<div class="title">
+<div class="title div-outer">
     <center>
-        <hr>
+        <hr class="title-hr">
         <span>&nbsp;◇&nbsp;JS-A20161205001A&nbsp;◇&nbsp;</span></center>
     <center><span>${sessionScope.registerWorksName}
     </span></center>
@@ -169,13 +165,14 @@
             <input name="valueTimeString" id="valueTime" placeholder="选择有效时间">
         </div>
     </div>
-
+    <br/>
     <div class="fixed-footer">
-        <p>下一步即表示同意为收藏者信息,可不填写直接提交</p>
+        <p style="background-color: #F0EFF5">下一步即表示同意为收藏者信息,可不填写直接提交</p>
         <div class="weui-form-preview__ft">
             <br/>
             <input id="draftYN" name="draftYN" type="hidden" value="NO">
-            <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" id="draftSubmit">
+            <button type="submit" style="color: #333" class="weui-form-preview__btn weui-form-preview__btn_primary"
+                    id="draftSubmit">
                 存为草稿
             </button>
             <button id="confirmSubmit" type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary"

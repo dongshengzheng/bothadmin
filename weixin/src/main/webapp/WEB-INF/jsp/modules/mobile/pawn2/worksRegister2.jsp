@@ -15,24 +15,23 @@
     <script src="${ctxStatic}/js/jquery-weui.js"></script>
     <script src="${ctxStatic}/js/swiper.js"></script>
     <style>
-        body {
+        .title {
+            height: 40px;
+            text-align: center;
             background-color: white;
         }
 
-        .title {
-            margin-top: 10%;
-            text-align: center;
-        }
-
         .title hr {
+            top: 25px;
+            position: relative;
             width: 80%;
             border-top: 1px solid red;
             color: red;
         }
 
         .title span {
+            top: 10px;
             position: relative;
-            top: -15px;
             background-color: white;
             color: red;
         }
@@ -49,126 +48,124 @@
     </style>
 </head>
 <body>
-<div class="title">
+<div class="title div-outer">
     <center>
         <hr>
         <span>&nbsp;◇&nbsp;JS-A20161205001A&nbsp;◇&nbsp;</span></center>
 </div>
-<div>
+<div class="div-outer">
     <form action="${ctx}/mobile/worksRegister3" method="post">
-        <div class="weui-cells weui-cells_form">
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input name="name" class="weui-input" type="tel" value="${sessionScope.registerWorksName}"
-                           disabled>
-                </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
+            <div class="weui-cell__bd weui-cell_primary">
+                <input name="name" class="weui-input" type="tel" value="${sessionScope.registerWorksName}"
+                       disabled>
             </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">品种</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <select name="breed">
-                        <option value="" selected>请选择品种</option>
-                        <c:forEach items="${pinzhong}" var="item">
-                            <option value="${item.value}">${item.label}</option>
-                        </c:forEach>
-                    </select>
-                </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">品种</label></div>
+            <div class="weui-cell__bd weui-cell_primary">
+                <select name="breed">
+                    <option value="" selected>请选择品种</option>
+                    <c:forEach items="${pinzhong}" var="item">
+                        <option value="${item.value}">${item.label}</option>
+                    </c:forEach>
+                </select>
             </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">作品类型</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <select name="type">
-                        <option value="" selected>请选择作品类型</option>
-                        <c:forEach items="${zuopinleixing}" var="item">
-                            <option value="${item.value}">${item.label}</option>
-                        </c:forEach>
-                    </select>
-                </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">作品类型</label></div>
+            <div class="weui-cell__bd weui-cell_primary">
+                <select name="type">
+                    <option value="" selected>请选择作品类型</option>
+                    <c:forEach items="${zuopinleixing}" var="item">
+                        <option value="${item.value}">${item.label}</option>
+                    </c:forEach>
+                </select>
             </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">尺寸</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input name="length" class="weui-input" type="tel" placeholder="长">
-                </div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input class="weui-input" type="tel" value="cm" disabled>
-                </div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input name="width" class="weui-input" type="tel" placeholder="宽">
-                </div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input class="weui-input" type="tel" value="cm" disabled>
-                </div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input name="height" class="weui-input" type="tel" placeholder="高">
-                </div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input class="weui-input" type="tel" value="cm" disabled>
-                </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">尺寸</label></div>
+            <div class="weui-cell__bd weui-cell_primary">
+                <input name="length" class="weui-input" type="tel" placeholder="长">
             </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">重量</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input name="weight" class="weui-input" type="tel" placeholder="请输入重量">
-                </div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input class="weui-input" type="tel" value="g" disabled>
-                </div>
+            <div class="weui-cell__bd weui-cell_primary">
+                <input class="weui-input" type="tel" value="cm" disabled>
             </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">工艺制作</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <select name="gyType">
-                        <option value="" selected>请选择工艺制作</option>
-                        <c:forEach items="${gyType}" var="item">
-                            <option value="${item.value}">${item.label}</option>
-                        </c:forEach>
-                    </select>
-                </div>
+            <div class="weui-cell__bd weui-cell_primary">
+                <input name="width" class="weui-input" type="tel" placeholder="宽">
             </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">篆刻级别</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <select name="levelZk">
-                        <option value="" selected>请选择篆刻级别</option>
-                        <c:forEach items="${level}" var="item">
-                            <option value="${item.value}">${item.label}</option>
-                        </c:forEach>
-                    </select>
-                </div>
+            <div class="weui-cell__bd weui-cell_primary">
+                <input class="weui-input" type="tel" value="cm" disabled>
             </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">矿区地域</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <select name="kqdy">
-                        <option value="" selected>请选择矿区地域</option>
-                        <c:forEach items="${kqdy}" var="item">
-                            <option value="${item.value}">${item.label}</option>
-                        </c:forEach>
-                    </select>
-                </div>
+            <div class="weui-cell__bd weui-cell_primary">
+                <input name="height" class="weui-input" type="tel" placeholder="高">
             </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">制作人</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input name="maker" id="works-zhizuoren" class="weui-input" type="tel" placeholder="请输入制作人">
-                </div>
+            <div class="weui-cell__bd weui-cell_primary">
+                <input class="weui-input" type="tel" value="cm" disabled>
             </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">制作时间</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input name="makeTimeString" id="works-zhizuoshijian" class="weui-input" placeholder="请选择制作时间">
-                </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">重量</label></div>
+            <div class="weui-cell__bd weui-cell_primary">
+                <input name="weight" class="weui-input" type="tel" placeholder="请输入重量">
             </div>
-            <div class="weui-cell">
-                <div class="weui-cell__bd weui-cell_primary">
+            <div class="weui-cell__bd weui-cell_primary">
+                <input class="weui-input" type="tel" value="g" disabled>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">工艺制作</label></div>
+            <div class="weui-cell__bd weui-cell_primary">
+                <select name="gyType">
+                    <option value="" selected>请选择工艺制作</option>
+                    <c:forEach items="${gyType}" var="item">
+                        <option value="${item.value}">${item.label}</option>
+                    </c:forEach>
+                </select>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">篆刻级别</label></div>
+            <div class="weui-cell__bd weui-cell_primary">
+                <select name="levelZk">
+                    <option value="" selected>请选择篆刻级别</option>
+                    <c:forEach items="${level}" var="item">
+                        <option value="${item.value}">${item.label}</option>
+                    </c:forEach>
+                </select>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">矿区地域</label></div>
+            <div class="weui-cell__bd weui-cell_primary">
+                <select name="kqdy">
+                    <option value="" selected>请选择矿区地域</option>
+                    <c:forEach items="${kqdy}" var="item">
+                        <option value="${item.value}">${item.label}</option>
+                    </c:forEach>
+                </select>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">制作人</label></div>
+            <div class="weui-cell__bd weui-cell_primary">
+                <input name="maker" id="works-zhizuoren" class="weui-input" type="tel" placeholder="请输入制作人">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">制作时间</label></div>
+            <div class="weui-cell__bd weui-cell_primary">
+                <input name="makeTimeString" id="works-zhizuoshijian" class="weui-input" placeholder="请选择制作时间">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__bd weui-cell_primary">
                     <textarea name="worksMeanning" id="works-zuopinquanshi" class="weui-textarea" placeholder="作品诠释..."
                               rows="3"></textarea>
-                    <!--<div class="weui-textarea-counter">-->
-                    <!--<span>0</span>/200-->
-                    <!--</div>-->
-                </div>
+                <!--<div class="weui-textarea-counter">-->
+                <!--<span>0</span>/200-->
+                <!--</div>-->
             </div>
         </div>
 
@@ -176,7 +173,8 @@
             <div class="weui-form-preview__ft">
                 <br>
                 <input id="draftYN" name="draftYN" type="hidden" value="NO">
-                <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" id="draftSubmit">
+                <button type="submit" style="color: #333" class="weui-form-preview__btn weui-form-preview__btn_primary"
+                        id="draftSubmit">
                     存为草稿
                 </button>
                 <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary">

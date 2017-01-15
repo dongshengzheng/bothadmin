@@ -3,7 +3,7 @@
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input name="name" class="weui-input" type="tel" value="${sessionScope.registerWorksName}"
+        <input type="tel" class="weui-input worksShowName" value="${sessionScope.registerWorksName}"
                disabled>
     </div>
 </div>
@@ -25,7 +25,7 @@
     <div class="weui-cell__bd weui-cell_primary">
         <select name="hanxuefangshi">
             <option value="">请选择自然石皮</option>
-            <c:forEach items="${自然石皮}" var="item">
+            <c:forEach items="${ziranshipi}" var="item">
                 <option value="${item.value}"
                         <c:if test="${worksLevel.ziranshipi==item.value}">selected</c:if>
                 >${item.label}</option>

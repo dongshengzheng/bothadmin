@@ -189,6 +189,10 @@
 
         $("#showDatePicker").calendar();
 
+        $('#goto3').on('click', function () {
+            $('.worksShowName').val($('#worksName').val());
+        })
+
         $('#worksName').on('change', function () {
             $('.worksShowName').val($(this).val());
         })
