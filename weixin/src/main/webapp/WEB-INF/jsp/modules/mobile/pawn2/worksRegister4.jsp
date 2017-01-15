@@ -182,10 +182,6 @@
                     href="javascript:">
                 确认提交
             </button>
-            <button onclick="window.history.back(-1);" type="button"
-                    class="weui-form-preview__btn weui-form-preview__btn_primary" id="trueSubmit">
-                上一步
-            </button>
             <button id="nextSubmit" type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary"
                     href="javascript:">
                 下一步
@@ -226,8 +222,8 @@
 <div class="weui-gallery" id="gallery">
     <span class="weui-gallery__img" id="galleryImg"></span>
 </div>
-<input id="bucket" type="hidden" value="${sessionScope.bucket}">
-<input id="redirectUrl" type="hidden" value="${sessionScope.redirectUrl}">
+<input id="bucket" type="hidden" value="${bucket}">
+<input id="redirectUrl" type="hidden" value="${redirectUrl}">
 <script type="text/javascript">
     $(function () {
 

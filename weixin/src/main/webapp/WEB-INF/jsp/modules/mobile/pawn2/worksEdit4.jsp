@@ -61,7 +61,7 @@
     <div class="div-outer">
         <div class="weui-cell">
             <div class="weui-cell__bd weui-cell_primary">
-            <textarea name="des" class="weui-textarea" placeholder="详细鉴定报告..."
+            <textarea name="report.des" class="weui-textarea" placeholder="详细鉴定报告..."
                       rows="5">${report.des}</textarea>
             </div>
         </div>
@@ -84,7 +84,7 @@
     <p class="report">&nbsp;金石典当认证价值报告&nbsp;</p>
     <div class="weui-cell">
         <div class="weui-cell__bd weui-cell_primary">
-            <textarea name="certify" class="weui-textarea" placeholder="详细价值报告"
+            <textarea name="report.certify" class="weui-textarea" placeholder="详细价值报告"
                       rows="5">${report.certify}</textarea>
         </div>
     </div>
@@ -130,6 +130,9 @@
 
 <script>
     $(function () {
+        $('#valueTime').calendar();
+
+
         var $iosActionsheet = $('#iosActionsheet');
         var $iosMask = $('#iosMask');
         var $iosDialog1 = $('#iosDialog1');

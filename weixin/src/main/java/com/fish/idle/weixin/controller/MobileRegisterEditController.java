@@ -5,10 +5,12 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.fish.idle.service.modules.jsdd.entity.*;
 import com.fish.idle.service.modules.jsdd.service.*;
 import com.fish.idle.service.modules.sys.entity.AppUser;
+import com.fish.idle.service.modules.sys.entity.BaseEntity;
 import com.fish.idle.service.modules.sys.service.IAppUserService;
 import com.fish.idle.service.modules.sys.service.IDictService;
 import com.fish.idle.service.util.Const;
 import com.fish.idle.service.util.DateUtil;
+import com.fish.idle.weixin.entity.WorksBo;
 import com.fish.idle.weixin.interceptor.OAuthRequired;
 import me.chanjar.weixin.mp.api.WxMpConfigStorage;
 import me.chanjar.weixin.mp.api.WxMpService;
@@ -17,6 +19,7 @@ import me.chanjar.weixin.mp.bean.result.WxMpUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -117,7 +120,7 @@ public class MobileRegisterEditController extends BaseController {
                                  @RequestParam(required = false) String providerNo,
                                  @RequestParam(required = false) String worksRemarks,
                                  @RequestParam(required = false) String draftYN) {
-        AppUser currentUser = getCurrentUser(session);
+        AppUser currentUser = getCurrentUser();
         works.setCreateBy(currentUser.getId());
         if (createDateString != null && createDateString.trim().length() > 0) {
             Date createDate = DateUtil.parseDate(createDateString, "yyyy-MM-dd");
@@ -215,6 +218,7 @@ public class MobileRegisterEditController extends BaseController {
     @OAuthRequired
     public String worksRegister4(HttpSession session,
                                  WorksLevel worksLevel,
+                                 ModelMap map,
                                  @RequestParam(required = false) String draftYN) {
 
         session.setAttribute("registerWorksLevel", worksLevel);
@@ -222,6 +226,8 @@ public class MobileRegisterEditController extends BaseController {
             insertAll(session, Const.WORKS_STATUS_DRAFT);
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=draft";
         }
+        map.put("bucket", bucket);
+        map.put("redirectUrl", redirectUrl);
         return "modules/mobile/pawn2/worksRegister4";
     }
 
@@ -345,13 +351,39 @@ public class MobileRegisterEditController extends BaseController {
         map.put("collecter", collecter);
         map.put("report", report);
 
-        session.setAttribute("worksIdInSession", worksId);
-
         map.put("kqdy", dictService.getWorksLevelDicByType("dd_kqdy"));
         map.put("level", dictService.getWorksLevelDicByType("dd_level"));
         map.put("pinzhong", dictService.getWorksLevelDicByType("dd_pinzhong"));
         map.put("zuopinleixing", dictService.getWorksLevelDicByType("dd_zuopinleixing"));
         map.put("gyType", dictService.getWorksLevelDicByType("dd_level"));
+
+
+        String breed = works.getBreed();
+        map.put("zhidi1", dictService.getWorksLevelDicByType("dd_zhidi", breed));
+        map.put("zhidi2", dictService.getWorksLevelDicByType("dd_zhidi2", breed));
+        map.put("ganguan", dictService.getWorksLevelDicByType("dd_ganguan", breed));
+        map.put("moshidu", dictService.getWorksLevelDicByType("dd_moshidu", breed));
+        map.put("xueliang", dictService.getWorksLevelDicByType("dd_xueliang", breed));
+        map.put("xuese", dictService.getWorksLevelDicByType("dd_xuese", breed));
+        map.put("xuexing", dictService.getWorksLevelDicByType("dd_xuexing", breed));
+        map.put("nongyandu", dictService.getWorksLevelDicByType("dd_nongyandu", breed));
+        map.put("jingdu", dictService.getWorksLevelDicByType("dd_jingdu", breed));
+        map.put("dise", dictService.getWorksLevelDicByType("dd_dise", breed));
+        map.put("liu", dictService.getWorksLevelDicByType("dd_liu", breed));
+        map.put("lie", dictService.getWorksLevelDicByType("dd_lie", breed));
+        map.put("mian", dictService.getWorksLevelDicByType("dd_mian", breed));
+        map.put("hanxuefangshi", dictService.getWorksLevelDicByType("dd_hanxuefangshi", breed));
+        map.put("ziranshipi", dictService.getWorksLevelDicByType("dd_ziranshipi", breed));
+
+        map.put("bucket", bucket);
+        map.put("redirectUrl", redirectUrl);
+
+        session.setAttribute("oldWorks", works);
+        session.setAttribute("oldWorksLevel", worksLevel);
+        session.setAttribute("oldProvider", provider);
+        session.setAttribute("oldCollecter", collecter);
+        session.setAttribute("oldReport", report);
+
 
         return "modules/mobile/pawn2/worksEdit";
     }
@@ -364,42 +396,27 @@ public class MobileRegisterEditController extends BaseController {
     @RequestMapping(value = "worksEditComplete", method = RequestMethod.POST)
     @OAuthRequired
     public String worksEditComplete(HttpSession session,
-                                    Works works,
+                                    WorksBo worksBo,
                                     WorksLevel worksLevel,
-                                    Consumer consumer,
-                                    Report report,
-                                    @RequestParam(required = false) String worksName,
-                                    @RequestParam(required = false) String worksRemarks,
-                                    @RequestParam(required = false) String worksType,
+                                    @RequestParam(required = false) String worksLevelId,
                                     @RequestParam(required = false) String worksImages,
                                     @RequestParam(required = false) String makeTimeString,
                                     @RequestParam(required = false) String createDateString,
-                                    @RequestParam(required = false) String providerNo,
-                                    @RequestParam(required = false) String providerName,
-                                    @RequestParam(required = false) String collecterName,
-                                    @RequestParam(required = false) String collecterNo,
-                                    @RequestParam(required = false) String collecterAddress,
-                                    @RequestParam(required = false) String collecterPhone,
                                     @RequestParam(required = false) String collecterDateTimeString,
                                     @RequestParam(required = false) String collecterPub,
                                     @RequestParam(required = false) String certImage,
                                     @RequestParam(required = false) String valueImages,
                                     @RequestParam(required = false) String valueTimeString) {
-        AppUser currentUser = getCurrentUser(session);
+        Works oldWorks = (Works) session.getAttribute("oldWorks");
+        WorksLevel oldWorksLevel = (WorksLevel) session.getAttribute("oldWorksLevel");
+        Consumer oldProvider = (Consumer) session.getAttribute("oldProvider");
+        Consumer oldCollecter = (Consumer) session.getAttribute("oldCollecter");
+        Report oldReport = (Report) session.getAttribute("oldReport");
 
-        Integer worksId = (Integer) session.getAttribute("worksIdInSession");
 
-        Works oldWorks = worksService.selectById(worksId);
+        Works works = worksBo.getWorks();
+        Integer worksId = works.getId();
 
-        works.setCreateBy(oldWorks.getCreateBy());
-        works.setCreateDate(oldWorks.getCreateDate());
-        works.setNo(oldWorks.getNo());
-        works.setUpdateBy(currentUser.getId());
-        works.setUpdateDate(new Date());
-        works.setId(worksId);
-        works.setType(worksType);
-        works.setName(worksName);
-        works.setRemarks(worksRemarks);
         works.setStatus(Const.WORKS_STATUS_COMMIT);
         if (createDateString != null && createDateString.trim().length() > 0) {
             Date createDate = DateUtil.parseDate(createDateString, "yyyy-MM-dd");
@@ -409,43 +426,43 @@ public class MobileRegisterEditController extends BaseController {
             Date makeTime = DateUtil.parseDate(makeTimeString, "yyyy-MM-dd");
             works.setMakeTime(makeTime);
         }
+        works.setCreateBy(oldWorks.getCreateBy());
+        wrapUpdateEntity(works);
         worksService.updateById(works);
 
-
         worksLevel.setWorksId(worksId);
-        WorksLevel wl = new WorksLevel();
-        wl.setWorksId(worksId);
-        wl = worksLevelService.selectOne(new EntityWrapper<>(wl));
-        if (wl == null) {
-            worksLevelService.insert(worksLevel);
+        if (worksLevelId != null && worksLevelId.trim().length() > 0) {
+            worksLevel.setId(Integer.parseInt(worksLevelId));
+            worksLevel.setCreateBy(oldWorksLevel.getCreateBy());
+            worksLevel.setCreateDate(oldWorksLevel.getCreateDate());
+            wrapUpdateEntity(worksLevel);
         } else {
-            worksLevel.setId(wl.getId());
-            worksLevelService.updateById(worksLevel);
+            wrapInsertEntity(worksLevel);
         }
+        worksLevelService.insertOrUpdate(worksLevel);
 
 
-        consumer.setNo(providerNo);
-        consumer.setName(providerName);
-        consumer.setType(Const.CONSUMER_TYPE_PROVIDER);
-        consumer.setWorksId(worksId);
-        Consumer cs = new Consumer();
-        cs.setWorksId(worksId);
-        cs.setType(Const.CONSUMER_TYPE_PROVIDER);
-        cs = consumerService.selectOne(new EntityWrapper<>(cs));
-        if (cs == null) {
-            consumerService.insert(consumer);
+        Consumer provider = worksBo.getProvider();
+        provider.setType(Const.CONSUMER_TYPE_PROVIDER);
+        if (oldProvider != null) {
+            provider.setCreateBy(oldProvider.getCreateBy());
+            provider.setCreateDate(oldProvider.getCreateDate());
+            wrapUpdateEntity(provider);
         } else {
-            consumer.setId(cs.getId());
-            consumerService.updateById(consumer);
+            wrapInsertEntity(provider);
         }
+        consumerService.insertOrUpdate(provider);
 
 
-        Consumer collecter = new Consumer(Const.CONSUMER_TYPE_COLLECT, worksId);
-        collecter.setName(collecterName);
-        collecter.setNo(collecterNo);
-        collecter.setAddress(collecterAddress);
-        collecter.setNo(collecterNo);
-        collecter.setPhone(collecterPhone);
+        Consumer collecter = worksBo.getCollecter();
+        collecter.setType(Const.CONSUMER_TYPE_COLLECT);
+        if (oldCollecter != null) {
+            collecter.setCreateBy(oldCollecter.getCreateBy());
+            collecter.setCreateDate(oldCollecter.getCreateDate());
+            wrapUpdateEntity(collecter);
+        } else {
+            wrapInsertEntity(collecter);
+        }
         if (collecterPub != null) {
             collecter.setPub(Const.CONSUMER_PUB_YES);
         } else {
@@ -455,28 +472,22 @@ public class MobileRegisterEditController extends BaseController {
             Date collectDate = DateUtil.parseDate(collecterDateTimeString);
             collecter.setDatetime(collectDate);
         }
-        Consumer oldConsumer = new Consumer(Const.CONSUMER_TYPE_COLLECT, worksId);
-        oldConsumer = consumerService.selectOne(oldConsumer);
-        if (oldConsumer == null) {
-            consumerService.insert(collecter);
-        } else {
-            collecter.setId(oldConsumer.getId());
-            consumerService.updateById(collecter);
-        }
+        consumerService.insertOrUpdate(collecter);
 
+
+        Report report = worksBo.getReport();
+        if (oldReport != null) {
+            report.setCreateBy(oldReport.getCreateBy());
+            report.setCreateDate(oldReport.getCreateDate());
+            wrapUpdateEntity(report);
+        } else {
+            wrapInsertEntity(report);
+        }
         if (valueTimeString != null && valueTimeString.trim().length() > 0) {
             Date valueTime = DateUtil.parseDate(valueTimeString, "yyyy-MM-dd");
             report.setValidTime(valueTime);
         }
-
-        Report oldReport = new Report(worksId);
-        oldReport = reportService.selectOne(oldReport);
-        if (oldReport == null) {
-            reportService.insert(report);
-        } else {
-            report.setId(oldReport.getId());
-            reportService.updateById(report);
-        }
+        reportService.insertOrUpdate(report);
 
         Images oldImg = new Images(worksId, Const.IMAGES_WORKS);
         List<Images> oldImgs = imagesService.selectList(new EntityWrapper<>(oldImg));
@@ -497,16 +508,23 @@ public class MobileRegisterEditController extends BaseController {
         insertImage(certImage, report.getId(), Const.IMAGES_REPORT_CERTIFICATE);
         insertImage(valueImages, report.getId(), Const.IMAGES_REPORT_DES);
 
+        session.removeAttribute("oldWorks");
+        session.removeAttribute("oldWorksLevel");
+        session.removeAttribute("oldProvider");
+        session.removeAttribute("oldCollecter");
+        session.removeAttribute("oldReport");
+
         return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my";
 
     }
 
 
-    //保存作品
+    //登记作品保存作品所有信息
     public void insertAll(HttpSession session, String worksStatus) {
         Works works = (Works) session.getAttribute("registerWorks");
         if (works != null) {
             works.setStatus(worksStatus);
+            wrapUpdateEntity(works);
             worksService.insert(works);
             int worksId = works.getId();
             insertImage(works.getImages(), worksId, Const.IMAGES_WORKS);
@@ -517,12 +535,14 @@ public class MobileRegisterEditController extends BaseController {
             Consumer provider = (Consumer) session.getAttribute("registerProvider");
             if (provider != null) {
                 provider.setWorksId(worksId);
+                wrapInsertEntity(provider);
                 consumerService.insert(provider);
                 session.removeAttribute("registerProvider");
             }
             WorksLevel worksLevel = (WorksLevel) session.getAttribute("registerWorksLevel");
             if (worksLevel != null) {
                 worksLevel.setWorksId(worksId);
+                wrapInsertEntity(worksLevel);
                 worksLevelService.insert(worksLevel);
                 session.removeAttribute("registerWorksLevel");
             }
@@ -530,6 +550,7 @@ public class MobileRegisterEditController extends BaseController {
             Report report = (Report) session.getAttribute("registerReport");
             if (report != null) {
                 report.setWorksId(worksId);
+                wrapInsertEntity(report);
                 reportService.insert(report);
                 String certImage = (String) session.getAttribute("registerCertImage");
                 String valueImages = (String) session.getAttribute("registerValueImages");
@@ -542,6 +563,7 @@ public class MobileRegisterEditController extends BaseController {
 
             Consumer collecter = (Consumer) session.getAttribute("registerCollecter");
             if (collecter != null) {
+                wrapInsertEntity(collecter);
                 collecter.setWorksId(worksId);
                 consumerService.insert(collecter);
                 session.removeAttribute("registerCollecter");
@@ -565,11 +587,7 @@ public class MobileRegisterEditController extends BaseController {
         }
     }
 
-    //获取当前用户
-    public AppUser getCurrentUser(HttpSession session) {
-        return (AppUser) session.getAttribute("currentUser");
-    }
-
+    //获取作品等级
     @RequestMapping(value = "getWorksLevel", method = RequestMethod.GET)
     @ResponseBody
     public JSONObject getWorksLevel(@RequestParam(required = false) String breed) {

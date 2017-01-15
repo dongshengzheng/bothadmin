@@ -179,10 +179,6 @@
                 <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" id="draftSubmit">
                     存为草稿
                 </button>
-                <button onclick="window.history.back(-1);" type="button"
-                        class="weui-form-preview__btn weui-form-preview__btn_primary" id="trueSubmit">
-                    上一步
-                </button>
                 <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary">
                     下一步
                 </button>

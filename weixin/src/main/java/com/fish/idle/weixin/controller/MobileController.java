@@ -186,7 +186,7 @@ public class MobileController extends BaseController {
     @OAuthRequired
     public String collectWorks(HttpSession session,
                                int worksId) {
-        AppUser currentUser = getCurrentUser(session);
+        AppUser currentUser = getCurrentUser();
         FollowHistory followHistory = new FollowHistory();
         followHistory.setUserId(currentUser.getId());
         followHistory.setTargetId(worksId);
@@ -218,7 +218,7 @@ public class MobileController extends BaseController {
     @OAuthRequired
     public String cancelCollect(HttpSession session,
                                 int targetId) {
-        AppUser currentUser = getCurrentUser(session);
+        AppUser currentUser = getCurrentUser();
         FollowHistory followHistory = new FollowHistory();
         followHistory.setUserId(currentUser.getId());
         followHistory.setTargetId(targetId);
@@ -281,7 +281,7 @@ public class MobileController extends BaseController {
     public String searchPerson(HttpSession session,
                                ModelMap map,
                                @RequestParam(required = false) String name) {
-        AppUser currentUser = getCurrentUser(session);
+        AppUser currentUser = getCurrentUser();
         List<String> searchPerson = (List<String>) session.getAttribute("searchPerson");
         if (searchPerson == null) {
             searchPerson = new ArrayList<>();
@@ -332,7 +332,7 @@ public class MobileController extends BaseController {
     @OAuthRequired
     public String notToHave(HttpSession session,
                             int targetId) {
-        AppUser currentUser = getCurrentUser(session);
+        AppUser currentUser = getCurrentUser();
         if (targetId == currentUser.getId()) {
             return "自己不要关注自己哟";
         }
@@ -374,7 +374,7 @@ public class MobileController extends BaseController {
     @OAuthRequired
     public String haveToNot(HttpSession session,
                             int targetId) {
-        AppUser currentUser = getCurrentUser(session);
+        AppUser currentUser = getCurrentUser();
         FollowHistory followHistory = new FollowHistory();
         followHistory.setUserId(currentUser.getId());
         followHistory.setTargetId(targetId);
@@ -457,7 +457,7 @@ public class MobileController extends BaseController {
     public String appUserInfo(HttpSession session,
                               ModelMap map,
                               @RequestParam(required = false) int appUserId) {
-        AppUser currentUser = getCurrentUser(session);
+        AppUser currentUser = getCurrentUser();
         AppUser appUser1 = appUserService.selectById(appUserId);
         String identification = appUser1.getIdentification();
         if (identification != null && identification.length() > 8) {
@@ -519,7 +519,7 @@ public class MobileController extends BaseController {
     public String worksDetail(HttpSession session,
                               ModelMap map,
                               @RequestParam int worksId) {
-        AppUser currentUser = getCurrentUser(session);
+        AppUser currentUser = getCurrentUser();
         //增加浏览记录
         FollowHistory addBrowse = new FollowHistory();
         addBrowse.setTargetId(worksId);
@@ -707,7 +707,7 @@ public class MobileController extends BaseController {
                                          ModelMap map,
                                          Interpretation interpretation,
                                          @RequestParam(required = false) String interImages) {
-        AppUser currentUser = getCurrentUser(session);
+        AppUser currentUser = getCurrentUser();
         interpretation.setUserId(currentUser.getId());
         interpretationService.insert(interpretation);
         int interId = interpretation.getId();
@@ -741,7 +741,7 @@ public class MobileController extends BaseController {
     @OAuthRequired
     public String my(HttpSession session,
                      ModelMap map) {
-        AppUser currentUser = getCurrentUser(session);
+        AppUser currentUser = getCurrentUser();
         map.put("appUser", appUserService.searchMyInfo(currentUser.getId()));
         return "modules/mobile/pawn2/my";
     }
@@ -755,7 +755,7 @@ public class MobileController extends BaseController {
     @OAuthRequired
     public String mySet(HttpSession session,
                         ModelMap map) {
-        AppUser currentUser = getCurrentUser(session);
+        AppUser currentUser = getCurrentUser();
         map.put("appUser", currentUser);
         return "modules/mobile/pawn2/mySet";
     }
@@ -775,7 +775,7 @@ public class MobileController extends BaseController {
                                 @RequestParam(required = false) String identification,
                                 @RequestParam(required = false) String prefer,
                                 @RequestParam(required = false) String ifpublic) {
-        AppUser currentUser = getCurrentUser(session);
+        AppUser currentUser = getCurrentUser();
         currentUser.setName(name);
         currentUser.setPhone(phone);
         currentUser.setEmail(email);
@@ -830,7 +830,7 @@ public class MobileController extends BaseController {
     @OAuthRequired
     public String pointCenter(HttpSession session,
                               ModelMap map) {
-        AppUser currentUser = getCurrentUser(session);
+        AppUser currentUser = getCurrentUser();
         map.put("appUser", currentUser);
 
         return "modules/mobile/pawn2/pointCenter";
@@ -842,7 +842,7 @@ public class MobileController extends BaseController {
     @RequestMapping(value = "my/pointCenter/point_load", method = RequestMethod.GET)
     @ResponseBody
     public List<ScoreHistory> loadIntegral(HttpSession session, ModelMap map) {
-        AppUser currentUser = getCurrentUser(session);
+        AppUser currentUser = getCurrentUser();
         EntityWrapper<ScoreHistory> ew = new EntityWrapper<>(new ScoreHistory());
         ew.setSqlSelect("value,update_date,from_user_id,to_user_id,type");
         ew.addFilter("from_user_id = {0} or to_user_id = {0}", currentUser.getId());
@@ -917,7 +917,7 @@ public class MobileController extends BaseController {
     public String myWorks(HttpSession session,
                           ModelMap map,
                           @RequestParam String showwhich) {
-        AppUser currentUser = getCurrentUser(session);
+        AppUser currentUser = getCurrentUser();
         Works works = new Works();
         works.setCreateBy(currentUser.getId());
         EntityWrapper ew = new EntityWrapper(works);
@@ -965,7 +965,7 @@ public class MobileController extends BaseController {
     public String transferCollectionFocus(HttpSession session,
                                           ModelMap map,
                                           @RequestParam String showwhich) {
-        AppUser currentUser = getCurrentUser(session);
+        AppUser currentUser = getCurrentUser();
         Integer appUserId = currentUser.getId();
 
         //转让历史集合
@@ -1060,7 +1060,7 @@ public class MobileController extends BaseController {
     @ResponseBody
     public List<AppUser> selectTransferPerson(HttpSession session,
                                               @RequestParam(required = false) String info) {
-        AppUser currentUser = getCurrentUser(session);
+        AppUser currentUser = getCurrentUser();
         List<AppUser> appUsers = new ArrayList<>();
         if (info != null && info.trim().length() > 0) {
             appUsers = appUserService.searchUserByNameAndId(info, currentUser.getId());
@@ -1081,7 +1081,7 @@ public class MobileController extends BaseController {
                                    ModelMap map,
                                    TransferHistory transferHistory,
                                    @RequestParam(required = false) String transferTypeString) {
-        AppUser currentUser = getCurrentUser(session);
+        AppUser currentUser = getCurrentUser();
         Works works = worksService.selectById(transferHistory.getWorksId());
         works.setStatus(Const.WORKS_STATUS_TRANSFER);
         worksService.updateById(works);
@@ -1111,7 +1111,7 @@ public class MobileController extends BaseController {
     @OAuthRequired
     public String confirmTransfer(HttpSession session,
                                   @RequestParam(required = false) int thId) {
-        AppUser currentUser = getCurrentUser(session);
+        AppUser currentUser = getCurrentUser();
         TransferHistory transferHistory = transferHistoryService.selectById(thId);
         Works works = worksService.selectById(transferHistory.getWorksId());
         works.setStatus(Const.WORKS_STATUS_PASS);
@@ -1167,11 +1167,6 @@ public class MobileController extends BaseController {
         } else {
             return source;
         }
-    }
-
-    //获取当前用户
-    public AppUser getCurrentUser(HttpSession session) {
-        return (AppUser) session.getAttribute("currentUser");
     }
 
     //发送模板消息
