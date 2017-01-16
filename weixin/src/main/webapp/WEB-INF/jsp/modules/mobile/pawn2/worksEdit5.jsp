@@ -10,25 +10,26 @@
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">收藏者</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input name="collecterName" class="weui-input" type="tel" value="${collecter.name}" placeholder="请输入姓名">
+        <input name="collecter.name" class="weui-input" type="tel" value="${collecter.name}" placeholder="请输入姓名">
     </div>
 </div>
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">身份证</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input name="collecterNo" class="weui-input" type="tel" value="${collecter.no}" placeholder="可不填写">
+        <input name="collecter.no" class="weui-input" type="tel" value="${collecter.no}" placeholder="可不填写">
     </div>
 </div>
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">联系地址</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input name="collecterAddress" class="weui-input" type="tel" value="${collecter.address}" placeholder="请输入详细地址">
+        <input name="collecter.address" class="weui-input" type="tel" value="${collecter.address}"
+               placeholder="请输入详细地址">
     </div>
 </div>
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">联系方式</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input name="collecterPhone" class="weui-input" type="tel" value="${collecter.phone}" placeholder="请输入联系方式">
+        <input name="collecter.phone" class="weui-input" type="tel" value="${collecter.phone}" placeholder="请输入联系方式">
     </div>
 </div>
 <div class="weui-cell">

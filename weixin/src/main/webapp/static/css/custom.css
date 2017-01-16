@@ -5,6 +5,7 @@
     position: fixed;
     bottom: 0;
     background-color: white;
+    z-index: 100;
 }
 
 .fixed-footer-blank {
@@ -167,10 +168,7 @@
 }
 
 body {
-    /*这是最终颜色*/
     background-color: #F0EFF5;
-    /*先使用灰色 较显眼*/
-    /*background-color: lightgray;*/
 }
 
 select {

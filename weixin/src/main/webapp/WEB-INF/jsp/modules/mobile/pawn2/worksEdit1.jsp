@@ -3,32 +3,32 @@
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input id="worksName" name="worksName" class="weui-input" type="tel" value="${works.name}"
+        <input id="worksName" name="works.name" class="weui-input" type="tel" value="${works.name}"
                placeholder="请输入作品名称">
     </div>
 </div>
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">提供者</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input name="providerName" class="weui-input" type="tel" value="${provider.name}" placeholder="请输入姓名">
+        <input name="provider.name" class="weui-input" type="tel" value="${provider.name}" placeholder="请输入姓名">
     </div>
 </div>
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">身份证</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input name="providerNo" class="weui-input" value="${provider.no}" placeholder="可不填写">
+        <input name="provider.no" class="weui-input" value="${provider.no}" placeholder="可不填写">
     </div>
 </div>
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">联系地址</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input name="address" class="weui-input" type="tel" value="${provider.address}" placeholder="请输入详细地址">
+        <input name="provider.address" class="weui-input" type="tel" value="${provider.address}" placeholder="请输入详细地址">
     </div>
 </div>
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">联系方式</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input name="phone" class="weui-input" type="tel" value="${provider.phone}" placeholder="请输入联系方式">
+        <input name="provider.phone" class="weui-input" type="tel" value="${provider.phone}" placeholder="请输入联系方式">
     </div>
 </div>
 <div class="weui-cell">
@@ -41,7 +41,7 @@
 </div>
 <div class="weui-cell">
     <div class="weui-cell__bd weui-cell_primary">
-        <textarea name="worksRemarks" class="weui-textarea" placeholder="我的作品描述" rows="3">${works.remarks}</textarea>
+        <textarea name="works.remarks" class="weui-textarea" placeholder="我的作品描述" rows="3">${works.remarks}</textarea>
     </div>
 </div>
 <div class="weui-cell">

@@ -117,14 +117,36 @@ description="金石典当"
         </div>
     </div>
     <#nested/>
+<#--<div class="footer-v4">-->
+<#--<div class="copyright">-->
+<#--<div class="container">-->
+<#--<div class="row">-->
+<#--<div class="col-sm-6 ">-->
+<#--<p>-->
+<#--2016 &copy; 金石典当. ALL Rights Reserved.-->
+<#--</p>-->
+<#--</div>-->
+<#--<div class="col-sm-6">-->
+<#--<ul class="list-inline sponsors-icons pull-right">-->
+<#--</ul>-->
+<#--</div>-->
+<#--</div>-->
+<#--</div>-->
+<#--</div>-->
+<#--</div>-->
     <div class="footer-v4">
         <div class="copyright">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-6 ">
-                        <p>
-                            2016 &copy; 金石典当. ALL Rights Reserved.
-                        </p>
+                    <div class="col-sm-6 " style="width:300px;margin:0 auto; ">
+                        <a target="_blank"
+                           href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33018502001702"
+                           style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img
+                                src="http://windyeel.oss-cn-shanghai.aliyuncs.com/global/img/footer-icon.png"
+                                style="float:left;"/>
+                            <p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">
+                                浙公网安备
+                                33018502001702号</p></a>
                     </div>
                     <div class="col-sm-6">
                         <ul class="list-inline sponsors-icons pull-right">
@@ -134,6 +156,7 @@ description="金石典当"
             </div>
         </div>
     </div>
+
 </div>
 </#macro>
 <#macro footerJS>
@@ -218,7 +241,7 @@ description="金石典当"
                 if (result.suc) {
                     $("#login")[0].innerHTML = '<a href="${staticPath}/user/works">' + result.loginName + '</a> | <a href="${staticPath}/loginOut">注销</a>';
                 } else {
-                    $("#login")[0].innerHTML = '<a href="${staticPath}/login">登录</a> | <a href="${staticPath}/register">注册</a>';
+                    $("#login")[0].innerHTML = '<a href="${staticPath}/login"><img  src="http://windyeel.oss-cn-shanghai.aliyuncs.com/global/img/wx-login.png"/></a>';
                 }
             }
         });

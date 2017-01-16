@@ -16,22 +16,18 @@
     <script src="${ctxStatic}/js/swiper.js"></script>
 
     <style>
-        .weui-navbar {
-            width: 96%;
-            margin: 1%;
-            border: 1px solid #2698DE;
-            border-radius: 5px;
-        }
-
         .weui-navbar__item.weui-bar__item_on {
-            background-color: #2698DE;
-            color: white;
+            color: #2698DE;
+            border-bottom: 3px solid #2698DE;
+            background-color: white;
         }
 
         .weui-navbar__item {
-            border: 1px solid #2698DE;
             background-color: white;
-            color: #2698DE;
+        }
+
+        .weui-navbar__item:after {
+            border: none;
         }
 
         #sort {
@@ -46,20 +42,6 @@
         .sort-li-selected {
             color: blue;
             margin-left: 10%;
-        }
-
-        #sort-btn-outer {
-            margin-left: 6%;
-            /*height: 25px;*/
-            display: inline-block;
-            /*border-left: 1px solid gray;*/
-            /*vertical-align: middle;*/
-        }
-
-        #sort-btn {
-            width: 20px;
-            height: 20px;
-            vertical-align: middle;
         }
 
 
@@ -98,22 +80,12 @@
 
 </div>
 
-
-<!--<div id="sort" class="div-outer">-->
-<!--<span id="default" class="sort-li-selected">默认排序</span>-->
-<!--<span id="new" class="sort-li">最新上架</span>-->
-<!--<span id="distance" class="sort-li">离我最近</span>-->
-<!--<div id="sort-btn-outer">-->
-<!--<img src="img/cut/搜索作品_筛选2.png" id="sort-btn"/>-->
-<!--</div>-->
-<!--</div>-->
-
 <div id="defaultList" class="all div-outer div-hide div-on">
     <c:forEach items="${defaultList}" var="works">
         <div class="works-all-outer" data-id="${works.id}">
             <div class="works-all">
                 <img class="works-img-all" src="${works.images}"
-                     onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
+                     onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png'"
                      alt="">
                 <textarea disabled class="works-intro-all">${works.remarks}</textarea>
             </div>
@@ -145,7 +117,7 @@
         <div class="works-all-outer" data-id="${works.id}">
             <div class="works-all">
                 <img class="works-img-all" src="${works.images}"
-                     onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
+                     onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png'"
                      alt="">
                 <textarea disabled class="works-intro-all">${works.remarks}</textarea>
             </div>
@@ -177,7 +149,7 @@
         <div class="works-all-outer" data-id="${works.id}">
             <div class="works-all">
                 <img class="works-img-all" src="${works.images}"
-                     onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png';this.className='error-img'"
+                     onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default.png'"
                      alt="">
                 <textarea disabled class="works-intro-all">${works.remarks}</textarea>
             </div>
@@ -289,6 +261,7 @@
             })
 
             $('.works-floor-btn-all').on('click', function () {
+
                 var worksid = $(this).parent().parent().attr('data-id')
                 $.ajax({
                     type: "POST",
@@ -299,6 +272,8 @@
                     success: function (data) {
                         $('#iosDialog2 .weui-dialog__bd').html(data);
                         $('#iosDialog2').fadeIn(200);
+                        var thisone = $(this);
+                        thisone.html("&nbsp;&nbsp;已收藏&nbsp;");
                     }
                 })
             })

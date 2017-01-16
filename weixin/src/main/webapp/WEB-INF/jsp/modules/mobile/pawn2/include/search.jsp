@@ -2,10 +2,11 @@
 <%@ include file="taglib.jsp" %>
 
 <style>
-    .weui_search_bar:after{
-        border-bottom:none !important;
+    .weui_search_bar:after {
+        border-bottom: none !important;
     }
-    .weui_search_bar{
+
+    .weui_search_bar {
         background-color: #eeeeee;
     }
 </style>

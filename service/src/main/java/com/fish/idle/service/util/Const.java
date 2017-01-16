@@ -133,4 +133,10 @@ public class Const {
     public static final String SCORE_BE_FOCUSED = "8";
     public static final String SCORE_WORKS_TRANSFER = "9";
 
+
+    //用户类型
+    public static final int APPUSER_TYPE_NORMAL = 0; //普通用户
+    public static final int APPUSER_TYPE_WORK = 1;   //鸡血石工作人员
+    public static final int APPUSER_TYPE_ADMIN = 2;  //管理员
+
 }

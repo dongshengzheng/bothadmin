@@ -87,8 +87,13 @@
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">收藏偏好</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input id="prefer" name="prefer" class="weui-input" value="${appUser.prefer}" type="tel"
-                       placeholder="请选择您的收藏偏好">
+                <c:forEach items="${preference}" var="pre">
+                    <input type="checkbox" name="prefer" value="${pre.value}"
+                    <c:forEach items="${prefer}" var="myPre">
+                           <c:if test="${myPre==pre.value}">checked</c:if>
+                    </c:forEach>
+                    >${pre.label}
+                </c:forEach>
             </div>
         </div>
         <div class="weui-cell">

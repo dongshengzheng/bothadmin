@@ -13,24 +13,23 @@
     <script src="${ctxStatic}/js/jquery-weui.js"></script>
     <script src="${ctxStatic}/js/swiper.js"></script>
     <style>
-        body {
+        .title {
+            height: 40px;
+            text-align: center;
             background-color: white;
         }
 
-        .title {
-            margin-top: 10%;
-            text-align: center;
-        }
-
         .title hr {
+            top: 25px;
+            position: relative;
             width: 80%;
             border-top: 1px solid red;
             color: red;
         }
 
         .title span {
+            top: 10px;
             position: relative;
-            top: -15px;
             background-color: white;
             color: red;
         }
@@ -47,182 +46,32 @@
     </style>
 </head>
 <body>
-<div class="title">
+<div class="title div-outer">
     <center>
         <hr>
         <span>&nbsp;◇&nbsp;JS-A20161205001A&nbsp;◇&nbsp;</span></center>
 </div>
 <div>
     <form action="${ctx}/mobile/worksRegister4" method="post">
-        <div class="weui-cells weui-cells_form">
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input name="name" class="weui-input" type="tel" value="${sessionScope.registerWorksName}"
-                           disabled>
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">质地一</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <select name="zhidi">
-                        <option value="" selected>请选择质地一</option>
-                        <c:forEach items="${zhidi1}" var="item">
-                            <option value="${item.value}">${item.label}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">质地二</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <select name="zhidi2">
-                        <option value="" selected>请选择质地二</option>
-                        <c:forEach items="${zhidi2}" var="item">
-                            <option value="${item.value}">${item.label}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">感观</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <select name="ganguan">
-                        <option value="" selected>请选择感观</option>
-                        <c:forEach items="${ganguan}" var="item">
-                            <option value="${item.value}">${item.label}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">磨氏度</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <select name="moshidu">
-                        <option value="" selected>请选择磨氏度</option>
-                        <c:forEach items="${moshidu}" var="item">
-                            <option value="${item.value}">${item.label}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">血量</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <select name="xueliang">
-                        <option value="" selected>请选择血量</option>
-                        <c:forEach items="${xueliang}" var="item">
-                            <option value="${item.value}">${item.label}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">血色</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <select name="xuese">
-                        <option value="" selected>请选择血色</option>
-                        <c:forEach items="${xuese}" var="item">
-                            <option value="${item.value}">${item.label}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">血形</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <select name="xuexing">
-                        <option value="" selected>请选择血形</option>
-                        <c:forEach items="${xuexing}" var="item">
-                            <option value="${item.value}">${item.label}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">浓艳度</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <select name="nongyandu">
-                        <option value="" selected>请选择浓艳度</option>
-                        <c:forEach items="${nongyandu}" var="item">
-                            <option value="${item.value}">${item.label}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">纯净度</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <select name="chunjingdu">
-                        <option value="" selected>请选择纯净度</option>
-                        <c:forEach items="${chunjingdu}" var="item">
-                            <option value="${item.value}">${item.label}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">地色</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <select name="dise">
-                        <option value="" selected>请选择地色</option>
-                        <c:forEach items="${dise}" var="item">
-                            <option value="${item.value}">${item.label}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">活筋</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <select name="liu">
-                        <option value="" selected>请选择活筋</option>
-                        <c:forEach items="${liu}" var="item">
-                            <option value="${item.value}">${item.label}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">裂</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <select name="lie">
-                        <option value="" selected>请选择裂</option>
-                        <c:forEach items="${lie}" var="item">
-                            <option value="${item.value}">${item.label}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">印章</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <select name="hanxuemian">
-                        <option value="" selected>请选择印章</option>
-                        <c:forEach items="${mian}" var="item">
-                            <option value="${item.value}">${item.label}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">含血方式</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <select name="hanxuefangshi">
-                        <option value="" selected>请选择含血方式</option>
-                        <c:forEach items="${hanxuefangshi}" var="item">
-                            <option value="${item.value}">${item.label}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-            </div>
-        </div>
+        <c:if test="${breed==1}">
+            <%@include file="worksLevel1.jsp" %>
+        </c:if>
+        <c:if test="${breed==2}">
+            <%@include file="worksLevel2.jsp" %>
+        </c:if>
+        <c:if test="${breed==3}">
+            <%@include file="worksLevel3.jsp" %>
+        </c:if>
+        <c:if test="${breed==4||breed==5}">
+            <%@include file="worksLevel4.jsp" %>
+        </c:if>
 
         <div class="fixed-footer">
             <div class="weui-form-preview__ft">
                 <input id="draftYN" name="draftYN" type="hidden" value="NO">
                 <br/>
-                <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" id="draftSubmit">
+                <button type="submit" style="color: #333" class="weui-form-preview__btn weui-form-preview__btn_primary"
+                        id="draftSubmit">
                     存为草稿
                 </button>
                 <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary">

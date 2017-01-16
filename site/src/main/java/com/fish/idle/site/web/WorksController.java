@@ -153,7 +153,7 @@ public class WorksController extends BaseController {
         map.put("level", dictService.getWorksLevelDicByType("dd_level"));
         map.put("pinzhong", dictService.getWorksLevelDicByType("dd_pinzhong"));
         map.put("zuopinleixing", dictService.getWorksLevelDicByType("dd_zuopinleixing"));
-                map.put("gyType", dictService.getWorksLevelDicByType("dd_level"));
+        map.put("gyType", dictService.getWorksLevelDicByType("dd_level"));
         map.put("works", works);
         return "works/work_add_info";
     }
@@ -188,33 +188,33 @@ public class WorksController extends BaseController {
      * @return
      */
     @RequestMapping(value = "/add/{id}/{breed}/level/", method = RequestMethod.GET)
-    public String level(ModelMap map, @PathVariable Integer id,@PathVariable String breed) {
+    public String level(ModelMap map, @PathVariable Integer id, @PathVariable String breed) {
         Works works = worksService.selectById(id);
-        map.put("zhidi1", dictService.getWorksLevelDicByType("dd_zhidi",breed));
-        map.put("zhidi2", dictService.getWorksLevelDicByType("dd_zhidi2",breed));
-        map.put("ganguan", dictService.getWorksLevelDicByType("dd_ganguan",breed));
-        map.put("moshidu", dictService.getWorksLevelDicByType("dd_moshidu",breed));
-        map.put("xueliang", dictService.getWorksLevelDicByType("dd_xueliang",breed));
-        map.put("xuese", dictService.getWorksLevelDicByType("dd_xuese",breed));
-        map.put("xuexing", dictService.getWorksLevelDicByType("dd_xuexing",breed));
-        map.put("nongyandu", dictService.getWorksLevelDicByType("dd_nongyandu",breed));
-        map.put("jingdu", dictService.getWorksLevelDicByType("dd_jingdu",breed));
-        map.put("dise", dictService.getWorksLevelDicByType("dd_dise",breed));
-        map.put("liu", dictService.getWorksLevelDicByType("dd_liu",breed));
-        map.put("lie", dictService.getWorksLevelDicByType("dd_lie",breed));
-        map.put("mian", dictService.getWorksLevelDicByType("dd_mian",breed));
-        map.put("hanxuefangshi", dictService.getWorksLevelDicByType("dd_hanxuefangshi",breed));
-        map.put("ziranshipi", dictService.getWorksLevelDicByType("dd_ziranshipi",breed));
+        map.put("zhidi1", dictService.getWorksLevelDicByType("dd_zhidi", breed));
+        map.put("zhidi2", dictService.getWorksLevelDicByType("dd_zhidi2", breed));
+        map.put("ganguan", dictService.getWorksLevelDicByType("dd_ganguan", breed));
+        map.put("moshidu", dictService.getWorksLevelDicByType("dd_moshidu", breed));
+        map.put("xueliang", dictService.getWorksLevelDicByType("dd_xueliang", breed));
+        map.put("xuese", dictService.getWorksLevelDicByType("dd_xuese", breed));
+        map.put("xuexing", dictService.getWorksLevelDicByType("dd_xuexing", breed));
+        map.put("nongyandu", dictService.getWorksLevelDicByType("dd_nongyandu", breed));
+        map.put("jingdu", dictService.getWorksLevelDicByType("dd_jingdu", breed));
+        map.put("dise", dictService.getWorksLevelDicByType("dd_dise", breed));
+        map.put("liu", dictService.getWorksLevelDicByType("dd_liu", breed));
+        map.put("lie", dictService.getWorksLevelDicByType("dd_lie", breed));
+        map.put("mian", dictService.getWorksLevelDicByType("dd_mian", breed));
+        map.put("hanxuefangshi", dictService.getWorksLevelDicByType("dd_hanxuefangshi", breed));
+        map.put("ziranshipi", dictService.getWorksLevelDicByType("dd_ziranshipi", breed));
         map.put("works", works);
         WorksLevel worksLevel = worksLevelService.selectOne(new EntityWrapper<>(new WorksLevel(id)));
         map.put("worksLevel", worksLevel);
-        if("1".equals(breed)){
+        if ("1".equals(breed)) {
             return "works/work_add_level1";
-        } else if("2".equals(breed)){
+        } else if ("2".equals(breed)) {
             return "works/work_add_level2";
-        } else if("3".equals(breed)){
+        } else if ("3".equals(breed)) {
             return "works/work_add_level3";
-        } else if("4".equals(breed)||"5".equals(breed)){
+        } else if ("4".equals(breed) || "5".equals(breed)) {
             return "works/work_add_level4";
         }
         return "works/work_add_level1";

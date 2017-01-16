@@ -15,24 +15,23 @@
     <script src="${ctxStatic}/js/jquery-weui.js"></script>
     <script src="${ctxStatic}/js/swiper.js"></script>
     <style>
-        body {
+        .title {
+            height: 40px;
+            text-align: center;
             background-color: white;
         }
 
-        .title {
-            margin-top: 10%;
-            text-align: center;
-        }
-
         .title hr {
+            top: 25px;
+            position: relative;
             width: 80%;
             border-top: 1px solid red;
             color: red;
         }
 
         .title span {
+            top: 10px;
             position: relative;
-            top: -15px;
             background-color: white;
             color: red;
         }
@@ -57,56 +56,55 @@
 </div>
 <div>
     <form action="${ctx}/mobile/worksRegisterComplete" method="post">
-        <div class="weui-cells weui-cells_form">
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input class="weui-input" value="${sessionScope.registerWorksName}"
-                           disabled>
-                </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
+            <div class="weui-cell__bd weui-cell_primary">
+                <input class="weui-input" value="${sessionScope.registerWorksName}"
+                       disabled>
             </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">收藏者</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input name="name" class="weui-input" placeholder="请输入姓名">
-                </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">收藏者</label></div>
+            <div class="weui-cell__bd weui-cell_primary">
+                <input name="name" class="weui-input" placeholder="请输入姓名">
             </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">身份证</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input name="no" class="weui-input" type="tel" placeholder="可不填写">
-                </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">身份证</label></div>
+            <div class="weui-cell__bd weui-cell_primary">
+                <input name="no" class="weui-input" type="tel" placeholder="可不填写">
             </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">联系地址</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input name="address" class="weui-input" placeholder="请输入详细地址">
-                </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">联系地址</label></div>
+            <div class="weui-cell__bd weui-cell_primary">
+                <input name="address" class="weui-input" placeholder="请输入详细地址">
             </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">联系方式</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input name="phone" class="weui-input" type="tel" placeholder="请输入联系方式">
-                </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">联系方式</label></div>
+            <div class="weui-cell__bd weui-cell_primary">
+                <input name="phone" class="weui-input" type="tel" placeholder="请输入联系方式">
             </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">收藏时间</label></div>
-                <div class="weui-cell__bd weui-cell_primary">
-                    <input id="showDatePicker" name="collecterDatetimeString" class="weui-input" type="tel"
-                           placeholder="请选择时间">
-                </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">收藏时间</label></div>
+            <div class="weui-cell__bd weui-cell_primary">
+                <input id="showDatePicker" name="collecterDatetimeString" class="weui-input" type="tel"
+                       placeholder="请选择时间">
             </div>
-            <div class="weui-cell">
-                <div class="weui-cell__hd"><label class="weui-label">是否公开</label></div>
-                <input name="collecterPub" class="weui-switch" type="checkbox"/>
-            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">是否公开</label></div>
+            <input name="collecterPub" class="weui-switch" type="checkbox"/>
         </div>
 
         <div class="fixed-footer">
             <div class="weui-form-preview__ft">
                 <br>
                 <input id="draftYN" name="draftYN" type="hidden" value="NO">
-                <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" id="draftSubmit">
+                <button type="submit" style="color: #333" class="weui-form-preview__btn weui-form-preview__btn_primary"
+                        id="draftSubmit">
                     存为草稿
                 </button>
                 <button type="submit" class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">
