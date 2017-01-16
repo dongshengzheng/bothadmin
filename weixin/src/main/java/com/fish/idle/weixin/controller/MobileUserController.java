@@ -258,12 +258,4 @@ public class MobileUserController extends BaseController {
         return "modules/mobile/pawn2/my";
     }
 
-
-    //    获取作品登记字典表
-    private List<Dict> getWorksLevelDicByType(String type) {
-        EntityWrapper entityWrapper = new EntityWrapper();
-        entityWrapper.addFilter("type={0}", type);
-        List<Dict> list = dictService.selectList(entityWrapper);
-        return list;
-    }
 }

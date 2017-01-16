@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.fish.idle.service.modules.jsdd.entity.*;
 import com.fish.idle.service.modules.jsdd.service.*;
 import com.fish.idle.service.modules.sys.entity.AppUser;
+import com.fish.idle.service.modules.sys.entity.Dict;
 import com.fish.idle.service.modules.sys.service.IAppUserService;
 import com.fish.idle.service.modules.sys.service.IDictService;
 import com.fish.idle.service.util.Const;
@@ -503,6 +504,10 @@ public class MobileController extends BaseController {
         map.put("worksList", worksList);
         map.put("haveFocusList", haveFocusList);
         map.put("notFocusList", appUserList);
+
+        List<Dict> list = getWorksLevelDicByType("dd_preference");
+        map.put("preference", list);
+        map.put("prefer", currentUser.getPrefer() != null ? currentUser.getPrefer().split(",") : new String[0]);
 
         return "modules/mobile/pawn2/appUserInfo";
     }

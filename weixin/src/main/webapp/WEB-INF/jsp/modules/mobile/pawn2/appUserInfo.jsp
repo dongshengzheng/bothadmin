@@ -15,6 +15,20 @@
     <script src="${ctxStatic}/js/jquery-weui.js"></script>
     <script src="${ctxStatic}/js/swiper.js"></script>
     <style type="text/css">
+        .weui-navbar__item.weui-bar__item_on {
+            color: #2698DE;
+            border-bottom: 3px solid #2698DE;
+            background-color: white;
+        }
+
+        .weui-navbar__item {
+            background-color: white;
+        }
+
+        .weui-navbar__item:after {
+            border: none;
+        }
+
         .header-info-care {
             color: white;
             background-color: #169AD8;
@@ -22,6 +36,8 @@
             border: none;
             position: relative;
             margin-top: 5px;
+            height: 25px;
+            width: 65px;
         }
 
         .weui-cells {
@@ -47,13 +63,11 @@
             <div class="weui-media-box__bd">
                 <h4 class="weui-media-box__title">${appUser.loginName}</h4>
                 <p class="weui-media-box__desc">作品:${appUser.worksCount} &nbsp;粉丝:${appUser.followCount}</p>
-                <input type="button" value=" + 关注 " class="header-info-care"/>
+                <input data-id="${appUser.id}" type="button" value=" + 关注 " class="header-info-care"/>
             </div>
         </a>
     </div>
 </div>
-
-<hr/>
 
 <div class="weui-tab">
     <div class="weui-navbar">
@@ -71,55 +85,55 @@
 <div class="fixed-footer-blank">
 </div>
 
-<div class="div-outer">
+<div>
     <div id="info" class="div-on">
         <div class="weui-cells">
             <div class="weui-cell">
-                <div class="weui-cell_bd weui-cell_primary">
-                    <p>姓名:</p>
-                </div>
-                <div class="weui-cell_ft">
-                    ${appUser.name}
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell_bd weui-cell_primary">
-                    <p>住址:</p>
-                </div>
-                <div class="weui-cell_ft">
-                    ${appUser.address}
+                <div class="weui-cell__hd"><label class="weui-label">姓名</label></div>
+                <div class="weui-cell__bd weui-cell_primary">
+                    <input disabled name="name" class="weui-input" value="${appUser.name}" type="tel"
+                           placeholder="暂无姓名信息">
                 </div>
             </div>
             <div class="weui-cell">
-                <div class="weui-cell_bd weui-cell_primary">
-                    <p>身份证:</p>
-                </div>
-                <div class="weui-cell_ft">
-                    ${appUser.identification}
-                </div>
-            </div>
-            <div class="weui-cell">
-                <div class="weui-cell_bd weui-cell_primary">
-                    <p>手机号:</p>
-                </div>
-                <div class="weui-cell_ft">
-                    ${appUser.phone}
+                <div class="weui-cell__hd"><label class="weui-label">地址</label></div>
+                <div class="weui-cell__bd weui-cell_primary">
+                    <input disabled name="address" class="weui-input" value="${appUser.address}" type="tel"
+                           placeholder="暂无地址信息">
                 </div>
             </div>
             <div class="weui-cell">
-                <div class="weui-cell_bd weui-cell_primary">
-                    <p>Email:</p>
-                </div>
-                <div class="weui-cell_ft">
-                    ${appUser.email}
+                <div class="weui-cell__hd"><label class="weui-label">联系方式</label></div>
+                <div class="weui-cell__bd weui-cell_primary">
+                    <input disabled name="phone" class="weui-input" value="${appUser.phone}" type="tel"
+                           placeholder="暂无联系方式">
                 </div>
             </div>
             <div class="weui-cell">
-                <div class="weui-cell_bd weui-cell_primary">
-                    <p>收藏偏好:</p>
+                <div class="weui-cell__hd"><label class="weui-label">Email</label></div>
+                <div class="weui-cell__bd weui-cell_primary">
+                    <input disabled name="email" class="weui-input" value="${appUser.email}" type="tel"
+                           placeholder="暂无Email信息">
                 </div>
-                <div class="weui-cell_ft">
-                    ${appUser.prefer}
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">身份证</label></div>
+                <div class="weui-cell__bd weui-cell_primary">
+                    <input disabled name="identification" class="weui-input" value="${appUser.identification}"
+                           type="tel"
+                           placeholder="暂无身份证信息">
+                </div>
+            </div>
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">收藏偏好</label></div>
+                <div class="weui-cell__bd weui-cell_primary">
+                    <c:forEach items="${preference}" var="pre">
+                        <input disabled type="checkbox" name="prefer" value="${pre.value}"
+                        <c:forEach items="${prefer}" var="myPre">
+                               <c:if test="${myPre==pre.value}">checked</c:if>
+                        </c:forEach>
+                        >${pre.label}
+                    </c:forEach>
                 </div>
             </div>
         </div>
@@ -145,8 +159,8 @@
             </div>
         </c:forEach>
         <c:if test="${fn:length(worksList) == 0}">
-            <div style="text-align:center;margin-top:35%">
-                <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="" style="width: 50%;">
+            <div class="no-works">
+                <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="">
                 <p style="color:#CCCCCC">尚无作品</p>
             </div>
         </c:if>
@@ -160,8 +174,8 @@
     </div>
 
     <div id="fans" class="div-hide">
-        <div class="search-results div-outer">
-            <div id="have-care-people" class="div-outer">
+        <div class="search-results ">
+            <div id="have-care-people">
                 <c:forEach items="${haveFocusList}" var="person">
                     <div class="weui-panel__bd" id="${person.id}">
                         <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
@@ -226,12 +240,21 @@
                     </div>
                 </c:forEach>
             </div>
-            <div class="hr-text div-outer">
+        </div>
+
+        <c:if test="${fn:length(notFocusList) == 0&&fn:length(haveFocusList) == 0}">
+            <div class="no-works">
+                <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="">
+                <p style="color:#CCCCCC">尚无粉丝</p>
+            </div>
+        </c:if>
+        <c:if test="${fn:length(notFocusList) > 0||fn:length(haveFocusList) > 0}">
+            <div class="hr-text ">
                 <center>
                     <hr>
                     <span>&nbsp;&nbsp;到底啦&nbsp;&nbsp;</span></center>
             </div>
-        </div>
+        </c:if>
     </div>
 </div>
 
@@ -304,6 +327,23 @@
         $('#dialogs').on('click', '.weui-dialog__btn', function () {
             $(this).parents('.js_dialog').fadeOut(200);
         });
+
+        $('.header-info-care').on('click', function () {
+            var thisone = $(this);
+            var targetId = thisone.attr('data-id');
+            $.ajax({
+                type: "POST",
+                url: "${ctx}/mobile/notToHave",
+                data: {
+                    targetId: targetId
+                },
+                success: function (data) {
+                    if (data == '关注成功!') {
+                        thisone.val(" 已关注");
+                    }
+                }
+            })
+        })
 
         $('.not-care').on('click', function () {
             var thisone = $(this);

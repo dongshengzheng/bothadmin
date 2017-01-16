@@ -5,7 +5,9 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.fish.idle.service.modules.jsdd.entity.Images;
 import com.fish.idle.service.modules.jsdd.service.IImagesService;
 import com.fish.idle.service.modules.sys.entity.AppUser;
+import com.fish.idle.service.modules.sys.entity.Dict;
 import com.fish.idle.service.modules.sys.service.IAppUserService;
+import com.fish.idle.service.modules.sys.service.IDictService;
 import com.fish.idle.service.util.BaseEntity;
 import com.fish.idle.service.util.Const;
 import me.chanjar.weixin.common.exception.WxErrorException;
@@ -45,6 +47,9 @@ public class BaseController {
 
     @Autowired
     protected WxMpTemplateMsgService wxMpTemplateMsgService;
+
+    @Autowired
+    protected IDictService dictService;
 
 
     /**
@@ -145,6 +150,14 @@ public class BaseController {
         } catch (WxErrorException e) {
             e.printStackTrace();
         }
+    }
+
+    //    获取作品登记字典表
+    public List<Dict> getWorksLevelDicByType(String type) {
+        EntityWrapper entityWrapper = new EntityWrapper();
+        entityWrapper.addFilter("type={0}", type);
+        List<Dict> list = dictService.selectList(entityWrapper);
+        return list;
     }
 
 }
