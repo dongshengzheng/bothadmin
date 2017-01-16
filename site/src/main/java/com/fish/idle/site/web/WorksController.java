@@ -101,8 +101,6 @@ public class WorksController extends BaseController {
         // 保存作品信息
         wrapInsertEntity(works);
         works.setRemarks(worksRemarks);
-        works.setStatus(Const.WORKS_STATUS_DRAFT);
-
         //保存提供者
         wrapInsertEntity(consumer);
         consumer.setName(provider);
@@ -169,7 +167,6 @@ public class WorksController extends BaseController {
                                @RequestParam(required = false) String worksType
     ) {
         wrapUpdateEntity(works);
-        works.setStatus(Const.WORKS_STATUS_DRAFT);
         works.setType(worksType);
         JSONObject jsonObject = new JSONObject();
         if (!worksService.updateSelectiveById(works)) {
@@ -235,7 +232,6 @@ public class WorksController extends BaseController {
         wrapInsertEntity(worksLevel);
 //        worksLevel.setWorksId(works.getId());
         //保存作品信息
-        works.setStatus(Const.WORKS_STATUS_DRAFT);
         if (worksLevel.getId() == null) {
             //保存作品等级信息
             if (!worksLevelService.insert(worksLevel)) {

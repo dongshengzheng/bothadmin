@@ -201,9 +201,8 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label"></label>
                             <div class=" col-sm-4">
-                                <input type="hidden" id="submit-type" name="submit-type"/>
-                                <button data-type="0" submit-type="0" class="btn btn-u btn-u-red info_btn">下一步</button>
-                                <button data-type="0" submit-type="4" class="btn btn-u btn-u-default info_btn" style="margin-left: 20px">存为草稿
+                                <button data-type="0" class="btn btn-u btn-u-red info_btn">下一步</button>
+                                <button data-type="10" class="btn btn-u btn-u-default info_btn" style="margin-left: 20px">存为草稿
                                 </button>
                             </div>
                         </div>
@@ -226,21 +225,54 @@
 
         $(".info_btn").bind("click", function () {
             $("#status").val($(this).attr("data-type"));
-            $("#submit-type").val($(this).attr("submit-type"));
         });
+
+        $.validator.addMethod(
+                "isSelected", //验证方法名称
+                function(value, element, param) {//验证规则
+                    if(value == param){
+                        return false;
+                    }
+                    return true;
+                },
+                ''//验证提示信息
+        );
 
         var $form = $("#works_level");
         $form.validate({
+            errorPlacement: function (error, element) {
+                element.next().html(error.html());
+            },
+            rules: {
+                zhidi2: {isSelected:""},
+                ganguan: {isSelected:""},
+                moshidu: {isSelected:""},
+                chunjingdu:{isSelected:""},
+                dise:{isSelected:""},
+                liu:{isSelected:""},
+                lie:{isSelected:""},
+                zrsp:{isSelected:""}
+            },
+            messages: {
+                zhidi2: {required: "质地必选"},
+                ganguan: {required: "感官必选"},
+                moshidu: {required: "磨氏度必选"},
+                chunjingdu: {required: "净度必选"},
+                dise: {required: "地色必选"},
+                liu: {required: "绺（活筋）必选"},
+                lie: {required: "裂必选"},
+                zrsp: {required: "自然石皮必选"}
+            },
             submitHandler: function (form) {
                 $(form).ajaxSubmit({
                     success: function (data) {
                         if (data.suc) {
-                            if ($("#submit-type").val() == 0) {
+                            if ($("#status").val() == 0) {
                                 // 跳转到下一步
                                 window.location.href = "/works/add/${works.id}/report";
                             } else {
                                 // 跳转到个人中心-> 我的作品->草稿里面
-                                window.location.href = "/user";
+                                window.location.href = "/user/works/"+$("#status").val();
                             }
                         } else {
                             alert(data.msg);

@@ -8,7 +8,7 @@
 %>
 <xianyu:navigater path="works"></xianyu:navigater>
 <div class="row">
-    <input type="hidden" value='<fmt:message key="sys.site.url"/>' id="siteUrl">
+    <input type="hidden" value='<fmt:message key="site_path"/>' id="siteUrl">
     <div class="col-md-12">
         <div class="portlet light bordered">
             <div class="portlet-body">

@@ -78,7 +78,7 @@ public class UserController extends BaseController {
      */
     @RequestMapping(value = "works", method = RequestMethod.GET)
     public String works(ModelMap map) {
-        map.put("type","");
+        map.put("type","0");
         return "user/user_works";
     }
 

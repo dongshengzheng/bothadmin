@@ -95,7 +95,9 @@
                                 <input class="form-control" name="name" id="name" type="text"
                                        value="<#if (works.name)??>${works.name}</#if>"
                                        placeholder="请输入作品名称"/>
+                                <span style="color: #cc0000" class="col-sm-10"></span>
                             </div>
+
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="provideBy">提供者</label>
@@ -103,6 +105,7 @@
                                 <input class="form-control" name="provider" id="provider" type="text"
                                        value="<#if (provider.name)??>${provider.name}</#if>"
                                        placeholder="请输入提供者"/>
+                                <span style="color: #cc0000" class="col-sm-10"></span>
                             </div>
                         </div>
 
@@ -112,6 +115,7 @@
                                 <input class="form-control" name="no" id="no" type="text"
                                        value="<#if (provider.no)??>${provider.no}</#if>"
                                        placeholder="请输入身份证"/>
+                                <span style="color: #cc0000" class="col-sm-10"></span>
                             </div>
                         </div>
 
@@ -121,6 +125,7 @@
                                 <input class="form-control" name="address" id="address" type="text"
                                        value="<#if (provider.address)??>${provider.address}</#if>"
                                        placeholder="请输入联系地址"/>
+                                <span style="color: #cc0000" class="col-sm-10"></span>
                             </div>
                         </div>
 
@@ -130,6 +135,7 @@
                                 <input class="form-control" name="phone" id="phone" type="text"
                                        value="<#if (provider.phone)??>${provider.phone}</#if>"
                                        placeholder="请输入手机号码"/>
+                                <span style="color: #cc0000" class="col-sm-10"></span>
                             </div>
                         </div>
 
@@ -140,6 +146,7 @@
                                        value="<#if (provider.datetime)??>${(provider.datetime?string("yyyy-MM-dd"))!""} </#if>"
                                        type="text"
                                        placeholder="请选择登记时间" readonly/>
+                                <span style="color: #cc0000" class="col-sm-10"></span>
                             </div>
 
                         </div>
@@ -151,6 +158,7 @@
                                               name="worksRemarks"
                                               id="worksRemarks" type="text"
                                               placeholder="请输入作品描述"><#if (works.remarks)??>${works.remarks}</#if></textarea>
+                                <span style="color: #cc0000" class="col-sm-10"></span>
                                 <input type="hidden" id="status" name="status"/>
                             </div>
                         </div>
@@ -166,9 +174,8 @@
                         <div class="form-group">
                             <label class="col-sm-2" for=""></label>
                             <div class="col-sm-10">
-                                <input type="hidden" id="submit-type" name="submit-type"/>
-                                <button data-type="0" submit-type="0" type="submit" class="btn btn-u btn-u-red info_btn">下一步</button>
-                                <button data-type="0" submit-type="4" type="submit" class="btn btn-u btn-u-default info_btn"
+                                <button data-type="0" type="submit" class="btn btn-u btn-u-red info_btn">下一步</button>
+                                <button data-type="10" type="submit" class="btn btn-u btn-u-default info_btn"
                                         style="margin-left: 20px">存为草稿
                                 </button>
                             </div>
@@ -197,16 +204,37 @@
         var $form = $("#works_info");
 
         $form.validate({
+            errorPlacement: function (error, element) {
+                error.appendTo( element.next() );
+            },
+            rules: {
+                name: "required",
+                provider: "required",
+                no:"required",
+                address:"required",
+                phone:"required",
+                datetime:"required",
+                worksRemarks:"required"
+            },
+            messages: {
+                name: {required: "作品名称必填"},
+                provider: {required: "提供者必填"},
+                no: {required: "身份证必填"},
+                address: {required: "联系地址必填"},
+                phone: {required: "手机号码必填"},
+                datetime: {required: "登记时间必填"},
+                worksRemarks: {required: "作品描述必填"}
+            },
             submitHandler: function (form) {
                 $(form).ajaxSubmit({
                     success: function (data) {
                         if (data.suc) {
-                            if ($("#submit-type").val() == 0) {
+                            if ($("#status").val() == 0) {
                                 // 跳转到下一步
                                 window.location.href = "/works/add/" + data.id + "/info";
                             } else {
                                 // 跳转到个人中心-> 我的作品->草稿里面
-                                window.location.href = "/user";
+                                window.location.href = "/user/works/"+$("#status").val();
                             }
                         } else {
                             alert(data.msg);
@@ -224,7 +252,6 @@
         //存为草稿info_btn
         $(".info_btn").bind("click", function () {
             $("#status").val($(this).attr("data-type"));
-            $("#submit-type").val($(this).attr("submit-type"));
         });
 
 
