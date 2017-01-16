@@ -92,7 +92,7 @@
                             </div>
                         </div>
                         <!--上传图片-->
-                        <div class="form-group">
+                        <div class="form-group hidden_Element_p">
                             <label class="col-sm-2" for=""></label>
                             <div class="col-sm-10">
                                 <div id="upload_des" class=""
@@ -102,7 +102,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group hidden_Element_p hidden_Element_j">
                             <label class="col-sm-2 control-label" for="description">作品价值认证报告</label>
                             <div class="col-sm-10">
                                     <textarea class="form-control" style="resize: none;height: 150px" name="certify"
@@ -110,7 +110,7 @@
                             </div>
                         </div>
                         <!--上传图片-->
-                        <div class="form-group">
+                        <div class="form-group hidden_Element_p hidden_Element_j">
                             <label class="col-sm-2" for=""></label>
                             <div class="col-sm-10">
                                 <div id="upload_certify" class=""
@@ -119,7 +119,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group hidden_Element_p hidden_Element_j">
                             <label class="col-sm-2 control-label" for="datetime">价值有效时间</label>
                             <div class="col-sm-10">
                                 <input class="form-control date-picker" name="validTime" id="validTime"
@@ -158,11 +158,20 @@
     $("#headerWorks").addClass("active");
     $(document).ready(function () {
         removeId();
+        hiddenElement();
         function removeId() {
             if(${works.type}=="5"||${works.type}=="6"){
                 $("#levelDetails").removeClass("levelDetails");
             }
         }
+        function hiddenElement() {
+            if(typeof ${userType}!="undefined" && ${userType}=="0"){
+                $(".hidden_Element_p").hide();
+            } else if(typeof ${userType}!="undefined" && ${userType}=="1"){
+                $(".hidden_Element_j").hide();
+            }
+        }
+
         initUploaders_inner("upload_certify", "windyeel", '${staticPath}/', "certifyImage");
         initUploaders_inner("upload_des", "windyeel", '${staticPath}/', "desImage");
 

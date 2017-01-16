@@ -44,16 +44,19 @@ public class WorksController extends BaseController {
     @Autowired
     private IWorksService worksService;
 
+    @Value("${site_path}")
+    private String sitePath;
 
     @RequestMapping
-    public String page() {
+    public String page(ModelMap map) {
+        map.put("sitePath",sitePath);
         return "jsdd/works/works_list";
     }
 
     @RequestMapping(value = "/list")
     @ResponseBody
     public JSONObject list(Works works) {
-        EntityWrapper<Works> ew = getEntityWrapper();
+            EntityWrapper<Works> ew = getEntityWrapper();
         ew.addFilter("status <> {0}", Const.WORKS_STATUS_DRAFT);
         ew.orderBy("createDate", false);
         if (!StringUtils.isEmpty(works.getName()))
