@@ -20,9 +20,17 @@
         }
 
         .weui-navbar__item.weui-bar__item_on {
-            color: #74B8E7;
+            color: #2698DE;
+            border-bottom: 3px solid #2698DE;
             background-color: white;
-            border-bottom: 3px solid #74B8E7;
+        }
+
+        .weui-navbar__item {
+            background-color: white;
+        }
+
+        .weui-navbar__item:after {
+            border: none;
         }
 
         .weui-media-box__thumb {
@@ -43,7 +51,6 @@
             height: 70px;
             background-color: white;
             z-index: 100;
-
         }
 
     </style>
@@ -109,8 +116,8 @@
     </c:forEach>
 
     <c:if test="${fn:length(transferHistoryList) == 0}">
-        <div style="text-align:center;margin-top:35%">
-            <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="" style="width: 50%;">
+        <div class="no-works">
+            <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="">
             <p style="color:#CCCCCC">尚无作品</p>
         </div>
     </c:if>
@@ -144,8 +151,8 @@
     </c:forEach>
 
     <c:if test="${fn:length(fhWorksList) == 0}">
-        <div style="text-align:center;margin-top:35%">
-            <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="" style="width: 50%;">
+        <div class="no-works">
+            <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="">
             <p style="color:#CCCCCC">尚无作品</p>
         </div>
     </c:if>
@@ -189,13 +196,13 @@
         </div>
     </c:forEach>
     <c:if test="${fn:length(fhPeopleList) == 0}">
-        <div style="text-align:center;margin-top:35%">
-            <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="" style="width: 50%;">
+        <div class="no-works">
+            <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="">
             <p style="color:#CCCCCC">尚无关注用户</p>
         </div>
     </c:if>
     <c:if test="${fn:length(fhPeopleList) > 0}">
-        <div class="hr-text ">
+        <div class="hr-text">
             <center>
                 <hr>
                 <span>&nbsp;&nbsp;到底啦&nbsp;&nbsp;</span></center>
@@ -240,6 +247,10 @@
 <input type="hidden" id="ctxStatic" value="${ctxStatic}">
 <script>
     $(function () {
+        $('.weui-navbar__item').on('click', function () {
+            $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
+        });
+
         $("#transfer-title").click(function () {
             $('#tranfer-works').addClass('div-on').siblings('.div-hide').removeClass('div-on');
         })
@@ -250,16 +261,6 @@
             $('#focus-people').addClass('div-on').siblings('.div-hide').removeClass('div-on');
         })
     })
-
-    $(function () {
-        $('.weui-tabbar__item').on('click', function () {
-            $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
-        });
-
-        $('.weui-navbar__item').on('click', function () {
-            $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
-        });
-    });
 
     //取消关注
     $(function () {

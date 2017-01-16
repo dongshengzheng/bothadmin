@@ -106,7 +106,7 @@
 
     <div class="weui-cell certificate-text">
         <span class="certificate-text1">价值有效时间</span>
-        <input name="valueTimeString" id="valueTime"
+        <input name="valueTimeString" id="valueTime" class="showDatePicker"
                value="<fmt:formatDate value='${report.validTime}' pattern="yyyy-MM-dd"/>"
                placeholder="选择有效时间">
     </div>
@@ -130,9 +130,6 @@
 
 <script>
     $(function () {
-        $('#valueTime').calendar();
-
-
         var $iosActionsheet = $('#iosActionsheet');
         var $iosMask = $('#iosMask');
         var $iosDialog1 = $('#iosDialog1');

@@ -105,9 +105,8 @@
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">制作时间</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input name="makeTimeString" id="works-zhizuoshijian" class="weui-input"
-               value="<fmt:formatDate value='${works.makeTime}' pattern="yyyy-MM-dd"/>"
-               type="tel" placeholder="请选择制作时间">
+        <input readonly name="makeTimeString" id="works-zhizuoshijian" class="weui-input showDatePicker"
+               value="<fmt:formatDate value='${works.makeTime}' pattern="yyyy-MM-dd"/>" placeholder="请选择制作时间">
     </div>
 </div>
 <div class="weui-cell">
@@ -117,10 +116,3 @@
                               rows="3">${works.worksMeaning}</textarea>
     </div>
 </div>
-
-
-<script>
-    $(function () {
-        $('#works-zhizuoshijian').calendar();
-    });
-</script>

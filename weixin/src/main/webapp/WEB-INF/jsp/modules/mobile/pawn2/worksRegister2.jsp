@@ -150,13 +150,14 @@
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">制作人</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="maker" id="works-zhizuoren" class="weui-input" type="tel" placeholder="请输入制作人">
+                <input name="maker" id="works-zhizuoren" class="weui-input" placeholder="请输入制作人">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">制作时间</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="makeTimeString" id="works-zhizuoshijian" class="weui-input" placeholder="请选择制作时间">
+                <input name="makeTimeString" id="works-zhizuoshijian" class="weui-input showDatePicker"
+                       placeholder="请选择制作时间">
             </div>
         </div>
         <div class="weui-cell">
@@ -193,8 +194,11 @@
 
 <script>
     $(function () {
-        $('#works-zhizuoshijian').calendar();
-
+        $(".showDatePicker").on('click', function () {
+            $('input').blur();
+            $('textarea').blur();
+            $(this).calendar();
+        })
 
         $('#draftSubmit').on('click', function () {
             $('#draftYN').val('yes');

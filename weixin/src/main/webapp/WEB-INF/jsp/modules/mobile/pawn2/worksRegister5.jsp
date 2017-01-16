@@ -54,7 +54,7 @@
         <hr>
         <span>&nbsp;◇&nbsp;JS-A20161205001A&nbsp;◇&nbsp;</span></center>
 </div>
-<div>
+<div class="div-outer">
     <form action="${ctx}/mobile/worksRegisterComplete" method="post">
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
@@ -90,7 +90,7 @@
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">收藏时间</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input id="showDatePicker" name="collecterDatetimeString" class="weui-input" type="tel"
+                <input id="showDatePicker" name="collecterDatetimeString" class="weui-input showDatePicker" type="tel"
                        placeholder="请选择时间">
             </div>
         </div>
@@ -123,7 +123,12 @@
             $('#draftYN').val('yes');
         })
 
-        $("#showDatePicker").calendar();
+        $(".showDatePicker").on('click', function () {
+            $('input').blur();
+            $('textarea').blur();
+            $(this).calendar();
+        })
+
     })
 </script>
 </html>

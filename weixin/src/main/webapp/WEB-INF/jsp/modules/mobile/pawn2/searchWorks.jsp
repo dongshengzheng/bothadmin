@@ -99,8 +99,8 @@
         </div>
     </c:forEach>
     <c:if test="${fn:length(defaultList) == 0}">
-        <div style="text-align:center;margin-top:35%">
-            <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="" style="width: 50%;">
+        <div class="no-works">
+            <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="">
             <p style="color:#CCCCCC">尚无作品</p>
         </div>
     </c:if>
@@ -131,8 +131,8 @@
         </div>
     </c:forEach>
     <c:if test="${fn:length(timeList) == 0}">
-        <div style="text-align:center;margin-top:35%">
-            <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="" style="width: 50%;">
+        <div class="no-works">
+            <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="">
             <p style="color:#CCCCCC">尚无作品</p>
         </div>
     </c:if>
@@ -163,8 +163,8 @@
         </div>
     </c:forEach>
     <c:if test="${fn:length(distanceList) == 0}">
-        <div style="text-align:center;margin-top:35%">
-            <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="" style="width: 50%;">
+        <div class="no-works">
+            <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="">
             <p style="color:#CCCCCC">尚无作品</p>
         </div>
     </c:if>

@@ -48,6 +48,7 @@
         width: 100%;
         position: absolute;
         border: white;
+        border: none;
         color: white;
         background-color: black;
         opacity: 0.8;
@@ -116,12 +117,13 @@
     }
 
     .all-title input {
-        height: 20px;
-        padding-left: 20px;
-        font-size: 18px;
+        height: 45px;
+        padding-left: 25px;
+        font-size: 20px;
         background-image: url(${ctxStatic}/img/cut/index-all.png);
-        background-size: 18px 18px;
+        background-size: 20px 20px;
         background-repeat: no-repeat;
+        background-position-y: center;
         border: none;
         bottom: 10px;
         background-color: white;

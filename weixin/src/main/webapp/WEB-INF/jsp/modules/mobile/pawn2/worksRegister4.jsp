@@ -18,13 +18,13 @@
     <script src="${ctxStatic}/js/plupload-2.1.2/js/plupload.dev.js"></script>
     <style>
         .title {
-            height: 40px;
+            height: 60px;
             text-align: center;
             background-color: white;
         }
 
         .title hr {
-            top:25px;
+            top: 25px;
             position: relative;
             width: 80%;
             border-top: 1px solid red;
@@ -32,7 +32,7 @@
         }
 
         .title span {
-            top:10px;
+            top: 10px;
             position: relative;
             background-color: white;
             color: red;
@@ -42,7 +42,7 @@
             height: 12%;
         }
 
-        .fixed-footer-blank{
+        .fixed-footer-blank {
             background-color: #F0EFF5;
         }
 
@@ -93,7 +93,6 @@
         }
 
         .certificate-text2 {
-
             position: absolute;
             right: 30px;
             margin-top: 10px;
@@ -111,11 +110,12 @@
             margin-top: 10px;
             background-image: url("${ctxStatic}/img/cut/时间选择_icon.png");
             background-repeat: no-repeat;
-            background-size: 18px;
+            background-size: 15px;
             background-position-x: right;
             background-position-y: center;
             padding-right: 25px;
             width: 100px;
+            height: 20px;
             border: none;
         }
     </style>
@@ -162,7 +162,7 @@
 
         <div class="weui-cell certificate-text">
             <span class="certificate-text1">价值有效时间</span>
-            <input name="valueTimeString" id="valueTime" placeholder="选择有效时间">
+            <input name="valueTimeString" id="valueTime" class="showDatePicker" placeholder="选择有效时间">
         </div>
     </div>
     <br/>
@@ -282,7 +282,11 @@
             $('#draftYN').val('yes');
         })
 
-        $('#valueTime').calendar();
+        $(".showDatePicker").on('click', function () {
+            $('input').blur();
+            $('textarea').blur();
+            $(this).calendar();
+        })
 
         initUploaders2($('#bucket').val(), $('#redirectUrl').val() + "/");
         initUploaders($('#bucket').val(), $('#redirectUrl').val() + "/", "valueImages");

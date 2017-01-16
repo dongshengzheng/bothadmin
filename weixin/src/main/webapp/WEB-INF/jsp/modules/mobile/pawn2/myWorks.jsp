@@ -19,22 +19,18 @@
             color: #9F504D;
         }
 
-        .weui-navbar {
-            width: 96%;
-            margin: 1%;
-            border-radius: 5px;
-        }
-
         .weui-navbar__item.weui-bar__item_on {
-            background-color: white;
             color: #2698DE;
-            border-bottom: 1px solid #2698DE;
+            border-bottom: 3px solid #2698DE;
+            background-color: white;
         }
 
         .weui-navbar__item {
-            border: none;
             background-color: white;
-            color: black;
+        }
+
+        .weui-navbar__item:after {
+            border: none;
         }
 
         .works-floor-btn-all {
@@ -90,8 +86,8 @@
         </div>
     </c:forEach>
     <c:if test="${fn:length(worksSuccessList) == 0}">
-        <div style="text-align:center;margin-top:35%">
-            <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="" style="width: 50%;">
+        <div class="no-works">
+            <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="">
             <p style="color:#CCCCCC">尚无作品</p>
         </div>
     </c:if>
@@ -125,8 +121,8 @@
         </div>
     </c:forEach>
     <c:if test="${fn:length(worksNowList) == 0}">
-        <div style="text-align:center;margin-top:35%">
-            <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="" style="width: 50%;">
+        <div class="no-works">
+            <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="">
             <p style="color:#CCCCCC">尚无作品</p>
         </div>
     </c:if>
@@ -160,8 +156,8 @@
         </div>
     </c:forEach>
     <c:if test="${fn:length(worksFailureList) == 0}">
-        <div style="text-align:center;margin-top:35%">
-            <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="" style="width: 50%;">
+        <div class="no-works">
+            <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="">
             <p style="color:#CCCCCC">尚无作品</p>
         </div>
     </c:if>
@@ -196,8 +192,8 @@
         </div>
     </c:forEach>
     <c:if test="${fn:length(worksDraftList) == 0}">
-        <div style="text-align:center;margin-top:35%">
-            <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="" style="width: 50%;">
+        <div class="no-works">
+            <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="">
             <p style="color:#CCCCCC">尚无作品</p>
         </div>
     </c:if>

@@ -10,7 +10,7 @@
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">收藏者</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input name="collecter.name" class="weui-input" type="tel" value="${collecter.name}" placeholder="请输入姓名">
+        <input name="collecter.name" class="weui-input" value="${collecter.name}" placeholder="请输入姓名">
     </div>
 </div>
 <div class="weui-cell">
@@ -22,7 +22,7 @@
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">联系地址</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input name="collecter.address" class="weui-input" type="tel" value="${collecter.address}"
+        <input name="collecter.address" class="weui-input" value="${collecter.address}"
                placeholder="请输入详细地址">
     </div>
 </div>
@@ -35,7 +35,7 @@
 <div class="weui-cell">
     <div class="weui-cell__hd"><label class="weui-label">收藏时间</label></div>
     <div class="weui-cell__bd weui-cell_primary">
-        <input name="collecterDateTimeString" id="collecterDatePicker" class="weui-input" type="tel"
+        <input name="collecterDateTimeString" id="collecterDatePicker" class="weui-input showDatePicker" type="tel"
                value="<fmt:formatDate value='${collecter.datetime}' pattern="yyyy-MM-dd"/>" placeholder="请选择时间">
     </div>
 </div>
@@ -43,9 +43,3 @@
     <div class="weui-cell__hd"><label class="weui-label">是否公开</label></div>
     <input name="collecterPub" class="weui-switch" type="checkbox" <c:if test="${collecter.pub==1}">checked</c:if>/>
 </div>
-<script>
-    $(function () {
-        $('#collecterDatePicker').calendar();
-    })
-</script>
-

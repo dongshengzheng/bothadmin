@@ -107,20 +107,24 @@
 
 /*带文字的水平线*/
 .hr-text {
-    margin-top: 5%;
+    height: 40px;
     text-align: center;
+    background-color: #F0EFF5;
 }
 
 .hr-text hr {
+    top: 20px;
+    position: relative;
     width: 80%;
 }
 
 .hr-text span {
+    top: 0;
+    height: 40px;
+    line-height: 40px;
     position: relative;
-    top: -15px;
-    background-color: white;
+    background-color: #F0EFF5;
     color: gray;
-    font-size: 10px;
 }
 
 /*查询用户结果的一行记录样式*/
@@ -167,7 +171,7 @@
     background-color: white;
 }
 
-body {
+body, html {
     background-color: #F0EFF5;
 }
 
@@ -182,4 +186,15 @@ select {
     background-position-x: right;
     background-repeat: no-repeat;
     background-size: 10px 10px;
+}
+
+/*无作品显示时的样式*/
+.no-works {
+    text-align: center;
+    margin-top: 35%;
+    background-color: #F0EFF5;
+}
+
+.no-works img {
+    width: 30%;
 }

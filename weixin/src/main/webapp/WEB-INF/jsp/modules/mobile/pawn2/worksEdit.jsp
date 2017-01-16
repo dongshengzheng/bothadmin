@@ -70,7 +70,6 @@
             color: #A2D2EF;
         }
 
-
     </style>
 </head>
 <body>
@@ -187,7 +186,11 @@
             $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
         });
 
-        $("#showDatePicker").calendar();
+        $(".showDatePicker").on('click', function () {
+            $('input').blur();
+            $('textarea').blur();
+            $(this).calendar();
+        })
 
         $('#goto3').on('click', function () {
             $('.worksShowName').val($('#worksName').val());
