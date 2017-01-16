@@ -92,12 +92,12 @@
         <!-- Profile Content -->
         <div class="col-md-9">
             <div class="profile-body margin-bottom-20">
-                <div class="tab-v1">
+                <div class="ab-v1">
                     <ul class="nav nav-justified nav-tabs">
-                        <li class="active1"><a data-toggle="tab" href="#pass">审核通过</a></li>
-                        <li><a data-toggle="tab" href="#unpass">审核失败</a></li>
-                        <li><a data-toggle="tab" href="#checking">审核中</a></li>
-                        <li><a data-toggle="tab" href="#drafts">草稿箱</a></li>
+                        <li class="active" id="passMenu"><a data-toggle="tab" href="#pass">审核通过</a></li>
+                        <li id="unpassMenu"><a data-toggle="tab" href="#unpass">审核失败</a></li>
+                        <li id="checkingMenu"><a data-toggle="tab" href="#checking">审核中</a></li>
+                        <li id="draftsMenu"><a data-toggle="tab" href="#drafts">草稿箱</a></li>
                     </ul>
                     <div class="tab-content">
                         <div id="pass" class="profile-edit tab-pane fade in active">
@@ -425,12 +425,20 @@
         }
 
         function positioningWorksType() {
-            if(${type}=="3"){
-                $("#checking").addClass("in active")
-                $("#pass").removeClass("in active")
-            } else if (${type}=="4"){
-                $("#drafts").addClass("in active")
-                $("#pass").removeClass("in active")
+            if(${type}!="0"){
+                $("#passMenu").removeClass("active");
+                $("#unpassMenu").removeClass("active");
+                $("#checkingMenu").removeClass("active");
+                $("#draftsMenu").removeClass("active");
+            }
+            if(${type}=="1"){
+                $("#checking").addClass("in active");
+                $("#pass").removeClass("in active");
+                $("#checkingMenu").addClass("active");
+            } else if (${type}=="10"){
+                $("#drafts").addClass("in active");
+                $("#pass").removeClass("in active");
+                $("#draftsMenu").addClass("active");
             }
         }
 
@@ -500,8 +508,8 @@
 
         //草稿
         function loadDrafts(draftsIndex) {
-            $.get("/user/works_load/0", {pageIndex: draftsIndex}, function (data) {
-                if (draftsIndex >= data.pages) {
+            $.get("/user/works_load/10", {pageIndex: draftsIndex}, function (data) {
+                if (draftsIndex > data.pages) {
                     // 数据加载完毕了
                     $("#draftsBtn").html("客官，这次真没了");
                     draftsHasMore = false;

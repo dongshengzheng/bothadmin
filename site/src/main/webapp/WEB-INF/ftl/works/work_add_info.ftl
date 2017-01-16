@@ -80,6 +80,7 @@
                             <label class="col-sm-2 control-label" for="name">作品名称</label>
                             <div class="col-sm-10">
                                 <input class="form-control" type="text" value="${works.name}" disabled="disabled"/>
+                                <span style="color: #cc0000" class="col-sm-10"></span>
                             </div>
                         </div>
 
@@ -95,8 +96,8 @@
                                             <option value="${pz.value}">${pz.label}</option>
                                         </#if>
                                     </#list>
-
                                 </select>
+                                <span style="color: #cc0000" class="col-sm-10"></span>
                             </div>
                         </div>
                         <div class="form-group">
@@ -112,6 +113,7 @@
                                         </#if>
                                     </#list>
                                 </select>
+                                <span style="color: #cc0000" class="col-sm-10"></span>
                             </div>
                         </div>
 
@@ -121,13 +123,16 @@
                                 <div class="row">
                                     <div class="col-sm-4"><input class="form-control" id="length" name="length" value="<#if (works.length)??>${works.length}</#if>"
                                                                  type="text"
-                                                                 placeholder="长"/></div>
+                                                                 placeholder="长"/>
+                                        <span style="color: #cc0000" class="col-sm-10"></span></div>
                                     <div class="col-sm-4"><input class="form-control" name="width" id="width" value="<#if (works.width)??>${works.width}</#if>"
                                                                  type="text"
-                                                                 placeholder="宽"/></div>
+                                                                 placeholder="宽"/>
+                                        <span style="color: #cc0000" class="col-sm-10"></span></div>
                                     <div class="col-sm-4"><input class="form-control" name="height" id="height" value="<#if (works.height)??>${works.height}</#if>"
                                                                  type="text"
-                                                                 placeholder="高"/></div>
+                                                                 placeholder="高"/>
+                                        <span style="color: #cc0000" class="col-sm-10"></span></div>
                                 </div>
                             </div>
                         </div>
@@ -218,9 +223,8 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label"></label>
                             <div class="col-sm-10">
-                                <input type="hidden" id="submit-type" name="submit-type"/>
-                                <button data-type="0" submit-type="0" class="btn btn-u btn-u-red info_btn">下一步</button>
-                                <button data-type="0" submit-type="3" class="btn btn-u btn-u-default info_btn"
+                                <button data-type="0" class="btn btn-u btn-u-red info_btn">下一步</button>
+                                <button data-type="10" class="btn btn-u btn-u-default info_btn"
                                         style="margin-left: 20px">存为草稿
                                 </button>
                             </div>
@@ -246,33 +250,73 @@
         $('.date-picker').datepicker({autoclose: true, todayHighlight: true, format: 'yyyy-mm-dd'});
         $(".info_btn").bind("click", function () {
             $("#status").val($(this).attr("data-type"));
-            $("#submit-type").val($(this).attr("submit-type"));
         });
+
+        $.validator.addMethod(
+                "isSelected", //验证方法名称
+                function(value, element, param) {//验证规则
+                    if(value == param){
+                        return false;
+                    }
+                    return true;
+                },
+                ''//验证提示信息
+        );
 
         var $form = $("#works_info");
         $form.validate({
+            errorPlacement: function (error, element) {
+                error.appendTo( element.next() );
+            },
+            rules: {
+                breed: {
+                    isSelected:""
+                },
+                worksType: {
+                    isSelected:""
+                },
+                length:"required",
+                width:"required",
+                height:"required",
+                weight:"required",
+                gytType:{
+                    isSelected:""
+                },
+                levelZk:{
+                    isSelected:""
+                },
+                kqdy:{
+                    isSelected:""
+                },
+                worksMeaning:"required"
+            },
+            messages: {
+                breed: {isSelected: "品种必选"},
+                worksType: {required: "作品类型必选"},
+                length: {required: "长必填"},
+                width: {required: "宽必填"},
+                height: {required: "高必填"},
+                weight: {required: "重量必填"},
+                gyType: {required: "作品描述必选"},
+                levelZk: {required: "工艺制作必选"},
+                kqdy: {required: "矿区地域必选"},
+                worksMeaning: {required: "作品诠释必选"}
+            },
             submitHandler: function (form) {
                 $(form).ajaxSubmit({
                     success: function (data) {
                         if (data.suc) {
-                            if ($("#submit-type").val() == 0) {
+                            if ($("#status").val() == 0) {
                                 var type = $("#type").val();
                                 if(type=="5"||type=="6"){
                                     window.location.href ="/works/add/${works.id}/report";
                                 } else {
                                     // 跳转到下一步
-                                    var breed = $("#breed").val();
-                                    if(breed == ""){
-                                        alert("品种不能为空！");
-                                    } else {
-                                        window.location.href = "/works/add/${works.id}/"+breed+"/level/";
-                                    }
+                                    window.location.href = "/works/add/${works.id}/"+$("#breed").val()+"/level/";
                                 }
-                                console.log("11111");
-
                              } else {
                                 // 跳转到个人中心-> 我的作品->草稿里面
-                                window.location.href = "/user";
+                                window.location.href = "/user/works/"+$("#status").val();
                             }
                         } else {
                             alert(data.msg);

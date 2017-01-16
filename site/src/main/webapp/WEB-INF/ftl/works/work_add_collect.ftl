@@ -130,7 +130,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label" for="pub">是否公开</label>
+                            <label class="col-sm-2 control-label" >是否公开</label>
                             <div class="col-sm-10">
                                 <label class="checkbox text-left col-sm-2" style="padding-top:0px;">
                                     <input type="radio" checked name="pub"/>
@@ -145,9 +145,8 @@
                         <div class="form-group">
                             <label class="col-sm-2" for=""></label>
                             <div class="col-sm-10">
-                                <input type="hidden" id="submit-type" name="submit-type"/>
-                                <button data-type="1" submit-type="3" type="submit" class="btn btn-u btn-u-red info_btn">提交审核</button>
-                                <button data-type="0" submit-type="0" type="submit" class="btn btn-u btn-u-default info_btn"
+                                <button data-type="1" type="submit" class="btn btn-u btn-u-red info_btn">提交审核</button>
+                                <button data-type="10" type="submit" class="btn btn-u btn-u-default info_btn"
                                         style="margin-left: 20px">存为草稿
                                 </button>
                             </div>
@@ -182,17 +181,49 @@
         initUploaders("upload_works_info", "windyeel", '${staticPath}/');
         var $form = $("#works_info");
 
+        $.validator.addMethod(
+                "isSelected", //验证方法名称
+                function(value, element, param) {//验证规则
+                    if(value == param){
+                        return false;
+                    }
+                    return true;
+                },
+                ''//验证提示信息
+        );
+
         $form.validate({
+            errorPlacement: function (error, element) {
+                element.next().prev().html(error.html());
+            },
+            rules: {
+                name: "required",
+                no: "required",
+                address: "required",
+                phone: "required",
+                datetime: "required",
+                pub: {
+                    isSelected:""
+                }
+            },
+            messages: {
+                name: {required: "收藏者必填"},
+                no: {required: "身份证必填"},
+                address: {required: "联系地址必填"},
+                phone: {required: "手机号码必填"},
+                datetime: {required: "收藏时间必填"},
+                pub: {required: "是否公开必选"}
+            },
             submitHandler: function (form) {
                 $(form).ajaxSubmit({
                     success: function (data) {
                         if (data.suc) {
-                            if ($("#submit-type").val() == 0) {
+                            if ($("#status").val() == 1) {
                                 // 跳转到下一步
-                                window.location.href = "/user";
+                                window.location.href = "/user/works";
                             } else {
                                 // 跳转到个人中心-> 我的作品->草稿里面
-                                window.location.href = "/user";
+                                window.location.href = "/user/works/"+$("#status").val();
                             }
                         } else {
                             alert(data.msg);
@@ -210,7 +241,6 @@
         //存为草稿info_btn
         $(".info_btn").bind("click", function () {
             $("#status").val($(this).attr("data-type"));
-            $("#submit-type").val($(this).attr("submit-type"));
         });
 
         $("#providerDetails").on("click", function () {
