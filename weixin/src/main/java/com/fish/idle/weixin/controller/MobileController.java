@@ -265,7 +265,6 @@ public class MobileController extends BaseController {
     public String delSearch(HttpSession session) {
         session.removeAttribute("searchPerson");
         session.removeAttribute("searchWorks");
-
         return "成功删除";
     }
 

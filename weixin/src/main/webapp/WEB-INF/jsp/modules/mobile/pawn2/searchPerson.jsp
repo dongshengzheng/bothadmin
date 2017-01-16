@@ -44,7 +44,7 @@
 
 
 <div class="search-results div-outer">
-    <div id="have-care-people" class="div-outer">
+    <div id="have-care-people">
         <c:forEach items="${haveFocusList}" var="person">
             <div class="weui-panel__bd" id="${person.id}">
                 <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
@@ -108,12 +108,21 @@
         </c:forEach>
     </div>
 
-    <div class="hr-text div-outer">
+</div>
+<c:if test="${fn:length(notFocusList) == 0&&fn:length(haveFocusList) == 0}">
+    <div class="no-works">
+        <img src="${ctxStatic}/modules/pawn/img/empty.png" alt="">
+        <p style="color:#CCCCCC">没有搜寻结果</p>
+    </div>
+</c:if>
+<c:if test="${fn:length(notFocusList) > 0||fn:length(haveFocusList) > 0}">
+    <div class="hr-text ">
         <center>
             <hr>
             <span>&nbsp;&nbsp;到底啦&nbsp;&nbsp;</span></center>
     </div>
-</div>
+</c:if>
+
 
 <div class="js_dialog" id="haveCareDialog" style="display: none;" date-id="">
     <div class="weui-mask"></div>
