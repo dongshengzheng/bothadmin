@@ -70,6 +70,10 @@
             color: #A2D2EF;
         }
 
+        .set-border.weui-cell:before {
+            border-top: none;
+        }
+
     </style>
 </head>
 <body>

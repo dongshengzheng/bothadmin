@@ -48,13 +48,15 @@
         margin-top: 10px;
         background-image: url("${ctxStatic}/img/cut/时间选择_icon.png");
         background-repeat: no-repeat;
-        background-size: 18px;
+        background-size: 15px;
         background-position-x: right;
         background-position-y: center;
         padding-right: 25px;
         width: 100px;
+        height: 20px;
         border: none;
     }
+
 </style>
 <div class="div-outer">
     <p class="report">&nbsp;昌化鸡血石鉴定评估报告&nbsp;</p>
@@ -88,7 +90,7 @@
                       rows="5">${report.certify}</textarea>
         </div>
     </div>
-    <div class="weui-uploader">
+    <div class="weui-cell set-border">
         <div class="weui-uploader__bd">
             <ul class="weui-uploader__files" id="uploaderFiles">
                 <c:forEach items="${valueImages}" var="image">

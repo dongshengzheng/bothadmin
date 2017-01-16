@@ -45,7 +45,9 @@
     }
 
     .works-intro {
-        width: 100%;
+        padding-left: 6px;
+        padding-right: 6px;
+        width: calc(100% - 12px);
         position: absolute;
         border: white;
         border: none;
@@ -56,7 +58,6 @@
         bottom: 0px;
         resize: none;
         font-size: 20px;
-        padding-left: 6px;
     }
 
     .works-floor {
@@ -113,16 +114,18 @@
     }
 
     .all-title {
-        margin: 1%;
+        width: 100%;
     }
 
     .all-title input {
+        width: calc(100% - 25px);
         height: 45px;
         padding-left: 25px;
         font-size: 20px;
         background-image: url(${ctxStatic}/img/cut/index-all.png);
         background-size: 20px 20px;
         background-repeat: no-repeat;
+        background-position-x: 3px;
         background-position-y: center;
         border: none;
         bottom: 10px;
@@ -194,7 +197,7 @@
     <!--小圆点-->
     <div class="swiper-pagination"></div>
 </div>
-<div class="all div-outer">
+<div class="all">
     <div class="all-title">
         <input value="全部作品" disabled/>
     </div>
@@ -330,7 +333,7 @@
                         $tmp.removeAttr('id');
                         $tmp.find(".worksId").val(data.records[i].id);
                         $tmp.find(".works-floor-name-all").html(data.records[i].name);
-                        $tmp.find(".works-floor-img-all").html(data.records[i].type);
+                        $tmp.find(".works-floor-img-all").html(data.records[i].breed);
 
                         var t = data.records[i].createDate;
                         var d = new Date(parseInt(t)).Format("yyyy-MM-dd");

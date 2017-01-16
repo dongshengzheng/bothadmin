@@ -120,7 +120,6 @@ public class MobileController extends BaseController {
             if (images != null && images.size() > 0) {
                 page.getRecords().get(i).setImages(images.get(0).getUrl());
             }
-
             if (!StringUtils.isEmpty(page.getRecords().get(i).getBreed())) {
                 page.getRecords().get(i).setBreed(dictService.getLabelByValue(page.getRecords().get(i).getBreed(), "dd_pinzhong"));
             }
@@ -519,24 +518,51 @@ public class MobileController extends BaseController {
     public String worksDetail(HttpSession session,
                               ModelMap map,
                               @RequestParam int worksId) {
+        //作品
+        Works works = worksService.selectById(worksId);
         AppUser currentUser = getCurrentUser();
+        int currentId = currentUser.getId();
+
+        session.setMaxInactiveInterval(2 * 60 * 60);
+        List<String> ipBrowse = (List<String>) session.getAttribute("ipBrowse");
+        if (ipBrowse == null) {
+            ipBrowse = new ArrayList<>();
+        }
+
+        String ip = request.getRemoteAddr();
+        if (!ipBrowse.contains(ip)) {
+            Integer browseCount = works.getBrowserCount();
+            if (browseCount == null) {
+                works.setBrowserCount(1);
+            } else {
+                works.setBrowserCount(browseCount + 1);
+            }
+            worksService.updateById(works);
+            ipBrowse.add(ip);
+            session.setAttribute("ipBrowse", ipBrowse);
+
+        }
+
+
         //增加浏览记录
         FollowHistory addBrowse = new FollowHistory();
         addBrowse.setTargetId(worksId);
-        addBrowse.setUserId(currentUser.getId());
+        addBrowse.setUserId(currentId);
         addBrowse.setType(Const.FOLLOW_HISTORY_TYPE_BROWSE);
         FollowHistory oldBrowse = followHistoryService.selectOne(new EntityWrapper<>(addBrowse));
         if (oldBrowse == null) {
+            addBrowse.setCreateBy(currentId);
             addBrowse.setCreateDate(new Date());
+            addBrowse.setUpdateBy(currentId);
             addBrowse.setUpdateDate(new Date());
             followHistoryService.insert(addBrowse);
         } else {
+            addBrowse.setUpdateBy(currentId);
             oldBrowse.setUpdateDate(new Date());
             followHistoryService.updateById(oldBrowse);
         }
 
-        //作品
-        Works works = worksService.selectById(worksId);
+
         //获取作品等级的信息还需要breed的值,故先取出
         String breed = works.getBreed();
         //矿区地域
@@ -754,6 +780,9 @@ public class MobileController extends BaseController {
             List<Images> images = imagesService.selectList(new EntityWrapper<>(new Images(worksList.get(i).getId(), Const.IMAGES_WORKS)));
             if (images != null && images.size() > 0) {
                 worksList.get(i).setImages(images.get(0).getUrl());
+            }
+            if (!StringUtils.isEmpty(worksList.get(i).getBreed())) {
+                worksList.get(i).setBreed(dictService.getLabelByValue(worksList.get(i).getBreed(), "dd_pinzhong"));
             }
         }
 

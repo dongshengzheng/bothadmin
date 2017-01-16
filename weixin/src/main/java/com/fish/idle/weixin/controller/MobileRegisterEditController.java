@@ -427,6 +427,7 @@ public class MobileRegisterEditController extends BaseController {
             works.setMakeTime(makeTime);
         }
         works.setCreateBy(oldWorks.getCreateBy());
+        works.setNo(oldWorks.getNo());
         wrapUpdateEntity(works);
         worksService.updateById(works);
 

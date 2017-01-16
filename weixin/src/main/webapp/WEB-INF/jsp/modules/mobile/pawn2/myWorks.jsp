@@ -65,7 +65,7 @@
 </div>
 
 
-<div id="check-success-works" class="div-hide div-outer <c:if test="${showwhich=='success'}">div-on</c:if>">
+<div id="check-success-works" class="all div-hide <c:if test="${showwhich=='success'}">div-on</c:if>">
     <c:forEach items="${worksSuccessList}" var="works">
         <div class="works-all-outer">
             <input class="worksId" style="display:none" value="${works.id}">
@@ -79,7 +79,7 @@
             <div class="works-floor-all">
                 <span class="works-floor-name-all">${works.name}</span>
                 <span class="works-floor-btn-all success-do">&nbsp;&nbsp;操作&nbsp;&nbsp;</span>
-                <span class="works-floor-img-all">${works.type}</span>
+                <span class="works-floor-img-all">${works.breed}</span>
                 <span class="works-floor-date-all"><fmt:formatDate value="${works.createDate}"
                                                                    pattern="yyyy-MM-dd"/></span>
             </div>
@@ -100,7 +100,7 @@
     </c:if>
 </div>
 
-<div id="check-now-works" class="div-hide div-outer <c:if test="${showwhich=='now'}">div-on</c:if>">
+<div id="check-now-works" class="all div-hide <c:if test="${showwhich=='now'}">div-on</c:if>">
     <c:forEach items="${worksNowList}" var="works">
         <div class="works-all-outer">
             <input class="worksId" style="display:none" value="${works.id}">
@@ -135,7 +135,7 @@
     </c:if>
 </div>
 
-<div id="check-failure-works" class="div-hide div-outer <c:if test="${showwhich=='failure'}">div-on</c:if>">
+<div id="check-failure-works" class="al div-hide <c:if test="${showwhich=='failure'}">div-on</c:if>">
     <c:forEach items="${worksFailureList}" var="works">
         <div class="works-all-outer">
             <input class="worksId" style="display:none" value="${works.id}">
@@ -149,7 +149,7 @@
             <div class="works-floor-all">
                 <span class="works-floor-name-all">${works.name}</span>
                 <span class="works-floor-btn-all failure-do">&nbsp;&nbsp;操作&nbsp;&nbsp;</span>
-                <span class="works-floor-img-all">${works.type}</span>
+                <span class="works-floor-img-all">${works.breed}</span>
                 <span class="works-floor-date-all"><fmt:formatDate value="${works.createDate}"
                                                                    pattern="yyyy-MM-dd"/></span>
             </div>
@@ -171,7 +171,7 @@
     </c:if>
 </div>
 
-<div id="check-draft-works" class="div-hide div-outer <c:if test="${showwhich=='draft'}">div-on</c:if>">
+<div id="check-draft-works" class="all div-hide <c:if test="${showwhich=='draft'}">div-on</c:if>">
     <c:forEach items="${worksDraftList}" var="works">
         <div class="works-all-outer">
             <input class="worksId" style="display:none" value="${works.id}">
@@ -185,7 +185,7 @@
             <div class="works-floor-all">
                 <span class="works-floor-name-all">${works.name}</span>
                 <span class="works-floor-btn-all draft-do">&nbsp;&nbsp;操作&nbsp;&nbsp;</span>
-                <span class="works-floor-img-all">${works.type}</span>
+                <span class="works-floor-img-all">${works.breed}</span>
                 <span class="works-floor-date-all"><fmt:formatDate value="${works.createDate}"
                                                                    pattern="yyyy-MM-dd"/></span>
             </div>

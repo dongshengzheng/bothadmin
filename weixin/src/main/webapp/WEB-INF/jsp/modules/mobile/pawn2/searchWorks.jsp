@@ -30,21 +30,6 @@
             border: none;
         }
 
-        #sort {
-            height: 30px;
-            line-height: 30px;
-        }
-
-        .sort-li {
-            margin-left: 10%;
-        }
-
-        .sort-li-selected {
-            color: blue;
-            margin-left: 10%;
-        }
-
-
     </style>
 </head>
 <body>
@@ -80,7 +65,7 @@
 
 </div>
 
-<div id="defaultList" class="all div-outer div-hide div-on">
+<div id="defaultList" class="all div-hide div-on">
     <c:forEach items="${defaultList}" var="works">
         <div class="works-all-outer" data-id="${works.id}">
             <div class="works-all">
@@ -112,7 +97,7 @@
         </div>
     </c:if>
 </div>
-<div id="timeList" class="all div-outer div-hide">
+<div id="timeList" class="all div-hide">
     <c:forEach items="${timeList}" var="works">
         <div class="works-all-outer" data-id="${works.id}">
             <div class="works-all">
@@ -144,7 +129,7 @@
         </div>
     </c:if>
 </div>
-<div id="distanceList" class="all div-outer div-hide">
+<div id="distanceList" class="all div-hide">
     <c:forEach items="${distanceList}" var="works">
         <div class="works-all-outer" data-id="${works.id}">
             <div class="works-all">

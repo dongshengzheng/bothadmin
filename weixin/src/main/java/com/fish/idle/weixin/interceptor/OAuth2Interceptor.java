@@ -109,6 +109,7 @@ public class OAuth2Interceptor implements HandlerInterceptor {
             appUser.setHeadImgUrl(wxMpUser.getHeadImgUrl());
             appUser.setUnionId(unionId);
             appUser.setType(Const.APPUSER_TYPE_NORMAL);
+            appUser.setScore(0);
             appUserService.insert(appUser);
         } else {
             appUser.setLastLogin(new Date());

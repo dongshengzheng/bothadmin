@@ -14,12 +14,21 @@
     height: 60px;
 }
 
+.all {
+    font-size: 0;
+}
+
+.all span, p {
+    font-size: 10px;
+}
+
 /*一行两个作品的展示*/
 .works-all-outer {
-    width: 47.5%;
-    margin: 0.5%;
     display: inline-block;
     position: relative;
+    width: 48%;
+    margin: 1%;
+    background-color: white;
 }
 
 .works-all {
@@ -37,7 +46,7 @@
 .works-intro-all {
     padding-left: 6px;
     padding-right: 6px;
-    width: 100%;
+    width: calc(100% - 12px);
     position: absolute;
     border: white;
     color: white;
@@ -120,11 +129,13 @@
 
 .hr-text span {
     top: 0;
+    width: 40px;
     height: 40px;
     line-height: 40px;
     position: relative;
     background-color: #F0EFF5;
     color: gray;
+    font-size: 10px;
 }
 
 /*查询用户结果的一行记录样式*/

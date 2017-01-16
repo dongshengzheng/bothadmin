@@ -40,6 +40,7 @@
 
         .fixed-footer {
             height: 12%;
+            z-index: 100;
         }
 
         .fixed-footer-blank {
@@ -48,15 +49,7 @@
 
         .fixed-footer p {
             font-size: 10px;
-            padding-left: 25%;
-        }
-
-        .fixed-footer a {
-            color: #A2D2EF;
-        }
-
-        .fixed-footer-blank {
-            background-color: white;
+            text-align: right;
         }
 
         #confirmSubmit {
@@ -118,6 +111,10 @@
             height: 20px;
             border: none;
         }
+
+        .set-border.weui-cell:before {
+            border-top: none;
+        }
     </style>
 </head>
 <body>
@@ -136,35 +133,36 @@
                 <textarea name="des" class="weui-textarea" placeholder="详细鉴定报告..." rows="5"></textarea>
             </div>
         </div>
-        <input id="certImge" name="certImge" type="hidden" value="">
-        <div id="removeMoxie" class="weui-cell certificate-text">
-            <span class="certificate-text1">鉴定证书</span>
-            <a id="uploaderInput2" class="certificate-text2">未上传</a>
-        </div>
+        <c:if test="${sessionScope.currentUser.type==1||sessionScope.currentUser.type==2}">
+            <input id="certImge" name="certImge" type="hidden" value="">
+            <div id="removeMoxie" class="weui-cell certificate-text">
+                <span class="certificate-text1">鉴定证书</span>
+                <a id="uploaderInput2" class="certificate-text2">未上传</a>
+            </div>
+        </c:if>
     </div>
-
-    <div class="div-outer">
-        <p class="report">&nbsp;金石典当认证价值报告&nbsp;</p>
-        <div class="weui-cell">
-            <div class="weui-cell__bd weui-cell_primary">
-                <textarea name="certify" class="weui-textarea" placeholder="详细价值报告" rows="5"></textarea>
+    <c:if test="${sessionScope.currentUser.type==2}">
+        <div class="div-outer">
+            <p class="report">&nbsp;金石典当认证价值报告&nbsp;</p>
+            <div class="weui-cell">
+                <div class="weui-cell__bd weui-cell_primary">
+                    <textarea name="certify" class="weui-textarea" placeholder="详细价值报告" rows="5"></textarea>
+                </div>
+            </div>
+            <div class="weui-cell set-border">
+                <div class="weui-uploader__bd">
+                    <ul class="weui-uploader__files" id="uploaderFiles">
+                        <a id="uploaderInput" class="weui-uploader__input-box">
+                        </a>
+                    </ul>
+                </div>
+            </div>
+            <div class="weui-cell certificate-text">
+                <span class="certificate-text1">价值有效时间</span>
+                <input name="valueTimeString" id="valueTime" class="showDatePicker" placeholder="选择有效时间">
             </div>
         </div>
-        <div class="weui-cell">
-            <div class="weui-uploader__bd">
-                <ul class="weui-uploader__files" id="uploaderFiles">
-                    <a id="uploaderInput" class="weui-uploader__input-box">
-                    </a>
-                </ul>
-            </div>
-        </div>
-
-
-        <div class="weui-cell certificate-text">
-            <span class="certificate-text1">价值有效时间</span>
-            <input name="valueTimeString" id="valueTime" class="showDatePicker" placeholder="选择有效时间">
-        </div>
-    </div>
+    </c:if>
     <br/>
     <div class="fixed-footer">
         <p style="background-color: #F0EFF5">下一步即表示同意为收藏者信息,可不填写直接提交</p>

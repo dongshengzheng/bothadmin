@@ -79,7 +79,7 @@
 </div>
 
 
-<div id="tranfer-works" class="div-hide div-outer <c:if test="${showwhich=='transfer'}">div-on</c:if>">
+<div id="tranfer-works" class="all div-hide <c:if test="${showwhich=='transfer'}">div-on</c:if>">
     <c:forEach items="${transferHistoryList}" var="th">
         <div class="works-all-outer" data-id="${th.id}">
             <div class="works-all">
@@ -130,7 +130,7 @@
     </c:if>
 </div>
 
-<div id="collection-works" class="div-hide div-outer <c:if test="${showwhich=='collection'}">div-on</c:if>">
+<div id="collection-works" class="all div-hide <c:if test="${showwhich=='collection'}">div-on</c:if>">
     <c:forEach items="${fhWorksList}" var="works">
         <div class="works-all-outer" data-id="${works.id}">
             <div class="works-all">
@@ -143,7 +143,7 @@
             <div class="works-floor-all">
                 <span class="works-floor-name-all">${works.name}</span>
                 <span class="works-floor-btn-all">取消收藏</span>
-                <span class="works-floor-img-all">${works.type}</span>
+                <span class="works-floor-img-all">${works.breed}</span>
                 <span class="works-floor-date-all"><fmt:formatDate value="${works.createDate}"
                                                                    pattern="yyyy-MM-dd"/></span>
             </div>
@@ -166,7 +166,7 @@
 
 </div>
 
-<div id="focus-people" class="div-hide div-outer <c:if test="${showwhich=='focus'}">div-on</c:if>">
+<div id="focus-people" class="div-hide <c:if test="${showwhich=='focus'}">div-on</c:if>">
     <c:forEach items="${fhPeopleList}" var="person">
         <div class="weui-panel__bd" id="${person.id}">
             <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
@@ -364,9 +364,13 @@
                 $notCareDialog.fadeIn(200);
             }
         })
-
     })
 
+    //跳往作品详情
+    $('.works-all').on('click', function () {
+        var worksid = $(this).parent().attr('data-id')
+        location.href = '${ctx}/mobile/worksDetail?worksId=' + worksid;
+    })
 
 </script>
 </body>

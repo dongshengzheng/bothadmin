@@ -44,7 +44,7 @@
         <textarea name="works.remarks" class="weui-textarea" placeholder="我的作品描述" rows="3">${works.remarks}</textarea>
     </div>
 </div>
-<div class="weui-cell">
+<div class="weui-cell set-border">
     <div class="weui-cell__bd">
         <div class="weui-uploader">
             <div class="weui-uploader__bd">
