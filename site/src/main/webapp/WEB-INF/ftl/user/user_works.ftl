@@ -61,10 +61,10 @@
                     <#--<a href="/user"><i class="fa fa-tachometer"></i>面板</a>-->
                 <#--</li>-->
                 <li class="list-group-item active">
-                    <a href="/user/works"><i class="fa fa-user"></i> 我的作品</a>
+                    <a href="/user/works"><i class="fa fa-user"></i>我的作品</a>
                 </li>
                 <li class="list-group-item">
-                    <a href="/user/transfer"><i class="fa fa-group"></i> 转让作品</a>
+                    <a href="/user/transfer"><i class="fa fa-group"></i>转让作品</a>
                 </li>
                 <li class="list-group-item">
                     <a href="/user/collect"><i class="fa fa-cubes"></i>收藏作品</a>
@@ -73,10 +73,10 @@
                     <a href="/user/follow"><i class="fa fa-comments"></i>关注用户</a>
                 </li>
                 <li class="list-group-item">
-                    <a href="/user/integral"><i class="fa fa-history"></i> 积分中心</a>
+                    <a href="/user/integral"><i class="fa fa-history"></i>积分中心</a>
                 </li>
                 <li class="list-group-item">
-                    <a href="/user/settings"><i class="fa fa-cog"></i> 个人设置</a>
+                    <a href="/user/settings"><i class="fa fa-cog"></i>个人设置</a>
                 </li>
             </ul>
 
@@ -92,7 +92,7 @@
         <!-- Profile Content -->
         <div class="col-md-9">
             <div class="profile-body margin-bottom-20">
-                <div class="ab-v1">
+                <div class="tab-v1">
                     <ul class="nav nav-justified nav-tabs">
                         <li class="active" id="passMenu"><a data-toggle="tab" href="#pass">审核通过</a></li>
                         <li id="unpassMenu"><a data-toggle="tab" href="#unpass">审核失败</a></li>
