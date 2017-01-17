@@ -259,6 +259,7 @@ public class WorksController extends BaseController {
      */
     @RequestMapping(value = "/add/{id}/report", method = RequestMethod.GET)
     public String report(ModelMap map, @PathVariable Integer id) {
+        AppUser appUser = getCurrentUser();
         Works works = worksService.selectById(id);
         Report report = reportService.selectOne(new EntityWrapper<>(new Report(id)));
         map.put("report", report);
@@ -277,6 +278,7 @@ public class WorksController extends BaseController {
         List<Interpretation> interpretationList = interpretationService.interpretationContainImages(id);
         map.put("interpretationList", interpretationList);
         map.put("works", works);
+        map.put("userType",appUser.getType());
         return "works/work_add_report";
     }
 

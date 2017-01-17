@@ -573,7 +573,7 @@
         </sql>
     </changeSet>
 
-    <changeSet author="WangGuoCheng" id="18817711870-35">
+    <changeSet author="WangGuoCheng" id="18817711870-36">
         <sql>
             INSERT INTO `sys_dict` (`value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`, `del_flag`, `points`) VALUES ('91', '未知', 'dd_kqdy', '矿区地域', 91, '0', '', 0, NULL);
             INSERT INTO `sys_dict` (`value`, `label`, `type`, `description`, `sort`, `parent_id`, `remarks`, `del_flag`, `points`) VALUES ('5', '未知', 'dd_level', '级别', 50, '0', '', 0, NULL);

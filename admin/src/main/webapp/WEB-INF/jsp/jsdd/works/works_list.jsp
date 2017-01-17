@@ -8,7 +8,7 @@
 %>
 <xianyu:navigater path="works"></xianyu:navigater>
 <div class="row">
-    <input type="hidden" value='<fmt:message key="site_path"/>' id="siteUrl">
+    <input type="hidden" value="${sitePath}" id="siteUrl">
     <div class="col-md-12">
         <div class="portlet light bordered">
             <div class="portlet-body">
@@ -89,9 +89,9 @@
                     "data": "slide",
                     "render": function (data, type, row) {
                         if (data == 0 || typeof data == 'undefined') {
-                            return '<a href="javascript:;" onclick="slide(' + row.id + ',1)" class="btn btn-success btn-xs">轮播</a>'
+                            return '<a href="javascript:;" onclick="slide(' + row.id + ',1)" class="btn btn-danger btn-xs">不轮播</a>'
                         } else {
-                            return '<a href="javascript:;" onclick="slide(' + row.id + ',0)" class="btn btn-danger btn-xs">不轮播</a>';
+                            return '<a href="javascript:;" onclick="slide(' + row.id + ',0)" class="btn btn-success btn-xs">轮播</a>';
                         }
                     }
                 },
@@ -135,10 +135,9 @@
     }
 
     function goIntoWorkInfo(id){
-        console.log(id);
-        console.log($("#siteUrl").val()+"1111111111111");
         if(id !=null){
-            window.open($("#siteUrl").val()+"works/detail/"+id,"_self");
+            console.log($("#siteUrl").val());
+            window.open($("#siteUrl").val()+"/works/detailAdmin/"+id,"_self");
         }
     }
 </script>

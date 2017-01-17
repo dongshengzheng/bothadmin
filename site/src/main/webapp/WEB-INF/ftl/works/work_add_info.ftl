@@ -13,6 +13,10 @@
     .form-wizard .steps > li > a.step {
         color: gray;
     }
+    .form-group .col-sm-10{
+        width:60%;
+    }
+
 </style>
 </@htmlHead>
 <@htmlBody>
@@ -80,15 +84,14 @@
                             <label class="col-sm-2 control-label" for="name">作品名称</label>
                             <div class="col-sm-10">
                                 <input class="form-control" type="text" value="${works.name}" disabled="disabled"/>
-                                <span style="color: #cc0000" class="col-sm-10"></span>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="breed">品种</label>
-                            <div class="col-sm-10">
-                                <select id="breed" name="breed" class="form-control selectpicker">
-                                    <option value="">请选择</option>
+                            <div class="col-sm-10"  data-test="div">
+                                <select id="breed" name="breed" class="form-control selectpicker" data-test="select">
+                                    <option value=""  data-test="option">请选择</option>
                                     <#list pinzhong as pz>
                                         <#if ((works.breed)??)&&("${pz.value}"==(works.breed))>
                                             <option value="${pz.value}" selected="selected">${pz.label}</option>
@@ -97,8 +100,8 @@
                                         </#if>
                                     </#list>
                                 </select>
-                                <span style="color: #cc0000" class="col-sm-10"></span>
                             </div>
+                            <span style="color: red;" class="error"  data-test="span"></span>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="name">作品类型</label>
@@ -113,7 +116,6 @@
                                         </#if>
                                     </#list>
                                 </select>
-                                <span style="color: #cc0000" class="col-sm-10"></span>
                             </div>
                         </div>
 
@@ -123,16 +125,13 @@
                                 <div class="row">
                                     <div class="col-sm-4"><input class="form-control" id="length" name="length" value="<#if (works.length)??>${works.length}</#if>"
                                                                  type="text"
-                                                                 placeholder="长"/>
-                                        <span style="color: #cc0000" class="col-sm-10"></span></div>
+                                                                 placeholder="长"/></div>
                                     <div class="col-sm-4"><input class="form-control" name="width" id="width" value="<#if (works.width)??>${works.width}</#if>"
                                                                  type="text"
-                                                                 placeholder="宽"/>
-                                        <span style="color: #cc0000" class="col-sm-10"></span></div>
+                                                                 placeholder="宽"/></div>
                                     <div class="col-sm-4"><input class="form-control" name="height" id="height" value="<#if (works.height)??>${works.height}</#if>"
                                                                  type="text"
-                                                                 placeholder="高"/>
-                                        <span style="color: #cc0000" class="col-sm-10"></span></div>
+                                                                 placeholder="高"/></div>
                                 </div>
                             </div>
                         </div>
@@ -266,7 +265,10 @@
         var $form = $("#works_info");
         $form.validate({
             errorPlacement: function (error, element) {
-                error.appendTo( element.next() );
+                console.log(element.attr("data-test"));
+                console.log(element.parent().prev().attr("data-test"));
+                console.log(element.parent().prev().find("#error").attr("data-test"));
+                element.parent().find("#error").html(error);
             },
             rules: {
                 breed: {
@@ -337,3 +339,5 @@
     });
 
 </script>
+
+
