@@ -130,39 +130,39 @@ public class LoginController extends BaseController {
     }
 
 
-//    /**
-//     * 请求登录，验证用户
-//     */
-//    @RequestMapping(value = "/login", method = RequestMethod.POST)
-//    @ResponseBody
-//    public JSONObject login(String loginName, String password) throws Exception {
-//        JSONObject jsonObject = new JSONObject();
-//        String errInfo = "";
-//        String passwd = new SimpleHash("SHA-1", loginName, password).toString(); // 密码加密
-//        AppUser user = new AppUser();
-//        user.setLoginName(loginName);
-//        user.setPassword(passwd);
-//        user = appUserService.selectOne(new EntityWrapper<>(user));
-//        // 用于验证用户名和密码，改方法名需要改良
-//        if (user != null) {
-//            Subject subject = SecurityUtils.getSubject();
-//            Session session = subject.getSession();
-//            session.setAttribute(Const.SITE_SESSION_USER, user);
-//            // shiro加入身份验证
-//            UsernamePasswordToken token = new UsernamePasswordToken(loginName, password);
-//            try {
-//                subject.login(token);
-//            } catch (AuthenticationException e) {
-//                errInfo = "身份验证失败！";
-//            }
-//        } else {
-//            errInfo = "用户名或密码有误";
-//        }
-//        jsonObject.put("result", errInfo);
-//
-//        return jsonObject;
-//    }
-//
+    /**
+     * 请求登录，验证用户
+     */
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject login(String loginName, String password) throws Exception {
+        JSONObject jsonObject = new JSONObject();
+        String errInfo = "";
+        String passwd = new SimpleHash("SHA-1", loginName, password).toString(); // 密码加密
+        AppUser user = new AppUser();
+        user.setLoginName(loginName);
+        user.setPassword(passwd);
+        user = appUserService.selectOne(new EntityWrapper<>(user));
+        // 用于验证用户名和密码，改方法名需要改良
+        if (user != null) {
+            Subject subject = SecurityUtils.getSubject();
+            Session session = subject.getSession();
+            session.setAttribute(Const.SITE_SESSION_USER, user);
+            // shiro加入身份验证
+            UsernamePasswordToken token = new UsernamePasswordToken(loginName, password);
+            try {
+                subject.login(token);
+            } catch (AuthenticationException e) {
+                errInfo = "身份验证失败！";
+            }
+        } else {
+            errInfo = "用户名或密码有误";
+        }
+        jsonObject.put("result", errInfo);
+
+        return jsonObject;
+    }
+
 //    @RequestMapping(value = "/register", method = RequestMethod.GET)
 //    public String register() {
 //        return "user/register";

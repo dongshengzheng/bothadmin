@@ -69,7 +69,7 @@
     <form class="weui-search-bar__form">
         <div class="weui-search-bar__box">
             <i class="weui-icon-search"></i>
-            <input name="name" type="search" class="weui-search-bar__input" id="searchInput"
+            <input name="name" type="search" class="weui-search-bar__input" id="searchInput" style="border: 0px ;"
                    placeholder="搜索" required/>
             <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
         </div>

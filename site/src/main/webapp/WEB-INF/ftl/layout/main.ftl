@@ -13,7 +13,6 @@ description="金石典当"
 <html lang="en"> <!--<![endif]-->
 <head>
     <title>${title}</title>
-
     <!-- Meta -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

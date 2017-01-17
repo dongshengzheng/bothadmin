@@ -90,8 +90,8 @@ public class MobileController extends BaseController {
     @Value("#{wxProperties.bucket}")
     private String bucket;
 
-    @Value("#{wxProperties.redirect_url}")
-    private String redirectUrl;
+    /*@Value("#{wxProperties.redirect_url}")
+    private String redirectUrl;*/
 
 
     @RequestMapping(method = RequestMethod.GET)
