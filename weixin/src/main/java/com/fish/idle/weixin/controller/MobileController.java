@@ -97,6 +97,31 @@ public class MobileController extends BaseController {
     @RequestMapping(method = RequestMethod.GET)
     @OAuthRequired
     public String toLogin(HttpSession session) {
+        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+        String unionId = wxMpUser.getUnionId();
+        AppUser u = new AppUser();
+        u.setUnionId(unionId);
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
+            appUser = new AppUser();
+            appUser.setLoginName(filterEmoji(wxMpUser.getNickname()));
+            appUser.setPassword("iLoveMoney");
+            appUser.setName(filterEmoji(wxMpUser.getNickname()));
+            appUser.setDelFlag(Const.DEL_FLAG_NORMAL);
+            appUser.setOpenId(wxMpUser.getOpenId());
+            appUser.setLastLogin(new Date());
+            appUser.setHeadImgUrl(wxMpUser.getHeadImgUrl());
+            appUser.setUnionId(unionId);
+            appUser.setType(Const.APPUSER_TYPE_NORMAL);
+            appUser.setScore(0);
+            appUserService.insert(appUser);
+        } else {
+            appUser.setLastLogin(new Date());
+            appUserService.updateSelectiveById(appUser);
+        }
+        session.setAttribute("currentUser", appUser);
+
+
         return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/works";
     }
 
@@ -110,6 +135,16 @@ public class MobileController extends BaseController {
     @OAuthRequired
     public String works(HttpSession session,
                         ModelMap map) {
+        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
+        String unionId = wxMpUser.getUnionId();
+        AppUser u = new AppUser();
+        u.setUnionId(unionId);
+        AppUser appUser = appUserService.selectOne(u);
+        if (appUser == null) {
+            return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
+        }
+
+
         Works works = new Works();
         works.setStatus(Const.WORKS_STATUS_PASS);
         EntityWrapper<Works> ew = new EntityWrapper(works);

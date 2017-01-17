@@ -94,30 +94,6 @@ public class OAuth2Interceptor implements HandlerInterceptor {
             }
         }
 
-        String unionId = wxMpUser.getUnionId();
-        AppUser u = new AppUser();
-        u.setUnionId(unionId);
-        AppUser appUser = appUserService.selectOne(u);
-        if (appUser == null) {
-            appUser = new AppUser();
-            appUser.setLoginName(filterEmoji(wxMpUser.getNickname()));
-            appUser.setPassword("iLoveMoney");
-            appUser.setName(filterEmoji(wxMpUser.getNickname()));
-            appUser.setDelFlag(Const.DEL_FLAG_NORMAL);
-            appUser.setOpenId(wxMpUser.getOpenId());
-            appUser.setLastLogin(new Date());
-            appUser.setHeadImgUrl(wxMpUser.getHeadImgUrl());
-            appUser.setUnionId(unionId);
-            appUser.setType(Const.APPUSER_TYPE_NORMAL);
-            appUser.setScore(0);
-            appUserService.insert(appUser);
-        } else {
-            appUser.setLastLogin(new Date());
-            appUserService.updateSelectiveById(appUser);
-        }
-
-        session.setAttribute("currentUser", appUser);
-
         return true;
     }
 
