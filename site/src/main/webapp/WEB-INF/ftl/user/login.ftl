@@ -59,7 +59,7 @@
 <#--</div>-->
 <#--</div>-->
 <#--</form>-->
-<#--<div id="login_container" style="width: 40%;margin: auto;text-align: center;margin-top: 5%">
+<div id="login_container" style="width: 40%;margin: auto;text-align: center;margin-top: 5%">
         微信登录
     </div>
 </div>-->
