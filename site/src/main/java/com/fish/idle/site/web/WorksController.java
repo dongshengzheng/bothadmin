@@ -79,6 +79,8 @@ public class WorksController extends BaseController {
      */
     @RequestMapping(value = {"/add"}, method = RequestMethod.GET)
     public String add(ModelMap map) {
+        AppUser appUser = getCurrentUser();
+        map.put("current",appUser);
         return "works/work_add_provider";
     }
 

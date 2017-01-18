@@ -103,7 +103,7 @@
                             <label class="col-sm-2 control-label" for="provideBy">提供者</label>
                             <div class="col-sm-10">
                                 <input class="form-control" name="provider" id="provider" type="text"
-                                       value="<#if (provider.name)??>${provider.name}</#if>"
+                                       value="<#if (provider.name)??>${provider.name}<#elseif (current.name)??>${current.name}</#if>"
                                        placeholder="请输入提供者"/>
                                 <span style="color: #cc0000" class="col-sm-10"></span>
                             </div>
@@ -113,7 +113,8 @@
                             <label class="col-sm-2 control-label" for="cardNo">身份证</label>
                             <div class="col-sm-10">
                                 <input class="form-control" name="no" id="no" type="text"
-                                       value="<#if (provider.no)??>${provider.no}</#if>"
+                                       value="<#if (provider.no)??>${provider.no}
+                                                    <#elseif (current.identification)??>${current.identification}</#if>"
                                        placeholder="请输入身份证"/>
                                 <span style="color: #cc0000" class="col-sm-10"></span>
                             </div>
@@ -123,7 +124,8 @@
                             <label class="col-sm-2 control-label" for="address">联系地址</label>
                             <div class="col-sm-10">
                                 <input class="form-control" name="address" id="address" type="text"
-                                       value="<#if (provider.address)??>${provider.address}</#if>"
+                                       value="<#if (provider.address)??>${provider.address}
+                                                    <#elseif (current.address)??>${current.address}</#if>"
                                        placeholder="请输入联系地址"/>
                                 <span style="color: #cc0000" class="col-sm-10"></span>
                             </div>
@@ -133,7 +135,8 @@
                             <label class="col-sm-2 control-label" for="contact">手机号码</label>
                             <div class="col-sm-10">
                                 <input class="form-control" name="phone" id="phone" type="text"
-                                       value="<#if (provider.phone)??>${provider.phone}</#if>"
+                                       value="<#if (provider.phone)??>${provider.phone}
+                                                    <#elseif (current.phone)??>${current.phone}</#if>"
                                        placeholder="请输入手机号码"/>
                                 <span style="color: #cc0000" class="col-sm-10"></span>
                             </div>

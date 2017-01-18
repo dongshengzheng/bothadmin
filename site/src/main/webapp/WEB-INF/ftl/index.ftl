@@ -89,7 +89,7 @@
                     var $li = $("#worksTemp").clone();
                     $li.removeAttr("id").css("display", "block");
                     if (typeof this.images != 'undefined') {
-                        $li.find(".works-image").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.images + "?x-oss-process=image/resize,m_fill,h_331,w_525");
+                        $li.find(".works-image").attr("src", "http://windyeel.img-cn-shanghai.aliyuncs.com/" + this.images + "?x-oss-process=image/resize,m_fill,h_331,w_525,limit_0");
                     }
                     $li.find("#works_des").html(this.breed);
                     $li.find("#works_name").html(this.name);
@@ -127,7 +127,6 @@
     //        var id = this.getAttribute("id");
     //    })
     function worksDetail(id) {
-        console.log("11111  ");
         window.location.href = "/works/detail/" + id;
     }
 

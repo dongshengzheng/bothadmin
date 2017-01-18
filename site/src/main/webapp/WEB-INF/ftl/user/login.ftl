@@ -36,7 +36,6 @@
 </head>
 
 <body>
-<div class="container">
 <#--<form id="loginForm" class="reg-block" action="/login" method="post">-->
 <#--<div class="reg-block-header" style="margin-bottom: 5px;">-->
 <#--<h2>登录</h2>-->
@@ -60,10 +59,10 @@
 <#--</div>-->
 <#--</div>-->
 <#--</form>-->
-    <div id="login_container" style="width: 40%;margin: auto;text-align: center;margin-top: 5%">
+<#--<div id="login_container" style="width: 40%;margin: auto;text-align: center;margin-top: 5%">
         微信登录
     </div>
-</div>
+</div>-->
 <!-- JS Global Compulsory -->
 <script type="text/javascript" src="${staticPath}/assets/plugins/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="${staticPath}/assets/plugins/jquery/jquery-migrate.min.js"></script>
@@ -100,34 +99,34 @@
     });
 
 
-    //    $("#loginForm").validate({
-    //        errorPlacement: function (error, element) {
-    //            element.parent().prev().html(error.html());
-    //        },
-    //        rules: {
-    //            loginName: "required",
-    //            password: "required"
-    //        },
-    //        messages: {
-    //            loginName: {required: "用户名必填"},
-    //            password: {required: "密码必填"}
-    //        },
-    //        submitHandler: function (form) {
-    //            $(form).ajaxSubmit({
-    //                success: function (data) {
-    //                    if (data.result == '') {
-    //                        window.location.href = "/"
-    //                    } else {
-    //                        $("#errInfo").html(data.result);
-    //                    }
-    //                },
-    //                error: function () {
-    //                    alert("error");
-    //                    return;
-    //                }
-    //            });
-    //        }
-    //    });
+        $("#loginForm").validate({
+            errorPlacement: function (error, element) {
+                element.parent().prev().html(error.html());
+            },
+            rules: {
+                loginName: "required",
+                password: "required"
+            },
+            messages: {
+                loginName: {required: "用户名必填"},
+                password: {required: "密码必填"}
+            },
+            submitHandler: function (form) {
+                $(form).ajaxSubmit({
+                    success: function (data) {
+                        if (data.result == '') {
+                            window.location.href = "/"
+                        } else {
+                            $("#errInfo").html(data.result);
+                        }
+                    },
+                    error: function () {
+                        alert("error");
+                        return;
+                    }
+                });
+            }
+        });
 
     jQuery(document).ready(function () {
         App.init();

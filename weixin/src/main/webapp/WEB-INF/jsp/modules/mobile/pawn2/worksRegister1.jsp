@@ -70,25 +70,25 @@
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">提供者</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="providerName" class="weui-input" placeholder="请输入姓名">
+                <input name="providerName" class="weui-input" value="<c:if test='${appUser.name!=null}'>${appUser.name}</c:if>" placeholder="请输入姓名">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">身份证</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="providerNo" class="weui-input" type="tel" placeholder="可不填写">
+                <input name="providerNo" class="weui-input" type="tel" value="<c:if test='${appUser.identification!=null}'>${appUser.identification}</c:if>" placeholder="可不填写">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">联系地址</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="address" class="weui-input" placeholder="请输入详细地址">
+                <input name="address" class="weui-input" value="<c:if test='${appUser.address!=null}'>${appUser.address}</c:if>" placeholder="请输入详细地址">
             </div>
         </div>
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">联系方式</label></div>
             <div class="weui-cell__bd weui-cell_primary">
-                <input name="phone" class="weui-input" type="tel" placeholder="请输入联系方式">
+                <input name="phone" class="weui-input" type="tel" value="<c:if test='${appUser.phone!=null}'>${appUser.phone}</c:if>" placeholder="请输入联系方式">
             </div>
         </div>
         <div class="weui-cell">

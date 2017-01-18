@@ -163,38 +163,38 @@ public class LoginController extends BaseController {
         return jsonObject;
     }
 
-//    @RequestMapping(value = "/register", method = RequestMethod.GET)
-//    public String register() {
-//        return "user/register";
-//    }
-//
-//    @RequestMapping(value = "/register", method = RequestMethod.POST)
-//    @ResponseBody
-//    public JSONObject register(AppUser user) throws Exception {
-//        JSONObject jsonObject = new JSONObject();
-//        user.setLoginName(user.getLoginName().toLowerCase());
-//
-//        if (appUserService.isNameExist(user.getLoginName())) {
-//            jsonObject.put("suc", false);
-//            jsonObject.put("message", "用户名重复，请修改");
-//        } else {
-//            String password = new SimpleHash("SHA-1", user.getLoginName(), user.getPassword()).toString();
-//            user.setPassword(password);
-//
-//            appUserService.insert(user);
-//            Subject subject = SecurityUtils.getSubject();
-//            Session session = subject.getSession();
-//            session.setAttribute(Const.SITE_SESSION_USER, user);
-//            UsernamePasswordToken token = new UsernamePasswordToken(user.getLoginName(), user.getPassword());
-//            try {
-//                subject.login(token);
-//            } catch (AuthenticationException e) {
-//                jsonObject.put("suc", false);
-//            }
-//            jsonObject.put("suc", true);
-//        }
-//        return jsonObject;
-//    }
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String register() {
+        return "user/register";
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject register(AppUser user) throws Exception {
+        JSONObject jsonObject = new JSONObject();
+        user.setLoginName(user.getLoginName().toLowerCase());
+
+        if (appUserService.isNameExist(user.getLoginName())) {
+            jsonObject.put("suc", false);
+            jsonObject.put("message", "用户名重复，请修改");
+        } else {
+            String password = new SimpleHash("SHA-1", user.getLoginName(), user.getPassword()).toString();
+            user.setPassword(password);
+
+            appUserService.insert(user);
+            Subject subject = SecurityUtils.getSubject();
+            Session session = subject.getSession();
+            session.setAttribute(Const.SITE_SESSION_USER, user);
+            UsernamePasswordToken token = new UsernamePasswordToken(user.getLoginName(), user.getPassword());
+            try {
+                subject.login(token);
+            } catch (AuthenticationException e) {
+                jsonObject.put("suc", false);
+            }
+            jsonObject.put("suc", true);
+        }
+        return jsonObject;
+    }
 
 
     @RequestMapping(value = "/terms", method = RequestMethod.GET)

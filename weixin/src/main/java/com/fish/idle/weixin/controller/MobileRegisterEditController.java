@@ -98,6 +98,8 @@ public class MobileRegisterEditController extends BaseController {
     @OAuthRequired
     public String worksRegister1(HttpSession session,
                                  ModelMap map) {
+        AppUser appUser = getCurrentUser();
+        map.put("appUser",appUser);
         map.put("bucket", bucket);
         map.put("redirectUrl", redirectUrl);
         return "modules/mobile/pawn2/worksRegister1";

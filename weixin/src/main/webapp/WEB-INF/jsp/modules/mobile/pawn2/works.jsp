@@ -263,7 +263,7 @@
     </div>
     <div class="works-floor-all">
         <span class="works-floor-name-all">${works.name}</span>
-        <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
+        <span class="works-floor-btn-all">&nbsp;+&nbsp;藏收&nbsp;</span>
         <span class="works-floor-img-all">${works.breed}</span>
         <span class="works-floor-date-all"><fmt:formatDate value="${works.createDate}"
                                                            pattern="yyyy-MM-dd"/></span>
@@ -366,8 +366,28 @@
             })
         });
         </c:if>
+        checkColleced();
     });
 
+    function checkColleced() {
+        var elements = $('.works-floor-btn-all,.works-floor-btn');
+        $.each(elements,function () {
+            var thisone = $(this);
+            var worksid = thisone.parent().siblings('.worksId').val();
+            $.ajax({
+                type: "POST",
+                url: "${ctx}/mobile/checkColleced",
+                data: {
+                    worksId: worksid
+                },
+                success: function (data) {
+                    if(data != ""){
+                        thisone.html("&nbsp;&nbsp;已收藏&nbsp;");
+                    }
+                }
+            })
+        });
+    }
 
     Date.prototype.Format = function (fmt) { //author: meizz
         var o = {

@@ -90,8 +90,8 @@ public class MobileController extends BaseController {
     @Value("#{wxProperties.bucket}")
     private String bucket;
 
-    /*@Value("#{wxProperties.redirect_url}")
-    private String redirectUrl;*/
+    @Value("#{wxProperties.redirect_url}")
+    private String redirectUrl;
 
 
     @RequestMapping(method = RequestMethod.GET)
@@ -143,7 +143,6 @@ public class MobileController extends BaseController {
         if (appUser == null) {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile";
         }
-
 
         Works works = new Works();
         works.setStatus(Const.WORKS_STATUS_PASS);
@@ -1026,7 +1025,7 @@ public class MobileController extends BaseController {
      *
      * @return
      */
-    @RequestMapping(value = "transferHistory", method = RequestMethod.GET)
+    @RequestMapping(value = "transferHistory", method = RequestMethod.GET,produces = "text/plain;charset=utf-8")
     @OAuthRequired
     public String transferHistory(HttpSession session,
                                   ModelMap map,
@@ -1038,5 +1037,24 @@ public class MobileController extends BaseController {
         return "modules/mobile/pawn2/transferHistory";
     }
 
-
+    /**
+     * 检验作品是否已收藏
+     */
+    @RequestMapping(value = "checkColleced" ,method = RequestMethod.POST)
+    @OAuthRequired
+    @ResponseBody
+    public String checkColleced(HttpSession session,
+                                int worksId) {
+        AppUser currentUser = getCurrentUser();
+        FollowHistory followHistory = new FollowHistory();
+        followHistory.setUserId(currentUser.getId());
+        followHistory.setTargetId(worksId);
+        followHistory.setType(Const.FOLLOW_HISTORY_TYPE_COLLECT);
+        followHistory.setDelFlag(0);
+        FollowHistory fh = followHistoryService.selectOne(new EntityWrapper<>(followHistory));
+        if(fh!=null){
+            return "已收藏";
+        }
+        return "";
+    }
 }
