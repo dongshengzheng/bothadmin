@@ -40,7 +40,7 @@
     <script src="${global}/plugins/jquery.min.js" type="text/javascript"></script>
     <script src="${ctx}/static/js/jquery.cookie.js"></script>
     <script src="${ctx}/static/js/jquery.tips.js"></script>
-    <link rel="shortcut icon" href="${ctx}/favicon1.ico" />
+    <link rel="shortcut icon" href="${ctx}/favicon.ico" />
 <body class=" login">
 <div class="logo">
     <a href="index.html"></a>

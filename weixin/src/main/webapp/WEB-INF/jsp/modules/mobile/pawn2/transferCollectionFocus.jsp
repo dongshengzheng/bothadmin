@@ -37,9 +37,9 @@
             border-radius: 50%;
         }
 
-        .works-floor-btn-all {
+        .works-floor-btn-all,.works-floor-date-all{
             background-color: white;
-            border: none;
+            right: 10px;
         }
 
         .transfer-img {
@@ -107,7 +107,7 @@
             </div>
             <div class="works-floor-all">
                 <span class="works-floor-name-all">${th.works.name}</span>
-                <span class="works-floor-btn-all go-to-history">转让历史</span>
+                <span class="works-floor-btn-all go-to-history">&nbsp;转让历史&nbsp;</span>
                 <span class="works-floor-img-all">${th.works.breed}</span>
                 <span class="works-floor-date-all"><fmt:formatDate value="${th.works.createDate}"
                                                                    pattern="yyyy-MM-dd"/></span>
@@ -142,7 +142,7 @@
             </div>
             <div class="works-floor-all">
                 <span class="works-floor-name-all">${works.name}</span>
-                <span class="works-floor-btn-all">取消收藏</span>
+                <span class="works-floor-btn-all">&nbsp;取消收藏&nbsp;</span>
                 <span class="works-floor-img-all">${works.breed}</span>
                 <span class="works-floor-date-all"><fmt:formatDate value="${works.createDate}"
                                                                    pattern="yyyy-MM-dd"/></span>

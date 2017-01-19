@@ -77,10 +77,10 @@
         }
 
         .header-right-btn {
-            font-size: 8px;
+            font-size: 12px;
             position: absolute;
-            bottom: 5px;
-            right: 5px;
+            bottom: 15px;
+            right: 10px;
             border: 1px solid gray;
             color: gray;
         }
@@ -156,7 +156,12 @@
 
         .look-people-one-info-name {
             position: relative;
-            top: -10px;
+            top: -5px;
+        }
+
+        .look-people-one-info-date {
+            position: relative;
+            top: -5px;
         }
 
         .look-people-one-care {
@@ -205,23 +210,22 @@
             background-size: 30px 30px;
             padding-top: 30px;
             text-align: center;
-            font-size: 10px;
+            font-size: 15px;
         }
 
         .info-register-right {
             display: inline-block;
-            font-size: 10px;
+            font-size: 15px;
         }
 
         .info-work {
-            font-size: 10px;
+            font-size: 15px;
             margin-left: 5%;
             margin-bottom: 5%;
         }
 
         .info-work span {
             color: gray;
-
         }
 
         .each-row-two {
@@ -393,13 +397,9 @@
                          onerror="javascript:this.src='${ctxStatic}/modules/pawn/img/default-man.jpg'"
                          alt="">
                     <div class="look-people-one-info">
-                        <p class="look-people-one-info-name">
-                                ${browse.appUser.name}
-                        </p>
-                        <p class="look-people-one-info-date">
-                            <fmt:formatDate value="${browse.updateDate}"
-                                            pattern="yyyy-MM-dd HH:mm:ss"/>
-                        </p>
+                        <p class="look-people-one-info-name">${browse.appUser.name}</p>
+                        <p class="look-people-one-info-date"><fmt:formatDate value="${browse.updateDate}"
+                                            pattern="yyyy-MM-dd HH:mm:ss"/></p>
                     </div>
                     <div class="look-people-one-care">
                         <p class="look-people-one-care-text-not">
@@ -515,7 +515,14 @@
         <div class="info-work">
             <center>评估报告</center>
             <div>
-                    ${report.des}
+                <c:choose>
+                    <c:when test="${report.des != ''}">
+                        ${report.des}
+                    </c:when>
+                    <c:otherwise>
+                        <span>暂无评论报告...</span>
+                    </c:otherwise>
+                </c:choose>
             </div>
             <c:if test="${(!empty certImage.url)&&(fn:length(certImage.url)>0)}">
                 <img src="http://windyeel.img-cn-shanghai.aliyuncs.com/${certImage.url}?x-oss-process=image/resize,m_fill,h_100,w_100"
@@ -647,9 +654,61 @@
             var appUserId = $('#header-left').attr('data-id');
             location.href = '${ctx}/mobile/appUserInfo?appUserId=' + appUserId;
         })
-
+        checkAttented();
+        checkAttented1();
+        checkColleced();
     })
 
+    function checkColleced() {
+        var elements = $('.header-right-btn');
+        var worksid = ${works.id};
+        $.ajax({
+            type: "POST",
+            url: "${ctx}/mobile/checkColleced",
+            data: {
+                worksId: worksid
+            },
+            success: function (data) {
+                if(data != ""){
+                    elements.html("&nbsp;&nbsp;已收藏&nbsp;");
+                }
+            }
+        })
+    }
+
+    function checkAttented() {
+        var thisone = $('#header-left-like');
+        var targetId = thisone.parent().attr('data-id');
+        $.ajax({
+            type: "POST",
+            url: "${ctx}/mobile/checkAttented",
+            data: {
+                targetId: targetId
+            },
+            success: function (data) {
+                if (data != "") {
+                    $('#header-left-like').val(data);
+                }
+            }
+        })
+    }
+
+    function checkAttented1() {
+        var thisone = $('.look-people-one-care-text-not');
+        var targetId = thisone.parent().parent().attr('data-id');
+        $.ajax({
+            type: "POST",
+            url: "${ctx}/mobile/checkAttented",
+            data: {
+                targetId: targetId
+            },
+            success: function (data) {
+                if (data != "") {
+                    $('.look-people-one-care-text-not').html(data);
+                }
+            }
+        })
+    }
 </script>
 
 </body>

@@ -56,7 +56,7 @@
 
     <!-- END THEME LAYOUT STYLES -->
     <link type="image/png" href="${ctx}/static/img/great_vision.png" rel="shortcut icon">
-    <link rel="shortcut icon" href="${ctx}/favicon1.ico" />
+    <link rel="shortcut icon" href="${ctx}/favicon.ico" />
 </head>
 <body onhashchange="hashChange()" class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
 

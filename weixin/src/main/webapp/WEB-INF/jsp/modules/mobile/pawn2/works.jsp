@@ -83,11 +83,12 @@
     .works-floor-btn {
         position: absolute;
         top: 3px;
-        right: 15px;
+        right: 23px;
         border: 1px solid gray;
         font-size: 12px;
         color: gray;
         background-color: white;
+        vertical-align:middle;
     }
 
     .works-floor-img {
@@ -109,7 +110,7 @@
     .works-floor-date {
         position: absolute;
         bottom: 20px;
-        right: 15px;
+        right: 25px;
         font-size: 12px;
     }
 
@@ -166,6 +167,15 @@
         align-items: center;
     }
 
+    .works-floor-btn-all,.works-floor-date-all{
+        right: 10px;
+        font-size: 12px;
+        vertical-align:middle;
+    }
+    .works-floor-name-all,.works-floor-img-all,.works-floor-name,.works-floor-img{
+        left: 10px;
+        font-size: 12px;
+    }
 </style>
 <body>
 <div class="swiper-container div-outer">
@@ -263,7 +273,7 @@
     </div>
     <div class="works-floor-all">
         <span class="works-floor-name-all">${works.name}</span>
-        <span class="works-floor-btn-all">&nbsp;+&nbsp;藏收&nbsp;</span>
+        <span class="works-floor-btn-all">&nbsp;+&nbsp;收藏&nbsp;</span>
         <span class="works-floor-img-all">${works.breed}</span>
         <span class="works-floor-date-all"><fmt:formatDate value="${works.createDate}"
                                                            pattern="yyyy-MM-dd"/></span>
@@ -355,7 +365,7 @@
                         $tmp.removeClass('div-hide');
                         $(".all").append($tmp);
                     }
-
+                    checkColleced();
                     if (data.current >= data.pages) {
                         $("#scroll").css("display", "none");
                         lastPage = true;

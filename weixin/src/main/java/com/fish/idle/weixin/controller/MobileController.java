@@ -225,7 +225,7 @@ public class MobileController extends BaseController {
         followHistory.setUserId(currentUser.getId());
         followHistory.setTargetId(worksId);
         followHistory.setType(Const.FOLLOW_HISTORY_TYPE_COLLECT);
-        followHistory.setDelFlag(null);
+        followHistory.setDelFlag(0);
         FollowHistory fh = followHistoryService.selectOne(new EntityWrapper<>(followHistory));
         if (fh == null) {
             followHistory.setDelFlag(Const.DEL_FLAG_NORMAL);
@@ -1040,7 +1040,7 @@ public class MobileController extends BaseController {
     /**
      * 检验作品是否已收藏
      */
-    @RequestMapping(value = "checkColleced" ,method = RequestMethod.POST)
+    @RequestMapping(value = "checkColleced" ,method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
     @OAuthRequired
     @ResponseBody
     public String checkColleced(HttpSession session,
@@ -1054,6 +1054,27 @@ public class MobileController extends BaseController {
         FollowHistory fh = followHistoryService.selectOne(new EntityWrapper<>(followHistory));
         if(fh!=null){
             return "已收藏";
+        }
+        return "";
+    }
+
+    /**
+     * 检查用户是否被关注
+     */
+    @RequestMapping(value = "checkAttented" ,method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
+    @OAuthRequired
+    @ResponseBody
+    public String checkAttented(HttpSession session,
+                                int targetId) {
+        AppUser currentUser = getCurrentUser();
+        FollowHistory followHistory = new FollowHistory();
+        followHistory.setUserId(currentUser.getId());
+        followHistory.setTargetId(targetId);
+        followHistory.setType(Const.FOLLOW_HISTORY_TYPE_FOCUS);
+        followHistory.setDelFlag(0);
+        FollowHistory fh = followHistoryService.selectOne(new EntityWrapper<>(followHistory));
+        if(fh != null){
+            return "已关注";
         }
         return "";
     }
