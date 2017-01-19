@@ -14,6 +14,7 @@
     <script src="${ctxStatic}/js/jquery-2.1.4.js"></script>
     <script src="${ctxStatic}/js/jquery-weui.js"></script>
     <script src="${ctxStatic}/js/swiper.js"></script>
+    <script src="${ctxStatic}/js/jquery.validate.min.js"></script>
     <style>
         .title {
             height: 40px;
@@ -55,7 +56,7 @@
         <span>&nbsp;◇&nbsp;JS-A20161205001A&nbsp;◇&nbsp;</span></center>
 </div>
 <div class="div-outer">
-    <form action="${ctx}/mobile/worksRegisterComplete" method="post">
+    <form action="${ctx}/mobile/worksRegisterComplete" method="post" id="works_info">
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
             <div class="weui-cell__bd weui-cell_primary">
@@ -128,6 +129,38 @@
             $('textarea').blur();
             $(this).calendar();
         })
+
+        $.validator.addMethod("checkPhone",
+            function (value,element,params) {
+                var retu = value.match(params);
+                if(retu){
+                    return true;
+                }
+                return false;
+            });
+        var $form = $("#works_info");
+        $form.validate({
+            rules: {
+                name: "required",
+                no: "required",
+                address: "required",
+                phone:{
+                    required:true,
+                    checkPhone:"^1(3[0-9]|4[57]|5[0-35-9]|7[01678]|8[0-9])\\d{8}$"
+                },
+                datetime: "required"
+            },
+            messages: {
+                name: {required: "收藏者必填"},
+                no: {required: "身份证必填"},
+                address: {required: "联系地址必填"},
+                phone: {
+                    required: "手机号码必填",
+                    checkPhone:"请填写正确的手机号码"
+                },
+                datetime: {required: "收藏时间必填"}
+            }
+        });
 
     })
 </script>

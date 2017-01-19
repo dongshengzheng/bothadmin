@@ -14,6 +14,7 @@
     <script src="${ctxStatic}/js/jquery-2.1.4.js"></script>
     <script src="${ctxStatic}/js/jquery-weui.js"></script>
     <script src="${ctxStatic}/js/swiper.js"></script>
+    <script src="${ctxStatic}/js/jquery.validate.min.js"></script>
     <style>
         .title {
             height: 40px;
@@ -54,7 +55,7 @@
         <span>&nbsp;◇&nbsp;JS-A20161205001A&nbsp;◇&nbsp;</span></center>
 </div>
 <div class="div-outer">
-    <form action="${ctx}/mobile/worksRegister3" method="post">
+    <form action="${ctx}/mobile/worksRegister3" method="post" id="works_info">
         <div class="weui-cell">
             <div class="weui-cell__hd"><label class="weui-label">作品名称</label></div>
             <div class="weui-cell__bd weui-cell_primary">
@@ -202,6 +203,76 @@
 
         $('#draftSubmit').on('click', function () {
             $('#draftYN').val('yes');
+        })
+
+        $.validator.addMethod("isSelected",
+            function(value, element, param) {
+                if(value == param){
+                    return false;
+                }
+                return true;
+            })
+
+        var $form = $("#works_info");
+        $form.validate({
+            rules: {
+                breed: {
+                    isSelected: ""
+                },
+                type: {
+                    isSelected: ""
+                },
+                length: {
+                    required: true,
+                    number: true
+                },
+                width: {
+                    required: true,
+                    number: true
+                },
+                height: {
+                    required: true,
+                    number: true
+                },
+                weight: {
+                    required: true,
+                    number: true
+                },
+                gytType: {
+                    isSelected: ""
+                },
+                levelZk: {
+                    isSelected: ""
+                },
+                kqdy: {
+                    isSelected: ""
+                },
+                worksMeanning: "required"
+            },
+            messages: {
+                breed: {isSelected: "品种必选"},
+                type: {isSelected: "作品类型必选"},
+                length: {
+                    required: "长必填",
+                    number: "长是数字类型"
+                },
+                width: {
+                    required: "宽必填",
+                    number: "宽是数字类型"
+                },
+                height: {
+                    required: "高必填",
+                    number: "高是数字类型"
+                },
+                weight: {
+                    required: "重量必填",
+                    number: "重量是数字类型"
+                },
+                gyType: {isSelected: "作品描述必选"},
+                levelZk: {isSelected: "工艺制作必选"},
+                kqdy: {isSelected: "矿区地域必选"},
+                worksMeanning: {required: "作品诠释必填"}
+            }
         })
     })
 </script>

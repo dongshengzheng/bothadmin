@@ -13,6 +13,7 @@
 
     <script src="${ctxStatic}/js/jquery-2.1.4.js"></script>
     <script src="${ctxStatic}/js/jquery-weui.js"></script>
+    <script src="${ctxStatic}/js/jquery.validate.min.js"></script>
     <script src="${ctxStatic}/js/upload.js"></script>
     <script src="${ctxStatic}/js/plupload-2.1.2/js/moxie.js"></script>
     <script src="${ctxStatic}/js/plupload-2.1.2/js/plupload.dev.js"></script>
@@ -125,7 +126,7 @@
     <center><span>${sessionScope.registerWorksName}
     </span></center>
 </div>
-<form action="${ctx}/mobile/worksRegister5" enctype="multipart/form-data" method="post">
+<form action="${ctx}/mobile/worksRegister5" enctype="multipart/form-data" method="post" id="works_info">
     <div class="div-outer">
         <p class="report">&nbsp;昌化鸡血石鉴定评估报告&nbsp;</p>
         <div class="weui-cell">
@@ -289,6 +290,19 @@
         initUploaders2($('#bucket').val(), $('#redirectUrl').val() + "/");
         initUploaders($('#bucket').val(), $('#redirectUrl').val() + "/", "valueImages");
 
+        var $form = $("#works_info");
+        $form.validate({
+            rules: {
+                des: "required",
+                certify: "required",
+                valueTimeString: "required"
+            },
+            messages: {
+                des: {required: "作品详细评估报告必填"},
+                certify: {required: "作品价值认证报告必填"},
+                valueTimeString: {required: "价值有效时间必填"}
+            }
+        })
     });
 </script>
 </body>

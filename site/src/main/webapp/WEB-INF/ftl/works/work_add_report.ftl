@@ -183,9 +183,9 @@
 
         var $form = $("#works_info");
         $form.validate({
-            errorPlacement: function (error, element) {
-                element.next().prev().html(error.html());
-            },
+//            errorPlacement: function (error, element) {
+//                element.next().prev().html(error.html());
+//            },
             rules: {
                 des: "required",
                 certify: "required",

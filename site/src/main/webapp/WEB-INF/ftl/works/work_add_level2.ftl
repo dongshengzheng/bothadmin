@@ -240,9 +240,9 @@
 
         var $form = $("#works_level");
         $form.validate({
-            errorPlacement: function (error, element) {
-                element.next().html(error.html());
-            },
+//            errorPlacement: function (error, element) {
+//                element.next().html(error.html());
+//            },
             rules: {
                 zhidi2: {isSelected:""},
                 ganguan: {isSelected:""},
@@ -254,14 +254,14 @@
                 zrsp:{isSelected:""}
             },
             messages: {
-                zhidi2: {required: "质地必选"},
-                ganguan: {required: "感官必选"},
-                moshidu: {required: "磨氏度必选"},
-                chunjingdu: {required: "净度必选"},
-                dise: {required: "地色必选"},
-                liu: {required: "绺（活筋）必选"},
-                lie: {required: "裂必选"},
-                zrsp: {required: "自然石皮必选"}
+                zhidi2: {isSelected: "质地必选"},
+                ganguan: {isSelected: "感官必选"},
+                moshidu: {isSelected: "磨氏度必选"},
+                chunjingdu: {isSelected: "净度必选"},
+                dise: {isSelected: "地色必选"},
+                liu: {isSelected: "绺（活筋）必选"},
+                lie: {isSelected: "裂必选"},
+                zrsp: {isSelected: "自然石皮必选"}
             },
             submitHandler: function (form) {
                 $(form).ajaxSubmit({

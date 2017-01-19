@@ -73,7 +73,7 @@
         position: absolute;
         top: 3px;
         left: 0;
-        font-size: 12px;
+        font-size: 15px;
         width: 150px;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -172,8 +172,11 @@
         font-size: 12px;
         vertical-align:middle;
     }
-    .works-floor-name-all,.works-floor-img-all,.works-floor-name,.works-floor-img{
+    .works-floor-name-all,.works-floor-img-all{
         left: 10px;
+        font-size: 12px;
+    }
+    .all span{
         font-size: 12px;
     }
 </style>

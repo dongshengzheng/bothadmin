@@ -258,18 +258,16 @@
                         return false;
                     }
                     return true;
-                },
-                ''//验证提示信息
-        );
+        });
 
         var $form = $("#works_info");
         $form.validate({
-            errorPlacement: function (error, element) {
-                console.log(element.attr("data-test"));
-                console.log(element.parent().prev().attr("data-test"));
-                console.log(element.parent().prev().find("#error").attr("data-test"));
-                element.parent().find("#error").html(error);
-            },
+//            errorPlacement: function (error, element) {
+//                console.log(element.attr("data-test"));
+//                console.log(element.parent().prev().attr("data-test"));
+//                console.log(element.parent().prev().find("#error").attr("data-test"));
+//                element.parent().find("#error").html(error);
+//            },
             rules: {
                 breed: {
                     isSelected:""
@@ -277,10 +275,22 @@
                 worksType: {
                     isSelected:""
                 },
-                length:"required",
-                width:"required",
-                height:"required",
-                weight:"required",
+                length:{
+                    required:true,
+                    number:true
+                },
+                width:{
+                    required:true,
+                    number:true
+                },
+                height:{
+                    required:true,
+                    number:true
+                },
+                weight:{
+                    required:true,
+                    number:true
+                },
                 gytType:{
                     isSelected:""
                 },
@@ -294,15 +304,27 @@
             },
             messages: {
                 breed: {isSelected: "品种必选"},
-                worksType: {required: "作品类型必选"},
-                length: {required: "长必填"},
-                width: {required: "宽必填"},
-                height: {required: "高必填"},
-                weight: {required: "重量必填"},
-                gyType: {required: "作品描述必选"},
-                levelZk: {required: "工艺制作必选"},
-                kqdy: {required: "矿区地域必选"},
-                worksMeaning: {required: "作品诠释必选"}
+                worksType: {isSelected: "作品类型必选"},
+                length: {
+                    required: "长必填",
+                    number:"长是数字类型"
+                },
+                width: {
+                    required: "宽必填",
+                    number:"宽是数字类型"
+                },
+                height: {
+                    required: "高必填",
+                    number:"高是数字类型"
+                },
+                weight: {
+                    required: "重量必填",
+                    number:"重量是数字类型"
+                },
+                gyType: {isSelected: "作品描述必选"},
+                levelZk: {isSelected: "工艺制作必选"},
+                kqdy: {isSelected: "矿区地域必选"},
+                worksMeaning: {required: "作品诠释必填"}
             },
             submitHandler: function (form) {
                 $(form).ajaxSubmit({

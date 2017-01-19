@@ -180,6 +180,49 @@
         $('#draftSubmit').on('click', function () {
             $('#draftYN').val('yes');
         })
+
+        $.validator.addMethod("checkPhone",
+            function (value,element,params) {
+                var retu = value.match(params);
+                if(retu){
+                    return true;
+                }
+                return false;
+            });
+
+        var $from = $("#works-info");
+        $from.validate({
+            rules: {
+                worksName: "required",
+                providerName: "required",
+                providerNo:{
+                    required:true,
+//                    checkNo:"(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)"
+                },
+                address:"required",
+                phone:{
+                    required:true,
+                    checkPhone:"^1(3[0-9]|4[57]|5[0-35-9]|7[01678]|8[0-9])\\d{8}$"
+                },
+                createDateString:"required",
+                worksRemarks:"required"
+            },
+            messages: {
+                worksName: {required: "作品名称必填"},
+                providerName: {required: "提供者必填"},
+                providerNo: {
+                    required: "身份证必填",
+//                    checkNo:"请填写正确格式的身份证号码"
+                },
+                address: {required: "联系地址必填"},
+                phone: {
+                    required: "手机号码必填",
+                    checkPhone:"请填写正确的手机号码"
+                },
+                createDateString: {required: "登记时间必填"},
+                worksRemarks: {required: "作品描述必填"}
+            }
+        });
     });
 
 </script>

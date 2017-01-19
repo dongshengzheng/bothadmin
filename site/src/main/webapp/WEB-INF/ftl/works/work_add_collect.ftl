@@ -193,14 +193,17 @@
         );
 
         $form.validate({
-            errorPlacement: function (error, element) {
-                element.next().prev().html(error.html());
-            },
+//            errorPlacement: function (error, element) {
+//                element.next().prev().html(error.html());
+//            },
             rules: {
                 name: "required",
                 no: "required",
                 address: "required",
-                phone: "required",
+                phone:{
+                    required:true,
+                    checkPhone:"^1(3[0-9]|4[57]|5[0-35-9]|7[01678]|8[0-9])\\d{8}$"
+                },
                 datetime: "required",
                 pub: {
                     isSelected:""
@@ -210,7 +213,10 @@
                 name: {required: "收藏者必填"},
                 no: {required: "身份证必填"},
                 address: {required: "联系地址必填"},
-                phone: {required: "手机号码必填"},
+                phone: {
+                    required: "手机号码必填",
+                    checkPhone:"请填写正确的手机号码"
+                },
                 datetime: {required: "收藏时间必填"},
                 pub: {required: "是否公开必选"}
             },

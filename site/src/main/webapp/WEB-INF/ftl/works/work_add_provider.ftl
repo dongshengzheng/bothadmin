@@ -206,28 +206,58 @@
         initUploaders("upload_works_info", "windyeel", '${staticPath}/');
         var $form = $("#works_info");
 
+        $.validator.addMethod("checkPhone",
+                function (value,element,params) {
+                    var retu = value.match(params);
+                    if(retu){
+                        return true;
+                    }
+                    return false;
+                });
+        $.validator.addMethod("checkNo",
+                function (value,element,params) {
+                    var retu = value.match(params);
+                    if(retu){
+                        return true;
+                    }
+                    return false;
+                })
+        
         $form.validate({
-            errorPlacement: function (error, element) {
-                error.appendTo( element.next() );
-            },
+//            errorPlacement: function (error, element) {
+//                error.appendTo( element.next() );
+//            },
             rules: {
                 name: "required",
                 provider: "required",
-                no:"required",
+                no:{
+                    required:true,
+//                    checkNo:"(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)"
+                },
                 address:"required",
-                phone:"required",
+                phone:{
+                    required:true,
+                    checkPhone:"^1(3[0-9]|4[57]|5[0-35-9]|7[01678]|8[0-9])\\d{8}$"
+                },
                 datetime:"required",
                 worksRemarks:"required"
             },
             messages: {
                 name: {required: "作品名称必填"},
                 provider: {required: "提供者必填"},
-                no: {required: "身份证必填"},
+                no: {
+                    required: "身份证必填",
+//                    checkNo:"请填写正确格式的身份证号码"
+                },
                 address: {required: "联系地址必填"},
-                phone: {required: "手机号码必填"},
+                phone: {
+                    required: "手机号码必填",
+                    checkPhone:"请填写正确的手机号码"
+                },
                 datetime: {required: "登记时间必填"},
                 worksRemarks: {required: "作品描述必填"}
             },
+            debug:true,
             submitHandler: function (form) {
                 $(form).ajaxSubmit({
                     success: function (data) {

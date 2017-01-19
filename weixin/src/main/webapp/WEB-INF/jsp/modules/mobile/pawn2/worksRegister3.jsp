@@ -12,6 +12,7 @@
     <script src="${ctxStatic}/js/jquery-2.1.4.js"></script>
     <script src="${ctxStatic}/js/jquery-weui.js"></script>
     <script src="${ctxStatic}/js/swiper.js"></script>
+    <script src="${ctxStatic}/js/jquery.validate.min.js"></script>
     <style>
         .title {
             height: 40px;
@@ -52,7 +53,7 @@
         <span>&nbsp;◇&nbsp;JS-A20161205001A&nbsp;◇&nbsp;</span></center>
 </div>
 <div>
-    <form action="${ctx}/mobile/worksRegister4" method="post">
+    <form action="${ctx}/mobile/worksRegister4" method="post" id="works_level">
         <c:if test="${breed==1}">
             <%@include file="worksLevel1.jsp" %>
         </c:if>
@@ -92,6 +93,54 @@
             $('#draftYN').val('yes');
         })
 
+        $.validator.addMethod(
+            "isSelected", //验证方法名称
+            function(value, element, param) {//验证规则
+                if(value == param){
+                    return false;
+                }
+                return true;
+            },
+            ''//验证提示信息
+        );
+
+        var $form = $("#works_level");
+        $form.validate({
+            rules: {
+                zhidi: {isSelected:""},
+                zhidi2: {isSelected:""},
+                ganguan: {isSelected:""},
+                moshidu: {isSelected:""},
+                xueliang: {isSelected:""},
+                xuese: {isSelected:""},
+                xuexing: {isSelected:""},
+                nongyandu:{isSelected:""},
+                jingdu:{isSelected:""},
+                dise:{isSelected:""},
+                liu:{isSelected:""},
+                lie:{isSelected:""},
+                inithanxueliang:{isSelected:""},
+                hanxuefangshi:{isSelected:""},
+                ziranshipi:{isSelected:""}
+            },
+            messages: {
+                zhidi: {isSelected: "质地一必选"},
+                zhidi2: {isSelected: "质地二必选"},
+                ganguan: {isSelected: "感官必选"},
+                moshidu: {isSelected: "磨氏度必选"},
+                xueliang: {isSelected: "血量必选"},
+                xuese: {isSelected: "血色必选"},
+                xuexing: {isSelected: "血型必选"},
+                nongyandu: {isSelected: "浓艳度必选"},
+                jingdu: {isSelected: "净度必选"},
+                dise: {isSelected: "地色必选"},
+                liu: {isSelected: "绺（活筋）必选"},
+                lie: {isSelected: "裂必选"},
+                inithanxueliang: {isSelected: "印章含血面必选"},
+                hanxuefangshi: {isSelected: "含血方式必选"},
+                ziranshipi: {isSelected: "自然石皮必选"}
+            }
+        })
     })
 </script>
 </body>

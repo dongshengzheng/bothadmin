@@ -330,9 +330,9 @@
 
         var $form = $("#works_level");
         $form.validate({
-            errorPlacement: function (error, element) {
-                element.nextSbiling().html(error.html());
-            },
+//            errorPlacement: function (error, element) {
+//                element.nextSbiling().html(error.html());
+//            },
             rules: {
                 zhidi: {isSelected:""},
                 zhidi2: {isSelected:""},
@@ -350,20 +350,20 @@
                 hanxuefangshi:{isSelected:""}
             },
             messages: {
-                zhidi: {required: "质地一必选"},
-                zhidi2: {required: "质地二必选"},
-                ganguan: {required: "感官必选"},
-                moshidu: {required: "磨氏度必选"},
-                xueliang: {required: "血量必选"},
-                xuese: {required: "血色必选"},
-                xuexing: {required: "血型必选"},
-                nongyandu: {required: "浓艳度必选"},
-                chunjingdu: {required: "净度必选"},
-                dise: {required: "地色必选"},
-                liu: {required: "绺（活筋）必选"},
-                lie: {required: "裂必选"},
-                inithanxueliang: {required: "印章含血面必选"},
-                hanxuefangshi: {required: "含血方式必选"}
+                zhidi: {isSelected: "质地一必选"},
+                zhidi2: {isSelected: "质地二必选"},
+                ganguan: {isSelected: "感官必选"},
+                moshidu: {isSelected: "磨氏度必选"},
+                xueliang: {isSelected: "血量必选"},
+                xuese: {isSelected: "血色必选"},
+                xuexing: {isSelected: "血型必选"},
+                nongyandu: {isSelected: "浓艳度必选"},
+                chunjingdu: {isSelected: "净度必选"},
+                dise: {isSelected: "地色必选"},
+                liu: {isSelected: "绺（活筋）必选"},
+                lie: {isSelected: "裂必选"},
+                inithanxueliang: {isSelected: "印章含血面必选"},
+                hanxuefangshi: {isSelected: "含血方式必选"}
             },
             submitHandler: function (form) {
                 $(form).ajaxSubmit({
