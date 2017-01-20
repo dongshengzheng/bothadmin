@@ -21,6 +21,8 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -40,6 +42,7 @@ import java.util.Date;
 
 @Controller
 public class LoginController extends BaseController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
     private IAppUserService appUserService;
@@ -75,7 +78,9 @@ public class LoginController extends BaseController {
     @RequestMapping(value = "/wx_login", method = RequestMethod.GET)
     public String wxLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String code = request.getParameter("code");
+        LOGGER.error("##########################code:"+code);
         String resultUrl = request.getRequestURL().toString();
+        LOGGER.error("##########################resultUrl:"+resultUrl);
         String param = request.getQueryString();
         if (param != null) {
             resultUrl += "?" + param;
@@ -88,7 +93,9 @@ public class LoginController extends BaseController {
             try {
                 accessToken = wxMpService.oauth2getAccessToken(code);
                 wxMpUser = wxMpService.oauth2getUserInfo(accessToken, null);
+                LOGGER.error("##########################wxMpUser:"+wxMpUser);
             } catch (WxErrorException e) {
+                LOGGER.error("##########################error:"+e.getMessage());
                 response.sendRedirect(wxMpService.oauth2buildAuthorizationUrl(resultUrl, WxConsts.OAUTH2_SCOPE_USER_INFO, null));
             }
         }
@@ -96,6 +103,7 @@ public class LoginController extends BaseController {
         AppUser user = new AppUser();
         user.setUnionId(wxMpUser.getUnionId());
         AppUser appUser = appUserService.selectOne(user);
+        LOGGER.error("##########################appUser:"+appUser);
         if (appUser == null) {
             appUser = new AppUser();
             appUser.setLoginName(filterEmoji(wxMpUser.getNickname()));
