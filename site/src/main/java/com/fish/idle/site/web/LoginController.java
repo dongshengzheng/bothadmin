@@ -92,10 +92,11 @@ public class LoginController extends BaseController {
             WxMpOAuth2AccessToken accessToken = null;
             try {
                 accessToken = wxMpService.oauth2getAccessToken(code);
+                LOGGER.error("##########################accessToken:"+accessToken);
                 wxMpUser = wxMpService.oauth2getUserInfo(accessToken, null);
                 LOGGER.error("##########################wxMpUser:"+wxMpUser);
             } catch (WxErrorException e) {
-                LOGGER.error("##########################error:"+e.getMessage());
+                e.printStackTrace();
                 response.sendRedirect(wxMpService.oauth2buildAuthorizationUrl(resultUrl, WxConsts.OAUTH2_SCOPE_USER_INFO, null));
             }
         }
