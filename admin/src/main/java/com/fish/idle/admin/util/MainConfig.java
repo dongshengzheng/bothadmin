@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MainConfig {
 
-    @Value("${appid}")
+    /*@Value("${appid}")
     private String appid;
 
     @Value("${appsecret}")
@@ -52,19 +52,19 @@ public class MainConfig {
         configStorage.setPartnerKey(this.partenerKey);
         configStorage.setOauth2redirectUri(this.url);
         return configStorage;
-    }
+    }*/
 
-    @Bean
+    /*@Bean
     public WxMpTemplateMsgService wxMpTemplateMsgService() {
         WxMpTemplateMsgService wxMpTemplateMsgService = new WxMpTemplateMsgServiceImpl(wxMpService());
         return wxMpTemplateMsgService;
-    }
+    }*/
 
-    @Bean
+    /*@Bean
     public WxMpService wxMpService() {
         WxMpService wxMpService = new WxMpServiceImpl();
         wxMpService.setWxMpConfigStorage(wxMpConfigStorage());
         return wxMpService;
-    }
+    }*/
 
 }

@@ -20,16 +20,16 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MainConfig {
 
-//    @Bean
-//    public WxMpConfigStorage wxMpConfigStorage() {
-//        WxMpInMemoryConfigStorage configStorage = new WxMpInMemoryConfigStorage();
-//        configStorage.setAppId("wx91ad0b554aceca98");
-//        configStorage.setSecret("9fbc68385d729ffd298bff89794a232c");
-//        configStorage.setOauth2redirectUri("www.mschuangyi.com");
-//        return configStorage;
-//    }
+    @Bean
+    public WxMpConfigStorage wxMpConfigStorage() {
+        WxMpInMemoryConfigStorage configStorage = new WxMpInMemoryConfigStorage();
+        configStorage.setAppId("wx91ad0b554aceca98");
+        configStorage.setSecret("9fbc68385d729ffd298bff89794a232c");
+        configStorage.setOauth2redirectUri("www.mschuangyi.com");
+        return configStorage;
+    }
 
-    @Value("${appid}")
+    /*@Value("${appid}")
     private String appid;
 
     @Value("${appsecret}")
@@ -61,7 +61,7 @@ public class MainConfig {
         configStorage.setPartnerKey(this.partenerKey);
         configStorage.setOauth2redirectUri(this.url);
         return configStorage;
-    }
+    }*/
 
     @Bean
     public WxMpService wxMpService() {
