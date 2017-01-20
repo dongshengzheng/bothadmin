@@ -16,6 +16,10 @@
     .form-wizard .steps > li > a.step {
         color: gray;
     }
+
+    /*.billing-info-inputs .form-group .col-sm-10{*/
+
+    /*}*/
 </style>
 </@htmlHead>
 <@htmlBody>
@@ -95,7 +99,6 @@
                                 <input class="form-control" name="name" id="name" type="text"
                                        value="<#if (works.name)??>${works.name}</#if>"
                                        placeholder="请输入作品名称"/>
-                                <span style="color: #cc0000" class="col-sm-10"></span>
                             </div>
 
                         </div>
@@ -105,7 +108,6 @@
                                 <input class="form-control" name="provider" id="provider" type="text"
                                        value="<#if (provider.name)??>${provider.name}<#elseif (current.name)??>${current.name}</#if>"
                                        placeholder="请输入提供者"/>
-                                <span style="color: #cc0000" class="col-sm-10"></span>
                             </div>
                         </div>
 
@@ -116,7 +118,6 @@
                                        value="<#if (provider.no)??>${provider.no}
                                                     <#elseif (current.identification)??>${current.identification}</#if>"
                                        placeholder="请输入身份证"/>
-                                <span style="color: #cc0000" class="col-sm-10"></span>
                             </div>
                         </div>
 
@@ -127,7 +128,6 @@
                                        value="<#if (provider.address)??>${provider.address}
                                                     <#elseif (current.address)??>${current.address}</#if>"
                                        placeholder="请输入联系地址"/>
-                                <span style="color: #cc0000" class="col-sm-10"></span>
                             </div>
                         </div>
 
@@ -138,7 +138,6 @@
                                        value="<#if (provider.phone)??>${provider.phone}
                                                     <#elseif (current.phone)??>${current.phone}</#if>"
                                        placeholder="请输入手机号码"/>
-                                <span style="color: #cc0000" class="col-sm-10"></span>
                             </div>
                         </div>
 
@@ -149,7 +148,6 @@
                                        value="<#if (provider.datetime)??>${(provider.datetime?string("yyyy-MM-dd"))!""} </#if>"
                                        type="text"
                                        placeholder="请选择登记时间" readonly/>
-                                <span style="color: #cc0000" class="col-sm-10"></span>
                             </div>
 
                         </div>
@@ -161,7 +159,6 @@
                                               name="worksRemarks"
                                               id="worksRemarks" type="text"
                                               placeholder="请输入作品描述"><#if (works.remarks)??>${works.remarks}</#if></textarea>
-                                <span style="color: #cc0000" class="col-sm-10"></span>
                                 <input type="hidden" id="status" name="status"/>
                             </div>
                         </div>
@@ -178,7 +175,7 @@
                             <label class="col-sm-2" for=""></label>
                             <div class="col-sm-10">
                                 <button data-type="0" type="submit" class="btn btn-u btn-u-red info_btn">下一步</button>
-                                <button data-type="10" type="submit" class="btn btn-u btn-u-default info_btn"
+                                <button data-type="4" type="submit" class="btn btn-u btn-u-default info_btn"
                                         style="margin-left: 20px">存为草稿
                                 </button>
                             </div>

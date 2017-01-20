@@ -435,7 +435,7 @@
                 $("#checking").addClass("in active");
                 $("#pass").removeClass("in active");
                 $("#checkingMenu").addClass("active");
-            } else if (${type}=="10"){
+            } else if (${type}=="4"){
                 $("#drafts").addClass("in active");
                 $("#pass").removeClass("in active");
                 $("#draftsMenu").addClass("active");
@@ -508,7 +508,7 @@
 
         //草稿
         function loadDrafts(draftsIndex) {
-            $.get("/user/works_load/10", {pageIndex: draftsIndex}, function (data) {
+            $.get("/user/works_load/4", {pageIndex: draftsIndex}, function (data) {
                 if (draftsIndex > data.pages) {
                     // 数据加载完毕了
                     $("#draftsBtn").html("客官，这次真没了");

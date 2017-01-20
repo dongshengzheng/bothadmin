@@ -13,9 +13,9 @@
     .form-wizard .steps > li > a.step {
         color: gray;
     }
-    .form-group .col-sm-10{
-        width:60%;
-    }
+    /*.form-group .col-sm-10{*/
+        /*width:60%;*/
+    /*}*/
 
 </style>
 </@htmlHead>
@@ -101,7 +101,6 @@
                                     </#list>
                                 </select>
                             </div>
-                            <span style="color: red;" class="error"  data-test="span"></span>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="name">作品类型</label>
@@ -223,7 +222,7 @@
                             <label class="col-sm-2 control-label"></label>
                             <div class="col-sm-10">
                                 <button data-type="0" class="btn btn-u btn-u-red info_btn">下一步</button>
-                                <button data-type="10" class="btn btn-u btn-u-default info_btn"
+                                <button data-type="4" class="btn btn-u btn-u-default info_btn"
                                         style="margin-left: 20px">存为草稿
                                 </button>
                             </div>

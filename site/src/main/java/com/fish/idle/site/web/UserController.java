@@ -10,8 +10,10 @@ import com.fish.idle.service.modules.sys.entity.Dict;
 import com.fish.idle.service.modules.sys.service.IAppUserService;
 import com.fish.idle.service.modules.sys.service.IDictService;
 import com.fish.idle.service.util.Const;
+import com.fish.idle.service.util.DateUtil;
 import com.fish.idle.service.util.StringUtils;
 import com.sun.org.apache.xpath.internal.operations.Mod;
+import me.chanjar.weixin.mp.api.WxMpConfigStorage;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +61,8 @@ public class UserController extends BaseController {
     @Autowired
     private IAppUserService appUserService;
 
+    @Autowired
+    private WxMpConfigStorage configStorage;
 
     /**
      * 用户详情
@@ -446,6 +450,13 @@ public class UserController extends BaseController {
             result = followHistoryService.updateById(fh);
         }
         if (result) {
+            sendTemplateMsg(targetId,
+                    "PxVoRl3uWH5ph927H_Qg9DM0B3HKNMYF_IBo48WrJ9c",
+                    configStorage.getOauth2redirectUri() + "/mobile/appUserInfo?appUserId=" + currentUser.getId(),
+                    "测试消息",
+                    "您被其他用户关注了\r\n用户名称 : " + currentUser.getLoginName(),
+                    DateUtil.formatDate(new Date(), "yyyy-MM-dd HH:mm:ss"),
+                    "点击查看用户详情");
             return "关注成功!";
         }
         return "关注失败!请稍后再试";

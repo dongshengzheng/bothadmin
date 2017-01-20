@@ -1,4 +1,4 @@
-package com.fish.idle.site.web;
+package com.fish.idle.admin.util;
 
 import me.chanjar.weixin.mp.api.WxMpConfigStorage;
 import me.chanjar.weixin.mp.api.WxMpInMemoryConfigStorage;
@@ -19,15 +19,6 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class MainConfig {
-
-//    @Bean
-//    public WxMpConfigStorage wxMpConfigStorage() {
-//        WxMpInMemoryConfigStorage configStorage = new WxMpInMemoryConfigStorage();
-//        configStorage.setAppId("wx91ad0b554aceca98");
-//        configStorage.setSecret("9fbc68385d729ffd298bff89794a232c");
-//        configStorage.setOauth2redirectUri("www.mschuangyi.com");
-//        return configStorage;
-//    }
 
     @Value("${appid}")
     private String appid;
@@ -64,16 +55,16 @@ public class MainConfig {
     }
 
     @Bean
+    public WxMpTemplateMsgService wxMpTemplateMsgService() {
+        WxMpTemplateMsgService wxMpTemplateMsgService = new WxMpTemplateMsgServiceImpl(wxMpService());
+        return wxMpTemplateMsgService;
+    }
+
+    @Bean
     public WxMpService wxMpService() {
         WxMpService wxMpService = new WxMpServiceImpl();
         wxMpService.setWxMpConfigStorage(wxMpConfigStorage());
         return wxMpService;
-    }
-
-    @Bean
-    public WxMpTemplateMsgService wxMpTemplateMsgService() {
-        WxMpTemplateMsgService wxMpTemplateMsgService = new WxMpTemplateMsgServiceImpl(wxMpService());
-        return wxMpTemplateMsgService;
     }
 
 }

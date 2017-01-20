@@ -14,8 +14,11 @@ import com.fish.idle.service.modules.jsdd.service.IWorksLevelService;
 import com.fish.idle.service.modules.jsdd.service.IWorksService;
 import com.fish.idle.service.modules.jsdd.service.impl.ReportServiceImpl;
 import com.fish.idle.service.modules.jsdd.service.impl.WorksServiceImpl;
+import com.fish.idle.service.modules.sys.entity.AppUser;
 import com.fish.idle.service.modules.sys.entity.Role;
 import com.fish.idle.service.util.Const;
+import com.fish.idle.service.util.DateUtil;
+import me.chanjar.weixin.mp.api.WxMpConfigStorage;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,6 +27,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * Works 控制层
@@ -40,6 +46,9 @@ public class WorksController extends BaseController {
 
     @Autowired
     private IConsumerService consumerService;
+
+    @Autowired
+    private WxMpConfigStorage configStorage;
 
     @Autowired
     private IWorksService worksService;
@@ -75,8 +84,19 @@ public class WorksController extends BaseController {
     @RequestMapping(value = "check", method = RequestMethod.POST)
     @ResponseBody
     public Boolean check(Works works) {
-        return worksService.updateSelectiveById(new Works(works.getId(), works.getStatus()));
-
+        Boolean result = worksService.updateSelectiveById(new Works(works.getId(), works.getStatus()));
+        if(result) {
+            Integer targetId = works.getCreateBy();
+            AppUser currentUser = getCurrentAppUser();
+            sendTemplateMsg(targetId,
+                    "pEDBw5vP3qqKDInJuYP3eaV38eIH3hXrLmAl8nk2RIw",
+                    configStorage.getOauth2redirectUri() + "/mobile/appUserInfo?appUserId=" + currentUser.getId(),
+                    "测试消息",
+                    "审核内容：作品「田黄鸡血石印章」登记申请 ",
+                    "审核状态：审核成功",
+                    "原因：符合规范");
+        }
+        return result;
     }
 
     /**

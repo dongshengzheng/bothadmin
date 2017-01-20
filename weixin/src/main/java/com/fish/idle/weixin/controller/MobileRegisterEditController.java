@@ -261,10 +261,37 @@ public class MobileRegisterEditController extends BaseController {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=draft";
         } else if ("confirm".equals(draftYN)) {
             insertAll(session, Const.WORKS_STATUS_COMMIT);
+            AppUser currentUser =getCurrentUser();
+            List<AppUser> adminUsers = getAdminAppUsers();//管理员列表
+            if(adminUsers != null){
+                for (AppUser appUser:adminUsers){
+                    int targetId = appUser.getId();
+                    sendTemplateMsg(targetId,
+                            "Jf8lvKgPo0WhdVf61Ny0JW3xybH8Y0BU4_fbfO3eHF4",
+                            configStorage.getOauth2redirectUri() + "/mobile/appUserInfo?appUserId=" + currentUser.getId(),
+                            "测试消息",
+                            "申请人：小王\r\n用户名称 : " + currentUser.getLoginName(),
+                            DateUtil.formatDate(new Date(), "yyyy-MM-dd HH:mm:ss"),
+                            "申请信息：登记作品「精心打造的鸡血石印章」\r\n请尽快审核！");
+                }
+            }
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=now";
         }
 
         return "modules/mobile/pawn2/worksRegister5";
+    }
+
+    /**
+     * 获取管理员列表
+     * @return
+     */
+    private List<AppUser> getAdminAppUsers() {
+        EntityWrapper<AppUser> appUser = new EntityWrapper<>();
+        AppUser user = new AppUser();
+        user.setType(Const.APPUSER_TYPE_ADMIN);
+        appUser.setEntity(user);
+        List<AppUser> list = appUserService.selectList(appUser);
+        return list;
     }
 
     /**
@@ -297,6 +324,20 @@ public class MobileRegisterEditController extends BaseController {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=draft";
         }
         insertAll(session, Const.WORKS_STATUS_COMMIT);
+        AppUser currentUser =getCurrentUser();
+        List<AppUser> adminUsers = getAdminAppUsers();//管理员列表
+        if(adminUsers != null){
+            for (AppUser appUser:adminUsers){
+                int targetId = appUser.getId();
+                sendTemplateMsg(targetId,
+                        "Jf8lvKgPo0WhdVf61Ny0JW3xybH8Y0BU4_fbfO3eHF4",
+                        configStorage.getOauth2redirectUri() + "/mobile/appUserInfo?appUserId=" + currentUser.getId(),
+                        "测试消息",
+                        "申请人：小王\r\n用户名称 : " + currentUser.getLoginName(),
+                        DateUtil.formatDate(new Date(), "yyyy-MM-dd HH:mm:ss"),
+                        "申请信息：登记作品「精心打造的鸡血石印章」\r\n请尽快审核！");
+            }
+        }
         return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=now";
     }
 

@@ -146,7 +146,7 @@
                             <label class="col-sm-2" for=""></label>
                             <div class="col-sm-10">
                                 <button data-type="1" type="submit" class="btn btn-u btn-u-red info_btn">提交审核</button>
-                                <button data-type="10" type="submit" class="btn btn-u btn-u-default info_btn"
+                                <button data-type="4 type="submit" class="btn btn-u btn-u-default info_btn"
                                         style="margin-left: 20px">存为草稿
                                 </button>
                             </div>
