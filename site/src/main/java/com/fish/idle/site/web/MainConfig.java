@@ -29,25 +29,25 @@ public class MainConfig {
 //        return configStorage;
 //    }
 
-    @Value("${appid1}")
+    @Value("${appid}")
     private String appid;
 
-    @Value("${appsecret1}")
+    @Value("${appsecret}")
     private String appsecret;
 
-    @Value("${token1}")
+    @Value("${token}")
     private String token;
 
-    @Value("${aeskey1}")
+    @Value("${aeskey}")
     private String aesKey;
 
-    @Value("${partener_id1}")
+    @Value("${partener_id}")
     private String partenerId;
 
-    @Value("${partener_key1}")
+    @Value("${partener_key}")
     private String partenerKey;
 
-    @Value("${redirect_url1}")
+    @Value("${redirect_url}")
     private String url;
 
     @Bean
