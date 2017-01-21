@@ -20,34 +20,34 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MainConfig {
 
-    @Bean
-    public WxMpConfigStorage wxMpConfigStorage() {
-        WxMpInMemoryConfigStorage configStorage = new WxMpInMemoryConfigStorage();
-        configStorage.setAppId("wx91ad0b554aceca98");
-        configStorage.setSecret("9fbc68385d729ffd298bff89794a232c");
-        configStorage.setOauth2redirectUri("www.mschuangyi.com");
-        return configStorage;
-    }
+//    @Bean
+//    public WxMpConfigStorage wxMpConfigStorage() {
+//        WxMpInMemoryConfigStorage configStorage = new WxMpInMemoryConfigStorage();
+//        configStorage.setAppId("wx91ad0b554aceca98");
+//        configStorage.setSecret("9fbc68385d729ffd298bff89794a232c");
+//        configStorage.setOauth2redirectUri("www.mschuangyi.com");
+//        return configStorage;
+//    }
 
-    /*@Value("${appid}")
+    @Value("${appid1}")
     private String appid;
 
-    @Value("${appsecret}")
+    @Value("${appsecret1}")
     private String appsecret;
 
-    @Value("${token}")
+    @Value("${token1}")
     private String token;
 
-    @Value("${aeskey}")
+    @Value("${aeskey1}")
     private String aesKey;
 
-    @Value("${partener_id}")
+    @Value("${partener_id1}")
     private String partenerId;
 
-    @Value("${partener_key}")
+    @Value("${partener_key1}")
     private String partenerKey;
 
-    @Value("${redirect_url}")
+    @Value("${redirect_url1}")
     private String url;
 
     @Bean
@@ -61,7 +61,7 @@ public class MainConfig {
         configStorage.setPartnerKey(this.partenerKey);
         configStorage.setOauth2redirectUri(this.url);
         return configStorage;
-    }*/
+    }
 
     @Bean
     public WxMpService wxMpService() {

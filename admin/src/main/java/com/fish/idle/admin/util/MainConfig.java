@@ -20,25 +20,25 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MainConfig {
 
-    /*@Value("${appid}")
+    @Value("${appid1}")
     private String appid;
 
-    @Value("${appsecret}")
+    @Value("${appsecret1}")
     private String appsecret;
 
-    @Value("${token}")
+    @Value("${token1}")
     private String token;
 
-    @Value("${aeskey}")
+    @Value("${aeskey1}")
     private String aesKey;
 
-    @Value("${partener_id}")
+    @Value("${partener_id1}")
     private String partenerId;
 
-    @Value("${partener_key}")
+    @Value("${partener_key1}")
     private String partenerKey;
 
-    @Value("${redirect_url}")
+    @Value("${redirect_url1}")
     private String url;
 
     @Bean
@@ -52,19 +52,19 @@ public class MainConfig {
         configStorage.setPartnerKey(this.partenerKey);
         configStorage.setOauth2redirectUri(this.url);
         return configStorage;
-    }*/
+    }
 
-    /*@Bean
+    @Bean
     public WxMpTemplateMsgService wxMpTemplateMsgService() {
         WxMpTemplateMsgService wxMpTemplateMsgService = new WxMpTemplateMsgServiceImpl(wxMpService());
         return wxMpTemplateMsgService;
-    }*/
+    }
 
-    /*@Bean
+    @Bean
     public WxMpService wxMpService() {
         WxMpService wxMpService = new WxMpServiceImpl();
         wxMpService.setWxMpConfigStorage(wxMpConfigStorage());
         return wxMpService;
-    }*/
+    }
 
 }
