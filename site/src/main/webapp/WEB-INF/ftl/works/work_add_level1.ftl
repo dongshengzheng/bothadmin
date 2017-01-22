@@ -340,8 +340,10 @@
                 "isSelected", //验证方法名称
                 function(value, element, param) {//验证规则
                     if(value == param){
+                        element.parentNode.style.marginBottom="12px";
                         return false;
                     }
+                    element.parentNode.style.marginBottom="0px";
                     return true;
                 },
                 ''//验证提示信息

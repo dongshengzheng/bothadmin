@@ -181,17 +181,6 @@
         initUploaders("upload_works_info", "windyeel", '${staticPath}/');
         var $form = $("#works_info");
 
-        $.validator.addMethod(
-                "isSelected", //验证方法名称
-                function(value, element, param) {//验证规则
-                    if(value == param){
-                        return false;
-                    }
-                    return true;
-                },
-                ''//验证提示信息
-        );
-
         $form.validate({
 //            errorPlacement: function (error, element) {
 //                element.next().prev().html(error.html());
@@ -204,10 +193,7 @@
                     required:true,
                     checkPhone:"^1(3[0-9]|4[57]|5[0-35-9]|7[01678]|8[0-9])\\d{8}$"
                 },
-                datetime: "required",
-                pub: {
-                    isSelected:""
-                }
+                datetime: "required"
             },
             messages: {
                 name: {required: "收藏者必填"},
@@ -217,8 +203,7 @@
                     required: "手机号码必填",
                     checkPhone:"请填写正确的手机号码"
                 },
-                datetime: {required: "收藏时间必填"},
-                pub: {required: "是否公开必选"}
+                datetime: {required: "收藏时间必填"}
             },
             submitHandler: function (form) {
                 $(form).ajaxSubmit({

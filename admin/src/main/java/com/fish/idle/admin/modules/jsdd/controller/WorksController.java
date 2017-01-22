@@ -88,6 +88,7 @@ public class WorksController extends BaseController {
             Works work = worksService.selectById(works.getId());
             Integer targetId = work.getCreateBy();
             AppUser currentUser = getCurrentAppUser();
+            logger.error("##########################currentUser:"+(currentUser==null?"null":currentUser));
             logger.error("##########################configStorage.getOauth2redirectUri():"+configStorage.getOauth2redirectUri());
             logger.error("##########################currentUser.getId():"+currentUser.getId());
             sendTemplateMsg(targetId,
