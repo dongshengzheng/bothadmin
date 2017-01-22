@@ -47,8 +47,8 @@ public class WorksController extends BaseController {
     @Autowired
     private IConsumerService consumerService;
 
-    @Autowired
-    private WxMpConfigStorage configStorage;
+//    @Autowired
+//    private WxMpConfigStorage configStorage;
 
     @Autowired
     private IWorksService worksService;
