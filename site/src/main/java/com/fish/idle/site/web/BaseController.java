@@ -83,7 +83,7 @@ public class BaseController {
     }
 
     //发送模板消息
-    public void sendTemplateMsg(int targetId, String templateId, String url, String first, String keyword1, String keyword2, String remark) {
+    /*public void sendTemplateMsg(int targetId, String templateId, String url, String first, String keyword1, String keyword2, String remark) {
         AppUser targetUser = appUserService.selectById(targetId);
         WxMpTemplateMessage templateMessage = new WxMpTemplateMessage();
         templateMessage.setToUser("oETY5wW8i0oouB5SVuQg5V_v2vrM");
@@ -99,6 +99,6 @@ public class BaseController {
         } catch (WxErrorException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
 }

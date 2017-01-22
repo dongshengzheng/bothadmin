@@ -261,7 +261,7 @@ public class MobileRegisterEditController extends BaseController {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=draft";
         } else if ("confirm".equals(draftYN)) {
             insertAll(session, Const.WORKS_STATUS_COMMIT);
-            AppUser currentUser =getCurrentUser();
+            /*AppUser currentUser =getCurrentUser();
             List<AppUser> adminUsers = getAdminAppUsers();//管理员列表
             if(adminUsers != null){
                 for (AppUser appUser:adminUsers){
@@ -274,7 +274,7 @@ public class MobileRegisterEditController extends BaseController {
                             DateUtil.formatDate(new Date(), "yyyy-MM-dd HH:mm:ss"),
                             "申请信息：登记作品「精心打造的鸡血石印章」\r\n请尽快审核！");
                 }
-            }
+            }*/
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=now";
         }
 
@@ -324,7 +324,7 @@ public class MobileRegisterEditController extends BaseController {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=draft";
         }
         insertAll(session, Const.WORKS_STATUS_COMMIT);
-        AppUser currentUser =getCurrentUser();
+        /*AppUser currentUser =getCurrentUser();
         List<AppUser> adminUsers = getAdminAppUsers();//管理员列表
         if(adminUsers != null){
             for (AppUser appUser:adminUsers){
@@ -337,7 +337,7 @@ public class MobileRegisterEditController extends BaseController {
                         DateUtil.formatDate(new Date(), "yyyy-MM-dd HH:mm:ss"),
                         "申请信息：登记作品「精心打造的鸡血石印章」\r\n请尽快审核！");
             }
-        }
+        }*/
         return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=now";
     }
 
