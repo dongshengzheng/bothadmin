@@ -34,7 +34,7 @@ import java.util.List;
  * Created by szy on 03/12/2016.
  */
 public class BaseController {
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(BaseController.class);
     @Autowired
     protected HttpServletRequest request;
 
@@ -139,7 +139,8 @@ public class BaseController {
     public void sendTemplateMsg(int targetId, String templateId, String url, String first, String keyword1, String keyword2, String remark) {
         AppUser targetUser = appUserService.selectById(targetId);
         WxMpTemplateMessage templateMessage = new WxMpTemplateMessage();
-        templateMessage.setToUser("o-POcwATRHa-HtPTXf8bYKmhhqv4");
+        templateMessage.setToUser(targetUser.getOpenId());
+        LOGGER.error("weixin###########fasong##########openid"+targetUser.getOpenId());
         templateMessage.setTemplateId(templateId);
         templateMessage.setUrl(url);
         templateMessage.setTopColor("#000000");

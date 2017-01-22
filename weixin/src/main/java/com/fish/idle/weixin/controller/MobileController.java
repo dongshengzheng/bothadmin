@@ -17,6 +17,8 @@ import me.chanjar.weixin.mp.api.WxMpTemplateMsgService;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplateData;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplateMessage;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -45,6 +47,8 @@ import java.util.*;
 @Controller
 @RequestMapping(value = "/mobile")
 public class MobileController extends BaseController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(MobileController.class);
+
     @Autowired
     private IAppUserService appUserService;
 
@@ -102,6 +106,7 @@ public class MobileController extends BaseController {
         AppUser u = new AppUser();
         u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
+        LOGGER.error("weixin######################openid"+wxMpUser.getOpenId());
         if (appUser == null) {
             appUser = new AppUser();
             appUser.setLoginName(filterEmoji(wxMpUser.getNickname()));
@@ -414,7 +419,7 @@ public class MobileController extends BaseController {
         followHistory.setUserId(currentUser.getId());
         followHistory.setTargetId(targetId);
         followHistory.setType(Const.FOLLOW_HISTORY_TYPE_FOCUS);
-        followHistory.setDelFlag(null);
+        followHistory.setDelFlag(0);
         FollowHistory fh = followHistoryService.selectOne(new EntityWrapper<>(followHistory));
         Boolean result;
         if (fh == null) {
