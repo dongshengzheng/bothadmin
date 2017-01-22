@@ -47,9 +47,6 @@ public class WorksController extends BaseController {
     @Autowired
     private IConsumerService consumerService;
 
-//    @Autowired
-//    private WxMpConfigStorage configStorage;
-
     @Autowired
     private IWorksService worksService;
 
@@ -85,7 +82,7 @@ public class WorksController extends BaseController {
     @ResponseBody
     public Boolean check(Works works) {
         Boolean result = worksService.updateSelectiveById(new Works(works.getId(), works.getStatus()));
-        /*if(result) {
+        if(result) {
             Integer targetId = works.getCreateBy();
             AppUser currentUser = getCurrentAppUser();
             sendTemplateMsg(targetId,
@@ -95,7 +92,7 @@ public class WorksController extends BaseController {
                     "审核内容：作品「田黄鸡血石印章」登记申请 ",
                     "审核状态：审核成功",
                     "原因：符合规范");
-        }*/
+        }
         return result;
     }
 

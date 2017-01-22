@@ -78,9 +78,7 @@ public class LoginController extends BaseController {
     @RequestMapping(value = "/wx_login", method = RequestMethod.GET)
     public String wxLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String code = request.getParameter("code");
-        LOGGER.error("##########################code:"+code);
         String resultUrl = request.getRequestURL().toString();
-        LOGGER.error("##########################resultUrl:"+resultUrl);
         String param = request.getQueryString();
         if (param != null) {
             resultUrl += "?" + param;
@@ -92,9 +90,7 @@ public class LoginController extends BaseController {
             WxMpOAuth2AccessToken accessToken = null;
             try {
                 accessToken = wxMpService.oauth2getAccessToken(code);
-                LOGGER.error("##########################accessToken:"+accessToken);
                 wxMpUser = wxMpService.oauth2getUserInfo(accessToken, null);
-                LOGGER.error("##########################wxMpUser:"+wxMpUser);
             } catch (WxErrorException e) {
                 e.printStackTrace();
                 response.sendRedirect(wxMpService.oauth2buildAuthorizationUrl(resultUrl, WxConsts.OAUTH2_SCOPE_USER_INFO, null));
@@ -104,15 +100,12 @@ public class LoginController extends BaseController {
         AppUser user = new AppUser();
         user.setUnionId(wxMpUser.getUnionId());
         AppUser appUser = appUserService.selectOne(user);
-        LOGGER.error("##########################appUser:"+appUser);
-        LOGGER.error("##########################openid:"+wxMpUser.getOpenId());
         if (appUser == null) {
             appUser = new AppUser();
             appUser.setLoginName(filterEmoji(wxMpUser.getNickname()));
             appUser.setPassword("iLoveMoney");
             appUser.setName(filterEmoji(wxMpUser.getNickname()));
             appUser.setDelFlag(Const.DEL_FLAG_NORMAL);
-            appUser.setOpenId(wxMpUser.getOpenId());
             appUser.setLastLogin(new Date());
             appUser.setHeadImgUrl(wxMpUser.getHeadImgUrl());
             appUser.setUnionId(wxMpUser.getUnionId());
@@ -121,7 +114,6 @@ public class LoginController extends BaseController {
             appUserService.insert(appUser);
         } else {
             appUser.setLastLogin(new Date());
-            appUser.setOpenId(wxMpUser.getOpenId());
             appUserService.updateSelectiveById(appUser);
         }
         Subject subject = SecurityUtils.getSubject();

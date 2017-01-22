@@ -140,7 +140,6 @@ public class BaseController {
         AppUser targetUser = appUserService.selectById(targetId);
         WxMpTemplateMessage templateMessage = new WxMpTemplateMessage();
         templateMessage.setToUser(targetUser.getOpenId());
-        LOGGER.error("weixin###########fasong##########openid"+targetUser.getOpenId());
         templateMessage.setTemplateId(templateId);
         templateMessage.setUrl(url);
         templateMessage.setTopColor("#000000");

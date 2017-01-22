@@ -106,7 +106,6 @@ public class MobileController extends BaseController {
         AppUser u = new AppUser();
         u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
-        LOGGER.error("weixin######################openid"+wxMpUser.getOpenId());
         if (appUser == null) {
             appUser = new AppUser();
             appUser.setLoginName(filterEmoji(wxMpUser.getNickname()));
@@ -122,6 +121,9 @@ public class MobileController extends BaseController {
             appUserService.insert(appUser);
         } else {
             appUser.setLastLogin(new Date());
+            if(StringUtils.isEmpty(appUser.getOpenId())){
+                appUser.setOpenId(wxMpUser.getOpenId());
+            }
             appUserService.updateSelectiveById(appUser);
         }
         session.setAttribute("currentUser", appUser);
