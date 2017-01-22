@@ -83,7 +83,8 @@ public class WorksController extends BaseController {
     public Boolean check(Works works) {
         Boolean result = worksService.updateSelectiveById(new Works(works.getId(), works.getStatus()));
         if(result) {
-            Integer targetId = works.getCreateBy();
+            Works work = worksService.selectById(works.getId());
+            Integer targetId = work.getCreateBy();
             AppUser currentUser = getCurrentAppUser();
             sendTemplateMsg(targetId,
                     "pEDBw5vP3qqKDInJuYP3eaV38eIH3hXrLmAl8nk2RIw",

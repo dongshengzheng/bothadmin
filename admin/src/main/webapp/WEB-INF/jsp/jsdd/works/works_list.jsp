@@ -95,7 +95,6 @@
                         }
                     }
                 },
-
             ],
             "drawCallback": function (settings) {
                 drawICheck('defaultCheck', 'chx_default');

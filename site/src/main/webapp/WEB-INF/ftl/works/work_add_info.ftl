@@ -266,11 +266,10 @@
                 "isSelected", //验证方法名称
                 function(value, element, param) {//验证规则
                     if(value == param){
-                        console.log("---------");
-                        console.log(element.parentNode.className);
-                        element.parentNode.style.marginBottom="60px";
+                        element.parentNode.style.marginBottom="12px";
                         return false;
                     }
+                    element.parentNode.style.marginBottom="0px";
                     return true;
         });
 

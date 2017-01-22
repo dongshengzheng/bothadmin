@@ -266,7 +266,7 @@ public class MobileRegisterEditController extends BaseController {
         } else if ("confirm".equals(draftYN)) {
             insertAll(session, Const.WORKS_STATUS_COMMIT);
             AppUser currentUser =getCurrentUser();
-            LOGGER.error("#######################draftYN:"+draftYN);
+            LOGGER.error("#######################currentUser:"+currentUser);
             List<AppUser> adminUsers = getAdminAppUsers();//管理员列表
             LOGGER.error("#######################adminUsers:"+(adminUsers==null?"null":adminUsers.size()));
             if(adminUsers != null){

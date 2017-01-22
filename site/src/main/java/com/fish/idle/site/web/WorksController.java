@@ -388,7 +388,7 @@ public class WorksController extends BaseController {
         }
         status = getCurrentStatus(status);//统一前后台状态
         worksService.updateSelectiveById(new Works(consumer.getWorksId(), status));
-        /*if(status.equals(Const.WORKS_STATUS_COMMIT)){//提交审核，推送消息至管理员
+        if(status.equals(Const.WORKS_STATUS_COMMIT)){//提交审核，推送消息至管理员
             AppUser currentUser =getCurrentUser();
             List<AppUser> adminUsers = getAdminAppUsers();//管理员列表
             if(adminUsers != null){
@@ -403,7 +403,7 @@ public class WorksController extends BaseController {
                             "申请信息：登记作品「精心打造的鸡血石印章」\r\n请尽快审核！");
                 }
             }
-        }*/
+        }
         jsonObject.put("suc", true);
         return jsonObject;
     }
