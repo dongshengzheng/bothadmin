@@ -611,6 +611,7 @@
                     if (data == '关注成功!') {
                         $('#notCareDialog').find('.weui-dialog__title').html(data);
                         $('#notCareDialog').fadeIn(200);
+                        $(this).html("已关注");
                     }
                 }
             })
@@ -629,6 +630,7 @@
                     if (data == '关注成功!') {
                         $('#notCareDialog').find('.weui-dialog__title').html(data);
                         $('#notCareDialog').fadeIn(200);
+                        $('#header-left-like').val("已关注");
                     }
                 }
             })

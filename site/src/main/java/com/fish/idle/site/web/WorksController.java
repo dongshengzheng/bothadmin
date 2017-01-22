@@ -41,8 +41,8 @@ public class WorksController extends BaseController {
     @Autowired
     private IWorksLevelService worksLevelService;
 
-    /*@Autowired
-    private WxMpConfigStorage configStorage;*/
+    @Autowired
+    private WxMpConfigStorage configStorage;
 
     @Autowired
     private IConsumerService consumerService;
@@ -324,22 +324,22 @@ public class WorksController extends BaseController {
         imagesService.insertImage(desImage, report.getId(), Const.IMAGES_REPORT_DES);
         // 保存作品认证图片
         imagesService.insertImage(certifyImage, report.getId(), Const.IMAGES_REPORT_CERTIFICATE);
-        /*if(status.equals(Const.WORKS_STATUS_COMMIT)){//提交审核，推送消息至管理员
-            AppUser currentUser =getCurrentUser();
-            List<AppUser> adminUsers = getAdminAppUsers();//管理员列表
-            if(adminUsers != null){
-                for (AppUser appUser:adminUsers){
-                    int targetId = appUser.getId();
-                    sendTemplateMsg(targetId,
-                            "Jf8lvKgPo0WhdVf61Ny0JW3xybH8Y0BU4_fbfO3eHF4",
-                            configStorage.getOauth2redirectUri() + "/mobile/appUserInfo?appUserId=" + currentUser.getId(),
-                            "测试消息",
-                            "申请人：小王\r\n用户名称 : " + currentUser.getLoginName(),
-                            DateUtil.formatDate(new Date(), "yyyy-MM-dd HH:mm:ss"),
-                            "申请信息：登记作品「精心打造的鸡血石印章」\r\n请尽快审核！");
-                }
-            }
-        }*/
+//        if(status.equals(Const.WORKS_STATUS_COMMIT)){//提交审核，推送消息至管理员
+//            AppUser currentUser =getCurrentUser();
+//            List<AppUser> adminUsers = getAdminAppUsers();//管理员列表
+//            if(adminUsers != null){
+//                for (AppUser appUser:adminUsers){
+//                    int targetId = appUser.getId();
+//                    sendTemplateMsg(targetId,
+//                            "Jf8lvKgPo0WhdVf61Ny0JW3xybH8Y0BU4_fbfO3eHF4",
+//                            configStorage.getOauth2redirectUri() + "/mobile/appUserInfo?appUserId=" + currentUser.getId(),
+//                            "测试消息",
+//                            "申请人：小王\r\n用户名称 : " + currentUser.getLoginName(),
+//                            DateUtil.formatDate(new Date(), "yyyy-MM-dd HH:mm:ss"),
+//                            "申请信息：登记作品「精心打造的鸡血石印章」\r\n请尽快审核！");
+//                }
+//            }
+//        }
         jsonObject.put("suc", true);
         return jsonObject;
     }
