@@ -28,8 +28,8 @@ public class BaseController {
     @Autowired
     protected IAppUserService appUserService;
 
-    @Autowired
-    protected WxMpTemplateMsgService wxMpTemplateMsgService;
+//    @Autowired
+//    protected WxMpTemplateMsgService wxMpTemplateMsgService;
 
     public void wrapInsertEntity(BaseEntity baseEntity){
         baseEntity.setCreateDate(new Date());

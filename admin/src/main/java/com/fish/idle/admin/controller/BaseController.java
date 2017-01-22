@@ -43,8 +43,8 @@ public class BaseController {
     @Autowired
     protected IAppUserService appUserService;
 
-    @Autowired
-    protected WxMpTemplateMsgService wxMpTemplateMsgService;
+//    @Autowired
+//    protected WxMpTemplateMsgService wxMpTemplateMsgService;
 
     @Autowired
     protected HttpServletRequest request;
@@ -145,23 +145,23 @@ public class BaseController {
     }
 
     //发送模板消息
-    /*public void sendTemplateMsg(int targetId, String templateId, String url, String first, String keyword1, String keyword2, String remark) {
-        AppUser targetUser = appUserService.selectById(targetId);
-        WxMpTemplateMessage templateMessage = new WxMpTemplateMessage();
-        templateMessage.setToUser("oETY5wW8i0oouB5SVuQg5V_v2vrM");
-        templateMessage.setTemplateId(templateId);
-        templateMessage.setUrl(url);
-        templateMessage.setTopColor("#000000");
-        templateMessage.getData().add(new WxMpTemplateData("first", first, "#000000"));
-        templateMessage.getData().add(new WxMpTemplateData("keyword1", keyword1));
-        templateMessage.getData().add(new WxMpTemplateData("keyword2", keyword2));
-        templateMessage.getData().add(new WxMpTemplateData("remark", remark, "#000000"));
-        try {
-            wxMpTemplateMsgService.sendTemplateMsg(templateMessage);
-        } catch (WxErrorException e) {
-            e.printStackTrace();
-        }
-    }*/
+//    public void sendTemplateMsg(int targetId, String templateId, String url, String first, String keyword1, String keyword2, String remark) {
+//        AppUser targetUser = appUserService.selectById(targetId);
+//        WxMpTemplateMessage templateMessage = new WxMpTemplateMessage();
+//        templateMessage.setToUser("oETY5wW8i0oouB5SVuQg5V_v2vrM");
+//        templateMessage.setTemplateId(templateId);
+//        templateMessage.setUrl(url);
+//        templateMessage.setTopColor("#000000");
+//        templateMessage.getData().add(new WxMpTemplateData("first", first, "#000000"));
+//        templateMessage.getData().add(new WxMpTemplateData("keyword1", keyword1));
+//        templateMessage.getData().add(new WxMpTemplateData("keyword2", keyword2));
+//        templateMessage.getData().add(new WxMpTemplateData("remark", remark, "#000000"));
+//        try {
+//            wxMpTemplateMsgService.sendTemplateMsg(templateMessage);
+//        } catch (WxErrorException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     /**
      * 获取当前管理员的app用户信息
