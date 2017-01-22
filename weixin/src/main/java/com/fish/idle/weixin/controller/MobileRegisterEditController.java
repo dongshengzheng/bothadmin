@@ -16,6 +16,8 @@ import me.chanjar.weixin.mp.api.WxMpConfigStorage;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.api.WxMpTemplateMsgService;
 import me.chanjar.weixin.mp.bean.result.WxMpUser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -41,6 +43,8 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/mobile")
 public class MobileRegisterEditController extends BaseController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(MobileRegisterEditController.class);
     @Autowired
     private IAppUserService appUserService;
 
@@ -255,17 +259,20 @@ public class MobileRegisterEditController extends BaseController {
         session.setAttribute("registerReport", report);
         session.setAttribute("registerCertImage", certImage);
         session.setAttribute("registerValueImages", valueImages);
-
+        LOGGER.error("#######################draftYN:"+draftYN);
         if ("yes".equals(draftYN)) {
             insertAll(session, Const.WORKS_STATUS_DRAFT);
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=draft";
         } else if ("confirm".equals(draftYN)) {
             insertAll(session, Const.WORKS_STATUS_COMMIT);
             AppUser currentUser =getCurrentUser();
+            LOGGER.error("#######################draftYN:"+draftYN);
             List<AppUser> adminUsers = getAdminAppUsers();//管理员列表
+            LOGGER.error("#######################adminUsers:"+(adminUsers==null?"null":adminUsers.size()));
             if(adminUsers != null){
                 for (AppUser appUser:adminUsers){
                     int targetId = appUser.getId();
+                    LOGGER.error("#######################targetId:"+targetId);
                     sendTemplateMsg(targetId,
                             "Jf8lvKgPo0WhdVf61Ny0JW3xybH8Y0BU4_fbfO3eHF4",
                             configStorage.getOauth2redirectUri() + "/mobile/appUserInfo?appUserId=" + currentUser.getId(),
@@ -291,6 +298,7 @@ public class MobileRegisterEditController extends BaseController {
         user.setType(Const.APPUSER_TYPE_ADMIN);
         appUser.setEntity(user);
         List<AppUser> list = appUserService.selectList(appUser);
+        LOGGER.error("#######################list:"+(list==null?"null":list.size()));
         return list;
     }
 

@@ -17,6 +17,8 @@ import me.chanjar.weixin.mp.bean.template.WxMpTemplateData;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplateMessage;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.web.bind.WebDataBinder;
@@ -40,6 +42,8 @@ import javax.servlet.http.HttpSession;
  * @Date Apr 17, 2015
  */
 public class BaseController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(BaseController.class);
 
     @Autowired
     protected IAppUserService appUserService;
@@ -174,6 +178,7 @@ public class BaseController {
     public AppUser getCurrentAppUser(){
         User user = getCurrentUser();
         String openId = user.getOpenId();
+        LOGGER.error("#############################open_id:"+openId);
         AppUser appUser = new AppUser();
         appUser.setOpenId(openId);
         return appUserService.selectOne(appUser);

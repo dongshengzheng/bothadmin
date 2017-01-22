@@ -100,8 +100,8 @@
 
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="breed">品种</label>
-                            <div class="col-sm-10"  data-test="div">
-                                <select id="breed" name="breed" class="form-control selectpicker" data-test="select">
+                            <div class="col-sm-10" data-test="div">
+                                <select id="breed" name="breed" style="margin-bottom:60px;" class="form-control selectpicker" data-test="select">
                                     <option value=""  data-test="option">请选择</option>
                                     <#list pinzhong as pz>
                                         <#if ((works.breed)??)&&("${pz.value}"==(works.breed))>
@@ -266,6 +266,9 @@
                 "isSelected", //验证方法名称
                 function(value, element, param) {//验证规则
                     if(value == param){
+                        console.log("---------");
+                        console.log(element.parentNode.className);
+                        element.parentNode.style.marginBottom="60px";
                         return false;
                     }
                     return true;
