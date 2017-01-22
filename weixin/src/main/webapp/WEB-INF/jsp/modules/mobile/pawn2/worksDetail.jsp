@@ -611,7 +611,7 @@
                     if (data == '关注成功!') {
                         $('#notCareDialog').find('.weui-dialog__title').html(data);
                         $('#notCareDialog').fadeIn(200);
-                        $(this).html("已关注");
+                        thisone.html("已关注");
                     }
                 }
             })
@@ -697,18 +697,20 @@
 
     function checkAttented1() {
         var thisone = $('.look-people-one-care-text-not');
-        var targetId = thisone.parent().parent().attr('data-id');
-        $.ajax({
-            type: "POST",
-            url: "${ctx}/mobile/checkAttented",
-            data: {
-                targetId: targetId
-            },
-            success: function (data) {
-                if (data != "") {
-                    $('.look-people-one-care-text-not').html(data);
+        $.each(thisone,function () {
+            var targetId = $(this).parent().parent().attr('data-id');
+            $.ajax({
+                type: "POST",
+                url: "${ctx}/mobile/checkAttented",
+                data: {
+                    targetId: targetId
+                },
+                success: function (data) {
+                    if (data != "") {
+                        $(this).html("已关注");
+                    }
                 }
-            }
+            })
         })
     }
 </script>

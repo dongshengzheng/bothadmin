@@ -137,7 +137,7 @@ public class BaseController {
     public void sendTemplateMsg(int targetId, String templateId, String url, String first, String keyword1, String keyword2, String remark) {
         AppUser targetUser = appUserService.selectById(targetId);
         WxMpTemplateMessage templateMessage = new WxMpTemplateMessage();
-        templateMessage.setToUser("oETY5wW8i0oouB5SVuQg5V_v2vrM");
+        templateMessage.setToUser("o-POcwATRHa-HtPTXf8bYKmhhqv4");
         templateMessage.setTemplateId(templateId);
         templateMessage.setUrl(url);
         templateMessage.setTopColor("#000000");
