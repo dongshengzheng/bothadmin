@@ -112,6 +112,7 @@ public class LoginController extends BaseController {
             appUser.setName(filterEmoji(wxMpUser.getNickname()));
             appUser.setDelFlag(Const.DEL_FLAG_NORMAL);
             appUser.setOpenId(wxMpUser.getOpenId());
+            LOGGER.error("##########################openid:"+wxMpUser.getOpenId());
             appUser.setLastLogin(new Date());
             appUser.setHeadImgUrl(wxMpUser.getHeadImgUrl());
             appUser.setUnionId(wxMpUser.getUnionId());
