@@ -20,6 +20,8 @@ import com.fish.idle.service.util.Const;
 import com.fish.idle.service.util.DateUtil;
 import me.chanjar.weixin.mp.api.WxMpConfigStorage;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -37,7 +39,7 @@ import java.util.List;
 @Controller
 @RequestMapping("works")
 public class WorksController extends BaseController {
-
+    protected Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     private IWorksLevelService worksLevelService;
 
@@ -86,6 +88,8 @@ public class WorksController extends BaseController {
             Works work = worksService.selectById(works.getId());
             Integer targetId = work.getCreateBy();
             AppUser currentUser = getCurrentAppUser();
+            logger.error("##########################configStorage.getOauth2redirectUri():"+configStorage.getOauth2redirectUri());
+            logger.error("##########################currentUser.getId():"+currentUser.getId());
             sendTemplateMsg(targetId,
                     "pEDBw5vP3qqKDInJuYP3eaV38eIH3hXrLmAl8nk2RIw",
                     configStorage.getOauth2redirectUri() + "/mobile/appUserInfo?appUserId=" + currentUser.getId(),

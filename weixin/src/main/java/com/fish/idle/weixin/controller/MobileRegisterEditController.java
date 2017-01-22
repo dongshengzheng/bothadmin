@@ -254,25 +254,19 @@ public class MobileRegisterEditController extends BaseController {
             Date valueTime = DateUtil.parseDate(valueTimeString, "yyyy-MM-dd");
             report.setValidTime(valueTime);
         }
-
-
         session.setAttribute("registerReport", report);
         session.setAttribute("registerCertImage", certImage);
         session.setAttribute("registerValueImages", valueImages);
-        LOGGER.error("#######################draftYN:"+draftYN);
         if ("yes".equals(draftYN)) {
             insertAll(session, Const.WORKS_STATUS_DRAFT);
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=draft";
         } else if ("confirm".equals(draftYN)) {
             insertAll(session, Const.WORKS_STATUS_COMMIT);
             AppUser currentUser =getCurrentUser();
-            LOGGER.error("#######################currentUser:"+currentUser);
             List<AppUser> adminUsers = getAdminAppUsers();//管理员列表
-            LOGGER.error("#######################adminUsers:"+(adminUsers==null?"null":adminUsers.size()));
             if(adminUsers != null){
                 for (AppUser appUser:adminUsers){
                     int targetId = appUser.getId();
-                    LOGGER.error("#######################targetId:"+targetId);
                     sendTemplateMsg(targetId,
                             "Jf8lvKgPo0WhdVf61Ny0JW3xybH8Y0BU4_fbfO3eHF4",
                             configStorage.getOauth2redirectUri() + "/mobile/appUserInfo?appUserId=" + currentUser.getId(),
@@ -298,7 +292,6 @@ public class MobileRegisterEditController extends BaseController {
         user.setType(Const.APPUSER_TYPE_ADMIN);
         appUser.setEntity(user);
         List<AppUser> list = appUserService.selectList(appUser);
-        LOGGER.error("#######################list:"+(list==null?"null":list.size()));
         return list;
     }
 
