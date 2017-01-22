@@ -121,6 +121,7 @@ public class LoginController extends BaseController {
             appUserService.insert(appUser);
         } else {
             appUser.setLastLogin(new Date());
+            appUser.setOpenId(wxMpUser.getOpenId());
             appUserService.updateSelectiveById(appUser);
         }
         Subject subject = SecurityUtils.getSubject();
