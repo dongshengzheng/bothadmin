@@ -13,6 +13,8 @@ import me.chanjar.weixin.mp.bean.template.WxMpTemplateData;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplateMessage;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +24,7 @@ import java.util.Date;
  * Created by szy on 03/12/2016.
  */
 public class BaseController {
-
+    protected Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     protected IAppUserService appUserService;
 
