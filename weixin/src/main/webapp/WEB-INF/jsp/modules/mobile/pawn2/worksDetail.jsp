@@ -210,7 +210,7 @@
             background-size: 30px 30px;
             padding-top: 30px;
             text-align: center;
-            font-size: 15px;
+            font-size: 13px;
         }
 
         .info-register-right {

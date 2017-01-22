@@ -45,7 +45,9 @@
         .fixed-footer a {
             color: #A2D2EF;
         }
-
+        .invalid {
+            color: #B60001;
+        }
     </style>
 </head>
 <body>
@@ -238,7 +240,7 @@
                     required: true,
                     number: true
                 },
-                gytType: {
+                gyType: {
                     isSelected: ""
                 },
                 levelZk: {

@@ -46,7 +46,9 @@
             background-color: #F0EFF5;
         }
 
-
+        .invalid {
+            color: #B60001;
+        }
     </style>
 </head>
 <body>

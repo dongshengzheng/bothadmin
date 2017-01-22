@@ -116,6 +116,10 @@
         .set-border.weui-cell:before {
             border-top: none;
         }
+
+        .invalid {
+            color: #B60001;
+        }
     </style>
 </head>
 <body>

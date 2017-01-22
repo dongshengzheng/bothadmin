@@ -13,10 +13,21 @@
     .form-wizard .steps > li > a.step {
         color: gray;
     }
-    /*.form-group .col-sm-10{*/
-        /*width:60%;*/
-    /*}*/
+   /* .form-group .col-sm-10{
+        width:60%;
+    }*/
 
+    .form-group .col-sm-10 .row{
+        width:100%;
+    }
+
+    label .error{
+        width: 30%;
+    }
+
+    .error {
+        top:3px;
+    }
 </style>
 </@htmlHead>
 <@htmlBody>
@@ -248,6 +259,7 @@
         $('.date-picker').datepicker({autoclose: true, todayHighlight: true, format: 'yyyy-mm-dd'});
         $(".info_btn").bind("click", function () {
             $("#status").val($(this).attr("data-type"));
+            errorStyle();
         });
 
         $.validator.addMethod(
@@ -262,10 +274,7 @@
         var $form = $("#works_info");
         $form.validate({
 //            errorPlacement: function (error, element) {
-//                console.log(element.attr("data-test"));
-//                console.log(element.parent().prev().attr("data-test"));
-//                console.log(element.parent().prev().find("#error").attr("data-test"));
-//                element.parent().find("#error").html(error);
+//                element.parent().prev().html(error.html());
 //            },
             rules: {
                 breed: {
@@ -290,7 +299,7 @@
                     required:true,
                     number:true
                 },
-                gytType:{
+                gyType:{
                     isSelected:""
                 },
                 levelZk:{
@@ -347,6 +356,7 @@
 
                     },
                     error: function () {
+//                        errorStyle();
                         alert("error");
                         return;
                     }
@@ -357,6 +367,10 @@
         $("#providerDetails").on("click",function(){
             window.location.href = "/works/providerDetails/${works.id}";
         })
+        function errorStyle() {
+            $(".form-group .col-sm-10 .error").height("30px");
+        }
+
     });
 
 </script>

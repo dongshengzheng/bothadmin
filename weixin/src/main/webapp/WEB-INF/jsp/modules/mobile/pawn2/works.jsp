@@ -168,17 +168,19 @@
     }
 
     .works-floor-btn-all,.works-floor-date-all{
-        right: 10px;
+        right: 5px;
         font-size: 12px;
         vertical-align:middle;
     }
     .works-floor-name-all,.works-floor-img-all{
-        left: 10px;
+        left: 5px;
         font-size: 12px;
     }
     .all span{
         font-size: 12px;
     }
+
+
 </style>
 <body>
 <div class="swiper-container div-outer">
