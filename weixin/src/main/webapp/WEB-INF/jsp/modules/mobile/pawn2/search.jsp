@@ -57,6 +57,10 @@
         background-position-x: 3px;
         padding-left: 19px;
     }
+
+    .weui-search-bar__label{
+        border-radius:0px;
+    }
 </style>
 
 

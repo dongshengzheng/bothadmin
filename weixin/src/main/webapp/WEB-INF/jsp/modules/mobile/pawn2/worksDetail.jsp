@@ -696,9 +696,10 @@
     }
 
     function checkAttented1() {
-        var thisone = $('.look-people-one-care-text-not');
-        $.each(thisone,function () {
-            var targetId = $(this).parent().parent().attr('data-id');
+        var element = $('.look-people-one-care-text-not');
+        $.each(element,function () {
+            var thisone = $(this);
+            var targetId = thisone.parent().parent().attr('data-id');
             $.ajax({
                 type: "POST",
                 url: "${ctx}/mobile/checkAttented",
@@ -707,7 +708,7 @@
                 },
                 success: function (data) {
                     if (data != "") {
-                        $(this).html("已关注");
+                        thisone.html(data);
                     }
                 }
             })
