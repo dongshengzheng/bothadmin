@@ -105,6 +105,7 @@ public class LoginController extends BaseController {
         user.setUnionId(wxMpUser.getUnionId());
         AppUser appUser = appUserService.selectOne(user);
         LOGGER.error("##########################appUser:"+appUser);
+        LOGGER.error("##########################openid:"+wxMpUser.getOpenId());
         if (appUser == null) {
             appUser = new AppUser();
             appUser.setLoginName(filterEmoji(wxMpUser.getNickname()));
@@ -112,7 +113,6 @@ public class LoginController extends BaseController {
             appUser.setName(filterEmoji(wxMpUser.getNickname()));
             appUser.setDelFlag(Const.DEL_FLAG_NORMAL);
             appUser.setOpenId(wxMpUser.getOpenId());
-            LOGGER.error("##########################openid:"+wxMpUser.getOpenId());
             appUser.setLastLogin(new Date());
             appUser.setHeadImgUrl(wxMpUser.getHeadImgUrl());
             appUser.setUnionId(wxMpUser.getUnionId());
