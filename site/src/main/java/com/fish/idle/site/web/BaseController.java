@@ -12,6 +12,7 @@ import me.chanjar.weixin.mp.api.WxMpConfigStorage;
 import me.chanjar.weixin.mp.api.WxMpTemplateMsgService;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplateData;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplateMessage;
+import org.apache.commons.logging.impl.Log4JLogger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
@@ -93,6 +94,7 @@ public class BaseController {
         AppUser targetUser = appUserService.selectById(targetId);
         WxMpTemplateMessage templateMessage = new WxMpTemplateMessage();
         templateMessage.setToUser(targetUser.getOpenId());
+        logger.error("site######################fasong##openid:"+targetUser.getOpenId());
         templateMessage.setTemplateId(templateId);
         templateMessage.setUrl(url);
         templateMessage.setTopColor("#000000");

@@ -178,6 +178,7 @@ public class BaseController {
     public AppUser getCurrentAppUser(){
         User user = getCurrentUser();
         String openId = user.getOpenId();
+        LOGGER.error("admin#############################id:"+user.getId());
         LOGGER.error("#############################open_id:"+openId);
         AppUser appUser = new AppUser();
         appUser.setOpenId(openId);
