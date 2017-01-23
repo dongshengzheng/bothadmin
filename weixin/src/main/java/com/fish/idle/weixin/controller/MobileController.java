@@ -106,6 +106,7 @@ public class MobileController extends BaseController {
         AppUser u = new AppUser();
         u.setUnionId(unionId);
         AppUser appUser = appUserService.selectOne(u);
+        LOGGER.error("#########################weixin-open_id:"+wxMpUser.getOpenId());
         if (appUser == null) {
             appUser = new AppUser();
             appUser.setLoginName(filterEmoji(wxMpUser.getNickname()));
