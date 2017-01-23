@@ -89,7 +89,7 @@ public class LoginController extends BaseController {
         } else {
             WxMpOAuth2AccessToken accessToken = null;
             try {
-                accessToken = wxMpService..oauth2refreshAccessToken(code);
+                accessToken = wxMpService.oauth2refreshAccessToken(code);
                 wxMpUser = wxMpService.oauth2getUserInfo(accessToken, null);
             } catch (WxErrorException e) {
                 e.printStackTrace();
