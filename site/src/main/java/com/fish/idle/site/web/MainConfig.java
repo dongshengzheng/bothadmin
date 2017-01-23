@@ -55,15 +55,22 @@ public class MainConfig {
 
     @Bean
     public WxMpConfigStorage wxMpConfigStorage() {
-            WxMpInMemoryConfigStorage configStorage = new WxMpInMemoryConfigStorage();
-            configStorage.setAppId(this.appid);
-            configStorage.setSecret(this.appsecret);
-//            configStorage.setToken(this.token);
-//            configStorage.setAesKey(this.aesKey);
-//            configStorage.setPartnerId(this.partenerId);
-//            configStorage.setPartnerKey(this.partenerKey);
-            configStorage.setOauth2redirectUri(this.url);
-            return wxMpConfigStorage;
+        LOGGER.error("site############################appid:"+appid);
+        LOGGER.error("site############################appsecret:"+appsecret);
+        LOGGER.error("site############################token:"+token);
+        LOGGER.error("site############################aesKey:"+aesKey);
+        LOGGER.error("site############################partenerId:"+partenerId);
+        LOGGER.error("site############################partenerKey:"+partenerKey);
+        LOGGER.error("site############################url:"+url);
+        WxMpInMemoryConfigStorage configStorage = new WxMpInMemoryConfigStorage();
+        configStorage.setAppId(this.appid);
+        configStorage.setSecret(this.appsecret);
+//        configStorage.setToken(this.token);
+//        configStorage.setAesKey(this.aesKey);
+//        configStorage.setPartnerId(this.partenerId);
+//        configStorage.setPartnerKey(this.partenerKey);
+        configStorage.setOauth2redirectUri(this.url);
+        return configStorage;
     }
 
     @Bean
