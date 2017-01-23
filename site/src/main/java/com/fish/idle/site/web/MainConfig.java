@@ -32,10 +32,10 @@ public class MainConfig {
 //        return configStorage;
 //    }
 
-    @Value("${appid}")
+    @Value("${appid_site}")
     private String appid;
 
-    @Value("${appsecret}")
+    @Value("${appsecret_site}")
     private String appsecret;
 
     @Value("${token}")
@@ -55,28 +55,15 @@ public class MainConfig {
 
     @Bean
     public WxMpConfigStorage wxMpConfigStorage() {
-        if (wxMpConfigStorage != null) {
+            WxMpInMemoryConfigStorage configStorage = new WxMpInMemoryConfigStorage();
+            configStorage.setAppId(this.appid);
+            configStorage.setSecret(this.appsecret);
+            configStorage.setToken(this.token);
+            configStorage.setAesKey(this.aesKey);
+            configStorage.setPartnerId(this.partenerId);
+            configStorage.setPartnerKey(this.partenerKey);
+            configStorage.setOauth2redirectUri(this.url);
             return wxMpConfigStorage;
-        }
-
-        LOGGER.error("site############################appid:"+appid);
-        LOGGER.error("site############################appsecret:"+appsecret);
-        LOGGER.error("site############################token:"+token);
-        LOGGER.error("site############################aesKey:"+aesKey);
-        LOGGER.error("site############################partenerId:"+partenerId);
-        LOGGER.error("site############################partenerKey:"+partenerKey);
-        LOGGER.error("site############################url:"+url);
-        WxMpInMemoryConfigStorage configStorage = new WxMpInMemoryConfigStorage();
-        configStorage.setAppId(this.appid);
-        configStorage.setSecret(this.appsecret);
-        configStorage.setToken(this.token);
-        configStorage.setAesKey(this.aesKey);
-        configStorage.setPartnerId(this.partenerId);
-        configStorage.setPartnerKey(this.partenerKey);
-        configStorage.setOauth2redirectUri(this.url);
-
-        this.wxMpConfigStorage = configStorage;
-        return wxMpConfigStorage;
     }
 
     @Bean
