@@ -78,6 +78,7 @@ public class LoginController extends BaseController {
     @RequestMapping(value = "/wx_login", method = RequestMethod.GET)
     public String wxLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String code = request.getParameter("code");
+        LOGGER.error("site#############################code:"+code);
         String resultUrl = request.getRequestURL().toString();
         String param = request.getQueryString();
         if (param != null) {
