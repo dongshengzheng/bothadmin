@@ -128,6 +128,7 @@ public class MobileRegisterEditController extends BaseController {
                                  @RequestParam(required = false) String draftYN) {
         AppUser currentUser = getCurrentUser();
         works.setCreateBy(currentUser.getId());
+        LOGGER.error("weixin###########################images:"+works.getImages());
         if (createDateString != null && createDateString.trim().length() > 0) {
             Date createDate = DateUtil.parseDate(createDateString, "yyyy-MM-dd");
             works.setCreateDate(createDate);
@@ -254,6 +255,8 @@ public class MobileRegisterEditController extends BaseController {
             Date valueTime = DateUtil.parseDate(valueTimeString, "yyyy-MM-dd");
             report.setValidTime(valueTime);
         }
+        LOGGER.error("weixin###########################certImage:"+certImage);
+        LOGGER.error("weixin###########################valueImages:"+valueImages);
         session.setAttribute("registerReport", report);
         session.setAttribute("registerCertImage", certImage);
         session.setAttribute("registerValueImages", valueImages);
