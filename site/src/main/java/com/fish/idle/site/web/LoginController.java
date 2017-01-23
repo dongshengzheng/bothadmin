@@ -100,6 +100,7 @@ public class LoginController extends BaseController {
         AppUser user = new AppUser();
         user.setUnionId(wxMpUser.getUnionId());
         AppUser appUser = appUserService.selectOne(user);
+        LOGGER.error("site#############################open_id:"+wxMpUser.getOpenId());
         if (appUser == null) {
             appUser = new AppUser();
             appUser.setLoginName(filterEmoji(wxMpUser.getNickname()));
