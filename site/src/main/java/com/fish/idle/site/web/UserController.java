@@ -61,9 +61,6 @@ public class UserController extends BaseController {
     @Autowired
     private IAppUserService appUserService;
 
-    @Autowired
-    private WxMpConfigStorage configStorage;
-
     /**
      * 用户详情
      *

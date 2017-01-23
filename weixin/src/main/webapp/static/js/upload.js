@@ -95,6 +95,7 @@ function set_upload_param(up, filename, ret, domain) {
 
 
 function initUploaders(bucket, domain, inputName) {
+    console.log(bucket);console.log(domain);console.log(inputName);
     var uploader = new plupload.Uploader({
         runtimes: 'html5,flash,silverlight,html4',
         browse_button: 'uploaderInput',

@@ -230,7 +230,7 @@
 
         .each-row-two {
             display: inline-block;
-            width: 46%;
+            width: 95%;
         }
 
         .explain-img {
@@ -435,81 +435,81 @@
     <div class="info-work">
         <center>作品信息</center>
         <div class="each-row-two">
-            <span>品种:</span>${works.breed}
+            <span>品 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 种 </span> ${works.breed}
         </div>
         <div class="each-row-two">
-            <span>作品类型: </span>${works.type}
-        </div>
-        <div class="each-row-two" style="font-size: 4px">
-            <span  style="font-size: 15px">尺寸: </span>${works.length}cm*${works.width}cm*${works.height}cm
+            <span>作品类型 </span> ${works.type}
         </div>
         <div class="each-row-two">
-            <span>重量:</span>${works.weight}g
+            <span>尺 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 寸 </span> ${works.length}cm*${works.width}cm*${works.height}cm
         </div>
         <div class="each-row-two">
-            <span>工艺制作: </span>${works.gyType}
+            <span>重 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 量 </span> ${works.weight}g
         </div>
         <div class="each-row-two">
-            <span>篆刻级别:</span>${works.levelZk}
+            <span>工艺制作 </span> ${works.gyType}
         </div>
         <div class="each-row-two">
-            <span>矿区地域:</span>${works.kqdy}
+            <span>篆刻级别 </span> ${works.levelZk}
         </div>
         <div class="each-row-two">
-            <span>制作人:</span>${works.maker}
+            <span>矿区地域 </span> ${works.kqdy}
+        </div>
+        <div class="each-row-two">
+            <span>制 &nbsp;作&nbsp; 人 </span> ${works.maker}
         </div>
         <div>
-            <span>制作时间:</span><fmt:formatDate value="${works.makeTime}"
+            <span>制作时间 </span> <fmt:formatDate value="${works.makeTime}"
                                               pattern="yyyy-MM-dd"/>
         </div>
         <div>
-            <span>作品诠释:</span>${works.worksMeaning}
+            <span>作品诠释 </span> ${works.worksMeaning}
         </div>
     </div>
 
     <div class="info-work">
         <center>作品等级</center>
         <div class="each-row-two">
-            <span>质地一:</span>${worksLevel.zhidi}
+            <span>质 &nbsp;地&nbsp; 一 </span> ${worksLevel.zhidi}
         </div>
         <div class="each-row-two">
-            <span>质地二: </span>${worksLevel.zhidi2}
+            <span>质 &nbsp;地&nbsp; 二 </span> ${worksLevel.zhidi2}
         </div>
         <div class="each-row-two">
-            <span>感观: </span>${worksLevel.ganguan}
+            <span>感 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 观 </span> ${worksLevel.ganguan}
         </div>
         <div class="each-row-two">
-            <span>磨氏度: </span>${worksLevel.moshidu}
+            <span>磨 &nbsp;氏&nbsp; 度 </span> ${worksLevel.moshidu}
         </div>
         <div class="each-row-two">
-            <span>血量:</span>${worksLevel.xueliang}
+            <span>血 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 量 </span> ${worksLevel.xueliang}
         </div>
         <div class="each-row-two">
-            <span>血色: </span>${worksLevel.xuese}
+            <span>血 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 色 </span> ${worksLevel.xuese}
         </div>
         <div class="each-row-two">
-            <span>血形:</span>${worksLevel.xuexing}
+            <span>血 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 形 </span> ${worksLevel.xuexing}
         </div>
         <div class="each-row-two">
-            <span>浓艳度:</span>${worksLevel.nongyandu}
+            <span>浓 &nbsp;艳&nbsp; 度 </span> ${worksLevel.nongyandu}
         </div>
         <div class="each-row-two">
-            <span>纯净度:</span>${worksLevel.chunjingdu}
+            <span>纯 &nbsp;净&nbsp; 度 </span> ${worksLevel.chunjingdu}
         </div>
         <div class="each-row-two">
-            <span>地色:</span>${worksLevel.dise}
+            <span>地 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 色 </span> ${worksLevel.dise}
         </div>
         <div class="each-row-two">
-            <span>活筋:</span>${worksLevel.liu}
+            <span>活 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 筋 </span> ${worksLevel.liu}
         </div>
         <div class="each-row-two">
-            <span>裂:</span>${worksLevel.lie}
+            <span> &nbsp; &nbsp; &nbsp; 裂 &nbsp; &nbsp; &nbsp; </span> ${worksLevel.lie}
         </div>
         <div class="each-row-two">
-            <span>印章:</span>${worksLevel.hanxuemian}
+            <span>印 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 章 </span> ${worksLevel.hanxuemian}
         </div>
         <div class="each-row-two">
-            <span>含血方式:</span>${worksLevel.hanxuefangshi}
+            <span>含血方式 </span> ${worksLevel.hanxuefangshi}
         </div>
     </div>
 </div>

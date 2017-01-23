@@ -22,6 +22,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MainConfig {
     private static final Logger LOGGER = LoggerFactory.getLogger(MainConfig.class);
+    private static WxMpConfigStorage wxMpConfigStorage;
 //    @Bean
 //    public WxMpConfigStorage wxMpConfigStorage() {
 //        WxMpInMemoryConfigStorage configStorage = new WxMpInMemoryConfigStorage();
@@ -54,6 +55,10 @@ public class MainConfig {
 
     @Bean
     public WxMpConfigStorage wxMpConfigStorage() {
+        if (wxMpConfigStorage != null) {
+            return wxMpConfigStorage;
+        }
+
         LOGGER.error("site############################appid:"+appid);
         LOGGER.error("site############################appsecret:"+appsecret);
         LOGGER.error("site############################token:"+token);
@@ -69,7 +74,9 @@ public class MainConfig {
         configStorage.setPartnerId(this.partenerId);
         configStorage.setPartnerKey(this.partenerKey);
         configStorage.setOauth2redirectUri(this.url);
-        return configStorage;
+
+        this.wxMpConfigStorage = configStorage;
+        return wxMpConfigStorage;
     }
 
     @Bean
