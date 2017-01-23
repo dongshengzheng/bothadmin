@@ -164,7 +164,7 @@
 <script src="${ctxStatic}/js/plupload-2.1.2/js/plupload.dev.js"></script>
 <script>
     $(function () {
-        initUploaders($('#bucket').val(), $('#redirectUrl').val() + "/");
+        initUploaders($('#bucket').val(), $('#redirectUrl').val() + "/","images");
         $('#register-rule').on('click', function () {
             $(".js_dialog").fadeIn(200);
         })

@@ -119,7 +119,7 @@ function initUploaders(buttonId, bucket, domain) {
                 set_upload_param(up, file.name, true, domain);
             },
             FileUploaded: function () {
-                $("#" + buttonId).before('<div class="" onclick=""  style="float:left;position:relative;padding: 0px;margin-bottom: 5px;"><input name="images" type="hidden" value="' + g_object_name + '" >' +
+                $("#upload_works_info").before('<div class="" onclick=""  style="float:left;position:relative;padding: 0px;margin-bottom: 5px;"><input name="images" type="hidden" value="' + g_object_name + '" >' +
                     '<span onclick="javascript:this.parentNode.remove();" class="glyphicon glyphicon-remove" style="background: rgba(0,0,0,.5);color:white;position:absolute;top:0px;right:5px;z-index: 999;"></span>' +
                     '<img src="http://' + bucket + '.img-cn-shanghai.aliyuncs.com/' + g_object_name + '?x-oss-process=image/resize,m_fill,h_100,w_100" ' +
                     'style="max-height: 100px;margin-right:5px;" onclick="" class="min-img" data-url="' + g_object_name + '" >' + '</div>');
