@@ -440,8 +440,8 @@
         <div class="each-row-two">
             <span>作品类型: </span>${works.type}
         </div>
-        <div class="each-row-two">
-            <span>尺寸: </span>${works.length}cm*${works.width}cm*${works.height}cm
+        <div class="each-row-two" style="font-size: 4px">
+            <span  style="font-size: 15px">尺寸: </span>${works.length}cm*${works.width}cm*${works.height}cm
         </div>
         <div class="each-row-two">
             <span>重量:</span>${works.weight}g
