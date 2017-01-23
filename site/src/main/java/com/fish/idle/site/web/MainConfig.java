@@ -70,10 +70,10 @@ public class MainConfig {
         return wxMpService;
     }
 
-//    @Bean
-//    public WxMpTemplateMsgService wxMpTemplateMsgService() {
-//        WxMpTemplateMsgService wxMpTemplateMsgService = new WxMpTemplateMsgServiceImpl(wxMpService());
-//        return wxMpTemplateMsgService;
-//    }
+    @Bean
+    public WxMpTemplateMsgService wxMpTemplateMsgService() {
+        WxMpTemplateMsgService wxMpTemplateMsgService = new WxMpTemplateMsgServiceImpl(wxMpService());
+        return wxMpTemplateMsgService;
+    }
 
 }

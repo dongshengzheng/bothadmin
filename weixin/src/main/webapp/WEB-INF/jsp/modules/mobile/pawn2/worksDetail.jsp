@@ -320,6 +320,9 @@
             width: 100px;
         }
 
+        .info-register-right p {
+            font-size: 14px;
+        }
     </style>
 
 </head>
