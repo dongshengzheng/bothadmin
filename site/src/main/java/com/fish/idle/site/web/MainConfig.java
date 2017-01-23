@@ -58,10 +58,10 @@ public class MainConfig {
             WxMpInMemoryConfigStorage configStorage = new WxMpInMemoryConfigStorage();
             configStorage.setAppId(this.appid);
             configStorage.setSecret(this.appsecret);
-            configStorage.setToken(this.token);
-            configStorage.setAesKey(this.aesKey);
-            configStorage.setPartnerId(this.partenerId);
-            configStorage.setPartnerKey(this.partenerKey);
+//            configStorage.setToken(this.token);
+//            configStorage.setAesKey(this.aesKey);
+//            configStorage.setPartnerId(this.partenerId);
+//            configStorage.setPartnerKey(this.partenerKey);
             configStorage.setOauth2redirectUri(this.url);
             return wxMpConfigStorage;
     }
