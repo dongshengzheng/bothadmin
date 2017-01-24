@@ -33,6 +33,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -47,8 +48,8 @@ public class LoginController extends BaseController {
     @Autowired
     private IAppUserService appUserService;
 
-    @Autowired
-    private WxMpService wxMpService;
+    @Resource(name="wxMpServiceForSite")
+    private WxMpService wxMpServiceForSite;
 
     @Value("${site_appid}")
     private String appId;
@@ -86,15 +87,15 @@ public class LoginController extends BaseController {
         }
         WxMpUser wxMpUser = new WxMpUser();
         if (StringUtils.isEmpty(code)) {
-            response.sendRedirect(wxMpService.oauth2buildAuthorizationUrl(resultUrl, WxConsts.OAUTH2_SCOPE_USER_INFO, null));
+            response.sendRedirect(wxMpServiceForSite.oauth2buildAuthorizationUrl(resultUrl, WxConsts.OAUTH2_SCOPE_USER_INFO, null));
         } else {
             WxMpOAuth2AccessToken accessToken = null;
             try {
-                accessToken = wxMpService.oauth2getAccessToken(code);
-                wxMpUser = wxMpService.oauth2getUserInfo(accessToken, null);
+                accessToken = wxMpServiceForSite.oauth2getAccessToken(code);
+                wxMpUser = wxMpServiceForSite.oauth2getUserInfo(accessToken, null);
             } catch (WxErrorException e) {
                 e.printStackTrace();
-                response.sendRedirect(wxMpService.oauth2buildAuthorizationUrl(resultUrl, WxConsts.OAUTH2_SCOPE_USER_INFO, null));
+                response.sendRedirect(wxMpServiceForSite.oauth2buildAuthorizationUrl(resultUrl, WxConsts.OAUTH2_SCOPE_USER_INFO, null));
             }
         }
 

@@ -40,7 +40,7 @@ public class MainConfig {
 
     @Value("${redirect_url}")
     private String url;
-    @Bean
+    @Bean(name="wxMpConfigStorage")
     public WxMpConfigStorage wxMpConfigStorage() {
         WxMpInMemoryConfigStorage configStorage = new WxMpInMemoryConfigStorage();
         configStorage.setAppId(this.appid);
@@ -49,8 +49,32 @@ public class MainConfig {
         return configStorage;
     }
 
-    @Bean
+    @Value("${appid_site}")
+    private String appid_site;
+
+    @Value("${appsecret_site}")
+    private String appsecret_site;
+
+    @Value("${redirect_url_site}")
+    private String url_site;
+    @Bean(name="wxMpConfigStorageForSite")
+    public WxMpConfigStorage wxMpConfigStorageForSite() {
+        WxMpInMemoryConfigStorage configStorage = new WxMpInMemoryConfigStorage();
+        configStorage.setAppId(this.appid_site);
+        configStorage.setSecret(this.appsecret_site);
+        configStorage.setOauth2redirectUri(this.url_site);
+        return configStorage;
+    }
+
+    @Bean(name="wxMpService")
     public WxMpService wxMpService() {
+        WxMpService wxMpService = new WxMpServiceImpl();
+        wxMpService.setWxMpConfigStorage(wxMpConfigStorage());
+        return wxMpService;
+    }
+
+    @Bean(name="wxMpServiceForSite")
+    public WxMpService wxMpServiceForSite() {
         WxMpService wxMpService = new WxMpServiceImpl();
         wxMpService.setWxMpConfigStorage(wxMpConfigStorage());
         return wxMpService;

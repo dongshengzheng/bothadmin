@@ -57,10 +57,6 @@
         background-position-x: 3px;
         padding-left: 19px;
     }
-
-    .weui-search-bar__label{
-        border-radius:0px;
-    }
 </style>
 
 
@@ -113,12 +109,12 @@
 <script type="text/javascript">
     $(function () {
         var $searchBar = $('#searchBar'),
-                $searchResult = $('#searchResult'),
-                $searchText = $('#searchText'),
-                $searchInput = $('#searchInput'),
-                $searchClear = $('#searchClear'),
-                $searchCancel = $('#searchCancel'),
-                $androidDialog2 = $('#androidDialog2');
+            $searchResult = $('#searchResult'),
+            $searchText = $('#searchText'),
+            $searchInput = $('#searchInput'),
+            $searchClear = $('#searchClear'),
+            $searchCancel = $('#searchCancel'),
+            $androidDialog2 = $('#androidDialog2');
 
         $("#history-serach-delete").on('click', function () {
             $androidDialog2.fadeIn(200);
@@ -150,36 +146,33 @@
             $searchText.show();
         }
 
-        function seatchInput() {
+        $searchText.on('click', function () {
             $searchBar.addClass('weui-search-bar_focusing');
             $searchInput.focus();
-        };
+        });
 
-//        $searchText.on('click', function () {
-//            $searchBar.addClass('weui-search-bar_focusing');
-//            $searchInput.focus();
-//        });
-        $searchInput.on('blur', function () {
-                    if (!this.value.length) cancelSearch();
-                })
-                .on('input', function () {
-                    if (this.value.length) {
-                        $searchResult.show();
+        $searchInput
+            .on('blur', function () {
+                if (!this.value.length) cancelSearch();
+            })
+            .on('input', function () {
+                if (this.value.length) {
+                    $searchResult.show();
+                } else {
+                    $searchResult.hide();
+                }
+            })
+            .on('keyup', function () {
+                if (event.keyCode == 13) {
+                    if ($("#searchwhich").val() == "searchperson") {
+                        location.href = "${ctx}/mobile/searchPerson?name=" + $('#searchInput').val();
+                        <%--location.href = "${ctx}/mobile/searchPerson";--%>
                     } else {
-                        $searchResult.hide();
+                        location.href = "${ctx}/mobile/searchWorks?name=" + $('#searchInput').val();
+                        <%--location.href = "${ctx}/mobile/searchWorks";--%>
                     }
-                })
-                .on('keyup', function () {
-                    if (event.keyCode == 13) {
-                        if ($("#searchwhich").val() == "searchperson") {
-                            location.href = "${ctx}/mobile/searchPerson?name=" + $('#searchInput').val();
-                            <%--location.href = "${ctx}/mobile/searchPerson";--%>
-                        } else {
-                            location.href = "${ctx}/mobile/searchWorks?name=" + $('#searchInput').val();
-                            <%--location.href = "${ctx}/mobile/searchWorks";--%>
-                        }
-                    }
-                });
+                }
+            });
         $searchClear.on('click', function () {
             hideSearchResult();
             $searchInput.focus();
