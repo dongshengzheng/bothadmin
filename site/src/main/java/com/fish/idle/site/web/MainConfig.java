@@ -76,7 +76,7 @@ public class MainConfig {
     @Bean(name="wxMpServiceForSite")
     public WxMpService wxMpServiceForSite() {
         WxMpService wxMpService = new WxMpServiceImpl();
-        wxMpService.setWxMpConfigStorage(wxMpConfigStorage());
+        wxMpService.setWxMpConfigStorage(wxMpConfigStorageForSite());
         return wxMpService;
     }
 
