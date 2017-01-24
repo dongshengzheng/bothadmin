@@ -314,7 +314,7 @@ public class WorksController extends BaseController {
         }
         status = getCurrentStatus(status);//统一前后台状态
         worksService.updateSelectiveById(new Works(report.getWorksId(), status));
-
+        logger.error("site##########################提交作品");
         // 保存评估报告
         imagesService.deleteByTargetId(report.getId());
         imagesService.insertImage(desImage, report.getId(), Const.IMAGES_REPORT_DES);
@@ -386,6 +386,7 @@ public class WorksController extends BaseController {
             jsonObject.put("msg", "保存评估报告出错");
             return jsonObject;
         }
+        logger.error("site##########################提交作品");
         status = getCurrentStatus(status);//统一前后台状态
         worksService.updateSelectiveById(new Works(consumer.getWorksId(), status));
         if(status.equals(Const.WORKS_STATUS_COMMIT)){//提交审核，推送消息至管理员

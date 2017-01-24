@@ -155,6 +155,7 @@ public class BaseController {
     //发送模板消息
     public void sendTemplateMsg(int targetId, String templateId, String url, String first, String keyword1, String keyword2, String remark) {
         AppUser targetUser = appUserService.selectById(targetId);
+        LOGGER.error("admin##############fasong######openid:"+targetUser.getOpenId());
         WxMpTemplateMessage templateMessage = new WxMpTemplateMessage();
         templateMessage.setToUser(targetUser.getOpenId());
         templateMessage.setTemplateId(templateId);

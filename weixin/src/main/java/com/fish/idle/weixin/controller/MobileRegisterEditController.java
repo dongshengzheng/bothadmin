@@ -267,6 +267,7 @@ public class MobileRegisterEditController extends BaseController {
             insertAll(session, Const.WORKS_STATUS_COMMIT);
             AppUser currentUser =getCurrentUser();
             List<AppUser> adminUsers = getAdminAppUsers();//管理员列表
+            LOGGER.error("weixin#######################提交作品");
             if(adminUsers != null){
                 for (AppUser appUser:adminUsers){
                     int targetId = appUser.getId();
@@ -333,11 +334,12 @@ public class MobileRegisterEditController extends BaseController {
         if(adminUsers != null){
             for (AppUser appUser:adminUsers){
                 int targetId = appUser.getId();
+                LOGGER.error("weixin#######################提交作品");
                 sendTemplateMsg(targetId,
                         "Jf8lvKgPo0WhdVf61Ny0JW3xybH8Y0BU4_fbfO3eHF4",
                         configStorage.getOauth2redirectUri() + "/mobile/appUserInfo?appUserId=" + currentUser.getId(),
                         "测试消息",
-                        "申请人：小王\r\n用户名称 : " + currentUser.getLoginName(),
+                        consumer.getName()+"\r\n用户名称 : " + currentUser.getLoginName(),
                         DateUtil.formatDate(new Date(), "yyyy-MM-dd HH:mm:ss"),
                         "申请信息：登记作品「精心打造的鸡血石印章」\r\n请尽快审核！");
             }

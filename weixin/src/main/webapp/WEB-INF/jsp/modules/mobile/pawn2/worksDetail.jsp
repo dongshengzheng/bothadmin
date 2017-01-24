@@ -73,7 +73,7 @@
             left: 0;
             resize: none;
             vertical-align: bottom;
-
+            width: 80%;
         }
 
         .header-right-btn {

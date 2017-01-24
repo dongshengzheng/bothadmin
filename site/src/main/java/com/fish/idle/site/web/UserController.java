@@ -446,6 +446,7 @@ public class UserController extends BaseController {
             fh.setDelFlag(Const.DEL_FLAG_NORMAL);
             result = followHistoryService.updateById(fh);
         }
+        logger.error("site##########################用户关注");
         if (result) {
             sendTemplateMsg(targetId,
                     "PxVoRl3uWH5ph927H_Qg9DM0B3HKNMYF_IBo48WrJ9c",

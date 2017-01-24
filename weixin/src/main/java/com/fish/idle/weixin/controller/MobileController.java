@@ -384,6 +384,7 @@ public class MobileController extends BaseController {
         followHistory.setDelFlag(0);
         FollowHistory fh = followHistoryService.selectOne(new EntityWrapper<>(followHistory));
         Boolean result;
+        LOGGER.error("weixin##########################关注用户");
         if (fh == null) {
             followHistory.setDelFlag(Const.DEL_FLAG_NORMAL);
             result = followHistoryService.insert(followHistory);

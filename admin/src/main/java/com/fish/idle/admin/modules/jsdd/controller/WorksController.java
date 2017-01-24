@@ -88,15 +88,16 @@ public class WorksController extends BaseController {
             Works work = worksService.selectById(works.getId());
             Integer targetId = work.getCreateBy();
             AppUser currentUser = getCurrentAppUser();
-            logger.error("##########################currentUser:"+(currentUser==null?"null":currentUser));
-            logger.error("##########################configStorage.getOauth2redirectUri():"+configStorage.getOauth2redirectUri());
-            logger.error("##########################currentUser.getId():"+currentUser.getId());
+            logger.error("admin##########################审核作品");
+            logger.error("admin##########################currentUser:"+(currentUser==null?"null":currentUser));
+            logger.error("admin##########################configStorage.getOauth2redirectUri():"+configStorage.getOauth2redirectUri());
+            logger.error("admin##########################currentUser.getId():"+currentUser.getId());
             sendTemplateMsg(targetId,
                     "pEDBw5vP3qqKDInJuYP3eaV38eIH3hXrLmAl8nk2RIw",
                     configStorage.getOauth2redirectUri() + "/mobile/appUserInfo?appUserId=" + currentUser.getId(),
                     "测试消息",
-                    "审核内容：作品「田黄鸡血石印章」登记申请 ",
-                    "审核状态：审核成功",
+                    "作品「" + works.getName() + "」登记申请 ",
+                    "审核成功",
                     "原因：符合规范");
         }
         return result;

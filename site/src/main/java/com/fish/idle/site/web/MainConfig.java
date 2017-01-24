@@ -32,13 +32,13 @@ public class MainConfig {
 //        return configStorage;
 //    }
 
-    @Value("${appid_site}")
+    @Value("${appid}")
     private String appid;
 
-    @Value("${appsecret_site}")
+    @Value("${appsecret}")
     private String appsecret;
 
-    @Value("${redirect_url_site}")
+    @Value("${redirect_url}")
     private String url;
     @Bean
     public WxMpConfigStorage wxMpConfigStorage() {

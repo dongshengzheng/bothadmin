@@ -150,13 +150,16 @@
             $searchText.show();
         }
 
-        $searchText.on('click', function () {
+        function seatchInput() {
             $searchBar.addClass('weui-search-bar_focusing');
             $searchInput.focus();
-        });
+        };
 
-        $searchInput
-                .on('blur', function () {
+//        $searchText.on('click', function () {
+//            $searchBar.addClass('weui-search-bar_focusing');
+//            $searchInput.focus();
+//        });
+        $searchInput.on('blur', function () {
                     if (!this.value.length) cancelSearch();
                 })
                 .on('input', function () {

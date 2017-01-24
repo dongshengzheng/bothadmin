@@ -225,10 +225,10 @@
                 worksRemarks: {required: "作品描述必填"}
             }
         });
-        errorStyle();
-        function errorStyle() {
-            $(".invalid").parent().css("line-heigth","20px");
-        }
+//        errorStyle();
+//        function errorStyle() {
+//            $(".invalid").parent().css("line-heigth","20px");
+//        }
     });
 
 </script>
