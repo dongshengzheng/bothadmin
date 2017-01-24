@@ -76,13 +76,32 @@ public class LoginController extends BaseController {
     }
 
     @RequestMapping(value = "/wx_login", method = RequestMethod.GET)
-    public String wxLogin(HttpSession session) throws IOException {
-        WxMpUser wxMpUser = (WxMpUser) session.getAttribute("wxMpUser");
-        LOGGER.error("site#############################wxMpUser:"+(wxMpUser==null?"null":wxMpUser.getUnionId()));
+    public String wxLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String code = request.getParameter("code");
+        LOGGER.error("site#############################code:"+code);
+        String resultUrl = request.getRequestURL().toString();
+        String param = request.getQueryString();
+        if (param != null) {
+            resultUrl += "?" + param;
+        }
+        WxMpUser wxMpUser = new WxMpUser();
+        if (StringUtils.isEmpty(code)) {
+            response.sendRedirect(wxMpService.oauth2buildAuthorizationUrl(resultUrl, WxConsts.OAUTH2_SCOPE_USER_INFO, null));
+        } else {
+            WxMpOAuth2AccessToken accessToken = null;
+            try {
+                accessToken = wxMpService.oauth2getAccessToken(code);
+                wxMpUser = wxMpService.oauth2getUserInfo(accessToken, null);
+            } catch (WxErrorException e) {
+                e.printStackTrace();
+                response.sendRedirect(wxMpService.oauth2buildAuthorizationUrl(resultUrl, WxConsts.OAUTH2_SCOPE_USER_INFO, null));
+            }
+        }
+
         AppUser user = new AppUser();
         user.setUnionId(wxMpUser.getUnionId());
         AppUser appUser = appUserService.selectOne(user);
-        LOGGER.error("site#############################open_id:"+(wxMpUser==null?"null":wxMpUser.getOpenId()));
+        LOGGER.error("site#############################open_id:"+wxMpUser.getOpenId());
         if (appUser == null) {
             appUser = new AppUser();
             appUser.setLoginName(filterEmoji(wxMpUser.getNickname()));
@@ -100,6 +119,7 @@ public class LoginController extends BaseController {
             appUserService.updateSelectiveById(appUser);
         }
         Subject subject = SecurityUtils.getSubject();
+        Session session = subject.getSession();
         session.setAttribute(Const.SITE_SESSION_USER, appUser);
         session.setAttribute("wxMpUser", wxMpUser);
         UsernamePasswordToken token = new UsernamePasswordToken(appUser.getLoginName(), appUser.getPassword());
@@ -113,66 +133,6 @@ public class LoginController extends BaseController {
         session.setAttribute(Const.SITE_SESSION_USER, appUser);
         return "redirect:/";
     }
-
-
-//    @RequestMapping(value = "/wx_login", method = RequestMethod.GET)
-//    public String wxLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//        String code = request.getParameter("code");
-//        LOGGER.error("site#############################code:"+code);
-//        String resultUrl = request.getRequestURL().toString();
-//        String param = request.getQueryString();
-//        if (param != null) {
-//            resultUrl += "?" + param;
-//        }
-//        WxMpUser wxMpUser = new WxMpUser();
-//        if (StringUtils.isEmpty(code)) {
-//            response.sendRedirect(wxMpService.oauth2buildAuthorizationUrl(resultUrl, WxConsts.OAUTH2_SCOPE_USER_INFO, null));
-//        } else {
-//            WxMpOAuth2AccessToken accessToken = null;
-//            try {
-//                accessToken = wxMpService.oauth2getAccessToken(code);
-//                wxMpUser = wxMpService.oauth2getUserInfo(accessToken, null);
-//            } catch (WxErrorException e) {
-//                e.printStackTrace();
-//                response.sendRedirect(wxMpService.oauth2buildAuthorizationUrl(resultUrl, WxConsts.OAUTH2_SCOPE_USER_INFO, null));
-//            }
-//        }
-//
-//        AppUser user = new AppUser();
-//        user.setUnionId(wxMpUser.getUnionId());
-//        AppUser appUser = appUserService.selectOne(user);
-//        LOGGER.error("site#############################open_id:"+wxMpUser.getOpenId());
-//        if (appUser == null) {
-//            appUser = new AppUser();
-//            appUser.setLoginName(filterEmoji(wxMpUser.getNickname()));
-//            appUser.setPassword("iLoveMoney");
-//            appUser.setName(filterEmoji(wxMpUser.getNickname()));
-//            appUser.setDelFlag(Const.DEL_FLAG_NORMAL);
-//            appUser.setLastLogin(new Date());
-//            appUser.setHeadImgUrl(wxMpUser.getHeadImgUrl());
-//            appUser.setUnionId(wxMpUser.getUnionId());
-//            appUser.setType(Const.APPUSER_TYPE_NORMAL);
-//            appUser.setScore(0);
-//            appUserService.insert(appUser);
-//        } else {
-//            appUser.setLastLogin(new Date());
-//            appUserService.updateSelectiveById(appUser);
-//        }
-//        Subject subject = SecurityUtils.getSubject();
-//        Session session = subject.getSession();
-//        session.setAttribute(Const.SITE_SESSION_USER, appUser);
-//        session.setAttribute("wxMpUser", wxMpUser);
-//        UsernamePasswordToken token = new UsernamePasswordToken(appUser.getLoginName(), appUser.getPassword());
-//        JSONObject jsonObject = new JSONObject();
-//        try {
-//            subject.login(token);
-//        } catch (AuthenticationException e) {
-//            jsonObject.put("suc", false);
-//        }
-//        jsonObject.put("suc", true);
-//        session.setAttribute(Const.SITE_SESSION_USER, appUser);
-//        return "redirect:/";
-//    }
 
 
     /**
