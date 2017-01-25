@@ -55,7 +55,7 @@
                                 编号
                             </div>
                             <div class="col-sm-6 " style="color: red;margin-top: 15px">
-                                JAX-100000233
+                                JS-A20170125001A
                             </div>
                         </div>
                         <div class="row">
@@ -190,9 +190,9 @@
                                             <td>制作时间：${(works.makeTime?string("yyyy-MM-dd"))!}</td>
                                         </tr>
                                     </table>
-
-                                    <div class="headline"><h2>作品等级</h2></div>
-                                    <table class="table table-bordered">
+                                    <#if (worksLevel)??>
+                                        <div class="headline works_level"><h2>作品等级</h2></div>
+                                        <table class="table table-bordered works_level">
                                         <tr>
                                             <td>质地一：${(worksLevel.zhidi)!}</td>
                                             <td>质地二：${(worksLevel.zhidi2)!}</td>
@@ -221,6 +221,7 @@
                                         </tbody>
                                     </table>
                                     <!--作品等级-->
+                                    </#if>
                                     <div class="headline"><h2>评估报告</h2></div>
                                     <pre>${(report.des)!}</pre>
                                     <div>
@@ -228,6 +229,15 @@
                                             <img style="width: 100%;"
                                                  src="http://windyeel.img-cn-shanghai.aliyuncs.com/${reportImage.url}?x-oss-process=image/resize,m_fill,h_500,w_500"
                                                  alt="评估报告">
+                                        </#if>
+                                    </div>
+                                    <div class="headline"><h2>价值认证报告</h2></div>
+                                    <pre>${(report.certify)!}</pre>
+                                    <div>
+                                        <#if certifyImage?exists && (certifyImage?size>0)>
+                                            <img style="width: 100%;"
+                                                 src="http://windyeel.img-cn-shanghai.aliyuncs.com/${certifyImage.url}?x-oss-process=image/resize,m_fill,h_500,w_500"
+                                                 alt="价值认证报告">
                                         </#if>
                                     </div>
                                     <#if collect?exists>
@@ -511,7 +521,7 @@
     hasMore = true;
 
     jQuery(document).ready(function () {
-
+        console.log();
         MasterSliderShowcase2.initMasterSliderShowcase2();
         initUploaders_interpretation("btn-interpretation", "windyeel", '${staticPath}/');
         //获取要操作的元素

@@ -336,7 +336,7 @@
     <div id="header-right">
         <div id="header-right-tab">
             <span class="header-right-appUserName">${appUser.loginName}</span>
-            <span class="header-right-workId">${works.no}</span>
+            <span class="header-right-workId">JS-A20170125001A</span>
             <%--<span class="header-right-workName">[${works.name}]</span>--%>
             <textarea
                     <c:if test="${fn:length(works.name) > 15}">rows="2"</c:if>
@@ -406,7 +406,7 @@
                     </div>
                     <div class="look-people-one-care">
                         <p class="look-people-one-care-text-not">
-                            +关注
+                            +关 &nbsp;注
                         </p>
                     </div>
                 </div>
@@ -467,7 +467,8 @@
         </div>
     </div>
 
-    <div class="info-work">
+    <c:if test="${worksLevel!=null}">
+        <div class="info-work">
         <center>作品等级</center>
         <div class="each-row-two">
             <span>质 &nbsp;地&nbsp; 一 </span> ${worksLevel.zhidi}
@@ -512,6 +513,7 @@
             <span>含血方式 </span> ${worksLevel.hanxuefangshi}
         </div>
     </div>
+    </c:if>
 </div>
 <c:if test="${!empty report}">
     <div class="div-outer">
@@ -529,6 +531,23 @@
             </div>
             <c:if test="${(!empty certImage.url)&&(fn:length(certImage.url)>0)}">
                 <img src="http://windyeel.img-cn-shanghai.aliyuncs.com/${certImage.url}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                     alt="" class="certImage">
+            </c:if>
+        </div>
+        <div class="info-work">
+            <center>价值认证报告</center>
+            <div>
+                <c:choose>
+                    <c:when test="${report.certify != ''}">
+                        ${report.certify}
+                    </c:when>
+                    <c:otherwise>
+                        <span>暂无评论报告...</span>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+            <c:if test="${valueImages.size()>0 &&(!empty valueImages.url)&&(fn:length(valueImages.url)>0)}">
+                <img src="http://windyeel.img-cn-shanghai.aliyuncs.com/${valueImages.url}?x-oss-process=image/resize,m_fill,h_100,w_100"
                      alt="" class="certImage">
             </c:if>
         </div>
@@ -642,6 +661,7 @@
 
         $('.header-right-btn').on('click', function () {
             var worksid = ${works.id};
+            var thisone = $(this);
             $.ajax({
                 type: "POST",
                 url: "${ctx}/mobile/collectWorks",
@@ -651,6 +671,7 @@
                 success: function (data) {
                     $('#notCareDialog').find('.weui-dialog__title').html(data);
                     $('#notCareDialog').fadeIn(200);
+                    thisone.html("&nbsp;&nbsp;已收藏&nbsp;");
                 }
             })
         })

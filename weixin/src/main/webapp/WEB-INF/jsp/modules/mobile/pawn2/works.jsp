@@ -176,6 +176,9 @@
         left: 5px;
         font-size: 12px;
     }
+    .works-floor-name-all{
+        bottom: 15px;
+    }
     .all span{
         font-size: 12px;
     }
