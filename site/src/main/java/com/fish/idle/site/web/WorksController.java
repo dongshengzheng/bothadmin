@@ -314,12 +314,12 @@ public class WorksController extends BaseController {
         }
         status = getCurrentStatus(status);//统一前后台状态
         worksService.updateSelectiveById(new Works(report.getWorksId(), status));
-        logger.error("site##########################提交作品");
         // 保存评估报告
         imagesService.deleteByTargetId(report.getId());
         imagesService.insertImage(desImage, report.getId(), Const.IMAGES_REPORT_DES);
         // 保存作品认证图片
         imagesService.insertImage(certifyImage, report.getId(), Const.IMAGES_REPORT_CERTIFICATE);
+        Works works = worksService.selectById(report.getWorksId());
         if(status.equals(Const.WORKS_STATUS_COMMIT)){//提交审核，推送消息至管理员
             AppUser currentUser =getCurrentUser();
             List<AppUser> adminUsers = getAdminAppUsers();//管理员列表
@@ -329,10 +329,10 @@ public class WorksController extends BaseController {
                     sendTemplateMsg(targetId,
                             "Jf8lvKgPo0WhdVf61Ny0JW3xybH8Y0BU4_fbfO3eHF4",
                             configStorage.getOauth2redirectUri() + "/mobile/appUserInfo?appUserId=" + currentUser.getId(),
-                            "测试消息",
-                            "申请人：小王\r\n用户名称 : " + currentUser.getLoginName(),
+                            "您好，您收到一条新的通知",
+                            currentUser.getName() +"\r\n用户名称 : " + currentUser.getLoginName(),
                             DateUtil.formatDate(new Date(), "yyyy-MM-dd HH:mm:ss"),
-                            "申请信息：登记作品「精心打造的鸡血石印章」\r\n请尽快审核！");
+                            "登记作品「"+ works.getName() +"」\r\n请尽快审核！");
                 }
             }
         }
@@ -386,9 +386,9 @@ public class WorksController extends BaseController {
             jsonObject.put("msg", "保存评估报告出错");
             return jsonObject;
         }
-        logger.error("site##########################提交作品");
         status = getCurrentStatus(status);//统一前后台状态
         worksService.updateSelectiveById(new Works(consumer.getWorksId(), status));
+        Works works = worksService.selectById(consumer.getWorksId());
         if(status.equals(Const.WORKS_STATUS_COMMIT)){//提交审核，推送消息至管理员
             AppUser currentUser =getCurrentUser();
             List<AppUser> adminUsers = getAdminAppUsers();//管理员列表
@@ -398,10 +398,10 @@ public class WorksController extends BaseController {
                     sendTemplateMsg(targetId,
                             "Jf8lvKgPo0WhdVf61Ny0JW3xybH8Y0BU4_fbfO3eHF4",
                             configStorage.getOauth2redirectUri() + "/mobile/appUserInfo?appUserId=" + currentUser.getId(),
-                            "测试消息",
-                            "申请人：小王\r\n用户名称 : " + currentUser.getLoginName(),
+                            "您好，您收到一条新的通知",
+                            currentUser.getName() +"\r\n用户名称 : " + currentUser.getLoginName(),
                             DateUtil.formatDate(new Date(), "yyyy-MM-dd HH:mm:ss"),
-                            "申请信息：登记作品「精心打造的鸡血石印章」\r\n请尽快审核！");
+                            "登记作品「"+ works.getName() +"」\r\n请尽快审核！");
                 }
             }
         }

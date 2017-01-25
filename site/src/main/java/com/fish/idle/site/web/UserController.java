@@ -446,12 +446,11 @@ public class UserController extends BaseController {
             fh.setDelFlag(Const.DEL_FLAG_NORMAL);
             result = followHistoryService.updateById(fh);
         }
-        logger.error("site##########################用户关注");
         if (result) {
             sendTemplateMsg(targetId,
                     "PxVoRl3uWH5ph927H_Qg9DM0B3HKNMYF_IBo48WrJ9c",
                     configStorage.getOauth2redirectUri() + "/mobile/appUserInfo?appUserId=" + currentUser.getId(),
-                    "测试消息",
+                    "您好，您收到一条新的通知！",
                     "您被其他用户关注了\r\n用户名称 : " + currentUser.getLoginName(),
                     DateUtil.formatDate(new Date(), "yyyy-MM-dd HH:mm:ss"),
                     "点击查看用户详情");

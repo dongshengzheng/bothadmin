@@ -95,7 +95,7 @@ public class WorksController extends BaseController {
             sendTemplateMsg(targetId,
                     "pEDBw5vP3qqKDInJuYP3eaV38eIH3hXrLmAl8nk2RIw",
                     configStorage.getOauth2redirectUri() + "/mobile/appUserInfo?appUserId=" + currentUser.getId(),
-                    "测试消息",
+                    "您好，您收到一条新的通知",
                     "作品「" + works.getName() + "」登记申请 ",
                     "审核成功",
                     "原因：符合规范");

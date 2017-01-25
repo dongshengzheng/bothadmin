@@ -79,7 +79,6 @@ public class LoginController extends BaseController {
     @RequestMapping(value = "/wx_login", method = RequestMethod.GET)
     public String wxLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String code = request.getParameter("code");
-        LOGGER.error("site#############################code:"+code);
         String resultUrl = request.getRequestURL().toString();
         String param = request.getQueryString();
         if (param != null) {
@@ -102,7 +101,6 @@ public class LoginController extends BaseController {
         AppUser user = new AppUser();
         user.setUnionId(wxMpUser.getUnionId());
         AppUser appUser = appUserService.selectOne(user);
-        LOGGER.error("site#############################open_id:"+wxMpUser.getOpenId());
         if (appUser == null) {
             appUser = new AppUser();
             appUser.setLoginName(filterEmoji(wxMpUser.getNickname()));

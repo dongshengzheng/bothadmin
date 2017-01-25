@@ -384,7 +384,6 @@ public class MobileController extends BaseController {
         followHistory.setDelFlag(0);
         FollowHistory fh = followHistoryService.selectOne(new EntityWrapper<>(followHistory));
         Boolean result;
-        LOGGER.error("weixin##########################关注用户");
         if (fh == null) {
             followHistory.setDelFlag(Const.DEL_FLAG_NORMAL);
             result = followHistoryService.insert(followHistory);
@@ -392,7 +391,7 @@ public class MobileController extends BaseController {
                 sendTemplateMsg(targetId,
                         "PxVoRl3uWH5ph927H_Qg9DM0B3HKNMYF_IBo48WrJ9c",
                         configStorage.getOauth2redirectUri() + "/mobile/appUserInfo?appUserId=" + currentUser.getId(),
-                        "测试消息",
+                        "您好，您收到一条新的通知！",
                         "您被其他用户关注了\r\n用户名称 : " + currentUser.getLoginName(),
                         DateUtil.formatDate(new Date(), "yyyy-MM-dd HH:mm:ss"),
                         "点击查看用户详情");

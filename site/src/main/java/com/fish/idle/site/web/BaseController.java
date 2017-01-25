@@ -95,7 +95,6 @@ public class BaseController {
         AppUser targetUser = appUserService.selectById(targetId);
         WxMpTemplateMessage templateMessage = new WxMpTemplateMessage();
         templateMessage.setToUser(targetUser.getOpenId());
-        logger.error("site######################fasong##openid:"+targetUser.getOpenId());
         templateMessage.setTemplateId(templateId);
         templateMessage.setUrl(url);
         templateMessage.setTopColor("#000000");
