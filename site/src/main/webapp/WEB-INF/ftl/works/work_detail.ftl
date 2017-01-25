@@ -234,10 +234,12 @@
                                     <div class="headline"><h2>价值认证报告</h2></div>
                                     <pre>${(report.certify)!}</pre>
                                     <div>
-                                        <#if (certifyImage?exists)&&(certifyImage??)&&(certifyImage?size>0)>
-                                            <img style="width: 100%;"
-                                                 src="http://windyeel.img-cn-shanghai.aliyuncs.com/${certifyImage.url}?x-oss-process=image/resize,m_fill,h_500,w_500"
-                                                 alt="价值认证报告">
+                                        <#if certifyImage?exists>
+                                            <#list certifyImage as image>
+                                                <img style="width: 100%;"
+                                                     src="http://windyeel.img-cn-shanghai.aliyuncs.com/${image.url}?x-oss-process=image/resize,m_fill,h_500,w_500"
+                                                     alt="价值认证报告">
+                                            </#list>
                                         </#if>
                                     </div>
                                     <#if collect?exists>

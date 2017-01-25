@@ -534,6 +534,8 @@
                      alt="" class="certImage">
             </c:if>
         </div>
+    </div>
+    <div class="div-outer">
         <div class="info-work">
             <center>价值认证报告</center>
             <div>
@@ -546,10 +548,10 @@
                     </c:otherwise>
                 </c:choose>
             </div>
-            <c:if test="${(valueImages!=null)&&(fn:length(valueImages)>0) &&(!empty valueImages.url)&&(fn:length(valueImages.url)>0)}">
-                <img src="http://windyeel.img-cn-shanghai.aliyuncs.com/${valueImages.url}?x-oss-process=image/resize,m_fill,h_100,w_100"
-                     alt="" class="certImage">
-            </c:if>
+            <c:forEach items="${valueImages}" var="image">
+                <img src="http://windyeel.img-cn-shanghai.aliyuncs.com/${image.url}?x-oss-process=image/resize,m_fill,h_100,w_100"
+                     class="explains-one-imgs-one">
+            </c:forEach>
         </div>
     </div>
 </c:if>
