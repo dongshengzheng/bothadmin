@@ -71,7 +71,7 @@
     .works-floor-name {
         text-align: left;
         position: absolute;
-        top: 3px;
+        top: -1px;
         left: 0;
         font-size: 15px;
         width: 150px;
@@ -93,7 +93,7 @@
 
     .works-floor-img {
         position: absolute;
-        bottom: 20px;
+        bottom: 18px;
         left: 0;
         font-size: 12px;
         background-image: url(${ctxStatic}/img/cut/index-icon.png);
