@@ -190,7 +190,7 @@
                                             <td>制作时间：${(works.makeTime?string("yyyy-MM-dd"))!}</td>
                                         </tr>
                                     </table>
-                                    <#if (worksLevel)??>
+                                    <#if worksLevel?exists>
                                         <div class="headline works_level"><h2>作品等级</h2></div>
                                         <table class="table table-bordered works_level">
                                         <tr>
