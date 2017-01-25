@@ -208,6 +208,7 @@
                     }
                     return false;
                 });
+
         $.validator.addMethod("checkNo",
                 function (value,element,params) {
                     var retu = value.match(params);

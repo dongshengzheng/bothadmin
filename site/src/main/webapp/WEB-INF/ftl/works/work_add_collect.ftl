@@ -177,6 +177,15 @@
             }
         }
 
+        $.validator.addMethod("checkPhone",
+                function (value,element,params) {
+                    var retu = value.match(params);
+                    if(retu){
+                        return true;
+                    }
+                    return false;
+                });
+
         $('.date-picker').datepicker({autoclose: true, todayHighlight: true, format: 'yyyy-mm-dd'});
         initUploaders("upload_works_info", "windyeel", '${staticPath}/');
         var $form = $("#works_info");
@@ -209,13 +218,7 @@
                 $(form).ajaxSubmit({
                     success: function (data) {
                         if (data.suc) {
-                            if ($("#status").val() == 1) {
-                                // 跳转到下一步
-                                window.location.href = "/user/works";
-                            } else {
-                                // 跳转到个人中心-> 我的作品->草稿里面
-                                window.location.href = "/user/works/"+$("#status").val();
-                            }
+                            window.location.href = "/user/works/"+$("#status").val();
                         } else {
                             alert(data.msg);
                         }
