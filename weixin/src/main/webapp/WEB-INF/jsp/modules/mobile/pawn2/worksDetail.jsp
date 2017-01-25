@@ -546,7 +546,7 @@
                     </c:otherwise>
                 </c:choose>
             </div>
-            <c:if test="${valueImages.size()>0 &&(!empty valueImages.url)&&(fn:length(valueImages.url)>0)}">
+            <c:if test="${fn:length(valueImages)>0 &&(!empty valueImages.url)&&(fn:length(valueImages.url)>0)}">
                 <img src="http://windyeel.img-cn-shanghai.aliyuncs.com/${valueImages.url}?x-oss-process=image/resize,m_fill,h_100,w_100"
                      alt="" class="certImage">
             </c:if>
