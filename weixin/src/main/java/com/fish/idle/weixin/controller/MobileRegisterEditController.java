@@ -263,7 +263,10 @@ public class MobileRegisterEditController extends BaseController {
             return "redirect:" + configStorage.getOauth2redirectUri() + "/mobile/my/myWorks?showwhich=draft";
         } else if ("confirm".equals(draftYN)) {
             insertAll(session, Const.WORKS_STATUS_COMMIT);
+            String number = worksService.getLastNumber();//获取作品编号
             Works works = worksService.selectById(report.getWorksId());
+            works.setNumber(number);
+            worksService.insertOrUpdate(works);//修改作品信息
             AppUser currentUser =getCurrentUser();
             List<AppUser> adminUsers = getAdminAppUsers();//管理员列表
             if(adminUsers != null){
@@ -329,9 +332,12 @@ public class MobileRegisterEditController extends BaseController {
         insertAll(session, Const.WORKS_STATUS_COMMIT);
         AppUser currentUser =getCurrentUser();
         List<AppUser> adminUsers = getAdminAppUsers();//管理员列表
+        String number = worksService.getLastNumber();//获取作品编号
+        Works works = worksService.selectById(consumer.getWorksId());
+        works.setNumber(number);
+        worksService.insertOrUpdate(works);//修改作品信息
         if(adminUsers != null){
             for (AppUser appUser:adminUsers){
-                Works works = worksService.selectById(consumer.getWorksId());
                 int targetId = appUser.getId();
                 sendTemplateMsg(targetId,
                         "Jf8lvKgPo0WhdVf61Ny0JW3xybH8Y0BU4_fbfO3eHF4",

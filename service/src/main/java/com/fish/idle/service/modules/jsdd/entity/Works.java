@@ -143,6 +143,7 @@ public class Works extends BaseEntity {
     @TableField(value = "working_status")
     private Integer workingStatus;
 
+    private String number;
 
     /**
      * 关注数量，冗余字段
@@ -397,6 +398,14 @@ public class Works extends BaseEntity {
 
     public void setWorksCount(Integer worksCount) {
         this.worksCount = worksCount;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getNumber() {
+        return number;
     }
 
     public Works(Integer id, String status) {

@@ -183,7 +183,6 @@ public class MobileController extends BaseController {
                 slideList.get(i).setBreed(dictService.getLabelByValue(slideList.get(i).getBreed(), "dd_pinzhong"));
             }
         }
-
         map.put("page", page);
         map.put("slideList", slideList);
         return "modules/mobile/pawn2/works";

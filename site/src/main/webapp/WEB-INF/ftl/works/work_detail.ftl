@@ -55,7 +55,7 @@
                                 编号
                             </div>
                             <div class="col-sm-6 " style="color: red;margin-top: 15px">
-                                JS-A20170125001A
+                                ${(works.number)!}
                             </div>
                         </div>
                         <div class="row">

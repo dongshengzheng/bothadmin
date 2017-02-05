@@ -336,7 +336,7 @@
     <div id="header-right">
         <div id="header-right-tab">
             <span class="header-right-appUserName">${appUser.loginName}</span>
-            <span class="header-right-workId">JS-A20170125001A</span>
+            <span class="header-right-workId">${works.number}</span>
             <%--<span class="header-right-workName">[${works.name}]</span>--%>
             <textarea
                     <c:if test="${fn:length(works.name) > 15}">rows="2"</c:if>

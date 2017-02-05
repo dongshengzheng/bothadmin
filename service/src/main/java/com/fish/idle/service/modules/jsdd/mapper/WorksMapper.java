@@ -19,4 +19,7 @@ public interface WorksMapper extends AutoMapper<Works> {
     //获取首页展示图片
     List<Works> getSlideImage();
 
+    //获取最后的作品编号
+    String getLastNumber();
+
 }

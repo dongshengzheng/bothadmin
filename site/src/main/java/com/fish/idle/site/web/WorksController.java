@@ -321,6 +321,9 @@ public class WorksController extends BaseController {
         imagesService.insertImage(certifyImage, report.getId(), Const.IMAGES_REPORT_CERTIFICATE);
         Works works = worksService.selectById(report.getWorksId());
         if(status.equals(Const.WORKS_STATUS_COMMIT)){//提交审核，推送消息至管理员
+            String number = worksService.getLastNumber();//获取作品编号
+            works.setNumber(number);
+            worksService.insertOrUpdate(works);//修改作品信息
             AppUser currentUser =getCurrentUser();
             List<AppUser> adminUsers = getAdminAppUsers();//管理员列表
             if(adminUsers != null){
@@ -376,7 +379,6 @@ public class WorksController extends BaseController {
     @ResponseBody
     public JSONObject saveCollect(Consumer consumer, String status) {
         JSONObject jsonObject = new JSONObject();
-
         wrapInsertEntity(consumer);
         if (StringUtils.isEmpty(consumer.getPub())) {
             consumer.setPub("0");
@@ -390,6 +392,9 @@ public class WorksController extends BaseController {
         worksService.updateSelectiveById(new Works(consumer.getWorksId(), status));
         Works works = worksService.selectById(consumer.getWorksId());
         if(status.equals(Const.WORKS_STATUS_COMMIT)){//提交审核，推送消息至管理员
+            String number = worksService.getLastNumber();//获取作品编号
+            works.setNumber(number);
+            worksService.insertOrUpdate(works);//修改作品信息
             AppUser currentUser =getCurrentUser();
             List<AppUser> adminUsers = getAdminAppUsers();//管理员列表
             if(adminUsers != null){

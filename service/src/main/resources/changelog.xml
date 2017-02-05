@@ -580,4 +580,19 @@
         </sql>
     </changeSet>
 
+    <changeSet author="WangGuoCheng" id="18817711870-37">
+        <sql>
+            ALTER TABLE `dd_works` ADD COLUMN `number` VARCHAR(50) NULL COMMENT '作品编号';
+            CREATE TABLE `dd_works_numberjsdd` (
+            `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+            `number` VARCHAR(50) NULL DEFAULT NULL COMMENT '作品编号',
+            PRIMARY KEY (`id`)
+            )
+            COMMENT='作品编号'
+            COLLATE='utf8_general_ci'
+            ENGINE=InnoDB;
+
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
