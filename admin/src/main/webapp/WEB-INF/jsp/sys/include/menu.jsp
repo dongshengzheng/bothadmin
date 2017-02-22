@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="page-sidebar-wrapper">
     <div class="page-sidebar navbar-collapse collapse">
         <ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">

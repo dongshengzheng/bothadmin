@@ -1,6 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/static/";
@@ -10,7 +8,7 @@
 <head>
     <base href="${pageContext.request.contextPath}/">
     <meta charset="utf-8"/>
-    <title></title>
+    <title>${title}</title>
 
     <meta name="description" content="404 Error Page"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>

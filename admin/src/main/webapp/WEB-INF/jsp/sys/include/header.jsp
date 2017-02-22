@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -12,7 +11,7 @@
         <!-- BEGIN LOGO -->
         <div class="page-logo">
             <a href="">
-                <img src="${ctx}/static/img/banner.png" alt="logo" class="logo-default"/>
+                <img src="${ctx}/${logoImg}" alt="logo" class="logo-default"/>
             </a>
             <div class="menu-toggler sidebar-toggler">
                 <span></span>
@@ -43,4 +42,4 @@
         </div>
     </div>
 </div>
-<div class="clearfix"> </div>
+<div class="clearfix"></div>
