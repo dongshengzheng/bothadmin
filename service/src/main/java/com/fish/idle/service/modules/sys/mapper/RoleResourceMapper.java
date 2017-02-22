@@ -1,14 +1,12 @@
 package com.fish.idle.service.modules.sys.mapper;
 
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.fish.idle.service.modules.sys.entity.RoleResource;
-import com.baomidou.mybatisplus.mapper.AutoMapper;
 
 /**
- *
  * RoleResource 表数据库控制层接口
- *
  */
-public interface RoleResourceMapper extends AutoMapper<RoleResource> {
+public interface RoleResourceMapper extends BaseMapper<RoleResource> {
 
 
 }

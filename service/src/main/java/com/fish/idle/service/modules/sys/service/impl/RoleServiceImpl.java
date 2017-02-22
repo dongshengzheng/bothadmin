@@ -1,17 +1,22 @@
 package com.fish.idle.service.modules.sys.service.impl;
 
-import com.baomidou.framework.service.impl.SuperServiceImpl;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.fish.idle.service.modules.sys.entity.*;
-import com.fish.idle.service.modules.sys.mapper.*;
+import com.fish.idle.service.modules.sys.mapper.ButtonMapper;
+import com.fish.idle.service.modules.sys.mapper.MenuMapper;
+import com.fish.idle.service.modules.sys.mapper.RoleMapper;
+import com.fish.idle.service.modules.sys.mapper.RoleResourceMapper;
 import com.fish.idle.service.modules.sys.service.RoleService;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Sun.Han
@@ -22,7 +27,7 @@ import java.util.*;
  */
 @Transactional(readOnly = true)
 @Service
-public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implements RoleService {
+public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements RoleService {
 
     @Autowired
     private RoleMapper roleMapper;
@@ -111,8 +116,10 @@ public class RoleServiceImpl extends SuperServiceImpl<RoleMapper, Role> implemen
             Map<String, Object> map = new HashMap<>();
             map.put("role_id", roleId);
             roleResourceMapper.deleteByMap(map);
-            roleResourceMapper.insertBatch(list);
+            // roleResourceMapper.insertBatch(list);
+            for (RoleResource roleResource : list) {
+                roleResourceMapper.insert(roleResource);
+            }
         }
     }
-
 }

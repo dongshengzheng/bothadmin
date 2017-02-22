@@ -15,14 +15,7 @@
 
 package com.fish.idle.admin.util;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -179,8 +172,8 @@ public class Tools {
     /**
      * 写txt里的单行内容
      *
-     * @param filePath 文件路径
-     * @param content  写入的内容
+     * @param fileP   文件路径
+     * @param content 写入的内容
      */
     public static void writeFile(String fileP, String content) {
         String filePath = String.valueOf(Thread.currentThread().getContextClassLoader().getResource("")) + "../../";    //项目路径
@@ -222,7 +215,7 @@ public class Tools {
     /**
      * 验证手机号码
      *
-     * @param mobiles
+     * @param mobileNumber
      * @return
      */
     public static boolean checkMobileNumber(String mobileNumber) {
@@ -252,7 +245,7 @@ public class Tools {
     /**
      * 读取txt里的单行内容
      *
-     * @param filePath 文件路径
+     * @param fileP 文件路径
      */
     public static String readTxtFile(String fileP) {
         try {

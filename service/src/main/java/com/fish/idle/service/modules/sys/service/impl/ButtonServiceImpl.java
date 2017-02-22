@@ -1,6 +1,6 @@
 package com.fish.idle.service.modules.sys.service.impl;
 
-import com.baomidou.framework.service.impl.SuperServiceImpl;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.fish.idle.service.modules.sys.entity.Button;
 import com.fish.idle.service.modules.sys.mapper.ButtonMapper;
 import com.fish.idle.service.modules.sys.service.ButtonService;
@@ -16,5 +16,5 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Transactional(readOnly = true)
 @Service
-public class ButtonServiceImpl extends SuperServiceImpl<ButtonMapper, Button> implements ButtonService {
+public class ButtonServiceImpl extends ServiceImpl<ButtonMapper, Button> implements ButtonService {
 }

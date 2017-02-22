@@ -1,15 +1,13 @@
 package com.fish.idle.service.modules.sys.service.impl;
 
-import com.fish.idle.service.util.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.baomidou.framework.service.impl.SuperServiceImpl;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.fish.idle.service.modules.sys.entity.Dict;
 import com.fish.idle.service.modules.sys.mapper.DictMapper;
 import com.fish.idle.service.modules.sys.service.IDictService;
+import com.fish.idle.service.util.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -17,7 +15,7 @@ import java.util.List;
  * Dict 表数据服务层接口实现类
  */
 @Service
-public class DictServiceImpl extends SuperServiceImpl<DictMapper, Dict> implements IDictService {
+public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements IDictService {
 
     @Autowired
     DictMapper dictMapper;
@@ -46,7 +44,7 @@ public class DictServiceImpl extends SuperServiceImpl<DictMapper, Dict> implemen
     }
 
     //根据breed和属性value获取label
-        public String getLabelByBreedAndValue(String breed, String value, String type) {
+    public String getLabelByBreedAndValue(String breed, String value, String type) {
         EntityWrapper entityWrapper = new EntityWrapper();
         entityWrapper.addFilter("value={0} and type={1}", value, type);
         if (StringUtils.isNotEmpty(breed)) {

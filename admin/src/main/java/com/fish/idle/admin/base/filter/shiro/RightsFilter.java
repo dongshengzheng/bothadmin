@@ -1,10 +1,5 @@
 package com.fish.idle.admin.base.filter.shiro;
 
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.fish.idle.service.util.Const;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -12,6 +7,10 @@ import org.apache.shiro.util.StringUtils;
 import org.apache.shiro.web.filter.AccessControlFilter;
 import org.apache.shiro.web.util.WebUtils;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 
 /**
@@ -24,6 +23,7 @@ import org.apache.shiro.web.util.WebUtils;
 public class RightsFilter extends AccessControlFilter {
 
     private String unauthorizedUrl = "/user/unauthorized";
+
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
         if (isLoginRequest(request, response)) {

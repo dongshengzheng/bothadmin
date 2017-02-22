@@ -1,7 +1,8 @@
 package com.fish.idle.service.modules.sys.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.baomidou.framework.service.impl.SuperServiceImpl;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.fish.idle.service.modules.sys.entity.Role;
 import com.fish.idle.service.modules.sys.entity.User;
 import com.fish.idle.service.modules.sys.entity.UserRole;
@@ -10,7 +11,7 @@ import com.fish.idle.service.modules.sys.mapper.UserMapper;
 import com.fish.idle.service.modules.sys.mapper.UserRoleMapper;
 import com.fish.idle.service.modules.sys.service.UserService;
 import com.fish.idle.service.util.Const;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.subject.Subject;
@@ -32,7 +33,7 @@ import java.util.Map;
  */
 @Transactional(readOnly = true)
 @Service
-public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implements UserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
     @Autowired
     private UserMapper userMapper;
     @Autowired
@@ -74,7 +75,10 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
             Map<String, Object> map = new HashMap<>();
             map.put("user_id", userId);
             userRoleMapper.deleteByMap(map);
-            userRoleMapper.insertBatch(list);
+            // userRoleMapper.insertBatch(list);
+            for (UserRole userRole : list) {
+                userRoleMapper.insert(userRole);
+            }
         }
     }
 
@@ -82,7 +86,7 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
         User user = new User();
         user.setLoginName(loginName);
         user.setDelFlag(1);
-        int count = userMapper.selectCount(user);
+        int count = userMapper.selectCount(new EntityWrapper<>(user));
         return count > 0;
     }
 
@@ -98,7 +102,7 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
             User newer = new User();
             newer.setPassword(new SimpleHash("SHA-1", loginName, password).toString());
             newer.setId(sessionUser.getId());
-            userMapper.updateSelectiveById(newer);
+            userMapper.updateById(newer);
             result.put("status", 1);
         } else {
             result.put("status", 0);

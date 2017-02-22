@@ -19,13 +19,13 @@ public class BeanFactoryUtils implements BeanFactoryAware {
 
     private static BeanFactory beanFactory;
 
+    public static BeanFactory getFactory() {
+        return beanFactory;
+    }
+
     @SuppressWarnings("static-access")
     @Override
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
         this.beanFactory = beanFactory;
-    }
-
-    public static BeanFactory getFactory() {
-        return beanFactory;
     }
 }

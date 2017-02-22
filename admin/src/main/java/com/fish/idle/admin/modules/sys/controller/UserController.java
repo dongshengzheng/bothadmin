@@ -8,7 +8,7 @@ import com.fish.idle.service.modules.sys.entity.User;
 import com.fish.idle.service.modules.sys.service.RoleService;
 import com.fish.idle.service.modules.sys.service.UserService;
 import com.fish.idle.service.util.Const;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.subject.Subject;
@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
@@ -138,7 +137,7 @@ public class UserController extends BaseController {
         } else {
             user.setPassword(null);
         }
-        userService.updateSelectiveById(user);
+        userService.updateById(user);
         Subject subject = SecurityUtils.getSubject();
         if (subject.hasRole(Const.ADMIN_ROLE)) userService.editRole(user);
         result.put("status", 1);

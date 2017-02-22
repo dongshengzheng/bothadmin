@@ -3,9 +3,9 @@
 **/logs
 *.log
 .idea
-*.iml
-**/rebel.xml
-**/gen.xml
+**.iml
 **/.DS_Store
-weixin/src/main/resources/wx.properties
-commons/
+# **/rebel.xml
+# **/gen.xml
+# weixin/src/main/resources/wx.properties
+# commons/

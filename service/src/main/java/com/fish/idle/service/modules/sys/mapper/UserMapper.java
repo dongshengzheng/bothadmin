@@ -1,11 +1,11 @@
 package com.fish.idle.service.modules.sys.mapper;
 
-import com.baomidou.mybatisplus.mapper.AutoMapper;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.fish.idle.service.modules.sys.entity.User;
 
 import java.util.List;
 
-public interface UserMapper extends AutoMapper<User> {
+public interface UserMapper extends BaseMapper<User> {
 
     List<User> searchUser(User user);
 

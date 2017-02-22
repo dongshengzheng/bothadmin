@@ -105,7 +105,7 @@ public class RightController extends BaseController {
     @ResponseBody
     public JSONObject editMenu(Menu menu) {
         JSONObject jsonObject = new JSONObject();
-        menuService.updateSelectiveById(menu);
+        menuService.updateById(menu);
         jsonObject.put("status", 1);
         return jsonObject;
     }
@@ -171,7 +171,7 @@ public class RightController extends BaseController {
     @ResponseBody
     public JSONObject editBtn(Button button) {
         JSONObject jsonObject = new JSONObject();
-        buttonService.updateSelectiveById(button);
+        buttonService.updateById(button);
         jsonObject.put("status", 1);
         return jsonObject;
     }

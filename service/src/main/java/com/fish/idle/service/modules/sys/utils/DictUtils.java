@@ -11,7 +11,7 @@ import com.fish.idle.service.util.CacheUtils;
 import com.fish.idle.service.util.SpringContextHolder;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -24,9 +24,8 @@ import java.util.Map;
  */
 public class DictUtils {
 
-    private static DictMapper dictMapper = SpringContextHolder.getBean(DictMapper.class);
-
     public static final String CACHE_DICT_MAP = "dictMap";
+    private static DictMapper dictMapper = SpringContextHolder.getBean(DictMapper.class);
 
     public static String getDictLabel(String value, String type, String defaultValue) {
         if (!StringUtils.isEmpty(value) && !StringUtils.isEmpty(type)) {

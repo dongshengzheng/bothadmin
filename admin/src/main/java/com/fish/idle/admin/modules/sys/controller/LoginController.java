@@ -1,6 +1,7 @@
 package com.fish.idle.admin.modules.sys.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.fish.idle.admin.controller.BaseController;
 import com.fish.idle.service.modules.sys.entity.Button;
 import com.fish.idle.service.modules.sys.entity.Menu;
@@ -50,7 +51,7 @@ public class LoginController extends BaseController {
 
     @RequestMapping(value = "path")
     @ResponseBody
-    public String path(){
+    public String path() {
         return sitePath;
     }
 
@@ -81,7 +82,7 @@ public class LoginController extends BaseController {
         if (null != keyDatas && keyDatas.length == 3) {
             // shiro管理的session
             Subject currentUser = SecurityUtils.getSubject();
-              Session session = currentUser.getSession();
+            Session session = currentUser.getSession();
             String sessionCode = (String) session.getAttribute(Const.SESSION_SECURITY_CODE); // 获取session中的验证码
             // TODO: 29/11/2016 此处明显有问题，后续进行逻辑修复：登录超过三次才显示验证码
             String code = keyDatas[2];
@@ -98,7 +99,7 @@ public class LoginController extends BaseController {
                     User user = new User();
                     user.setLoginName(loginName);
                     user.setPassword(passwd);
-                    user = userService.selectOne(user);
+                    user = userService.selectOne(new EntityWrapper<>(user));
                     // 用于验证用户名和密码，改方法名需要改良
                     if (user != null) {
                         User u = new User();
@@ -106,7 +107,7 @@ public class LoginController extends BaseController {
                         u.setLastLogin(new Date());
                         user.setId(user.getId());
                         // TODO: 29/11/2016 研究update机制
-                        userService.updateSelectiveById(u);
+                        userService.updateById(u);
                         session.setAttribute(Const.SESSION_USER, user);
                         session.removeAttribute(Const.SESSION_SECURITY_CODE);
                         // shiro加入身份验证

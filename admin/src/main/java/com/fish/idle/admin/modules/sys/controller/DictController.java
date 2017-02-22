@@ -74,7 +74,7 @@ public class DictController extends BaseController {
     @ResponseBody
     public JSONObject edit(Dict dict) {
         JSONObject jsonObject = new JSONObject();
-        dictService.updateSelectiveById(dict);
+        dictService.updateById(dict);
         jsonObject.put("status", 1);
         return jsonObject;
     }
