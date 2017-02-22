@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -17,7 +16,7 @@
 
 <head>
     <meta charset="utf-8"/>
-    <title>每石文化后台管理系统</title>
+    <title>${title}</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <meta content="#1 selling multi-purpose bootstrap admin theme sold in themeforest marketplace packed with angularjs, material design, rtl support with over thausands of templates and ui elements and plugins to power any type of web applications including saas and admin dashboards. Preview page of Theme #4 for loading content via ajax"
@@ -34,11 +33,11 @@
     <link href="${global}/plugins/bootstrap-dialog/bootstrap-dialog.min.css" rel="stylesheet"
           type="text/css"/>
     <%--<link href="${global}/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />--%>
-    <link href="${global}/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="${global}/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css"/>
 
     <link href="${global}/plugins/icheck/skins/flat/blue.css" rel="stylesheet" type="text/css">
     <link href="${global}/plugins/icheck/skins/minimal/blue.css" rel="stylesheet" type="text/css">
-    <link href="${global}/plugins/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet"type="text/css">
+    <link href="${global}/plugins/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
     <link href="${global}/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css">
     <link href="${global}/plugins/Editor-1.5.4/css/editor.dataTables.min.css" rel="stylesheet" type="text/css">
     <link href="${global}/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css">
@@ -56,28 +55,27 @@
 
     <!-- END THEME LAYOUT STYLES -->
     <link type="image/png" href="${ctx}/static/img/great_vision.png" rel="shortcut icon">
-    <link rel="shortcut icon" href="${ctx}/favicon.ico" />
+    <link rel="shortcut icon" href="${ctx}/${favicon}"/>
 </head>
 <body onhashchange="hashChange()" class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
 
-<jsp:include page="include/header.jsp"></jsp:include>
+<jsp:include page="include/header.jsp"/>
 <div class="clearfix"></div>
 <div class="page-container">
-    <jsp:include page="include/menu.jsp"></jsp:include>
+    <jsp:include page="include/menu.jsp"/>
     <!-- END SIDEBAR -->
     <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
         <div class="page-content">
-            <div class="page-content-body"  id="navTab">
+            <div class="page-content-body" id="navTab">
             </div>
         </div>
     </div>
     <!-- END QUICK SIDEBAR -->
 </div>
 <div class="page-footer">
-    <div class="page-footer-inner"> 2016 &copy;
-        <a href="http://www.mschuangyi.com/" style="color:#337ab7"
-           title="每石文化" target="_blank">每石文化</a>版权保留
+    <div class="page-footer-inner"> ${year} &copy;
+        <a href="${webLink}" style="color:#337ab7" title="${copyrightName}" target="_parent">${copyrightName}</a> 版权保留
     </div>
     <div class="scroll-to-top">
         <i class="icon-arrow-up"></i>
@@ -125,7 +123,7 @@
 </body>
 <script>
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         intPage();
     });
 
@@ -136,13 +134,13 @@
         else
             url = "user";
 
-        if($("a[href='"+url+"']").length > 0){
-            $("a[href='"+url+"']").click();
-        }else{
+        if ($("a[href='" + url + "']").length > 0) {
+            $("a[href='" + url + "']").click();
+        } else {
             Layout.loadAjaxContent(url);
         }
     }
-    function hashChange(){
+    function hashChange() {
         intPage();
     }
 </script>

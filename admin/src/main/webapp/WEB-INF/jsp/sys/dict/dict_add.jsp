@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <form class="form-horizontal" action="dict/add" method="post"
       id="defForm" callfn="refreshTable">
     <div class="modal-header">

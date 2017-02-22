@@ -2,5 +2,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<c:set var="ctx" value="${pageContext.servletContext.contextPath}"/>
-<c:set var="global" value="http://windyeel.oss-cn-shanghai.aliyuncs.com/global"/>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+<%@ taglib prefix="xianyu" uri="http://www.xianyu.com.cn/jsp/jstl/common" %>
+<c:set var="title" value="标准化后台管理界面"/>
+<c:set var="year" value="2017"/>
+<c:set var="copyrightName" value="标准化后台"/>
+<c:set var="webLink" value="javascript:void(0)"/>
+<c:set var="favicon" value="favicon.ico"/>
+<c:set var="logoImg" value="static/img/banner.png"/>

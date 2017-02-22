@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
-<%@ taglib prefix="xianyu" uri="http://www.xianyu.com.cn/jsp/jstl/common" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
-<xianyu:navigater path="dict"></xianyu:navigater>
+<xianyu:navigater path="dict"/>
 <div class="row">
     <div class="col-md-12">
         <div class="portlet light bordered">
@@ -15,7 +13,8 @@
                         <div class="col-md-6">
                             <div class="btn-group">
                                 <shiro:hasPermission name="dict/add">
-                                    <button data-url="dict/add" data-model="dialog" class="btn btn-outline btn-circle btn-sm green"> 新增
+                                    <button data-url="dict/add" data-model="dialog"
+                                            class="btn btn-outline btn-circle btn-sm green"> 新增
                                         <i class="fa fa-plus"></i>
                                     </button>
                                 </shiro:hasPermission>
@@ -37,7 +36,7 @@
                     <thead>
                     <tr>
                         <th width="10px">
-                            <input type='checkbox' id ="defaultCheck"/>
+                            <input type='checkbox' id="defaultCheck"/>
                         </th>
                         <th>数据值</th>
                         <th>类型</th>
@@ -87,16 +86,16 @@
                 "targets": 6,
                 "render": function (data, type, row) {
                     return ""
-                            <shiro:hasPermission name="dict/editBtn">
-                            + '<a href="dict/edit?id=' + row.id + '" class="btn btn-outline btn-circle btn-sm green" data-model="dialog"><i class="fa fa-edit"></i>编辑</a>'
-                            </shiro:hasPermission>
-                            <shiro:hasPermission name="dict/deleteBtn">
-                            + '<a href="dict/delete?id=' + row.id + '" data-msg="确定删除吗？"  data-model="ajaxToDo" data-callback="refreshTable" class="btn btn-outline btn-circle btn-sm green"><i class="fa fa-times"></i>删除</a>'
-                            </shiro:hasPermission>
-                            <%--<shiro:hasPermission name="dictionaries/editRight">--%>
-                            <%--+ '<a href="dictionaries/editRight?id=' + row.id + '" class="btn btn-outline btn-circle btn-sm green" data-model="dialog"><i class="fa fa-user"></i>分配权限</a>'--%>
-                            <%--</shiro:hasPermission>--%>
-                            ;
+                        <shiro:hasPermission name="dict/editBtn">
+                        + '<a href="dict/edit?id=' + row.id + '" class="btn btn-outline btn-circle btn-sm green" data-model="dialog"><i class="fa fa-edit"></i>编辑</a>'
+                        </shiro:hasPermission>
+                        <shiro:hasPermission name="dict/deleteBtn">
+                        + '<a href="dict/delete?id=' + row.id + '" data-msg="确定删除吗？"  data-model="ajaxToDo" data-callback="refreshTable" class="btn btn-outline btn-circle btn-sm green"><i class="fa fa-times"></i>删除</a>'
+                        </shiro:hasPermission>
+                        <%--<shiro:hasPermission name="dictionaries/editRight">--%>
+                        <%--+ '<a href="dictionaries/editRight?id=' + row.id + '" class="btn btn-outline btn-circle btn-sm green" data-model="dialog"><i class="fa fa-user"></i>分配权限</a>'--%>
+                        <%--</shiro:hasPermission>--%>
+                        ;
                 }
             }],
             "drawCallback": function (settings) {

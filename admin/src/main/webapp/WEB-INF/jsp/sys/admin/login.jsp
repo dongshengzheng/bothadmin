@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://"
@@ -11,7 +9,6 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <c:set var="global" value="http://windyeel.oss-cn-shanghai.aliyuncs.com/global"/>
 <!DOCTYPE html>
-
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
@@ -19,28 +16,28 @@
 <!--<![endif]-->
 <!-- BEGIN HEAD -->
 <head>
-    <meta charset="utf-8" />
-    <title>每石文化管理后台登录</title>
+    <meta charset="utf-8"/>
+    <title>${title}</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <base href="<%=basePath%>">
-    <meta content="" name="description" />
-    <meta content="" name="author" />
-    <link href="${global}/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="${global}/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
-    <link href="${global}/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="${global}/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
-    <link href="${global}/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
-    <link href="${global}/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="${global}/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
-    <link href="${global}/css/plugins.min.css" rel="stylesheet" type="text/css" />
-    <link href="${ctx}/static/css/login.min.css" rel="stylesheet" type="text/css" />
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+    <link href="${global}/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="${global}/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
+    <link href="${global}/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="${global}/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
+    <link href="${global}/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css"/>
+    <link href="${global}/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="${global}/css/components.min.css" rel="stylesheet" id="style_components" type="text/css"/>
+    <link href="${global}/css/plugins.min.css" rel="stylesheet" type="text/css"/>
+    <link href="${ctx}/static/css/login.min.css" rel="stylesheet" type="text/css"/>
 
     <!-- Bootstrap 3.3.4 -->
     <script src="${global}/plugins/jquery.min.js" type="text/javascript"></script>
     <script src="${ctx}/static/js/jquery.cookie.js"></script>
     <script src="${ctx}/static/js/jquery.tips.js"></script>
-    <link rel="shortcut icon" href="${ctx}/favicon.ico" />
+    <link rel="shortcut icon" href="${ctx}/${favicon}"/>
 <body class=" login">
 <div class="logo">
     <a href="index.html"></a>
@@ -53,13 +50,15 @@
             <label class="control-label visible-ie8 visible-ie9">用户名</label>
             <div class="input-icon">
                 <i class="fa fa-user"></i>
-                <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="请输入用户名" name="loginName" id="loginName" /> </div>
+                <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="请输入用户名"
+                       name="loginName" id="loginName"/></div>
         </div>
         <div class="form-group">
             <label class="control-label visible-ie8 visible-ie9">密码</label>
             <div class="input-icon">
                 <i class="fa fa-lock"></i>
-                <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="请输入密码" name="password" id="password" /> </div>
+                <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="请输入密码"
+                       name="password" id="password"/></div>
         </div>
         <div class="form-group">
             <input class="form-control" placeholder="验证码" type="text"
@@ -69,7 +68,7 @@
         </div>
         <div class="form-actions">
             <button onclick="severCheck();" type="button" class="btn green">
-                <fmt:message key="sys.user.login"/> </button>
+                <fmt:message key="sys.user.login"/></button>
         </div>
     </form>
 
@@ -77,7 +76,7 @@
 </div>
 <!-- END LOGIN -->
 <!-- BEGIN COPYRIGHT -->
-<div class="copyright"> 2016 &copy; <a href="http://www.mschuangyi.com/">每石文化</a> 版权保留. </div>
+<div class="copyright"> ${year} &copy; <a href="${webLink}">${copyrightName}</a> 版权保留.</div>
 
 <script src="${global}/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="${global}/plugins/backstretch/jquery.backstretch.min.js" type="text/javascript"></script>
@@ -90,7 +89,7 @@
             var loginName = $("#loginName").val();
             var password = $("#password").val();
             var code = "ksbadmtn1f2izwqy" + loginName + ",00," + password
-                    + "ipvb5cxat0zn9eg7" + ",00," + $("#code").val();
+                + "ipvb5cxat0zn9eg7" + ",00," + $("#code").val();
             $.ajax({
                 type: "POST",
                 url: 'login_login',
@@ -257,7 +256,7 @@
         var loginName = $.cookie('loginName');
         var password = $.cookie('password');
         if (typeof (loginName) != "undefined"
-                && typeof (password) != "undefined") {
+            && typeof (password) != "undefined") {
             $("#loginName").val(loginName);
             $("#password").val(password);
             $("#saveid").attr("checked", true);
