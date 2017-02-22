@@ -14,6 +14,7 @@
         <typeAlias type="com.fish.idle.service.modules.sys.entity.Menu" alias="Menu"/>
         <typeAlias type="com.fish.idle.service.modules.sys.entity.Button" alias="Button"/>
         <typeAlias type="com.fish.idle.service.modules.sys.entity.User" alias="User"/>
+        <typeAlias type="com.fish.idle.service.modules.sys.entity.Theme" alias="Theme"/>
     </typeAliases>
     <!-- 映射map -->
     <mappers>

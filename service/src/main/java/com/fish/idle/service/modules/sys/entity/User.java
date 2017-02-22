@@ -38,6 +38,8 @@ public class User implements Serializable {
     private String prefer;//偏好
     private String address;//地址
     private String headImgUrl;//头像
+    
+    private Long themeId; // 用户所对应的主题皮肤的ID
 
     @TableField(value = "open_id")
     private String openId; // 微信openId
@@ -249,5 +251,13 @@ public class User implements Serializable {
 
     public void setHeadImgUrl(String headImgUrl) {
         this.headImgUrl = headImgUrl;
+    }
+
+    public Long getThemeId() {
+        return themeId;
+    }
+
+    public void setThemeId(Long themeId) {
+        this.themeId = themeId;
     }
 }

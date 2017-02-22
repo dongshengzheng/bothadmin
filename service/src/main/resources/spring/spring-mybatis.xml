@@ -61,7 +61,7 @@
                 </bean>
             </array>
         </property>
-        <property name="dbColumnUnderline" value="true"/>
+        <!--<property name="dbColumnUnderline" value="true"/>-->
         <!-- 主键生成策略配置注入 -->
         <property name="globalConfig" ref="globalConfig"/>
     </bean>

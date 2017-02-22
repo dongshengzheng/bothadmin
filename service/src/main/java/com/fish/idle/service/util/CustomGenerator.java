@@ -14,7 +14,7 @@ public class CustomGenerator {
 
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
-        gc.setOutputDir("E:\\workspace\\IdeaProjects\\test_mybatisplus\\src\\main\\java");
+        gc.setOutputDir("D:\\");
         gc.setFileOverride(true);
         gc.setActiveRecord(true);
         gc.setEnableCache(false);// XML 二级缓存
@@ -43,7 +43,7 @@ public class CustomGenerator {
         StrategyConfig strategy = new StrategyConfig();
         strategy.setTablePrefix(new String[]{"sys_"});// 此处可以修改为您的表前缀
         strategy.setNaming(NamingStrategy.remove_prefix_and_camel);// 表名生成策略
-        strategy.setInclude(new String[]{"sys_user"}); // 需要生成的表
+        strategy.setInclude(new String[]{"sys_theme"}); // 需要生成的表
         // strategy.setExclude(new String[]{"test"}); // 排除生成的表
         // 字段名生成策略
         strategy.setFieldNaming(NamingStrategy.underline_to_camel);
