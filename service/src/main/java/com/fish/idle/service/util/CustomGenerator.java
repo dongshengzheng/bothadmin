@@ -36,14 +36,14 @@ public class CustomGenerator {
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("root");
-        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/test_db?useUnicode=true&characterEncoding=UTF-8&&useSSL=false");
+        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/both_admin?useUnicode=true&characterEncoding=UTF-8&&useSSL=false");
         mpg.setDataSource(dsc);
 
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
         strategy.setTablePrefix(new String[]{"sys_"});// 此处可以修改为您的表前缀
         strategy.setNaming(NamingStrategy.remove_prefix_and_camel);// 表名生成策略
-        strategy.setInclude(new String[]{"sys_theme"}); // 需要生成的表
+        // strategy.setInclude(new String[]{"sys_theme"}); // 需要生成的表
         // strategy.setExclude(new String[]{"test"}); // 排除生成的表
         // 字段名生成策略
         strategy.setFieldNaming(NamingStrategy.underline_to_camel);
